@@ -1,0 +1,81 @@
+﻿#############################################
+
+on_game_initialized = {
+	
+	on_actions = {	
+		z_sw_initialization
+	}
+	
+}
+
+#############################################
+
+z_sw_initialization = {
+
+	events = {
+		z_sw_natives.1										# Find Native Majority in Capital Area
+		z_sw_natives.2										# Find Native Majority in Capital Region
+		z_sw_natives.3										# Find Native Majority in Country
+	}
+	
+}
+
+#############################################
+#############################################
+
+yearly_country_pulse = {
+
+	on_actions = {	
+		z_sw_yearly_events		
+	}
+}
+
+#############################################
+#############################################
+
+monthly_country_pulse = {
+
+	on_actions = {	
+		z_sw_monthly_events
+	}
+
+}
+
+#############################################
+#############################################
+
+z_sw_yearly_events = {
+
+	events = {
+	}
+	
+	random_events = {
+	}
+	
+}
+
+#############################################
+#############################################
+
+z_sw_monthly_events = {
+
+	events = {
+		z_sw_natives.1										# Find Native Majority in Capital Area
+		z_sw_natives.2										# Find Native Majority in Capital Region
+		z_sw_natives.3										# Find Native Majority in Country
+		
+		z_sw_natives.4										# Clear Native Majority
+	}
+	
+	random_events = {
+	
+		110 = 0
+		
+		10 = z_sw_natives.101								# Convert characters
+		
+		5 = z_sw_natives.200								# Look for potential former primary culture leader
+		10 = z_sw_natives.300								# Look for potential newer primary culture leader
+		
+	}
+	
+}

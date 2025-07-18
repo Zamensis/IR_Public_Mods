@@ -1,0 +1,8 @@
+﻿NAI = {
+	WAR_BORDERGORE_FACTOR = 0.775					# @Zam: Don't change this.
+}
+
+NCountry = {
+	CIVIL_WAR_CITIES_THRESHOLD = 15 				# Less civil wars (on top of less civil wars for the AI on Normal difficulty). More room for more tags. Less pointless bordergore.
+	MINIMUM_CIVIL_WAR_DAYS_FOR_AUTORESOLVE = 30		# From 90. Get it over with!
+}

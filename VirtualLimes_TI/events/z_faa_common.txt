@@ -1,0 +1,828 @@
+﻿namespace = z_faa_common
+
+# Non-Limes events related to AI Rome's expansion.
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa_common.1 = {																				#########   ROME CHOOSES HER FATE
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		tag = ROM
+		is_ai = yes
+		NOT = {
+			has_variable = z_rome_chose_her_fate
+		}
+	}
+	
+	immediate = {
+		if = {
+			limit = {
+				any_country = {
+					is_ai = no
+					OR = {
+						tag = CAR
+						tag = MAC
+						tag = EPI
+						any_owned_province = {
+							is_in_region = central_italy_region
+							is_in_region = cisalpine_gaul_region
+							is_in_region = magna_graecia_region
+						}
+					}
+				}
+			}
+			set_variable = {
+				name = z_rome_chose_her_fate
+				value = 1
+			}
+		}
+		else = {
+			random_list = {
+				85 = {
+					set_variable = {
+						name = z_rome_chose_her_fate
+						value = 1
+					}
+				}
+				15 = {
+					set_variable = {
+						name = z_rome_chose_her_fate
+						value = 2
+					}
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa_common.2 = {																				#########   REMOVE STRONG/WEAK MODIFIER
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		tag = ROM
+		z_faa_modifiers_forbidden = yes
+		OR = {
+			has_country_modifier = z_strong_ai
+			has_country_modifier = z_lame_ai
+		}
+	}
+	
+	immediate = {
+		if = {
+			limit = {
+				has_country_modifier = z_strong_ai
+			}
+			remove_country_modifier = z_strong_ai
+		}
+		else_if = {
+			limit = {
+				has_country_modifier = z_lame_ai
+			}
+			remove_country_modifier = z_lame_ai
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa_common.3 = {																				#########   GIVE STRONG/WEAK MODIFIER
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		tag = ROM
+		is_ai = yes
+		has_variable = z_rome_chose_her_fate
+		z_faa_modifiers_forbidden = no
+		NOT = {
+			has_country_modifier = z_strong_ai
+			has_country_modifier = z_lame_ai
+		}
+	}
+	
+	immediate = {
+		if = {
+			limit = {
+				OR = {
+					z_current_year > 75 # 525 AUC / 225 BCE
+					var:z_rome_chose_her_fate = 1
+				}
+			}
+			add_country_modifier = {
+				name = z_strong_ai
+			}
+		}
+		else_if = {
+			limit = {
+				var:z_rome_chose_her_fate = 2
+			}
+			add_country_modifier = {
+				name = z_lame_ai
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa_common.4 = {																				#########   GIVE STRONG MODIFIER AFTER 525 AUC
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	fire_only_once = yes
+	
+	trigger = {
+		tag = ROM
+		is_ai = yes
+		has_country_modifier = z_lame_ai
+		NOT = {
+			has_country_modifier = z_strong_ai
+		}
+		z_current_year > 75 # 525 AUC / 225 BCE
+	}
+	
+	immediate = {
+		random_list = {
+			5 = {
+				remove_country_modifier = z_lame_ai
+				add_country_modifier = {
+					name = z_strong_ai
+				}
+				set_variable = {
+					name = z_rome_chose_her_fate
+					value = 1
+				}
+			}
+			95 = {
+				# No luck
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa_common.5 = {																				#########   GIVE SUPERPOWER MODIFIERS
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		tag = ROM
+		is_ai = yes
+		NOT = {
+			has_country_modifier = z_naval_superpower
+			has_country_modifier = z_land_superpower
+		}
+		num_of_cities >= 1000
+	}
+	
+	immediate = {
+		if = {
+			limit = {
+				NOT = {
+					has_country_modifier = z_naval_superpower
+				}
+			}
+			add_country_modifier = {
+				name = z_naval_superpower
+				duration = -1
+			}
+		}
+		if = {
+			limit = {
+				NOT = {
+					has_country_modifier = z_land_superpower
+				}
+			}
+			add_country_modifier = {
+				name = z_land_superpower
+				duration = -1
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa_common.6 = {																				#########   REMOVE SUPERPOWER MODIFIERS
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		OR = {
+			has_country_modifier = z_naval_superpower
+			has_country_modifier = z_land_superpower
+		}
+		OR = {
+			NOT = {
+				tag = ROM
+			}
+			is_ai = no
+			AND = {
+				num_of_cities < 1000
+				has_civil_war = no
+			}
+		}
+	}
+	
+	immediate = {
+		if = {
+			limit = {
+				has_country_modifier = z_naval_superpower
+			}
+			remove_country_modifier = z_naval_superpower
+		}
+		if = {
+			limit = {
+				has_country_modifier = z_land_superpower
+			}
+			remove_country_modifier = z_land_superpower
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa_common.100 = {																			#########   RELEASE DISTANT FAA's
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		is_ai = yes
+		is_subject_of = ROM
+		OR = {
+			is_subject_type = roman_faa
+			is_subject_type = tributary
+		}
+		NOT = {
+			any_neighbour_country = {
+				tag = ROM
+			}
+			any_owned_province = {
+				is_in_region = central_italy_region
+				is_in_region = magna_graecia_region
+			}
+			AND = {
+				z_current_year > 70 # 520 AUC / 230 BCE
+				any_owned_province = { is_in_region = tarraconensis_region }
+			}
+			AND = {
+				z_current_year > 80 # 530 AUC / 220 BCE
+				any_owned_province = { is_in_region = contestania_region }
+			}
+			AND = {
+				z_current_year > 90 # 540 AUC / 210 BCE
+				any_owned_province = { is_in_region = baetica_region }
+			}
+			AND = {
+				z_current_year > 110 # 560 AUC / 190 BCE
+				any_owned_province = { is_in_region = lusitania_region }
+			}
+			AND = {
+				z_current_year > 140 # 590 AUC / 160 BCE
+				any_owned_province = { is_in_region = greece_region }
+			}
+			AND = {
+				z_current_year > 170 # 620 AUC / 130 BCE
+				OR = {
+					any_owned_province = { is_in_region = galatia_region }
+					any_owned_province = { is_in_region = cappadocia_region }
+				}
+			}
+			AND = {
+				z_current_year > 200 # 650 AUC / 100 BCE
+				OR = {
+					any_owned_province = { is_in_region = gallaecia_region }
+					any_owned_province = { is_in_region = central_gaul_region }
+					any_owned_province = { is_in_region = armorica_region }
+					any_owned_province = { is_in_region = aquitaine_region }
+					any_owned_province = { is_in_region = gallaecia_region }
+				}
+			}
+		}
+		NOT = {
+			AND = {
+				has_coasts = yes
+				OR = {
+					any_owned_province = { is_in_region = cisalpine_gaul_region }
+					any_owned_province = { is_in_region = transalpine_gaul_region }
+					any_owned_province = { is_in_region = illyria_region }
+					any_owned_province = { is_in_region = tarraconensis_region }
+					any_owned_province = { is_in_region = contestania_region }
+					any_owned_province = { is_in_region = baetica_region }
+					any_owned_province = { is_in_region = mauretainia_region }
+					any_owned_province = { is_in_region = numidia_region }
+					any_owned_province = { is_in_region = africa_region }
+					any_owned_province = { is_in_region = cyrenaica_region }
+					any_owned_province = { is_in_region = palestine_region }
+					any_owned_province = { is_in_region = syria_region }
+					any_owned_province = { is_in_region = cilicia_region }
+					any_owned_province = { is_in_region = asia_region }
+					any_owned_province = { is_in_region = greece_region }
+					any_owned_province = { is_in_region = macedonia_region }
+					any_owned_province = { is_in_region = thrace_region }
+					any_owned_province = { is_in_region = taurica_region }
+					any_owned_province = { is_in_region = colchis_region }
+					any_owned_province = { is_in_region = bithynia_region }
+					any_owned_province = { is_in_region = cappadocia_pontica_region }
+					any_owned_province = { is_in_region = britain_region }
+				}
+			}
+		}
+		c:ROM = {
+			is_ai = yes
+		}
+	}
+
+	immediate = {
+		c:ROM = {
+			release_subject = root
+			add_truce = {
+				target = root
+				duration = 7200
+			}
+		}
+		add_truce = {
+			target = c:ROM
+			duration = 7200
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa_common.200 = {																			#########   MERGE FAA's IN SAME AREA
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		z_has_limes_ROM = yes
+		any_subject = {
+			any_neighbour_country = {
+				prev.capital_scope.area = this.capital_scope.area
+				OR = {
+					is_subject_type = roman_faa
+					is_subject_type = client_state
+				}
+				is_ai = yes
+				is_subject_of = root
+				war = no
+				any_owned_province = {
+					NOT = {
+						is_in_region = greece_region
+					}
+				}
+			}
+			is_ai = yes
+			OR = {
+				is_subject_type = roman_faa
+				is_subject_type = client_state
+			}
+		}
+	}
+	
+	immediate = {
+		random_subject = {
+			limit = {
+				any_neighbour_country = {
+					prev.capital_scope.area = this.capital_scope.area
+					OR = {
+						is_subject_type = roman_faa
+						is_subject_type = client_state
+					}
+					is_ai = yes
+					is_subject_of = root
+					war = no
+					any_owned_province = {
+						NOT = {
+							is_in_region = greece_region
+						}
+					}
+				}
+				is_ai = yes
+				OR = {
+					is_subject_type = roman_faa
+					is_subject_type = client_state
+				}
+			}
+			save_scope_as = z_roman_faa_1
+			random_neighbour_country = {
+				limit = {
+					prev.capital_scope.area = this.capital_scope.area
+					OR = {
+						is_subject_type = roman_faa
+						is_subject_type = client_state
+					}
+					is_ai = yes
+					is_subject_of = root
+					war = no
+					any_owned_province = {
+						NOT = {
+							is_in_region = greece_region
+						}
+					}
+				}
+				every_owned_province = {
+					limit = {
+						is_in_area = scope:z_roman_faa_1.capital_scope
+					}
+					set_owned_by = scope:z_roman_faa_1
+				}
+			}			
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa_common.201 = {																			#########   MERGE FAA's IN SAME REGION: NUMIDIA
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		z_current_year > 150 # 600 AUC / 150 BCE
+		is_ai = yes
+		is_subject_of = c:ROM
+		OR = {
+			is_subject_type = client_state
+			is_subject_type = roman_faa
+		}
+		c:ROM = {
+			is_ai = yes
+		}
+		any_owned_province = {
+			OR = {
+				is_in_region = numidia_region
+			}
+		}
+		any_neighbour_country = {
+			is_ai = yes
+			OR = {
+				is_subject_type = client_state
+				is_subject_type = roman_faa
+			}
+			is_subject_of = c:ROM
+			any_owned_province = {
+				OR = {
+					is_in_region = numidia_region
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		every_neighbour_country = {
+			limit = {
+				is_ai = yes
+				is_subject_of = c:ROM
+				OR = {
+					is_subject_type = client_state
+					is_subject_type = roman_faa
+				}
+				any_owned_province = {
+					is_in_region = numidia_region
+				}
+			}
+			every_owned_province = {
+				limit = {
+					is_in_region = numidia_region
+				}
+				set_owned_by = root
+			}			
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa_common.202 = {																			#########   MERGE FAA's IN SAME REGION: CYRENAICA
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		z_current_year > 175 # 625 AUC / 125 BCE
+		is_ai = yes
+		is_subject_of = c:ROM
+		OR = {
+			is_subject_type = client_state
+			is_subject_type = roman_faa
+		}
+		c:ROM = {
+			is_ai = yes
+		}
+		any_owned_province = {
+			OR = {
+				is_in_region = cyrenaica_region
+				NOT = {
+					is_in_area = tripolitania_centralis_area
+					is_in_area = tripolitania_orientalis_area
+				}
+			}
+		}
+		any_neighbour_country = {
+			is_ai = yes
+			OR = {
+				is_subject_type = client_state
+				is_subject_type = roman_faa
+			}
+			is_subject_of = c:ROM
+			any_owned_province = {
+				OR = {
+					is_in_region = cyrenaica_region
+					NOT = {
+						is_in_area = tripolitania_centralis_area
+						is_in_area = tripolitania_orientalis_area
+					}
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		every_neighbour_country = {
+			limit = {
+				is_ai = yes
+				is_subject_of = c:ROM
+				OR = {
+					is_subject_type = client_state
+					is_subject_type = roman_faa
+				}
+				any_owned_province = {
+					is_in_region = cyrenaica_region
+					NOT = {
+						is_in_area = tripolitania_centralis_area
+						is_in_area = tripolitania_orientalis_area
+					}
+				}
+			}
+			every_owned_province = {
+				limit = {
+					is_in_region = cyrenaica_region
+					NOT = {
+						is_in_area = tripolitania_centralis_area
+						is_in_area = tripolitania_orientalis_area
+					}
+				}
+				set_owned_by = root
+			}			
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa_common.203 = {																			#########   MERGE FAA's IN SAME REGION: MAURETANIA
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		z_current_year > 200 # 650 AUC / 100 BCE
+		is_ai = yes
+		is_subject_of = c:ROM
+		OR = {
+			is_subject_type = client_state
+			is_subject_type = roman_faa
+		}
+		c:ROM = {
+			is_ai = yes
+		}
+		any_owned_province = {
+			OR = {
+				is_in_region = mauretainia_region
+			}
+		}
+		any_neighbour_country = {
+			is_ai = yes
+			OR = {
+				is_subject_type = client_state
+				is_subject_type = roman_faa
+			}
+			is_subject_of = c:ROM
+			any_owned_province = {
+				OR = {
+					is_in_region = mauretainia_region
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		every_neighbour_country = {
+			limit = {
+				is_ai = yes
+				is_subject_of = c:ROM
+				OR = {
+					is_subject_type = client_state
+					is_subject_type = roman_faa
+				}
+				any_owned_province = {
+					is_in_region = mauretainia_region
+				}
+			}
+			every_owned_province = {
+				limit = {
+					is_in_region = mauretainia_region
+				}
+				set_owned_by = root
+			}			
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa_common.204 = {																			#########   MERGE FAA's IN SAME REGION: EGYPT
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		z_current_year > 225 # 675 AUC / 75 BCE
+		is_ai = yes
+		is_subject_of = c:ROM
+		OR = {
+			is_subject_type = client_state
+			is_subject_type = roman_faa
+		}
+		c:ROM = {
+			is_ai = yes
+		}
+		any_owned_province = {
+			OR = {
+				is_in_region = lower_egypt_region
+				is_in_region = upper_egypt_region
+			}
+		}
+		any_neighbour_country = {
+			is_ai = yes
+			OR = {
+				is_subject_type = client_state
+				is_subject_type = roman_faa
+			}
+			is_subject_of = c:ROM
+			any_owned_province = {
+				OR = {
+					is_in_region = lower_egypt_region
+					is_in_region = upper_egypt_region
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		every_neighbour_country = {
+			limit = {
+				is_ai = yes
+				is_subject_of = c:ROM
+				OR = {
+					is_subject_type = client_state
+					is_subject_type = roman_faa
+				}
+				any_owned_province = {
+					is_in_region = lower_egypt_region
+					is_in_region = upper_egypt_region
+				}
+			}
+			every_owned_province = {
+				limit = {
+					is_in_region = lower_egypt_region
+					is_in_region = upper_egypt_region
+				}
+				set_owned_by = root
+			}			
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa_common.205 = {																			#########   MERGE FAA's IN SAME REGION: ARMENIA
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		is_ai = yes
+		is_subject_of = c:ROM
+		OR = {
+			is_subject_type = client_state
+			is_subject_type = roman_faa
+		}
+		c:ROM = {
+			is_ai = yes
+		}
+		any_owned_province = {
+			OR = {
+				is_in_region = armenia_region
+			}
+		}
+		any_neighbour_country = {
+			is_ai = yes
+			OR = {
+				is_subject_type = client_state
+				is_subject_type = roman_faa
+			}
+			is_subject_of = c:ROM
+			any_owned_province = {
+				OR = {
+					is_in_region = armenia_region
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		every_neighbour_country = {
+			limit = {
+				is_ai = yes
+				is_subject_of = c:ROM
+				OR = {
+					is_subject_type = client_state
+					is_subject_type = roman_faa
+				}
+				any_owned_province = {
+					is_in_region = armenia_region
+				}
+			}
+			every_owned_province = {
+				limit = {
+					is_in_region = armenia_region
+				}
+				set_owned_by = root
+			}			
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa_common.206 = {																			#########   MERGE FAA's IN SAME REGION: OTHER
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		tag = ROM
+		is_ai = yes
+		any_subject = {
+			any_neighbour_country = {
+				prev.capital_scope.region = this.capital_scope.region
+				is_subject_type = roman_faa
+				is_subject_of = root
+				war = no
+				any_owned_province = {
+					NOT = {
+						is_in_region = greece_region
+					}
+				}
+			}
+			is_subject_type = roman_faa
+			is_subject_of = root
+		}
+	}
+	
+	immediate = {
+		random = {
+			chance = 3
+			random_subject = {
+				limit = {
+					any_neighbour_country = {
+						prev.capital_scope.region = this.capital_scope.region
+						is_subject_type = roman_faa
+						is_subject_of = root
+						war = no
+						any_owned_province = {
+							NOT = {
+								is_in_region = greece_region
+							}
+						}
+					}
+					is_subject_type = roman_faa
+					is_subject_of = root
+				}
+				save_scope_as = z_mergeable_faa_1
+				random_neighbour_country = {
+					limit = {
+						prev.capital_scope.region = this.capital_scope.region
+						is_subject_type = roman_faa
+						is_subject_of = root
+						war = no
+						any_owned_province = {
+							NOT = {
+								is_in_region = greece_region
+							}
+						}
+					}
+					every_owned_province = {
+						limit = {
+							is_in_region = scope:z_mergeable_faa_1.capital_scope
+						}
+						set_owned_by = scope:z_mergeable_faa_1
+					}
+				}
+			}
+		}
+	}
+}

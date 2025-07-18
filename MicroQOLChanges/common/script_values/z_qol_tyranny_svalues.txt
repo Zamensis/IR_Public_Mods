@@ -1,0 +1,83 @@
+﻿# Tyranny decay
+# --------------------------------------------------------------------------------
+z_qol_tyranny_decay_base = 0.75 # How much tyranny political parties lose per year when out of rulership
+z_qol_tyranny_decay_tech = 0.50 # How much tyranny political parties lose per year when out of rulership, when "Temporary Offices" invention is unlocked
+
+z_qol_tyranny_decay = {
+	value = z_qol_tyranny_decay_base
+	if = {
+		limit = {
+			root = { invention = monthly_wage_inv_2 }
+		}
+		add = z_qol_tyranny_decay_tech
+	}
+}
+
+# Average in and out
+# --------------------------------------------------------------------------------
+z_qol_tyranny_reset_value = {
+	value = z_qol_tyranny_current_party
+	subtract = tyranny
+	divide = 2
+}
+
+# Fetch saved Tyranny amount depending on party
+# --------------------------------------------------------------------------------
+z_qol_tyranny_current_party = {
+	value = 0
+	if = {
+		limit = { current_ruler = { party_type = optimates_party } }
+		add = var:z_qol_tyranny_opti
+	}
+	else_if = {
+		limit = { current_ruler = { party_type = boni_party } }
+		add = var:z_qol_tyranny_boni
+	}
+	else_if = {
+		limit = { current_ruler = { party_type = populares_party } }
+		add = var:z_qol_tyranny_popu
+	}
+	else_if = {
+		limit = { current_ruler = { party_type = oligarchic_party } }
+		add = var:z_qol_tyranny_olig
+	}
+	else_if = {
+		limit = { current_ruler = { party_type = democratic_party } }
+		add = var:z_qol_tyranny_demo
+	}
+	else_if = {
+		limit = { current_ruler = { party_type = traditionalist_party } }
+		add = var:z_qol_tyranny_trad
+	}
+}
+
+# That stupid event...
+# --------------------------------------------------------------------------------
+senatorial_veto_approval_svalue = {
+	value = -50
+	if = {
+		limit = { z_qol_easy_veto_penalty = 1 }
+		multiply = z_qol_easy_veto_factor
+	}
+}
+senatorial_veto_other_approval_svalue = {
+	value = -20
+	if = {
+		limit = { z_qol_easy_veto_penalty = 1 }
+		multiply = z_qol_easy_veto_factor
+	}
+}
+senate_agenda_passed_medium_svalue = {
+	value = 10
+	if = {
+		limit = { z_qol_easy_veto_penalty = 1 }
+		add = 0
+	}
+}
+senate_agenda_passed_large_svalue = {
+	value = 20
+	if = {
+		limit = { z_qol_easy_veto_penalty = 1 }
+		add = 0
+	}
+}

@@ -1,0 +1,53 @@
+﻿#################################################################################################	Good Omens
+#################################################################################################
+z_good_omen_1 = { # Lowest gravity Good Omen
+	omen_power = 0.05
+	# No stab bonus
+}
+
+z_good_omen_2 = { # Low gravity Good Omen
+	omen_power = 0.10
+	stability_monthly_change = 0.01
+}
+
+z_good_omen_3 = { # Medium gravity Good Omen
+	omen_power = 0.15
+	stability_monthly_change = 0.02
+}
+
+z_good_omen_4 = { # High gravity Good Omen
+	omen_power = 0.20
+	stability_monthly_change = 0.03
+}
+
+z_good_omen_5 = { # Highest gravity Good Omen
+	omen_power = 0.25
+	stability_monthly_change = 0.05
+}
+
+#################################################################################################	Bad Omens
+#################################################################################################	Not allowed to use a svalue :(
+z_bad_omen_1 = { # Lowest gravity Bad Omen
+	omen_power = -2
+	stability_monthly_change = -0.01
+}
+
+z_bad_omen_2 = { # Low gravity Bad Omen
+	omen_power = -2.5
+	stability_monthly_change = -0.02
+}
+
+z_bad_omen_3 = { # Medium gravity Bad Omen
+	omen_power = -3
+	stability_monthly_change = -0.03
+}
+
+z_bad_omen_4 = { # High gravity Bad Omen
+	omen_power = -2.5
+	stability_monthly_change = -0.05
+}
+
+z_bad_omen_5 = { # Highest gravity Bad Omen
+	omen_power = -3
+	stability_monthly_change = -0.1
+}

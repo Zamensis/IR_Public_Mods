@@ -1,0 +1,121 @@
+﻿# --------------------------------------------------------------------------------
+# AI vs AI "clean deals" in strategic locations (some regions like the Nile Delta must be exchanged as a whole between large AI empires)
+# --------------------------------------------------------------------------------
+z_limes_peace_default_effect = {
+	if = {
+		limit = {
+			z_limes_rules_clean_deals = 1
+			z_has_limes = yes
+			num_of_cities >= z_limes_defines_clean_deals_threshold
+			any_neighbour_country = {
+				z_has_limes = yes
+				num_of_cities >= z_limes_defines_clean_deals_threshold
+			}
+		}
+		save_scope_as = z_limes_A
+		random_neighbour_country = {
+			limit = {
+				z_has_limes = yes
+				num_of_cities >= z_limes_defines_clean_deals_threshold
+			}
+			save_scope_as = z_limes_B
+		}
+		if = {
+			limit = {
+				scope:z_limes_A = { any_owned_province = { is_in_region = mesopotamia_region } }
+				scope:z_limes_B = { any_owned_province = { is_in_region = mesopotamia_region } }
+			}
+			z_limes_peace_default_effect_b = { WHAT = region WHICH = mesopotamia_region }
+		}
+		if = {
+			limit = {
+				scope:z_limes_A = { any_owned_province = { is_in_region = assyria_region } }
+				scope:z_limes_B = { any_owned_province = { is_in_region = assyria_region } }
+			}
+			z_limes_peace_default_effect_b = { WHAT = region WHICH = assyria_region }
+		}
+		#if = {
+		#	limit = {
+		#		scope:z_limes_A = { any_owned_province = { is_in_region = syria_region } }
+		#		scope:z_limes_B = { any_owned_province = { is_in_region = syria_region } }
+		#	}
+		#	z_limes_peace_default_effect_b = { WHAT = region WHICH = syria_region }
+		#}
+		#if = {
+		#	limit = {
+		#		scope:z_limes_A = { any_owned_province = { is_in_region = palestine_region } }
+		#		scope:z_limes_B = { any_owned_province = { is_in_region = palestine_region } }
+		#	}
+		#	z_limes_peace_default_effect_b = { WHAT = region WHICH = palestine_region }
+		#}
+		if = {
+			limit = {
+				scope:z_limes_A = { any_owned_province = { is_in_region = media_region } }
+				scope:z_limes_B = { any_owned_province = { is_in_region = media_region } }
+			}
+			z_limes_peace_default_effect_b = { WHAT = region WHICH = media_region }
+		}
+		#if = {
+		#	limit = {
+		#		scope:z_limes_A = { any_owned_province = { is_in_region = persis_region } }
+		#		scope:z_limes_B = { any_owned_province = { is_in_region = persis_region } }
+		#	}
+		#	z_limes_peace_default_effect_b = { WHAT = region WHICH = persis_region }
+		#}
+		#if = {
+		#	limit = {
+		#		scope:z_limes_A = { any_owned_province = { is_in_region = palestine_region } }
+		#		scope:z_limes_B = { any_owned_province = { is_in_region = palestine_region } }
+		#	}
+		#	z_limes_peace_default_effect_b = { WHAT = region WHICH = palestine_region }
+		#}
+		if = {
+			limit = {
+				scope:z_limes_A = { any_owned_province = { is_in_region = lower_egypt_region } }
+				scope:z_limes_B = { any_owned_province = { is_in_region = lower_egypt_region } }
+			}
+			z_limes_peace_default_effect_b = { WHAT = region WHICH = lower_egypt_region }
+		}
+		if = {
+			limit = {
+				scope:z_limes_A = { any_owned_province = { is_in_region = upper_egypt_region } }
+				scope:z_limes_B = { any_owned_province = { is_in_region = upper_egypt_region } }
+			}
+			z_limes_peace_default_effect_b = { WHAT = region WHICH = upper_egypt_region }
+		}
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Partition a zone between two countries
+# --------------------------------------------------------------------------------
+z_limes_peace_default_effect_b = {
+	if = {
+		limit = {
+			NOT = {
+				scope:z_limes_B.capital_scope = { is_in_$WHAT$ = $WHICH$ }
+			}
+			$WHAT$:$WHICH$ = {
+				any_$WHAT$_province = {
+					percent >= 0.5
+					owner = scope:z_limes_A
+				}
+			}
+			$WHAT$:$WHICH$ = {
+				any_$WHAT$_province = {
+					percent < 0.3
+					owner = scope:z_limes_B
+				}
+			}
+		}
+		$WHAT$:$WHICH$ = {
+			every_$WHAT$_province = {
+				limit = {
+					has_owner = yes
+					owner = scope:z_limes_B
+				}
+				set_owned_by = scope:z_limes_A
+			}
+		}
+	}
+}

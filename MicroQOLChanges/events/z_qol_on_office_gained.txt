@@ -1,0 +1,48 @@
+﻿namespace = office_gain
+
+office_gain.4 = {
+	type = country_event
+	hidden = yes
+	
+	immediate = {
+		if = {
+			limit = { z_qol_breakthrough_notification = 1 }
+			trigger_event = { id = office_gain.357 }
+		}
+		else = {
+			trigger_event = { id = office_gain.358 }
+		}
+	}
+}
+
+office_gain.357 = {
+	type = country_event
+	left_portrait = scope:innovation_giver
+	right_portrait = current_ruler
+	title = "office_gain.4.t"
+	desc = "office_gain.4.desc"
+	
+	picture = senator_conversing
+	
+	option = {
+		name = "office_gain.4.a"
+		scope:innovation_giver = { add_character_experience = 5 }
+		add_innovation = 1
+	}
+	
+}
+
+office_gain.358 = {
+	type = minor_country_event
+	left_portrait = scope:innovation_giver
+	title = "office_gain.4.t"
+	desc = "office_gain.4.desc"
+	interface_lock = no
+	
+	option = {
+		name = "office_gain.4.a"
+		scope:innovation_giver = { add_character_experience = 5 }
+		add_innovation = 1
+	}
+	
+}

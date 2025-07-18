@@ -1,0 +1,683 @@
+﻿namespace = z_limes_common
+
+# Non-Limes generic events related to AI expansion.
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_common.1 = {																			#########   RELEASE DISTANT SUBJECTS
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		is_ai = yes
+		is_subject = no
+		NOT = {
+			has_variable = "z_limes_release_distant_subjects_cooldown"
+		}
+		NAND = {
+			tag = ROM
+			owns = p:1
+		}
+		any_subject = {
+			OR = {
+				is_subject_type = z_frontier_outpost
+				is_subject_type = tributary
+				is_subject_type = vassal_tribe
+			}
+			is_ai = yes
+			war = no
+			has_coasts = no
+			NOT = {
+				any_neighbour_country = { this = root }
+				any_owned_province = {
+					is_in_region = asia_region
+					is_in_region = cappadocia_pontica_region
+					is_in_region = cappadocia_region
+					is_in_region = galatia_region
+					is_in_region = bithynia_region
+					is_in_region = cilicia_region
+					is_in_region = greece_region
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		save_scope_as = z_limes_distant_overlord
+		ordered_subject = {
+			limit = {
+				is_ai = yes
+				war = no
+				has_coasts = no
+				NOT = {
+					any_neighbour_country = { this = root }
+					any_owned_province = {
+						is_in_region = asia_region
+						is_in_region = cappadocia_pontica_region
+						is_in_region = cappadocia_region
+						is_in_region = galatia_region
+						is_in_region = bithynia_region
+						is_in_region = cilicia_region
+						is_in_region = greece_region
+					}
+				}
+			}
+			order_by = country_population
+			save_scope_as = z_limes_release_this_subject
+		}
+		set_variable = {
+			name = "z_limes_release_distant_subjects_cooldown"
+			days = 10
+		}
+		release_subject = scope:z_limes_release_this_subject
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_common.2 = {																			#########   MERGE SUBJECTS IN SAME AREA
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		is_ai = yes
+		is_subject = no
+		NAND = {
+			tag = ROM
+			owns = p:1
+		}
+		any_subject = {
+			any_neighbour_country = {
+				prev.capital_scope.area = this.capital_scope.area
+				is_subject_type = z_frontier_outpost
+				is_subject_of = root
+				war = no
+			}
+			is_subject_type = z_frontier_outpost
+			is_subject_of = root
+		}
+	}
+	
+	immediate = {
+		random_subject = {
+			limit = {
+				any_neighbour_country = {
+					prev.capital_scope.area = this.capital_scope.area
+					is_subject_type = z_frontier_outpost
+					is_subject_of = root
+				}
+				is_subject_type = z_frontier_outpost
+				is_subject_of = root
+			}
+			save_scope_as = z_mergeable_fo_1
+			random_neighbour_country = {
+				limit = {
+					prev.capital_scope.area = this.capital_scope.area
+					is_subject_type = z_frontier_outpost
+					is_subject_of = root
+					war = no
+				}
+				every_owned_province = {
+					limit = {
+						is_in_area = scope:z_mergeable_fo_1.capital_scope
+					}
+					set_owned_by = scope:z_mergeable_fo_1
+				}
+			}			
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_common.3 = {																			#########   MERGE SUBJECTS IN SAME REGION
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		is_ai = yes
+		is_subject = no
+		z_has_limes_ROM = no # Shouldn't apply anyway because we're targetting MM's
+		any_subject = {
+			any_neighbour_country = {
+				prev.capital_scope.region = this.capital_scope.region
+				is_subject_type = z_frontier_outpost
+				is_subject_of = root
+				war = no
+			}
+			is_subject_type = z_frontier_outpost
+			is_subject_of = root
+		}
+	}
+	
+	immediate = {
+		random = {
+			chance = 50
+			random_subject = {
+				limit = {
+					any_neighbour_country = {
+						prev.capital_scope.region = this.capital_scope.region
+						is_subject_type = z_frontier_outpost
+						is_subject_of = root
+					}
+					is_subject_type = z_frontier_outpost
+					is_subject_of = root
+				}
+				save_scope_as = z_mergeable_fo_1
+				random_neighbour_country = {
+					limit = {
+						prev.capital_scope.region = this.capital_scope.region
+						is_subject_type = z_frontier_outpost
+						is_subject_of = root
+						war = no
+					}
+					every_owned_province = {
+						limit = {
+							is_in_region = scope:z_mergeable_fo_1.capital_scope
+						}
+						set_owned_by = scope:z_mergeable_fo_1
+					}
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_common.4 = {																			#########   ABSORB ENCLAVED ALLIANCES
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		is_ai = yes
+		is_subject = no
+		war = no
+		z_current_year > 150
+		days_since_last_war >= 365
+		NOT = {
+			has_variable = z_limes_absorb_cooldown
+		}
+		any_neighbour_country = {
+			is_ai = yes
+			OR = {
+				alliance_with = root
+				AND = {
+					is_guaranteed_by = root
+					days_since_last_war >= 1825
+				}
+				is_subject_of = root
+			}
+			num_of_cities < 5
+			has_coasts = no
+			NOT = {
+				any_neighbour_country = {
+					NOT = {
+						this = root
+					}
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		random_neighbour_country = {
+			limit = {
+				is_ai = yes
+				OR = {
+					alliance_with = root
+					AND = {
+						is_guaranteed_by = root
+						days_since_last_war >= 1825
+					}
+					is_subject_of = root
+				}
+				num_of_cities < 5
+				has_coasts = no
+				NOT = {
+					any_neighbour_country = {
+						NOT = {
+							this = root
+						}
+					}
+				}
+			}
+			save_scope_as = z_integrate_this
+		}
+		random = {
+			chance = 10
+			set_variable = {
+				name = z_limes_absorb_cooldown
+				days = 730 # 2 years
+			}
+			scope:z_integrate_this = {
+				every_owned_province = {
+					set_owned_by = root
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_common.5 = {																			#########   FREE MMs BIGGER THAN THEIR OVERLORDS
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		is_ai = yes
+		any_subject = {
+			is_ai = yes
+			num_of_cities >= root.num_of_cities
+			OR = {
+				is_subject_type = z_frontier_outpost
+				is_subject_type = roman_faa
+			}
+		}
+	}
+	
+	immediate = {
+		random_subject = {
+			limit = {
+				is_ai = yes
+				num_of_cities >= root.num_of_cities
+				OR = {
+					is_subject_type = z_frontier_outpost
+					is_subject_type = roman_faa
+				}
+			}
+			save_scope_as = z_liberate_this
+		}
+		release_subject = scope:z_liberate_this
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_common.6 = {																			#########   GIVE MM's THEIR CORRECT LEVY SIZE MODIFIER
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		OR = {
+			is_subject_type = z_frontier_outpost
+			AND = {
+				NOT = {
+					is_subject_type = z_frontier_outpost
+				}
+				OR = {
+					has_country_modifier = z_limes_levy_size_1
+					has_country_modifier = z_limes_levy_size_2
+					has_country_modifier = z_limes_levy_size_3
+					has_country_modifier = z_limes_levy_size_4
+					has_country_modifier = z_limes_levy_size_5
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		if = {
+			limit = {
+				NOT = {
+					is_subject_type = z_frontier_outpost
+				}
+			}
+			z_limes_clear_levy_size = yes
+		}
+		else_if = {
+			limit = {
+				country_population < 100
+				NOT = {
+					has_country_modifier = z_limes_levy_size_1
+				}
+			}
+			z_limes_clear_levy_size = yes
+			add_country_modifier = {
+				name = z_limes_levy_size_1
+				duration = -1
+			}
+		}
+		else_if = {
+			limit = {
+				country_population >= 100
+				country_population < 500
+				NOT = {
+					has_country_modifier = z_limes_levy_size_2
+				}
+			}
+			z_limes_clear_levy_size = yes
+			add_country_modifier = {
+				name = z_limes_levy_size_2
+				duration = -1
+			}
+		}
+		else_if = {
+			limit = {
+				country_population >= 500
+				country_population < 1000
+				NOT = {
+					has_country_modifier = z_limes_levy_size_3
+				}
+			}
+			z_limes_clear_levy_size = yes
+			add_country_modifier = {
+				name = z_limes_levy_size_3
+				duration = -1
+			}
+		}
+		else_if = {
+			limit = {
+				country_population >= 1000
+				country_population < 2000
+				NOT = {
+					has_country_modifier = z_limes_levy_size_4
+				}
+			}
+			z_limes_clear_levy_size = yes
+			add_country_modifier = {
+				name = z_limes_levy_size_4
+				duration = -1
+			}
+		}
+		else_if = {
+			limit = {
+				country_population >= 2000
+				NOT = {
+					has_country_modifier = z_limes_levy_size_5
+				}
+			}
+			z_limes_clear_levy_size = yes
+			add_country_modifier = {
+				name = z_limes_levy_size_5
+				duration = -1
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_common.100 = {																			#########   YEARLY CHECK
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+	}
+	
+	immediate = {
+		if = {
+			limit = {
+				is_ai = yes
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_variable = z_limes_toss_a_coin
+					}
+				}
+				set_variable = {
+					name = z_limes_toss_a_coin
+					value = { 1 100 }
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_country_modifier = z_limes_normal_ai
+						has_country_modifier = easy_ai
+						has_country_modifier = hard_ai
+						has_country_modifier = very_hard_ai
+					}
+				}
+				add_country_modifier = {
+					name = z_limes_normal_ai
+				}
+			}
+		}
+		else = {
+			if = {
+				limit = {
+					has_country_modifier = z_limes_normal_ai
+				}
+				remove_country_modifier = z_limes_normal_ai
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_common.200 = {																			#########   GIVE DECLINE
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		OR = {
+			tag = SEL
+			tag = EGY
+			tag = PRY
+			tag = TRE
+			country_culture_group = hellenic
+		}
+	}
+	
+	immediate = {
+		if = {
+			limit = {
+				has_country_modifier = z_limes_country_decline_1
+			}
+			remove_country_modifier = z_limes_country_decline_1
+		}
+		if = {
+			limit = {
+				has_country_modifier = z_limes_country_decline_2
+			}
+			remove_country_modifier = z_limes_country_decline_2
+		}
+		if = {
+			limit = {
+				has_country_modifier = z_limes_country_decline_3
+			}
+			remove_country_modifier = z_limes_country_decline_3
+		}
+		if = {
+			limit = {
+				has_country_modifier = z_limes_country_decline_4
+			}
+			remove_country_modifier = z_limes_country_decline_4
+		}
+		if = {
+			limit = {
+				has_country_modifier = z_limes_country_decline_5
+			}
+			remove_country_modifier = z_limes_country_decline_5
+		}
+		if = {
+			limit = {
+				has_country_modifier = z_limes_country_decline_6
+			}
+			remove_country_modifier = z_limes_country_decline_6
+		}
+		# ONLY GIVE THE MODIFIER UNDER CERTAIN CIRCUMSTANCES
+		if = {
+			limit = {
+				is_ai = yes
+				OR = {
+					AND = {
+						OR = {
+							tag = SEL
+							tag = EGY
+							tag = PRY
+							tag = TRE
+						}
+						num_of_cities > 75
+					}
+					num_of_cities > 300
+				}	
+				NOT = {
+					any_neighbour_country = {
+						is_ai = no
+					}
+				}
+				z_limes_ruler_score < 20
+			}
+			if = {
+				limit = {
+					z_current_year >= 75
+					z_current_year < 125
+				}
+				add_country_modifier = {
+					name = z_limes_country_decline_1
+				}
+			}
+			else_if = {
+				limit = {
+					z_current_year >= 125
+					z_current_year < 175
+				}
+				add_country_modifier = {
+					name = z_limes_country_decline_2
+				}
+			}
+			else_if = {
+				limit = {
+					z_current_year >= 175
+					z_current_year < 225
+				}
+				add_country_modifier = {
+					name = z_limes_country_decline_3
+				}
+			}
+			else_if = {
+				limit = {
+					z_current_year >= 225
+					z_current_year < 275
+				}
+				add_country_modifier = {
+					name = z_limes_country_decline_4
+				}
+			}
+			else_if = {
+				limit = {
+					z_current_year >= 275
+					z_current_year < 325
+				}
+				add_country_modifier = {
+					name = z_limes_country_decline_5
+				}
+			}
+			else_if = {
+				limit = {
+					z_current_year >= 325
+				}
+				add_country_modifier = {
+					name = z_limes_country_decline_6
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_common.9999 = {																			#########   LIMES INITIALIZATION
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	fire_only_once = yes
+	
+	immediate = {
+		if = {
+			limit = {
+				owns = p:1
+				NOT = {
+					has_global_variable = z_vl_present
+				}
+			}
+			set_global_variable = {
+				name = z_vl_present
+				value = 1
+			}	
+		}
+		if = { # Fix false error report
+			limit = {
+				is_ai = yes
+				is_ai = no
+			}
+			set_variable = {
+				name = z_limes_exemption
+			}
+		}
+		if = { # Fix starting bordergore due to CAR early Limes
+			limit = {
+				c:CAR = {
+					is_ai = yes
+				}
+				c:MSS = {
+					is_ai = yes
+				}
+				p:3124 = {
+					this.owner = c:CAR
+				}
+			}
+			p:3124 = {
+				set_owned_by = MSS
+			}
+		}
+		if = { # Diplomacy
+			limit = {
+				c:CAR = {
+					is_ai = yes
+					NOR = {
+						has_truce_with = c:MSS
+						has_truce_with = c:MSY
+						has_truce_with = c:MAU
+					}
+				}
+				c:MSS = {
+					is_ai = yes
+				}
+				c:MSY = {
+					is_ai = yes
+				}
+				c:MAU = {
+					is_ai = yes
+				}
+			}
+			c:CAR = {
+				add_truce = {
+					target = c:MSS
+					duration = 1825
+				}
+				add_truce = {
+					target = c:MSY
+					duration = 1825
+				}
+				add_truce = {
+					target = c:MAU
+					duration = 1825
+				}
+			}
+			c:MSS = {
+				add_truce = {
+					target = c:CAR
+					duration = 1825
+				}
+			}
+			c:MSY = {
+				add_truce = {
+					target = c:CAR
+					duration = 1825
+				}
+			}
+			c:MAU = {
+				add_truce = {
+					target = c:CAR
+					duration = 1825
+				}
+			}
+		}
+	}
+}

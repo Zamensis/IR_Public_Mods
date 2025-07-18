@@ -1,0 +1,192 @@
+﻿roman_mission_09_eastern_glory = {
+    header = "mission_image_rome"
+	icon = "rome_4"
+
+    repeatable = no
+
+    chance = {
+    	factor = 3 
+    }
+
+    potential = {
+        NOT = { has_variable = roman_mission_09_eastern_glory }
+        has_dlc = "The Punic Wars"
+    	tag = ROM
+		is_ai = yes
+		is_ai = no
+    	OR = {
+    		has_completed_mission = roman_mission_08_greece
+    		any_owned_province = {
+    			OR = {
+    				is_in_region = thrace_region
+    				is_in_region = asia_region
+    				is_in_region = bithynia_region
+    			}
+    		}
+    	}
+        is_subject = no
+        has_civil_war = no
+    }
+
+    abort = {
+        ai_mission_back_out_trigger = yes
+    }
+
+    on_start = {
+        start_mission_ai_effect = yes
+        if = {
+            limit = { is_ai = yes }
+            region:asia_region = {
+                every_region_province = { add_claim = ROOT }
+            }
+            region:cilicia_region = {
+                every_region_province = { add_claim = ROOT }
+            }
+            region:cyrenaica_region = {
+                every_region_province = { add_claim = ROOT }
+            }
+            region:lower_egypt_region = {
+                every_region_province = { add_claim = ROOT }
+            }
+            region:syria_region = {
+                every_region_province = { add_claim = ROOT }
+            }
+            region:palestine_region = {
+                every_region_province = { add_claim = ROOT }
+            }
+            region:bithynia_region = {
+                every_region_province = { add_claim = ROOT }
+            }
+            region:galatia_region = {
+                every_region_province = { add_claim = ROOT }
+            }
+            region:pontus_region = {
+                every_region_province = { add_claim = ROOT }
+            }
+        }
+    }
+
+    on_abort = {
+        custom_tooltip = general_mission_cooldown_tt
+        set_variable = {
+            name = roman_mission_09_eastern_glory
+            days = 7300
+        }
+    }
+
+    on_completion = {
+        complete_mission_effect = yes
+    }
+
+    roman_mission_09_eastern_glory_task_x = { # The Ionian Cities
+    	icon = "task_expansion"
+
+    	duration = 180
+
+    	bypass = {
+            NOT = { has_variable = ionian_city_started_flag }
+    		NOR = {
+    			area:aeolia_area = {
+    				any_area_province = {
+    					owner = {
+    						num_of_cities < 10
+    						is_subject = no
+    					}
+    				}
+    			}
+    			area:ionia_area = {
+    				any_area_province = {
+    					owner = {
+    						num_of_cities < 10
+    						is_subject = no
+    					}
+    				}
+    			}
+    			area:coastal_caria_area = {
+    				any_area_province = {
+    					owner = {
+    						num_of_cities < 10
+    						is_subject = no
+    					}
+    				}
+    			}
+    		}
+    	}
+
+    	highlight = {
+			scope:province = {
+				OR = {
+					is_in_area = aeolia_area
+					is_in_area = ionia_area
+					is_in_area = coastal_caria_area
+				}
+    		}
+    	}
+
+        allow = {
+        	political_influence >= 50
+            custom_tooltip = {
+                text = roman_mission_09_eastern_glory_task_1_trigger_tt
+                OR = {
+                    area:aeolia_area = {
+                        any_area_province = {
+                            owner = {
+                                NOR = { 
+                                    has_variable = roman_client_offer_eastern_glory 
+                                    alliance_with = root
+                                    war_with = root
+                                }
+                                num_of_cities < 10
+                                is_subject = no
+                            }
+                        }
+                    }
+                    area:ionia_area = {
+                        any_area_province = {
+                            owner = {
+                                NOR = { 
+                                    has_variable = roman_client_offer_eastern_glory 
+                                    alliance_with = root
+                                    war_with = root
+                                }
+                                num_of_cities < 10
+                                is_subject = no
+                            }
+                        }
+                    }
+                    area:coastal_caria_area = {
+                        any_area_province = {
+                            owner = {
+                                NOR = { 
+                                    has_variable = roman_client_offer_eastern_glory 
+                                    alliance_with = root
+                                    war_with = root
+                                }
+                                num_of_cities < 10
+                                is_subject = no
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        monthly_on_action = roman_mission_09_eastern_glory_task_1_pulse
+
+		on_start = {
+            set_variable = ionian_city_started_flag
+			set_variable = {
+				name = ongoing_mission_pulse_flag
+				days = 180
+			}
+		}
+
+        on_completion = {
+            remove_variable = ionian_city_started_flag
+        	add_political_influence = -50
+        	custom_tooltip = roman_mission_09_eastern_glory_task_1_effect_tt
+        }
+		
+		final = yes
+    }
+}

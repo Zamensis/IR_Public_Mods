@@ -1,0 +1,323 @@
+﻿#################################################################################################	ZONE 1 - WESTERN ANATOLIA (YELLOW)
+#################################################################################################
+z_limes_antigore_region_1 = {
+	OR = {
+		is_in_region = asia_region
+		is_in_region = galatia_region
+		is_in_region = bithynia_region
+	}
+}
+
+#################################################################################################	ZONE 2 - EASTERN ANATOLIA (RED)
+#################################################################################################
+z_limes_antigore_region_2 = {
+	OR = {
+		is_in_region = cilicia_region
+		is_in_region = cappadocia_pontica_region
+		is_in_region = cappadocia_region
+	}
+}
+
+#################################################################################################	ZONE 3 - SYRIA-TAURUS (BLUE)
+#################################################################################################
+z_limes_antigore_region_3 = {
+	OR = {
+		is_in_region = syria_region
+		is_in_region = assyria_region
+		is_in_region = armenia_region
+	}
+}
+
+#################################################################################################	ZONE 4 - MESOP-MEDIA (DARKGREEN)
+#################################################################################################
+z_limes_antigore_region_4 = {
+	OR = {
+		is_in_region = mesopotamia_region
+		is_in_region = media_region
+	}
+}
+
+#################################################################################################	ZONE 5 - MIDDLE IRAN (CYAN)
+#################################################################################################
+z_limes_antigore_region_5 = {
+	OR = {
+		is_in_region = persis_region
+		is_in_region = parthia_region
+	}
+}
+
+#################################################################################################	ZONE 6 - PAKISTAN (GREEN)
+#################################################################################################
+z_limes_antigore_region_6 = {
+	OR = {
+		is_in_region = gandhara_region
+		is_in_region = maru_region
+	}
+}
+
+#################################################################################################	ZONE 7 - WESTERN INDIA (INDIGO)
+#################################################################################################
+z_limes_antigore_region_7 = {
+	OR = {
+		is_in_region = avanti_region
+		is_in_region = aparanta_region
+		is_in_region = madhyadesa_region
+	}
+}
+
+#################################################################################################	ZONE 8 - EASTERN INDIA (ORANGE)
+#################################################################################################
+z_limes_antigore_region_8 = {
+	OR = {
+		is_in_region = vindhyaprstha_region
+		is_in_region = pracya_region
+		is_in_region = burma_region # Invictus only
+	}
+}
+
+#################################################################################################	ZONE 9 - EASTERN IRAN (GREYISH)
+#################################################################################################
+z_limes_antigore_region_9 = {
+	OR = {
+		is_in_region = bactriana_region
+		is_in_region = ariana_region
+		#is_in_region = gedrosia_region # Vanilla only
+	}
+}
+
+#################################################################################################	ZONE 11 - UPPER EGYPT (DARKBLUE)
+#################################################################################################
+z_limes_antigore_region_11 = {
+	OR = {
+		is_in_region = upper_egypt_region
+		is_in_region = nubia_region
+	}
+}
+
+#################################################################################################	ZONE 12 - MAURETANIA (GREY)
+#################################################################################################
+z_limes_antigore_region_12 = {
+	OR = {
+		is_in_region = mauretainia_region
+	}
+}
+
+#################################################################################################	ZONE 13 - NUMIDIA (SKYBLUE)
+#################################################################################################
+z_limes_antigore_region_13 = {
+	OR = {
+		is_in_region = numidia_region
+	}
+}
+
+#################################################################################################	ZONE 14 - AFRICA (MAJENTA)
+#################################################################################################
+z_limes_antigore_region_14 = {
+	OR = {
+		is_in_region = africa_region
+	}
+}
+
+#################################################################################################	ZONE 15 - CYRENAICA (BROWN)
+#################################################################################################
+z_limes_antigore_region_15 = {
+	OR = {
+		is_in_region = cyrenaica_region
+	}
+}
+
+#################################################################################################	ZONE 2 - EASTERN ANATOLIA (RED)
+#################################################################################################
+z_limes_antigore_controls_region_2 = {
+	OR = {
+		region:cilicia_region = {
+			any_region_province = {
+				percent >= 0.3
+				owner = root
+			}
+		}
+		region:cappadocia_pontica_region = {
+			any_region_province = {
+				percent >= 0.3
+				owner = root
+			}
+		}
+		region:cappadocia_region = {
+			any_region_province = {
+				percent >= 0.3
+				owner = root
+			}
+		}
+	}
+}
+
+#################################################################################################	ZONE 3 - SYRIA-TAURUS (BLUE)
+#################################################################################################
+z_limes_antigore_controls_region_3 = {
+	OR = {
+		region:syria_region = {
+			any_region_province = {
+				percent >= 0.5
+				owner = root
+			}
+		}
+		region:assyria_region = {
+			any_region_province = {
+				percent >= 0.5
+				owner = root
+			}
+		}
+		region:armenia_region = {
+			any_region_province = {
+				percent >= 0.5
+				owner = root
+			}
+		}
+	}
+}
+
+#################################################################################################	ZONE 4 - MESOP-MEDIA (DARKGREEN)
+#################################################################################################
+z_limes_antigore_controls_region_4 = {
+	OR = {
+		region:mesopotamia_region = {
+			any_region_province = {
+				percent >= 0.5
+				owner = root
+			}
+		}
+		region:media_region = {
+			any_region_province = {
+				percent >= 0.5
+				owner = root
+			}
+		}
+	}
+}
+
+#################################################################################################	ZONE 5 - MIDDLE IRAN (CYAN)
+#################################################################################################
+z_limes_antigore_controls_region_5 = {
+	OR = {
+		region:persis_region = {
+			any_region_province = {
+				percent >= 0.45
+				owned_or_subject_owned = root
+			}
+		}
+		region:parthia_region = {
+			any_region_province = {
+				percent >= 0.45
+				owner = root
+			}
+		}
+	}
+}
+
+#################################################################################################	ZONE 6 - PAKISTAN (GREEN)
+#################################################################################################
+z_limes_antigore_controls_region_6 = {
+	OR = {
+		region:gandhara_region = {
+			any_region_province = {
+				percent >= 0.5
+				owner = root
+			}
+		}
+		region:maru_region = {
+			any_region_province = {
+				percent >= 0.5
+				owner = root
+			}
+		}
+	}
+}
+
+#################################################################################################	ZONE 7 - WESTERN INDIA (INDIGO)
+#################################################################################################
+z_limes_antigore_controls_region_7 = {
+	OR = {
+		region:avanti_region = {						
+			any_region_province = {
+				percent >= 0.5
+				owner = root
+			}
+		}
+		region:aparanta_region = {
+			any_region_province = {
+				percent >= 0.5
+				owner = root
+			}
+		}
+		region:madhyadesa_region = {
+			any_region_province = {
+				percent >= 0.5
+				owner = root
+			}
+		}
+	}
+}
+
+#################################################################################################	ZONE 9 - EASTERN IRAN (GREYISH)
+#################################################################################################
+z_limes_antigore_controls_region_9 = {
+	OR = {
+		region:bactriana_region = {
+			any_region_province = {
+				percent >= 0.5
+				owner = root
+			}
+		}
+		region:ariana_region = {
+			any_region_province = {
+				percent >= 0.5
+				owner = root
+			}
+		}
+		#region:gedrosia_region = { # Vanilla only
+		#	any_region_province = {
+		#		percent >= 0.5
+		#		owner = root
+		#	}
+		#}
+	}
+}
+
+#################################################################################################	ZONE 10 - LOWER EGYPT (PINK)
+#################################################################################################
+z_limes_antigore_controls_region_10 = {
+	OR = {
+		region:lower_egypt_region = {
+			any_region_province = {
+				percent >= 0.5
+				owner = root
+			}
+		}
+	}
+}
+
+#################################################################################################	ZONE 13 - NUMIDIA (SKYBLUE)
+#################################################################################################
+z_limes_antigore_controls_region_13 = {
+	OR = {
+		region:numidia_region = {
+			any_region_province = {
+				percent >= 0.001
+				owner = root
+			}
+		}
+	}
+}
+
+#################################################################################################	ZONE 14 - AFRICA (MAJENTA)
+#################################################################################################
+z_limes_antigore_controls_region_14 = {
+	OR = {
+		region:africa_region = {
+			any_region_province = {
+				percent >= 0.001
+				owner = root
+			}
+		}
+	}
+}

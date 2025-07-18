@@ -1,0 +1,184 @@
+﻿# --------------------------------------------------------------------------------
+# Prevent the AI from being split in very distant parts
+# --------------------------------------------------------------------------------
+z_limes_peace_nosplit_effect = {
+	if = {
+		limit = {
+			z_limes_rules_nosplit = 1
+			z_has_limes = yes
+		}
+		# WESTERN ANATOLIA
+		if = {
+			limit = {
+				capital_scope = { z_limes_nosplit_region_1 = yes }
+			}
+			z_limes_nosplit_effect_b = { OWNED = 8 NOT_OWNED = 7 }
+			z_limes_nosplit_effect_b = { OWNED = 7 NOT_OWNED = 6 }
+			z_limes_nosplit_effect_b = { OWNED = 6 NOT_OWNED = 9 }
+			z_limes_nosplit_effect_b = { OWNED = 9 NOT_OWNED = 5 }
+			z_limes_nosplit_effect_b = { OWNED = 5 NOT_OWNED = 4 }
+			z_limes_nosplit_effect_b = { OWNED = 4 NOT_OWNED = 3 }
+			z_limes_nosplit_effect_b = { OWNED = 3 NOT_OWNED = 2 }
+		}
+		# EASTERN ANATOLIA
+		if = {
+			limit = {
+				capital_scope = { z_limes_nosplit_region_2 = yes }
+			}
+			z_limes_nosplit_effect_b = { OWNED = 8 NOT_OWNED = 7 }
+			z_limes_nosplit_effect_b = { OWNED = 7 NOT_OWNED = 6 }
+			z_limes_nosplit_effect_b = { OWNED = 6 NOT_OWNED = 9 }
+			z_limes_nosplit_effect_b = { OWNED = 9 NOT_OWNED = 5 }
+			z_limes_nosplit_effect_b = { OWNED = 5 NOT_OWNED = 4 }
+			z_limes_nosplit_effect_b = { OWNED = 4 NOT_OWNED = 3 }
+		}
+		# SYRIA-TAURUS
+		if = {
+			limit = {
+				capital_scope = { z_limes_nosplit_region_3 = yes }
+			}
+			z_limes_nosplit_effect_b = { OWNED = 8 NOT_OWNED = 7 }
+			z_limes_nosplit_effect_b = { OWNED = 7 NOT_OWNED = 6 }
+			z_limes_nosplit_effect_b = { OWNED = 6 NOT_OWNED = 9 }
+			z_limes_nosplit_effect_b = { OWNED = 9 NOT_OWNED = 5 }
+			z_limes_nosplit_effect_b = { OWNED = 5 NOT_OWNED = 4 }
+			z_limes_nosplit_effect_b = { OWNED = 1 NOT_OWNED = 2 }
+		}
+		# MESOP-MEDIA
+		if = {
+			limit = {
+				capital_scope = { z_limes_nosplit_region_4 = yes }
+			}
+			z_limes_nosplit_effect_b = { OWNED = 8 NOT_OWNED = 7 }
+			z_limes_nosplit_effect_b = { OWNED = 7 NOT_OWNED = 6 }
+			z_limes_nosplit_effect_b = { OWNED = 6 NOT_OWNED = 9 }
+			z_limes_nosplit_effect_b = { OWNED = 9 NOT_OWNED = 5 }
+			z_limes_nosplit_effect_b = { OWNED = 1 NOT_OWNED = 2 }
+			z_limes_nosplit_effect_b = { OWNED = 2 NOT_OWNED = 3 }
+		}
+		# MIDDLE IRAN
+		if = {
+			limit = {
+				capital_scope = { z_limes_nosplit_region_5 = yes }
+			}
+			z_limes_nosplit_effect_b = { OWNED = 8 NOT_OWNED = 7 }
+			z_limes_nosplit_effect_b = { OWNED = 7 NOT_OWNED = 6 }
+			z_limes_nosplit_effect_b = { OWNED = 6 NOT_OWNED = 9 }
+			z_limes_nosplit_effect_b = { OWNED = 1 NOT_OWNED = 2 }
+			z_limes_nosplit_effect_b = { OWNED = 2 NOT_OWNED = 3 }
+			z_limes_nosplit_effect_b = { OWNED = 3 NOT_OWNED = 4 }
+		}
+		# PAKISTAN
+		if = {
+			limit = {
+				capital_scope = { z_limes_nosplit_region_6 = yes }
+			}
+			z_limes_nosplit_effect_b = { OWNED = 8 NOT_OWNED = 7 }
+			z_limes_nosplit_effect_b = { OWNED = 1 NOT_OWNED = 2 }
+			z_limes_nosplit_effect_b = { OWNED = 2 NOT_OWNED = 3 }
+			z_limes_nosplit_effect_b = { OWNED = 3 NOT_OWNED = 4 }
+			z_limes_nosplit_effect_b = { OWNED = 4 NOT_OWNED = 5 }
+			z_limes_nosplit_effect_b = { OWNED = 5 NOT_OWNED = 9 }
+		}
+		# WESTERN INDIA
+		if = {
+			limit = {
+				capital_scope = { z_limes_nosplit_region_7 = yes }
+			}
+			z_limes_nosplit_effect_b = { OWNED = 1 NOT_OWNED = 2 }
+			z_limes_nosplit_effect_b = { OWNED = 2 NOT_OWNED = 3 }
+			z_limes_nosplit_effect_b = { OWNED = 3 NOT_OWNED = 4 }
+			z_limes_nosplit_effect_b = { OWNED = 4 NOT_OWNED = 5 }
+			z_limes_nosplit_effect_b = { OWNED = 5 NOT_OWNED = 9 }
+			z_limes_nosplit_effect_b = { OWNED = 9 NOT_OWNED = 6 }
+		}
+		# EASTERN INDIA
+		if = {
+			limit = {
+				capital_scope = { z_limes_nosplit_region_8 = yes }
+			}
+			z_limes_nosplit_effect_b = { OWNED = 1 NOT_OWNED = 2 }
+			z_limes_nosplit_effect_b = { OWNED = 2 NOT_OWNED = 3 }
+			z_limes_nosplit_effect_b = { OWNED = 3 NOT_OWNED = 4 }
+			z_limes_nosplit_effect_b = { OWNED = 4 NOT_OWNED = 5 }
+			z_limes_nosplit_effect_b = { OWNED = 5 NOT_OWNED = 9 }
+			z_limes_nosplit_effect_b = { OWNED = 9 NOT_OWNED = 6 }
+			z_limes_nosplit_effect_b = { OWNED = 6 NOT_OWNED = 7 }
+		}
+		# EASTERN IRAN
+		if = {
+			limit = {
+				capital_scope = { z_limes_nosplit_region_9 = yes }
+			}
+			z_limes_nosplit_effect_b = { OWNED = 8 NOT_OWNED = 7 }
+			z_limes_nosplit_effect_b = { OWNED = 7 NOT_OWNED = 6 }
+			z_limes_nosplit_effect_b = { OWNED = 1 NOT_OWNED = 2 }
+			z_limes_nosplit_effect_b = { OWNED = 2 NOT_OWNED = 3 }
+			z_limes_nosplit_effect_b = { OWNED = 3 NOT_OWNED = 4 }
+			z_limes_nosplit_effect_b = { OWNED = 4 NOT_OWNED = 5 }
+		}
+		# UPPER EGYPT
+		if = {
+			limit = {
+				capital_scope = { z_limes_nosplit_region_11 = yes }
+			}
+			z_limes_nosplit_effect_b = { OWNED = 1 NOT_OWNED = 10 }
+			z_limes_nosplit_effect_b = { OWNED = 2 NOT_OWNED = 10 }
+			z_limes_nosplit_effect_b = { OWNED = 3 NOT_OWNED = 10 }
+			z_limes_nosplit_effect_b = { OWNED = 4 NOT_OWNED = 10 }
+			z_limes_nosplit_effect_b = { OWNED = 15 NOT_OWNED = 10 }
+		}
+		# MAURETANIA
+		if = {
+			limit = {
+				capital_scope = { z_limes_nosplit_region_12 = yes }
+			}
+			z_limes_nosplit_effect_b = { OWNED = 14 NOT_OWNED = 13 }
+			z_limes_nosplit_effect_b = { OWNED = 15 NOT_OWNED = 14 }
+		}
+		# NUMIDIA
+		if = {
+			limit = {
+				capital_scope = { z_limes_nosplit_region_13 = yes }
+			}
+			z_limes_nosplit_effect_b = { OWNED = 15 NOT_OWNED = 14 }
+		}
+		# AFRICA
+		if = {
+			limit = {
+				capital_scope = { z_limes_nosplit_region_14 = yes }
+			}
+			z_limes_nosplit_effect_b = { OWNED = 12 NOT_OWNED = 13 }
+		}
+		# CYRENAICA
+		if = {
+			limit = {
+				capital_scope = { z_limes_nosplit_region_15 = yes }
+			}
+			z_limes_nosplit_effect_b = { OWNED = 1 NOT_OWNED = 10 }
+			z_limes_nosplit_effect_b = { OWNED = 2 NOT_OWNED = 10 }
+			z_limes_nosplit_effect_b = { OWNED = 3 NOT_OWNED = 10 }
+			z_limes_nosplit_effect_b = { OWNED = 4 NOT_OWNED = 10 }
+			z_limes_nosplit_effect_b = { OWNED = 11 NOT_OWNED = 10 }
+			z_limes_nosplit_effect_b = { OWNED = 13 NOT_OWNED = 14 }
+		}
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Prevent the AI from being split in very distant parts (continued)
+# --------------------------------------------------------------------------------
+z_limes_nosplit_effect_b = {
+	if = {
+		limit = {
+			any_owned_province = { z_limes_nosplit_region_$OWNED$ = yes }
+			z_limes_nosplit_controls_region_$NOT_OWNED$ = no
+		}
+		ordered_owned_province = {
+			limit = { z_limes_nosplit_region_$OWNED$ = yes }
+			order_by = total_population
+			save_scope_as = z_limes_mm_capital
+		}
+		z_limes_make_mm_effect = { ZONE = region }
+	}
+}

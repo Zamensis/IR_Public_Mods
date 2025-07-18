@@ -1,0 +1,359 @@
+texticon = {
+    icon = z_notifications_icon
+    iconsize = {
+        texture = "gfx/interface/icons/font_icons/z_notifications_icon.dds"
+        size = { 25 25 }
+        offset = { 0 4 }
+        fontsize = 25
+    }
+}
+
+texticon = {
+    icon = z_notifications_enabled
+    iconsize = {
+        texture = "gfx/interface/icons/font_icons/font_icon_tick.dds"
+        size = { 25 25 }
+        offset = { 0 3 }
+        fontsize = 25
+    }
+}
+
+texticon = {
+    icon = z_notifications_disabled
+    iconsize = {
+        texture = "gfx/interface/icons/font_icons/font_icon_cross.dds"
+        size = { 25 25 }
+        offset = { 0 5 }
+        fontsize = 25
+    }
+}
+
+texticon = {
+    icon = z_notifications_copy
+    iconsize = {
+        texture = "gfx/interface/icons/font_icons/z_notifications_copy.dds"
+        size = { 25 25 }
+        offset = { 0 4 }
+        fontsize = 25
+    }
+}
+
+texticon = {
+    icon = z_notifications_war
+    iconsize = {
+        texture = "gfx/interface/icons/font_icons/z_notifications_war.dds"
+        size = { 25 25 }
+        offset = { 0 4 }
+        fontsize = 25
+    }
+}
+
+texticon = {
+    icon = z_notifications_military
+    iconsize = {
+        texture = "gfx/interface/icons/font_icons/z_notifications_military.dds"
+        size = { 25 25 }
+        offset = { 0 4 }
+        fontsize = 25
+    }
+}
+
+texticon = {
+    icon = z_notifications_alliance
+    iconsize = {
+        texture = "gfx/interface/icons/font_icons/z_notifications_alliance.dds"
+        size = { 25 25 }
+        offset = { 0 4 }
+        fontsize = 25
+    }
+}
+
+texticon = {
+    icon = z_notifications_defense
+    iconsize = {
+        texture = "gfx/interface/icons/font_icons/z_notifications_defense.dds"
+        size = { 25 25 }
+        offset = { 0 4 }
+        fontsize = 25
+    }
+}
+
+texticon = {
+    icon = z_notifications_peace
+    iconsize = {
+        texture = "gfx/interface/icons/font_icons/z_notifications_peace.dds"
+        size = { 25 25 }
+        offset = { 0 4 }
+        fontsize = 25
+    }
+}
+
+texticon = {
+    icon = z_notifications_government
+    iconsize = {
+        texture = "gfx/interface/icons/font_icons/z_notifications_government.dds"
+        size = { 25 25 }
+        offset = { 0 4 }
+        fontsize = 25
+    }
+}
+
+texticon = {
+    icon = z_notifications_culture
+    iconsize = {
+        texture = "gfx/interface/icons/font_icons/z_notifications_culture.dds"
+        size = { 25 25 }
+        offset = { 0 4 }
+        fontsize = 25
+    }
+}
+
+texticon = {
+    icon = z_notifications_character
+    iconsize = {
+        texture = "gfx/interface/icons/font_icons/z_notifications_character.dds"
+        size = { 25 25 }
+        offset = { 0 4 }
+        fontsize = 25
+    }
+}
+
+texticon = {
+    icon = z_notifications_office
+    iconsize = {
+        texture = "gfx/interface/icons/font_icons/z_notifications_office_gained.dds"
+        size = { 25 25 }
+        offset = { 0 4 }
+        fontsize = 25
+    }
+}
+
+texticon = {
+    icon = z_notifications_office_lost
+    iconsize = {
+        texture = "gfx/interface/icons/font_icons/z_notifications_office_lost.dds"
+        size = { 25 25 }
+        offset = { 0 4 }
+        fontsize = 25
+    }
+}
+
+texticon = {
+    icon = z_notifications_death
+    iconsize = {
+        texture = "gfx/interface/icons/font_icons/z_notifications_death.dds"
+        size = { 25 25 }
+        offset = { 0 4 }
+        fontsize = 25
+    }
+}
+
+texticon = {
+    icon = z_notifications_baby
+    iconsize = {
+        texture = "gfx/interface/icons/font_icons/z_notifications_baby.dds"
+        size = { 25 25 }
+        offset = { 0 4 }
+        fontsize = 25
+    }
+}
+
+texticon = {
+    icon = z_notifications_coming_of_age
+    iconsize = {
+        texture = "gfx/interface/icons/font_icons/z_notifications_coming_of_age.dds"
+        size = { 25 25 }
+        offset = { 0 4 }
+        fontsize = 25
+    }
+}
+
+texticon = {
+    icon = z_notifications_exile
+    iconsize = {
+        texture = "gfx/interface/icons/font_icons/z_notifications_exile.dds"
+        size = { 25 25 }
+        offset = { 0 4 }
+        fontsize = 25
+    }
+}
+
+texticon = {
+    icon = z_notifications_marriage
+    iconsize = {
+        texture = "gfx/interface/icons/font_icons/z_notifications_marriage.dds"
+        size = { 25 25 }
+        offset = { 0 4 }
+        fontsize = 25
+    }
+}
+
+texticon = {
+    icon = z_notifications_fort
+    iconsize = {
+        texture = "gfx/interface/icons/font_icons/z_notifications_fort.dds"
+        size = { 25 25 }
+        offset = { 0 4 }
+        fontsize = 25
+    }
+}
+
+texticon = {
+    icon = z_notifications_diploannex
+    iconsize = {
+        texture = "gfx/interface/icons/font_icons/z_notifications_diploannex.dds"
+        size = { 25 25 }
+        offset = { 0 4 }
+        fontsize = 25
+    }
+}
+
+texticon = {
+    icon = z_notifications_pretender
+    iconsize = {
+        texture = "gfx/interface/icons/font_icons/z_notifications_pretender.dds"
+        size = { 25 25 }
+        offset = { 0 4 }
+        fontsize = 25
+    }
+}
+
+texticon = {
+    icon = z_notifications_religious
+    iconsize = {
+        texture = "gfx/interface/icons/font_icons/z_notifications_religious.dds"
+        size = { 25 25 }
+        offset = { 0 4 }
+        fontsize = 25
+    }
+}
+
+texticon = {
+    icon = z_notifications_science
+    iconsize = {
+        texture = "gfx/interface/icons/font_icons/z_notifications_science.dds"
+        size = { 25 25 }
+        offset = { 0 4 }
+        fontsize = 25
+    }
+}
+
+texticon = {
+    icon = z_notifications_happy
+    iconsize = {
+        texture = "gfx/interface/icons/font_icons/z_notifications_happy.dds"
+        size = { 25 25 }
+        offset = { 0 4 }
+        fontsize = 25
+    }
+}
+
+texticon = {
+    icon = z_notifications_statinv_civ
+    iconsize = {
+        texture = "gfx/interface/icons/font_icons/z_notifications_statinv_civ.dds"
+        size = { 25 25 }
+        offset = { 0 4 }
+        fontsize = 25
+    }
+}
+
+texticon = {
+    icon = z_notifications_statinv_mil
+    iconsize = {
+        texture = "gfx/interface/icons/font_icons/z_notifications_statinv_mil.dds"
+        size = { 25 25 }
+        offset = { 0 4 }
+        fontsize = 25
+    }
+}
+
+texticon = {
+    icon = z_notifications_statinv_ora
+    iconsize = {
+        texture = "gfx/interface/icons/font_icons/z_notifications_statinv_ora.dds"
+        size = { 25 25 }
+        offset = { 0 4 }
+        fontsize = 25
+    }
+}
+
+texticon = {
+    icon = z_notifications_statinv_rel
+    iconsize = {
+        texture = "gfx/interface/icons/font_icons/z_notifications_statinv_rel.dds"
+        size = { 25 25 }
+        offset = { 0 4 }
+        fontsize = 25
+    }
+}
+
+texticon = {
+    icon = z_notifications_stability
+    iconsize = {
+        texture = "gfx/interface/icons/font_icons/z_notifications_stability.dds"
+        size = { 25 25 }
+        offset = { 0 4 }
+        fontsize = 25
+    }
+}
+
+texticon = {
+    icon = z_notifications_corruption
+    iconsize = {
+        texture = "gfx/interface/icons/font_icons/z_notifications_corruption.dds"
+        size = { 25 25 }
+        offset = { 0 4 }
+        fontsize = 25
+    }
+}
+
+texticon = {
+    icon = z_notifications_food
+    iconsize = {
+        texture = "gfx/interface/icons/font_icons/z_notifications_food.dds"
+        size = { 25 25 }
+        offset = { 0 4 }
+        fontsize = 25
+    }
+}
+
+texticon = {
+    icon = z_notifications_food_null
+    iconsize = {
+        texture = "gfx/interface/icons/font_icons/z_notifications_food_null.dds"
+        size = { 25 25 }
+        offset = { 0 4 }
+        fontsize = 25
+    }
+}
+
+texticon = {
+    icon = z_notifications_warexh
+    iconsize = {
+        texture = "gfx/interface/icons/font_icons/z_notifications_warexh.dds"
+        size = { 25 25 }
+        offset = { 0 4 }
+        fontsize = 25
+    }
+}
+
+texticon = {
+    icon = z_notifications_money
+    iconsize = {
+        texture = "gfx/interface/icons/font_icons/z_notifications_money.dds"
+        size = { 25 25 }
+        offset = { 0 4 }
+        fontsize = 25
+    }
+}
+
+texticon = {
+    icon = z_notifications_architect
+    iconsize = {
+        texture = "gfx/interface/icons/font_icons/z_notifications_architect.dds"
+        size = { 25 25 }
+        offset = { 0 4 }
+        fontsize = 25
+    }
+}

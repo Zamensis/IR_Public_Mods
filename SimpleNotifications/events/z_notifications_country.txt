@@ -1,0 +1,225 @@
+﻿namespace = z_notifications
+
+#-----------------------------------------------------------------------------------------
+#
+#	Ruler change
+#
+#-----------------------------------------------------------------------------------------
+
+z_notifications.2 = {
+	type = minor_country_event
+	title = "z_notifications.2.t"
+	desc = "z_notifications.2.desc"
+	left_portrait = scope:z_notifications_country.current_ruler
+	interface_lock = no
+	
+	option = { # OK
+		name = "z_notifications.2.a"
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+#
+#	New war started
+#
+#-----------------------------------------------------------------------------------------
+
+# Observed country is attacker -----------------------------------------------------------------------------------------
+
+z_notifications.3 = {
+	type = minor_country_event
+	title = "z_notifications.3.t"
+	desc = "z_notifications.3.desc"
+	left_portrait = scope:z_notifications_country.current_ruler
+	interface_lock = no
+	
+	option = { # OK
+		name = "z_notifications.3.a"
+	}
+}
+
+# Observed country is defender -----------------------------------------------------------------------------------------
+
+z_notifications.4 = {
+	type = minor_country_event
+	title = "z_notifications.4.t"
+	desc = "z_notifications.4.desc"
+	left_portrait = scope:z_notifications_country.current_ruler
+	interface_lock = no
+	
+	option = { # OK
+		name = "z_notifications.4.a"
+	}
+}
+
+# Observed country is allied to attacker -----------------------------------------------------------------------------------------
+
+z_notifications.5 = {
+	type = minor_country_event
+	title = "z_notifications.5.t"
+	desc = "z_notifications.5.desc"
+	left_portrait = scope:z_notifications_country.current_ruler
+	interface_lock = no
+	
+	option = { # OK
+		name = "z_notifications.5.a"
+	}
+}
+
+# Observed country is allied to defender -----------------------------------------------------------------------------------------
+
+z_notifications.6 = {
+	type = minor_country_event
+	title = "z_notifications.6.t"
+	desc = "z_notifications.6.desc"
+	left_portrait = scope:z_notifications_country.current_ruler
+	interface_lock = no
+	
+	option = { # OK
+		name = "z_notifications.6.a"
+	}
+}
+
+# Debug event -----------------------------------------------------------------------------------------
+
+z_notifications.7 = {
+	type = minor_country_event
+	title = "z_notifications.7.t"
+	desc = "z_notifications.7.desc"
+	left_portrait = scope:z_notifications_country.current_ruler
+	interface_lock = no
+	
+	option = { # OK
+		name = "z_notifications.7.a"
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+#
+#	War ended
+#
+#-----------------------------------------------------------------------------------------
+
+# Apparently, on_ending_war doesn't record details of participants (even those that survive) ----------------
+# For now the best I can offer is notify the player when a war has ended. Which war and how, the player has to find out by themselves.
+# ? See if using on_winning_war and on_losing_war is worth it.
+
+z_notifications.8 = {
+	type = minor_country_event
+	title = "z_notifications.8.t"
+	desc = "z_notifications.8.desc"
+	left_portrait = scope:z_notifications_country.current_ruler
+	interface_lock = no
+	
+	option = { # OK
+		name = "z_notifications.8.a"
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+#
+#	Capital fallen
+#
+#-----------------------------------------------------------------------------------------
+
+z_notifications.401 = {
+	type = minor_country_event
+	title = "z_notifications.401.t"
+	desc = "z_notifications.401.desc"
+	left_portrait = scope:z_notifications_character
+	interface_lock = no
+	
+	option = { # OK
+		name = "z_notifications.401.a"
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+#
+#	Culture integrated
+#
+#-----------------------------------------------------------------------------------------
+
+z_notifications.402 = {
+	type = minor_country_event
+	title = "z_notifications.402.t"
+	desc = "z_notifications.402.desc"
+	left_portrait = scope:z_notifications_character
+	interface_lock = no
+	
+	option = { # OK
+		name = "z_notifications.402.a"
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+#
+#	Military annexion
+#
+#-----------------------------------------------------------------------------------------
+
+z_notifications.403 = {
+	type = minor_country_event
+	title = "z_notifications.403.t"
+	desc = "z_notifications.403.desc"
+	left_portrait = scope:z_notifications_character
+	interface_lock = no
+	
+	option = { # OK
+		name = "z_notifications.403.a"
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+#
+#	Diplo annexion
+#
+#-----------------------------------------------------------------------------------------
+
+z_notifications.404 = {
+	type = minor_country_event
+	title = "z_notifications.404.t"
+	desc = "z_notifications.404.desc"
+	left_portrait = scope:z_notifications_character
+	interface_lock = no
+	
+	option = { # OK
+		name = "z_notifications.404.a"
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+#
+#	GW completed
+#
+#-----------------------------------------------------------------------------------------
+
+z_notifications.405 = {
+	type = minor_country_event
+	title = "z_notifications.405.t"
+	desc = "z_notifications.405.desc"
+	left_portrait = scope:z_notifications_character
+	interface_lock = no
+	
+	option = { # OK
+		name = "z_notifications.405.a"
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+#
+#	Capital liberated
+#
+#-----------------------------------------------------------------------------------------
+
+z_notifications.406 = {
+	type = minor_country_event
+	title = "z_notifications.406.t"
+	desc = "z_notifications.406.desc"
+	left_portrait = scope:z_notifications_character
+	interface_lock = no
+	
+	option = { # OK
+		name = "z_notifications.406.a"
+	}
+}

@@ -1,0 +1,2947 @@
+﻿namespace = z_faa
+
+# Limes logic for AI Rome specifically, helping it expand in a historical, or at least believable way.
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa.999 = {																					#########   NON-AUTHORIZED REGIONS
+	type = country_event																		#########
+	hidden = yes																				#########################################
+
+	trigger = {
+		z_has_limes_ROM = yes
+		any_owned_province = {
+			z_faa_empire_max = no
+		}
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_faa_empire_max = no
+			}
+			order_by = total_population
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa.1 = {																						#########   ITALIAN PENINSULA
+	type = country_event																		#########
+	hidden = yes																				#########################################
+
+	trigger = {
+		z_has_limes_ROM = yes
+		z_faa_italy_allow = no
+		any_owned_province = {
+			count >= 4
+			z_faa_italy = yes
+		}
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_faa_italy = yes
+			}
+			order_by = total_population
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+	}
+}
+
+z_faa.100 = {
+	type = country_event
+	hidden = yes
+	
+	trigger = {
+		z_has_limes_ROM = yes
+		z_faa_italy_year = yes
+		any_subject = {
+			z_can_be_annexed = yes
+			any_owned_province = {
+				OR = {
+					is_in_region = central_italy_region
+					is_in_region = magna_graecia_region
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		random_subject = {
+			limit = {
+				z_can_be_annexed = yes
+				any_owned_province = {
+					OR = {
+						is_in_region = central_italy_region
+						is_in_region = magna_graecia_region
+					}
+				}
+			}
+			random = {
+				chance = 4
+				every_owned_province = {
+					set_owned_by = root
+				}
+			}
+		}
+	}
+}
+
+z_faa.101 = {
+	type = country_event
+	hidden = yes
+	
+	trigger = {
+		z_has_limes_ROM = yes
+		z_faa_italy_year = yes
+		any_subject = {
+			z_can_be_annexed = yes
+			any_owned_province = {
+				z_faa_italy = yes
+			}
+		}
+	}
+	
+	immediate = {
+		random_subject = {
+			limit = {
+				z_can_be_annexed = yes
+				any_owned_province = {
+					z_faa_italy = yes
+				}
+			}
+			random = {
+				chance = 4
+				every_owned_province = {
+					set_owned_by = root
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa.2 = {																						#########   CISALPINE GAUL A (AEMILIA/VENETIA)
+	type = country_event																		#########
+	hidden = yes																				#########################################
+
+	trigger = {
+		z_has_limes_ROM = yes
+		any_owned_province = {
+			#count >= 5
+			z_faa_cisalpine_gaul_a = yes
+		}
+		z_faa_cisalpine_gaul_a_allow = no
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_faa_cisalpine_gaul_a = yes
+			}
+			order_by = total_population
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+	}
+}
+
+z_faa.102 = {
+	type = country_event
+	hidden = yes
+	
+	trigger = {
+		z_has_limes_ROM = yes
+		z_faa_cisalpine_gaul_a_year = yes
+		any_subject = {
+			z_can_be_annexed = yes
+			any_owned_province = {
+				z_faa_cisalpine_gaul_a = yes
+			}
+		}
+	}
+	
+	immediate = {
+		random_subject = {
+			limit = {
+				z_can_be_annexed = yes
+				any_owned_province = {
+					z_faa_cisalpine_gaul_a = yes
+				}
+			}
+			random = {
+				chance = 4
+				every_owned_province = {
+					set_owned_by = root
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa.3 = {																						#########   CISALPINE GAUL B (REST)
+	type = country_event																		#########
+	hidden = yes																				#########################################
+
+	trigger = {
+		z_has_limes_ROM = yes
+		any_owned_province = {
+			#count >= 5
+			z_faa_cisalpine_gaul_b = yes
+		}
+		z_faa_cisalpine_gaul_b_allow = no
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_faa_cisalpine_gaul_b = yes
+			}
+			order_by = total_population
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+	}
+}
+
+z_faa.103 = {
+	type = country_event
+	hidden = yes
+	
+	trigger = {
+		z_has_limes_ROM = yes
+		z_faa_cisalpine_gaul_b_year = yes
+		any_subject = {
+			z_can_be_annexed = yes
+			any_owned_province = {
+				z_faa_cisalpine_gaul_b = yes
+			}
+		}
+	}
+	
+	immediate = {
+		random_subject = {
+			limit = {
+				z_can_be_annexed = yes
+				any_owned_province = {
+					z_faa_cisalpine_gaul_b = yes
+				}
+			}
+			random = {
+				chance = 4
+				every_owned_province = {
+					set_owned_by = root
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa.4 = {																						#########   IBERIA A (NORTH-EASTERN COAST)
+	type = country_event																		#########
+	hidden = yes																				#########################################
+
+	trigger = {
+		z_has_limes_ROM = yes
+		any_owned_province = {
+			#count >= 5
+			z_faa_iberia_a = yes
+		}
+		z_faa_iberia_a_allow = no
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_faa_iberia_a = yes
+			}
+			order_by = total_population
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+	}
+}
+
+z_faa.104 = {
+	type = country_event
+	hidden = yes
+	
+	trigger = {
+		z_has_limes_ROM = yes
+		z_faa_iberia_a_year = yes
+		any_subject = {
+			z_can_be_annexed = yes
+			any_owned_province = {
+				z_faa_iberia_a = yes
+			}
+		}
+	}
+	
+	immediate = {
+		random_subject = {
+			limit = {
+				z_can_be_annexed = yes
+				any_owned_province = {
+					z_faa_iberia_a = yes
+				}
+			}
+			random = {
+				chance = 4
+				every_owned_province = {
+					set_owned_by = root
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa.5 = {																						#########   IBERIA B (REST OF TARRACONENSIS)
+	type = country_event																		#########
+	hidden = yes																				#########################################
+
+	trigger = {
+		z_has_limes_ROM = yes
+		any_owned_province = {
+			#count >= 5
+			z_faa_iberia_b = yes
+		}
+		z_faa_iberia_b_allow = no
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_faa_iberia_b = yes
+			}
+			order_by = total_population
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+	}
+}
+
+z_faa.105 = {
+	type = country_event
+	hidden = yes
+	
+	trigger = {
+		z_has_limes_ROM = yes
+		z_faa_iberia_b_year = yes
+		any_subject = {
+			z_can_be_annexed = yes
+			any_owned_province = {
+				z_faa_iberia_b = yes
+			}
+		}
+	}
+	
+	immediate = {
+		random_subject = {
+			limit = {
+				z_can_be_annexed = yes
+				any_owned_province = {
+					z_faa_iberia_b = yes
+				}
+			}
+			random = {
+				chance = 4
+				every_owned_province = {
+					set_owned_by = root
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa.6 = {																						#########   IBERIA C (REST OF CONTESTANIA)
+	type = country_event																		#########
+	hidden = yes																				#########################################
+
+	trigger = {
+		z_has_limes_ROM = yes
+		any_owned_province = {
+			#count >= 5
+			z_faa_iberia_c = yes
+		}
+		z_faa_iberia_c_allow = no
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_faa_iberia_c = yes
+			}
+			order_by = total_population
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+	}
+}
+
+z_faa.106 = {
+	type = country_event
+	hidden = yes
+	
+	trigger = {
+		z_has_limes_ROM = yes
+		z_faa_iberia_c_year = yes
+		any_subject = {
+			z_can_be_annexed = yes
+			any_owned_province = {
+				z_faa_iberia_c = yes
+			}
+		}
+	}
+	
+	immediate = {
+		random_subject = {
+			limit = {
+				z_can_be_annexed = yes
+				any_owned_province = {
+					z_faa_iberia_c = yes
+				}
+			}
+			random = {
+				chance = 4
+				every_owned_province = {
+					set_owned_by = root
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa.7 = {																						#########   IBERIA D (SOUTH-EASTERN COAST)
+	type = country_event																		#########
+	hidden = yes																				#########################################
+
+	trigger = {
+		z_has_limes_ROM = yes
+		any_owned_province = {
+			#count >= 5
+			z_faa_iberia_d = yes
+		}
+		z_faa_iberia_d_allow = no
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_faa_iberia_d = yes
+			}
+			order_by = total_population
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+	}
+}
+
+z_faa.107 = {
+	type = country_event
+	hidden = yes
+	
+	trigger = {
+		z_has_limes_ROM = yes
+		z_faa_iberia_d_year = yes
+		any_subject = {
+			z_can_be_annexed = yes
+			any_owned_province = {
+				z_faa_iberia_d = yes
+			}
+		}
+	}
+	
+	immediate = {
+		random_subject = {
+			limit = {
+				z_can_be_annexed = yes
+				any_owned_province = {
+					z_faa_iberia_d = yes
+				}
+			}
+			random = {
+				chance = 4
+				every_owned_province = {
+					set_owned_by = root
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa.8 = {																						#########   IBERIA E (REST OF BAETICA)
+	type = country_event																		#########
+	hidden = yes																				#########################################
+
+	trigger = {
+		z_has_limes_ROM = yes
+		any_owned_province = {
+			#count >= 5
+			z_faa_iberia_e = yes
+		}
+		z_faa_iberia_e_allow = no
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_faa_iberia_e = yes
+			}
+			order_by = total_population
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+	}
+}
+
+z_faa.108 = {
+	type = country_event
+	hidden = yes
+	
+	trigger = {
+		z_has_limes_ROM = yes
+		z_faa_iberia_e_year = yes
+		any_subject = {
+			z_can_be_annexed = yes
+			any_owned_province = {
+				z_faa_iberia_e = yes
+			}
+		}
+	}
+	
+	immediate = {
+		random_subject = {
+			limit = {
+				z_can_be_annexed = yes
+				any_owned_province = {
+					z_faa_iberia_e = yes
+				}
+			}
+			random = {
+				chance = 4
+				every_owned_province = {
+					set_owned_by = root
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa.9 = {																						#########   IBERIA F (LUSITANIA)
+	type = country_event																		#########
+	hidden = yes																				#########################################
+
+	trigger = {
+		z_has_limes_ROM = yes
+		any_owned_province = {
+			#count >= 5
+			z_faa_iberia_f = yes
+		}
+		z_faa_iberia_f_allow = no
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_faa_iberia_f = yes
+			}
+			order_by = total_population
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+	}
+}
+
+z_faa.109 = {
+	type = country_event
+	hidden = yes
+	
+	trigger = {
+		z_has_limes_ROM = yes
+		z_faa_iberia_f_year = yes
+		any_subject = {
+			z_can_be_annexed = yes
+			any_owned_province = {
+				z_faa_iberia_f = yes
+			}
+		}
+	}
+	
+	immediate = {
+		random_subject = {
+			limit = {
+				z_can_be_annexed = yes
+				any_owned_province = {
+					z_faa_iberia_f = yes
+				}
+			}
+			random = {
+				chance = 4
+				every_owned_province = {
+					set_owned_by = root
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa.10 = {																					#########   IBERIA G (GALLAECIA)
+	type = country_event																		#########
+	hidden = yes																				#########################################
+
+	trigger = {
+		z_has_limes_ROM = yes
+		any_owned_province = {
+			#count >= 5
+			z_faa_iberia_g = yes
+		}
+		z_faa_iberia_g_allow = no
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_faa_iberia_g = yes
+			}
+			order_by = total_population
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+	}
+}
+
+z_faa.110 = {
+	type = country_event
+	hidden = yes
+	
+	trigger = {
+		z_has_limes_ROM = yes
+		z_faa_iberia_g_year = yes
+		any_subject = {
+			z_can_be_annexed = yes
+			any_owned_province = {
+				z_faa_iberia_g = yes
+			}
+		}
+	}
+	
+	immediate = {
+		random_subject = {
+			limit = {
+				z_can_be_annexed = yes
+				any_owned_province = {
+					z_faa_iberia_g = yes
+				}
+			}
+			random = {
+				chance = 4
+				every_owned_province = {
+					set_owned_by = root
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa.11 = {																					#########   ILLYRIA A (ILLYRIAN COAST)
+	type = country_event																		#########
+	hidden = yes																				#########################################
+
+	trigger = {
+		z_has_limes_ROM = yes
+		any_owned_province = {
+			count >= 5
+			z_faa_illyria_a = yes
+		}
+		z_faa_illyria_a_allow = no
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_faa_illyria_a = yes
+			}
+			order_by = total_population
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+	}
+}
+
+z_faa.111 = {
+	type = country_event
+	hidden = yes
+	
+	trigger = {
+		z_has_limes_ROM = yes
+		z_faa_illyria_a_year = yes
+		any_subject = {
+			z_can_be_annexed = yes
+			any_owned_province = {
+				z_faa_illyria_a = yes
+			}
+		}
+	}
+	
+	immediate = {
+		random_subject = {
+			limit = {
+				z_can_be_annexed = yes
+				any_owned_province = {
+					z_faa_illyria_a = yes
+				}
+			}
+			random = {
+				chance = 4
+				every_owned_province = {
+					set_owned_by = root
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa.12 = {																					#########   ILLYRIA B (REST OF ILLYRIA PROPER)
+	type = country_event																		#########
+	hidden = yes																				#########################################
+
+	trigger = {
+		z_has_limes_ROM = yes
+		any_owned_province = {
+			#count >= 5
+			z_faa_illyria_b = yes
+		}
+		z_faa_illyria_b_allow = no
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_faa_illyria_b = yes
+			}
+			order_by = total_population
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+	}
+}
+
+z_faa.112 = {
+	type = country_event
+	hidden = yes
+	
+	trigger = {
+		z_has_limes_ROM = yes
+		z_faa_illyria_b_year = yes
+		any_subject = {
+			z_can_be_annexed = yes
+			any_owned_province = {
+				z_faa_illyria_b = yes
+			}
+		}
+	}
+	
+	immediate = {
+		random_subject = {
+			limit = {
+				z_can_be_annexed = yes
+				any_owned_province = {
+					z_faa_illyria_b = yes
+				}
+			}
+			random = {
+				chance = 4
+				every_owned_province = {
+					set_owned_by = root
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa.13 = {																					#########   GREECE A (PERIPHERAL GREECE)
+	type = country_event																		#########
+	hidden = yes																				#########################################
+
+	trigger = {
+		z_has_limes_ROM = yes
+		any_owned_province = {
+			count >= 5
+			z_faa_greece_a = yes
+		}
+		z_faa_greece_a_allow = no
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_faa_greece_a = yes
+			}
+			order_by = total_population
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+	}
+}
+
+z_faa.113 = {
+	type = country_event
+	hidden = yes
+	
+	trigger = {
+		z_has_limes_ROM = yes
+		z_faa_greece_a_year = yes
+		any_subject = {
+			z_can_be_annexed = yes
+			any_owned_province = {
+				z_faa_greece_a = yes
+			}
+		}
+	}
+	
+	immediate = {
+		random_subject = {
+			limit = {
+				z_can_be_annexed = yes
+				any_owned_province = {
+					z_faa_greece_a = yes
+				}
+			}
+			random = {
+				chance = 4
+				every_owned_province = {
+					set_owned_by = root
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa.14 = {																					#########   GREECE B (ATTICA-PELOPONNESOS)
+	type = country_event																		#########
+	hidden = yes																				#########################################
+
+	trigger = {
+		z_has_limes_ROM = yes
+		any_owned_province = {
+			count >= 5
+			z_faa_greece_b = yes
+		}
+		z_faa_greece_b_allow = no
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_faa_greece_b = yes
+			}
+			order_by = total_population
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+	}
+}
+
+z_faa.114 = {
+	type = country_event
+	hidden = yes
+	
+	trigger = {
+		z_has_limes_ROM = yes
+		z_faa_greece_b_year = yes
+		any_subject = {
+			z_can_be_annexed = yes
+			any_owned_province = {
+				z_faa_greece_b = yes
+			}
+		}
+	}
+	
+	immediate = {
+		random_subject = {
+			limit = {
+				z_can_be_annexed = yes
+				any_owned_province = {
+					z_faa_greece_b = yes
+				}
+			}
+			random = {
+				chance = 4
+				every_owned_province = {
+					set_owned_by = root
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa.15 = {																					#########   MACEDONIA
+	type = country_event																		#########
+	hidden = yes																				#########################################
+
+	trigger = {
+		z_has_limes_ROM = yes
+		any_owned_province = {
+			#count >= 5
+			z_faa_macedonia = yes
+		}
+		z_faa_macedonia_allow = no
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_faa_macedonia = yes
+			}
+			order_by = total_population
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+	}
+}
+
+z_faa.115 = {
+	type = country_event
+	hidden = yes
+	
+	trigger = {
+		z_has_limes_ROM = yes
+		z_faa_macedonia_year = yes
+		any_subject = {
+			z_can_be_annexed = yes
+			any_owned_province = {
+				z_faa_macedonia = yes
+			}
+		}
+	}
+	
+	immediate = {
+		random_subject = {
+			limit = {
+				z_can_be_annexed = yes
+				any_owned_province = {
+					z_faa_macedonia = yes
+				}
+			}
+			random = {
+				chance = 4
+				every_owned_province = {
+					set_owned_by = root
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa.16 = {																					#########   THRACE
+	type = country_event																		#########
+	hidden = yes																				#########################################
+
+	trigger = {
+		z_has_limes_ROM = yes
+		any_owned_province = {
+			#count >= 5
+			z_faa_thrace = yes
+		}
+		z_faa_thrace_allow = no
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_faa_thrace = yes
+			}
+			order_by = total_population
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+	}
+}
+
+z_faa.116 = {
+	type = country_event
+	hidden = yes
+	
+	trigger = {
+		z_has_limes_ROM = yes
+		z_faa_thrace_year = yes
+		any_subject = {
+			z_can_be_annexed = yes
+			any_owned_province = {
+				z_faa_thrace = yes
+			}
+		}
+	}
+	
+	immediate = {
+		random_subject = {
+			limit = {
+				z_can_be_annexed = yes
+				any_owned_province = {
+					z_faa_thrace = yes
+				}
+			}
+			random = {
+				chance = 4
+				every_owned_province = {
+					set_owned_by = root
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa.17 = {																					#########   MOESIA
+	type = country_event																		#########
+	hidden = yes																				#########################################
+
+	trigger = {
+		z_has_limes_ROM = yes
+		any_owned_province = {
+			#count >= 5
+			z_faa_moesia = yes
+		}
+		z_faa_moesia_allow = no
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_faa_moesia = yes
+			}
+			order_by = total_population
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+	}
+}
+
+z_faa.117 = {
+	type = country_event
+	hidden = yes
+	
+	trigger = {
+		z_has_limes_ROM = yes
+		z_faa_moesia_year = yes
+		any_subject = {
+			z_can_be_annexed = yes
+			any_owned_province = {
+				z_faa_moesia = yes
+			}
+		}
+	}
+	
+	immediate = {
+		random_subject = {
+			limit = {
+				z_can_be_annexed = yes
+				any_owned_province = {
+					z_faa_moesia = yes
+				}
+			}
+			random = {
+				chance = 4
+				every_owned_province = {
+					set_owned_by = root
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa.18 = {																					#########   DACIA
+	type = country_event																		#########
+	hidden = yes																				#########################################
+
+	trigger = {
+		z_has_limes_ROM = yes
+		any_owned_province = {
+			##count >= 5
+			z_faa_dacia = yes
+		}
+		z_faa_dacia_allow = no
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_faa_dacia = yes
+			}
+			order_by = total_population
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+	}
+}
+
+z_faa.118 = {
+	type = country_event
+	hidden = yes
+	
+	trigger = {
+		z_has_limes_ROM = yes
+		z_faa_dacia_year = yes
+		any_subject = {
+			z_can_be_annexed = yes
+			any_owned_province = {
+				z_faa_dacia = yes
+			}
+		}
+	}
+	
+	immediate = {
+		random_subject = {
+			limit = {
+				z_can_be_annexed = yes
+				any_owned_province = {
+					z_faa_dacia = yes
+				}
+			}
+			random = {
+				chance = 4
+				every_owned_province = {
+					set_owned_by = root
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa.19 = {																					#########   PANNONIA
+	type = country_event																		#########
+	hidden = yes																				#########################################
+
+	trigger = {
+		z_has_limes_ROM = yes
+		any_owned_province = {
+			##count >= 5
+			z_faa_pannonia = yes
+		}
+		z_faa_pannonia_allow = no
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_faa_pannonia = yes
+			}
+			order_by = total_population
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+	}
+}
+
+z_faa.119 = {
+	type = country_event
+	hidden = yes
+	
+	trigger = {
+		z_has_limes_ROM = yes
+		z_faa_pannonia_year = yes
+		any_subject = {
+			z_can_be_annexed = yes
+			any_owned_province = {
+				z_faa_pannonia = yes
+			}
+		}
+	}
+	
+	immediate = {
+		random_subject = {
+			limit = {
+				z_can_be_annexed = yes
+				any_owned_province = {
+					z_faa_pannonia = yes
+				}
+			}
+			random = {
+				chance = 4
+				every_owned_province = {
+					set_owned_by = root
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa.20 = {																					#########   GAUL A (MEDITERRANEAN COAST A)
+	type = country_event																		#########
+	hidden = yes																				#########################################
+
+	trigger = {
+		z_has_limes_ROM = yes
+		any_owned_province = {
+			#count >= 5
+			z_faa_gaul_a = yes
+		}
+		z_faa_gaul_a_allow = no
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_faa_gaul_a = yes
+			}
+			order_by = total_population
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+	}
+}
+
+z_faa.120 = {
+	type = country_event
+	hidden = yes
+	
+	trigger = {
+		z_has_limes_ROM = yes
+		z_faa_gaul_a_year = yes
+		any_subject = {
+			z_can_be_annexed = yes
+			any_owned_province = {
+				z_faa_gaul_a = yes
+			}
+		}
+	}
+	
+	immediate = {
+		random_subject = {
+			limit = {
+				z_can_be_annexed = yes
+				any_owned_province = {
+					z_faa_gaul_a = yes
+				}
+			}
+			random = {
+				chance = 4
+				every_owned_province = {
+					set_owned_by = root
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa.21 = {																					#########   GAUL B (MEDITERRANEAN COAST B)
+	type = country_event																		#########
+	hidden = yes																				#########################################
+
+	trigger = {
+		z_has_limes_ROM = yes
+		any_owned_province = {
+			count >= 3
+			z_faa_gaul_b = yes
+		}
+		z_faa_gaul_b_allow = no
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_faa_gaul_b = yes
+			}
+			order_by = total_population
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+	}
+}
+
+z_faa.121 = {
+	type = country_event
+	hidden = yes
+	
+	trigger = {
+		z_has_limes_ROM = yes
+		z_faa_gaul_b_year = yes
+		any_subject = {
+			z_can_be_annexed = yes
+			any_owned_province = {
+				z_faa_gaul_b = yes
+			}
+		}
+	}
+	
+	immediate = {
+		random_subject = {
+			limit = {
+				z_can_be_annexed = yes
+				any_owned_province = {
+					z_faa_gaul_b = yes
+				}
+			}
+			random = {
+				chance = 4
+				every_owned_province = {
+					set_owned_by = root
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa.22 = {																					#########   GAUL C (REST OF TRANSALPINE)
+	type = country_event																		#########
+	hidden = yes																				#########################################
+
+	trigger = {
+		z_has_limes_ROM = yes
+		any_owned_province = {
+			count >= 5
+			z_faa_gaul_c = yes
+		}
+		z_faa_gaul_c_allow = no
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_faa_gaul_c = yes
+			}
+			order_by = total_population
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+	}
+}
+
+z_faa.122 = {
+	type = country_event
+	hidden = yes
+	
+	trigger = {
+		z_has_limes_ROM = yes
+		z_faa_gaul_c_year = yes
+		any_subject = {
+			z_can_be_annexed = yes
+			any_owned_province = {
+				z_faa_gaul_c = yes
+			}
+		}
+	}
+	
+	immediate = {
+		random_subject = {
+			limit = {
+				z_can_be_annexed = yes
+				any_owned_province = {
+					z_faa_gaul_c = yes
+				}
+			}
+			random = {
+				chance = 4
+				every_owned_province = {
+					set_owned_by = root
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa.23 = {																					#########   GAUL D (CENTRAL GAUL)
+	type = country_event																		#########
+	hidden = yes																				#########################################
+
+	trigger = {
+		z_has_limes_ROM = yes
+		any_owned_province = {
+			#count >= 5
+			z_faa_gaul_d = yes
+		}
+		z_faa_gaul_d_allow = no
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_faa_gaul_d = yes
+			}
+			order_by = total_population
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+	}
+}
+
+z_faa.123 = {
+	type = country_event
+	hidden = yes
+	
+	trigger = {
+		z_has_limes_ROM = yes
+		z_faa_gaul_d_year = yes
+		any_subject = {
+			z_can_be_annexed = yes
+			any_owned_province = {
+				z_faa_gaul_d = yes
+			}
+		}
+	}
+	
+	immediate = {
+		random_subject = {
+			limit = {
+				z_can_be_annexed = yes
+				any_owned_province = {
+					z_faa_gaul_d = yes
+				}
+			}
+			random = {
+				chance = 4
+				every_owned_province = {
+					set_owned_by = root
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa.24 = {																					#########   GAUL E (ARMORICA)
+	type = country_event																		#########
+	hidden = yes																				#########################################
+
+	trigger = {
+		z_has_limes_ROM = yes
+		any_owned_province = {
+			#count >= 5
+			z_faa_gaul_e = yes
+		}
+		z_faa_gaul_e_allow = no
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_faa_gaul_e = yes
+			}
+			order_by = total_population
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+	}
+}
+
+z_faa.124 = {
+	type = country_event
+	hidden = yes
+	
+	trigger = {
+		z_has_limes_ROM = yes
+		z_faa_gaul_e_year = yes
+		any_subject = {
+			z_can_be_annexed = yes
+			any_owned_province = {
+				z_faa_gaul_e = yes
+			}
+		}
+	}
+	
+	immediate = {
+		random_subject = {
+			limit = {
+				z_can_be_annexed = yes
+				any_owned_province = {
+					z_faa_gaul_e = yes
+				}
+			}
+			random = {
+				chance = 4
+				every_owned_province = {
+					set_owned_by = root
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa.25 = {																					#########   GAUL F (BELGICA)
+	type = country_event																		#########
+	hidden = yes																				#########################################
+
+	trigger = {
+		z_has_limes_ROM = yes
+		any_owned_province = {
+			#count >= 5
+			z_faa_gaul_f = yes
+		}
+		z_faa_gaul_f_allow = no
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_faa_gaul_f = yes
+			}
+			order_by = total_population
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+	}
+}
+
+z_faa.125 = {
+	type = country_event
+	hidden = yes
+	
+	trigger = {
+		z_has_limes_ROM = yes
+		z_faa_gaul_f_year = yes
+		any_subject = {
+			z_can_be_annexed = yes
+			any_owned_province = {
+				z_faa_gaul_f = yes
+			}
+		}
+	}
+	
+	immediate = {
+		random_subject = {
+			limit = {
+				z_can_be_annexed = yes
+				any_owned_province = {
+					z_faa_gaul_f = yes
+				}
+			}
+			random = {
+				chance = 4
+				every_owned_province = {
+					set_owned_by = root
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa.26 = {																					#########   RHAETIA
+	type = country_event																		#########
+	hidden = yes																				#########################################
+
+	trigger = {
+		z_has_limes_ROM = yes
+		any_owned_province = {
+			#count >= 5
+			z_faa_rhaetia = yes
+		}
+		z_faa_rhaetia_allow = no
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_faa_rhaetia = yes
+			}
+			order_by = total_population
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+	}
+}
+
+z_faa.126 = {
+	type = country_event
+	hidden = yes
+	
+	trigger = {
+		z_has_limes_ROM = yes
+		z_faa_rhaetia_year = yes
+		any_subject = {
+			z_can_be_annexed = yes
+			any_owned_province = {
+				z_faa_rhaetia = yes
+			}
+		}
+	}
+	
+	immediate = {
+		random_subject = {
+			limit = {
+				z_can_be_annexed = yes
+				any_owned_province = {
+					z_faa_rhaetia = yes
+				}
+			}
+			random = {
+				chance = 4
+				every_owned_province = {
+					set_owned_by = root
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa.27 = {																					#########   AGRI DECUMATES
+	type = country_event																		#########
+	hidden = yes																				#########################################
+
+	trigger = {
+		z_has_limes_ROM = yes
+		any_owned_province = {
+			#count >= 5
+			z_faa_agridecumates = yes
+		}
+		z_faa_agridecumates_allow = no
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_faa_agridecumates = yes
+			}
+			order_by = total_population
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+	}
+}
+
+z_faa.127 = {
+	type = country_event
+	hidden = yes
+	
+	trigger = {
+		z_has_limes_ROM = yes
+		z_faa_agridecumates_year = yes
+		any_subject = {
+			z_can_be_annexed = yes
+			any_owned_province = {
+				z_faa_agridecumates = yes
+			}
+		}
+	}
+	
+	immediate = {
+		random_subject = {
+			limit = {
+				z_can_be_annexed = yes
+				any_owned_province = {
+					z_faa_agridecumates = yes
+				}
+			}
+			random = {
+				chance = 4
+				every_owned_province = {
+					set_owned_by = root
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa.28 = {																					#########   AFRICA A (AFRICAN COAST)
+	type = country_event																		#########
+	hidden = yes																				#########################################
+
+	trigger = {
+		z_has_limes_ROM = yes
+		any_owned_province = {
+			count >= 5
+			z_faa_africa_a = yes
+		}
+		z_faa_africa_a_allow = no
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_faa_africa_a = yes
+			}
+			order_by = total_population
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+	}
+}
+
+z_faa.128 = {
+	type = country_event
+	hidden = yes
+	
+	trigger = {
+		z_has_limes_ROM = yes
+		z_faa_africa_a_year = yes
+		any_subject = {
+			z_can_be_annexed = yes
+			any_owned_province = {
+				z_faa_africa_a = yes
+			}
+		}
+	}
+	
+	immediate = {
+		random_subject = {
+			limit = {
+				z_can_be_annexed = yes
+				any_owned_province = {
+					z_faa_africa_a = yes
+				}
+			}
+			random = {
+				chance = 4
+				every_owned_province = {
+					set_owned_by = root
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa.29 = {																					#########   AFRICA B (NUMIDIAN COAST)
+	type = country_event																		#########
+	hidden = yes																				#########################################
+
+	trigger = {
+		z_has_limes_ROM = yes
+		any_owned_province = {
+			count >= 5
+			z_faa_africa_b = yes
+		}
+		z_faa_africa_b_allow = no
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_faa_africa_b = yes
+			}
+			order_by = total_population
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+	}
+}
+
+z_faa.129 = {
+	type = country_event
+	hidden = yes
+	
+	trigger = {
+		z_has_limes_ROM = yes
+		z_faa_africa_b_year = yes
+		any_subject = {
+			z_can_be_annexed = yes
+			any_owned_province = {
+				z_faa_africa_b = yes
+			}
+		}
+	}
+	
+	immediate = {
+		random_subject = {
+			limit = {
+				z_can_be_annexed = yes
+				any_owned_province = {
+					z_faa_africa_b = yes
+				}
+			}
+			random = {
+				chance = 4
+				every_owned_province = {
+					set_owned_by = root
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa.30 = {																					#########   AFRICA C (AFRICAN INTERIOR)
+	type = country_event																		#########
+	hidden = yes																				#########################################
+
+	trigger = {
+		z_has_limes_ROM = yes
+		any_owned_province = {
+			#count >= 5
+			z_faa_africa_c = yes
+		}
+		z_faa_africa_c_allow = no
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_faa_africa_c = yes
+			}
+			order_by = total_population
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+	}
+}
+
+z_faa.130 = {
+	type = country_event
+	hidden = yes
+	
+	trigger = {
+		z_has_limes_ROM = yes
+		z_faa_africa_c_year = yes
+		any_subject = {
+			z_can_be_annexed = yes
+			any_owned_province = {
+				z_faa_africa_c = yes
+			}
+		}
+	}
+	
+	immediate = {
+		random_subject = {
+			limit = {
+				z_can_be_annexed = yes
+				any_owned_province = {
+					z_faa_africa_c = yes
+				}
+			}
+			random = {
+				chance = 4
+				every_owned_province = {
+					set_owned_by = root
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa.31 = {																					#########   AFRICA D (NUMIDIAN INTERIOR)
+	type = country_event																		#########
+	hidden = yes																				#########################################
+
+	trigger = {
+		z_has_limes_ROM = yes
+		any_owned_province = {
+			#count >= 5
+			z_faa_africa_d = yes
+		}
+		z_faa_africa_d_allow = no
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_faa_africa_d = yes
+			}
+			order_by = total_population
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+	}
+}
+
+z_faa.131 = {
+	type = country_event
+	hidden = yes
+	
+	trigger = {
+		z_has_limes_ROM = yes
+		z_faa_africa_d_year = yes
+		any_subject = {
+			z_can_be_annexed = yes
+			any_owned_province = {
+				z_faa_africa_d = yes
+			}
+		}
+	}
+	
+	immediate = {
+		random_subject = {
+			limit = {
+				z_can_be_annexed = yes
+				any_owned_province = {
+					z_faa_africa_d = yes
+				}
+			}
+			random = {
+				chance = 4
+				every_owned_province = {
+					set_owned_by = root
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa.32 = {																					#########   AFRICA E (MAURIAN COAST)
+	type = country_event																		#########
+	hidden = yes																				#########################################
+
+	trigger = {
+		z_has_limes_ROM = yes
+		any_owned_province = {
+			count >= 5
+			z_faa_africa_e = yes
+		}
+		z_faa_africa_e_allow = no
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_faa_africa_e = yes
+			}
+			order_by = total_population
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+	}
+}
+
+z_faa.132 = {
+	type = country_event
+	hidden = yes
+	
+	trigger = {
+		z_has_limes_ROM = yes
+		z_faa_africa_e_year = yes
+		any_subject = {
+			z_can_be_annexed = yes
+			any_owned_province = {
+				z_faa_africa_e = yes
+			}
+		}
+	}
+	
+	immediate = {
+		random_subject = {
+			limit = {
+				z_can_be_annexed = yes
+				any_owned_province = {
+					z_faa_africa_e = yes
+				}
+			}
+			random = {
+				chance = 4
+				every_owned_province = {
+					set_owned_by = root
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa.33 = {																					#########   AFRICA F (MAURIAN INTERIOR)
+	type = country_event																		#########
+	hidden = yes																				#########################################
+
+	trigger = {
+		z_has_limes_ROM = yes
+		any_owned_province = {
+			#count >= 5
+			z_faa_africa_f = yes
+		}
+		z_faa_africa_f_allow = no
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_faa_africa_f = yes
+			}
+			order_by = total_population
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+	}
+}
+
+z_faa.133 = {
+	type = country_event
+	hidden = yes
+	
+	trigger = {
+		z_has_limes_ROM = yes
+		z_faa_africa_f_year = yes
+		any_subject = {
+			z_can_be_annexed = yes
+			any_owned_province = {
+				z_faa_africa_f = yes
+			}
+		}
+	}
+	
+	immediate = {
+		random_subject = {
+			limit = {
+				z_can_be_annexed = yes
+				any_owned_province = {
+					z_faa_africa_f = yes
+				}
+			}
+			random = {
+				chance = 4
+				every_owned_province = {
+					set_owned_by = root
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa.34 = {																					#########   AFRICA G (CYRENAICA)
+	type = country_event																		#########
+	hidden = yes																				#########################################
+
+	trigger = {
+		z_has_limes_ROM = yes
+		any_owned_province = {
+			count >= 5
+			z_faa_africa_g = yes
+		}
+		z_faa_africa_g_allow = no
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_faa_africa_g = yes
+			}
+			order_by = total_population
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+	}
+}
+
+z_faa.134 = {
+	type = country_event
+	hidden = yes
+	
+	trigger = {
+		z_has_limes_ROM = yes
+		z_faa_africa_g_year = yes
+		any_subject = {
+			z_can_be_annexed = yes
+			any_owned_province = {
+				z_faa_africa_g = yes
+			}
+		}
+	}
+	
+	immediate = {
+		random_subject = {
+			limit = {
+				z_can_be_annexed = yes
+				any_owned_province = {
+					z_faa_africa_g = yes
+				}
+			}
+			random = {
+				chance = 4
+				every_owned_province = {
+					set_owned_by = root
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa.35 = {																					#########   ASIA A (ASIA)
+	type = country_event																		#########
+	hidden = yes																				#########################################
+
+	trigger = {
+		z_has_limes_ROM = yes
+		any_owned_province = {
+			count >= 5
+			z_faa_asia_a = yes
+		}
+		z_faa_asia_a_allow = no
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_faa_asia_a = yes
+			}
+			order_by = total_population
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+	}
+}
+
+z_faa.135 = {
+	type = country_event
+	hidden = yes
+	
+	trigger = {
+		z_has_limes_ROM = yes
+		z_faa_asia_a_year = yes
+		any_subject = {
+			z_can_be_annexed = yes
+			any_owned_province = {
+				z_faa_asia_a = yes
+			}
+		}
+	}
+	
+	immediate = {
+		random_subject = {
+			limit = {
+				z_can_be_annexed = yes
+				any_owned_province = {
+					z_faa_asia_a = yes
+				}
+			}
+			random = {
+				chance = 4
+				every_owned_province = {
+					set_owned_by = root
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa.36 = {																					#########   ASIA B (BITHYNIA)
+	type = country_event																		#########
+	hidden = yes																				#########################################
+
+	trigger = {
+		z_has_limes_ROM = yes
+		any_owned_province = {
+			#count >= 5
+			z_faa_asia_b = yes
+		}
+		z_faa_asia_b_allow = no
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_faa_asia_b = yes
+			}
+			order_by = total_population
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+	}
+}
+
+z_faa.136 = {
+	type = country_event
+	hidden = yes
+	
+	trigger = {
+		z_has_limes_ROM = yes
+		z_faa_asia_b_year = yes
+		any_subject = {
+			z_can_be_annexed = yes
+			any_owned_province = {
+				z_faa_asia_b = yes
+			}
+		}
+	}
+	
+	immediate = {
+		random_subject = {
+			limit = {
+				z_can_be_annexed = yes
+				any_owned_province = {
+					z_faa_asia_b = yes
+				}
+			}
+			random = {
+				chance = 4
+				every_owned_province = {
+					set_owned_by = root
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa.37 = {																					#########   ASIA C (CILICIA)
+	type = country_event																		#########
+	hidden = yes																				#########################################
+
+	trigger = {
+		z_has_limes_ROM = yes
+		any_owned_province = {
+			count >= 5
+			z_faa_asia_c = yes
+		}
+		z_faa_asia_c_allow = no
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_faa_asia_c = yes
+			}
+			order_by = total_population
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+	}
+}
+
+z_faa.137 = {
+	type = country_event
+	hidden = yes
+	
+	trigger = {
+		z_has_limes_ROM = yes
+		z_faa_asia_c_year = yes
+		any_subject = {
+			z_can_be_annexed = yes
+			any_owned_province = {
+				z_faa_asia_c = yes
+			}
+		}
+	}
+	
+	immediate = {
+		random_subject = {
+			limit = {
+				z_can_be_annexed = yes
+				any_owned_province = {
+					z_faa_asia_c = yes
+				}
+			}
+			random = {
+				chance = 4
+				every_owned_province = {
+					set_owned_by = root
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa.38 = {																					#########   ASIA D (GALATIA)
+	type = country_event																		#########
+	hidden = yes																				#########################################
+
+	trigger = {
+		z_has_limes_ROM = yes
+		any_owned_province = {
+			#count >= 5
+			z_faa_asia_d = yes
+		}
+		z_faa_asia_d_allow = no
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_faa_asia_d = yes
+			}
+			order_by = total_population
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+	}
+}
+
+z_faa.138 = {
+	type = country_event
+	hidden = yes
+	
+	trigger = {
+		z_has_limes_ROM = yes
+		z_faa_asia_d_year = yes
+		any_subject = {
+			z_can_be_annexed = yes
+			any_owned_province = {
+				z_faa_asia_d = yes
+			}
+		}
+	}
+	
+	immediate = {
+		random_subject = {
+			limit = {
+				z_can_be_annexed = yes
+				any_owned_province = {
+					z_faa_asia_d = yes
+				}
+			}
+			random = {
+				chance = 4
+				every_owned_province = {
+					set_owned_by = root
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa.39 = {																					#########   ASIA E (CAPPADOCIA TAURICA)
+	type = country_event																		#########
+	hidden = yes																				#########################################
+
+	trigger = {
+		z_has_limes_ROM = yes
+		any_owned_province = {
+			#count >= 5
+			z_faa_asia_e = yes
+		}
+		z_faa_asia_e_allow = no
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_faa_asia_e = yes
+			}
+			order_by = total_population
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+	}
+}
+
+z_faa.139 = {
+	type = country_event
+	hidden = yes
+	
+	trigger = {
+		z_has_limes_ROM = yes
+		z_faa_asia_e_year = yes
+		any_subject = {
+			z_can_be_annexed = yes
+			any_owned_province = {
+				z_faa_asia_e = yes
+			}
+		}
+	}
+	
+	immediate = {
+		random_subject = {
+			limit = {
+				z_can_be_annexed = yes
+				any_owned_province = {
+					z_faa_asia_e = yes
+				}
+			}
+			random = {
+				chance = 4
+				every_owned_province = {
+					set_owned_by = root
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa.40 = {																					#########   PONTUS A (CAPPADOCIA PONTICA)
+	type = country_event																		#########
+	hidden = yes																				#########################################
+
+	trigger = {
+		z_has_limes_ROM = yes
+		any_owned_province = {
+			count >= 5
+			z_faa_pontus_a = yes
+		}
+		z_faa_pontus_a_allow = no
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_faa_pontus_a = yes
+			}
+			order_by = total_population
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+	}
+}
+
+z_faa.140 = {
+	type = country_event
+	hidden = yes
+	
+	trigger = {
+		z_has_limes_ROM = yes
+		z_faa_pontus_a_year = yes
+		any_subject = {
+			z_can_be_annexed = yes
+			any_owned_province = {
+				z_faa_pontus_a = yes
+			}
+		}
+	}
+	
+	immediate = {
+		random_subject = {
+			limit = {
+				z_can_be_annexed = yes
+				any_owned_province = {
+					z_faa_pontus_a = yes
+				}
+			}
+			random = {
+				chance = 4
+				every_owned_province = {
+					set_owned_by = root
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa.41 = {																					#########   PONTUS B (COLCHIS)
+	type = country_event																		#########
+	hidden = yes																				#########################################
+
+	trigger = {
+		z_has_limes_ROM = yes
+		any_owned_province = {
+			#count >= 5
+			z_faa_pontus_b = yes
+		}
+		z_faa_pontus_b_allow = no
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_faa_pontus_b = yes
+			}
+			order_by = total_population
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+	}
+}
+
+z_faa.141 = {
+	type = country_event
+	hidden = yes
+	
+	trigger = {
+		z_has_limes_ROM = yes
+		z_faa_pontus_b_year = yes
+		any_subject = {
+			z_can_be_annexed = yes
+			any_owned_province = {
+				z_faa_pontus_b = yes
+			}
+		}
+	}
+	
+	immediate = {
+		random_subject = {
+			limit = {
+				z_can_be_annexed = yes
+				any_owned_province = {
+					z_faa_pontus_b = yes
+				}
+			}
+			random = {
+				chance = 4
+				every_owned_province = {
+					set_owned_by = root
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa.42 = {																					#########   PONTUS C (TAURICA)
+	type = country_event																		#########
+	hidden = yes																				#########################################
+
+	trigger = {
+		z_has_limes_ROM = yes
+		any_owned_province = {
+			count >= 5
+			z_faa_pontus_c = yes
+		}
+		z_faa_pontus_c_allow = no
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_faa_pontus_c = yes
+			}
+			order_by = total_population
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+	}
+}
+
+z_faa.142 = {
+	type = country_event
+	hidden = yes
+	
+	trigger = {
+		z_has_limes_ROM = yes
+		z_faa_pontus_c_year = yes
+		any_subject = {
+			z_can_be_annexed = yes
+			any_owned_province = {
+				z_faa_pontus_c = yes
+			}
+		}
+	}
+	
+	immediate = {
+		random_subject = {
+			limit = {
+				z_can_be_annexed = yes
+				any_owned_province = {
+					z_faa_pontus_c = yes
+				}
+			}
+			random = {
+				chance = 4
+				every_owned_province = {
+					set_owned_by = root
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa.43 = {																					#########   LEVANT A (SYRIA)
+	type = country_event																		#########
+	hidden = yes																				#########################################
+
+	trigger = {
+		z_has_limes_ROM = yes
+		any_owned_province = {
+			count >= 5
+			z_faa_levant_a = yes
+		}
+		z_faa_levant_a_allow = no
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_faa_levant_a = yes
+			}
+			order_by = total_population
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+	}
+}
+
+z_faa.143 = {
+	type = country_event
+	hidden = yes
+	
+	trigger = {
+		z_has_limes_ROM = yes
+		z_faa_levant_a_year = yes
+		any_subject = {
+			z_can_be_annexed = yes
+			any_owned_province = {
+				z_faa_levant_a = yes
+			}
+		}
+	}
+	
+	immediate = {
+		random_subject = {
+			limit = {
+				z_can_be_annexed = yes
+				any_owned_province = {
+					z_faa_levant_a = yes
+				}
+			}
+			random = {
+				chance = 4
+				every_owned_province = {
+					set_owned_by = root
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa.44 = {																					#########   LEVANT B (MESOPOTAMIA)
+	type = country_event																		#########
+	hidden = yes																				#########################################
+
+	trigger = {
+		z_has_limes_ROM = yes
+		any_owned_province = {
+			count >= 5
+			z_faa_levant_b = yes
+		}
+		z_faa_levant_b_allow = no
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_faa_levant_b = yes
+			}
+			order_by = total_population
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+	}
+}
+
+z_faa.144 = {
+	type = country_event
+	hidden = yes
+	
+	trigger = {
+		z_has_limes_ROM = yes
+		z_faa_levant_b_year = yes
+		any_subject = {
+			z_can_be_annexed = yes
+			any_owned_province = {
+				z_faa_levant_b = yes
+			}
+		}
+	}
+	
+	immediate = {
+		random_subject = {
+			limit = {
+				z_can_be_annexed = yes
+				any_owned_province = {
+					z_faa_levant_b = yes
+				}
+			}
+			random = {
+				chance = 4
+				every_owned_province = {
+					set_owned_by = root
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa.45 = {																					#########   LEVANT C (PALESTINE)
+	type = country_event																		#########
+	hidden = yes																				#########################################
+
+	trigger = {
+		z_has_limes_ROM = yes
+		any_owned_province = {
+			count >= 5
+			z_faa_levant_c = yes
+		}
+		z_faa_levant_c_allow = no
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_faa_levant_c = yes
+			}
+			order_by = total_population
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+	}
+}
+
+z_faa.145 = {
+	type = country_event
+	hidden = yes
+	
+	trigger = {
+		z_has_limes_ROM = yes
+		z_faa_levant_c_year = yes
+		any_subject = {
+			z_can_be_annexed = yes
+			any_owned_province = {
+				z_faa_levant_c = yes
+			}
+		}
+	}
+	
+	immediate = {
+		random_subject = {
+			limit = {
+				z_can_be_annexed = yes
+				any_owned_province = {
+					z_faa_levant_c = yes
+				}
+			}
+			random = {
+				chance = 4
+				every_owned_province = {
+					set_owned_by = root
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa.46 = {																					#########   LEVANT D (LOWER EGYPT)
+	type = country_event																		#########
+	hidden = yes																				#########################################
+
+	trigger = {
+		z_has_limes_ROM = yes
+		any_owned_province = {
+			count >= 5
+			z_faa_levant_d = yes
+		}
+		z_faa_levant_d_allow = no
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_faa_levant_d = yes
+			}
+			order_by = total_population
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+	}
+}
+
+z_faa.146 = {
+	type = country_event
+	hidden = yes
+	
+	trigger = {
+		z_has_limes_ROM = yes
+		z_faa_levant_d_year = yes
+		any_subject = {
+			z_can_be_annexed = yes
+			any_owned_province = {
+				z_faa_levant_d = yes
+			}
+		}
+	}
+	
+	immediate = {
+		random_subject = {
+			limit = {
+				z_can_be_annexed = yes
+				any_owned_province = {
+					z_faa_levant_d = yes
+				}
+			}
+			random = {
+				chance = 4
+				every_owned_province = {
+					set_owned_by = root
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa.47 = {																					#########   LEVANT E (UPPER EGYPT)
+	type = country_event																		#########
+	hidden = yes																				#########################################
+
+	trigger = {
+		z_has_limes_ROM = yes
+		any_owned_province = {
+			count >= 5
+			z_faa_levant_e = yes
+		}
+		z_faa_levant_e_allow = no
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_faa_levant_e = yes
+			}
+			order_by = total_population
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+	}
+}
+
+z_faa.147 = {
+	type = country_event
+	hidden = yes
+	
+	trigger = {
+		z_has_limes_ROM = yes
+		z_faa_levant_e_year = yes
+		any_subject = {
+			z_can_be_annexed = yes
+			any_owned_province = {
+				z_faa_levant_e = yes
+			}
+		}
+	}
+	
+	immediate = {
+		random_subject = {
+			limit = {
+				z_can_be_annexed = yes
+				any_owned_province = {
+					z_faa_levant_e = yes
+				}
+			}
+			random = {
+				chance = 4
+				every_owned_province = {
+					set_owned_by = root
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa.48 = {																					#########   BRITAIN
+	type = country_event																		#########
+	hidden = yes																				#########################################
+
+	trigger = {
+		z_has_limes_ROM = yes
+		any_owned_province = {
+			count >= 5
+			z_faa_britain = yes
+		}
+		z_faa_britain_allow = no
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_faa_britain = yes
+			}
+			order_by = total_population
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+	}
+}
+
+z_faa.148 = {
+	type = country_event
+	hidden = yes
+	
+	trigger = {
+		z_has_limes_ROM = yes
+		z_faa_britain_year = yes
+		any_subject = {
+			z_can_be_annexed = yes
+			any_owned_province = {
+				z_faa_britain = yes
+			}
+		}
+	}
+	
+	immediate = {
+		random_subject = {
+			limit = {
+				z_can_be_annexed = yes
+				any_owned_province = {
+					z_faa_britain = yes
+				}
+			}
+			random = {
+				chance = 4
+				every_owned_province = {
+					set_owned_by = root
+				}
+			}
+		}
+	}
+}

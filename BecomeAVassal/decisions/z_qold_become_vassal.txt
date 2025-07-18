@@ -1,0 +1,52 @@
+﻿country_decisions = {
+
+	z_qold_become_vassal_decision = {
+	
+		potential = {
+			is_ai = no
+			is_subject = no
+			any_country = {
+				z_qold_is_potential_overlord = yes
+			}
+			NOT = {
+				has_variable = z_qold_become_vassal_decision_cooldown
+			}
+			num_of_cities < 50
+		}
+		
+		allow = {
+			num_of_cities < 50
+			war = no
+			is_subject = no
+			political_influence >= 50
+			custom_tooltip = "z_qold_become_vassal_decision_allow"
+			#trigger_if = {
+			#	limit = {
+			#		war = yes
+			#	}
+			#	any_current_war = {
+			#		any_war_defender = { this = root }
+			#		war_score = {
+			#			target = root
+			#			value <= -20
+			#		}
+			#	}
+			#}
+		}
+		
+		effect = {
+			add_political_influence = -25
+			hidden_effect = {
+				set_variable = {
+					name = z_qold_become_vassal_decision_cooldown
+					days = 1825 # 5 years
+				}
+				trigger_event = {
+					id = z_qold_become_vassal.1
+				}
+			}
+			custom_tooltip = "z_qold_become_vassal_decision_effect"
+			custom_tooltip = "z_qold_become_vassal_decision_effect_b"
+		}
+	}
+}

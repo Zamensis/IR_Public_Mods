@@ -1,0 +1,123 @@
+﻿#-----------------------------------------------------------------------------------------
+# Vanilla on_actions
+#-----------------------------------------------------------------------------------------
+on_character_death = {
+	on_actions = {
+		z_qol_governor				# Suggest a new governor
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# Suggest a new governor
+#-----------------------------------------------------------------------------------------
+z_qol_governor = {
+	effect = {
+		# Make sure this character is a replaceable governor
+		#---------------------------------------------------------
+		if = {
+			limit = {
+				z_qol_governor = 1
+				employer = { is_ai = no }
+				is_governor = yes
+				is_ruler = no
+				trigger_if = {
+					limit = {
+						z_qol_governor_civil_war = 0
+					}
+					employer = { has_civil_war = no }
+				}
+			}
+			save_scope_as = z_qol_governor_old
+			if = {
+				limit = { exists = scope:z_qol_governor_old } # Always true?
+				# Scope to the country, for simplicity
+				#---------------------------------------------------------
+				employer = {
+					# Save the target governorship for later
+					random_owned_province = {
+						limit = { governor = scope:z_qol_governor_old }
+						state.capital_scope = { save_scope_as = z_qol_governor_cap }
+					}
+					# If this rule is enabled and there are eligible scorned family members, iterate through them first and pick the best
+					if = {
+						limit = {
+							z_qol_governor_scorned_first = 1
+							any_family = { is_scorned = yes }
+							any_character = {
+								z_qol_governor_eligible_trigger = yes
+								this.family = scope:z_qol_governor_old.family
+								finesse >= z_qol_governor_scorned_finesse
+								martial >= z_qol_governor_scorned_martial
+								loyalty >= z_qol_governor_scorned_loyalty
+							}
+						}
+						ordered_character = {
+							limit = {
+								z_qol_governor_eligible_trigger = yes
+								this.family = scope:z_qol_governor_old.family
+								finesse >= z_qol_governor_scorned_finesse
+								martial >= z_qol_governor_scorned_martial
+								loyalty >= z_qol_governor_scorned_loyalty
+							}
+							order_by = z_qol_governor_score
+							save_scope_as = z_qol_governor_new
+						}
+					}
+					# Otherwise, iterate through every eligible characters and pick the best
+					else_if = {
+						limit = {
+							any_character = {
+								z_qol_governor_eligible_trigger = yes
+								finesse >= z_qol_governor_finesse
+								martial >= z_qol_governor_martial
+								loyalty >= z_qol_governor_loyalty
+							}
+						}
+						ordered_character = {
+							limit = {
+								z_qol_governor_eligible_trigger = yes
+								finesse >= z_qol_governor_finesse
+								martial >= z_qol_governor_martial
+								loyalty >= z_qol_governor_loyalty
+							}
+							order_by = z_qol_governor_score
+							save_scope_as = z_qol_governor_new
+						}
+					}
+					# We got all the scopes we need, move on to the next part
+					trigger_event = { on_action = z_qol_governor_set_governor }
+				}
+			}
+		}
+	}
+}
+
+# Why a separate on_action? Well this whole part is a little bit strange, but at this point I'm too afraid to move things around
+z_qol_governor_set_governor = {
+	effect = {
+		scope:z_qol_governor_cap = {
+			# Make sure the governorship is still vacant, just in case
+			if = {
+				limit = {
+					exists = scope:z_qol_governor_new # By the way, did we find anyone?
+					state = { has_governor = no } # Always true? But wait, how were we able to save that scope, then? Province still has him as governor, but state doesn't?
+					OR = {
+						NOT = { exists = scope:z_qol_governor_old } # Always true: we wouldn't have reached this far otherwise
+						scope:z_qol_governor_old = { is_alive = no } # Always true: it's the 3rd time we ask, can't we just let him rest in peace?
+					}
+					owner = scope:z_qol_governor_new.employer # Always true: we picked him among the employer's characters
+				}
+				# Fire one of two events, depending on the mod settings
+				owner = {
+					if = {
+						limit = { z_qol_governor_full_auto = 1 }
+						trigger_event = { id = z_qol_governor.2 } # Automatically accept all suggestions, unpaused notification
+					}
+					else = {
+						trigger_event = { id = z_qol_governor.1 } # Accept/refuse suggestions, paused event
+					}
+				}
+			}
+		}
+	}
+}

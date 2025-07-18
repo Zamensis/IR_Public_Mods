@@ -1,0 +1,2110 @@
+﻿################################################################################################# MAX ALLOWED EXTANT OF AI ROME
+#################################################################################################
+z_faa_empire_max = {
+	OR = {
+		# Hispania
+		is_in_region = baetica_region
+		is_in_region = lusitania_region
+		is_in_region = contestania_region
+		is_in_region = gallaecia_region
+		is_in_region = tarraconensis_region
+		
+		# Gaul
+		is_in_region = transalpine_gaul_region
+		is_in_region = central_gaul_region
+		is_in_region = aquitaine_region
+		is_in_region = belgica_region
+		is_in_region = armorica_region
+		is_in_area = mediomatricia_area
+		is_in_area = leucia_area
+		
+		# Agri Decumates
+		is_in_area = raurica_area # Invictus only
+		is_in_area = tribocia_area
+		is_in_area = latobrigia_area
+		
+		# Italy
+		is_in_region = central_italy_region
+		is_in_region = magna_graecia_region
+		is_in_region = rhaetia_region
+		is_in_region = cisalpine_gaul_region
+		
+		# Africa
+		is_in_region = africa_region
+		is_in_region = numidia_region
+		is_in_region = mauretainia_region
+		is_in_region = cyrenaica_region
+		is_in_area = nasamonia_area # Invictus only
+		
+		# Balkans
+		is_in_region = illyria_region
+		is_in_region = macedonia_region
+		is_in_region = greece_region
+		is_in_region = moesia_region
+		is_in_region = thrace_region
+		is_in_region = pannonia_region
+		
+		# Dacia
+		is_in_area = getia_occidentalis_area
+		is_in_area = malvensis_area
+		#is_in_area = dacia_inferioris_area # Vanilla only
+		is_in_area = apulensis_area
+		is_in_area = porolissensis_area
+		is_in_area = porolissensis_inferioris_area
+		
+		# Anatolia
+		is_in_region = asia_region
+		is_in_region = cilicia_region
+		is_in_region = bithynia_region
+		is_in_region = galatia_region
+		is_in_region = cappadocia_region
+		is_in_region = cappadocia_pontica_region
+		
+		# East
+		is_in_region = syria_region
+		is_in_region = palestine_region
+		is_in_region = lower_egypt_region
+		is_in_region = upper_egypt_region
+		is_in_area = aswan_area # Invictus only
+		is_in_region = assyria_region
+		is_in_region = mesopotamia_region
+		#is_in_area = meshan_area # Vanilla only
+		
+		# Pontus Euxinus
+		is_in_area = tayk_area
+		is_in_area = colchis_area
+		is_in_area = abasgoi_area
+		is_in_area = bosproranum_area
+		is_in_area = taurica_area
+		is_in_area = maeotia_area
+		is_in_area = borysthenia_minor_area # Invictus only
+		is_in_area = olbia_area
+		is_in_area = clepia_area # Invictus only
+	}
+	
+	NOT = {
+		is_in_area = transcarpathia_occidentalis_area
+		#is_in_area = transcarpathia_centralis_area # Vanilla only
+	}
+}
+
+################################################################################################# ROMAN CORE REGION, FOR CONVENIENCE
+#################################################################################################
+z_faa_core_under_control = {
+	AND = {
+		region:central_italy_region = { # Own X% of North Italy
+			any_region_province = {
+				percent >= 0.8
+				OR = {
+					owner = root
+					has_owner = no # Uncolonized Corsica (crap math but meh)
+				}
+			}
+		}
+		region:magna_graecia_region = { # Own X% of South Italy
+			any_region_province = {
+				percent >= 0.8
+				owner = root
+			}
+		}
+		area:pisae_area = { # Own X% of Pisae
+			any_area_province = {
+				percent >= 0.8
+				owner = root
+			}
+		}
+		area:liguria_area = { # Own X% of Liguria
+			any_area_province = {
+				percent >= 0.8
+				owned_or_subject_owned = root
+			}
+		}
+	}
+}	
+
+################################################################################################# ITALIA - PENINSULA EXCEPT THE ROMAN CORE REGION (BRUTTIUM, SICILY, UMBRIA, ...)
+#################################################################################################
+z_faa_italy = {
+	OR = {
+		AND = {
+			is_in_region = central_italy_region
+			NOT = {
+				is_in_area = roma_area # Latium
+				is_in_area = south_etruria_area # Tuscany
+				is_in_area = aternum_area # Aternum
+				is_in_area = asculum_area # Picenum
+			}
+		}
+		AND = {
+			is_in_region = magna_graecia_region
+			NOT = {
+				is_in_area = neapolis_area # Campania
+				is_in_area = cannae_area # Apulia
+				is_in_area = heraclea_area # Lucania
+			}
+		}
+		is_in_area = liguria_area # Liguria
+		is_in_area = pisae_area # Pisae
+	}
+}
+
+##############
+z_faa_italy_year = {
+	z_current_year >= 5 # 455 AUC / 295 BCE
+}
+
+##############
+z_faa_italy_allow = {
+	z_faa_italy_year = yes
+}
+
+################################################################################################# CISALPINE GAUL A - AEMILIA / VENETIA
+#################################################################################################
+z_faa_cisalpine_gaul_a = {
+	OR = {
+		is_in_area = ferraria_area
+		is_in_area = aemilla_area
+		is_in_area = venetia_area
+	}
+}
+
+##############
+z_faa_cisalpine_gaul_a_year = {
+	z_current_year >= 55 # 505 AUC / 245 BCE
+}
+
+##############
+z_faa_cisalpine_gaul_a_allow = {
+	OR = {
+		z_faa_cisalpine_gaul_a_year = yes
+		OR = {
+			region:central_italy_region = {
+				any_region_province = {
+					percent >= 0.7
+					owned_or_subject_owned = root
+				}
+			}
+			AND = {
+				region:central_italy_region = {
+					any_region_province = {
+						percent >= 0.5
+						owner = root
+					}
+				}
+				area:liguria_area = {
+					any_area_province = {
+						percent >= 0.7
+						owner = root
+					}
+				}
+				area:pisae_area = {
+					any_area_province = {
+						percent >= 0.7
+						owner = root
+					}
+				}
+			}
+		}
+	}
+}
+
+################################################################################################# CISALPINE GAUL B - REST OF CISALPINE
+#################################################################################################
+z_faa_cisalpine_gaul_b = {
+	is_in_region = cisalpine_gaul_region
+	NOT = {
+		is_in_area = ferraria_area
+		is_in_area = aemilla_area
+		is_in_area = venetia_area
+		is_in_area = liguria_area
+		is_in_area = pisae_area
+	}
+}
+
+##############
+z_faa_cisalpine_gaul_b_year = {
+	z_current_year >= 85 # 535 AUC / 215 BCE
+}
+
+##############
+z_faa_cisalpine_gaul_b_allow = {
+	OR = {
+		z_faa_cisalpine_gaul_b_year = yes
+		z_faa_core_under_control = yes
+	}
+}
+
+################################################################################################# IBERIA A - NORTH-EASTERN COAST
+#################################################################################################
+z_faa_iberia_a = {
+	OR = {
+		is_in_area = indiketia_area
+		is_in_area = cessetania_area
+		is_in_area = ilercavonia_area
+		is_in_area = edetania_area
+		is_in_area = contestania_septentrionalis_area
+		is_in_area = contestania_meridionalis_area
+		is_in_area = mastiania_area
+		is_in_area = balearides_area
+	}
+}
+
+##############
+z_faa_iberia_a_year = {
+	z_current_year >= 55 # 505 AUC / 245 BCE
+}
+
+##############
+z_faa_iberia_a_allow = {
+	OR = {
+		z_faa_iberia_a_year = yes
+		z_faa_core_under_control = yes
+	}
+}
+
+################################################################################################# IBERIA B - REST OF TARRACONENSIS
+#################################################################################################
+z_faa_iberia_b = {
+	is_in_region = tarraconensis_region
+	z_faa_iberia_a = no
+	NOT = {
+		is_in_area = celtiberia_septentrionalis_area
+		is_in_area = celtiberia_centralis_area
+	}
+}
+
+##############
+z_faa_iberia_b_year = {
+	z_current_year >= 100 # 550 AUC / 200 BCE
+}
+
+##############
+z_faa_iberia_b_allow = {
+	OR = {
+		z_faa_iberia_b_year = yes
+		AND = {
+			area:indiketia_area = {
+				any_area_province = {
+					percent >= 0.5
+					owner = root
+				}
+			}
+			area:cessetania_area = {
+				any_area_province = {
+					percent >= 0.5
+					owner = root
+				}
+			}
+			area:ilercavonia_area = {
+				any_area_province = {
+					percent >= 0.5
+					owner = root
+				}
+			}
+		}
+	}
+}
+
+################################################################################################# IBERIA C - REST OF CONTESTANIA
+#################################################################################################
+z_faa_iberia_c = {
+	OR = {
+		is_in_region = contestania_region
+		is_in_area = celtiberia_septentrionalis_area
+		is_in_area = celtiberia_centralis_area
+	}
+	z_faa_iberia_a = no
+}
+
+##############
+z_faa_iberia_c_year = {
+	z_current_year >= 130 # 580 AUC / 170 BCE
+}
+
+##############
+z_faa_iberia_c_allow = {
+	OR = {
+		z_faa_iberia_c_year = yes
+		AND = {
+			area:edetania_area = {
+				any_area_province = {
+					percent >= 0.5
+					owner = root
+				}
+			}
+			area:contestania_septentrionalis_area = {
+				any_area_province = {
+					percent >= 0.5
+					owner = root
+				}
+			}
+			area:contestania_meridionalis_area = {
+				any_area_province = {
+					percent >= 0.5
+					owner = root
+				}
+			}
+			area:mastiania_area = {
+				any_area_province = {
+					percent >= 0.5
+					owner = root
+				}
+			}
+		}
+	}
+}
+
+################################################################################################# IBERIA D - SOUTH-EASTERN COAST
+#################################################################################################
+z_faa_iberia_d = {
+	OR = {
+		is_in_area = bastetania_area
+		is_in_area = malacita_area
+		is_in_area = gaditanus_area
+	}
+}
+
+##############
+z_faa_iberia_d_year = {
+	z_current_year >= 65 # 515 AUC / 235 BCE
+}
+
+##############
+z_faa_iberia_d_allow = {
+	OR = {
+		z_faa_iberia_d_year = yes
+		z_faa_core_under_control = yes
+		area:mastiania_area = {
+			any_area_province = {
+				percent >= 0.7
+				owner = root
+			}
+		}
+	}
+}
+
+################################################################################################# IBERIA E - REST OF BAETICA
+#################################################################################################
+z_faa_iberia_e = {
+	is_in_region = baetica_region
+	NOT = {
+		is_in_area = bastetania_area
+		is_in_area = malacita_area
+		is_in_area = gaditanus_area
+	}
+}
+
+##############
+z_faa_iberia_e_year = {
+	z_current_year >= 130 # 580 AUC / 155 BCE
+}
+
+##############
+z_faa_iberia_e_allow = {
+	OR = {
+		z_faa_iberia_e_year = yes
+		AND = {
+			area:bastetania_area = {
+				any_area_province = {
+					percent >= 0.2
+					owner = root
+				}
+			}
+			area:malacita_area = {
+				any_area_province = {
+					percent >= 0.2
+					owner = root
+				}
+			}
+			area:gaditanus_area = {
+				any_area_province = {
+					percent >= 0.2
+					owner = root
+				}
+			}
+			area:mastiania_area = {
+				any_area_province = {
+					percent >= 0.2
+					owner = root
+				}
+			}
+			region:contestania_region = {
+				any_region_province = {
+					percent >= 0.6
+					owner = root
+				}
+			}
+		}
+	}
+}
+
+################################################################################################# IBERIA F - LUSITANIA
+#################################################################################################
+z_faa_iberia_f = {
+	OR = {
+		is_in_region = lusitania_region
+		is_in_area = vaccaeia_septentrionalis_area
+		is_in_area = vaccaeia_meridionalis_area
+	}
+}
+
+##############
+z_faa_iberia_f_year = {
+	z_current_year >= 170 # 620 AUC / 130 BCE
+}
+
+##############
+z_faa_iberia_f_allow = {
+	OR = {
+		z_faa_iberia_f_year = yes
+		AND = {
+			region:contestania_region = {
+				any_region_province = {
+					percent >= 0.7
+					owned_or_subject_owned = root
+				}
+			}
+			region:baetica_region = {
+				any_region_province = {
+					percent >= 0.6
+					owner = root
+				}
+			}
+		}
+	}
+}
+
+################################################################################################# IBERIA G - GALLAECIA
+#################################################################################################
+z_faa_iberia_g = {
+	is_in_region = lusitania_region
+	NOT = {		
+		is_in_area = vaccaeia_septentrionalis_area
+		is_in_area = vaccaeia_meridionalis_area
+	}
+}
+
+##############
+z_faa_iberia_g_year = {
+	z_current_year >= 280 # 730 AUC / 20 BCE
+}
+
+##############
+z_faa_iberia_g_allow = {
+	OR = {
+		z_faa_iberia_g_year = yes
+		AND = {
+			z_faa_core_under_control = yes
+			region:tarraconensis_region = {
+				any_region_province = {
+					percent >= 0.8
+					owner = root
+				}
+			}
+			region:contestania_region = {
+				any_region_province = {
+					percent >= 0.8
+					owner = root
+				}
+			}
+			region:lusitania_region = {
+				any_region_province = {
+					percent >= 0.85
+					owned_or_subject_owned = root
+				}
+			}
+		}
+	}
+}
+
+################################################################################################# ILLYRIA A - ILLYRIAN COAST
+#################################################################################################
+z_faa_illyria_a = {
+	OR = {
+		is_in_area = histria_area
+		is_in_area = dalmatia_occidentalis_area
+		is_in_area = dalmatia_centralis_area
+		#is_in_area = dalmatia_orientalis_area # Vanilla only
+		is_in_area = illyria_graeca_area
+		is_in_area = epirus_area
+	}
+}
+
+##############
+z_faa_illyria_a_year = {
+	z_current_year >= 60 # 510 AUC / -240 BCE
+}
+
+##############
+z_faa_illyria_a_allow = {
+	OR = {
+		z_faa_illyria_a_year = yes
+		z_faa_core_under_control = yes
+	}
+}
+
+################################################################################################# ILLYRIA B - REST OF ILLYRIA PROPER
+#################################################################################################
+z_faa_illyria_b = {
+	OR = {
+		is_in_region = illyria_region
+	}
+	z_faa_illyria_a = no
+}
+
+##############
+z_faa_illyria_b_year = {
+	z_current_year >= 140 # 590 AUC / -160 BCE
+}
+
+##############
+z_faa_illyria_b_allow = {
+	OR = {
+		z_faa_illyria_b_year = yes
+		AND = {
+			area:histria_area = {
+				any_area_province = {
+					percent >= 0.8
+					owner = root
+				}
+			}
+			area:dalmatia_occidentalis_area = {
+				any_area_province = {
+					percent >= 0.8
+					owner = root
+				}
+			}
+			area:dalmatia_centralis_area = {
+				any_area_province = {
+					percent >= 0.8
+					owner = root
+				}
+			}
+			#area:dalmatia_orientalis_area = { # Vanilla only
+			#	any_area_province = {
+			#		percent >= 0.8
+			#		owner = root
+			#	}
+			#}
+			area:illyria_graeca_area = {
+				any_area_province = {
+					percent >= 0.8
+					owner = root
+				}
+			}
+		}
+	}
+}
+
+################################################################################################# GREECE A - PERIPHERAL GREECE
+#################################################################################################
+z_faa_greece_a = {
+	is_in_region = greece_region
+	NOT = {		
+		z_faa_illyria_a = yes
+		is_in_area = central_greece_area
+		is_in_area = euboea_area
+		is_in_area = south_peleponnesos_area
+		is_in_area = arcadia_area
+		is_in_area = achaea_area
+	}
+}
+
+##############
+z_faa_greece_a_year = {
+	z_current_year >= 150 # 600 AUC / -150 BCE
+}
+
+##############
+z_faa_greece_a_allow = {
+	OR = {
+		z_faa_greece_a_year = yes
+		AND = {
+			z_faa_core_under_control = yes
+			area:illyria_graeca_area = {
+				any_area_province = {
+					percent >= 0.5
+					owner = root
+				}
+			}
+			area:epirus_area = {
+				any_area_province = {
+					percent >= 0.5
+					owner = root
+				}
+			}
+		}
+	}
+}
+
+################################################################################################# GREECE B - ATTICA-PELOPONNESOS
+#################################################################################################
+z_faa_greece_b = {
+	OR = {
+		is_in_area = central_greece_area
+		is_in_area = euboea_area
+		is_in_area = south_peleponnesos_area
+		is_in_area = arcadia_area
+		is_in_area = achaea_area
+	}
+}
+
+##############
+z_faa_greece_b_year = {
+	trigger_if = {
+		limit = {
+			has_variable = z_limes_toss_a_coin
+			var:z_limes_toss_a_coin >= 50
+		}
+		z_current_year >= 170 # 620 AUC / -130 BCE
+	}
+	trigger_else = {
+		z_current_year >= 150 # 600 AUC / -150 BCE
+	}
+}
+
+##############
+z_faa_greece_b_allow = {
+	OR = {
+		z_faa_greece_b_year = yes
+		AND = {
+			z_faa_core_under_control = yes
+			OR = {
+				area:boeotia_area = {
+					any_area_province = {
+						percent >= 0.5
+						owner = root
+					}
+				}
+				area:aetolia_area = {
+					any_area_province = {
+						percent >= 0.5
+						owner = root
+					}
+				}
+				region:macedonia_region = {
+					any_region_province = {
+						percent >= 0.55
+						owned_or_subject_owned = root
+					}
+				}
+			}
+		}
+	}
+}
+
+################################################################################################# MACEDONIA
+#################################################################################################
+z_faa_macedonia = {
+	OR = {
+		is_in_region = macedonia_region
+		is_in_area = europa_area
+		is_in_area = rhodope_area
+	}
+	z_faa_illyria_a = no
+}
+
+##############
+z_faa_macedonia_year = {
+	z_current_year >= 150 # 600 AUC / -150 BCE
+}
+
+##############
+z_faa_macedonia_allow = {
+	OR = {
+		z_faa_macedonia_year = yes
+		OR = {
+			region:greece_region = {
+				any_region_province = {
+					percent >= 0.5
+					owner = root
+				}
+			}
+			AND = {
+				region:moesia_s_region = { # Invictus only
+					any_region_province = {
+						percent >= 0.7
+						owned_or_subject_owned = root
+					}
+				}
+				region:illyria_region = {
+					any_region_province = {
+						percent >= 0.8
+						owner = root
+					}
+				}
+			}
+		}
+	}
+}
+
+################################################################################################# THRACE
+#################################################################################################
+z_faa_thrace = {
+	OR = {
+		is_in_region = thrace_region
+		is_in_region = moesia_region # Invictus only
+	}
+	z_faa_macedonia = no
+}
+
+##############
+z_faa_thrace_year = {
+	z_current_year >= 345 # 795 AUC / 45 CE
+}
+
+##############
+z_faa_thrace_allow = {
+	OR = {
+		z_faa_thrace_year = yes
+		AND = {
+			region:macedonia_region = {
+				any_region_province = {
+					percent >= 0.5
+					owner = root
+				}
+			}
+			region:greece_region = {
+				any_region_province = {
+					percent >= 0.5
+					owner = root
+				}
+			}
+			region:moesia_s_region = { # Invictus only
+				any_region_province = {
+					percent >= 0.5
+					owner = root
+				}
+			}
+		}
+	}
+}
+
+################################################################################################# MOESIA
+#################################################################################################
+z_faa_moesia = {
+	OR = {
+		is_in_region = moesia_s_region # Invictus only
+		#is_in_region = moesia_region # Vanilla only
+	}
+	z_faa_thrace = no
+}
+
+##############
+z_faa_moesia_year = {
+	z_current_year >= 270 # 720 AUC / 30 BCE
+}
+
+##############
+z_faa_moesia_allow = {
+	OR = {
+		z_faa_moesia_year = yes
+		AND = {
+			region:macedonia_region = {
+				any_region_province = {
+					percent >= 0.8
+					owner = root
+				}
+			}
+			region:illyria_region = {
+				any_region_province = {
+					percent >= 0.8
+					owner = root
+				}
+			}
+			#region:thrace_region = { # Vanilla only
+			#	any_region_province = {
+			#		percent >= 0.6
+			#		owned_or_subject_owned = root
+			#	}
+			#}
+		}
+	}
+}
+
+################################################################################################# PANNONIA
+#################################################################################################
+z_faa_pannonia = {
+	is_in_region = pannonia_region
+	NOT = {
+		is_in_area = transcarpathia_occidentalis_area
+		#is_in_area = transcarpathia_centralis_area # Vanilla only
+	}
+}
+
+##############
+z_faa_pannonia_year = {
+	z_current_year >= 310 # 760 AUC / 10 CE
+}
+
+##############
+z_faa_pannonia_allow = {
+	OR = {
+		AND = {
+			z_faa_pannonia_year = yes
+			region:illyria_region = {
+				any_region_province = {
+					percent >= 0.8
+					owner = root
+				}
+			}
+			region:greece_region = {
+				any_region_province = {
+					percent >= 0.3
+					owner = root
+				}
+			}
+		}
+		AND = {
+			z_faa_core_under_control = yes
+			region:cisalpine_gaul_region = {
+				any_region_province = {
+					percent >= 0.6
+					owner = root
+				}
+			}
+			region:illyria_region = {
+				any_region_province = {
+					percent >= 0.8
+					owner = root
+				}
+			}
+			region:greece_region = {
+				any_region_province = {
+					percent >= 0.7
+					owner = root
+				}
+			}
+			region:moesia_s_region = { # Invictus only
+				any_region_province = {
+					percent >= 0.8
+					owner = root
+				}
+			}
+		}
+	}
+}
+
+################################################################################################# DACIA
+#################################################################################################
+z_faa_dacia = {
+	OR = {
+		is_in_area = getia_occidentalis_area
+		is_in_area = malvensis_area
+		#is_in_area = dacia_inferioris_area # Vanilla only
+		is_in_area = apulensis_area
+		is_in_area = porolissensis_area
+		is_in_area = porolissensis_inferioris_area
+	}
+}
+
+##############
+z_faa_dacia_year = {
+	z_current_year >= 375 # 825 AUC / 75 CE
+}
+
+##############
+z_faa_dacia_allow = {
+	z_faa_dacia_year = yes
+	z_faa_core_under_control = yes
+	region:moesia_region = {
+		any_region_province = {
+			percent >= 0.8
+			owner = root
+		}
+	}
+	region:moesia_region = {
+		any_region_province = {
+			percent >= 0.8
+			owner = root
+		}
+	}
+	region:moesia_s_region = { # Invictus only
+		any_region_province = {
+			percent >= 0.7
+			owner = root
+		}
+	}
+	region:thrace_region = {
+		any_region_province = {
+			percent >= 0.5
+			owned_or_subject_owned = root
+		}
+	}
+}
+
+################################################################################################# GAUL A (MEDITERRANEAN COAST A)
+#################################################################################################
+z_faa_gaul_a = {
+	OR = {
+		is_in_area = alpes_maritimae_area
+	}
+}
+
+##############
+z_faa_gaul_a_year = {
+	z_current_year >= 40 # 490 AUC / 260 BCE
+}
+
+##############
+z_faa_gaul_a_allow = {
+	OR = {
+		z_faa_gaul_a_year = yes
+		area:liguria_area = {
+			any_area_province = {
+				percent >= 0.7
+				owner = root
+			}
+		}
+	}
+}
+
+################################################################################################# GAUL B (MEDITERRANEAN COAST B)
+#################################################################################################
+z_faa_gaul_b = {
+	OR = {
+		is_in_area = narbonensis_occidentalis_area
+		is_in_area = narbonensis_centralis_area
+	}
+}
+
+##############
+z_faa_gaul_b_year = {
+	z_current_year >= 90 # 540 AUC / 190 BCE
+}
+
+##############
+z_faa_gaul_b_allow = {
+	OR = {
+		z_faa_gaul_b_year = yes
+		area:alpes_maritimae_area = {
+			any_area_province = {
+				percent >= 0.7
+				owner = root
+			}
+		}
+	}
+}
+
+################################################################################################# GAUL C (REST OF TRANSALPINE)
+#################################################################################################
+z_faa_gaul_c = {
+	is_in_region = transalpine_gaul_region
+	z_faa_gaul_a = no
+	z_faa_gaul_b = no
+}
+
+##############
+z_faa_gaul_c_year = {
+	z_current_year >= 180 # 630 AUC / 120 BCE
+}
+
+##############
+z_faa_gaul_c_allow = {
+	OR = {
+		z_faa_gaul_c_year = yes
+		AND = {
+			area:alpes_maritimae_area = {
+				any_area_province = {
+					percent >= 0.9
+					owner = root
+				}
+			}
+			area:narbonensis_occidentalis_area = {
+				any_area_province = {
+					percent >= 0.9
+					owner = root
+				}
+			}
+			area:narbonensis_orientalis_area = {
+				any_area_province = {
+					percent >= 0.9
+					owner = root
+				}
+			}
+		}
+	}
+}
+
+################################################################################################# GAUL D (CENTRAL GAUL)
+#################################################################################################
+z_faa_gaul_d = {
+	OR = {
+		is_in_region = central_gaul_region
+		is_in_region = aquitaine_region
+	}
+}
+
+##############
+z_faa_gaul_d_year = {
+	z_current_year >= 240 # 690 AUC / 60 BCE
+}
+
+##############
+z_faa_gaul_d_allow = {
+	OR = {
+		z_faa_gaul_d_year = yes
+		AND = {
+			region:transalpine_gaul_region = {
+				any_region_province = {
+					percent >= 0.7
+					owner = root
+				}
+			}
+			area:tarraconensis_region = {
+				any_area_province = {
+					percent >= 0.5
+					owner = root
+				}
+			}
+		}
+	}
+}
+
+################################################################################################# GAUL E (ARMORICA)
+#################################################################################################
+z_faa_gaul_e = {
+	is_in_region = armorica_region
+}
+
+##############
+z_faa_gaul_e_year = {
+	z_current_year >= 245 # 695 AUC / 55 BCE
+}
+
+##############
+z_faa_gaul_e_allow = {
+	OR = {
+		z_faa_gaul_e_year = yes
+		OR = {
+			region:central_gaul_region = {
+				any_region_province = {
+					percent >= 0.6
+					owner = root
+				}
+			}
+			region:aquitaine_region = {
+				any_region_province = {
+					percent >= 0.7
+					owner = root
+				}
+			}
+		}
+	}
+}
+
+################################################################################################# GAUL F (BELGICA)
+#################################################################################################
+z_faa_gaul_f = {
+	OR = {
+		is_in_region = belgica_region
+		is_in_area = mediomatricia_area
+		is_in_area = leucia_area
+	}
+}
+
+##############
+z_faa_gaul_f_year = {
+	z_current_year >= 250 # 700 AUC / 50 BCE
+}
+
+##############
+z_faa_gaul_f_allow = {
+	OR = {
+		z_faa_gaul_f_year = yes
+		region:central_gaul_region = {
+			any_region_province = {
+				percent >= 0.6
+				owner = root
+			}
+		}
+	}
+}
+
+################################################################################################# RHAETIA
+#################################################################################################
+z_faa_rhaetia = {
+	is_in_region = rhaetia_region
+}
+
+##############
+z_faa_rhaetia_year = {
+	z_current_year >= 280 # 730 AUC / 20 BCE
+}
+
+##############
+z_faa_rhaetia_allow = {
+	OR = {
+		z_faa_rhaetia_year = yes
+		AND = {
+			z_faa_core_under_control = yes
+			region:transalpine_gaul_region = {
+				any_region_province = {
+					percent >= 0.85
+					owner = root
+				}
+			}
+			region:cisalpine_gaul_region = {
+				any_region_province = {
+					percent >= 0.95
+					owner = root
+				}
+			}
+			region:illyria_region = {
+				any_region_province = {
+					percent >= 0.7
+					owner = root
+				}
+			}
+			OR = {
+				region:pannonia_region = {
+					any_region_province = {
+						percent >= 0.65
+						owner = root
+					}
+				}
+				region:central_gaul_region = {
+					any_region_province = {
+						percent >= 0.85
+						owner = root
+					}
+				}
+			}
+		}
+	}
+}
+
+################################################################################################# AGRI DECUMATES
+#################################################################################################
+z_faa_agridecumates = {
+	OR = {
+		is_in_area = raurica_area # Invictus only
+		is_in_area = latobrigia_area
+		is_in_area = tribocia_area
+	}
+}
+
+##############
+z_faa_agridecumates_year = {
+	z_current_year >= 350 # 800 AUC / 70 CE
+}
+
+##############
+z_faa_agridecumates_allow = {
+	OR = {
+		z_faa_agridecumates_year = yes
+		AND = {
+			region:rhaetia_region = {
+				any_region_province = {
+					percent >= 0.7
+					owner = root
+				}
+			}
+			region:belgica_region = {
+				any_region_province = {
+					percent >= 0.7
+					owner = root
+				}
+			}
+			area:mediomatricia_area = {
+				any_area_province = {
+					percent >= 0.7
+					owner = root
+				}
+			}
+			area:leucia_area = {
+				any_area_province = {
+					percent >= 0.7
+					owner = root
+				}
+			}
+		}
+	}
+}
+
+################################################################################################# AFRICA A (AFRICAN COAST)
+#################################################################################################
+z_faa_africa_a = {
+	OR = {
+		is_in_area = tripolitania_occidentalis_area
+		is_in_area = africa_meridionalis_area
+		is_in_area = africa_septentrionalis_area
+		is_in_area = carthage_area
+		is_in_area = numidia_maioris_area
+	}
+}
+
+##############
+z_faa_africa_a_year = {
+	z_current_year >= 150 # 600 AUC / 150 BCE
+}
+
+##############
+z_faa_africa_a_allow = {
+	OR = {
+		z_faa_africa_a_year = yes
+		AND = {
+			z_faa_core_under_control = yes
+			area:west_sicily_area = {
+				any_area_province = {
+					percent >= 0.9
+					owner = root
+				}
+			}
+			area:east_sicily_area = {
+				any_area_province = {
+					percent >= 0.9
+					owner = root
+				}
+			}
+			area:syracuse_area = {
+				any_area_province = {
+					percent >= 0.9
+					owner = root
+				}
+			}
+		}
+	}
+}
+
+################################################################################################# AFRICA B (NUMIDIAN COAST)
+#################################################################################################
+z_faa_africa_b = {
+	OR = {
+		is_in_area = numidia_centralis_area
+		is_in_area = numidia_occidentalis_area
+		is_in_area = mauretania_caesariensis_orientalis_area
+		is_in_area = mauretania_caesariensis_maioris_area
+		is_in_area = mauretania_caesariensis_minoris_area
+		is_in_area = carthage_area
+		is_in_area = numidia_maioris_area
+	}
+}
+
+##############
+z_faa_africa_b_year = {
+	z_current_year >= 150 # 600 AUC / 150 BCE
+}
+
+##############
+z_faa_africa_b_allow = {
+	OR = {
+		z_faa_africa_b_year = yes
+		area:carthage_area = {
+			any_area_province = {
+				percent >= 0.7
+				owner = root
+			}
+		}
+		area:numidia_maioris_area = {
+			any_area_province = {
+				percent >= 0.7
+				owner = root
+			}
+		}
+	}
+}
+
+################################################################################################# AFRICA C (AFRICAN INTERIOR)
+#################################################################################################
+z_faa_africa_c = {
+	OR = {
+		is_in_area = numidia_minoris_area
+		is_in_area = gaetulia_orientalis_area
+		is_in_area = tritonia_area # Invictus only
+	}
+}
+
+##############
+z_faa_africa_c_year = {
+	z_current_year >= 345 # 795 AUC / 45 CE
+}
+
+##############
+z_faa_africa_c_allow = {
+	OR = {
+		z_faa_africa_c_year = yes
+		AND = {
+			OR = {
+				area:africa_septentrionalis_area = {
+					any_area_province = {
+						percent >= 0.9
+						owner = root
+					}
+				}
+				area:numidia_maioris_area = {
+					any_area_province = {
+						percent >= 0.9
+						owner = root
+					}
+				}
+			}
+			area:africa_meridionalis_area = {
+				any_area_province = {
+					percent >= 0.9
+					owner = root
+				}
+			}
+		}
+	}
+}
+
+################################################################################################# AFRICA D (NUMIDIAN INTERIOR)
+#################################################################################################
+z_faa_africa_d = {
+	is_in_region = numidia_region
+	z_faa_africa_b = no
+}
+
+##############
+z_faa_africa_d_year = {
+	z_current_year >= 345 # 795 AUC / 45 CE
+}
+
+##############
+z_faa_africa_d_allow = {
+	OR = {
+		z_faa_africa_d_year = yes
+		AND = {
+			area:numidia_occidentalis_area = {
+				any_area_province = {
+					percent >= 0.9
+					owner = root
+				}
+			}
+			area:numidia_maioris_area = {
+				any_area_province = {
+					percent >= 0.9
+					owner = root
+				}
+			}
+			area:numidia_minoris_area = {
+				any_area_province = {
+					percent >= 0.9
+					owned_or_subject_owned = root
+				}
+			}
+		}
+	}
+}
+
+################################################################################################# AFRICA E (MAURIAN COAST)
+#################################################################################################
+z_faa_africa_e = {
+	OR = {
+		is_in_area = mauretania_caesariensis_centralis_area
+		is_in_area = mauretania_caesariensis_occidentalis_area
+		is_in_area = rif_area # Invictus only
+		is_in_area = mauretania_tingitana_septentrionalis_area
+	}
+}
+
+##############
+z_faa_africa_e_year = {
+	z_current_year >= 345 # 795 AUC / 45 CE
+}
+
+##############
+z_faa_africa_e_allow = {
+	OR = {
+		z_faa_africa_e_year = yes
+		AND = {
+			z_faa_core_under_control = yes
+			OR = {
+				area:gaditanus_area = {
+					any_area_province = {
+						percent >= 0.9
+						owner = root
+					}
+				}
+				area:mastiania_area = {
+					any_area_province = {
+						percent >= 0.9
+						owner = root
+					}
+				}
+				area:gaditanus_area = {
+					any_area_province = {
+						percent >= 0.9
+						owner = root
+					}
+				}
+				region:numidia_region = {
+					any_region_province = {
+						percent >= 0.5
+						owner = root
+					}
+				}
+				region:africa_region = {
+					any_region_province = {
+						percent >= 0.8
+						owner = root
+					}
+				}
+			}
+		}
+	}
+}
+
+################################################################################################# AFRICA F (MAURIAN INTERIOR)
+#################################################################################################
+z_faa_africa_f = {
+	OR = {
+		is_in_region = mauretainia_region
+		is_in_area = lower_moulouya_area # Invictus only
+	}
+	z_faa_africa_e = no
+}
+
+##############
+z_faa_africa_f_year = {
+	z_current_year >= 345 # 795 AUC / 45 CE
+}
+
+##############
+z_faa_africa_f_allow = {
+	OR = {
+		z_faa_africa_f_year = yes
+		AND = {
+			z_faa_core_under_control = yes
+			area:mauretania_tingitana_septentrionalis_area = {
+				any_area_province = {
+					percent >= 0.9
+					owner = root
+				}
+			}
+			area:mauretania_caesariensis_occidentalis_area = {
+				any_area_province = {
+					percent >= 0.9
+					owner = root
+				}
+			}
+			area:gaditanus_area = {
+				any_area_province = {
+					percent >= 0.9
+					owner = root
+				}
+			}
+		}
+	}
+}
+
+################################################################################################# AFRICA G (CYRENAICA)
+#################################################################################################
+z_faa_africa_g = {
+	is_in_region = cyrenaica_region
+	NOT = {
+		is_in_area = marmarica_orientalis_area
+		is_in_area = ammon_area
+	}
+}
+
+##############
+z_faa_africa_g_year = {
+	z_current_year >= 200 # 650 AUC / 100 BCE
+}
+
+##############
+z_faa_africa_g_allow = {
+	OR = {
+		z_faa_africa_g_year = yes
+		AND = {
+			z_faa_core_under_control = yes
+			OR = {
+				region:greece_region = {
+					any_region_province = {
+						percent >= 0.6
+						owner = root
+					}
+				}
+				region:africa_region = {
+					any_region_province = {
+						percent >= 0.4
+						owner = root
+					}
+				}
+			}
+		}
+	}
+}
+
+################################################################################################# ASIA A (ASIA)
+#################################################################################################
+z_faa_asia_a = {
+	is_in_region = asia_region
+}
+
+##############
+z_faa_asia_a_year = {
+	z_current_year >= 170 # 620 AUC / 130 BCE
+}
+
+##############
+z_faa_asia_a_allow = {
+	OR = {
+		z_faa_asia_a_year = yes
+		AND = {
+			OR = {
+				region:greece_region = {
+					any_region_province = {
+						percent >= 0.5
+						owner = root
+					}
+				}
+				region:macedonia_region = {
+					any_region_province = {
+						percent >= 0.5
+						owner = root
+					}
+				}
+				region:thrace_region = {
+					any_region_province = {
+						percent >= 0.3
+						owner = root
+					}
+				}
+			}
+		}
+	}
+}
+
+################################################################################################# ASIA A (ASIA)
+#################################################################################################
+z_faa_asia_a = {
+	OR = {
+		is_in_region = asia_region
+		is_in_area = bithynia_inferior_area
+	}
+}
+
+##############
+z_faa_asia_a_year = {
+	z_current_year >= 170 # 620 AUC / 130 BCE
+}
+
+##############
+z_faa_asia_a_allow = {
+	OR = {
+		z_faa_asia_a_year = yes
+		AND = {
+			OR = {
+				region:greece_region = {
+					any_region_province = {
+						percent >= 0.5
+						owner = root
+					}
+				}
+				region:macedonia_region = {
+					any_region_province = {
+						percent >= 0.5
+						owner = root
+					}
+				}
+				region:thrace_region = {
+					any_region_province = {
+						percent >= 0.3
+						owner = root
+					}
+				}
+			}
+		}
+	}
+}
+
+################################################################################################# ASIA B (BITHYNIA)
+#################################################################################################
+z_faa_asia_b = {
+	is_in_region = bithynia_region
+	z_faa_asia_a = no
+}
+
+##############
+z_faa_asia_b_year = {
+	z_current_year >= 225 # 675 AUC / 75 BCE
+}
+
+##############
+z_faa_asia_b_allow = {
+	OR = {
+		z_faa_asia_b_year = yes
+		AND = {
+			region:asia_region = {
+				any_region_province = {
+					percent >= 0.3
+					owner = root
+				}
+			}
+			OR = {
+				region:asia_region = {
+					any_region_province = {
+						percent >= 0.6
+						owner = root
+					}
+				}
+				region:thrace_region = {
+					any_region_province = {
+						percent >= 0.5
+						owner = root
+					}
+				}
+			}
+		}
+	}
+}
+
+################################################################################################# ASIA C (CILICIA)
+#################################################################################################
+z_faa_asia_c = {
+	is_in_region = cilicia_region
+}
+
+##############
+z_faa_asia_c_year = {
+	z_current_year >= 235 # 685 AUC / 65 BCE
+}
+
+##############
+z_faa_asia_c_allow = {
+	OR = {
+		z_faa_asia_c_year = yes
+		region:asia_region = {
+			any_region_province = {
+				percent >= 0.6
+				owner = root
+			}
+		}
+		region:greece_region = {
+			any_region_province = {
+				percent >= 0.7
+				owner = root
+			}
+		}
+	}
+}
+
+################################################################################################# ASIA D (GALATIA)
+#################################################################################################
+z_faa_asia_d = {
+	is_in_region = galatia_region
+}
+
+##############
+z_faa_asia_d_year = {
+	z_current_year >= 235 # 685 AUC / 65 BCE
+}
+
+##############
+z_faa_asia_d_allow = {
+	OR = {
+		z_faa_asia_d_year = yes
+		AND = {
+			region:asia_region = {
+				any_region_province = {
+					percent >= 0.6
+					owner = root
+				}
+			}
+			region:cilicia_region = {
+				any_region_province = {
+					percent >= 0.5
+					owner = root
+				}
+			}
+		}
+	}
+}
+
+################################################################################################# ASIA E (CAPPADOCIA TAURICA)
+#################################################################################################
+z_faa_asia_e = {
+	is_in_region = cappadocia_region
+}
+
+##############
+z_faa_asia_e_year = {
+	z_current_year >= 320 # 770 AUC / 20 CE
+}
+
+##############
+z_faa_asia_e_allow = {
+	OR = {
+		z_faa_asia_e_year = yes
+		AND = {
+			region:cilicia_region = {
+				any_region_province = {
+					percent >= 0.6
+					owner = root
+				}
+			}
+			region:galatia_region = {
+				any_region_province = {
+					percent >= 0.5
+					owner = root
+				}
+			}
+		}
+	}
+}
+
+################################################################################################# PONTUS A (CAPPADOCIA PONTICA)
+#################################################################################################
+z_faa_pontus_a = {
+	is_in_region = cappadocia_pontica_region
+}
+
+##############
+z_faa_pontus_a_year = {
+	z_current_year >= 320 # 770 AUC / 20 CE
+}
+
+##############
+z_faa_pontus_a_allow = {
+	OR = {
+		z_faa_pontus_a_year = yes
+		AND = {
+			region:bithynia_region = {
+				any_region_province = {
+					percent >= 0.7
+					owner = root
+				}
+			}
+			region:galatia_region = {
+				any_region_province = {
+					percent >= 0.4
+					owner = root
+				}
+			}
+		}
+	}
+}
+
+################################################################################################# PONTUS B (COLCHIS)
+#################################################################################################
+z_faa_pontus_b = {
+	OR = {
+		is_in_area = tayk_area
+		is_in_area = colchis_area
+		is_in_area = abasgoi_area
+		is_in_area = bosproranum_area
+	}
+	NOT = { # This is to fix some bordergore despite being not optimal sincee z_make_limes_subject won't take it into account
+		this = p:1752
+		this = p:1753
+		this = p:1754
+		this = p:1755
+	}
+}
+
+##############
+z_faa_pontus_b_year = {
+	z_current_year >= 350 # 800 AUC / 50 CE
+}
+
+##############
+z_faa_pontus_b_allow = {
+	OR = {
+		z_faa_pontus_b_year = yes
+		AND = {
+			region:bithynia_region = {
+				any_region_province = {
+					percent >= 0.5
+					owner = root
+				}
+			}
+			region:cappadocia_pontica_region = {
+				any_region_province = {
+					percent >= 0.5
+					owner = root
+				}
+			}
+		}
+	}
+}
+
+################################################################################################# PONTUS C (TAURICA)
+#################################################################################################
+z_faa_pontus_c = {
+	OR = {
+		is_in_area = taurica_area
+		is_in_area = maeotia_area
+		is_in_area = borysthenia_minor_area # Invictus only
+		is_in_area = clepia_area # Invictus only
+		is_in_area = olbia_area
+	}
+}
+
+##############
+z_faa_pontus_c_year = {
+	z_current_year >= 350 # 800 AUC / 50 CE
+}
+
+##############
+z_faa_pontus_c_allow = {
+	OR = {
+		z_faa_pontus_c_year = yes
+		region:colchis_region = {
+			any_region_province = {
+				percent >= 0.65
+				owned_or_subject_owned = root
+			}
+		}
+		area:scythia_area = {
+			any_area_province = {
+				percent >= 0.8
+				owner = root
+			}
+		}
+	}
+}
+
+################################################################################################# LEVANT A (SYRIA)
+#################################################################################################
+z_faa_levant_a = {
+	OR = {
+		is_in_region = syria_region
+		is_in_area = commagene_area # Invictus only
+	}
+}
+
+##############
+z_faa_levant_a_year = {
+	z_current_year >= 240 # 690 AUC / 60 BCE
+}
+
+##############
+z_faa_levant_a_allow = {
+	OR = {
+		z_faa_levant_a_year = yes
+		region:greece_region = {
+			any_region_province = {
+				percent >= 0.65
+				owner = root
+			}
+		}
+		region:cyrenaica_region = {
+			any_region_province = {
+				percent >= 0.7
+				owner = root
+			}
+		}
+		region:cilicia_region = {
+			any_region_province = {
+				percent >= 0.65
+				owned_or_subject_owned = root
+			}
+		}
+	}
+}
+
+################################################################################################# LEVANT B (MESOPOTAMIA)
+#################################################################################################
+z_faa_levant_b = {
+	OR = {
+		is_in_region = assyria_region
+		is_in_region = mesopotamia_region
+		#is_in_area = meshan_area # Vanilla only
+	}
+	z_faa_levant_a = no # Invictus only
+}
+
+##############
+z_faa_levant_b_year = {
+	z_current_year >= 400 # 850 AUC / 100 CE
+}
+
+##############
+z_faa_levant_b_allow = {
+	OR = {
+		z_faa_levant_b_year = yes
+		AND = {
+			z_faa_core_under_control = yes
+			region:syria_region = {
+				any_region_province = {
+					percent >= 0.7
+					owner = root
+				}
+			}
+			region:cappadocia_region = {
+				any_region_province = {
+					percent >= 0.7
+					owner = root
+				}
+			}
+		}
+	}
+}
+
+################################################################################################# LEVANT C (PALESTINE)
+#################################################################################################
+z_faa_levant_c = {
+	is_in_region = palestine_region
+}
+
+##############
+z_faa_levant_c_year = {
+	z_current_year >= 310 # 760 AUC / 10 CE
+}
+
+##############
+z_faa_levant_c_allow = {
+	OR = {
+		z_faa_levant_c_year = yes
+		region:syria_region = {
+			any_region_province = {
+				percent >= 0.3
+				owner = root
+			}
+		}
+		region:lower_egypt_region = {
+			any_region_province = {
+				percent >= 0.6
+				owner = root
+			}
+		}
+		region:greece_region = {
+			any_region_province = {
+				percent >= 0.8
+				owner = root
+			}
+		}
+	}
+}
+
+################################################################################################# LEVANT D (LOWER EGYPT)
+#################################################################################################
+z_faa_levant_d = {
+	OR = {
+		is_in_region = lower_egypt_region
+		is_in_area = nasamonia_area # Invictus only
+		is_in_area = marmarica_orientalis_area
+		is_in_area = ammon_area
+	}
+}
+
+##############
+z_faa_levant_d_year = {
+	z_current_year >= 270 # 720 AUC / 30 BCE
+}
+
+##############
+z_faa_levant_d_allow = {
+	OR = {
+		z_faa_levant_d_year = yes
+		region:greece_region = {
+			any_region_province = {
+				percent >= 0.65
+				owner = root
+			}
+		}
+		region:cyrenaica_region = {
+			any_region_province = {
+				percent >= 0.7
+				owner = root
+			}
+		}
+		region:cilicia_region = {
+			any_region_province = {
+				percent >= 0.4
+				owned_or_subject_owned = root
+			}
+		}
+		region:syria_region = {
+			any_region_province = {
+				percent >= 0.4
+				owned_or_subject_owned = root
+			}
+		}
+		region:palestine_region = {
+			any_region_province = {
+				percent >= 0.4
+				owned_or_subject_owned = root
+			}
+		}
+	}
+}
+
+################################################################################################# LEVANT E (UPPER EGYPT)
+#################################################################################################
+z_faa_levant_e = {
+	OR = {
+		is_in_region = upper_egypt_region
+		is_in_area = aswan_area # Invictus only
+	}
+}
+
+##############
+z_faa_levant_e_year = {
+	z_current_year >= 270 # 720 AUC / 30 BCE
+}
+
+##############
+z_faa_levant_e_allow = {
+	region:lower_egypt_region = {
+		any_region_province = {
+			percent >= 0.7
+			owner = root
+		}
+	}
+}
+
+################################################################################################# BRITAIN
+#################################################################################################
+z_faa_britain = {
+	is_in_region = britain_region
+}
+
+##############
+z_faa_britain_year = {
+	z_current_year >= 345 # 795 AUC / 45 CE
+}
+
+##############
+z_faa_britain_allow = {
+	OR = {
+		z_faa_britain_year = yes
+		AND = {
+			region:armorica_region = {
+				any_region_province = {
+					percent >= 0.5
+					owner = root
+				}
+			}
+			region:belgica_region = {
+				any_region_province = {
+					percent >= 0.5
+					owner = root
+				}
+			}
+		}
+	}
+}
+
+################################################################################################# MODIFIERS
+#################################################################################################
+z_faa_modifiers_forbidden = {
+	OR = {
+		#num_of_cities > 1000
+		is_ai = no
+		c:CAR = {
+			OR = {
+				#war_with = root
+				is_ai = no
+			}
+		}
+		any_country = {
+			is_ai = no
+			OR = {
+				any_neighbour_country = {
+					this = root
+				}
+				war_with = root
+				alliance_with = root
+				is_guaranteed_by = root
+				is_subject_of = root
+				this.capital_scope.region = region:magna_graecia_region
+				this.capital_scope.region = region:central_italy_region
+				this.capital_scope.region = region:cisalpine_gaul_region
+			}
+		}
+	}
+}

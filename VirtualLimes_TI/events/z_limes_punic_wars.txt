@@ -1,0 +1,1308 @@
+﻿namespace = z_limes_punic_wars
+
+# Some heavy tweaks to Carthaginian-Roman AI-only peace deals, in an effort to reduce bordergore and stupid outcomes.
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_punic_wars.1 = {																		#########   SAVE CARTHAGE FOR LAST
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		tag = ROM
+		is_ai = yes
+		owns = 1
+		has_civil_war = no
+		NOT = {
+			war_with = c:CAR
+		}
+		c:CAR = {
+			exists = yes
+			is_ai = yes
+			has_civil_war = no
+			any_owned_province = {
+				OR = {
+					is_in_region = africa_region
+					is_in_region = numidia_region
+				}
+			}
+			NOT = {
+				owns = p:3256
+			}
+			region:numidia_region = {
+				any_region_province = {
+					percent < 0.5
+					owner = c:CAR
+				}
+			}
+		}
+		p:3256 = {
+			owned_or_subject_owned = c:ROM
+		}
+	}
+	
+	immediate = {
+		every_province = {
+			limit = {
+				is_in_area = carthage_area
+				owned_or_subject_owned = c:ROM
+				NOT = {
+					this = p:3257
+					this = p:3258
+				}
+			}
+			set_owned_by = c:CAR
+		}
+		c:CAR = {
+			set_capital = 3256
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_punic_wars.2 = {																		#########   PARTITION SHARED AREAS
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		tag = ROM
+		is_ai = yes
+		owns = 1
+		has_civil_war = no
+		NOT = {
+			war_with = c:CAR
+		}
+		c:CAR = {
+			exists = yes
+			is_ai = yes
+			has_civil_war = no
+		}
+		OR = {
+			AND = {
+				any_owned_province = {
+					is_coastal = no
+					is_in_area = numidia_maioris_area
+				}
+				any_province = {
+					is_in_area = numidia_maioris_area
+					owned_or_subject_owned = c:CAR
+				}
+			}
+			AND = {
+				any_owned_province = {
+					is_coastal = no
+					is_in_area = numidia_centralis_area
+				}
+				any_province = {
+					is_in_area = numidia_centralis_area
+					owned_or_subject_owned = c:CAR
+				}
+			}
+			AND = {
+				any_owned_province = {
+					is_coastal = no
+					is_in_area = numidia_occidentalis_area
+				}
+				any_province = {
+					is_in_area = numidia_occidentalis_area
+					owned_or_subject_owned = c:CAR
+				}
+			}
+			AND = {
+				any_owned_province = {
+					is_coastal = no
+					is_in_area = mauretania_caesariensis_orientalis_area
+				}
+				any_province = {
+					is_in_area = mauretania_caesariensis_orientalis_area
+					owned_or_subject_owned = c:CAR
+				}
+			}
+			AND = {
+				any_owned_province = {
+					is_coastal = no
+					is_in_area = mauretania_caesariensis_centralis_area
+				}
+				any_province = {
+					is_in_area = mauretania_caesariensis_centralis_area
+					owned_or_subject_owned = c:CAR
+				}
+			}
+			AND = {
+				any_owned_province = {
+					is_coastal = no
+					is_in_area = mauretania_caesariensis_occidentalis_area
+				}
+				any_province = {
+					is_in_area = mauretania_caesariensis_occidentalis_area
+					owned_or_subject_owned = c:CAR
+				}
+			}
+			AND = {
+				any_owned_province = {
+					is_coastal = no
+					is_in_area = africa_septentrionalis_area
+				}
+				any_province = {
+					is_in_area = africa_septentrionalis_area
+					owned_or_subject_owned = c:CAR
+				}
+			}
+			AND = {
+				any_owned_province = {
+					is_coastal = no
+					is_in_area = africa_meridionalis_area
+				}
+				any_province = {
+					is_in_area = africa_meridionalis_area
+					owned_or_subject_owned = c:CAR
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		hidden_effect = {
+			if = {
+				limit = {
+					AND = {
+						any_owned_province = {
+							is_coastal = no
+							is_in_area = numidia_maioris_area
+						}
+						any_province = {
+							is_in_area = numidia_maioris_area
+							owned_or_subject_owned = c:CAR
+						}
+					}
+				}
+				every_owned_province = {
+					limit = {
+						is_coastal = no
+						is_in_area = numidia_maioris_area
+					}
+					set_owned_by = c:CAR
+				}
+				every_province = {
+					limit = {
+						owned_or_subject_owned = c:CAR
+						is_coastal = yes
+						is_in_area = numidia_maioris_area
+					}
+					set_owned_by = c:ROM
+				}
+			}
+			if = {
+				limit = {
+					AND = {
+						any_owned_province = {
+							is_coastal = no
+							is_in_area = numidia_centralis_area
+						}
+						any_province = {
+							is_in_area = numidia_centralis_area
+							owned_or_subject_owned = c:CAR
+						}
+					}
+				}
+				every_owned_province = {
+					limit = {
+						is_coastal = no
+						is_in_area = numidia_centralis_area
+					}
+					set_owned_by = c:CAR
+				}
+				every_province = {
+					limit = {
+						owned_or_subject_owned = c:CAR
+						is_coastal = yes
+						is_in_area = numidia_centralis_area
+					}
+					set_owned_by = c:ROM
+				}
+			}
+			if = {
+				limit = {
+					AND = {
+						any_owned_province = {
+							is_coastal = no
+							is_in_area = numidia_occidentalis_area
+						}
+						any_province = {
+							is_in_area = numidia_occidentalis_area
+							owned_or_subject_owned = c:CAR
+						}
+					}
+				}
+				every_owned_province = {
+					limit = {
+						is_coastal = no
+						is_in_area = numidia_occidentalis_area
+					}
+					set_owned_by = c:CAR
+				}
+				every_province = {
+					limit = {
+						owned_or_subject_owned = c:CAR
+						is_coastal = yes
+						is_in_area = numidia_occidentalis_area
+					}
+					set_owned_by = c:ROM
+				}
+			}
+			if = {
+				limit = {
+					AND = {
+						any_owned_province = {
+							is_coastal = no
+							is_in_area = mauretania_caesariensis_orientalis_area
+						}
+						any_province = {
+							is_in_area = mauretania_caesariensis_orientalis_area
+							owned_or_subject_owned = c:CAR
+						}
+					}
+				}
+				every_owned_province = {
+					limit = {
+						is_coastal = no
+						is_in_area = mauretania_caesariensis_orientalis_area
+					}
+					set_owned_by = c:CAR
+				}
+				every_province = {
+					limit = {
+						owned_or_subject_owned = c:CAR
+						is_coastal = yes
+						is_in_area = mauretania_caesariensis_orientalis_area
+					}
+					set_owned_by = c:ROM
+				}
+			}
+			if = {
+				limit = {
+					AND = {
+						any_owned_province = {
+							is_coastal = no
+							is_in_area = mauretania_caesariensis_centralis_area
+						}
+						any_province = {
+							is_in_area = mauretania_caesariensis_centralis_area
+							owned_or_subject_owned = c:CAR
+						}
+					}
+				}
+				every_owned_province = {
+					limit = {
+						is_coastal = no
+						is_in_area = mauretania_caesariensis_centralis_area
+					}
+					set_owned_by = c:CAR
+				}
+				every_province = {
+					limit = {
+						owned_or_subject_owned = c:CAR
+						is_coastal = yes
+						is_in_area = mauretania_caesariensis_centralis_area
+					}
+					set_owned_by = c:ROM
+				}
+			}
+			if = {
+				limit = {
+					AND = {
+						any_owned_province = {
+							is_coastal = no
+							is_in_area = mauretania_caesariensis_occidentalis_area
+						}
+						any_province = {
+							is_in_area = mauretania_caesariensis_occidentalis_area
+							owned_or_subject_owned = c:CAR
+						}
+					}
+				}
+				every_owned_province = {
+					limit = {
+						is_coastal = no
+						is_in_area = mauretania_caesariensis_occidentalis_area
+					}
+					set_owned_by = c:CAR
+				}
+				every_province = {
+					limit = {
+						owned_or_subject_owned = c:CAR
+						is_coastal = yes
+						is_in_area = mauretania_caesariensis_occidentalis_area
+					}
+					set_owned_by = c:ROM
+				}
+			}
+			if = {
+				limit = {
+					AND = {
+						any_owned_province = {
+							is_coastal = no
+							is_in_area = africa_meridionalis_area
+						}
+						any_province = {
+							is_in_area = africa_meridionalis_area
+							owned_or_subject_owned = c:CAR
+						}
+					}
+				}
+				every_owned_province = {
+					limit = {
+						is_coastal = no
+						is_in_area = africa_meridionalis_area
+					}
+					set_owned_by = c:CAR
+				}
+				every_province = {
+					limit = {
+						owned_or_subject_owned = c:CAR
+						is_coastal = yes
+						is_in_area = africa_meridionalis_area
+					}
+					set_owned_by = c:ROM
+				}
+			}
+			if = {
+				limit = {
+					AND = {
+						any_owned_province = {
+							is_coastal = no
+							is_in_area = africa_septentrionalis_area
+						}
+						any_province = {
+							is_in_area = africa_septentrionalis_area
+							owned_or_subject_owned = c:CAR
+						}
+					}
+				}
+				every_owned_province = {
+					limit = {
+						is_coastal = no
+						is_in_area = africa_septentrionalis_area
+					}
+					set_owned_by = c:CAR
+				}
+				every_province = {
+					limit = {
+						owned_or_subject_owned = c:CAR
+						is_coastal = yes
+						is_in_area = africa_septentrionalis_area
+					}
+					set_owned_by = c:ROM
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_punic_wars.3 = {																		#########   PARTITION SHARED AREAS
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		tag = ROM
+		is_ai = yes
+		owns = 1
+		has_civil_war = no
+		NOT = {
+			war_with = c:CAR
+		}
+		c:CAR = {
+			exists = yes
+			is_ai = yes
+			has_civil_war = no
+		}
+		OR = {
+			AND = {
+				any_owned_province = {
+					is_in_area = mauretania_caesariensis_maioris_area
+				}
+				any_province = {
+					is_in_area = mauretania_caesariensis_maioris_area
+					owned_or_subject_owned = c:CAR
+				}
+			}
+		}
+		OR = {
+			p:3116 = {
+				owned_or_subject_owned = c:CAR
+			}
+			owns = 3116
+		}
+	}
+	
+	immediate = {
+		hidden_effect = {
+			if = {
+				limit = {
+					owns = 3116
+				}
+				every_province = {
+					limit = {
+						is_in_area = mauretania_caesariensis_maioris_area
+						owned_or_subject_owned = c:CAR
+					}
+					set_owned_by = ROM
+				}
+			}
+			else = {
+				every_owned_province = {
+					limit = {
+						is_in_area = mauretania_caesariensis_maioris_area
+					}
+					set_owned_by = CAR
+				}
+			}
+			c:CAR = {
+				set_capital = 3256
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_punic_wars.4 = {																		#########   BALEARES ASK FOR ROMAN PROTECTION
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	fire_only_once = yes
+	
+	trigger = {
+		is_ai = yes
+		any_owned_province = {
+			is_in_area = balearides_area
+		}
+		NOT = {
+			tag = ROM
+			num_of_provinces > 5
+		}
+		any_country = {
+			OR = {
+				tag = ROM
+				is_subject_of = ROM
+			}
+			any_owned_province = {
+				OR = {
+					is_in_area = indiketia_area
+				}
+			}
+		}
+		any_country = {
+			OR = {
+				tag = ROM
+				is_subject_of = ROM
+			}
+			any_owned_province = {
+				OR = {
+					is_in_area = cessetania_area
+				}
+			}
+		}
+		any_country = {
+			OR = {
+				tag = ROM
+				is_subject_of = ROM
+			}
+			any_owned_province = {
+				OR = {
+					is_in_area = corsica_area
+				}
+			}
+		}
+		any_country = {
+			OR = {
+				tag = ROM
+				is_subject_of = ROM
+			}
+			any_owned_province = {
+				OR = {
+					is_in_area = sardinia_septentrionalis
+				}
+			}
+		}
+		any_country = {
+			OR = {
+				tag = ROM
+				is_subject_of = ROM
+			}
+			any_owned_province = {
+				OR = {
+					is_in_area = sardinia_meridionalis
+				}
+			}
+		}
+		is_subject = no
+		war = no
+		c:ROM = {
+			is_ai = yes
+			owns = 1
+			owns_or_subject_owns = 1031
+		}
+		any_country = {
+			OR = {
+				tag = ROM
+				is_subject_of = ROM
+			}
+			any_owned_province = { is_in_region = numidia_region }
+			has_coasts = yes
+		}
+		any_country = {
+			OR = {
+				tag = ROM
+				is_subject_of = ROM
+			}
+			any_owned_province = { is_in_region = africa_region }
+			has_coasts = yes
+		}
+		OR = {
+			any_country = {
+				OR = {
+					tag = ROM
+					is_subject_of = ROM
+				}
+				any_owned_province = { is_in_region = mauretainia_region }
+				has_coasts = yes
+			}
+			any_country = {
+				OR = {
+					tag = ROM
+					is_subject_of = ROM
+				}
+				any_owned_province = { is_in_area = gaditanus_area }
+				has_coasts = yes
+			}
+		}
+	}
+	
+	immediate = {
+		hidden_effect = {
+			random = {
+				chance = 5
+				c:ROM = {
+					save_scope_as = future_overlord
+					make_subject = {
+						target = root
+						type = roman_faa
+					}
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_punic_wars.5 = {																		#########   CARTHAGE LEAVES AFRICA AFTER LOSING ALL COASTAL PROVINCES
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		tag = CAR
+		is_ai = yes
+		has_civil_war = no
+		OR = {
+			AND = {
+				any_owned_province = {								# NON-COASTAL ZONE
+					is_coastal = no
+					is_in_region = mauretainia_region
+				}
+				NOT = {
+					any_owned_province = {								# COASTAL ZONE
+						is_coastal = yes
+						is_in_region = mauretainia_region
+					}
+				}
+			}
+			AND = {
+				any_owned_province = {								# NON-COASTAL ZONE
+					is_coastal = no
+					is_in_region = numidia_region
+				}
+				NOT = {
+					any_owned_province = {								# COASTAL ZONE
+						is_coastal = yes
+						is_in_region = numidia_region
+					}
+				}
+			}
+			AND = {
+				any_owned_province = {								# NON-COASTAL ZONE
+					is_coastal = no
+					is_in_region = africa_region
+				}
+				NOT = {
+					any_owned_province = {								# COASTAL ZONE
+						is_coastal = yes
+						is_in_region = africa_region
+					}
+				}
+			}
+			AND = {
+				any_owned_province = {								# NON-COASTAL ZONE
+					is_coastal = no
+					OR = {
+						is_in_region = cyrenaica_region
+					}
+				}
+				NOT = {
+					any_owned_province = {								# COASTAL ZONE
+						is_coastal = yes
+						is_in_region = cyrenaica_region
+					}
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		if = {
+			limit = {
+				any_owned_province = {								# NON-COASTAL ZONE
+					is_coastal = no
+					OR = {
+						is_in_region = mauretainia_region
+					}
+				}
+				NOT = {
+					any_owned_province = {								# COASTAL ZONE
+						is_coastal = yes
+						OR = {
+							is_in_region = mauretainia_region
+						}
+					}
+				}
+			}
+			trigger_event = {
+				id = z_limes_punic_wars.101
+			}
+		}
+		if = {
+			limit = {
+				any_owned_province = {								# NON-COASTAL ZONE
+					is_coastal = no
+					OR = {
+						is_in_region = numidia_region
+					}
+				}
+				NOT = {
+					any_owned_province = {								# COASTAL ZONE
+						is_coastal = yes
+						OR = {
+							is_in_region = numidia_region
+						}
+					}
+				}
+			}
+			trigger_event = {
+				id = z_limes_punic_wars.102
+			}
+		}
+		if = {
+			limit = {
+				any_owned_province = {								# NON-COASTAL ZONE
+					is_coastal = no
+					OR = {
+						is_in_region = africa_region
+					}
+				}
+				NOT = {
+					any_owned_province = {								# COASTAL ZONE
+						is_coastal = yes
+						OR = {
+							is_in_region = africa_region
+						}
+					}
+				}
+			}
+			trigger_event = {
+				id = z_limes_punic_wars.103
+			}
+		}
+		if = {
+			limit = {
+				any_owned_province = {								# NON-COASTAL ZONE
+					is_coastal = no
+					OR = {
+						is_in_region = cyrenaica_region
+					}
+				}
+				NOT = {
+					any_owned_province = {								# COASTAL ZONE
+						is_coastal = yes
+						OR = {
+							is_in_region = cyrenaica_region
+						}
+					}
+				}
+			}
+			trigger_event = {
+				id = z_limes_punic_wars.104
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_punic_wars.101 = {																		#########   LOSE NON COASTAL PROVINCES
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				OR = {
+					is_in_region = mauretainia_region
+				}
+			}
+			order_by = total_population
+			save_scope_as = punic_split_cap
+		}
+		hidden_effect = {
+			scope:punic_split_cap = {	
+				create_country = {
+					save_scope_as = punic_split_new
+					set_primary_culture = scope:punic_split_cap.culture
+				}
+			}
+			if = {
+				limit = { is_tribal = yes }
+				if = {
+					limit = { government = tribal_chiefdom }
+					scope:punic_split_new = { change_government = tribal_chiefdom }
+				}
+				else = {
+					scope:punic_split_new = { change_government = tribal_kingdom }
+				}
+			}
+			else_if = {
+				limit = { is_monarchy = yes	}
+				scope:punic_split_new = { change_government = despotic_monarchy }
+			}
+			else_if = {
+				limit = {
+					OR = {
+						government = democratic_republic
+						government = athenian_republic
+					}
+				}
+				scope:punic_split_new = { change_government = democratic_republic }
+			}
+			else_if = {
+				limit = { government = plutocratic_republic }
+				scope:punic_split_new = { change_government = plutocratic_republic }
+			}
+			else = {
+				scope:punic_split_new = {
+					random_list = {
+						50 = { change_government = aristocratic_republic }
+						50 = { change_government = oligarchic_republic }
+					}
+				}
+			}
+			scope:punic_split_new = {
+				create_character = {
+					save_scope_as = punic_split_gov 
+					culture = scope:punic_split_cap.culture
+				}
+				set_as_ruler = scope:punic_split_gov 
+				add_treasury = 50.0
+			}
+			every_owned_province = {
+				limit = {
+					OR = {
+						is_in_region = mauretainia_region
+					}
+				}
+				set_owned_by = scope:punic_split_new
+			}
+		}
+		scope:punic_split_new = {
+			z_limes_set_religion = yes
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_punic_wars.102 = {																		#########   LOSE NON COASTAL PROVINCES
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				OR = {
+					is_in_region = numidia_region
+				}
+			}
+			order_by = total_population
+			save_scope_as = punic_split_cap
+		}
+		hidden_effect = {
+			scope:punic_split_cap = {	
+				create_country = {
+					save_scope_as = punic_split_new
+					set_primary_culture = scope:punic_split_cap.culture
+				}
+			}
+			if = {
+				limit = { is_tribal = yes }
+				if = {
+					limit = { government = tribal_chiefdom }
+					scope:punic_split_new = { change_government = tribal_chiefdom }
+				}
+				else = {
+					scope:punic_split_new = { change_government = tribal_kingdom }
+				}
+			}
+			else_if = {
+				limit = { is_monarchy = yes	}
+				scope:punic_split_new = { change_government = despotic_monarchy }
+			}
+			else_if = {
+				limit = {
+					OR = {
+						government = democratic_republic
+						government = athenian_republic
+					}
+				}
+				scope:punic_split_new = { change_government = democratic_republic }
+			}
+			else_if = {
+				limit = { government = plutocratic_republic }
+				scope:punic_split_new = { change_government = plutocratic_republic }
+			}
+			else = {
+				scope:punic_split_new = {
+					random_list = {
+						50 = { change_government = aristocratic_republic }
+						50 = { change_government = oligarchic_republic }
+					}
+				}
+			}
+			scope:punic_split_new = {
+				create_character = {
+					save_scope_as = punic_split_gov 
+					culture = scope:punic_split_cap.culture
+				}
+				set_as_ruler = scope:punic_split_gov 
+				add_treasury = 50.0
+			}
+			every_owned_province = {
+				limit = {
+					OR = {
+						is_in_region = numidia_region
+					}
+				}
+				set_owned_by = scope:punic_split_new
+			}
+		}
+		scope:punic_split_new = {
+			z_limes_set_religion = yes
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_punic_wars.103 = {																		#########   LOSE NON COASTAL PROVINCES
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				OR = {
+					is_in_region = africa_region
+				}
+			}
+			order_by = total_population
+			save_scope_as = punic_split_cap
+		}
+		hidden_effect = {
+			scope:punic_split_cap = {	
+				create_country = {
+					save_scope_as = punic_split_new
+					set_primary_culture = scope:punic_split_cap.culture
+				}
+			}
+			if = {
+				limit = { is_tribal = yes }
+				if = {
+					limit = { government = tribal_chiefdom }
+					scope:punic_split_new = { change_government = tribal_chiefdom }
+				}
+				else = {
+					scope:punic_split_new = { change_government = tribal_kingdom }
+				}
+			}
+			else_if = {
+				limit = { is_monarchy = yes	}
+				scope:punic_split_new = { change_government = despotic_monarchy }
+			}
+			else_if = {
+				limit = {
+					OR = {
+						government = democratic_republic
+						government = athenian_republic
+					}
+				}
+				scope:punic_split_new = { change_government = democratic_republic }
+			}
+			else_if = {
+				limit = { government = plutocratic_republic }
+				scope:punic_split_new = { change_government = plutocratic_republic }
+			}
+			else = {
+				scope:punic_split_new = {
+					random_list = {
+						50 = { change_government = aristocratic_republic }
+						50 = { change_government = oligarchic_republic }
+					}
+				}
+			}
+			scope:punic_split_new = {
+				create_character = {
+					save_scope_as = punic_split_gov 
+					culture = scope:punic_split_cap.culture
+				}
+				set_as_ruler = scope:punic_split_gov 
+				add_treasury = 50.0
+			}
+			every_owned_province = {
+				limit = {
+					OR = {
+						is_in_region = africa_region
+					}
+				}
+				set_owned_by = scope:punic_split_new
+			}
+		}
+		scope:punic_split_new = {
+			z_limes_set_religion = yes
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_punic_wars.104 = {																		#########   LOSE NON COASTAL PROVINCES
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				OR = {
+					is_in_region = cyrenaica_region
+				}
+			}
+			order_by = total_population
+			save_scope_as = punic_split_cap
+		}
+		hidden_effect = {
+			scope:punic_split_cap = {	
+				create_country = {
+					save_scope_as = punic_split_new
+					set_primary_culture = scope:punic_split_cap.culture
+				}
+			}
+			if = {
+				limit = { is_tribal = yes }
+				if = {
+					limit = { government = tribal_chiefdom }
+					scope:punic_split_new = { change_government = tribal_chiefdom }
+				}
+				else = {
+					scope:punic_split_new = { change_government = tribal_kingdom }
+				}
+			}
+			else_if = {
+				limit = { is_monarchy = yes	}
+				scope:punic_split_new = { change_government = despotic_monarchy }
+			}
+			else_if = {
+				limit = {
+					OR = {
+						government = democratic_republic
+						government = athenian_republic
+					}
+				}
+				scope:punic_split_new = { change_government = democratic_republic }
+			}
+			else_if = {
+				limit = { government = plutocratic_republic }
+				scope:punic_split_new = { change_government = plutocratic_republic }
+			}
+			else = {
+				scope:punic_split_new = {
+					random_list = {
+						50 = { change_government = aristocratic_republic }
+						50 = { change_government = oligarchic_republic }
+					}
+				}
+			}
+			scope:punic_split_new = {
+				create_character = {
+					save_scope_as = punic_split_gov 
+					culture = scope:punic_split_cap.culture
+				}
+				set_as_ruler = scope:punic_split_gov 
+				add_treasury = 50.0
+			}
+			every_owned_province = {
+				limit = {
+					OR = {
+						is_in_region = cyrenaica_region
+					}
+				}
+				set_owned_by = scope:punic_split_new
+			}
+		}
+		scope:punic_split_new = {
+			z_limes_set_religion = yes
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_punic_wars.6 = {																		#########   AI-ONLY PUNIC WARS: CARTHAGE IN SICILY / SARDINIA
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		tag = CAR
+		is_ai = yes
+		is_subject = no
+		war = no
+		trigger_if = {
+			limit = {
+				has_variable = z_limes_pw_count
+			}
+			var:z_limes_pw_count < 2
+		}
+		stability > 30
+		num_of_ships > 20
+		num_of_cities >= 50
+		c:ROM = {
+			z_has_limes_ROM = yes
+			war = yes
+			any_owned_province = {
+				OR = {
+					is_in_area = west_sicily_area
+					is_in_area = syracuse_area
+					is_in_area = east_sicily_area
+					is_in_area = corsica_area
+					is_in_area = sardinia_septentrionalis
+					is_in_area = sardinia_meridionalis
+				}
+			}
+			any_current_war = {
+				is_war_leader = c:ROM
+				any_war_defender = {
+					this.capital_scope = {
+						OR = {
+							is_in_area = west_sicily_area
+							is_in_area = syracuse_area
+							is_in_area = east_sicily_area
+						}
+					}
+					num_of_cities >= 4
+				}
+				NOT = {
+					any_war_defender = {
+						is_ai = no
+					}
+				}
+			}
+		}
+		any_owned_province = {
+			OR = {
+				is_in_area = west_sicily_area
+				is_in_area = syracuse_area
+				is_in_area = east_sicily_area
+				is_in_area = corsica_area
+				is_in_area = sardinia_septentrionalis
+				is_in_area = sardinia_meridionalis
+			}
+		}
+	}
+	
+	immediate = {
+		if = {
+			limit = {
+				NOT = {
+					has_variable = z_limes_pw_count
+				}
+			}
+			set_variable = {
+				name = z_limes_pw_count
+				value = 0
+			}
+		}
+		change_variable = {
+			name = z_limes_pw_count
+			add = 1
+		}
+		c:ROM = {
+			ordered_owned_province = {
+				limit = {
+					OR = {
+						is_in_area = west_sicily_area
+						is_in_area = syracuse_area
+						is_in_area = east_sicily_area
+						is_in_area = corsica_area
+						is_in_area = sardinia_septentrionalis
+						is_in_area = sardinia_meridionalis
+					}
+				}
+				order_by = total_population
+				save_scope_as = z_limes_war_goal
+			}
+		}
+		area:west_sicily_area = {
+			every_area_province = {
+				add_claim = root
+			}
+		}
+		area:syracuse_area = {
+			every_area_province = {
+				add_claim = root
+			}
+		}
+		area:east_sicily_area = {
+			every_area_province = {
+				add_claim = root
+			}
+		}
+		while = {
+			limit = {
+				manpower < 5
+			}
+			add_manpower = 2
+		}
+		declare_war_with_wargoal = {
+			war_goal = conquer_wargoal
+			province = scope:z_limes_war_goal
+			target = c:ROM
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_punic_wars.7 = {																		#########   AI-ONLY PUNIC WARS: CARTHAGE IN HISPANIA
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	
+	trigger = {
+		z_current_year > 40 # 490 AUC / -260 BCE
+		tag = CAR
+		is_ai = yes
+		is_subject = no
+		z_can_wage_war = yes
+		region:africa_region = {
+			any_region_province = {
+				percent >= 0.8
+				this.owner = root
+			}
+		}
+		region:numidia_region = {
+			any_region_province = {
+				count >= 10
+				this.owner = root
+			}
+		}
+		OR = {
+			AND = {
+				region:baetica_region = {
+					any_region_province = {
+						percent < 0.6
+						owned_or_subject_owned = root
+					}
+				}
+				any_country = {
+					z_can_be_declared_upon = yes
+					NOT = {
+						this = c:ROM
+					}
+					any_owned_province = {
+						is_in_region = baetica_region
+					}
+				}
+			}
+			AND = {
+				region:contestania_region = {
+					any_region_province = {
+						percent < 0.3
+						owned_or_subject_owned = root
+					}
+				}
+				any_country = {
+					z_can_be_declared_upon = yes
+					NOT = {
+						this = c:ROM
+					}
+					any_owned_province = {
+						is_in_region = contestania_region
+					}
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		if = {
+			limit = {
+				region:baetica_region = {
+					any_region_province = {
+						percent < 0.6
+						owned_or_subject_owned = root
+					}
+				}
+				any_country = {
+					z_can_be_declared_upon = yes
+					NOT = {
+						this = c:ROM
+					}
+					any_owned_province = {
+						is_in_region = baetica_region
+					}
+				}
+			}
+			z_limes_attack_region = { ZTARGET = baetica_region }
+		}
+		else_if = {
+			limit = {
+				region:contestania_region = {
+					any_region_province = {
+						percent < 0.3
+						owned_or_subject_owned = root
+					}
+				}
+				any_country = {
+					z_can_be_declared_upon = yes
+					NOT = {
+						this = c:ROM
+					}
+					any_owned_province = {
+						is_in_region = contestania_region
+					}
+				}
+			}
+			z_limes_attack_region = { ZTARGET = contestania_region }
+		}
+		z_limes_attack = { ZCHANCE = 10 }
+	}
+}

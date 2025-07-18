@@ -1,0 +1,9 @@
+texticon = {
+    icon = z_limes_setup_vflag
+    iconsize = {
+        texture = "gfx/interface/icons/font_icons/z_limes_setup_vflag.dds"
+        size = { 25 25 }
+        offset = { 0 4 }
+        fontsize = 25
+    }
+}

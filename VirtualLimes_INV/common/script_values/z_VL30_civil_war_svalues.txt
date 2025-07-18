@@ -1,0 +1,31 @@
+﻿# --------------------------------------------------------------------------------
+# How much of the total territory of a country does the winner of a CW own?
+# --------------------------------------------------------------------------------
+z_limes_civil_war_winner_owns = {
+	value = 0
+	add = scope:z_limes_civil_war_winner.num_of_cities
+	divide = {
+		value = scope:z_limes_civil_war_winner.num_of_cities
+		add = scope:z_limes_civil_war_loser.num_of_cities
+	}
+}
+
+# --------------------------------------------------------------------------------
+# How much of its territory should the loser of a CW lose each 2 months?
+# --------------------------------------------------------------------------------
+z_limes_civil_war_loser_loses = {
+	value = 0
+	add = scope:z_limes_civil_war_loser.num_of_cities
+	multiply = 0.125
+	# The legitimate ruler, when losing, loses less than the revoltee
+	if = {
+		limit = {
+			scope:z_limes_civil_war_loser = {
+				has_variable = z_limes_civil_war_defender
+			}
+		}
+		divide = 2
+	}
+	min = 1
+	max = 10
+}

@@ -1,0 +1,76 @@
+﻿namespace = z_sw_setup
+
+#########################################################################################################################################
+#########################################################################################################
+z_sw_setup.200 = {																				#########   TEST SAME GROUP RATIO THING
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		is_ai = no
+		any_owned_province = {
+			any_pops_in_province = {
+				NOT = {
+					this.culture = root.culture
+					this.country_culture = {
+						has_country_culture_modifier = z_sw_voiceless_majority
+					}
+				}
+				this.culture.culture_group = root.culture.culture_group
+			}
+		}
+	}
+	
+	immediate = {
+		random_owned_province = {
+			limit = {
+				any_pops_in_province = {
+					NOT = {
+						this.culture = root.culture
+						this.country_culture = {
+							has_country_culture_modifier = z_sw_voiceless_majority
+						}
+					}
+					this.culture.culture_group = root.culture.culture_group
+				}
+			}
+			random_pops_in_province = {
+				limit = {
+					NOT = {
+						this.culture = root.culture
+						this.country_culture = {
+							has_country_culture_modifier = z_sw_voiceless_majority
+						}
+					}
+					this.culture.culture_group = root.culture.culture_group
+				}
+				this.country_culture = {
+					save_scope_as = z_sw_voiceless_culture
+				}
+			}
+		}
+	}
+		
+	option = {
+		scope:z_sw_voiceless_culture = {
+			#add_country_culture_modifier = {
+			#	name = "z_sw_voiceless_majority"
+			#	duration = -1
+			#}
+		}
+		if = {
+			limit = {
+				z_sw_this_culture >= 0
+				z_sw_primary_culture >= 0
+				z_sw_primary_culture_group >= 0
+				z_sw_country_population >= 0
+				z_sw_culture_ratio_A >= 0
+				z_sw_culture_ratio_B >= 0
+			}
+		}
+	}
+	
+	after = {
+		clear_saved_scope = z_sw_voiceless_culture										# Clear scopes
+	}
+}

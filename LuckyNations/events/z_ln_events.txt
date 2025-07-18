@@ -1,0 +1,303 @@
+﻿namespace = lucky_nations
+
+#########################################################################################################################################
+#########################################################################################################
+lucky_nations.1 = {																				#########   LUCKY NATIONS SETTINGS
+	type = country_event																		#########
+	hidden = no																					#########################################
+	title = "lucky_nations.1.t"
+	desc = "lucky_nations.1.desc"
+	picture = scribe_tools
+	
+	trigger = {
+		OR = {
+			AND = {
+				tag = ROM
+				is_ai = yes
+				NOT = {
+					any_country = {
+						is_ai = no
+					}
+				}
+			}
+			is_ai = no
+		}
+		NOT = {
+			has_global_variable = lucky_nations_chosen
+		}
+	}
+	
+	immediate = {
+		set_global_variable = {
+				name = lucky_nations_chosen
+				value = 1
+		}
+		set_global_variable = {
+				name = lucky_nations_random
+				value = 0
+		}
+		set_global_variable = {
+				name = lucky_nations_random_base
+				value = 0
+		}
+		set_global_variable = {
+				name = lucky_nations_historical
+				value = 0
+		}
+		set_global_variable = {
+				name = lucky_nations_random_historical
+				value = 0
+		}
+		set_global_variable = {
+				name = lucky_nations_none
+				value = 0
+		}
+		z_save_uneligible_lucky_nations = yes
+		z_save_historical_lucky_nations = yes
+	}
+	
+	option = {
+		name = "lucky_nations.1.a"
+		hidden_effect = {
+			change_global_variable = {
+				name = lucky_nations_historical
+				add = 1
+			}
+		}
+		custom_tooltip = lucky_nations.1.at
+		ai_chance = { factor = 0 }
+	}
+	
+	option = {
+		name = "lucky_nations.1.b"
+		hidden_effect = {
+			change_global_variable = {
+				name = lucky_nations_random
+				add = 1
+			}
+			change_global_variable = {
+				name = lucky_nations_random_base
+				add = 10
+			}
+		}
+		custom_tooltip = lucky_nations.1.bt
+		ai_chance = { factor = 0 }
+	}
+	
+	option = {
+		name = "lucky_nations.1.c"
+		hidden_effect = {
+			change_global_variable = {
+				name = lucky_nations_random
+				add = 1
+			}
+			change_global_variable = {
+				name = lucky_nations_random_base
+				add = 20
+			}			
+		}
+		custom_tooltip = lucky_nations.1.ct
+		ai_chance = { factor = 0 }
+	}
+	
+	option = {
+		name = "lucky_nations.1.d"
+		hidden_effect = {
+			change_global_variable = {
+				name = lucky_nations_random
+				add = 1
+			}		
+			change_global_variable = {
+				name = lucky_nations_random_base
+				add = 30
+			}
+		}
+		custom_tooltip = lucky_nations.1.dt
+		ai_chance = { factor = 100 }
+	}
+	
+	option = {
+		name = "lucky_nations.1.f"
+		hidden_effect = {
+			change_global_variable = {
+				name = lucky_nations_random_historical
+				add = 1
+			}
+			change_global_variable = {
+				name = lucky_nations_random_base
+				add = 15
+			}
+		}
+		custom_tooltip = lucky_nations.1.ft
+		ai_chance = { factor = 0 }
+	}
+	
+	option = {
+		name = "lucky_nations.1.e"
+		hidden_effect = {
+			change_global_variable = {
+				name = lucky_nations_none
+				add = 1
+			}		
+		}
+		custom_tooltip = lucky_nations.1.et
+		ai_chance = { factor = 0 }
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+lucky_nations.2 = {																				#########   REMOVE LUCKY NATION
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		has_country_modifier = z_lucky_nation
+		OR = {
+			is_ai = no
+			AND = {
+				is_subject = yes
+				NOT = {
+					is_subject_type = subject_league_city_state
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		hidden_effect = {
+			remove_country_modifier = z_lucky_nation
+		}
+	}
+	
+	option = {
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+lucky_nations.3 = {																				#########   HISTORICAL LUCKY NATION
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+	
+		global_var:lucky_nations_chosen = 1
+		global_var:lucky_nations_historical = 1
+		global_var:lucky_nations_random_historical = 0
+		global_var:lucky_nations_random = 0
+		global_var:lucky_nations_none = 0
+		
+		is_ai = yes
+		OR = {
+			is_subject = no
+			is_subject_type = subject_league_city_state
+		}
+		
+		NOT = {
+			has_country_modifier = z_lucky_nation
+			is_already_lucky = yes
+		}
+		
+		is_historical_lucky_nation = yes
+	}
+	
+	immediate = {
+		hidden_effect = {
+			add_country_modifier = {
+				name = z_lucky_nation
+			}
+			if = {
+				limit = {
+					num_of_cities < 250
+					current_date < 550.1.1
+				}
+				z_lucky_pops = yes
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+lucky_nations.4 = {																				#########   RANDOM LUCKY NATION
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		
+		global_var:lucky_nations_chosen = 1
+		global_var:lucky_nations_historical = 0
+		OR = {
+			global_var:lucky_nations_random = 1
+			global_var:lucky_nations_random_historical = 1
+		}
+		global_var:lucky_nations_none = 0
+	
+		global_var:lucky_nations_random_base > z_num_of_lucky_nations
+		
+		any_country = {
+			NOT = {
+				has_country_modifier = z_lucky_nation
+				is_already_lucky = yes
+			}
+			is_ai = yes
+			OR = {
+				is_subject = no
+				is_subject_type = subject_league_city_state
+			}
+			trigger_if = {
+				limit = {
+					global_var:lucky_nations_random = 0
+					global_var:lucky_nations_random_historical = 1
+				}
+				is_historical_challenger_lucky_nation = yes
+			}
+		}
+		
+	}
+	
+	immediate = {
+		hidden_effect = {
+			random_country = {
+				limit = {
+					NOT = {
+						has_country_modifier = z_lucky_nation
+						is_already_lucky = yes
+					}
+					is_ai = yes
+					OR = {
+						is_subject = no
+						is_subject_type = subject_league_city_state
+					}
+					trigger_if = {
+						limit = {
+							global_var:lucky_nations_random = 0
+							global_var:lucky_nations_random_historical = 1
+						}
+						is_historical_challenger_lucky_nation = yes
+					}
+				}
+				weight = {
+					modifier = {
+						factor = 2
+						num_of_cities < 250
+						num_of_cities >= 10
+					}
+					modifier = {
+						factor = 0.5
+						num_of_cities < 5
+					}
+				}
+				add_country_modifier = { name = z_lucky_nation }
+				if = {
+					limit = {
+						num_of_cities < 250
+						current_date < 550.1.1
+					}
+					z_lucky_pops = yes
+				}
+			}
+		}
+	}
+}

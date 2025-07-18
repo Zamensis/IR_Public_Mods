@@ -1,0 +1,6 @@
+colors = {
+	z_limes_SEL_color_0 = rgb { 40 121 173 } # Default SEL blue
+	z_limes_SEL_color_1 = rgb { 150  190  132 } # Olive Green
+	z_limes_SEL_color_2 = rgb { 139  145  201 } # Indigo
+	z_limes_SEL_color_3 = rgb { 201  180  139 } # Desert Brown
+}

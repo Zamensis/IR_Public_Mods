@@ -1,0 +1,165 @@
+﻿roman_6_conquest_africa = {
+	header = mission_image_rome
+	icon = rome_1
+
+	repeatable = no
+
+	chance = {
+		factor = 3
+	}
+
+	potential = { 
+		NOT = { has_variable = roman_mission_06_africa }
+		has_dlc = "The Punic Wars"
+		tag = ROM
+		is_ai = yes
+		is_ai = no
+		OR = {
+			has_completed_mission = roman_4_punic_rivals
+			OR = {
+				area:tripolitania_occidentalis_area = {
+					any_area_province = { owned_or_subject_owned = c:ROM }
+				}
+				area:tripolitania_centralis_area = {
+					any_area_province = { owned_or_subject_owned = c:ROM }
+				}
+				region:mauretainia_region = {
+					any_region_province = { owned_or_subject_owned = c:ROM }
+				}
+				region:numidia_region = {
+					any_region_province = { owned_or_subject_owned = c:ROM }
+				}
+				region:africa_region = {
+					any_region_province = { owned_or_subject_owned = c:ROM }
+				}
+			}
+		}
+		is_subject = no
+		has_civil_war = no
+	}
+
+	abort = {
+		ai_mission_back_out_trigger = yes
+	}
+
+	on_potential = {
+		root = { save_scope_as = mission_country }
+		p:3276 = {
+			save_scope_as = hadrumetum
+		}
+		p:3277 = {
+			save_scope_as = leptis_minor
+		}
+		p:3278 = {
+			save_scope_as = thapsus
+		}
+		p:3280 = {
+			save_scope_as = achola
+		}
+		p:3291 = {
+			save_scope_as = tacape
+		}
+		p:3295 = {
+			save_scope_as = gergis
+		}
+		p:3303 = {
+			save_scope_as = oea
+		}
+		p:3306 = {
+			save_scope_as = leptis_magna
+		}
+		if = {
+    		limit = { is_ai = yes }
+    		region:africa_region = {
+    			every_region_province = { add_claim = ROOT }
+    		}
+    		region:numidia_region = {
+    			every_region_province = { add_claim = ROOT }
+    		}
+    		region:mauretainia_region = {
+    			every_region_province = { add_claim = ROOT }
+    		}
+    	}
+	}
+
+	on_start = {
+		start_mission_ai_effect = yes
+	}
+
+	on_abort = {
+        custom_tooltip = general_mission_cooldown_tt
+        set_variable = {
+            name = roman_mission_06_africa
+            days = 7300
+        }
+    }
+
+    on_completion = {
+    	complete_mission_effect = yes
+    }
+	
+	roman_6_crush_numidia_x = { # Secure Numidian Coast
+
+		icon = task_conquest
+
+		bypass = {
+			#has_completed_mission_task = roman_6_befriend_numidia
+		}
+
+		highlight = {
+			scope:province = {
+				is_in_region = numidia_region
+				is_coastal = yes
+				NOT = {
+					owned_or_subject_owned = c:ROM
+				}
+			}
+		}
+
+		allow = {
+			custom_tooltip = {
+				text = roman_6_crush_numidia_tt
+				region:numidia_region = {
+					NOT = {
+						any_region_province = {
+							is_coastal = yes
+							NOT = { 
+								owned_or_subject_owned = c:ROM
+							}
+						}
+					}
+				}
+			}
+		}
+
+		on_completion = {
+			every_country_state = {
+				limit = {
+					any_state_province = {
+						is_in_region = numidia_region
+						is_coastal = yes
+					}
+				}
+				custom = roman_6_crush_numidia_tt_2
+				add_state_modifier = {
+					name = roman_6_crush_numidia_modifier
+					duration = 7300
+				}
+			}
+			every_subject = {
+				limit = {
+					any_owned_province = {
+						is_in_region = numidia_region
+						is_coastal = yes
+					}
+				}
+				custom = roman_6_crush_numidia_tt_3
+				add_opinion = {
+					modifier = roman_6_crush_numidia_opinion
+					target = overlord
+				}
+			}
+		}
+		final = yes
+	}
+}

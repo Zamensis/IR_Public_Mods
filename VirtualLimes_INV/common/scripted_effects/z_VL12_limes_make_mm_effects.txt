@@ -1,0 +1,500 @@
+﻿# --------------------------------------------------------------------------------
+# Make a new MM (root = future overlord, scope:z_limes_mm_capital = future MM capital)
+# --------------------------------------------------------------------------------
+z_limes_make_mm_effect = {
+	# Check if an MM already exists in this area/zone
+	if = {
+		limit = {
+			scope:z_limes_mm_capital.$ZONE$ = {
+				any_$ZONE$_province = {
+					has_owner = yes
+					owner = {
+						is_subject_of = root
+						z_limes_is_mm_trigger = yes
+					}
+				}
+			}
+		}
+		scope:z_limes_mm_capital.$ZONE$ = {
+			random_$ZONE$_province = {
+				limit = {
+					has_owner = yes
+					owner = {
+						is_subject_of = root
+						z_limes_is_mm_trigger = yes
+					}
+				}
+				owner = { save_scope_as = z_limes_old_mm }
+			}
+		}
+		scope:z_limes_mm_capital.$ZONE$ = {
+			every_$ZONE$_province = {
+				limit = { owner = root }
+				set_owned_by = scope:z_limes_old_mm
+			}
+		}
+	}
+	# If not, create a new MM
+	else = {
+		z_limes_make_mm_effect_b = { ZONE = $ZONE$ }
+	}
+	# Rename if applicable
+	scope:z_limes_mm_capital.owner = { z_limes_rename_mm_effect = yes }
+}
+
+# --------------------------------------------------------------------------------
+# Make a new MM, continued
+# --------------------------------------------------------------------------------
+z_limes_make_mm_effect_b = {
+
+	# Save scopes
+	# --------------------------------------------------
+	
+	scope:z_limes_mm_capital = {
+		create_country = {
+			save_scope_as = z_limes_mm
+			set_variable = {
+				name = z_limes_mm_from
+				value = root
+			}
+		}
+	}
+	scope:z_limes_mm = {
+		create_character = {
+			culture = scope:z_limes_mm_capital.culture
+			save_scope_as = z_limes_mm_ruler
+		}
+	}
+	
+	# Set up new country
+	# --------------------------------------------------
+	
+	scope:z_limes_mm = {
+		change_government = tribal_federation # Default government
+		z_limes_set_government_effect = { OVERLORD = root SUBJECT = scope:z_limes_mm }
+		z_limes_set_religion_effect = yes
+		#z_limes_set_tech_effect = yes
+		set_as_ruler = scope:z_limes_mm_ruler
+		add_treasury = 25.0
+	}
+	
+	# Give the country its provinces + Remove overlord claims
+	# --------------------------------------------------
+	
+	every_owned_province = {
+		limit = {
+			$ZONE$ = scope:z_limes_mm.capital_scope.$ZONE$
+		}
+		set_owned_by = scope:z_limes_mm
+		remove_claim = root
+	}
+	
+	# Set subject type
+	# --------------------------------------------------
+	
+	root = { save_scope_as = future_overlord } # Used in vanilla effects?
+	z_limes_set_subject_type_effect = { target = scope:z_limes_mm }
+	
+	# Add claims to entire $ZONE$
+	# --------------------------------------------------
+	
+	scope:z_limes_mm = {
+		capital_scope.$ZONE$ = {
+			every_$ZONE$_province = {
+				limit = {
+					is_uninhabitable = no
+					trigger_if = {
+						limit = { has_owner = yes }
+						owner = {
+							NOR = {
+								this = root
+								this = scope:z_limes_mm
+								AND = {
+									is_subject = yes
+									overlord = root
+								}
+							}
+						}
+					}
+				}
+				add_claim = scope:z_limes_mm
+			}
+		}
+	}
+
+}
+
+# --------------------------------------------------------------------------------
+# Set new government
+# --------------------------------------------------------------------------------
+z_limes_set_government_effect = {
+	# Special handling for AI Rome
+	if = {
+		limit = {
+			$OVERLORD$ = {
+				tag = ROM
+				is_ai = yes
+			}
+		}
+		$SUBJECT$ = {
+			random_list = {
+				25 = { change_government = despotic_monarchy }
+				10 = { change_government = aristocratic_republic }
+				10 = { change_government = oligarchic_republic }
+				5 = { change_government = democratic_republic }
+			}
+		}
+	}
+	# Tribes
+	if = {
+		limit = {
+			$OVERLORD$ = { is_tribal = yes }
+		}
+		if = {
+			limit = {
+				$OVERLORD$ = { government = tribal_chiefdom }
+			}
+			$SUBJECT$ = { change_government = tribal_chiefdom }
+		}
+		else = {
+			$SUBJECT$ = { change_government = tribal_kingdom }
+		}
+	}
+	# Monarchies
+	else_if = {
+		limit = {
+			$OVERLORD$ = { is_monarchy = yes }
+		}
+		$SUBJECT$ = { change_government = despotic_monarchy }
+	}
+	# Republics, special cases
+	else_if = {
+		limit = {
+			$OVERLORD$ = { government = athenian_republic }
+		}
+		$SUBJECT$ = { change_government = athenian_republic }
+	}
+	else_if = {
+		limit = {
+			$OVERLORD$ = {
+				OR = {
+					government = plutocratic_republic # Overlord is a trading republic
+					diplomatic_stance = trading_stance # Overlord currently has a trading stance
+				}
+			}
+		}
+		$SUBJECT$ = { change_government = plutocratic_republic }
+	}
+	else_if = {
+		limit = {
+			$OVERLORD$.current_ruler = { has_trait = zealous } # Consul is a zealous bastard
+		}
+		$SUBJECT$ = { change_government = theocratic_republic }
+	}
+	# Republics, default
+	else_if = {
+		limit = {
+			$OVERLORD$ = {
+				OR = {
+					AND = {
+						tag = ROM
+						current_ruler = { party_type = optimates_party } # The Optimates are in power
+					}
+					AND = {
+						NOT = { tag = ROM }
+						current_ruler = { party_type = traditionalist_party } # The Traditionalists are in power
+					}
+				}
+			}
+		}
+		$SUBJECT$ = { change_government = aristocratic_republic }
+	}
+	else_if = {
+		limit = {
+			$OVERLORD$ = {
+				OR = {
+					AND = {
+						tag = ROM
+						$OVERLORD$.current_ruler = { party_type = boni_party } # The Boni are in power
+					}
+					AND = {
+						NOT = { tag = ROM }
+						$OVERLORD$.current_ruler = { party_type = oligarchic_party } # The Oligarchs are in power
+					}
+				}
+			}
+		}
+		$SUBJECT$ = { change_government = oligarchic_republic }
+	}
+	else_if = {
+		limit = {
+			$OVERLORD$ = {
+				OR = {
+					AND = {
+						tag = ROM
+						$OVERLORD$.current_ruler = { party_type = populares_party } # The Populares are in power
+					}
+					AND = {
+						NOT = { tag = ROM }
+						$OVERLORD$.current_ruler = { party_type = democratic_party } # The Democrats are in power
+					}
+				}
+			}
+		}
+		$SUBJECT$ = { change_government = democratic_republic }
+	}
+	# Fall back
+	else = {
+		$SUBJECT$ = {
+			random_list = {
+				50 = { change_government = aristocratic_republic }
+				50 = { change_government = oligarchic_republic }
+			}
+		}
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Set subject type
+# --------------------------------------------------------------------------------
+z_limes_set_subject_type_effect = {
+	random_list = {
+		90 = {
+			# ROM
+			if = {
+				limit = {
+					z_has_limes_ROM = yes
+				}
+				make_subject = {
+					target = $target$
+					type = z_limes_mm_ROM
+				}
+			}
+			# Default
+			else = {
+				make_subject = {
+					target = $target$
+					type = z_limes_mm
+				}
+			}
+		}
+		# Small chance to spawn a tributary instead of a MM
+		10 = {
+			if = {
+				limit = { is_tribal = yes }
+				make_subject = {
+					target = $target$
+					type = vassal_tribe
+				}
+			}
+			else = {
+				make_subject = {
+					target = $target$
+					type = tributary
+				}
+			}
+		}
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Set tech level (do not use, just a memento)
+# --------------------------------------------------------------------------------
+z_limes_set_tech_effect = {
+	add_innovation = {
+		value = root.civic_tech
+		multiply = 0.75
+	}
+	add_innovation = {
+		value = root.oratory_tech
+		multiply = 0.75
+	}
+	add_innovation = {
+		value = root.religious_tech
+		multiply = 0.75
+	}
+	add_innovation = {
+		value = root.military_tech
+		multiply = 0.75
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Set country and ruler religion
+# --------------------------------------------------------------------------------
+z_limes_set_religion_effect = {
+
+	this.capital_scope = {
+	
+		this.owner.current_ruler = {
+			set_character_religion = prev.dominant_province_religion
+		}
+	
+		# VANILLA
+		# --------------------------------------------------------------------------------
+	
+		if = {
+			limit = { dominant_province_religion = egyptian_pantheon }
+			this.owner = { set_country_religion = egyptian_pantheon }
+		}
+		else_if = {
+			limit = { dominant_province_religion = roman_pantheon }					
+			this.owner = { set_country_religion = roman_pantheon }
+		}
+		else_if = {
+			limit = { dominant_province_religion = indo_iranian_religion }					
+			this.owner = { set_country_religion = indo_iranian_religion }
+		}
+		else_if = {
+			limit = { dominant_province_religion = carthaginian_pantheon }					
+			this.owner = { set_country_religion = carthaginian_pantheon }
+		}
+		else_if = {
+			limit = { dominant_province_religion = shamanism }					
+			this.owner = { set_country_religion = shamanism }
+		}
+		else_if = {
+			limit = { dominant_province_religion = caucasian_religion }					
+			this.owner = { set_country_religion = caucasian_religion }
+		}
+		else_if = {
+			limit = { dominant_province_religion = mesopotamian_religion }					
+			this.owner = { set_country_religion = mesopotamian_religion }
+		}
+		else_if = {
+			limit = { dominant_province_religion = armenian_religion }					
+			this.owner = { set_country_religion = armenian_religion }
+		}
+		else_if = {
+			limit = { dominant_province_religion = anatolian_religion }					
+			this.owner = { set_country_religion = anatolian_religion }
+		}
+		else_if = {
+			limit = { dominant_province_religion = druidism }					
+			this.owner = { set_country_religion = druidism }
+		}
+		else_if = {
+			limit = { dominant_province_religion = animism }					
+			this.owner = { set_country_religion = animism }
+		}
+		else_if = {
+			limit = { dominant_province_religion = judaism }					
+			this.owner = { set_country_religion = judaism }
+		}
+		else_if = {
+			limit = { dominant_province_religion = zoroaster }					
+			this.owner = { set_country_religion = zoroaster }
+		}
+		else_if = {
+			limit = { dominant_province_religion = berber_religion }					
+			this.owner = { set_country_religion = berber_religion }
+		}
+		else_if = {
+			limit = { dominant_province_religion = germanic_religion }					
+			this.owner = { set_country_religion = germanic_religion }
+		}
+		else_if = {
+			limit = { dominant_province_religion = indo_iranian_religion }					
+			this.owner = { set_country_religion = indo_iranian_religion }
+		}
+		else_if = {
+			limit = { dominant_province_religion = arabian_pantheon }					
+			this.owner = { set_country_religion = arabian_pantheon }
+		}
+		else_if = {
+			limit = { dominant_province_religion = buddhism }					
+			this.owner = { set_country_religion = buddhism }
+		}
+		else_if = {
+			limit = { dominant_province_religion = jainism }					
+			this.owner = { set_country_religion = jainism }
+		}
+		else_if = {
+			limit = { dominant_province_religion = hindu }					
+			this.owner = { set_country_religion = hindu }
+		}
+		else_if = {
+			limit = { dominant_province_religion = bon_religion }					
+			this.owner = { set_country_religion = bon_religion }
+		}
+		else_if = {
+			limit = { dominant_province_religion = matrist_religion }					
+			this.owner = { set_country_religion = matrist_religion }
+		}
+		
+		# INVICTUS RELIGIONS
+		# --------------------------------------------------------------------------------
+		
+		else_if = {
+			limit = { dominant_province_religion = pre_indo_european_religion }					
+			this.owner = { set_country_religion = pre_indo_european_religion }
+		}
+		else_if = {
+			limit = { dominant_province_religion = ajivika }					
+			this.owner = { set_country_religion = ajivika }
+		}
+		else_if = {
+			limit = { dominant_province_religion = eastern_animism }					
+			this.owner = { set_country_religion = eastern_animism }
+		}
+		else_if = {
+			limit = { dominant_province_religion = agama }					
+			this.owner = { set_country_religion = agama }
+		}
+		else_if = {
+			limit = { dominant_province_religion = italic_pantheon }					
+			this.owner = { set_country_religion = italic_pantheon }
+		}
+		else_if = {
+			limit = { dominant_province_religion = puntic_religion }					
+			this.owner = { set_country_religion = puntic_religion }
+		}
+		else_if = {
+			limit = { dominant_province_religion = mithra_religion }					
+			this.owner = { set_country_religion = mithra_religion }
+		}
+		else_if = {
+			limit = { dominant_province_religion = illyrian_pantheon }					
+			this.owner = { set_country_religion = illyrian_pantheon }
+		}
+		else_if = {
+			limit = { dominant_province_religion = burmese_religion }					
+			this.owner = { set_country_religion = burmese_religion }
+		}
+		else_if = {
+			limit = { dominant_province_religion = vaksh_religion }					
+			this.owner = { set_country_religion = vaksh_religion }
+		}
+		else_if = {
+			limit = { dominant_province_religion = nilotic_pantheon }					
+			this.owner = { set_country_religion = nilotic_pantheon }
+		}
+		else_if = {
+			limit = { dominant_province_religion = nuragic_pantheon }					
+			this.owner = { set_country_religion = nuragic_pantheon }
+		}
+		else_if = {
+			limit = { dominant_province_religion = anahitic_religion }					
+			this.owner = { set_country_religion = anahitic_religion }
+		}
+		else_if = {
+			limit = { dominant_province_religion = hurrian_pantheon }					
+			this.owner = { set_country_religion = hurrian_pantheon }
+		}
+		else_if = {
+			limit = { dominant_province_religion = uralic_pantheon }					
+			this.owner = { set_country_religion = uralic_pantheon }
+		}
+		else_if = {
+			limit = { dominant_province_religion = hatti_religion }					
+			this.owner = { set_country_religion = hatti_religion }
+		}
+		
+		# FALLBACK
+		# --------------------------------------------------------------------------------
+		
+		else = {
+			this.owner = { set_country_religion = roman_pantheon }
+		}
+	}	
+}

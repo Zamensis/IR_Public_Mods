@@ -1,0 +1,10 @@
+﻿# --------------------------------------------------------------------------------
+# Hide harmless errors in the log
+# --------------------------------------------------------------------------------
+z_limes_fix_effect = {
+	if = {
+		limit = { always = no }
+		# Variable is used but never set
+		set_global_variable = { name = germanic_migration }
+	}
+}

@@ -1,0 +1,94 @@
+﻿#################################################################################################	Historical Lucky Nations for the Historical setting
+#################################################################################################
+is_historical_lucky_nation = {
+	OR = {
+		tag = SEL # Seleukids
+		tag = MAC # Antipatrids
+		tag = PRY # Antigonids
+		# EGY is powerful enough
+		tag = ARM # Armenia
+		tag = BAC # Bactria (if independent)
+		tag = CAR # Carthage
+		tag = CHL # Chola
+		tag = EPI # Epirus (Pyrrhus)
+		tag = MSY # Massylia (Masinissa)
+		tag = KIO # Kios/Pontus (Poison King)
+	}
+}
+
+#################################################################################################	More Historical Lucky Nations for the Random Historical setting
+#################################################################################################
+is_historical_challenger_lucky_nation = {
+	OR = {
+	
+		is_historical_lucky_nation = yes
+		
+		# Western Barbaricum (more here to counterbalance Eastern dominance in previous list)
+		tag = AVN # Arvernia (Vercingetorix)
+		tag = BRI # Brigantes (undomitable)
+		tag = CRS # Cheruscia (Arminius)
+		tag = EBS # Eburonia
+		tag = LGB # Langobardia
+		tag = SWE # Suionia (literally SWE)
+		tag = VNL # Venellia :) (badass Atlantic Celts)
+		tag = VSC # Vasconia
+		
+		# Eastern Barbaricum
+		tag = BOA # Boihaemia
+		tag = GTE # Getia
+		tag = LBN # Libernia (Liburnia)
+		tag = SCD # Scordiscia (badass Balkan Celts)
+		tag = SCY # Scythia
+		tag = VND # Venedia
+		
+		# Western Mediterranean + Africa
+		tag = ETR # Etruria (hit or miss)
+		tag = MAS # Massilia
+		tag = MAU # Mauretania
+		tag = MSS # Massaesylia (Syphax)
+		tag = SAM # Samnium (hit or miss)
+		tag = SYR # Syracusae (Agathokles, Archimedes, Hiero, ...)
+		tag = TAT # Tartessia
+		
+		# Eastern Mediterranean + Persia/Aria (aka the Hellenistic realms)
+		tag = ATH # Athens
+		tag = CAP # Cappadocia
+		tag = CYR # Cyrenaica (Magas)
+		tag = JUD # Judea
+		tag = PER # Persis (if it exists - in Invictus it exists at start)
+		tag = SPA # Sparta
+		tag = TRE # Thrace/Lysimachids
+		
+		# Arabia
+		tag = AXM # Axum
+		tag = KSH # Kush
+		tag = MAK # Maka
+		tag = SHB # Saba
+		
+		# India
+		tag = CHR # Chera
+		tag = PND # Pandya
+		tag = ZHZ # Zhangzhung
+		
+	}
+}
+
+#################################################################################################	Cannot get Lucky under any circumstances
+#################################################################################################
+is_already_lucky = {
+	OR = {
+	
+		# Vanilla Antagonist Nations
+		tag = ROM # Rome
+		tag = PRN # Parnia
+		tag = ZNT # Zanthia
+		tag = PSS # Pissuria
+		tag = SCA # Sakia
+		tag = PAR # Parthia - Becomes Antagonist later into the game?
+		
+		# Other OP Vanilla Nations
+		tag = MRY # Maurya
+		#tag = EGY # It's ok EGY, you can stay
+		
+	}
+}

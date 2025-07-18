@@ -1,0 +1,14 @@
+﻿yearly_province_pulse = {
+
+	events = {
+		fix_scorched_earth.1 # Fix scorched earth
+		fix_scorched_earth.3 # Fix one-province uninhabited enclaves
+	}
+}
+
+monthly_country_pulse = {
+
+	events = {
+		fix_scorched_earth.2 # Fix one-province non-coastal enclaves
+	}
+}

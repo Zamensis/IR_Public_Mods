@@ -1,0 +1,428 @@
+﻿#################################################################################################
+#################################################################################################
+z_border_cleaner = { # MANUAL ONLY
+	
+	while = {
+		
+		count = z_border_cleaner_iterations
+			
+		# AREA CLEANER
+		z_border_cleaner_area_cleaner = yes
+		
+		# REGION CLEANER
+		z_border_cleaner_region_cleaner = yes
+		
+	}
+		
+	# ONE-PROVINCE NON-COASTAL ENCLAVES (from Fix Scorched Earth)
+	#########################################################################################
+	
+	if = {
+		limit = {
+			is_ai = yes
+			num_of_cities >= 10
+			any_owned_province = {
+				is_coastal = no
+				NOT = {
+					any_neighbor_province = { owner = root }
+				}
+				any_neighbor_province = {
+					has_owner = yes
+					#has_siege = no
+				}
+			}
+		}
+		ordered_owned_province = {
+			limit = {
+				is_coastal = no
+				NOT = {
+					any_neighbor_province = { owner = root }
+				}
+				any_neighbor_province = {
+					has_owner = yes
+					#has_siege = no
+				}
+			}
+			order_by = total_population
+			ordered_neighbor_province = {
+				limit = {
+					has_owner = yes
+					#has_siege = no
+				}
+				order_by = total_population
+				save_scope_as = z_border_cleaner_enclave_neighbour
+			}
+			set_owned_by = scope:z_border_cleaner_enclave_neighbour.owner
+		}
+	}
+	
+	# ONE-PROVINCE UNINHABITED ENCLAVES (from Fix Scorched Earth)
+	#########################################################################################
+	
+	if = {
+		limit = {
+			is_ai = yes
+			any_owned_province = {
+				any_neighbor_province = {
+					z_border_cleaner_op_uninhabited_enclave = yes
+				}
+			}
+		}
+		ordered_owned_province = {
+			limit = {
+				any_neighbor_province = {
+					z_border_cleaner_op_uninhabited_enclave = yes
+				}
+			}
+			random_neighbor_province = {
+				limit = {
+					z_border_cleaner_op_uninhabited_enclave = yes
+				}
+				set_owned_by = root
+				if = {
+					limit = {
+						total_population < 1
+					}
+					create_pop = freemen
+				}
+			}
+		}
+	}
+	
+	# END AI CIVIL WARS INSTANTLY
+	#########################################################################################
+	
+	if = {
+		limit = {
+			is_ai = yes
+			war = yes
+			any_current_war = {
+				is_civil_war = yes
+				is_war_leader = root
+				any_war_defender = {
+					this = root
+				}
+				NOT = {
+					any_war_participant = {
+						is_ai = no
+					}
+				}
+			}
+		}
+		random_current_war = {
+			limit = {
+				is_civil_war = yes
+				is_war_leader = root
+				any_war_defender = {
+					this = root
+				}
+				NOT = {
+					any_war_participant = {
+						is_ai = no
+					}
+				}
+			}
+			random_war_attacker = {
+				limit = {
+					civil_war_with = root
+				}
+				every_owned_province = {
+					set_owned_by = root
+				}
+			}
+		}
+	}
+	
+	# END AI NORMAL WARS INSTANTLY
+	#########################################################################################
+	
+	#if = {
+	#	limit = {
+	#		is_ai = yes
+	#		war = yes
+	#		any_current_war = {
+	#			NOT = {
+	#				any_war_participant = {
+	#					is_ai = no
+	#				}
+	#			}
+	#		}
+	#	}
+	#	random_current_war = {
+	#		limit = {
+	#			NOT = {
+	#				any_war_participant = {
+	#					is_ai = no
+	#				}
+	#			}
+	#		}
+	#		force_white_peace = this
+	#	}
+	#}	
+}
+
+#################################################################################################
+#################################################################################################
+z_border_cleaner_area_cleaner = {
+
+	# AREA CLEANER ("round up" or "round down" countries around existing areas)
+	#########################################################################################
+	
+	if = {
+		limit = {
+			z_border_cleaner_area_trigger = yes
+		}
+		
+		# SAVE AREA AND OTHER COUNTRY SCOPES
+		
+		random_owned_province = {
+			limit = {
+				z_border_cleaner_manual_auto_1 = {
+					TYPE = area
+				}
+				any_neighbor_province = {
+					has_owner = yes
+					NOT = {
+						this.owner = root
+					}
+					this.owner = {
+						is_ai = yes
+						z_border_cleaner_manual_auto_2 = {
+							TYPE = area
+						}
+					}
+				}
+			}
+			ordered_neighbor_province = {
+				limit = {
+					has_owner = yes
+					NOT = {
+						this.owner = root
+					}
+					this.owner = {
+						is_ai = yes
+						z_border_cleaner_manual_auto_2 = {
+							TYPE = area
+						}
+					}
+				}
+				this.owner = {
+					save_scope_as = z_border_cleaner_other_country
+				}
+				this.area = {
+					save_scope_as = z_border_cleaner_area
+				}
+			}
+		}
+
+		if = {
+		
+			# CHECK SIZE RATIO IN SCOPED AREA
+			
+			limit = {
+			
+				trigger_if = {	# ...BUT ONLY ON MANUAL SETTING - ON AUTO WE DON'T BOTHER BECAUSE IT ONLY APPLIES TO BIGGER COUNTRIES
+					limit = {
+						has_global_variable = z_border_cleaner_manual
+					}
+					
+					OR = {
+						AND = {
+							scope:z_border_cleaner_area = {
+								any_area_province = {
+									percent >= z_border_cleaner_area_a
+									owner = root
+								}
+							}
+							scope:z_border_cleaner_area = {
+								any_area_province = {
+									percent < z_border_cleaner_area_b
+									owner = scope:z_border_cleaner_other_country
+								}
+							}
+						}
+						AND = {
+							scope:z_border_cleaner_area = {
+								any_area_province = {
+									percent >= z_border_cleaner_area_a
+									owner = scope:z_border_cleaner_other_country
+								}
+							}
+							scope:z_border_cleaner_area = {
+								any_area_province = {
+									percent < z_border_cleaner_area_b
+									owner = root
+								}
+							}
+						}
+					}
+				}
+				trigger_else = {
+					always = yes
+				}
+			}
+			
+			# THE WEAKER LEAVES THE SCOPED AREA
+			
+			if = {
+				limit = {
+					z_border_cleaner_area_count >= z_border_cleaner_other_country_area_count
+				}
+				scope:z_border_cleaner_area = {
+					every_area_province = {
+						limit = {
+							this.owner = scope:z_border_cleaner_other_country
+						}
+						set_owned_by = root
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					z_border_cleaner_area_count < z_border_cleaner_other_country_area_count
+				}
+				scope:z_border_cleaner_area = {
+					every_area_province = {
+						limit = {
+							this.owner = root
+						}
+						set_owned_by = scope:z_border_cleaner_other_country
+					}
+				}
+			}
+		}
+	}
+}
+
+#################################################################################################
+#################################################################################################
+z_border_cleaner_region_cleaner = {
+
+	# REGION CLEANER (same as before, but for regions and with a different threshold)
+	#########################################################################################
+	
+	if = {
+		limit = {
+			z_border_cleaner_region_trigger = yes
+		}
+		
+		# SAVE REGION AND OTHER COUNTRY SCOPES
+		
+		random_owned_province = {
+			limit = {
+				z_border_cleaner_manual_auto_1 = {
+					TYPE = region
+				}
+				any_neighbor_province = {
+					has_owner = yes
+					NOT = {
+						this.owner = root
+					}
+					this.owner = {
+						is_ai = yes
+						z_border_cleaner_manual_auto_2 = {
+							TYPE = region
+						}
+					}
+				}
+			}
+			ordered_neighbor_province = {
+				limit = {
+					has_owner = yes
+					NOT = {
+						this.owner = root
+					}
+					this.owner = {
+						is_ai = yes
+						z_border_cleaner_manual_auto_2 = {
+							TYPE = region
+						}
+					}
+				}
+				this.owner = {
+					save_scope_as = z_border_cleaner_other_country
+				}
+				this.region = {
+					save_scope_as = z_border_cleaner_region
+				}
+			}
+		}
+
+		if = {
+		
+			# CHECK SIZE RATIO IN SCOPED REGION
+			
+			limit = {
+			
+				trigger_if = {	# ...BUT ONLY ON MANUAL SETTING - ON AUTO WE DON'T BOTHER BECAUSE IT ONLY APPLIES TO BIGGER COUNTRIES
+					limit = {
+						has_global_variable = z_border_cleaner_manual
+					}
+					
+					OR = {
+						AND = {
+							scope:z_border_cleaner_region = {
+								any_region_province = {
+									percent >= z_border_cleaner_region_a
+									owner = root
+								}
+							}
+							scope:z_border_cleaner_region = {
+								any_region_province = {
+									percent < z_border_cleaner_region_b
+									owner = scope:z_border_cleaner_other_country
+								}
+							}
+						}
+						AND = {
+							scope:z_border_cleaner_region = {
+								any_region_province = {
+									percent >= z_border_cleaner_region_a
+									owner = scope:z_border_cleaner_other_country
+								}
+							}
+							scope:z_border_cleaner_region = {
+								any_region_province = {
+									percent < z_border_cleaner_region_b
+									owner = root
+								}
+							}
+						}
+					}
+				}
+				trigger_else = {
+					always = yes
+				}
+			}
+			
+			# THE WEAKER LEAVES THE SCOPED REGION
+			
+			if = {
+				limit = {
+					z_border_cleaner_region_count >= z_border_cleaner_other_country_region_count
+				}
+				scope:z_border_cleaner_region = {
+					every_region_province = {
+						limit = {
+							this.owner = scope:z_border_cleaner_other_country
+						}
+						set_owned_by = root
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					z_border_cleaner_region_count < z_border_cleaner_other_country_region_count
+				}
+				scope:z_border_cleaner_region = {
+					every_region_province = {
+						limit = {
+							this.owner = root
+						}
+						set_owned_by = scope:z_border_cleaner_other_country
+					}
+				}
+			}
+		}
+	}
+}

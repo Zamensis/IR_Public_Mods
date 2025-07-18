@@ -1,0 +1,262 @@
+﻿#################################################################################################	Define FAA/MM (and ruler) religion
+#################################################################################################	Keep this in a separate file for easier compatibility management
+z_limes_set_religion = {
+
+	this.capital_scope = {
+	
+		this.owner.current_ruler = {
+			set_character_religion = prev.dominant_province_religion
+		}
+	
+		##### VANILLA RELIGIONS #################################################################
+		#########################################################################################
+	
+		if = {
+			limit = { dominant_province_religion = egyptian_pantheon }
+			this.owner = { set_country_religion = egyptian_pantheon }
+		}
+		else_if = {
+			limit = { dominant_province_religion = roman_pantheon }					
+			this.owner = { set_country_religion = roman_pantheon }
+		}
+		else_if = {
+			limit = { dominant_province_religion = indo_iranian_religion }					
+			this.owner = { set_country_religion = indo_iranian_religion }
+		}
+		else_if = {
+			limit = { dominant_province_religion = carthaginian_pantheon }					
+			this.owner = { set_country_religion = carthaginian_pantheon }
+		}
+		else_if = {
+			limit = { dominant_province_religion = shamanism }					
+			this.owner = { set_country_religion = shamanism }
+		}
+		else_if = {
+			limit = { dominant_province_religion = caucasian_religion }					
+			this.owner = { set_country_religion = caucasian_religion }
+		}
+		else_if = {
+			limit = { dominant_province_religion = mesopotamian_religion }					
+			this.owner = { set_country_religion = mesopotamian_religion }
+		}
+		else_if = {
+			limit = { dominant_province_religion = armenian_religion }					
+			this.owner = { set_country_religion = armenian_religion }
+		}
+		else_if = {
+			limit = { dominant_province_religion = anatolian_religion }					
+			this.owner = { set_country_religion = anatolian_religion }
+		}
+		else_if = {
+			limit = { dominant_province_religion = druidism }					
+			this.owner = { set_country_religion = druidism }
+		}
+		else_if = {
+			limit = { dominant_province_religion = animism }					
+			this.owner = { set_country_religion = animism }
+		}
+		else_if = {
+			limit = { dominant_province_religion = judaism }					
+			this.owner = { set_country_religion = judaism }
+		}
+		else_if = {
+			limit = { dominant_province_religion = zoroaster }					
+			this.owner = { set_country_religion = zoroaster }
+		}
+		else_if = {
+			limit = { dominant_province_religion = berber_religion }					
+			this.owner = { set_country_religion = berber_religion }
+		}
+		else_if = {
+			limit = { dominant_province_religion = germanic_religion }					
+			this.owner = { set_country_religion = germanic_religion }
+		}
+		else_if = {
+			limit = { dominant_province_religion = indo_iranian_religion }					
+			this.owner = { set_country_religion = indo_iranian_religion }
+		}
+		else_if = {
+			limit = { dominant_province_religion = arabian_pantheon }					
+			this.owner = { set_country_religion = arabian_pantheon }
+		}
+		else_if = {
+			limit = { dominant_province_religion = buddhism }					
+			this.owner = { set_country_religion = buddhism }
+		}
+		else_if = {
+			limit = { dominant_province_religion = jainism }					
+			this.owner = { set_country_religion = jainism }
+		}
+		else_if = {
+			limit = { dominant_province_religion = hindu }					
+			this.owner = { set_country_religion = hindu }
+		}
+		else_if = {
+			limit = { dominant_province_religion = bon_religion }					
+			this.owner = { set_country_religion = bon_religion }
+		}
+		else_if = {
+			limit = { dominant_province_religion = matrist_religion }					
+			this.owner = { set_country_religion = matrist_religion }
+		}
+		
+		##### INVICTUS RELIGIONS ################################################################
+		#########################################################################################
+		
+		else_if = {
+			limit = { dominant_province_religion = pre_indo_european_religion }					
+			this.owner = { set_country_religion = pre_indo_european_religion }
+		}
+		else_if = {
+			limit = { dominant_province_religion = ajivika }					
+			this.owner = { set_country_religion = ajivika }
+		}
+		else_if = {
+			limit = { dominant_province_religion = eastern_animism }					
+			this.owner = { set_country_religion = eastern_animism }
+		}
+		else_if = {
+			limit = { dominant_province_religion = agama }					
+			this.owner = { set_country_religion = agama }
+		}
+		else_if = {
+			limit = { dominant_province_religion = puntic_religion }					
+			this.owner = { set_country_religion = puntic_religion }
+		}
+		else_if = {
+			limit = { dominant_province_religion = illyrian_pantheon }					
+			this.owner = { set_country_religion = illyrian_pantheon }
+		}
+		else_if = {
+			limit = { dominant_province_religion = burmese_religion }					
+			this.owner = { set_country_religion = burmese_religion }
+		}
+		else_if = {
+			limit = { dominant_province_religion = mithra_religion }					
+			this.owner = { set_country_religion = mithra_religion }
+		}
+		else_if = {
+			limit = { dominant_province_religion = vaksh_religion }					
+			this.owner = { set_country_religion = vaksh_religion }
+		}
+		else_if = {
+			limit = { dominant_province_religion = nilotic_pantheon }					
+			this.owner = { set_country_religion = nilotic_pantheon }
+		}
+		else_if = {
+			limit = { dominant_province_religion = nuragic_pantheon }					
+			this.owner = { set_country_religion = nuragic_pantheon }
+		}
+		else_if = {
+			limit = { dominant_province_religion = anahitic_religion }					
+			this.owner = { set_country_religion = anahitic_religion }
+		}
+		#else_if = {																				# WHEN TI UPDATES TO INV 1.7
+		#	limit = { dominant_province_religion = hurrian_pantheon }
+		#	this.owner = { set_country_religion = hurrian_pantheon }
+		#}
+		
+		##### TERRA INDOMITA RELIGIONS ##########################################################
+		#########################################################################################
+		
+		else_if = {
+			limit = { dominant_province_religion = christianity }					
+			this.owner = { set_country_religion = christianity }
+		}
+		else_if = {
+			limit = { dominant_province_religion = manichaeism }					
+			this.owner = { set_country_religion = manichaeism }
+		}
+		else_if = {
+			limit = { dominant_province_religion = chinese_religions }					
+			this.owner = { set_country_religion = chinese_religions }
+		}
+		else_if = {
+			limit = { dominant_province_religion = taoism }					
+			this.owner = { set_country_religion = taoism }
+		}
+		else_if = {
+			limit = { dominant_province_religion = confucian }					
+			this.owner = { set_country_religion = confucian }
+		}
+		else_if = {
+			limit = { dominant_province_religion = mohism }					
+			this.owner = { set_country_religion = mohism }
+		}
+		else_if = {
+			limit = { dominant_province_religion = baiyue_religions }					
+			this.owner = { set_country_religion = baiyue_religions }
+		}
+		else_if = {
+			limit = { dominant_province_religion = yi_religions }					
+			this.owner = { set_country_religion = yi_religions }
+		}
+		else_if = {
+			limit = { dominant_province_religion = wa_religions }					
+			this.owner = { set_country_religion = wa_religions }
+		}
+		else_if = {
+			limit = { dominant_province_religion = ainu_religion }					
+			this.owner = { set_country_religion = ainu_religion }
+		}
+		else_if = {
+			limit = { dominant_province_religion = tunguistic_religion }					
+			this.owner = { set_country_religion = tunguistic_religion }
+		}
+		else_if = {
+			limit = { dominant_province_religion = hu_religions }					
+			this.owner = { set_country_religion = hu_religions }
+		}
+		else_if = {
+			limit = { dominant_province_religion = uralic_pantheon }					
+			this.owner = { set_country_religion = uralic_pantheon }
+		}
+		else_if = {
+			limit = { dominant_province_religion = nivkh_religion }					
+			this.owner = { set_country_religion = nivkh_religion }
+		}
+		else_if = {
+			limit = { dominant_province_religion = tai_religion }					
+			this.owner = { set_country_religion = tai_religion }
+		}
+		else_if = {
+			limit = { dominant_province_religion = satsana_phi_religion }					
+			this.owner = { set_country_religion = satsana_phi_religion }
+		}
+		else_if = {
+			limit = { dominant_province_religion = funan_religion }					
+			this.owner = { set_country_religion = funan_religion }
+		}
+		else_if = {
+			limit = { dominant_province_religion = austronesian_religion }					
+			this.owner = { set_country_religion = austronesian_religion }
+		}
+		else_if = {
+			limit = { dominant_province_religion = pinoy_religion }					
+			this.owner = { set_country_religion = pinoy_religion }
+		}
+		else_if = {
+			limit = { dominant_province_religion = taiwan_religion }					
+			this.owner = { set_country_religion = taiwan_religion }
+		}
+		else_if = {
+			limit = { dominant_province_religion = masto_pantheon }					
+			this.owner = { set_country_religion = masto_pantheon }
+		}
+		else_if = {
+			limit = { dominant_province_religion = charvaka }					
+			this.owner = { set_country_religion = charvaka }
+		}
+		else_if = {
+			limit = { dominant_province_religion = elamite_pantheon }					
+			this.owner = { set_country_religion = elamite_pantheon }
+		}
+		
+		##### FALL BACK #########################################################################
+		#########################################################################################
+		
+		else = {
+			this.owner = { set_country_religion = roman_pantheon }
+		}
+	}	
+}

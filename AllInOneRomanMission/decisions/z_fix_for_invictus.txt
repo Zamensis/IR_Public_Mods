@@ -1,0 +1,95 @@
+﻿# FIX FOR INVICTUS
+# ALLOW ROME TO CONVERT NORMALLY
+country_decisions = {
+	
+	convert_to_hellenic = {
+		
+		potential = {
+			NOT = { religion = roman_pantheon }
+			num_of_cities >= 1
+			trigger_if = {
+				limit = {
+					tag = ROM
+					is_ai = no
+				}
+				NOT = {
+					has_global_variable = roman_conversion_has_happened
+				}
+				potential_change_religion_trigger = {
+					RELIGION = roman_pantheon
+				}
+			}
+			trigger_else_if = {
+				limit = {
+					tag = ROM
+					is_ai = yes
+				}
+				NOT = {
+					has_global_variable = roman_conversion_has_happened
+				}
+			}
+			trigger_else = {
+				potential_change_religion_trigger = {
+					RELIGION = roman_pantheon
+				}
+			}
+		}
+
+		allow = {
+			trigger_if = {
+				limit = {
+					tag = ROM
+				}
+				AND = {
+					region:magna_graecia_region = {
+						any_region_province = {
+							percent > 0.5
+							has_owner = yes
+							owner = c:ROM
+						}
+					}
+					region:central_italy_region = {
+					any_region_province = {
+						percent > 0.5
+							has_owner = yes
+							owner = c:ROM
+						}
+					}
+				}
+			}
+			trigger_else = {
+				could_change_religion_trigger = {
+					RELIGION = roman_pantheon
+				}
+			}
+		}
+		
+		effect = {
+			change_religion_effect = {
+				RELIGION = roman_pantheon
+			}
+			if = {
+				limit = {
+					tag = ROM
+				}
+				set_global_variable = {
+					name = roman_conversion_has_happened
+				}
+			}
+		}
+		
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				add = 1
+				capital_scope = {
+					dominant_province_religion = roman_pantheon
+				}
+			}
+			modifier = {
+				add = 1
+				tag = ROM
+			}
+		}
+	}
+}

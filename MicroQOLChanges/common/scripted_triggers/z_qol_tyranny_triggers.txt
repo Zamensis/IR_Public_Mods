@@ -1,0 +1,31 @@
+﻿# --------------------------------------------------------------------------------
+# Check if two characters have the same party
+# --------------------------------------------------------------------------------
+has_same_party = {
+	OR = {
+		AND = {
+			$first$ = { party_type = optimates_party }
+			$second$ = { party_type = optimates_party }
+		}
+		AND = {
+			$first$ = { party_type = boni_party }
+			$second$ = { party_type = boni_party }
+		}
+		AND = {
+			$first$ = { party_type = populares_party }
+			$second$ = { party_type = populares_party }
+		}
+		AND = {
+			$first$ = { party_type = oligarchic_party }
+			$second$ = { party_type = oligarchic_party }
+		}
+		AND = {
+			$first$ = { party_type = democratic_party }
+			$second$ = { party_type = democratic_party }
+		}
+		AND = {
+			$first$ = { party_type = traditionalist_party }
+			$second$ = { party_type = traditionalist_party }
+		}
+	}
+}

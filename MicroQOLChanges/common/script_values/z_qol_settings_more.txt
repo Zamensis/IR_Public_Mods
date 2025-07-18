@@ -1,0 +1,29 @@
+﻿# AUTO REPLACEMENT OF GOVERNORS				# EFFECT
+# ----------------							# --------------------------------------------
+
+z_qol_governor_civil_war = 1				# Set this to 0 to disable the suggestion of new governors during civil wars (default: 1)
+
+z_qol_governor_finesse = 4					# Proposed governors must have at least this much Finesse (default: 4)
+z_qol_governor_martial = 4					# Proposed governors must have at least this much Martiality (default: 4)
+z_qol_governor_loyalty = 55					# Proposed governors must have at least this much Loyalty (default: 55)
+
+z_qol_governor_scorned_finesse = 3			# Proposed governors from scorned families must have at least this much Finesse (default: 3)
+z_qol_governor_scorned_martial = 0			# Proposed governors from scorned families must have at least this much Martiality (default: 0)
+z_qol_governor_scorned_loyalty = 50			# Proposed governors from scorned families must have at least this much Loyalty (default: 50)
+
+# MISC AUTO FEATURES						# EFFECT
+# ----------------							# --------------------------------------------
+
+z_qol_auto_harsh_treatment_loyalty = 25		# Loyalty threshold for triggering auto harsh treatment policy
+z_qol_auto_harsh_treatment_cost = 5			# Fixed cost in influence for auto harsh treatment policy (default: 5 = Vanilla average cost for policy change)
+
+z_qol_auto_influence_default = 40			# Minimum ruler popularity for auto-influence in republics and tribes (default: 40)
+z_qol_auto_influence_monarchy = 65			# Minimum ruler popularity for auto-influence in monarchies (default: 65)
+
+# MISC "CHEATS"								# EFFECT
+# ----------------							# --------------------------------------------
+
+z_qol_easy_veto_factor = 0.5				# When vetoing a party agenda, multiply the Vanilla penalty by this factor (default: 0.5)
+
+z_qol_pirates_republic = 50					# Stability threshold in republics for rooting out pirates without anti-piracy laws (default: 50)
+z_qol_pirates_monarchy = 65					# Legitimacy threshold in monarchies for rooting out pirates without anti-piracy laws (default: 65)

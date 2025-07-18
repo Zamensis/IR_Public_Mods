@@ -1,0 +1,130 @@
+﻿#################################################################################################	Clear scopes
+#################################################################################################
+z_qold_clear_vassal_scopes = {
+	clear_saved_scope = z_qold_potential_overlord
+	clear_saved_scope = z_qold_potential_contender
+	clear_saved_scope = z_qold_potential_overlord_1
+	clear_saved_scope = z_qold_potential_overlord_2
+	clear_saved_scope = z_qold_potential_overlord_3
+	clear_saved_scope = z_qold_potential_overlord_4
+	clear_saved_scope = z_qold_potential_overlord_5
+}
+
+#################################################################################################	Actually Become A Vassal
+#################################################################################################
+z_qold_become_vassalized = {
+	scope:z_qold_potential_overlord = {
+		if = {
+			limit = {
+				is_tribal = no
+				capital_scope = {
+					civilization_value > root.capital_scope.civilization_value
+				}
+				root = {
+					is_tribal = yes
+				}
+			}
+			make_subject = {														
+				target = root
+				type = vassal_tribe
+			}
+		}
+		else_if = {
+			limit = {
+				num_of_cities >= 150
+				is_monarchy = yes
+				root = {
+					is_tradition_tree_allowed = persian_philosophy
+					num_of_cities > 40
+					is_monarchy = yes
+				}
+			}
+			make_subject = {
+				target = root
+				type = satrapy
+			}
+		}
+		else_if = {
+			limit = {
+				num_of_cities >= 20
+				is_tribal = no
+				this.culture_group = root.culture_group
+				root = {
+					num_of_cities <= 10
+				}
+			}
+			make_subject = {														
+				target = root
+				type = feudatory
+			}
+		}
+		else = {
+			make_subject = {
+				target = root
+				type = client_state
+			}
+		}
+	}
+}
+
+#################################################################################################	or a Tributary instead
+#################################################################################################
+z_qold_become_tributarized = {
+	scope:z_qold_potential_overlord = {
+		if = {
+			limit = {
+				is_tribal = no
+				capital_scope = {
+					civilization_value > root.capital_scope.civilization_value
+				}
+				root = {
+					is_tribal = yes
+				}
+			}
+			make_subject = {														
+				target = root
+				type = vassal_tribe
+			}
+		}
+		else = {
+			make_subject = {
+				target = root
+				type = tributary
+			}
+		}
+	}
+}
+
+#################################################################################################	Protector's Response
+#################################################################################################
+z_qold_protectors_response = {
+
+	# Marriage proposal / Contender
+	
+	if = {
+		limit = {
+			is_ai = yes # dummy condition until more events are created
+		}
+		random_list = {
+			20 = {
+				#trigger_event = {
+				#	id = z_qold_become_vassal.8
+				#	days = { 30 90 }
+				#}
+			}
+		}
+	}
+	
+	# Fall back event(s)
+	
+	else = {
+		random_list = {
+			20 = {
+				trigger_event = {
+					id = z_qold_become_vassal.7
+					days = { 30 90 }
+				}
+			}
+		}
+	}	
+}

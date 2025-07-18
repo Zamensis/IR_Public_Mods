@@ -1,0 +1,284 @@
+﻿#################################################################################################	When does the Limes apply?
+#################################################################################################
+
+####### All time requirements (don't use this in events):
+
+z_has_limes = {
+	is_ai = yes
+	is_subject = no
+	has_civil_war = no
+	num_of_cities >= 15 # This to limit the number of tags created by small countries
+	z_current_year >= 0
+	NOT = {
+		has_variable = z_limes_exemption
+		has_variable = z_limes_cooldown
+	}
+}
+
+####### Country requirements (use this in events):
+
+z_has_limes_default = {
+	z_has_limes = yes
+	war = no
+	NOT = {
+		z_has_limes_ROM = yes
+		z_has_limes_MRY = yes
+		z_has_limes_SEL_PRY = yes
+		z_has_limes_PAR_PRN_ZNT_DHE = yes
+		z_has_limes_CAR = yes
+	}
+}
+
+z_has_limes_ROM = {
+	z_has_limes = yes
+	tag = ROM
+	owns = p:1
+}
+
+z_has_limes_MRY = {
+	z_has_limes = yes
+	tag = MRY
+	z_current_year < 150 # 600 AUC
+	num_of_cities >= 300
+}
+
+z_has_limes_SEL_PRY = {
+	z_has_limes = yes
+	war = no
+	OR = {
+		tag = SEL
+		tag = PRY
+	}
+	num_of_cities >= 300
+}
+
+z_has_limes_PAR_PRN_ZNT_DHE = {
+	z_has_limes = yes
+	war = no
+	OR = {
+		tag = PAR
+		tag = PRN
+		tag = ZNT
+		tag = DHE
+	}
+	this.capital_scope = {
+		OR = {
+			is_in_region = mesopotamia_region
+			is_in_region = media_region
+			is_in_region = persis_region
+			is_in_region = parthia_region
+			is_in_region = bactria_region
+			is_in_region = ariana_region
+			#is_in_region = gedrosia_region # Vanilla only
+			#is_in_region = scythia_region # Vanilla only
+			is_in_region = sakia_region # Invictus only
+		}
+	}
+	z_current_year < 100 # 550 AUC
+}
+
+z_has_limes_CAR = {
+	z_has_limes = yes
+	tag = CAR
+	has_variable = z_limes_toss_a_coin
+	var:z_limes_toss_a_coin > 50
+	z_current_year < 75 # 525 AUC
+}
+
+#################################################################################################
+#################################################################################################
+z_can_wage_war = {	
+	war = no
+	stability > 30
+	manpower > 2.5
+	num_of_ships > 20
+}
+
+z_can_be_declared_upon = {
+	is_ai = yes
+	OR = {
+		is_subject = no
+		is_subject_type = subject_league_city_state
+	}
+	NOT = {
+		this = root
+		has_truce_with = root
+		alliance_with = root
+		#this.num_of_cities > root.num_of_cities
+	}
+	#NOT = {
+	#	any_country = {
+	#		is_ai = no
+	#		alliance_with = prev
+	#	}
+	#}
+	OR = {
+		has_coasts = yes
+		any_neighbour_country = {
+			this = root
+		}
+	}
+}
+
+z_can_be_annexed = {
+	is_ai = yes
+	OR = {
+		is_subject_type = roman_faa
+		is_subject_type = client_state
+		is_subject_type = feudatory
+		is_subject_type = z_frontier_outpost
+	}
+	OR = {
+		any_neighbour_country = {
+			this = root
+		}
+		has_coasts = yes
+	}
+}
+
+#################################################################################################
+#################################################################################################
+z_limes_is_parthia = {
+	is_ai = yes
+	has_civil_war = no
+	OR = {
+		country_culture_group = persia
+		country_culture_group = scythia
+	}
+	this.capital_scope = {
+		OR = {
+			is_in_region = mesopotamia_region
+			is_in_region = media_region
+			is_in_region = persis_region
+			is_in_region = parthia_region
+			is_in_region = bactria_region
+			is_in_region = ariana_region
+			#is_in_region = gedrosia_region # Vanilla only
+			#is_in_region = scythia_region # Vanilla only
+			is_in_region = sakia_region # Invictus only
+		}
+	}
+	num_of_cities >= 100
+}
+
+z_limes_is_parthia_opponent = {
+	is_ai = yes
+	has_civil_war = no
+	NOT = {
+		this = root
+		war_with = root
+		country_culture_group = persia
+		country_culture_group = scythia
+	}
+	this.capital_scope = {
+		OR = {
+			is_in_region = mesopotamia_region
+			is_in_region = media_region
+			is_in_region = persis_region
+			is_in_region = parthia_region
+			is_in_region = bactria_region
+			is_in_region = ariana_region
+			#is_in_region = gedrosia_region # Vanilla only
+			#is_in_region = scythia_region # Vanilla only
+			is_in_region = sakia_region # Invictus only
+		}
+	}
+	num_of_cities >= 50
+}
+
+#################################################################################################
+#################################################################################################
+z_has_capital_saved = {
+	OR = {
+		tag = ROM # Rome
+		tag = CAR # Carthage
+		tag = EGY # Egypt
+		tag = CYR # Cyrenaica
+		tag = MAS # Massilia
+		tag = EPO # Emporion
+		tag = SPA # Sparta
+		tag = ATH # Athens
+		tag = SYR # Syracuse
+		tag = HMK # Hemeroskopeion
+		tag = GEL # Gelas
+		tag = MAT # Mastia
+		tag = GAD # Gadir
+		tag = IOL # Iol
+		tag = UTC # Utica
+		tag = KUA # Kerkouane
+		tag = HDR # Hadrametum
+		tag = LPT # Leptis Minor
+		tag = TPS # Thapsus
+		tag = ACO # Acholla
+		tag = IBA # Ibasim
+		tag = ACR # Acragas
+		tag = HEM # Heracleia Minor
+		tag = SIN # Selinous
+		tag = CLA # Calactea
+		tag = RHG # Rhegion
+		tag = TYN # Tyndaris
+		tag = LOC # Locri
+		tag = HPO # Hiponion
+		tag = CRO # Croton
+		tag = THU # Thuria
+		tag = HCL # Herakleia
+		tag = MET # Metapontum
+		tag = TAR # Tarentum
+		tag = ELE # Elea
+		tag = NUC # Nuceria
+		tag = SIO # Sipontum
+		tag = ANO # Ancona
+		tag = APO # Apollonia
+		tag = AMK # Ambracia
+		tag = ELI # Elis
+		tag = ARG # Argos
+		tag = LPR # Lepreon
+		tag = HRA # Heraia
+		tag = MGL # Megalopolis
+		tag = TEG # Tegea
+		tag = EPD # Epidauros
+		tag = THE # Thebes
+		tag = OPU # Opus
+		tag = EUB # Eretria/Euboea
+		tag = ORE # Oreos
+		tag = BYZ # Byzantion
+		tag = ADR # Andros
+		tag = KOS # Kos
+		tag = RHO # Rhodes
+		tag = KNI # Knidos
+		tag = HKS # Halikarnassos
+		tag = MLO # Miletos
+		tag = KZK # Kyzikos
+		tag = HCP # Heraclea Pontica
+		tag = TIE # Tieion
+		tag = SMS # Sesamos
+		tag = SNP # Sinope
+		tag = AMS # Amisos
+		tag = KYA # Kotyora
+		tag = TRZ # Trapezous
+		tag = PHI # Phasis
+		tag = CHS # Chersonesus
+		tag = OLB # Olbia
+		tag = ORG # Orgame
+		tag = ISO # Istros
+		tag = TMS # Tomis
+		tag = KTS # Kallatis
+		tag = KOI # Krounoi
+		tag = ODS # Odessos
+		tag = MES # Mesembria
+		tag = APL # Apollonia Pontica
+		tag = ISI # Isindia
+		tag = OEO # Oinoanda
+		tag = KIB # Kibyratia
+		tag = SSG # Sagalassia
+		tag = ISU # Isauria
+		tag = OBE # Olbe
+		tag = ARA # Arados
+		tag = BYB # Byblos
+		tag = SID # Sidon
+		tag = JUD # Judea
+		tag = NBT # Nabatea
+		tag = TYO # Tylos
+		tag = ARM # Armenia
+	}
+}

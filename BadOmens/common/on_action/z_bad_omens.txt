@@ -1,0 +1,60 @@
+﻿#################################################################################################	Bad Omens
+#################################################################################################
+on_game_initialized = {
+	on_actions = {
+		z_bad_omens_initialization			# Initialization
+	}
+}
+
+monthly_country_pulse = {	
+	on_actions = {	
+		z_bad_omens_monthly_country			# Default monthly country pulse
+	}
+}
+
+yearly_country_pulse = {	
+	on_actions = {	
+		z_bad_omens_yearly_country			# Default yearly country pulse
+	}
+}
+
+on_enacting_omen = {
+	events = {	
+		z_bad_omens.2						# Find out the gods' will...
+	}
+}
+
+on_ruler_change = {
+	events = {	
+		z_impiety.4							# Remove Impiety on ruler change
+	}
+}
+
+################################################################################################# Bad Omens Initialization
+#################################################################################################
+z_bad_omens_initialization = {
+	events = {
+	}
+}
+
+################################################################################################# Bad Omens Default monthly pulse
+#################################################################################################
+z_bad_omens_monthly_country = {
+	events = {		
+		z_impiety.1 # Initial Impiety increase for not having an Omen
+		z_impiety.2 # Monthly (yearly, in reality) Impiety increase for not having an Omen
+		z_impiety.3 # Monthly (yearly, in reality) Impiety decrease for having an Omen
+	}
+}
+
+################################################################################################# Bad Omens Default yearly pulse
+#################################################################################################
+z_bad_omens_yearly_country = {
+	events = {
+		# Every XXX.1.1
+		z_impiety.7 # Yearly Impiety check (makes sure it's the right gov type)
+		# Random date
+		delay = { days = { 1 360 } }
+		z_impiety.5 # Free innovation
+	}
+}

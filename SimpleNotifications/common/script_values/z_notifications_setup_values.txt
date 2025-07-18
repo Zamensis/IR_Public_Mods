@@ -1,0 +1,168 @@
+﻿#-----------------------------------------------------------------------------------------
+#
+#	Values used in notifications setup
+#
+#-----------------------------------------------------------------------------------------
+z_notifications_country_all = {
+	value = 0
+	every_country = {
+		limit = {
+			NOT = { this = root }
+			NOT = { this = scope:target.employer }
+		}
+		add = 1
+	}
+}
+
+z_notifications_country_neighbors = {
+	value = 0
+	root = {
+		every_neighbour_country = {
+			limit = {
+				NOT = { this = root }
+				NOT = { this = scope:target.employer }
+			}
+			add = 1
+		}
+	}
+}
+
+z_notifications_country_neighbors_target = {
+	value = 0
+	scope:target.employer = {
+		every_neighbour_country = {
+			limit = {
+				NOT = { this = root }
+				NOT = { this = scope:target.employer }
+			}
+			add = 1
+		}
+	}
+}
+
+z_notifications_country_culture = {
+	value = 0
+	root = {
+		every_country = {
+			limit = {
+				NOT = { this = root }
+				NOT = { this = scope:target.employer }
+				this.culture = prev.culture
+			}
+			add = 1
+		}
+	}
+}
+
+z_notifications_country_culture_group = {
+	value = 0
+	root = {
+		every_country = {
+			limit = {
+				NOT = { this = root }
+				NOT = { this = scope:target.employer }
+				this.culture.culture_group = prev.culture.culture_group
+			}
+			add = 1
+		}
+	}
+}
+
+z_notifications_country_culture_target = {
+	value = 0
+	scope:target.employer = {
+		every_country = {
+			limit = {
+				NOT = { this = root }
+				NOT = { this = scope:target.employer }
+				this.culture = prev.culture
+			}
+			add = 1
+		}
+	}
+}
+
+z_notifications_country_culture_group_target = {
+	value = 0
+	scope:target.employer = {
+		every_country = {
+			limit = {
+				NOT = { this = root }
+				NOT = { this = scope:target.employer }
+				this.culture.culture_group = prev.culture.culture_group
+			}
+			add = 1
+		}
+	}
+}
+
+z_notifications_character_culture_target = {
+	value = 0
+	root = {
+		every_country = {
+			limit = {
+				NOT = { this = root }
+				current_ruler = {
+					this.culture = scope:target.culture
+				}
+			}
+			add = 1
+		}
+	}
+}
+
+z_notifications_character_culture = {
+	value = 0
+	scope:target.employer = {
+		every_country = {
+			limit = {
+				NOT = { this = root }
+				current_ruler = {
+					this.culture = root.current_ruler.culture
+				}
+			}
+			add = 1
+		}
+	}
+}
+
+z_notifications_character_children = {
+	value = 0
+	scope:actor.current_ruler = {
+		every_child = {
+			limit = {
+				is_alive = yes
+				NOT = { this = scope:target }
+			}
+			add = 1
+		}
+	}
+}
+
+z_notifications_character_children_target = {
+	value = 0
+	scope:target = {
+		every_child = {
+			limit = {
+				is_alive = yes
+				NOT = { this = root.current_ruler }
+			}
+			add = 1
+		}
+	}
+}
+
+z_notifications_character_family_target = {
+	value = 0
+	every_country = {
+		every_character = {
+			limit = {
+				is_alive = yes
+				has_same_family = scope:target
+				NOT = { this = scope:target }
+				NOT = { this = root.current_ruler }
+			}
+			add = 1
+		}
+	}
+}

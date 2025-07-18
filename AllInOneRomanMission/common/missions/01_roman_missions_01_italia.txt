@@ -1,0 +1,6134 @@
+﻿roman_1_italia = {
+	icon = rome_1
+	header = mission_image_aiorm
+	
+	repeatable = no
+
+    chance = {
+		factor = 3
+	}
+	
+	potential = { 
+		NOT = { has_variable = roman_mission_01_italia }
+		has_dlc = "The Punic Wars"
+		tag = ROM
+		region:central_italy_region = { # Roma.Italia
+			any_region_province = { 
+				NOR = {
+					is_in_area = corsica_area
+					is_in_area = sardinia_septentrionalis
+					is_in_area = sardinia_meridionalis
+					owned_or_subject_owned = root 
+				}
+			}
+		}
+		is_subject = no
+		has_civil_war = no
+	}
+	
+	abort = {
+		ai_mission_back_out_trigger = yes
+	}
+	
+	on_potential = {
+		root = { save_scope_as = mission_country }
+		p:3276 = {
+			save_scope_as = hadrumetum
+		}
+		p:3277 = {
+			save_scope_as = leptis_minor
+		}
+		p:3278 = {
+			save_scope_as = thapsus
+		}
+		p:3280 = {
+			save_scope_as = achola
+		}
+		p:3291 = {
+			save_scope_as = tacape
+		}
+		p:3295 = {
+			save_scope_as = gergis
+		}
+		p:3303 = {
+			save_scope_as = oea
+		}
+		p:3306 = {
+			save_scope_as = leptis_magna
+		}
+		if = {
+    		limit = { is_ai = yes }
+    		region:africa_region = {
+    			every_region_province = { add_claim = ROOT }
+    		}
+    		region:numidia_region = {
+    			every_region_province = { add_claim = ROOT }
+    		}
+    		region:mauretainia_region = {
+    			every_region_province = { add_claim = ROOT }
+    		}
+    	}
+	}
+
+    on_start = {
+    	start_mission_ai_effect = yes
+    	save_scope_as = me_rome_scope
+    	c:EGY = { save_scope_as = egypt_country }
+    	c:MAC = { save_scope_as = macedon_country }
+    	c:TRE = { save_scope_as = thrace_country }
+    	c:PRY = { save_scope_as = phrygia_country }
+    	c:SEL = { save_scope_as = seleucid_country }
+    	p:422 = { save_scope_as = apollonia_province }
+    	p:4088 = { save_scope_as = rhizon_province }
+    }
+
+    on_abort = {
+    	custom_tooltip = general_mission_cooldown_tt
+		set_variable = {
+			name = roman_mission_01_italia
+			days = 3650 # Half cooldown for this one
+		}
+    }
+
+    on_completion = {
+    	complete_mission_effect = yes
+    }
+	
+	roman_1_italia_encourage_expansion = {
+		duration = 365 # 1 year
+		monthly_on_action = roman_1_italia_encourage_expansion_monthly_pulse
+		allow = {
+			custom_tooltip = {
+				text = rm_1_latin_congress_cooldown_tt
+				NOT = { has_variable = rm_1_latin_congress_cooldown }
+			}
+		}
+		on_start = {
+			set_variable = {
+				name = ongoing_mission_pulse_flag
+				days = 365
+			}
+			#set_variable = {
+			#	name = rm_1_encourage_expansion_cooldown
+			#	days = 365
+			#}
+			# DUMMIES
+			if = {
+				limit = {
+					is_ai = yes
+					is_ai = no
+				}
+				set_variable = { name = latin_citizenship_done }
+				set_variable = { name = rm_1_latin_congress_cooldown }
+				save_scope_as = negotiate_illyria_country
+			}
+		}
+		on_completion = {
+			custom_tooltip = roman_1_italia_encourage_expansion_tooltip
+			c:ROM = {
+				trigger_event = {
+					id = dhe_rome.13
+				}
+			}
+			if = {
+				limit = { is_ai = yes }
+				region:central_italy_region = {
+					every_region_province = { add_claim = ROOT }
+				}
+				region:magna_graecia_region = {
+					every_region_province = {
+						limit = {
+							NOR = {
+								is_in_area = east_sicily_area
+								is_in_area = west_sicily_area
+								is_in_area = syracuse_area
+							}
+						}
+						add_claim = ROOT
+					}
+				}
+			}
+		}
+		icon = task_political
+	}
+	
+	roman_1_italia_persuade_greeks = {
+		requires = { roman_1_italia_lash_lucanians }
+		allow = {
+			custom_tooltip = {
+				text = rm_befriend_cooldown_tooltip
+				NOT = { has_variable = rm_befriend_cooldown }
+			}
+		}
+		duration = 365 # 1 year
+		monthly_on_action = roman_1_italia_persuade_greeks_monthly_pulse
+		on_start = {
+			set_variable = {
+				name = ongoing_mission_pulse_flag
+				days = 365
+			}
+		}
+		on_completion = {
+			custom_tooltip = roman_1_italia_persuade_greeks_tooltip
+			set_variable = {
+				name = rm_befriend_cooldown
+				days = 180
+			}
+		}
+		icon = task_diplomatic
+	}
+	
+	roman_1_italia_etruscans = {
+		requires = { roman_1_italia_encourage_expansion }
+		allow = {
+			custom_tooltip = {
+				text = roman_1_italia_etruscans_tooltip_1
+				area:north_etruria_area = {
+					NOT = {
+						any_area_province = { owned_or_subject_owned = c:ETR }
+					}
+					any_area_province = {
+						count >= 3
+						owned_or_subject_owned = root
+					}
+				}
+			}
+			custom_tooltip = {
+				text = roman_1_italia_etruscans_tooltip_2
+				area:south_etruria_area = {
+					NOT = {
+						any_area_province = { owned_or_subject_owned = c:ETR }
+					}
+					any_area_province = {
+						count >= 3
+						owned_or_subject_owned = root
+					}
+				}
+			}
+			owns = 22
+		}
+		highlight = {
+			scope:province = {
+				OR = {
+					is_in_area = north_etruria_area
+					is_in_area = south_etruria_area 
+				}
+			}
+		}
+		on_completion = {
+			rome_mission_conquest_effect = yes
+			p:22.governorship = {                      
+				every_governorship_state = {
+					limit = {
+						any_state_province = {
+							OR = {
+								is_in_area = north_etruria_area
+								is_in_area = south_etruria_area
+							}
+						}
+					}
+					custom = roman_1_italia_etruscans.modtt
+					add_state_modifier = {
+						name = new_roman_conquest_smod
+						duration = 3650 # 10 years
+					}
+				}
+			}
+			c:ROM = {
+				trigger_event = {
+					id = roman_conquest.2
+				}
+			}
+			set_variable = { name = z_aiorm_roman_conquest_2 }
+		}
+		bypass = {
+			OR = {
+				any_subject = {
+					tag = ETR 
+				}
+				has_variable = z_aiorm_roman_conquest_2
+			}
+		}
+		icon = task_conquest
+	}
+	
+	roman_1_italia_unseat_umbrians = {
+		requires = { roman_1_italia_encourage_expansion }
+		allow = {
+			custom_tooltip = {
+				text = roman_1_italia_unseat_umbrians_tooltip_1
+				c:UMB = { has_land = no }
+			}
+			owns = 103
+			owns = 123
+		}
+		highlight = {
+			scope:province = {
+				OR = {
+					province_id = 103
+					province_id = 123
+				}
+			}
+		}
+		on_completion = {
+			rome_mission_conquest_effect = yes
+			p:123.governorship = {
+				every_governorship_state = {
+					limit = {
+						any_state_province = {
+							OR = {
+								is_in_area = asculum_area
+								is_in_area = ariminum_area
+							}
+						}
+					}
+					custom = roman_1_italia_unseat_umbrians.modtt
+					add_state_modifier = {
+						name = new_roman_conquest_smod
+						duration = 3650 # 10 years
+					}
+				}
+			}
+			c:ROM = {
+				trigger_event = {
+					id = roman_conquest.3
+				}
+			}
+			set_variable = { name = z_aiorm_roman_conquest_3 }
+		}
+		bypass = {
+			OR = {
+				any_subject = {
+					tag = UMB 
+				}
+				has_variable = z_aiorm_roman_conquest_3
+			}
+		}
+		icon = task_conquest
+	}
+	
+	roman_1_italia_subdue_samnites = {
+		requires = { roman_1_italia_encourage_expansion }
+		allow = {
+			custom_tooltip = {
+				text = roman_1_italia_subdue_samnites_tooltip_1
+				c:SAM = { has_land = no }
+			}
+			owns = 32
+			owns = 1718
+			owns = 41
+		}
+		highlight = {
+			scope:province = {
+				OR = {
+					province_id = 32
+					province_id = 1718
+					province_id = 41
+				}
+			}
+		}
+		on_completion = {
+			rome_mission_conquest_effect = yes
+			p:32.governorship = {
+				every_governorship_state = {
+					limit = {
+						any_state_province = {
+							is_in_area = neapolis_area
+						}
+					}
+					custom = roman_1_italia_subdue_samnites.modtt
+					add_state_modifier = {
+						name = new_roman_conquest_smod
+						duration = 3650 # 5 years
+					}
+				}
+			}
+			c:ROM = {
+				trigger_event = {
+					id = roman_conquest.4
+				}
+			}
+			set_variable = { name = z_aiorm_roman_conquest_4 }
+		}
+		bypass = {
+			OR = {
+				any_subject = {
+					tag = SAM 
+				}
+				has_variable = z_aiorm_roman_conquest_4
+			}
+		}
+		icon = task_conquest
+	}
+	
+	roman_1_italia_annex_apulians = {
+		requires = { roman_1_italia_encourage_expansion }
+		allow = {
+			custom_tooltip = {
+				text = roman_1_italia_annex_apulians_tooltip_1
+				c:APU = { has_land = no }
+				c:MSP = { has_land = no }
+			}
+			custom_tooltip = {
+				text = roman_1_italia_annex_apulians_tooltip_2
+				any_owned_province = { is_in_area = cannae_area }
+				any_owned_province = { is_in_area = tarentum_area }
+			}
+			owns = 57
+		}
+		highlight = {
+			scope:province = {
+				OR = {
+					is_in_area = cannae_area
+					is_in_area = tarentum_area
+				}
+			}
+		}
+		on_completion = {
+			rome_mission_conquest_effect = yes
+			p:57.governorship = {
+				every_governorship_state = {
+					limit = {
+						any_state_province = {
+							OR = {
+								is_in_area = cannae_area
+								is_in_area = tarentum_area
+							}
+						}
+					}
+					custom = roman_1_italia_annex_apulians.modtt
+					add_state_modifier = {
+						name = new_roman_conquest_smod
+						duration = 1825 # 5 years
+					}
+				}
+			}
+			c:ROM = {
+				trigger_event = {
+					id = roman_conquest.5
+				}
+			}
+			set_variable = { name = z_aiorm_roman_conquest_5 }
+		}
+		bypass = {
+			OR = {
+				AND = {
+					any_subject = { tag = APU }
+					any_subject = { tag = MSP }
+				}
+				has_variable = z_aiorm_roman_conquest_5
+			}
+		}
+		icon = task_conquest
+	}
+	
+	roman_1_italia_lash_lucanians = {
+		requires = { roman_1_italia_subdue_samnites }
+		allow = {
+			custom_tooltip = {
+				text = roman_1_italia_lash_lucanians_tooltip_1
+				c:LCA = { has_land = no }
+			}
+			custom_tooltip = {
+				text = roman_1_italia_lash_lucanians_tooltip_2
+				any_owned_province = {
+					is_in_area = heraclea_area
+				}
+			}
+		}
+		highlight = {
+			scope:province = {
+				is_in_area = heraclea_area
+			}
+		}
+		on_completion = {
+			rome_mission_conquest_effect = yes
+			random_province = {
+				limit = {
+					is_in_area = heraclea_area
+					exists = state
+					owner = root
+				}
+				state = {
+					add_state_modifier = {
+						name = new_roman_conquest_smod
+						duration = 3650 # 5 years
+					}
+				}
+			}
+			c:ROM = {
+				trigger_event = {
+					id = roman_conquest.6
+				}
+			}
+			set_variable = { name = z_aiorm_roman_conquest_6 }
+		}
+		bypass = {
+			OR = {
+				any_subject = {
+					tag = LCA 
+				}
+				has_variable = z_aiorm_roman_conquest_6
+			}
+		}
+		icon = task_conquest
+	}
+	
+	roman_1_italia_galvanize_gauls = {
+		requires = { roman_1_italia_unseat_umbrians }
+		allow = {
+			custom_tooltip = {
+				text = roman_1_italia_galvanize_gauls_tooltip_1
+				c:SNI = { 
+					OR = {
+						has_land = no 
+						NOT = {
+							any_owned_province = { is_in_area = ariminum_area }
+						}
+					}
+				}
+			}
+			custom_tooltip = {
+				text = roman_1_italia_galvanize_gauls_tooltip_2
+				OR = {
+					owns = 142
+					owns = 121
+				}
+			}
+		}
+		highlight = {
+			scope:province = {
+				OR = {
+					province_id = 142
+					province_id = 121
+				}
+			}
+		}
+		on_completion = {
+			rome_mission_conquest_effect = yes
+			c:ROM = {
+				trigger_event = {
+					id = roman_conquest.7
+				}
+			}
+			set_variable = { name = z_aiorm_roman_conquest_7 }
+		}
+		bypass = {
+			OR = {
+				any_subject = {
+					tag = SNI 
+				}
+				has_variable = z_aiorm_roman_conquest_7
+			}
+		}
+		icon = task_conquest
+	}
+	
+	roman_1_italia_adriatic_adventures = {
+		requires = { roman_1_italia_beat_bruttians }
+		
+		#potential = {
+		#	c:ANO = {
+		#		has_land = yes
+		#	}
+		#}
+		
+		allow = {
+			custom_tooltip = {
+				text = roman_1_italia_adriatic_adventures_tooltip_1
+				c:ANO = {
+					has_land = yes
+					owns = 117
+					num_of_cities <= 3
+					is_subject = no
+				}
+			}
+			custom_tooltip = {
+				text = roman_1_italia_adriatic_adventures_tooltip_2
+				c:ROM = {
+					OR = {
+						any_owned_province = {
+							any_neighbor_province = {
+								owner = c:ANO
+							}
+						}
+						any_subject = {
+							any_owned_province = {
+								any_neighbor_province = {
+									owner = c:ANO
+								}
+							}
+						}
+					}
+				}
+			}
+			custom_tooltip = {
+				text = rm_befriend_cooldown_tooltip
+				NOT = { has_variable = rm_befriend_cooldown }
+			}
+		}
+		on_completion = {
+			custom_tooltip = roman_1_italia_adriatic_adventures_tooltip_3
+			set_variable = {
+				name = rm_befriend_cooldown
+				days = 180
+			}
+			c:ROM = {
+				trigger_event = {
+					id = me_roman_1_roman_italia.35
+				}
+			}
+		}
+
+		bypass = {
+			OR = {
+				c:ANO = { has_land = no }
+				owns_or_subject_owns = 117
+			}
+		}
+		icon = task_diplomatic
+	}
+	
+	roman_1_italia_beat_bruttians = {
+		requires = { roman_1_italia_lash_lucanians roman_1_italia_annex_apulians }
+		allow = {
+			custom_tooltip = {
+				text = roman_1_italia_beat_bruttians_tooltip_1
+				c:BRT = { has_land = no }
+			}
+			owns = 79
+			calc_true_if = {
+				amount >= 2
+				owns_or_subject_owns = 52
+				owns_or_subject_owns = 78
+				owns_or_subject_owns = 75
+				owns_or_subject_owns = 72
+			}
+		}
+		highlight = {
+			scope:province = {
+				OR = {
+					owner = c:BRT
+					province_id = 79
+					province_id = 52
+					province_id = 78
+					province_id = 75
+					province_id = 72
+				}
+			}
+		}
+		on_completion = {
+			rome_mission_conquest_effect = yes
+			p:79 = {
+				if = {
+					limit = {
+						exists = state
+					}
+					state = {
+						add_state_modifier = {
+							name = new_roman_conquest_smod
+							duration = 3650 # 10 years
+						}
+					}
+				}
+			}
+			c:ROM = {
+				trigger_event = {
+					id = roman_conquest.8
+				}
+			}
+			set_variable = { name = z_aiorm_roman_conquest_8 }
+		}
+		bypass = {
+			OR = {
+				any_subject = {
+					tag = BRT 
+				}
+				has_variable = z_aiorm_roman_conquest_8
+			}
+		}
+		icon = task_conquest
+	}
+	
+	roman_1_italia_italian_colonia = {
+		requires = { roman_1_italia_galvanize_gauls roman_1_italia_beat_bruttians }
+		allow = {
+			custom_tooltip = {
+				text = roman_1_italia_italian_colonia_tooltip
+				region:central_italy_region = {
+					any_region_province = {
+						count >= 50
+						NOR = {
+							is_in_area = sardinia_septentrionalis
+							is_in_area = sardinia_meridionalis
+							is_in_area = corsica_area
+						}
+						owned_or_subject_owned = c:ROM
+					}
+				}
+			}
+			custom_tooltip = {
+				text = roman_1_italia_italian_colonia_graecia_tooltip
+				region:magna_graecia_region = {
+					any_region_province = {
+						count >= 25
+						NOR = {
+							is_in_area = east_sicily_area
+							is_in_area = west_sicily_area
+							is_in_area = syracuse_area
+						}
+						owned_or_subject_owned = c:ROM
+					}
+				}
+			}
+		}
+		highlight = {
+			scope:province = {
+				OR = {
+					AND = {
+						is_in_region = central_italy_region
+						NOR = {
+							is_in_area = corsica_area
+							is_in_area = sardinia_meridionalis
+							is_in_area = sardinia_septentrionalis
+						}
+					}
+					AND = {
+						is_in_region = magna_graecia_region
+						NOR = {
+							is_in_area = east_sicily_area
+							is_in_area = west_sicily_area
+							is_in_area = syracuse_area
+						}
+					}
+				}
+			}
+		}
+		on_completion = {
+			custom_tooltip = roman_1_italia_italian_colonia_tooltip_2
+			c:ROM = {
+				add_2_free_province_investments = yes
+				trigger_event = {
+					id = me_roman_1_roman_italia.34
+				}
+			}
+		}
+		icon = task_economical
+	}
+	
+	roman_1_italia_roman_hegemony = {
+		requires = { roman_1_italia_italian_colonia }
+		duration = 180
+
+		bypass = {
+			has_variable = latin_citizenship_done
+		}
+
+		on_bypass = {
+			if = {
+				limit = {
+					has_variable = latin_citizenship_done
+				}
+				remove_variable = latin_citizenship_done
+			}
+		}
+
+		on_start = {
+			set_variable = roman_hegemony_done
+		}
+
+		on_completion = {
+			current_ruler = { add_popularity = popularity_small }
+			show_as_tooltip = {
+				add_country_modifier = {
+					name = rm_roman_hegemony_cmod
+					duration = 9125 # 25 years
+				}
+				add_stability = -10.0
+			}
+			custom_tooltip = roman_1_italia_roman_hegemony_tooltip
+			c:ROM = {
+				trigger_event = {
+					id = me_roman_1_roman_italia.19
+				}
+			}
+			if = {
+				limit = { is_ai = yes }
+				region:magna_graecia_region = {
+					every_region_province = { add_claim = ROOT }
+				}
+			}
+			if = {
+				limit = { is_ai = yes }
+				region:cisalpine_gaul_region = {
+					every_region_province = { add_claim = ROOT }
+				}
+				area:alpes_maritimae_area = {
+					every_area_province = {
+						add_claim = root
+					}
+				}
+				area:narbonensis_occidentalis_area = {
+					every_area_province = {
+						add_claim = root
+					}
+				}
+				area:narbonensis_centralis_area = {
+					every_area_province = {
+						add_claim = root
+					}
+				}
+			}
+		}
+
+		#final = yes
+		icon = task_expansion
+	}
+	
+	roman_2_provincia_case_for_expansion = {
+		requires = { roman_1_italia_roman_hegemony }
+		duration = 180 # 0.5 years
+		monthly_on_action = roman_2_provincia_case_for_expansion_monthly_pulse
+		on_start = {
+			set_variable = {
+				name = ongoing_mission_pulse_flag
+				days = 180
+			}
+		}
+		on_completion = {
+			custom_tooltip = roman_2_provincia_case_for_expansion_tooltip
+			c:ROM = {
+				trigger_event = {
+					id = me_roman_2_provincia.4
+				}
+			}
+			if = { #Dirty hax for AI since it struggles to navally land without proper reasons.
+				limit = {
+					is_ai = yes
+					exists = c:CAR
+					c:CAR = {
+						is_ai = yes
+						any_owned_province = {
+							OR = {
+								is_in_area = corsica_area
+								is_in_area = sardinia_meridionalis
+								is_in_area = sardinia_septentrionalis
+							}
+						}
+					}
+				}
+				c:CAR = {
+					every_owned_province = {
+						limit = {
+							NOT = {
+								this = c:CAR.capital_scope
+							}
+							OR = {
+								is_in_area = corsica_area
+								is_in_area = sardinia_meridionalis
+								is_in_area = sardinia_septentrionalis
+							}
+						}
+						set_owned_by = ROOT
+					}
+				}
+			}
+			if = {
+				limit = {
+					is_ai = yes
+					p:3508 = {
+						has_owner = no
+						total_population > 0
+					}
+				}
+				p:3508 = {
+					set_owned_by = root
+					create_state_pop = freemen
+					create_state_pop = freemen
+					create_state_pop = freemen
+					create_state_pop = freemen
+					create_state_pop = freemen
+					create_state_pop = freemen
+				}
+			}
+		}
+		icon = task_political
+	}
+	
+	roman_2_provincia_conquer_corsica = {
+		requires = { roman_2_provincia_case_for_expansion }
+		allow = {
+			custom_tooltip = {
+				text = roman_2_provincia_conquer_corsica_tooltip
+				area:corsica_area = {
+					NOT = {
+						any_area_province = {
+							has_owner = yes
+							NOT = {
+								owned_or_subject_owned = root
+							}
+						}
+					}
+				}
+			}
+		}
+		highlight = {
+			scope:province = {
+				AND = {
+					is_in_area = corsica_area
+					has_owner = yes
+				}
+			}
+		}
+
+		on_completion = {
+			rome_mission_conquest_effect = yes
+			c:ROM = {
+				trigger_event = {
+					id = roman_conquest.9
+				}
+			}
+			set_variable = { name = z_aiorm_roman_conquest_9 }
+		}
+		bypass = {
+			has_variable = z_aiorm_roman_conquest_9
+		}
+		icon = task_conquest
+	}
+	
+	roman_2_provincia_subdue_sardinia = {
+		requires = { roman_2_provincia_case_for_expansion }
+		allow = {
+			custom_tooltip = {
+				text = roman_2_provincia_subdue_sardinia_tooltip
+				area:sardinia_meridionalis = {
+					NOT = {
+						any_area_province = {
+							has_owner = yes
+							is_coastal = yes
+							NOT = {
+								owned_or_subject_owned = root
+							}
+						}
+					}
+				}
+				area:sardinia_septentrionalis = {
+					NOT = {
+						any_area_province = {
+							has_owner = yes
+							is_coastal = yes
+							NOT = {
+								owned_or_subject_owned = root
+							}
+						}
+					}
+				}
+			}
+			custom_tooltip = {
+				text = roman_2_provincia_subdue_sardinia_tooltip_2
+				area:sardinia_meridionalis = {
+					NOT = {
+						any_area_province = {
+							has_owner = yes
+							NOR = {
+								owned_or_subject_owned = root
+								owner = {
+									primary_culture = nuragic
+								}
+							}
+							
+						}
+					}
+				}
+				area:sardinia_septentrionalis = {
+					NOT = {
+						any_area_province = {
+							has_owner = yes
+							NOR = {
+								owned_or_subject_owned = root
+								owner = {
+									primary_culture = nuragic
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		highlight = {
+			scope:province = {
+				AND = {
+					OR = {
+						is_in_area = sardinia_meridionalis
+						is_in_area = sardinia_septentrionalis
+					}
+					OR = {
+						is_coastal = yes
+						owner = {
+							NOT = { primary_culture = nuragic }
+						}
+					}
+				}
+			}
+		}
+		on_completion = {
+			rome_mission_conquest_effect = yes
+			c:ROM = {
+				trigger_event = {
+					id = roman_conquest.10
+				}
+			}
+		}
+		icon = task_conquest
+	}
+	
+	roman_2_provincia_settling_corsica = {
+		requires = { roman_2_provincia_conquer_corsica }
+		duration = 548 # 1.5 years
+		monthly_on_action = roman_2_provincia_settling_corsica_monthly_pulse
+		on_start = {
+			trigger_event = { id = me_roman_2_provincia.12 }
+			trigger_event = {
+				id = me_roman_2_provincia.11
+				days = { 15 20 }
+			}
+			set_variable = {
+				name = rm_col_grace_period
+				days = 21
+			}
+			set_variable = {
+				name = ongoing_mission_pulse_flag
+				days = 548
+			}
+		}
+		on_completion = {
+			trigger_event = { id = me_roman_2_provincia.15 }
+			custom_tooltip = roman_2_provincia_settling_corsica_tooltip
+		}
+		bypass = {
+			OR = {
+				AND = {
+					NOT = { has_variable = rm_2_col_active }
+					OR = {
+						area:corsica_area = {
+							any_area_province = {
+								count = all
+								owner = root
+							}
+						}
+						area:corsica_area = {
+							any_area_province = {
+								count = all
+								has_owner = yes
+								OR = {
+									owner = root
+									NOT = { owner = root }
+								}
+							}
+						}
+					}
+				}
+				area:corsica_area = {
+					any_area_province = {
+						count = all
+						has_owner = no
+					}
+				}
+			}
+		}
+		icon = task_economical
+	}
+	
+	roman_2_provincia_unruly_populace = {
+		requires = { roman_2_provincia_subdue_sardinia }
+		monthly_on_action = roman_2_provincia_unruly_populace_monthly_pulse
+		duration = 180 # 0.5 years
+		allow = {
+			custom_tooltip = {
+				text = roman_2_provincia_unruly_populace_allow_tt
+				area:sardinia_meridionalis = {
+					NOT = {
+						any_area_province = {
+							has_owner = yes
+							owner = {
+								NOR = {
+									this = root
+									is_subject_of = root
+									country_culture_group = proto_european
+								}
+							}
+						}
+					}
+				}
+				area:sardinia_septentrionalis = {
+					NOT = {
+						any_area_province = {
+							has_owner = yes
+							owner = {
+								NOR = {
+									this = root
+									is_subject_of = root
+									country_culture_group = proto_european
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		highlight = {
+			scope:province = {
+				OR = {
+					is_in_area = sardinia_meridionalis
+					is_in_area = sardinia_septentrionalis
+				}
+				has_owner = yes
+				owner = {
+					NOT = {
+						country_culture_group = proto_european
+					}
+				}
+			}
+		}
+		on_start = {
+			set_variable = {
+				name = ongoing_mission_pulse_flag
+				days = 180
+			}
+		}
+		on_completion = {
+			custom_tooltip = roman_2_provincia_unruly_populace_tooltip_2
+			if = {
+				limit = {
+					NOT = { has_variable = rm_2_sardinian_subject }
+				}
+				trigger_event = {
+					id = me_roman_2_provincia.24
+				}
+			}
+		}
+		icon = task_political
+	}
+	
+	roman_2_provincia_subdue_siculians = { # Sicilian Foothold
+		requires = { roman_2_provincia_case_for_expansion }
+		allow = {
+			 custom_tooltip = {
+				text = roman_2_provincia_subdue_siculians_tooltip
+				area:east_sicily_area = {
+					NOT = {
+						any_area_province = {
+							has_owner = yes
+							is_coastal = yes
+							NOT = {
+								owned_or_subject_owned = root
+							}
+						}
+					}
+				}
+			}
+		}
+		highlight = {
+			scope:province = {
+				AND = {
+					is_in_area = east_sicily_area
+					is_coastal = yes
+				}
+			}
+		}
+		on_completion = {
+			rome_mission_conquest_effect = yes
+			show_as_tooltip = {
+                p:80.governorship = {
+                    every_governorship_state = {
+                        limit = {
+                            any_state_province = {
+                                is_in_area = east_sicily_area
+                            }
+                        }
+                        add_state_modifier = {
+                            name = new_roman_conquest_smod
+                            duration = 1825 # 5 years
+                        }
+                    }
+                }
+            }
+			c:ROM = {
+				trigger_event = {
+					id = roman_conquest.11
+				}
+			}
+		}
+		bypass = {
+			any_subject = {
+				owns = 80
+				OR = {
+					tag = SCU 
+					tag = CLA 
+					tag = TYN
+				}
+			}
+		}
+		icon = task_conquest
+		
+	}
+	
+	roman_2_provincia_sweeten_siculians = {
+		requires = { roman_2_provincia_case_for_expansion }
+		allow = {
+			custom_tooltip = {
+				text = roman_2_provincia_sweeten_siculians_tooltip
+				OR = {
+					AND = {
+						c:SCU = {
+							has_land = yes
+							capital_scope = {
+								OR = {
+									is_in_area = east_sicily_area
+									is_in_area = west_sicily_area
+									is_in_area = syracuse_area
+								}
+							}
+							num_of_cities < 10
+						}
+						NOT = { has_truce_with = c:SCU }
+					}
+					AND = {
+						any_country = {
+							capital_scope = {
+								OR = {
+									is_in_area = east_sicily_area
+									is_in_area = west_sicily_area
+									is_in_area = syracuse_area
+								}
+							}
+							num_of_cities < 10
+							primary_culture = siculian
+							save_temporary_scope_as = scu_temp_scope
+						}
+						trigger_if = {
+							limit = { exists = scope:scu_temp_scope }
+							NOT = { has_truce_with = scope:scu_temp_scope }
+						}
+					}
+				}
+			}
+			custom_tooltip = {
+				text = rm_befriend_cooldown_tooltip
+				NOT = { has_variable = rm_befriend_cooldown }
+			}
+		}
+		on_completion = {
+			custom_tooltip = roman_2_provincia_sweeten_siculians_tooltip_2
+			set_variable = {
+				name = rm_befriend_cooldown
+				days = 180
+			}
+			if = {
+				limit = {
+					c:SCU = {
+						has_land = yes
+						capital_scope = {
+							OR = {
+								is_in_area = east_sicily_area
+								is_in_area = west_sicily_area
+								is_in_area = syracuse_area
+							}
+						}
+						num_of_cities < 10
+					}
+					NOT = { has_truce_with = c:SCU }
+				}
+				c:SCU = { save_scope_as = rm_offer_scope }
+			}
+			else_if = {
+				limit = {
+					any_country = {
+						capital_scope = {
+							OR = {
+								is_in_area = east_sicily_area
+								is_in_area = west_sicily_area
+								is_in_area = syracuse_area
+							}
+						}
+						num_of_cities < 10
+						primary_culture = siculian
+						save_temporary_scope_as = scu_temp_scope
+					}
+					NOT = { has_truce_with = scope:scu_temp_scope }
+				}
+				ordered_country = {
+					limit = {
+						capital_scope = {
+							OR = {
+								is_in_area = east_sicily_area
+								is_in_area = west_sicily_area
+								is_in_area = syracuse_area
+							}
+						}
+						num_of_cities < 10
+						primary_culture = siculian
+						save_temporary_scope_as = scu_temp_scope
+						root = {
+							NOT = { has_truce_with = scope:scu_temp_scope }
+						}
+					}
+					order_by = num_of_cities
+					save_scope_as = rm_offer_scope
+				}
+			}
+			c:ROM = {
+				trigger_event = {
+					id = me_roman_2_provincia.16
+				}
+			}
+		}
+		bypass = {
+			OR = {
+				c:SCU = {
+					has_land = yes
+					capital_scope = {
+						OR = {
+							is_in_area = east_sicily_area
+							is_in_area = west_sicily_area
+							is_in_area = syracuse_area
+						}
+					}
+					num_of_cities < 10
+					is_subject_of = c:ROM
+				}
+				AND = {
+					c:SCU = {
+						has_land = no
+					}
+					NOT = {
+						any_country = {
+							capital_scope = {
+								OR = {
+									is_in_area = east_sicily_area
+									is_in_area = west_sicily_area
+									is_in_area = syracuse_area
+								}
+							}
+							num_of_cities < 10
+							primary_culture = siculian
+						}
+						NOT = { is_subject_of = c:ROM }
+					}
+				}
+			}
+		}
+		icon = task_diplomatic
+	}
+	
+	roman_2_provincia_grate_greeks = {
+		requires = { roman_2_provincia_subdue_siculians }
+		allow = {
+			custom_tooltip = {
+				text = roman_2_provincia_grate_greeks_tooltip_2
+				c:SYR = {
+					has_land = no 
+				}
+			}
+			custom_tooltip = {
+				text = roman_2_provincia_grate_greeks_tooltip_1
+				owns_or_subject_owns_area = area:east_sicily_area
+				area:syracuse_area = {
+					NOT = {
+						any_area_province = {
+							NOT = { this = p:1471 } # Malta
+							NOT = { owned_or_subject_owned = root }
+						}
+					}
+				}
+			}
+			
+		}
+		highlight = {
+			scope:province = {
+				OR = {
+					is_in_area = east_sicily_area
+					AND = {
+						is_in_area = syracuse_area
+						NOT = { province_id = 1471 }
+					}
+				}
+			}
+		}
+		on_completion = {
+			rome_mission_conquest_effect = yes
+			show_as_tooltip = {
+                p:84.governorship = {
+                    every_governorship_state = {
+                        limit = {
+                            any_state_province = {
+                                is_in_area = syracuse_area
+                            }
+                        }
+                        add_state_modifier = {
+                            name = new_roman_conquest_smod
+                            duration = 1825 # 5 years
+                        }
+                    }
+                }
+            }
+			if = {
+				limit = {
+					exists = c:CAR
+					c:CAR = {
+						has_land = yes
+						any_owned_province = {
+							OR = {
+								is_in_area = east_sicily_area
+								is_in_area = west_sicily_area
+							}
+						}
+					}
+				}
+				c:ROM = {
+					add_manpower = 15
+					declare_war_with_wargoal = {
+						war_goal = imperial_conquest_wargoal
+						target = c:CAR
+					}
+				}
+			}
+			c:ROM = {
+				trigger_event = {
+					id = roman_conquest.12
+				}
+			}
+		}
+		bypass = {
+			any_subject = {
+				tag = SYR
+			}
+		}
+		icon = task_conquest
+	}
+	
+	roman_2_provincia_expel_punics = {
+		requires = { roman_2_provincia_subdue_siculians }
+		allow = {
+			custom_tooltip = {
+				text = roman_2_provincia_expel_punics_tooltip_1
+				trigger_if = {
+					limit = {
+						is_ai = yes
+					}
+					any_owned_province = {
+						count >= 6
+						is_in_area = west_sicily_area
+					}
+				}
+				trigger_else = {
+					owns_or_subject_owns_area = area:west_sicily_area
+				}
+			}
+			custom_tooltip = {
+				text = roman_2_provincia_expel_punics_tooltip_2
+				area:west_sicily_area = {
+					NOT = {
+						any_area_province = {
+							has_owner = yes
+							owner = c:CAR
+						}
+					}
+				}
+				area:syracuse_area = {
+					NOT = {
+						any_area_province = {
+							NOT = { this = p:1471 } # Malta
+							has_owner = yes
+							owner = c:CAR
+						}
+					}
+				}
+				area:east_sicily_area = {
+					NOT = {
+						any_area_province = {
+							has_owner = yes
+							owner = c:CAR
+						}
+					}
+				}
+			}
+		}
+		highlight = {
+			scope:province = {
+				OR = {
+					is_in_area = west_sicily_area
+					AND = {
+						owner = c:CAR
+						OR = {
+							is_in_area = west_sicily_area
+							is_in_area = east_sicily_area
+							AND = {
+								is_in_area = syracuse_area
+								NOT = { province_id = 1471 }
+							}
+						}
+					}
+				}
+			}
+		}
+		on_completion = {
+			rome_mission_conquest_effect = yes
+			c:ROM = {
+				trigger_event = {
+					id = roman_conquest.13
+				}
+			}
+		}
+		bypass = {
+			any_subject = {
+				tag = CAR
+			}
+		}
+		icon = task_conquest
+	}
+	
+	roman_2_provincia_bread_basket = { # The Bread Basket
+		requires = { roman_2_provincia_grate_greeks roman_2_provincia_expel_punics }
+		duration = 180
+		allow = {
+			custom_tooltip = {
+				text = roman_2_provincia_bread_basket_tooltip
+				trigger_if = {
+					limit = {
+						is_ai = yes
+					}
+					always = yes #Filthy cheats - they aren't the best at subject war chaining strength calculation
+				}
+				trigger_else = {
+					owns_or_subject_owns_area = area:east_sicily_area
+					owns_or_subject_owns_area = area:west_sicily_area
+					owns_or_subject_owns = p:84
+					owns_or_subject_owns = p:101
+					owns_or_subject_owns = p:85
+					owns_or_subject_owns = p:86
+					owns_or_subject_owns = p:88
+					owns_or_subject_owns = p:7840
+					owns_or_subject_owns = p:83
+					owns_or_subject_owns = p:7837
+				}
+			}
+		}
+		highlight = {
+			scope:province = {
+				OR = {
+					is_in_area = east_sicily_area
+					AND = {
+						is_in_area = syracuse_area
+						NOT = { province_id = 1471 }
+					}
+					is_in_area = west_sicily_area
+				}
+			}
+		}
+		on_completion = {
+			show_as_tooltip = {
+				p:84.governorship = {
+					every_governorship_state = {
+						limit = {
+							any_state_province = {
+								OR = {
+									is_in_area = syracuse_area
+									is_in_area = east_sicily_area
+									is_in_area = west_sicily_area
+								}
+							}
+						}
+						custom = roman_conquest.14.modtt
+						add_state_modifier = {
+							name = rm_2_bread_basket_smod
+							duration = 5475 # 15 years
+						}
+					}
+				}
+			}
+			c:ROM = {
+				trigger_event = {
+					id = roman_conquest.14
+				}
+			}
+		}
+		icon = task_economical
+	}
+
+	roman_2_provincia_provincia = {
+		requires = { roman_2_provincia_settling_corsica roman_2_provincia_unruly_populace roman_2_provincia_bread_basket }
+		allow = {
+			custom_tooltip = {
+				text = roman_2_provincia_provincia_tooltip
+				NOT = {
+					any_country = {
+						primary_culture = nuragic
+						war_with = c:ROM
+					}
+				}
+			}
+		}
+		on_completion = {
+			custom_tooltip = roman_2_provincia_provincia_tt
+			c:ROM = {
+				add_2_free_province_investments = yes
+				if = {
+					limit = {
+						c:CAR = {
+							any_owned_province = {
+								OR = {
+									is_in_region = tarraconensis_region
+									is_in_region = baetica_region
+									is_in_region = lusitania_region
+									is_in_region = gallaecia_region
+									is_in_region = contestania_region
+								}
+							}
+						}
+					}
+					custom_tooltip = roman_2_provincia_provincia_claims_tt
+					hidden_effect = {
+						c:CAR = {
+							every_owned_province = {
+								limit = {
+									OR = {
+										is_in_region = tarraconensis_region
+										is_in_region = baetica_region
+										is_in_region = lusitania_region
+										is_in_region = gallaecia_region
+										is_in_region = contestania_region
+									}
+								}
+								add_claim = c:ROM
+							}
+							if = {
+								limit = {
+									any_subject = {
+										any_owned_province = {
+											OR = {
+												is_in_region = tarraconensis_region
+												is_in_region = baetica_region
+												is_in_region = lusitania_region
+												is_in_region = gallaecia_region
+												is_in_region = contestania_region
+											}
+										}
+									}
+								}
+								every_subject = {
+									every_owned_province = {
+										limit = {
+											OR = {
+												is_in_region = tarraconensis_region
+												is_in_region = baetica_region
+												is_in_region = lusitania_region
+												is_in_region = gallaecia_region
+												is_in_region = contestania_region
+											}
+										}
+										add_claim = c:ROM
+									}
+								}
+							}
+						}
+					}
+				}
+				trigger_event = {
+					id = me_roman_2_provincia.26
+				}
+			}
+			if = {
+				limit = { is_ai = yes }
+				region:magna_graecia_region = {
+					every_region_province = { add_claim = ROOT }
+				}
+				region:contestania_region = {
+					every_region_province = { add_claim = ROOT }
+				}
+				region:tarraconensis_region = {
+					every_region_province = { add_claim = ROOT }
+				}
+			}
+			c:CAR = { save_scope_as = rm_4_carthage_scope }
+			if = {
+				limit = { is_ai = yes }
+				region:baetica_region = {
+					every_region_province = { add_claim = ROOT }
+				}
+				region:contestania_region = {
+					every_region_province = { add_claim = ROOT }
+				}
+				region:tarraconensis_region = {
+					every_region_province = { add_claim = ROOT }
+				}
+				region:lusitania_region = {
+					every_region_province = { add_claim = ROOT }
+				}
+				region:gallaecia_region = {
+					every_region_province = { add_claim = ROOT }
+				}
+			}
+			if = {
+				limit = {
+					is_ai = yes
+					NOT = {
+						any_country = {
+							capital_scope = {
+								is_in_region = illyria_region
+							}
+							is_ai = no
+						}
+					}
+				}
+				every_country = {
+					limit = {
+						capital_scope = {
+							is_in_region = illyria_region
+						}
+						OR = {
+							is_tribal = yes
+							num_of_cities <= 40
+						}
+						is_ai = yes
+						NOT = {
+							AND = {
+								is_subject = yes
+								overlord = {
+									is_ai = no
+								}
+							}
+						}
+					}
+					every_owned_province = {
+						limit = {
+							is_in_region = illyria_region
+						}
+						set_owned_by = c:ROM
+					}
+				}
+			}
+			if = {
+				limit = { is_ai = yes }
+				region:illyria_region = {
+					every_region_province = { add_claim = ROOT }
+				}
+				region:greece_region = {
+					every_region_province = { add_claim = ROOT }
+				}
+				region:macedonia_region = {
+					every_region_province = { add_claim = ROOT }
+				}
+				region:thrace_region = {
+					every_region_province = { add_claim = ROOT }
+				}
+			}
+		}
+		icon = task_expansion
+		#final = yes
+	}
+	
+	roman_3_cisalpine_gaul_land_grants_in_senonia = {
+		icon = task_expansion
+		requires = { roman_1_italia_roman_hegemony }
+		duration = 180 # 0.5 years
+		allow = {
+			custom_tooltip = {
+				text = roman_3_cisalpine_gaul_land_grants_in_senonia_tooltip
+				area:ariminum_area = {
+					any_area_province = {
+						count >= 1
+						owner = c:ROM
+						province_dominant_culture_group = gallic
+					}
+				}
+			}
+		}
+		highlight = {
+			scope:province = {
+				AND = {
+					is_in_area = ariminum_area
+					province_dominant_culture_group = gallic
+				}
+			}
+		}
+		on_start = {
+			trigger_event = { 
+				id = me_roman_3_cisalpine_gaul.7
+				days = 5
+			}
+		}
+		on_completion = {
+			custom_tooltip = roman_3_cisalpine_gaul_land_grants_in_senonia_reward_tt
+			trigger_event = { id = me_roman_3_cisalpine_gaul.8 }
+		}
+		bypass = {
+			OR = {
+				trigger_if = {
+					limit = {
+						area:ariminum_area = {
+							any_area_province = {
+								count >= 1
+								owner = root
+							}
+						}
+					}
+					NOT = {
+						any_owned_province = {
+							is_in_area = ariminum_area
+							province_dominant_culture_group = gallic
+						}
+					}
+				}
+				area:ariminum_area = {
+					any_area_province = {
+						count = all
+						NOT = { owned_or_subject_owned = c:ROM }
+					}
+				}
+			}
+		}
+	}
+	
+	roman_3_cisalpine_gaul_into_po_valley = {
+		icon = task_conquest
+		requires = { roman_3_cisalpine_gaul_land_grants_in_senonia }
+		allow = {
+			custom_tooltip = {
+				text = roman_3_cisalpine_gaul_into_po_valley_tooltip
+				owns_or_subject_owns_area = area:aemilla_area
+			}
+		}
+		highlight = {
+			scope:province = {
+				is_in_area = aemilla_area
+			}
+		}
+		on_completion = {
+			rome_mission_conquest_effect = yes
+			c:ROM = {
+				trigger_event = {
+					id = roman_conquest.15
+				}
+			}
+		}
+	}
+	
+	roman_3_cisalpine_gaul_northern_latins = {
+		icon = task_conquest
+		requires = { roman_3_cisalpine_gaul_land_grants_in_senonia }
+		allow = {
+			OR = {
+				custom_tooltip = {
+					text = roman_3_cisalpine_gaul_northern_latins_tooltip
+					owns_or_subject_owns_area = area:pisae_area
+					owns_or_subject_owns_area = area:liguria_area
+				}
+				trigger_if = {
+					limit = { is_ai = yes }
+					owns_or_subject_owns = 141
+					owns_or_subject_owns = 136
+					owns_or_subject_owns = 137
+					owns_or_subject_owns = 3552
+					owns_or_subject_owns = 3549
+				}
+			}
+		}
+		highlight = {
+			scope:province = {
+				OR = {
+					is_in_area = pisae_area
+					is_in_area = liguria_area
+				}
+			}
+		}
+		on_completion = {
+			rome_mission_conquest_effect = yes
+			show_as_tooltip = {
+				p:136.governorship = {
+					every_governorship_state = {
+						limit = {
+							any_state_province = {
+								OR = {
+									is_in_area = pisae_area
+									is_in_area = liguria_area
+								}
+							}
+						}
+						custom = roman_3_cisalpine_gaul_northern_latins.modtt
+						add_state_modifier = {
+							name = new_roman_conquest_smod
+							duration = 1825 # 5 years
+						}
+					}
+				}
+			}
+			c:ROM = {
+				trigger_event = {
+					id = roman_conquest.16
+				}
+			}
+		}
+	}
+	
+	roman_3_cisalpine_gaul_gallia_cispadana = {
+		icon = task_expansion
+		requires = { roman_3_cisalpine_gaul_into_po_valley roman_3_cisalpine_gaul_northern_latins }
+		allow = {
+			custom_tooltip = {
+				text = roman_3_cisalpine_gaul_gallia_cispadana_tooltip
+				owns_or_subject_owns_area = area:pisae_area 
+				owns_or_subject_owns_area = area:liguria_area
+				owns_or_subject_owns_area = area:aemilla_area
+				p:3554 = { owned_or_subject_owned = root }
+				p:3574 = { owned_or_subject_owned = root }
+				p:3548 = { owned_or_subject_owned = root }
+				p:3564 = { owned_or_subject_owned = root }
+				p:3559 = { owned_or_subject_owned = root }
+				p:3558 = { owned_or_subject_owned = root }
+				p:3555 = { owned_or_subject_owned = root }
+			}
+		}
+		highlight = {
+			scope:province = {
+				OR = {
+					is_in_area = pisae_area
+					is_in_area = aemilla_area
+					is_in_area = liguria_area
+					province_id = 3554
+					province_id = 3574
+					province_id = 3548
+					province_id = 3564
+					province_id = 3559
+					province_id = 3558
+					province_id = 3555
+				}
+			}
+		}
+		on_completion = {
+			custom_tooltip = rm_fortify_tooltip
+			hidden_effect = {
+				area:west_insubria_area = {
+					every_area_province = {
+						add_claim = c:ROM
+					}
+				}
+				area:east_insubria_area = {
+					every_area_province = {
+						add_claim = c:ROM
+					}
+				}
+			}
+			c:ROM = {
+				trigger_event = { id = roman_conquest.17 }
+			}
+		}
+	}
+	
+	roman_3_cisalpine_gaul_invade_insubria = {
+		icon = task_conquest
+		requires = { roman_3_cisalpine_gaul_gallia_cispadana }
+		allow = {
+			custom_tooltip = {
+				text = roman_3_cisalpine_gaul_invade_insubria_tooltip
+				owns_or_subject_owns_area = area:west_insubria_area
+				owns_or_subject_owns_area = area:east_insubria_area
+			}
+		}
+		highlight = {
+			scope:province = {
+				OR = {
+					is_in_area = west_insubria_area
+					is_in_area = east_insubria_area
+				}
+			}
+		}
+		on_completion = {
+			rome_mission_conquest_effect = yes
+			c:ROM = {
+				trigger_event = { id = roman_conquest.18 }
+			}
+		}
+	}
+	
+	roman_3_cisalpine_gaul_vanquish_veneto = {
+		icon = task_conquest
+		requires = { roman_3_cisalpine_gaul_gallia_cispadana }
+		allow = {
+			custom_tooltip = {
+				text = roman_3_cisalpine_gaul_vanquish_veneto_tooltip
+				owns_or_subject_owns_area = area:venetia_area
+			}
+		}
+		highlight = {
+			scope:province = {
+				is_in_area = venetia_area
+			}
+		}
+		on_completion = {
+			rome_mission_conquest_effect = yes
+			show_as_tooltip = {
+				p:3598.governorship = {
+					every_governorship_state = {
+						limit = {
+							any_state_province = { is_in_area = venetia_area }
+							
+						}
+						add_state_modifier = {
+							name = new_roman_conquest_smod
+							duration = 1825 # 5 years
+						}
+					}
+				}
+			}
+			c:ROM = {
+				trigger_event = { id = roman_conquest.19 }
+			}
+		}
+	}
+	
+	roman_3_cisalpine_gaul_settle_cisalpine = {
+		icon = task_political
+		requires = { roman_3_cisalpine_gaul_invade_insubria roman_3_cisalpine_gaul_vanquish_veneto }
+		duration = 180 # 0.5 years
+		on_completion = {
+			custom_tooltip = roman_3_cisalpine_gaul_settle_cisalpine_tooltip
+			trigger_event = { id = me_roman_3_cisalpine_gaul.9 }
+		}
+	}
+	
+	roman_3_cisalpine_gaul_gallia_transpadana = {
+		icon = task_economical
+		requires = { roman_3_cisalpine_gaul_settle_cisalpine }
+		allow = {
+			custom_tooltip = {
+				text = roman_3_cisalpine_gaul_gallia_transpadana_tooltip
+				owns_or_subject_owns_region = region:cisalpine_gaul_region
+			}
+		}
+		highlight = {
+			scope:province = {
+				is_in_region = cisalpine_gaul_region
+			}
+		}
+		on_completion = {
+			if = {
+				limit = { 
+					current_ruler = { is_minor_character = no }
+				}
+				current_ruler.family = { add_prestige = prestige_huge }
+			}
+			add_2_free_province_investments = yes
+			capital_scope = { rm_triumphal_arch_effect = yes }
+			trigger_event = {
+				id = roman_conquest.20
+			}
+			custom_tooltip = roman_3_cisalpine_gaul_gallia_transpadana_tt
+			if = {
+				limit = { is_ai = yes }
+				region:transalpine_gaul_region = {
+					every_region_province = { add_claim = ROOT }
+				}
+				region:celtica_region = {
+					every_region_province = { add_claim = ROOT }
+				}
+				region:aquitania_region = {
+					every_region_province = { add_claim = ROOT }
+				}
+			}
+		}
+		#final = yes
+	}
+	
+	roman_4_punic_rivals_hispania_dominance = {
+		icon = task_expansion
+		requires = { roman_5_carthaginian_littoral }
+		allow = {
+			custom_tooltip = {
+				text = roman_4_punic_rivals_hispania_dominance_tooltip
+				OR = {
+					region:baetica_region = { #Carteia/Baetica
+						any_region_province = { owned_or_subject_owned = c:ROM }
+					}
+					region:contestania_region = { #Mastia/Contestania
+						any_region_province = { 
+							NOT = { is_in_area = balearides_area }
+							owned_or_subject_owned = c:ROM
+						}
+					}
+					region:tarraconensis_region = { #Emporion/Tarraconensis
+						any_region_province = { owned_or_subject_owned = c:ROM }
+					}
+					region:lusitania_region = { #Olisipo/Lusitania
+						any_region_province = { owned_or_subject_owned = c:ROM }
+					}
+					region:gallaecia_region = { #Lancia/Gallaecia
+						any_region_province = { owned_or_subject_owned = c:ROM }
+					}
+				}
+			}
+			custom_tooltip = {
+				text = roman_4_punic_rivals_hispania_dominance_tooltip3
+				NOR = {
+					region:baetica_region = { #Carteia/Baetica
+						any_region_province = { owned_or_subject_owned = c:CAR }
+					}
+					region:contestania_region = { #Mastia/Contestania
+						any_region_province = { 
+							NOT = { is_in_area = balearides_area }
+							owned_or_subject_owned = c:CAR
+						}
+					}
+					region:tarraconensis_region = { #Emporion/Tarraconensis
+						any_region_province = { owned_or_subject_owned = c:CAR }
+					}
+					region:lusitania_region = { #Olisipo/Lusitania
+						any_region_province = { owned_or_subject_owned = c:CAR }
+					}
+					region:gallaecia_region = { #Lancia/Gallaecia
+						any_region_province = { owned_or_subject_owned = c:CAR }
+					}
+				}
+			}
+		}
+		highlight = {
+			scope:province = {
+				scope:province = {
+					AND = {
+						OR = {
+							is_in_region = tarraconensis_region
+							is_in_region = baetica_region
+							is_in_region = lusitania_region
+							AND = {
+								is_in_region = contestania_region
+								NOT = { is_in_area = balearides_area }
+							}
+							is_in_region = gallaecia_region
+						}
+						owned_or_subject_owned = c:CAR 
+					}
+				}
+			}
+		}
+		on_completion = {
+			current_ruler = { add_popularity = popularity_medium }
+			add_country_modifier = {
+				name = rm_4_hispanian_dominance_cmod
+				duration = 7300 # 20 years
+			}
+			custom_tooltip = roman_4_punic_rivals_hispania_dominance_tooltip2
+			c:ROM = {
+				trigger_event = {
+					id = roman_conquest.22
+				}
+			}
+		}
+		bypass = {
+			OR = {
+				c:CAR = { has_land = no }
+				AND = {
+					OR = {
+						NOR = {
+							region:baetica_region = { #Carteia/Baetica
+								any_region_province = { owned_or_subject_owned = c:CAR }
+							}
+							region:contestania_region = { #Mastia/Contestania
+								any_region_province = { 
+									NOT = { is_in_area = balearides_area }
+									owned_or_subject_owned = c:CAR
+								}
+							}
+							region:tarraconensis_region = { #Emporion/Tarraconensis
+								any_region_province = { owned_or_subject_owned = c:CAR }
+							}
+							region:lusitania_region = { #Olisipo/Lusitania
+								any_region_province = { owned_or_subject_owned = c:CAR }
+							}
+							region:gallaecia_region = { #Lancia/Gallaecia
+								any_region_province = { owned_or_subject_owned = c:CAR }
+							}
+						}
+					}
+					OR = {
+						region:baetica_region = { #Carteia/Baetica
+							any_region_province = { 
+								count = all
+								owned_or_subject_owned = c:ROM
+							}
+						}
+						region:contestania_region = { #Mastia/Contestania
+							any_region_province = { 
+								count = all
+								owned_or_subject_owned = c:ROM
+							}
+						}
+						region:tarraconensis_region = { #Emporion/Tarraconensis
+							any_region_province = { 
+								count = all
+								owned_or_subject_owned = c:ROM
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	roman_4_punic_rivals_naval_parity = {
+		icon = task_expansion
+		requires = { roman_2_provincia_expel_punics }
+		allow = {
+			custom_tooltip = {
+				text = roman_4_punic_rivals_naval_parity_tooltip
+				num_of_ships >= mission_punic_rivals_svalue
+			}
+		}
+		on_completion = {
+			add_country_modifier = {
+				name = rm_4_naval_parity_cmod
+				duration = 3650 # 10 years
+			}
+		}
+	}
+	
+	roman_5_carthaginian_littoral = {
+		icon = task_conquest
+		requires = { roman_2_provincia_provincia }
+		allow = {
+			owns_or_subject_owns_area = contestania_septentrionalis_area
+			owns_or_subject_owns_area = contestania_meridionalis_area
+			owns_or_subject_owns_area = bastetania_area
+			owns_or_subject_owns_area = mastiania_area
+		}
+		highlight = {
+			scope:province = {
+				OR = {
+					is_in_area = contestania_septentrionalis_area
+					is_in_area = contestania_meridionalis_area
+					is_in_area = bastetania_area
+					is_in_area = mastiania_area
+				}
+			}
+		}
+		on_completion = {
+			rome_mission_conquest_effect = yes
+			p:1036.governorship = {
+				every_governorship_state = {
+					limit = {
+						any_state_province = {
+							OR = {
+								is_in_area = contestania_septentrionalis_area
+								is_in_area = contestania_meridionalis_area
+								is_in_area = mastiania_area
+							}
+						}
+					}
+					custom = roman_5_carthaginian_littoral.modtt
+					add_state_modifier = {
+						name = rm_5_mines_of_mastia_smod
+						duration = 7300 # 20 years
+					}
+				}
+			}
+			hidden_effect = {
+				random_owned_province = {
+					limit = { is_in_area = bastetania_area }
+					state = {
+						add_state_modifier = {
+							name = rm_5_mines_of_mastia_smod
+							duration = 7300 # 20 years
+						}
+					}
+				}
+			}
+			c:ROM = {
+				trigger_event = {
+					id = roman_conquest.25
+				}
+			}
+		}
+	}
+	
+	roman_5_massalian_littoral = {
+		icon = task_conquest
+		requires = { roman_2_provincia_provincia }
+		allow = {
+			owns_or_subject_owns_area = indiketia_area
+			owns_or_subject_owns_area = cessetania_area
+			owns_or_subject_owns_area = ilercavonia_area
+			owns_or_subject_owns_area = edetania_area
+		}
+		highlight = {
+			scope:province = {
+				OR = {
+					is_in_area = edetania_area
+					is_in_area = ilercavonia_area
+					is_in_area = cessetania_area
+					is_in_area = indiketia_area
+				}
+			}
+		}
+		on_completion = {
+			rome_mission_conquest_effect = yes
+			add_country_modifier = {
+				name = rm_5_iberian_trade_cmod
+				duration = 7300 # 20 years
+			}
+			c:ROM = {
+				trigger_event = {
+					id = roman_conquest.26
+				}
+			}
+		}
+	}
+	
+	roman_5_pillars_of_hercules = {
+		icon = task_conquest
+		requires = { roman_5_hispanian_provincia }
+		allow = {
+			owns_or_subject_owns_area = gaditanus_area
+			owns_or_subject_owns_area = malacita_area
+			owns_or_subject_owns_area = baetica_hispalensis_area
+		}
+		highlight = {
+			scope:province = {
+				OR = {
+					is_in_area = gaditanus_area
+					is_in_area = malacita_area
+					is_in_area = baetica_hispalensis_area
+				}
+			}
+		}
+		on_completion = {
+			rome_mission_conquest_effect = yes
+			add_country_modifier = {
+				name = rm_5_pillars_hercules_cmod
+				duration = 7300 # 20 years
+			}
+			custom_tooltip = roman_5_pillars_of_hercules_claims_tt
+			hidden_effect = {
+				area:baetica_cordubensis_area = { mission_area_claim_effect = yes }
+				area:turdetania_occidentalis_area = { mission_area_claim_effect = yes }
+			}
+			c:ROM = {
+				trigger_event = {
+					id = roman_conquest.27
+				}
+			}
+		}
+	}
+	
+	roman_5_into_iberia = {
+		icon = task_conquest
+		requires = { roman_5_hispanian_provincia }
+		allow = {
+			owns_or_subject_owns_area = baetica_cordubensis_area
+			owns_or_subject_owns_area = turdulia_orientalis_area
+			owns_or_subject_owns_area = lobetania_area
+			owns_or_subject_owns_area = celtiberia_meridionalis_area
+			owns_or_subject_owns_area = oretania_area
+		}
+		highlight = {
+			scope:province = {
+				OR = {
+					is_in_area = baetica_cordubensis_area
+					is_in_area = turdulia_orientalis_area
+					is_in_area = lobetania_area
+					is_in_area = celtiberia_meridionalis_area
+					is_in_area = oretania_area
+				}
+			}
+		}
+		on_completion = {
+			rome_mission_conquest_effect = yes
+			add_country_modifier = {
+				name = rm_5_iberian_cavalry_cmod
+				duration = 7300 # 20 years
+			}
+			custom_tooltip = roman_5_into_iberia_claims_tt
+			hidden_effect = {
+				area:turdulia_occidentalis_area = { mission_area_claim_effect = yes }
+				area:turdetania_occidentalis_area = { mission_area_claim_effect = yes }
+				area:vettonia_meridionalis_area = { mission_area_claim_effect = yes }
+				area:carpetania_area = { mission_area_claim_effect = yes }
+				area:celtiberia_centralis_area = { mission_area_claim_effect = yes }
+			}
+			c:ROM = {
+				trigger_event = {
+					id = roman_conquest.29
+				}
+			}
+		}
+	}
+	
+	roman_5_secure_south_coast = {
+		icon = task_conquest
+		requires = { roman_5_pillars_of_hercules }
+		allow = {
+			owns_or_subject_owns_area = couneia_area
+			owns_or_subject_owns_area = celticia_minoris_area
+			owns_or_subject_owns_area = turdulia_occidentalis_area
+			owns_or_subject_owns_area = turdetania_occidentalis_area
+			owns_or_subject_owns_area = celticia_maoioris_area
+		}
+		highlight = {
+			scope:province = {
+				OR = {
+					is_in_area = couneia_area
+					is_in_area = celticia_minoris_area
+					is_in_area = turdulia_occidentalis_area
+					is_in_area = turdetania_occidentalis_area
+					is_in_area = celticia_maoioris_area
+				}
+			}
+		}
+		on_completion = {
+			rome_mission_conquest_effect = yes
+			custom_tooltip = roman_5_secure_south_coast_claims_tt
+			hidden_effect = {
+				area:oppidania_area = { mission_area_claim_effect = yes }
+				area:lusitania_meridionalis_area = { mission_area_claim_effect = yes }
+				area:lusitania_septentrionalis_area = { mission_area_claim_effect = yes }
+			}
+			c:ROM = {
+				trigger_event = {
+					id = roman_conquest.30
+				}
+			}
+		}
+	}
+	
+	roman_5_subdue_north = {
+		icon = task_conquest
+		requires = { roman_5_hispanian_provincia }
+		allow = {
+			owns_or_subject_owns_area = celtiberia_septentrionalis_area
+			owns_or_subject_owns_area = ilergetia_area
+			owns_or_subject_owns_area = vasconia_area
+			owns_or_subject_owns_area = celtiberia_centralis_area
+		}
+		highlight = {
+			scope:province = {
+				OR = {
+					is_in_area = celtiberia_septentrionalis_area
+					is_in_area = ilergetia_area
+					is_in_area = vasconia_area
+					is_in_area = celtiberia_centralis_area
+				}
+			}
+		}
+		on_completion = {
+			rome_mission_conquest_effect = yes
+			custom_tooltip = roman_5_subdue_north_claims_tt
+			hidden_effect = {
+				area:vardulia_area = { mission_area_claim_effect = yes }
+				area:vaccaeia_meridionalis_area = { mission_area_claim_effect = yes }
+				area:carpetania_area = { mission_area_claim_effect = yes }
+			}
+			c:ROM = {
+				trigger_event = {
+					id = roman_conquest.28
+				}
+			}
+		}
+	}
+
+	roman_5_secure_west_coast = {
+		icon = task_conquest
+		requires = { roman_5_secure_celt_strongholds }
+		allow = {
+			owns_or_subject_owns_area = oppidania_area
+			owns_or_subject_owns_area = lusitania_meridionalis_area
+			owns_or_subject_owns_area = lusitania_septentrionalis_area
+			owns_or_subject_owns_area = aebocosia_area
+		}
+		highlight = {
+			scope:province = {
+				OR = {
+					is_in_area = oppidania_area
+					is_in_area = lusitania_meridionalis_area
+					is_in_area = lusitania_septentrionalis_area
+					is_in_area = aebocosia_area
+					
+				}
+			}
+		}
+		on_completion = {
+			rome_mission_conquest_effect = yes
+			c:ROM = {
+				trigger_event = {
+					id = roman_conquest.31
+				}
+			}
+		}
+	}
+	
+	roman_5_secure_cantabria = {
+		icon = task_conquest
+		requires = { roman_5_secure_celt_strongholds }
+		allow = {
+			owns_or_subject_owns_area = asturia_septentrionalis_area
+			owns_or_subject_owns_area = cantabria_area
+			owns_or_subject_owns_area = autrigonia_area
+			owns_or_subject_owns_area = vardulia_area
+			owns_or_subject_owns_area = asturia_meridionalis_area
+		}
+		highlight = {
+			scope:province = {
+				OR = {
+					is_in_area = asturia_septentrionalis_area
+					is_in_area = cantabria_area
+					is_in_area = autrigonia_area
+					is_in_area = vardulia_area
+					is_in_area = asturia_meridionalis_area
+				}
+			}
+		}
+		on_completion = {
+			rome_mission_conquest_effect = yes
+			c:ROM = {
+				trigger_event = {
+					id = roman_conquest.32
+				}
+			}
+		}
+	}
+	
+	roman_5_secure_celt_strongholds = {
+		icon = task_conquest
+		requires = { roman_5_into_iberia roman_5_subdue_north }
+		allow = {
+			owns_or_subject_owns_area = vettonia_septentrionalis_area
+			owns_or_subject_owns_area = vaccaeia_meridionalis_area
+			owns_or_subject_owns_area = vaccaeia_septentrionalis_area
+			owns_or_subject_owns_area = carpetania_area 
+			owns_or_subject_owns_area = vettonia_meridionalis_area
+		}
+		highlight = {
+			scope:province = {
+				OR = {
+					is_in_area = vettonia_septentrionalis_area
+					is_in_area = vaccaeia_meridionalis_area
+					is_in_area = vaccaeia_septentrionalis_area
+					is_in_area = carpetania_area
+					is_in_area = vettonia_meridionalis_area
+				}
+			}
+		}
+		on_completion = {
+			rome_mission_conquest_effect = yes
+			custom_tooltip = roman_5_secure_celt_strongholds_claims_tt
+			hidden_effect = {
+				area:celticia_maoioris_area = { mission_area_claim_effect = yes }
+				area:aebocosia_area = { mission_area_claim_effect = yes }
+				area:asturia_meridionalis_area = { mission_area_claim_effect = yes }
+				area:cantabria_area = { mission_area_claim_effect = yes }
+				area:autrigonia_area = { mission_area_claim_effect = yes }
+			}
+			c:ROM = {
+				trigger_event = {
+					id = roman_conquest.33
+				}
+			}
+		}
+	}
+	
+	roman_5_hispanian_provincia = {
+		icon = task_expansion
+		requires = { roman_5_carthaginian_littoral roman_5_massalian_littoral }
+		allow = {
+			custom_tooltip = {
+				text = roman_5_hispanian_provincia_tooltip
+				area:indiketia_area = {
+					NOT = {
+						any_area_province = {
+							NOT = { owned_or_subject_owned = root }
+						}
+					}
+				}
+				area:cessetania_area = {
+					NOT = {
+						any_area_province = {
+							NOT = { owned_or_subject_owned = root }
+						}
+					}
+				}
+				area:ilercavonia_area = {
+					NOT = {
+						any_area_province = {
+							NOT = { owned_or_subject_owned = root }
+						}
+					}
+				}
+				area:edetania_area = {
+					NOT = {
+						any_area_province = {
+							NOT = { owned_or_subject_owned = root }
+						}
+					}
+				}
+				area:contestania_septentrionalis_area = {
+					NOT = {
+						any_area_province = {
+							NOT = { owned_or_subject_owned = root }
+						}
+					}
+				}
+				area:contestania_meridionalis_area = {
+					NOT = {
+						any_area_province = {
+							NOT = { owned_or_subject_owned = root }
+						}
+					}
+				}
+				area:bastetania_area = {
+					NOT = {
+						any_area_province = {
+							NOT = { owned_or_subject_owned = root }
+						}
+					}
+				}
+				area:mastiania_area = {
+					NOT = {
+						any_area_province = {
+							NOT = { owned_or_subject_owned = root }
+						}
+					}
+				}
+			}
+		}
+		highlight = {
+			scope:province = {
+				OR = {
+					is_in_area = edetania_area
+					is_in_area = ilercavonia_area
+					is_in_area = cessetania_area
+					is_in_area = indiketia_area
+					is_in_area = contestania_septentrionalis_area
+					is_in_area = contestania_meridionalis_area
+					is_in_area = bastetania_area
+					is_in_area = mastiania_area
+				}
+			}
+		}
+		on_completion = {
+			custom_tooltip = roman_5_hispanian_provincia_tooltip2
+			add_country_modifier = {
+				name = rm_5_mercenary_influx_cmod
+				duration = 7300 # 20 years
+			}
+			custom_tooltip = roman_5_hispanian_provincia_claims_tt
+			hidden_effect = {
+				area:ilergetia_area = { mission_area_claim_effect = yes }
+				area:celtiberia_septentrionalis_area = { mission_area_claim_effect = yes }
+				area:celtiberia_meridionalis_area = { mission_area_claim_effect = yes }
+				area:lobetania_area = { mission_area_claim_effect = yes }
+				area:oretania_area = { mission_area_claim_effect = yes }
+				area:malacita_area = { mission_area_claim_effect = yes }
+			}
+			c:ROM = {
+				trigger_event = {
+					id = me_roman_5_hispanian_ambition.4
+				}
+			}
+		}
+	}
+	
+	roman_5_iberian_dominance = {
+		icon = task_expansion
+		requires = { roman_5_secure_south_coast roman_5_secure_celt_strongholds }
+		#final = yes
+		allow = {
+			custom_tooltip = {
+				text = roman_5_iberian_dominance_tooltip
+				any_owned_province = {
+					count >= 200
+					OR = {
+						is_in_region = tarraconensis_region
+						is_in_region = baetica_region
+						is_in_region = lusitania_region
+						is_in_region = gallaecia_region
+						AND = {
+							is_in_region = contestania_region
+							NOT = { is_in_area = balearides_area }
+						}
+					}
+				}
+			}
+		}
+		on_completion = {
+			capital_scope = { rm_triumphal_arch_effect = yes }
+			if = {
+				limit = {
+					any_owned_province = {
+						OR = {
+							is_in_region = tarraconensis_region
+							is_in_region = baetica_region
+							is_in_region = lusitania_region
+							is_in_region = gallaecia_region
+							AND = {
+								is_in_region = contestania_region
+								NOT = { is_in_area = balearides_area }
+							}
+						}
+					}
+				}
+				custom_tooltip = roman_5_iberian_dominance.modtt
+				show_as_tooltip = {
+					random_country_state = {
+						limit = {
+							any_state_province = {
+								OR = {
+									is_in_region = tarraconensis_region
+									is_in_region = baetica_region
+									is_in_region = lusitania_region
+									is_in_region = gallaecia_region
+									AND = {
+										is_in_region = contestania_region
+										NOT = { is_in_area = balearides_area }
+									}
+								}
+							}
+						}
+						add_state_modifier = {
+							name = rm_5_iberian_dominance_smod
+							duration = 7300 # 20 years
+						}
+					}
+				}
+			}
+			else = { custom_tooltip = roman_5_iberian_dominance.modtt2 }
+			hidden_effect = {
+				region:tarraconensis_region = {
+					every_region_state = {
+						limit = {
+							any_state_province = { owner = root }
+						}
+						add_state_modifier = {
+							name = rm_5_iberian_dominance_smod
+							duration = 7300 # 20 years
+						}
+					}
+				}
+				region:baetica_region = {
+					every_region_state = {
+						limit = {
+							any_state_province = { owner = root }
+						}
+						add_state_modifier = {
+							name = rm_5_iberian_dominance_smod
+							duration = 7300 # 20 years
+						}
+					}
+				}
+				region:lusitania_region = {
+					every_region_state = {
+						limit = {
+							any_state_province = { owner = root }
+						}
+						add_state_modifier = {
+							name = rm_5_iberian_dominance_smod
+							duration = 7300 # 20 years
+						}
+					}
+				}
+				region:contestania_region = {
+					every_region_state = {
+						limit = {
+							any_state_province = { 
+								owner = root 
+								NOT = { is_in_area = balearides_area }
+							}
+						}
+						add_state_modifier = {
+							name = rm_5_iberian_dominance_smod
+							duration = 7300 # 20 years
+						}
+					}
+				}
+				region:gallaecia_region = {
+					every_region_state = {
+						limit = {
+							any_state_province = { owner = root }
+						}
+						add_state_modifier = {
+							name = rm_5_iberian_dominance_smod
+							duration = 7300 # 20 years
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	roman_6_crush_numidia = { # Secure Numidian Coast
+
+		icon = task_conquest
+		requires = { roman_4_punic_rivals_hispania_dominance }
+
+		highlight = {
+			scope:province = {
+				is_in_region = numidia_region
+				is_coastal = yes
+				NOT = {
+					owned_or_subject_owned = c:ROM
+				}
+			}
+		}
+
+		allow = {
+			custom_tooltip = {
+				text = roman_6_crush_numidia_tt
+				region:numidia_region = {
+					NOT = {
+						any_region_province = {
+							is_coastal = yes
+							NOT = { 
+								owned_or_subject_owned = c:ROM
+							}
+						}
+					}
+				}
+			}
+		}
+
+		on_completion = {
+			every_country_state = {
+				limit = {
+					any_state_province = {
+						is_in_region = numidia_region
+						is_coastal = yes
+					}
+				}
+				custom = roman_6_crush_numidia_tt_2
+				add_state_modifier = {
+					name = roman_6_crush_numidia_modifier
+					duration = 7300
+				}
+			}
+			every_subject = {
+				limit = {
+					any_owned_province = {
+						is_in_region = numidia_region
+						is_coastal = yes
+					}
+				}
+				custom = roman_6_crush_numidia_tt_3
+				add_opinion = {
+					modifier = roman_6_crush_numidia_opinion
+					target = overlord
+				}
+			}
+		}
+	}
+
+	roman_6_roman_numidia = { # Roman Numidia
+
+		icon = task_conquest
+
+		requires = { roman_6_crush_numidia }
+
+		highlight = {
+			scope:province = {
+				is_in_region = numidia_region
+				has_owner = yes
+					NOT = { 
+					owned_or_subject_owned = c:ROM
+				}
+			}
+		}
+
+		allow = {
+			custom_tooltip = {
+				text = roman_6_roman_numidia_tt	
+				region:numidia_region = {
+					NOT = {
+						any_region_province = {
+							has_owner = yes
+							NOT = { 
+								owned_or_subject_owned = c:ROM
+							}
+						}
+					}
+				}
+			}
+		}
+
+		on_completion = {
+			every_country_state = {
+				limit = {
+					any_state_province = {
+						is_in_region = numidia_region
+					}
+				}
+				custom = roman_6_roman_numidia_tt_2
+				add_state_modifier = {
+					name = roman_6_roman_numidia_modifier
+					duration = 7300
+				}
+			}
+			every_subject = {
+				limit = {
+					any_owned_province = {
+						is_in_region = numidia_region
+					}
+				}
+				custom = roman_6_roman_numidia_tt_3
+				add_opinion = {
+					modifier = roman_6_roman_numidia_opinion
+					target = overlord
+				}
+			}
+		}
+	}
+
+	roman_6_colonize_syrtis = { # Colonize the Coast of Syrtis
+
+		icon = task_diplomatic
+
+		requires = { roman_6_befriend_cyrenaica }
+
+		duration = 730 # 2 years
+
+		monthly_on_action = roman_6_colonize_syrtis_monthly_pulse
+
+		on_start = {
+			set_variable = {
+				name = ongoing_mission_pulse_flag
+				days = 730
+			}
+			c:ROM = {
+				trigger_event = { id = me_roman_6_africa.2 }
+			}
+		}
+		on_completion = {
+			trigger_event = {
+				id = me_roman_6_africa.5
+				days = { 3 5 }
+			}
+			custom_tooltip = roman_6_colonize_syrtis_tt
+		}
+		bypass = {
+			OR = {
+				AND = {
+					NOT = { has_variable = rm_6_col_active }
+					OR = {
+						p:3335.area = {
+							any_area_province = {
+								count = all
+								owner = root
+							}
+						}
+						p:3335.area = {
+							any_area_province = {
+								count = all
+								has_owner = yes
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	roman_6_roman_africa = {
+
+		icon = task_conquest
+		requires = { roman_4_punic_rivals_hispania_dominance }
+
+		highlight = {
+			scope:province = {
+				OR = {
+					is_in_area = carthage_area
+					is_in_area = africa_septentrionalis_area
+				}
+				has_owner = yes
+					NOT = { 
+					owned_or_subject_owned = c:ROM
+				}
+			}
+		}
+
+		allow = {
+			AND = { 
+				owns_or_subject_owns_area = carthage_area
+				owns_or_subject_owns_area = africa_septentrionalis_area
+			}
+		}
+
+		on_completion = {
+			every_owned_province = {
+				limit = {
+					OR = {
+						is_in_area = carthage_area
+						is_in_area = africa_septentrionalis_area
+					}
+					trade_goods = grain
+				}
+				custom = roman_6_roman_africa_tt
+				add_province_modifier = {
+					name = roman_6_african_breadbasket_modifier
+					duration = -1
+				}
+			}
+			custom_tooltip = roman_6_roman_africa_tt_4
+			hidden_effect = {
+				area:numidia_maioris_area = { mission_area_claim_effect = yes }
+				area:numidia_minoris_area = { mission_area_claim_effect = yes }
+				area:africa_meridionalis_area = { mission_area_claim_effect = yes }
+			}
+		}
+	}
+
+	roman_6_phoenician_cities = {
+
+		icon = task_conquest
+
+		requires = { roman_6_roman_africa }
+
+		allow = {
+			custom_tooltip = {
+				text = roman_6_phoenician_cities_tt	
+				AND = {
+					owns_or_subject_owns = p:3276
+					owns_or_subject_owns = p:3277
+					owns_or_subject_owns = p:3278
+					owns_or_subject_owns = p:3280
+					owns_or_subject_owns = p:3291
+					owns_or_subject_owns = p:3295
+					owns_or_subject_owns = p:3303
+					owns_or_subject_owns = p:3306
+				}
+			}
+		}
+		
+		highlight = {
+			scope:province = {
+				OR = {
+					province_id = 3276
+					province_id = 3277
+					province_id = 3278
+					province_id = 3280
+					province_id = 3291
+					province_id = 3295
+					province_id = 3303
+					province_id = 3306
+				}
+			}
+		}
+		
+		on_completion = {
+			every_country_state = {
+				limit = {
+					any_state_province = {
+						is_in_region = africa_region
+						is_coastal = yes
+					}
+				}
+				custom = roman_6_phoenician_cities_tt_2
+				add_state_modifier = {
+					name = roman_6_phoenician_cities_modifier
+					duration = 7300
+				}
+			}
+			every_subject = {
+				limit = {
+					any_owned_province = {
+						is_in_region = africa_region
+						is_coastal = yes
+					}
+				}
+				custom = roman_6_phoenician_cities_tt_3
+				add_opinion = {
+					modifier = roman_6_phoenician_cities_opinion
+					target = overlord
+				}
+			}
+			hidden_effect = {
+				area:gaetulia_orientalis_area = {
+					every_area_province = {
+						limit = {
+							NOT = { owned_or_subject_owned = root }
+						}
+						add_claim = root
+					}
+				}
+				area:tripolitania_occidentalis_area = {
+					every_area_province = {
+						limit = {
+							NOT = { owned_or_subject_owned = root }
+						}
+						add_claim = root
+					}
+				}
+				area:tripolitania_centralis_area = {
+					every_area_province = {
+						limit = {
+							NOT = { owned_or_subject_owned = root }
+						}
+						add_claim = root
+					}
+				}
+			}
+		}
+	}
+
+	roman_6_punic_colonies = {
+
+		icon = task_conquest
+
+		requires = { roman_6_roman_africa }
+
+		allow = {
+			custom_tooltip = {
+				text = roman_6_punic_colonies_tt
+				area:mauretania_caesariensis_centralis_area = {
+					NOT = {
+						any_area_province = {
+							is_coastal = yes
+							NOT = { 
+								owned_or_subject_owned = c:ROM
+							}
+						}
+					}
+				}
+				area:mauretania_caesariensis_occidentalis_area = {
+					NOT = {
+						any_area_province = {
+							is_coastal = yes
+							NOT = { 
+								owned_or_subject_owned = c:ROM
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		highlight = {
+			scope:province = {
+				OR = {
+					AND = {
+						is_in_area = mauretania_caesariensis_centralis_area
+						is_coastal = yes
+					}
+					AND = {
+						is_in_area = mauretania_caesariensis_occidentalis_area
+						is_coastal = yes
+					}
+				}
+			}
+		}
+		
+		on_completion = {
+			every_country_state = {
+				limit = {
+					any_state_province = {
+						OR = {
+							is_in_area = mauretania_caesariensis_centralis_area
+							is_in_area = mauretania_caesariensis_occidentalis_area
+						}
+						is_coastal = yes
+					}
+				}
+				custom = roman_6_punic_colonies_tt_2
+				add_state_modifier = {
+					name = roman_6_punic_colonies_modifier
+					duration = 7300
+				}
+			}
+			every_subject = {
+				limit = {
+					any_owned_province = {
+						OR = {
+							is_in_area = mauretania_caesariensis_centralis_area
+							is_in_area = mauretania_caesariensis_occidentalis_area
+						}
+						is_coastal = yes
+					}
+				}
+				custom = roman_6_punic_colonies_tt_3
+				add_opinion = {
+					modifier = roman_6_punic_colonies_opinion
+					target = overlord
+				}
+			}
+		}
+	}
+
+	roman_6_pillars_hercules = {
+
+		icon = task_conquest
+
+		requires = { roman_6_punic_colonies }
+
+		highlight = {
+			scope:province = {
+				is_in_region = mauretainia_region
+				has_owner = yes
+					NOT = { 
+					owned_or_subject_owned = c:ROM
+				}
+			}
+		}
+
+		allow = {
+			custom_tooltip = {
+				text = roman_6_pillars_hercules_tt	
+				region:mauretainia_region = {
+					NOT = {
+						any_region_province = {
+							has_owner = yes
+							NOT = { 
+								owned_or_subject_owned = c:ROM
+							}
+						}
+					}
+				}
+			}
+		}
+
+		on_completion = {
+			rome_mission_conquest_effect = yes
+			if = {
+				limit = {
+					has_country_modifier = rm_5_pillars_hercules_cmod
+				}
+				hidden_effect = {
+					remove_country_modifier = rm_5_pillars_hercules_cmod
+				}
+			}
+			add_country_modifier = {
+				name = rm_5_pillars_hercules_cmod
+				duration = 7300 # 20 years
+			}
+			c:ROM = {
+				trigger_event = {
+					id = roman_conquest.34
+				}
+			}
+		}
+	}
+
+	roman_6_befriend_cyrenaica = { # Befriend Cyrenaica
+		requires = { roman_2_provincia_provincia }
+
+		icon = task_diplomatic
+
+    	duration = 180
+
+    	potential = {
+    		exists = c:CYR
+    	}
+
+        allow = {
+        	custom_tooltip ={
+        		text = roman_6_befriend_cyrenaica_tt_2
+				in_diplomatic_range = c:CYR
+	            c:CYR = {
+	                NOR = {
+	                    alliance_with = root
+	                    is_subject_of = root
+	                    war_with = root
+	                }
+	                is_monarchy = yes
+	                any_owned_province = {
+			            is_in_region = cyrenaica_region
+			        }
+	            }
+	        }
+        }
+
+        on_start = {
+        	trigger_event = {
+    			id = me_roman_6_africa.7
+    		}
+        }
+
+        on_completion = {
+        	custom_tooltip = roman_6_befriend_cyrenaica_tt
+        }   
+	}
+
+	roman_6_integrate = {
+
+		icon = task_conquest
+
+		requires = { roman_6_roman_numidia roman_6_phoenician_cities }
+		#final = yes
+
+		on_completion = {
+			every_country_state = {
+				limit = {
+					capital_scope = {
+						OR = {
+							is_in_region = africa_region
+							is_in_region = numidia_region
+							is_in_region = mauretainia_region
+							is_in_region = cyrenaica_region
+						}
+					}
+				}
+				custom = "every_state_in_africa_tt_rm"
+				add_state_modifier = {
+					name = rm_integration_smod
+					duration = 7300 # 20 years
+				}
+			}
+		}
+	}
+	
+	roman_7_secure_alps = {
+		icon = task_conquest
+		requires = { roman_3_cisalpine_gaul_gallia_transpadana }
+		allow = {
+			owns_or_subject_owns_area = area:alpes_maritimae_two_area
+			owns_or_subject_owns_area = area:alpes_graiae_area
+		}
+
+		highlight = {
+			scope:province = {
+				OR = {
+					is_in_area = alpes_maritimae_two_area
+					is_in_area = alpes_graiae_area
+				}
+			}
+		}
+		
+		on_completion = {
+			rome_mission_conquest_effect = yes
+			custom_tooltip = roman_7_secure_alps_claims_tt
+			hidden_effect = {
+				area:allobrogia_area = { mission_area_claim_effect = yes }
+				area:tigurinia_area = { mission_area_claim_effect = yes }
+				area:sequania_area = { mission_area_claim_effect = yes }
+			}
+			c:ROM = {
+				trigger_event = { id = roman_conquest.70 }
+			}
+		}
+		
+		bypass = {
+
+		}
+	}
+	
+	roman_7_secure_provincia = {
+		icon = task_conquest
+		requires = { roman_3_cisalpine_gaul_gallia_transpadana roman_5_massalian_littoral }
+		allow = {
+			owns_or_subject_owns_area = area:narbonensis_centralis_area
+			owns_or_subject_owns_area = area:narbonensis_occidentalis_area
+			owns_or_subject_owns_area = area:alpes_maritimae_area
+		}
+
+		highlight = {
+			scope:province = {
+				OR = {
+					is_in_area = narbonensis_centralis_area
+					is_in_area = narbonensis_occidentalis_area
+					is_in_area = alpes_maritimae_area
+				}
+			}
+		}
+
+		on_completion = {
+			rome_mission_conquest_effect = yes
+			custom_tooltip = roman_7_secure_provincia_claims_tt
+			hidden_effect = {
+				area:narbonensis_orientalis_area = { mission_area_claim_effect = yes }
+				area:central_massif_area = { mission_area_claim_effect = yes }
+				area:aquitania_orientalis_area = { mission_area_claim_effect = yes }
+			}
+			c:ROM = {
+				trigger_event = { id = roman_conquest.71 }
+			}
+		}
+
+		bypass = {
+
+		}
+	}
+	
+	roman_7_western_foothold = {
+		icon = task_conquest
+		requires = { roman_7_secure_provincia }
+		allow = {
+			owns_or_subject_owns_area = area:narbonensis_orientalis_area
+			owns_or_subject_owns_area = area:aquitania_orientalis_area
+			owns_or_subject_owns_area = area:central_massif_area
+			owns_or_subject_owns_area = area:cadurcia_area
+		}
+		
+		highlight = {
+			scope:province = {
+				OR = {
+					is_in_area = narbonensis_orientalis_area
+					is_in_area = aquitania_orientalis_area
+					is_in_area = central_massif_area
+					is_in_area = cadurcia_area
+				}
+			}
+		}
+		
+		on_completion = {
+			rome_mission_conquest_effect = yes
+			custom_tooltip = roman_7_western_foothold_claims_tt
+			hidden_effect = {
+				area:biggeronia_area = { mission_area_claim_effect = yes }
+				area:aquitania_occidentalis_area = { mission_area_claim_effect = yes }
+				area:sentonia_maioris_area = { mission_area_claim_effect = yes }
+				area:lemovicia_area = { mission_area_claim_effect = yes }
+				area:celtica_centralis_area = { mission_area_claim_effect = yes }
+			}
+			c:ROM = {
+				trigger_event = { id = roman_conquest.72 }
+			}
+		}
+		
+		bypass = {
+
+		}
+	}
+	
+	roman_7_eastern_foothold = {
+		icon = task_conquest
+		requires = { roman_7_secure_alps }
+		allow = {
+			owns_or_subject_owns_area = area:allobrogia_area
+			owns_or_subject_owns_area = area:tigurinia_area
+			owns_or_subject_owns_area = area:sequania_area
+		}
+		
+		highlight = {
+			scope:province = {
+				OR = {
+					is_in_area = allobrogia_area
+					is_in_area = tigurinia_area
+					is_in_area = sequania_area
+				}
+			}
+		}
+		
+		on_completion = {
+			rome_mission_conquest_effect = yes
+			custom_tooltip = roman_7_eastern_foothold_claims_tt
+			hidden_effect = {
+				area:celtica_orientalis_area = { mission_area_claim_effect = yes }
+				area:lingonia_area = { mission_area_claim_effect = yes }
+				area:leucia_area = { mission_area_claim_effect = yes }
+				area:tribocia_area = { mission_area_claim_effect = yes }
+				area:helvetia_inferioris_area = { mission_area_claim_effect = yes }
+			}
+			c:ROM = {
+				trigger_event = { id = roman_conquest.73 }
+			}
+		}
+
+		bypass = {
+
+		}
+	}
+	
+	roman_7_central_foothold = {
+		icon = task_conquest
+		requires = { roman_7_western_foothold }
+		allow = {
+			owns_or_subject_owns_area = area:lemovicia_area
+			owns_or_subject_owns_area = area:celtica_centralis_area
+			owns_or_subject_owns_area = area:sentonia_maioris_area
+			owns_or_subject_owns_area = area:celtica_orientalis_area
+		}
+		
+		highlight = {
+			scope:province = {
+				OR = {
+					is_in_area = lemovicia_area
+					is_in_area = celtica_centralis_area
+					is_in_area = sentonia_maioris_area
+					is_in_area = celtica_orientalis_area
+				}
+			}
+		}
+		
+		on_completion = {
+			rome_mission_conquest_effect = yes
+			custom_tooltip = roman_7_central_foothold_claims_tt
+			hidden_effect = {
+				area:pictonia_meridionalis_area = { mission_area_claim_effect = yes }
+				area:celtica_occidentalis_area = { mission_area_claim_effect = yes }
+				area:bituriga_orientalis_area = { mission_area_claim_effect = yes }
+				area:senonia_area = { mission_area_claim_effect = yes }
+			}
+			c:ROM = {
+				trigger_event = { id = roman_conquest.74 }
+			}
+		}
+
+		bypass = {
+
+		}
+	}
+	
+	roman_7_to_the_rhine = {
+		icon = task_conquest
+		requires = { roman_7_eastern_foothold }
+		allow = {
+			owns_or_subject_owns_area = area:menapia_orientalis
+			owns_or_subject_owns_area = area:treveria_area
+			owns_or_subject_owns_area = area:mediomatricia_area
+			owns_or_subject_owns_area = area:tribocia_area
+		}
+
+		highlight = {
+			scope:province = {
+				OR = {
+					is_in_area = menapia_orientalis
+					is_in_area = treveria_area
+					is_in_area = mediomatricia_area
+					is_in_area = tribocia_area
+				}
+			}
+		}
+		
+		on_completion = {
+			rome_mission_conquest_effect = yes
+			custom_tooltip = roman_7_to_the_rhine_claims_tt
+			hidden_effect = {
+				area:remia_area = { mission_area_claim_effect = yes }
+				area:nervia_area = { mission_area_claim_effect = yes }
+				area:frisia_area = { mission_area_claim_effect = yes }
+			}
+			c:ROM = {
+				trigger_event = { id = roman_conquest.75 }
+			}
+		}
+
+		bypass = {
+
+		}
+	}
+	
+	roman_7_established_in_gaul = {
+		icon = task_expansion
+		requires = { roman_7_to_the_rhine roman_7_central_foothold }
+
+		on_completion = {
+			if = {
+				limit = {
+					current_ruler = { is_minor_character = no }
+				}
+				current_ruler.family = { add_prestige = prestige_huge }
+			}
+			add_2_free_province_investments = yes
+			capital_scope = { rm_triumphal_arch_effect = yes }
+			trigger_event = { id = roman_conquest.76 }
+			custom_tooltip = roman_roman_7_established_in_gaul_tt
+		}
+
+		bypass = {
+
+		}
+		
+		#final = yes
+	}
+
+    roman_mission_08_greece_task_1 = { # Eastern Strike Fleet
+        icon = "task_expansion"
+
+    	requires = { roman_mission_08_greece_task_3 }
+
+        allow = {
+        	custom_tooltip = {
+        		text = roman_mission_08_greece_task_1_trigger_tt
+        		roman_mission_eastern_strike_fleet_current_svalue >= roman_mission_eastern_strike_fleet_max_svalue
+        	}
+        }
+
+        on_completion = {
+        	add_country_modifier = {
+        		name = roman_mission_eastern_strike_fleet_modifier
+        		duration = 3650
+        	}
+        }
+    }
+
+    roman_mission_08_greece_task_3 = { # Protect the Adriatic
+        icon = "task_political"
+		
+		requires = { roman_1_italia_adriatic_adventures }
+
+        highlight = {
+			scope:province = {
+				OR = {
+					province_id = 422
+					province_id = 415
+					province_id = 2336
+					province_id = 4090
+					province_id = 4091
+					province_id = 4088
+				}
+        	}
+        }
+
+        allow = {
+        	custom_tooltip = {
+        		text = roman_mission_08_greece_task_3_trigger_tt
+				OR = {
+					owns_or_subject_owns = 422
+					p:422 = {
+						root = { is_ai = yes } #This can hold AI up for decades
+						has_owner = no
+					}
+				}
+	        	OR = {
+					owns_or_subject_owns = 415
+					p:415 = {
+						root = { is_ai = yes }
+						has_owner = no
+					}
+				}
+				OR = {
+					owns_or_subject_owns = 2336
+					p:2336 = {
+						root = { is_ai = yes }
+						has_owner = no
+					}
+				}
+				OR = {
+					owns_or_subject_owns = 4090
+					p:490 = {
+						root = { is_ai = yes }
+						has_owner = no
+					}
+				}
+				OR = {
+					owns_or_subject_owns = 4091
+					p:4091 = {
+						root = { is_ai = yes }
+						has_owner = no
+					}
+				}
+	        	OR = {
+					owns_or_subject_owns = 4088
+					p:4088 = {
+						root = { is_ai = yes }
+						has_owner = no
+					}
+				}
+        	}
+        }
+
+        on_completion = {
+        	roman_mission_ruler_popularity_effect = yes
+        	custom_tooltip = roman_conquest_reward_tooltip
+        	trigger_event = { id = roman_conquest_2.1 }
+        	if = {
+        		limit = {
+        			any_subject = {
+        				any_owned_province = {
+        					OR = {
+					        	province_id = 422
+					        	province_id = 415
+					        	province_id = 2336
+					        	province_id = 4090
+					        	province_id = 4091
+					        	province_id = 4088
+				        	}
+        				}
+        			}
+        		}
+        		every_subject = {
+        			limit = {
+        				any_owned_province = {
+        					OR = {
+					        	province_id = 422
+					        	province_id = 415
+					        	province_id = 2336
+					        	province_id = 4090
+					        	province_id = 4091
+					        	province_id = 4088
+				        	}
+        				}
+        			}
+        			add_opinion = {
+        				modifier = opinion_roman_mission_subject_appreciation
+        				target = root
+        			}
+        		}
+        	}
+        	show_as_tooltip = {
+        		if = {
+					limit = {
+						any_owned_province = { is_in_area = illyria_graeca_area }
+					}
+					random_owned_province = {
+						limit = { is_in_area = illyria_graeca_area }
+						state = {
+							add_state_modifier = {
+								name = new_roman_conquest_foreign_smod
+								duration = 1825 # 5 years
+							}
+						}
+					}
+				}
+				if = {
+					limit = {
+						any_owned_province = { is_in_area = dalmatia_orientalis_area }
+					}
+					random_owned_province = {
+						limit = { is_in_area = dalmatia_orientalis_area }
+						state = {
+							add_state_modifier = {
+								name = new_roman_conquest_foreign_smod
+								duration = 1825 # 5 years
+							}
+						}
+					}
+				}
+        	}
+        }
+    }
+
+    roman_mission_08_greece_task_4 = { # Island Foothold
+        icon = "task_economical"
+
+    	requires = { roman_mission_08_greece_task_12 }
+
+    	highlight = {
+			scope:province = {
+				OR = {
+					province_id = 470
+					province_id = 459
+					province_id = 454
+					province_id = 263
+					province_id = 1835
+				}
+    		}
+    	}
+
+        allow = {
+        	OR = {
+	        	owns_or_subject_owns = 470
+	        	owns_or_subject_owns = 459
+	        	owns_or_subject_owns = 454
+	        	owns_or_subject_owns = 263
+	        	owns_or_subject_owns = 1835
+        	}
+        }
+
+        on_completion = {
+        	if = {
+        		limit = {
+        			any_owned_province = {
+        				OR = {
+        					province_id = 470
+			        		province_id = 459
+			        		province_id = 454
+			        		province_id = 263
+			        		province_id = 1835
+        				}
+        			}
+        		}
+        		ordered_owned_province = {
+        			order_by = total_population
+        			limit = {
+        				OR = {
+        					province_id = 470
+			        		province_id = 459
+			        		province_id = 454
+			        		province_id = 263
+			        		province_id = 1835
+        				}
+        			}
+        			max = 1
+        			state = {
+						add_state_modifier = {
+							name = new_roman_conquest_foreign_smod
+							duration = 1825 # 5 years
+						}
+					}
+        			if = {
+        				limit = {
+        					OR = {
+        						has_building = fortress_building
+        						free_building_slots = 0
+        					}
+        				}
+        				add_province_modifier = {
+        					name = roman_mission_island_foothold_naval_boon_modifier
+        					duration = 7300
+        				}
+        			}
+        			else = {
+        				custom_tooltip = roman_mission_08_greece_task_4_effect_tt
+        				trigger_event = { id = roman_conquest_2.3 }
+        			}
+	        	}
+        	}
+        	if = {
+        		limit = {
+        			any_subject = {
+        				any_owned_province = {
+        					OR = {
+				    			province_id = 470
+				        		province_id = 459
+				        		province_id = 454
+				        		province_id = 263
+				        		province_id = 1835
+				    		}
+        				}
+        			}
+        		}
+        		every_subject = {
+        			limit = {
+        				any_owned_province = {
+        					OR = {
+				    			province_id = 470
+				        		province_id = 459
+				        		province_id = 454
+				        		province_id = 263
+				        		province_id = 1835
+				    		}
+        				}
+        			}
+        			add_opinion = {
+        				modifier = opinion_roman_mission_subject_appreciation
+        				target = root
+        			}
+        		}
+        	}
+        }
+    }
+
+    roman_mission_08_greece_task_5 = { # Greek Allies
+        icon = "task_diplomatic"
+		
+		requires = { roman_1_italia_beat_bruttians }
+
+    	duration = 180
+
+        highlight = {
+            scope:province = {
+				exists = owner
+                owner = {
+                    country_culture_group = hellenic
+                    num_of_cities < 5
+                    any_owned_province = {
+                        NOR = {
+                            is_in_area = crete_area
+                            is_in_area = arcadia_area
+                            is_in_area = euboea_area
+                        }
+                        is_in_region = greece_region
+                    }
+                }
+            }
+        }
+
+        bypass = {
+            OR = {
+				is_ai = yes
+                owns_or_subject_owns_region = greece_region
+            	NOR = {
+            		area:south_peleponnesos_area = {
+            			roman_mission_greek_ally_area_potential_trigger = yes
+        			}
+        			area:achaea_area = {
+            			roman_mission_greek_ally_area_potential_trigger = yes
+        			}
+        			area:central_greece_area = {
+            			roman_mission_greek_ally_area_potential_trigger = yes
+        			}
+        			area:boeotia_area = {
+            			roman_mission_greek_ally_area_potential_trigger = yes
+        			}
+        			area:aetolia_area = {
+            			roman_mission_greek_ally_area_potential_trigger = yes
+        			}
+        			area:aegean_islands_area = {
+            			roman_mission_greek_ally_area_potential_trigger = yes
+        			}
+            	}
+            }
+        }
+
+        allow = {
+        	OR = {
+        		custom_tooltip = {
+    				text = roman_mission_08_greece_task_5_trigger_peleponnese_tt
+        			area:south_peleponnesos_area = {
+	        			roman_mission_greek_ally_area_allow_trigger = yes
+        			}
+        		}
+        		custom_tooltip = {
+    				text = roman_mission_08_greece_task_5_trigger_achaea_tt
+        			area:achaea_area = {
+	        			roman_mission_greek_ally_area_allow_trigger = yes
+        			}
+        		}
+        		custom_tooltip = {
+    				text = roman_mission_08_greece_task_5_trigger_hellas_tt
+        			area:central_greece_area = {
+	        			roman_mission_greek_ally_area_allow_trigger = yes
+        			}
+        		}
+        		custom_tooltip = {
+    				text = roman_mission_08_greece_task_5_trigger_boeotia_tt
+        			area:boeotia_area = {
+	        			roman_mission_greek_ally_area_allow_trigger = yes
+        			}
+        		}
+        		custom_tooltip = {
+    				text = roman_mission_08_greece_task_5_trigger_aetolia_tt
+        			area:aetolia_area = {
+	        			roman_mission_greek_ally_area_allow_trigger = yes
+        			}
+        		}
+        		custom_tooltip = {
+    				text = roman_mission_08_greece_task_5_trigger_aegean_tt
+        			area:aegean_islands_area = {
+	        			roman_mission_greek_ally_area_allow_trigger = yes
+        			}
+        		}
+        	}
+        }
+
+        monthly_on_action = roman_8_greece_greek_allies_pulse
+
+		on_start = {
+			set_variable = {
+				name = ongoing_mission_pulse_flag
+				days = 180
+			}
+		}
+
+        on_completion = {
+        	custom_tooltip = roman_mission_08_greece_task_5_effect_tt
+        }
+    }
+
+    roman_mission_08_greece_task_6 = { # Foothold in Illyria
+        icon = "task_conquest"
+
+    	requires = { roman_mission_08_greece_task_3 }
+
+    	highlight = {
+			scope:province = {
+				is_in_area = illyria_graeca_area
+			}
+    	}
+
+        allow = {
+			trigger_if = {
+				limit = {
+					is_ai = yes
+				}
+				area:illyria_graeca_area = {
+					any_area_province = {
+						count = all
+						OR = {
+							has_owner = no
+							owned_or_subject_owned = c:ROM
+						}
+					}
+				}
+			}
+			trigger_else = {
+				owns_or_subject_owns_area = illyria_graeca_area
+			}
+        }
+
+        on_completion = {
+        	roman_mission_ruler_popularity_effect = yes
+        	custom_tooltip = roman_conquest_reward_tooltip
+        	trigger_event = { id = roman_conquest_2.2 }
+        	show_as_tooltip = {
+        		if = {
+					limit = {
+						any_owned_province = { is_in_area = illyria_graeca_area }
+					}
+					random_owned_province = {
+						limit = { is_in_area = illyria_graeca_area }
+						state = {
+							add_state_modifier = {
+								name = new_roman_conquest_foreign_smod
+								duration = 1825 # 5 years
+							}
+						}
+					}
+				}
+        	}
+        	if = {
+        		limit = {
+        			any_subject = {
+        				any_owned_province = {
+        					is_in_area = illyria_graeca_area
+        				}
+        			}
+        		}
+        		every_subject = {
+        			limit = {
+        				any_owned_province = {
+        					is_in_area = illyria_graeca_area
+        				}
+        			}
+        			add_opinion = {
+        				modifier = opinion_roman_mission_subject_appreciation
+        				target = root
+        			}
+        		}
+        	}
+        }
+    }
+
+    roman_mission_08_greece_task_7 = { # Northern Sweep
+        icon = "task_expansion"
+
+    	requires = { roman_mission_08_greece_task_6 }
+
+    	highlight = {
+			scope:province = {
+				is_in_area = dardania_inferioris_area
+			}
+    	}
+
+    	allow = {
+    		owns_or_subject_owns_area = dardania_inferioris_area
+    	}
+
+    	on_completion = {
+    		roman_mission_ruler_popularity_effect = yes
+        	custom_tooltip = roman_conquest_reward_tooltip
+        	trigger_event = { id = roman_conquest_2.4 }
+        	show_as_tooltip = {
+        		if = {
+					limit = {
+						any_owned_province = { is_in_area = dardania_inferioris_area }
+					}
+					random_owned_province = {
+						limit = { is_in_area = dardania_inferioris_area }
+						state = {
+							add_state_modifier = {
+								name = new_roman_conquest_foreign_smod
+								duration = 1825 # 5 years
+							}
+						}
+					}
+				}
+        	}
+        	if = {
+        		limit = {
+        			any_subject = {
+        				any_owned_province = {
+        					is_in_area = dardania_inferioris_area
+        				}
+        			}
+        		}
+        		every_subject = {
+        			limit = {
+        				any_owned_province = {
+        					is_in_area = dardania_inferioris_area
+        				}
+        			}
+        			add_opinion = {
+        				modifier = opinion_roman_mission_subject_appreciation
+        				target = root
+        			}
+        		}
+        	}
+    	}
+    }
+
+    roman_mission_08_greece_task_8 = { # Liberate Greece
+        icon = "task_political"
+
+    	requires = { roman_mission_08_greece_task_4 }
+
+    	highlight = {
+			scope:province = {
+				OR = {
+					province_id = 426
+					province_id = 416
+					province_id = 418
+					AND = {
+						exists = owner
+						owner = {
+							OR = {
+								this = c:PRY
+								AND = {
+									is_subject = yes
+									overlord = {
+										this = c:PRY
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+    	}
+
+    	allow = {
+    		trigger_if = {
+    			limit = {
+    				exists = scope:egypt_country
+    				scope:egypt_country = {
+    					any_subject = {
+    						any_owned_province = {
+    							is_in_region = greece_region
+    						}
+    					}  
+    				}
+    			}
+    			custom_tooltip = {
+    				text = roman_mission_08_greece_task_8_trigger_egypt_subject_tt
+	    			scope:egypt_country = {
+	    				NOR = {
+	    					any_owned_province = {
+	    						is_in_region = greece_region
+	    					}
+	    					any_subject = {
+	    						any_owned_province = {
+	    							is_in_region = greece_region
+	    						}
+	    					}
+	    				}
+	    			}
+    			}
+    		}
+    		trigger_if = {
+    			limit = {
+    				exists = scope:macedon_country
+    				scope:macedon_country = {
+    					any_subject = {
+    						any_owned_province = {
+    							is_in_region = greece_region
+    						}
+    					}
+    				}
+    			}
+    			custom_tooltip = {
+    				text = roman_mission_08_greece_task_8_trigger_macedon_subject_tt
+    				scope:macedon_country = {
+    					NOR = {
+	    					any_owned_province = {
+	    						is_in_region = greece_region
+	    					}
+	    					any_subject = {
+	    						any_owned_province = {
+	    							is_in_region = greece_region
+	    						}
+	    					}
+	    				}
+    				}
+    			}
+    		}
+    		trigger_if = {
+    			limit = {
+    				exists = scope:thrace_country
+    				scope:thrace_country = {
+    					any_subject = {
+    						any_owned_province = {
+    							is_in_region = greece_region
+    						}
+    					}
+    				}
+    			}
+    			custom_tooltip = {
+    				text = roman_mission_08_greece_task_8_trigger_thrace_subject_tt
+    				scope:thrace_country = {
+    					NOR = {
+	    					any_owned_province = {
+	    						is_in_region = greece_region
+	    					}
+	    					any_subject = {
+	    						any_owned_province = {
+	    							is_in_region = greece_region
+	    						}
+	    					}
+	    				}
+    				}
+    			}
+    		}
+    		trigger_if = {
+    			limit = {
+    				exists = scope:phrygia_country
+    				scope:phrygia_country = {
+    					any_subject = {
+    						any_owned_province = {
+    							is_in_region = greece_region
+    						}
+    					}
+    				}
+    			}
+    			custom_tooltip = {
+    				text = roman_mission_08_greece_task_8_trigger_phrygia_subject_tt
+    				scope:phrygia_country = {
+    					NOR = {
+	    					any_owned_province = {
+	    						is_in_region = greece_region
+	    					}
+	    					any_subject = {
+	    						any_owned_province = {
+	    							is_in_region = greece_region
+	    						}
+	    					}
+	    				}
+    				}
+    			}
+    		}
+    		trigger_if = {
+    			limit = {
+    				exists = scope:seleucid_country
+    				scope:seleucid_country = {
+    					any_subject = {
+    						any_owned_province = {
+    							is_in_region = greece_region
+    						}
+    					}
+    				}
+    			}
+    			custom_tooltip = {
+    				text = roman_mission_08_greece_task_8_trigger_seleucid_subject_tt
+    				scope:seleucid_country = {
+    					NOR = {
+	    					any_owned_province = {
+	    						is_in_region = greece_region
+	    					}
+	    					any_subject = {
+	    						any_owned_province = {
+	    							is_in_region = greece_region
+	    						}
+	    					}
+	    				}
+    				}
+    			}
+    		}
+    		owns_or_subject_owns = 426
+    		owns_or_subject_owns = 416
+    		owns_or_subject_owns = 418
+    	}
+
+    	on_completion = {
+    		add_country_modifier = {
+    			name = roman_mission_liberator_of_greece_modifier
+    			duration = 7300
+    		}
+    	}
+    }
+
+    roman_mission_08_greece_task_11 = { # Home of Civilization
+        icon = "task_conquest"
+
+    	requires = { roman_mission_08_greece_task_10 }
+
+    	highlight = {
+			scope:province = {
+				OR = {
+					is_in_area = boeotia_area
+					is_in_area = central_greece_area
+				}
+			}
+    	}
+
+    	allow = {
+    		owns_or_subject_owns_area = boeotia_area
+    		owns_or_subject_owns_area = central_greece_area
+    	}
+
+    	on_completion = {
+    		roman_mission_ruler_popularity_effect = yes
+        	custom_tooltip = roman_conquest_reward_tooltip
+        	trigger_event = { id = roman_conquest_2.8 }
+        	show_as_tooltip = {
+        		if = {
+					limit = {
+						any_owned_province = { is_in_area = boeotia_area }
+					}
+					random_owned_province = {
+						limit = { is_in_area = boeotia_area }
+						state = {
+							add_state_modifier = {
+								name = new_roman_conquest_foreign_smod
+								duration = 1825 # 5 years
+							}
+						}
+					}
+				}
+				if = {
+					limit = {
+						any_owned_province = { is_in_area = central_greece_area }
+					}
+					random_owned_province = {
+						limit = { is_in_area = central_greece_area }
+						state = {
+							add_state_modifier = {
+								name = new_roman_conquest_foreign_smod
+								duration = 1825 # 5 years
+							}
+						}
+					}
+				}
+        	}
+        	if = {
+        		limit = {
+        			any_subject = {
+        				any_owned_province = {
+        					OR = {
+				    			is_in_area = boeotia_area
+				    			is_in_area = central_greece_area
+				    		}
+        				}
+        			}
+        		}
+        		every_subject = {
+        			limit = {
+        				any_owned_province = {
+        					OR = {
+				    			is_in_area = boeotia_area
+				    			is_in_area = central_greece_area
+				    		}
+        				}
+        			}
+        			add_opinion = {
+        				modifier = opinion_roman_mission_subject_appreciation
+        				target = root
+        			}
+        		}
+        	}
+    	}
+    }
+
+    roman_mission_08_greece_task_12 = { # Freedom First
+        icon = "task_political"
+
+    	requires = { roman_mission_08_greece_task_5 }
+
+    	duration = 180
+
+    	bypass = {
+    		area:central_greece_area = {
+    			NOT = {
+	    			any_area_province = {
+	    				owner = {
+	    					OR = {
+	    						is_republic = no
+	    						NOT = { country_culture_group = hellenic }
+	    					}
+	    					NOT = { this = root }
+	    				}
+	    			}
+	    		}
+		    }
+		    area:south_peleponnesos_area = {
+		    	NOT = {
+					any_area_province = {
+	    				owner = {
+	    					OR = {
+	    						is_republic = no
+	    						NOT = { country_culture_group = hellenic }
+	    					}
+	    					NOT = { this = root }
+	    				}
+	    				NOT = { # Exception for Sparta holding Spartan lands
+	    					owner = { tag = SPA }
+	    					OR = {
+	    						province_id = 427
+	    						province_id = 430
+	    						province_id = 429
+	    						province_id = 450 
+	    						province_id = 471
+	    					}
+	    				}
+	    			}
+    			}
+    		}
+    		area:achaea_area = {
+    			NOT = {
+					any_area_province = {
+						owner = {
+							OR = {
+								is_republic = no
+								NOT = { country_culture_group = hellenic }
+							}
+							NOT = { this = root }
+						}
+					}
+				}
+			}
+			area:boeotia_area = {
+				NOT = {
+	    			any_area_province = {
+	    				owner = {
+	    					OR = {
+	    						is_republic = no
+	    						NOT = { country_culture_group = hellenic }
+	    					}
+	    					NOT = { this = root }
+	    				}
+	    				NOT = { # Exception for Thebes holding Theban lands
+	    					owner = { tag = THE }
+	    					province_id = 426
+	    				}
+	    			}
+    			}
+    		}
+            area:arcadia_area = {
+                NOT = {
+                    any_area_province = {
+                        owner = {
+                            OR = {
+                                is_republic = no
+                                NOT = { country_culture_group = hellenic }
+                            }
+                            NOT = { this = root }
+                        }
+                    }
+                }
+            }
+            area:euboea_area = {
+                NOT = {
+                    any_area_province = {
+                        owner = {
+                            OR = {
+                                is_republic = no
+                                NOT = { country_culture_group = hellenic }
+                            }
+                            NOT = { this = root }
+                        }
+                    }
+                }
+            }
+    	}
+
+    	on_completion = {
+    		if = {
+    			limit = {
+    				area:central_greece_area = {
+		    			any_area_province = {
+		    				owner = {
+		    					OR = {
+		    						is_republic = no
+		    						NOT = { country_culture_group = hellenic }
+		    					}
+		    					NOT = { this = root }
+		    				}
+		    			}
+		    		}
+    			}
+    			area:central_greece_area = {
+    				save_temporary_scope_as = current_area
+    				custom_tooltip = roman_mission_08_greece_task_12_effect_tt
+	    			every_area_province = {
+	    				limit = {
+		    				owner = {
+		    					OR = {
+		    						is_republic = no
+		    						NOT = { country_culture_group = hellenic }
+		    					}
+		    					NOT = { this = root }
+		    				}
+	    				}
+	    			}
+	    		}
+    		}
+    		if = {
+    			limit = {
+    				area:south_peleponnesos_area = {
+	    				any_area_province = {
+		    				owner = {
+		    					OR = {
+		    						is_republic = no
+		    						NOT = { country_culture_group = hellenic }
+		    					}
+		    					NOT = { this = root }
+		    				}
+		    				NOT = { # Exception for Sparta holding Spartan lands
+		    					owner = { tag = SPA }
+		    					OR = {
+		    						province_id = 427
+		    						province_id = 430
+		    						province_id = 429
+		    						province_id = 450 
+		    						province_id = 471
+		    					}
+		    				}
+		    			}
+		    		}
+    			}
+    			area:south_peleponnesos_area = {
+    				save_temporary_scope_as = current_area
+    				custom_tooltip = roman_mission_08_greece_task_12_effect_tt
+	    			hidden_effect = {
+		    			every_area_province = {
+	    					limit = {
+	    						owner = {
+	    							OR = {
+	    								is_republic = no
+	    								NOT = { country_culture_group = hellenic }
+	    							}
+	    							NOT = { this = root }
+	    						}
+	    						NOT = { # Exception for Sparta holding Spartan lands
+			    					owner = { tag = SPA }
+			    					OR = {
+			    						province_id = 427
+			    						province_id = 430
+			    						province_id = 429
+			    						province_id = 450 
+			    						province_id = 471
+			    					}
+			    				}
+	    					}
+	    					add_claim = root
+	    				}
+    				}
+	    		}
+    		}
+    		if = {
+    			limit = {
+    				area:achaea_area = {
+						any_area_province = {
+							owner = {
+								OR = {
+									is_republic = no
+									NOT = { country_culture_group = hellenic }
+								}
+								NOT = { this = root }
+							}
+						}
+					}
+    			}
+    			area:achaea_area = {
+    				save_temporary_scope_as = current_area
+    				custom_tooltip = roman_mission_08_greece_task_12_effect_tt
+	    			every_area_province = {
+	    				limit = {
+		    				owner = {
+		    					OR = {
+		    						is_republic = no
+		    						NOT = { country_culture_group = hellenic }
+		    					}
+		    					NOT = { this = root }
+		    				}
+	    				}
+	    			}
+	    		}
+    		}
+    		if = {
+    			limit = {
+    				area:boeotia_area = {
+		    			any_area_province = {
+		    				owner = {
+		    					OR = {
+		    						is_republic = no
+		    						NOT = { country_culture_group = hellenic }
+		    					}
+		    					NOT = { this = root }
+		    				}
+		    			}
+		    		}
+    			}
+    			area:boeotia_area = {
+    				save_temporary_scope_as = current_area
+    				custom_tooltip = roman_mission_08_greece_task_12_effect_tt
+    				hidden_effect = {
+	    				every_area_province = {
+	    					limit = {
+	    						owner = {
+	    							OR = {
+	    								is_republic = no
+	    								NOT = { country_culture_group = hellenic }
+	    							}
+	    							NOT = { this = root }
+	    						}
+	    					}
+	    					add_claim = root
+	    				}
+    				}
+    			}
+    		}
+            if = {
+                limit = {
+                    area:euboea_area = {
+                        any_area_province = {
+                            has_owner = yes
+                            owner = {
+                                OR = {
+                                    is_republic = no
+                                    NOT = { country_culture_group = hellenic }
+                                }
+                                NOT = { this = root }
+                            }
+                            NOT = { # Exception for Thebes holding Theban lands
+                                owner = { tag = THE }
+                                province_id = 426
+                            }
+                        }
+                    }
+                }
+                area:euboea_area = {
+                    save_temporary_scope_as = current_area
+                    custom_tooltip = roman_mission_08_greece_task_12_effect_tt
+                    hidden_effect = {
+                        every_area_province = {
+                            limit = {
+                                has_owner = yes
+                                owner = {
+                                    OR = {
+                                        is_republic = no
+                                        NOT = { country_culture_group = hellenic }
+                                    }
+                                    NOT = { this = root }
+                                }
+                                NOT = { # Exception for Thebes holding Theban lands
+                                    owner = { tag = THE }
+                                    province_id = 426
+                                }
+                            }
+                            add_claim = root
+                        }
+                    }
+                }
+            }
+            if = {
+                limit = {
+                    area:arcadia_area = {
+                        any_area_province = {
+                            has_owner = yes
+                            owner = {
+                                OR = {
+                                    is_republic = no
+                                    NOT = { country_culture_group = hellenic }
+                                }
+                                NOT = { this = root }
+                            }
+                        }
+                    }
+                }
+                area:arcadia_area = {
+                    save_temporary_scope_as = current_area
+                    custom_tooltip = roman_mission_08_greece_task_12_effect_tt
+                    hidden_effect = {
+                        every_area_province = {
+                            limit = {
+                                has_owner = yes
+                                owner = {
+                                    OR = {
+                                        is_republic = no
+                                        NOT = { country_culture_group = hellenic }
+                                    }
+                                    NOT = { this = root }
+                                }
+                            }
+                            add_claim = root
+                        }
+                    }
+                }
+            }
+    	}
+    }
+
+    roman_mission_08_greece_task_9 = { # Annexing Macedon
+        icon = "task_conquest"
+
+    	requires = { roman_mission_08_greece_task_10 }
+
+    	highlight = {
+			scope:province = {
+				OR = {
+					is_in_area = upper_macedonia_area
+					is_in_area = macedonia_area
+				}
+			}
+    	}
+
+    	allow = {
+    		owns_or_subject_owns_area = upper_macedonia_area
+    		owns_or_subject_owns_area = macedonia_area
+    	}
+
+    	on_completion = {
+    		roman_mission_ruler_popularity_effect = yes
+        	custom_tooltip = roman_conquest_reward_tooltip
+        	trigger_event = { id = roman_conquest_2.6 }
+        	show_as_tooltip = {
+        		if = {
+					limit = {
+						any_owned_province = { is_in_area = upper_macedonia_area }
+					}
+					random_owned_province = {
+						limit = { is_in_area = upper_macedonia_area }
+						state = {
+							add_state_modifier = {
+								name = new_roman_conquest_foreign_smod
+								duration = 1825 # 5 years
+							}
+						}
+					}
+				}
+				if = {
+					limit = {
+						any_owned_province = { is_in_area = macedonia_area }
+					}
+					random_owned_province = {
+						limit = { is_in_area = macedonia_area }
+						state = {
+							add_state_modifier = {
+								name = new_roman_conquest_foreign_smod
+								duration = 1825 # 5 years
+							}
+						}
+					}
+				}
+        	}
+        	if = {
+        		limit = {
+        			any_subject = {
+        				any_owned_province = {
+        					OR = {
+				    			is_in_area = upper_macedonia_area
+				    			is_in_area = macedonia_area
+				    		}
+        				}
+        			}
+        		}
+        		every_subject = {
+        			limit = {
+        				any_owned_province = {
+        					OR = {
+				    			is_in_area = upper_macedonia_area
+				    			is_in_area = macedonia_area
+				    		}
+        				}
+        			}
+        			add_opinion = {
+        				modifier = opinion_roman_mission_subject_appreciation
+        				target = root
+        			}
+        		}
+        	}
+			if = {
+				limit = { is_ai = yes }
+				region:asia_region = {
+					every_region_province = { add_claim = ROOT }
+				}
+				region:cilicia_region = {
+					every_region_province = { add_claim = ROOT }
+				}
+				region:syria_region = {
+					every_region_province = { add_claim = ROOT }
+				}
+				region:palestine_region = {
+					every_region_province = { add_claim = ROOT }
+				}
+				region:bithynia_region = {
+					every_region_province = { add_claim = ROOT }
+				}
+				region:galatia_region = {
+					every_region_province = { add_claim = ROOT }
+				}
+				region:pontus_region = {
+					every_region_province = { add_claim = ROOT }
+				}
+			}
+    	}
+    }
+
+    roman_mission_08_greece_task_10 = { # The Ionian Coast
+        icon = "task_conquest"
+
+    	requires = { roman_mission_08_greece_task_6 }
+
+    	highlight = {
+			scope:province = {
+				OR = {
+					is_in_area = aetolia_area
+					is_in_area = epirus_area
+				}
+			}
+    	}
+
+    	allow = {
+    		owns_or_subject_owns_area = aetolia_area
+    		owns_or_subject_owns_area = epirus_area
+    	}
+
+    	on_completion = {
+    		roman_mission_ruler_popularity_effect = yes
+        	custom_tooltip = roman_conquest_reward_tooltip
+        	trigger_event = { id = roman_conquest_2.5 }
+        	show_as_tooltip = {
+        		if = {
+					limit = {
+						any_owned_province = { is_in_area = aetolia_area }
+					}
+					random_owned_province = {
+						limit = { is_in_area = aetolia_area }
+						state = {
+							add_state_modifier = {
+								name = new_roman_conquest_foreign_smod
+								duration = 1825 # 5 years
+							}
+						}
+					}
+				}
+				if = {
+					limit = {
+						any_owned_province = { is_in_area = epirus_area }
+					}
+					random_owned_province = {
+						limit = { is_in_area = epirus_area }
+						state = {
+							add_state_modifier = {
+								name = new_roman_conquest_foreign_smod
+								duration = 1825 # 5 years
+							}
+						}
+					}
+				}
+        	}
+        	if = {
+        		limit = {
+        			any_subject = {
+        				any_owned_province = {
+        					OR = {
+				    			is_in_area = aetolia_area
+				    			is_in_area = epirus_area
+				    		}
+        				}
+        			}
+        		}
+        		every_subject = {
+        			limit = {
+        				any_owned_province = {
+        					OR = {
+				    			is_in_area = aetolia_area
+				    			is_in_area = epirus_area
+				    		}
+        				}
+        			}
+        			add_opinion = {
+        				modifier = opinion_roman_mission_subject_appreciation
+        				target = root
+        			}
+        		}
+        	}
+    	}
+    }
+
+    roman_mission_08_greece_task_13 = { # Peloponnesian Campaign
+        icon = "task_conquest"
+
+    	requires = { roman_mission_08_greece_task_8 roman_mission_08_greece_task_11 }
+
+    	highlight = {
+			scope:province = {
+				OR = {
+					is_in_area = south_peleponnesos_area
+					is_in_area = achaea_area
+                    is_in_area = arcadia_area
+				}
+			}
+    	}
+
+    	allow = {
+			trigger_if = {
+				limit = {
+					is_ai = no
+				}
+				owns_or_subject_owns_area = south_peleponnesos_area
+				owns_or_subject_owns_area = achaea_area
+				owns_or_subject_owns_area = arcadia_area
+			}
+			trigger_else = {
+				area:south_peleponnesos_area = {
+					any_area_province = {
+						count = all
+						OR = {
+							has_owner = no
+							owner = root
+							owner = {
+								is_subject_of = root
+							}
+						}
+					}
+				}
+				area:achaea_area = {
+					any_area_province = {
+						count = all
+						OR = {
+							has_owner = no
+							owner = root
+							owner = {
+								is_subject_of = root
+							}
+						}
+					}
+				}
+				area:arcadia_area = {
+					any_area_province = {
+						count = all
+						OR = {
+							has_owner = no
+							owner = root
+							owner = {
+								is_subject_of = root
+							}
+						}
+					}
+				}
+			}
+    	}
+
+    	on_completion = {
+    		roman_mission_ruler_popularity_effect = yes
+        	custom_tooltip = roman_conquest_reward_tooltip
+        	trigger_event = { id = roman_conquest_2.7 }
+        	show_as_tooltip = {
+        		if = {
+					limit = {
+						any_owned_province = { is_in_area = south_peleponnesos_area }
+					}
+					random_owned_province = {
+						limit = { is_in_area = south_peleponnesos_area }
+						state = {
+							add_state_modifier = {
+								name = new_roman_conquest_foreign_smod
+								duration = 1825 # 5 years
+							}
+						}
+					}
+				}
+				if = {
+					limit = {
+						any_owned_province = { is_in_area = achaea_area }
+					}
+					random_owned_province = {
+						limit = { is_in_area = achaea_area }
+						state = {
+							add_state_modifier = {
+								name = new_roman_conquest_foreign_smod
+								duration = 1825 # 5 years
+							}
+						}
+					}
+				}
+                if = {
+                    limit = {
+                        any_owned_province = { is_in_area = arcadia_area }
+                    }
+                    random_owned_province = {
+                        limit = { is_in_area = arcadia_area }
+                        state = {
+                            add_state_modifier = {
+                                name = new_roman_conquest_foreign_smod
+                                duration = 1825 # 5 years
+                            }
+                        }
+                    }
+                }
+        	}
+        	if = {
+        		limit = {
+        			any_subject = {
+        				any_owned_province = {
+        					OR = {
+				    			is_in_area = south_peleponnesos_area
+				    			is_in_area = achaea_area
+                                is_in_area = arcadia_area
+				    		}
+        				}
+        			}
+        		}
+        		every_subject = {
+        			limit = {
+        				any_owned_province = {
+        					OR = {
+				    			is_in_area = south_peleponnesos_area
+				    			is_in_area = achaea_area
+                                is_in_area = arcadia_area
+				    		}
+        				}
+        			}
+        			add_opinion = {
+        				modifier = opinion_roman_mission_subject_appreciation
+        				target = root
+        			}
+        		}
+        	}
+			if = {
+				limit = { is_ai = yes }
+				region:cyrenaica_region = {
+					every_region_province = { add_claim = ROOT }
+				}
+				region:lower_egypt_region = {
+					every_region_province = { add_claim = ROOT }
+				}
+			}
+    	}
+    }
+
+    roman_mission_08_greece_task_final = { # Greek Clients
+        icon = "task_political"
+
+    	requires = { roman_mission_08_greece_task_13 }
+
+    	prevented_by = { roman_mission_08_greece_task_final_2 }
+
+        #final = yes
+
+        highlight = {
+			scope:province = {
+				OR = {
+					province_id = 427
+					province_id = 416
+					province_id = 418
+					province_id = 426
+				}
+			}
+        }
+
+        allow = {
+			owns = 427
+			owns = 416
+			owns = 418
+			owns = 426
+        }
+
+        on_completion = {
+        	custom_tooltip = roman_mission_08_greece_task_final_tt
+        	if = {
+        		limit = {
+        			owns = 416
+        			c:ATH = { num_of_cities = 0 }
+        		}
+        		trigger_event = { id = me_roman_8_greece.9 }
+        	}
+        	else_if = {
+	    		limit = {
+	    			owns = 427
+	    			c:SPA = { num_of_cities = 0 }
+	    		}
+	    		trigger_event = { id = me_roman_8_greece.10 }
+	    	}
+	    	else_if = {
+	    		limit = {
+	    			owns = 418
+	    		}
+	    		trigger_event = { id = me_roman_8_greece.11 }
+	    	}
+	    	else_if = {
+	    		limit = {
+	    			owns = 426
+	    			c:THE = { num_of_cities = 0 }
+	    		}
+	    		trigger_event = { id = me_roman_8_greece.12 }
+	    	}
+	    	else = {
+	    		trigger_event = { id = me_roman_8_greece.13 }
+	    	}
+        }
+    }
+
+    roman_mission_08_greece_task_final_2 = { # Integrate
+        icon = "task_economical"
+
+    	requires = { roman_mission_08_greece_task_13 }
+
+    	prevented_by = { roman_mission_08_greece_task_final }
+
+        #final = yes
+
+        on_completion = {
+        	every_country_state = {
+        		limit = {
+        			any_state_province = {
+        				is_in_region = greece_region
+        			}
+        		}
+        		custom = roman_mission_08_greece_task_final_2_effect_tt
+	        	add_state_modifier = {
+	        		name = roman_mission_integration_modifier
+	        		duration = 7300
+	        	}
+        	}
+        	if = {
+	        	limit = {
+	        		area:crete_area = {
+	        			any_area_province = {
+	        				NOT = { owned_or_subject_owned = root }
+	        			}
+	        		}
+	        	}
+	        	custom_tooltip = me_roman_8_greece.13.a.tt.crete
+	        	hidden_effect = {
+		        	area:crete_area = {
+		        		every_area_province = {
+		        			limit = {
+		        				NOT = { owned_or_subject_owned = root }
+		        			}
+		        			add_claim = root
+		        		}
+		        	}
+	        	}
+	        }
+	        if = {
+	        	limit = {
+	        		area:aegean_islands_area = {
+	        			any_area_province = {
+	        				NOT = { owned_or_subject_owned = root }
+	        			}
+	        		}
+	        	}
+	        	custom_tooltip = me_roman_8_greece.13.a.tt.aegean_islands
+	        	hidden_effect = {
+		        	area:aegean_islands_area = {
+		        		every_area_province = {
+		        			limit = {
+		        				NOT = { owned_or_subject_owned = root }
+		        			}
+		        			add_claim = root
+		        		}
+		        	}
+	        	}
+	        }
+        }
+    }
+
+    roman_mission_09_eastern_glory_task_1 = { # The Ionian Cities
+    	icon = "task_expansion"
+		requires = { roman_mission_08_greece_task_8 }
+    	duration = 180
+
+    	bypass = {
+            NOT = { has_variable = ionian_city_started_flag }
+    		NOR = {
+    			area:aeolia_area = {
+    				any_area_province = {
+    					owner = {
+    						num_of_cities < 10
+    						is_subject = no
+    					}
+    				}
+    			}
+    			area:ionia_area = {
+    				any_area_province = {
+    					owner = {
+    						num_of_cities < 10
+    						is_subject = no
+    					}
+    				}
+    			}
+    			area:coastal_caria_area = {
+    				any_area_province = {
+    					owner = {
+    						num_of_cities < 10
+    						is_subject = no
+    					}
+    				}
+    			}
+    		}
+    	}
+
+    	highlight = {
+			scope:province = {
+				OR = {
+					is_in_area = aeolia_area
+					is_in_area = ionia_area
+					is_in_area = coastal_caria_area
+				}
+    		}
+    	}
+
+        allow = {
+        	political_influence >= 50
+            custom_tooltip = {
+                text = roman_mission_09_eastern_glory_task_1_trigger_tt
+                OR = {
+                    area:aeolia_area = {
+                        any_area_province = {
+                            owner = {
+                                NOR = { 
+                                    has_variable = roman_client_offer_eastern_glory 
+                                    alliance_with = root
+                                    war_with = root
+                                }
+                                num_of_cities < 10
+                                is_subject = no
+                            }
+                        }
+                    }
+                    area:ionia_area = {
+                        any_area_province = {
+                            owner = {
+                                NOR = { 
+                                    has_variable = roman_client_offer_eastern_glory 
+                                    alliance_with = root
+                                    war_with = root
+                                }
+                                num_of_cities < 10
+                                is_subject = no
+                            }
+                        }
+                    }
+                    area:coastal_caria_area = {
+                        any_area_province = {
+                            owner = {
+                                NOR = { 
+                                    has_variable = roman_client_offer_eastern_glory 
+                                    alliance_with = root
+                                    war_with = root
+                                }
+                                num_of_cities < 10
+                                is_subject = no
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        monthly_on_action = roman_mission_09_eastern_glory_task_1_pulse
+
+		on_start = {
+            set_variable = ionian_city_started_flag
+			set_variable = {
+				name = ongoing_mission_pulse_flag
+				days = 180
+			}
+		}
+
+        on_completion = {
+            remove_variable = ionian_city_started_flag
+        	add_political_influence = -50
+        	custom_tooltip = roman_mission_09_eastern_glory_task_1_effect_tt
+        }
+    }
+
+    roman_mission_09_eastern_glory_task_2 = { # Befriend Asian Kings
+    	icon = "task_diplomatic"
+
+    	duration = 180
+
+    	requires = { roman_mission_09_eastern_glory_task_3 }
+
+        potential = {
+        	OR = {
+	            region:asia_region = {
+	                any_region_province = {
+	                    owner = {
+	                        NOR = {
+	                            alliance_with = root
+	                            is_subject_of = root
+	                            war_with = root
+	                        }
+	                        num_of_cities < 10
+	                        is_monarchy = yes
+	                    }
+	                }
+	            }
+	            region:bithynia_region = {
+	                any_region_province = {
+	                    owner = {
+	                        NOR = {
+	                            alliance_with = root
+	                            is_subject_of = root
+	                            war_with = root
+	                        }
+	                        num_of_cities < 10
+	                        is_monarchy = yes
+	                    }
+	                }
+	            }
+	            region:galatia_region = {
+	                any_region_province = {
+	                    owner = {
+	                        NOR = {
+	                            alliance_with = root
+	                            is_subject_of = root
+	                            war_with = root
+	                        }
+	                        num_of_cities < 10
+	                        is_monarchy = yes
+	                    }
+	                }
+	            }
+	        }
+        }
+
+        monthly_on_action = roman_mission_09_eastern_glory_task_2_pulse
+
+		on_start = {
+			set_variable = {
+				name = ongoing_mission_pulse_flag
+				days = 180
+			}
+		}
+	
+        on_completion = {
+        	custom_tooltip = roman_mission_09_eastern_glory_task_2_effect_tt
+        }
+    }
+
+    roman_mission_09_eastern_glory_task_3 = { # Subdue Thrace
+    	icon = "task_conquest"
+		requires = { roman_mission_08_greece_task_9 }
+
+        highlight = {
+			scope:province = {
+				OR = {
+					is_in_area = europa_area
+					is_in_area = rhodope_area
+					is_in_area = haemimontus_area
+				}
+        	}
+        }
+
+        allow = {
+        	owns_or_subject_owns_area = europa_area
+        	owns_or_subject_owns_area = rhodope_area
+        	owns_or_subject_owns_area = haemimontus_area
+        }
+
+        on_completion = {
+        	roman_mission_ruler_popularity_effect = yes
+        	custom_tooltip = roman_conquest_reward_tooltip
+        	trigger_event = { id = roman_conquest_2.9 }
+        	if = {
+        		limit = {
+        			any_subject = {
+        				any_owned_province = {
+        					OR = {
+        						is_in_area = europa_area
+        						is_in_area = rhodope_area
+        						is_in_area = haemimontus_area
+        					}
+        				}
+        			}
+        		}
+        		every_subject = {
+        			limit = {
+        				any_owned_province = {
+        					OR = {
+        						is_in_area = europa_area
+        						is_in_area = rhodope_area
+        						is_in_area = haemimontus_area
+        					}
+        				}
+        			}
+        			add_opinion = {
+        				modifier = opinion_roman_mission_subject_appreciation
+        				target = root
+        			}
+        		}
+        	}
+            every_country_state = {
+                limit = {
+                    any_state_province = {
+                        OR = {
+                            is_in_area = europa_area
+                            is_in_area = rhodope_area
+                            is_in_area = haemimontus_area
+                        }
+                    }
+                }
+                custom = roman_mission_09_eastern_glory_task_3_modifier_tt
+                add_state_modifier = {
+                    name = new_roman_conquest_foreign_smod
+                    duration = 1825 # 5 years
+                }
+            }
+        }
+    }
+
+    roman_mission_09_eastern_glory_task_4 = { # The Bread Basket
+    	icon = "task_diplomatic"
+		requires = { roman_mission_08_greece_task_8 }
+
+    	highlight = {
+			scope:province = {
+				OR = {
+					is_in_area = western_delta_area
+					is_in_area = central_delta_area
+					is_in_area = eastern_delta_area
+				}
+				trade_goods = grain
+			}
+    	}
+
+    	bypass = {
+    		OR = {
+	    		NOR = {
+	    			area:western_delta_area = {
+	    				any_area_province = {
+	    					trade_goods = grain
+	    					exists = owner
+	    					owner = {
+	    						is_subject = no
+	    						NOT = { war_with = root }
+	    					}
+	    				}
+	    			}
+	    			area:central_delta_area = {
+	    				any_area_province = {
+	    					trade_goods = grain
+	    					exists = owner
+	    					owner = {
+	    						is_subject = no
+	    						NOT = { war_with = root }
+	    					}
+	    				}
+	    			}
+	    			area:eastern_delta_area = {
+	    				any_area_province = {
+	    					trade_goods = grain
+	    					exists = owner
+	    					owner = {
+	    						is_subject = no
+	    						NOT = { war_with = root }
+	    					}
+	    				}
+	    			}
+	    		}
+	    		any_owned_province = {
+	    			OR = {
+		    			is_in_area = western_delta_area
+		    			is_in_area = central_delta_area
+		    			is_in_area = eastern_delta_area
+		    		}
+		    		trade_goods = grain
+	    		}
+    		}
+    	}
+
+        allow = {
+        	treasury >= roman_mission_bread_basket_cost_svalue
+        	custom_tooltip = {
+        		text = roman_mission_09_eastern_glory_task_4_trigger_tt
+        		OR = {
+	    			area:western_delta_area = {
+	    				any_area_province = {
+	    					trade_goods = grain
+	    					exists = owner
+	    					owner = {
+	    						is_subject = no
+	    						NOT = { war_with = root }
+	    					}
+	    				}
+	    			}
+	    			area:central_delta_area = {
+	    				any_area_province = {
+	    					trade_goods = grain
+	    					exists = owner
+	    					owner = {
+	    						is_subject = no
+	    						NOT = { war_with = root }
+	    					}
+	    				}
+	    			}
+	    			area:eastern_delta_area = {
+	    				any_area_province = {
+	    					trade_goods = grain
+	    					exists = owner
+	    					owner = {
+	    						is_subject = no
+	    						NOT = { war_with = root }
+	    					}
+	    				}
+	    			}
+	    		}
+        	}
+        }
+
+        on_completion = {
+        	add_treasury = {
+        		value = 0
+        		subtract = roman_mission_bread_basket_cost_svalue
+        	}
+        	custom_tooltip = roman_mission_09_eastern_glory_task_4_effect_tt
+        	trigger_event = { id = me_roman_9_eastern_glory.7 }
+        }
+    }
+
+    roman_mission_09_eastern_glory_task_5 = { # Storied Ionia
+    	icon = "task_conquest"
+
+    	requires = { roman_mission_09_eastern_glory_task_1 }
+
+        highlight = {
+			scope:province = {
+				OR = {
+					is_in_area = coastal_caria_area
+					is_in_area = ionia_area
+					is_in_area = aeolia_area
+				}
+        	}
+        }
+
+        allow = {
+        	owns_or_subject_owns_area = coastal_caria_area
+        	owns_or_subject_owns_area = ionia_area
+        	owns_or_subject_owns_area = aeolia_area
+        }
+
+        on_completion = {
+        	roman_mission_ruler_popularity_effect = yes
+        	custom_tooltip = roman_conquest_reward_tooltip
+        	trigger_event = { id = roman_conquest_2.12 }
+        	if = {
+        		limit = {
+        			any_subject = {
+        				any_owned_province = {
+        					OR = {
+        						is_in_area = coastal_caria_area
+        						is_in_area = ionia_area
+        						is_in_area = aeolia_area
+        					}
+        				}
+        			}
+        		}
+        		every_subject = {
+        			limit = {
+        				any_owned_province = {
+        					OR = {
+        						is_in_area = coastal_caria_area
+        						is_in_area = ionia_area
+        						is_in_area = aeolia_area
+        					}
+        				}
+        			}
+        			add_opinion = {
+        				modifier = opinion_roman_mission_subject_appreciation
+        				target = root
+        			}
+        		}
+        	}
+            every_country_state = {
+                limit = {
+                    any_state_province = {
+                        OR = {
+                            is_in_area = coastal_caria_area
+                            is_in_area = ionia_area
+                            is_in_area = aeolia_area
+                        }
+                    }
+                }
+                custom = roman_mission_09_eastern_glory_task_5_modifier_tt
+                add_state_modifier = {
+                    name = new_roman_conquest_foreign_smod
+                    duration = 1825 # 5 years
+                }
+            }
+        }
+    }
+
+    roman_mission_09_eastern_glory_task_6 = { # Entering Bithynia
+    	icon = "task_conquest"
+
+    	requires = { roman_mission_09_eastern_glory_task_3 }
+
+        highlight = {
+			scope:province = {
+				OR = {
+					is_in_area = bithynia_area
+					is_in_area = bithynia_inferior_area
+					is_in_area = heracleotis_area
+				}
+        	}
+        }
+
+        allow = {
+        	owns_or_subject_owns_area = bithynia_area
+        	owns_or_subject_owns_area = bithynia_inferior_area
+        	owns_or_subject_owns_area = heracleotis_area
+        }
+
+        on_completion = {
+        	roman_mission_ruler_popularity_effect = yes
+        	custom_tooltip = roman_conquest_reward_tooltip
+        	trigger_event = { id = roman_conquest_2.10 }
+        	if = {
+        		limit = {
+        			any_subject = {
+        				any_owned_province = {
+        					OR = {
+        						is_in_area = bithynia_area
+        						is_in_area = bithynia_inferior_area
+        						is_in_area = heracleotis_area
+        					}
+        				}
+        			}
+        		}
+        		every_subject = {
+        			limit = {
+        				any_owned_province = {
+        					OR = {
+        						is_in_area = bithynia_area
+        						is_in_area = bithynia_inferior_area
+        						is_in_area = heracleotis_area
+        					}
+        				}
+        			}
+        			add_opinion = {
+        				modifier = opinion_roman_mission_subject_appreciation
+        				target = root
+        			}
+        		}
+        	}
+            every_country_state = {
+                limit = {
+                    any_state_province = {
+                        OR = {
+                            is_in_area = bithynia_area
+                            is_in_area = bithynia_inferior_area
+                            is_in_area = heracleotis_area
+                        }
+                    }
+                }
+                custom = roman_mission_09_eastern_glory_task_6_modifier_tt
+                add_state_modifier = {
+                    name = new_roman_conquest_foreign_smod
+                    duration = 1825 # 5 years
+                }
+            }
+        }
+    }
+
+    roman_mission_09_eastern_glory_task_7 = { # Ancient Syria
+    	icon = "task_conquest"
+
+    	requires = { roman_mission_09_eastern_glory_task_11 }
+
+    	highlight = {
+			scope:province = {
+				OR = {
+					is_in_area = syria_area
+					is_in_area = apamene_area
+					is_in_area = north_phoenicia_area
+				}
+    		}
+    	}
+
+    	allow = {
+    		owns_or_subject_owns_area = syria_area
+    		owns_or_subject_owns_area = apamene_area
+    		owns_or_subject_owns_area = north_phoenicia_area
+    	}
+
+    	on_completion = {
+    		roman_mission_ruler_popularity_effect = yes
+        	custom_tooltip = roman_conquest_reward_tooltip
+        	trigger_event = { id = roman_conquest_2.13 }
+        	if = {
+        		limit = {
+        			any_subject = {
+        				any_owned_province = {
+        					OR = {
+        						is_in_area = syria_area
+        						is_in_area = apamene_area
+        						is_in_area = north_phoenicia_area
+        					}
+        				}
+        			}
+        		}
+        		every_subject = {
+        			limit = {
+        				any_owned_province = {
+        					OR = {
+        						is_in_area = syria_area
+        						is_in_area = apamene_area
+        						is_in_area = north_phoenicia_area
+        					}
+        				}
+        			}
+        			add_opinion = {
+        				modifier = opinion_roman_mission_subject_appreciation
+        				target = root
+        			}
+        		}
+        	}
+            every_country_state = {
+                limit = {
+                    any_state_province = {
+                        OR = {
+                            is_in_area = syria_area
+                            is_in_area = apamene_area
+                            is_in_area = north_phoenicia_area
+                        }
+                    }
+                }
+                custom = roman_mission_09_eastern_glory_task_7_modifier_tt
+                add_state_modifier = {
+                    name = new_roman_conquest_foreign_smod
+                    duration = 1825 # 5 years
+                }
+            }
+    	}
+    }
+
+    roman_mission_09_eastern_glory_task_8 = { # Anatolian Riches
+    	icon = "task_conquest"
+
+    	requires = { roman_mission_09_eastern_glory_task_6 }
+
+    	highlight = {
+			scope:province = {
+				OR = {
+					is_in_area = galatia_area
+					is_in_area = phrygia_epiktetos
+					is_in_area = lydia_area
+					is_in_area = phrygia_area
+					is_in_area = phrygia_parorea_area
+					is_in_area = lycaonia_area
+				}
+    		}
+    	}
+
+    	allow = {
+    		owns_or_subject_owns_area = galatia_area
+    		owns_or_subject_owns_area = phrygia_epiktetos
+    		owns_or_subject_owns_area = lydia_area
+    		owns_or_subject_owns_area = phrygia_area
+    		owns_or_subject_owns_area = phrygia_parorea_area
+    		owns_or_subject_owns_area = lycaonia_area
+    	}
+
+    	on_completion = {
+    		roman_mission_ruler_popularity_effect = yes
+        	custom_tooltip = roman_conquest_reward_tooltip
+        	trigger_event = { id = roman_conquest_2.16 }
+        	if = {
+        		limit = {
+        			any_subject = {
+        				any_owned_province = {
+        					OR = {
+        						is_in_area = galatia_area
+					    		is_in_area = phrygia_epiktetos
+					    		is_in_area = lydia_area
+					    		is_in_area = phrygia_area
+					    		is_in_area = phrygia_parorea_area
+					    		is_in_area = lycaonia_area
+        					}
+        				}
+        			}
+        		}
+        		every_subject = {
+        			limit = {
+        				any_owned_province = {
+        					OR = {
+        						is_in_area = galatia_area
+					    		is_in_area = phrygia_epiktetos
+					    		is_in_area = lydia_area
+					    		is_in_area = phrygia_area
+					    		is_in_area = phrygia_parorea_area
+					    		is_in_area = lycaonia_area
+        					}
+        				}
+        			}
+        			add_opinion = {
+        				modifier = opinion_roman_mission_subject_appreciation
+        				target = root
+        			}
+        		}
+        	}
+            every_country_state = {
+                limit = {
+                    any_state_province = {
+                        OR = {
+                            is_in_area = galatia_area
+                            is_in_area = phrygia_epiktetos
+                            is_in_area = lydia_area
+                            is_in_area = phrygia_area
+                            is_in_area = phrygia_parorea_area
+                            is_in_area = lycaonia_area
+                        }
+                    }
+                }
+                custom = roman_mission_09_eastern_glory_task_8_modifier_tt
+                add_state_modifier = {
+                    name = new_roman_conquest_foreign_smod
+                    duration = 1825 # 5 years
+                }
+            }
+    	}
+    }
+
+    roman_mission_09_eastern_glory_task_9 = { # The Pontic Threat
+    	icon = "task_conquest"
+
+    	requires = { roman_mission_09_eastern_glory_task_6 }
+
+    	highlight = {
+			scope:province = {
+				OR = {
+					is_in_area = paphlagonia_inferior_area
+					is_in_area = pontus_area
+					is_in_area = machelonia_area
+				}
+    		}
+    	}
+
+    	allow = {
+    		owns_or_subject_owns_area = paphlagonia_inferior_area
+    		owns_or_subject_owns_area = pontus_area
+    		owns_or_subject_owns_area = machelonia_area
+    	}
+
+    	on_completion = {
+    		roman_mission_ruler_popularity_effect = yes
+        	custom_tooltip = roman_conquest_reward_tooltip
+        	trigger_event = { id = roman_conquest_2.11 }
+        	if = {
+        		limit = {
+        			any_subject = {
+        				any_owned_province = {
+        					OR = {
+        						is_in_area = paphlagonia_inferior_area
+        						is_in_area = pontus_area
+        						is_in_area = machelonia_area
+        					}
+        				}
+        			}
+        		}
+        		every_subject = {
+        			limit = {
+        				any_owned_province = {
+        					OR = {
+        						is_in_area = paphlagonia_inferior_area
+        						is_in_area = pontus_area
+        						is_in_area = machelonia_area
+        					}
+        				}
+        			}
+        			add_opinion = {
+        				modifier = opinion_roman_mission_subject_appreciation
+        				target = root
+        			}
+        		}
+        	}
+            every_country_state = {
+                limit = {
+                    any_state_province = {
+                        OR = {
+                            is_in_area = paphlagonia_inferior_area
+                            is_in_area = pontus_area
+                            is_in_area = machelonia_area
+                        }
+                    }
+                }
+                custom = roman_mission_09_eastern_glory_task_9_modifier_tt
+                add_state_modifier = {
+                    name = new_roman_conquest_foreign_smod
+                    duration = 1825 # 5 years
+                }
+            }
+    	}
+    }
+
+    roman_mission_09_eastern_glory_task_10 = { # Lavish Palestine
+    	icon = "task_conquest"
+
+    	requires = { roman_mission_09_eastern_glory_task_4 }
+
+    	highlight = {
+			scope:province = {
+				OR = {
+					is_in_area = philistia_area
+					is_in_area = judea_area
+					is_in_area = samaria_area
+					is_in_area = galilee_area
+				}
+    		}
+    	}
+
+    	allow = {
+    		owns_or_subject_owns_area = philistia_area
+    		owns_or_subject_owns_area = judea_area
+    		owns_or_subject_owns_area = samaria_area
+    		owns_or_subject_owns_area = galilee_area
+    	}
+
+    	on_completion = {
+    		roman_mission_ruler_popularity_effect = yes
+        	custom_tooltip = roman_conquest_reward_tooltip
+        	trigger_event = { id = roman_conquest_2.14 }
+        	if = {
+        		limit = {
+        			any_subject = {
+        				any_owned_province = {
+        					OR = {
+        						is_in_area = philistia_area
+        						is_in_area = judea_area
+        						is_in_area = samaria_area
+        						is_in_area = galilee_area
+        					}
+        				}
+        			}
+        		}
+        		every_subject = {
+        			limit = {
+        				any_owned_province = {
+        					OR = {
+        						is_in_area = philistia_area
+        						is_in_area = judea_area
+        						is_in_area = samaria_area
+        						is_in_area = galilee_area
+        					}
+        				}
+        			}
+        			add_opinion = {
+        				modifier = opinion_roman_mission_subject_appreciation
+        				target = root
+        			}
+        		}
+        	}
+            every_country_state = {
+                limit = {
+                    any_state_province = {
+                        OR = {
+                            is_in_area = philistia_area
+                            is_in_area = judea_area
+                            is_in_area = samaria_area
+                            is_in_area = galilee_area
+                        }
+                    }
+                }
+                custom = roman_mission_09_eastern_glory_task_10_modifier_tt
+                add_state_modifier = {
+                    name = new_roman_conquest_foreign_smod
+                    duration = 1825 # 5 years
+                }
+            }
+    	}
+    }
+
+    roman_mission_09_eastern_glory_task_11 = { # The Pirate Nest
+    	icon = "task_conquest"
+
+    	requires = { roman_mission_09_eastern_glory_task_5 }
+
+    	highlight = {
+			scope:province = {
+				OR = {
+					is_in_area = pamphylia_area
+					is_in_area = cilicia_trachea_area
+					is_in_area = cilicia_pedias_area
+				}
+    		}
+    	}
+
+    	allow = {
+    		owns_or_subject_owns_area = pamphylia_area
+    		owns_or_subject_owns_area = cilicia_trachea_area
+    		owns_or_subject_owns_area = cilicia_pedias_area
+    	}
+
+    	on_completion = {
+    		roman_mission_ruler_popularity_effect = yes
+        	custom_tooltip = roman_conquest_reward_tooltip
+        	trigger_event = { id = roman_conquest_2.15 }
+        	if = {
+        		limit = {
+        			any_subject = {
+        				any_owned_province = {
+        					OR = {
+        						is_in_area = pamphylia_area
+        						is_in_area = cilicia_trachea_area
+        						is_in_area = cilicia_pedias_area
+        					}
+        				}
+        			}
+        		}
+        		every_subject = {
+        			limit = {
+        				any_owned_province = {
+        					OR = {
+        						is_in_area = pamphylia_area
+        						is_in_area = cilicia_trachea_area
+        						is_in_area = cilicia_pedias_area
+        					}
+        				}
+        			}
+        			add_opinion = {
+        				modifier = opinion_roman_mission_subject_appreciation
+        				target = root
+        			}
+        		}
+        	}
+            every_country_state = {
+                limit = {
+                    any_state_province = {
+                        OR = {
+                            is_in_area = pamphylia_area
+                            is_in_area = cilicia_trachea_area
+                            is_in_area = cilicia_pedias_area
+                        }
+                    }
+                }
+                custom = roman_mission_09_eastern_glory_task_11_modifier_tt
+                add_state_modifier = {
+                    name = new_roman_conquest_foreign_smod
+                    duration = 1825 # 5 years
+                }
+            }
+    	}
+    }
+
+    roman_mission_09_eastern_glory_task_12 = { # Independent Judea
+    	icon = "task_political"
+
+    	requires = { roman_mission_09_eastern_glory_task_10 }
+
+    	highlight = {
+			scope:province = {
+				OR = {
+					is_in_area = judea_area
+					is_in_area = peraea_area
+					is_in_area = samaria_area
+					is_in_area = galilee_area
+				}
+    		}
+    	}
+
+    	allow = {
+    		custom_tooltip = {
+    			text = roman_mission_09_eastern_glory_task_12_trigger_tt
+    			OR = {
+    				NOT = { exists = c:JUD }
+    				c:JUD = { num_of_cities = 0 }
+    			}
+    		}
+    		owns_area = judea_area
+    		owns_area = peraea_area
+    		owns_area = samaria_area
+    		owns_area = galilee_area
+    	}
+
+    	on_completion = {
+    		custom_tooltip = roman_mission_09_eastern_glory_task_12_effect_tt
+    		hidden_effect = {
+	    		p:687 = {
+	    			create_country = {
+	    				name = {
+	    					name = "JUD"
+	    					adjective = "JUD_ADJ"
+	    				}
+	    				change_country_tag = JUD
+	    				set_primary_culture = hebrew
+	    				set_country_religion = judaism
+	    				set_country_heritage = judea_heritage
+	    				change_country_flag = JUD
+	    				change_country_color = judea_country_color
+	    				change_government = aristocratic_monarchy
+	    				save_scope_as = new_judea_country
+	    				add_opinion = {
+	    					modifier = opinion_liberated_us
+	    					target = root
+	    				}
+	    			}
+	    		}
+	    		every_owned_province = {
+	    			limit = {
+	    				OR = {
+	    					is_in_area = judea_area
+	    					is_in_area = peraea_area
+	    					is_in_area = samaria_area
+	    					is_in_area = galilee_area
+	    				}
+	    				is_coastal = no
+	    			}
+	    			set_owned_by = scope:new_judea_country
+	    		}
+	    		make_subject = {
+	    			target = scope:new_judea_country
+	    			type = client_state
+	    		}
+    		}
+    	}
+    }
+
+    roman_mission_09_eastern_glory_task_13 = { # Raising the Decapolian League
+    	icon = "task_political"
+
+    	requires = { roman_mission_09_eastern_glory_task_12 }
+
+    	highlight = {
+			scope:province = {
+				is_in_area = decapolis_area
+			}
+    	}
+
+    	allow = {
+    		owns_area = decapolis_area
+    	}
+
+    	on_completion = {
+    		custom_tooltip = roman_mission_09_eastern_glory_task_13_effect_tt
+    		hidden_effect = {
+    			area:decapolis_area = {
+    				ordered_area_province = {
+    					order_by = total_population
+    					max = 1
+    					save_scope_as = decapolis_province
+    				}
+    			}
+	    		scope:decapolis_province = {
+	    			create_country = {
+	    				name = {
+	    					name = "DECAPOLIS_NAME"
+	    					adjective = "DECAPOLIS_ADJECTIVE"
+	    				}
+	    				change_country_tag = DCP
+	    				set_primary_culture = aramaic
+	    				set_country_religion = roman_pantheon
+	    				set_country_heritage = decapolian_heritage
+	    				change_country_flag = DECAPOLIS_FLAG
+	    				change_country_color = dark_orange
+	    				change_government = democratic_republic
+	    				save_scope_as = new_decapolis_country
+	    				add_opinion = {
+	    					modifier = opinion_liberated_us
+	    					target = root
+	    				}
+	    			}
+	    		}
+	    		every_owned_province = {
+	    			limit = {
+	    				is_in_area = decapolis_area
+	    			}
+	    			set_owned_by = scope:new_decapolis_country
+	    		}
+	    		make_subject = {
+	    			target = scope:new_decapolis_country
+	    			type = client_state
+	    		}
+    		}
+    	}
+    }
+
+    roman_mission_09_eastern_glory_task_final = { # The Eastern Campaign
+    	icon = "task_expansion"
+
+    	requires = { roman_mission_09_eastern_glory_task_11 roman_mission_09_eastern_glory_task_9 roman_6_integrate }
+
+        final = yes
+
+        on_completion = {
+        	trigger_event = { id = me_roman_9_eastern_glory.5 }
+        	show_as_tooltip = {
+	        	current_ruler = {
+	        		add_popularity = popularity_large
+		        }
+		        every_character = {
+		        	limit = {
+		        		is_general = yes
+		        	}
+		        	custom = roman_mission_09_eastern_glory_task_final_effect_tt
+		        	add_loyalty = roman_mission_eastern_campaign_triumph_modifier
+		        }
+	        }
+        }
+    }
+}

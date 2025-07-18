@@ -1,0 +1,686 @@
+﻿#-----------------------------------------------------------------------------------------
+#
+#	Vanilla on_actions
+#
+#-----------------------------------------------------------------------------------------
+
+on_game_initialized = {
+	on_actions = {
+		z_notifications_auto					#	Automatic settings
+	}
+}
+
+on_ruler_change = {
+	on_actions = {
+		z_notifications_on_ruler_change			#	Ruler change
+	}
+}
+
+monthly_country_pulse = {
+	on_actions = {
+		z_notifications_auto					#	Automatic settings
+		z_notifications_monthly_country_pulse	#	Monthly country pulse (War started, ruler notif check, marriages)
+	}
+}
+
+on_ending_war = {
+	on_actions = {
+		#z_notifications_on_ending_war			#	War ended (deactivated for now, spamming non informative events)
+	}
+}
+
+on_military_annex = {
+	on_actions = {
+		z_notifications_on_military_annex		#	Country military annexed
+	}
+}
+
+on_diplomatic_annex = {
+	on_actions = {
+		z_notifications_on_diplomatic_annex		#	Country diplo annexed
+	}
+}
+
+on_great_work_completed = {
+	on_actions = {
+		z_notifications_on_great_work_completed	#	GW completed
+	}
+}
+
+on_being_born = {
+	on_actions = {
+		z_notifications_on_being_born			#	Character is born (= character has child)
+	}
+}
+
+on_becoming_adult = {
+	on_actions = {
+		z_notifications_on_becoming_adult		#	Character comes of age
+	}
+}
+
+on_being_imprisoned = {
+	on_actions = {
+		z_notifications_on_being_imprisoned		#	Character is imprisoned
+	}
+}
+
+on_move_country = {
+	on_actions = {
+		z_notifications_on_move_country			#	Character changes country
+	}
+}
+
+on_character_death = {
+	on_actions = {
+		z_notifications_on_character_death		#	Character dies
+	}
+}
+
+on_siege_won = {
+	on_actions = {
+		z_notifications_on_siege_won			#	Siege won (= city lost)
+	}
+}
+
+on_office_gained = {
+	on_actions = {
+		z_notifications_on_office_gained		#	Office gained
+	}
+}
+
+on_office_lost = {
+	on_actions = {
+		z_notifications_on_office_lost			#	Office lost
+	}
+}
+
+#on_command_gained = {
+#	on_actions = {
+#		z_notifications_on_command_gained		#	Command gained
+#	}
+#}
+
+#on_command_lost = {
+#	on_actions = {
+#		z_notifications_on_command_lost			#	Command lost
+#	}
+#}
+
+on_culture_integration_100 = {
+	on_actions = {
+		z_notifications_on_culture_integration_100	#	New culture integrated
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+#
+#	Automatic settings
+#
+#-----------------------------------------------------------------------------------------
+
+z_notifications_auto = {
+	effect = {
+		if = {
+			limit = {
+				any_neighbour_country = {
+					is_ai = no
+				}
+			}
+			z_notifications_enable_country = { PARAM = government }
+			z_notifications_enable_country = { PARAM = war }
+		}
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+#
+#	Ruler change
+#
+#-----------------------------------------------------------------------------------------
+
+z_notifications_on_ruler_change = {
+	effect = {
+		save_scope_as = z_notifications_country
+		current_ruler = { save_scope_as = new_ruler }
+		if = {
+			limit = {
+				OR = {
+					has_variable = z_notifications_country_government
+					scope:former_ruler = { has_variable = z_notifications_character_office }
+					scope:new_ruler = { has_variable = z_notifications_character_office }
+				}
+			}
+			every_country = {
+				limit = { is_ai = no }
+				trigger_event = { id = z_notifications.2 }
+			}
+		}
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+#
+#	Monthly country pulse (War started, ruler notif check, marriages)
+#
+#-----------------------------------------------------------------------------------------
+
+z_notifications_monthly_country_pulse = {
+	effect = {
+		# ---------- Monthly check to disable notifications in case a watched character becomes the player's ruler
+		if = {
+			limit = {
+				is_ai = no
+			}
+			current_ruler = {
+				z_notifications_disable_character_all = yes
+			}
+		}
+		# ---------- Marriages
+		if = {
+			limit = {
+				is_ai = no
+				any_character = {
+					is_alive = yes
+					age >= 16
+					has_variable = z_notifications_character_life
+					has_variable = z_notifications_character_married
+					OR = {
+						AND = {
+							is_married = yes
+							var:z_notifications_character_married = 0
+						}
+						AND = {
+							is_married = no
+							var:z_notifications_character_married = 1
+						}
+					}
+				}
+			}
+			save_scope_as = z_notifications_country
+			every_character = {
+				limit = {
+					is_alive = yes
+					age >= 16
+					has_variable = z_notifications_character_life
+					has_variable = z_notifications_character_married
+					OR = {
+						AND = {
+							is_married = yes
+							var:z_notifications_character_married = 0
+						}
+						AND = {
+							is_married = no
+							var:z_notifications_character_married = 1
+						}
+					}
+				}
+				if = {
+					limit = {
+						is_married = yes
+						var:z_notifications_character_married = 0
+					}
+					save_scope_as = z_notifications_character
+					spouse = {
+						save_scope_as = z_notifications_spouse
+					}
+					set_variable = {
+						name = z_notifications_character_married
+						value = 1
+					}
+					every_country = {
+						limit = { is_ai = no }
+						trigger_event = { id = z_notifications.208 }
+					}
+				}
+				else_if = {
+					limit = {
+						is_married = no
+						var:z_notifications_character_married = 1
+					}
+					save_scope_as = z_notifications_character
+					set_variable = {
+						name = z_notifications_character_married
+						value = 0
+					}
+					every_country = {
+						limit = { is_ai = no }
+						trigger_event = { id = z_notifications.209 }
+					}
+				}
+			}
+		}
+		# ---------- War started
+		if = {
+			# --- Does this country send notifications? And has the current war NOT been reported yet?
+			limit = {
+				has_variable = z_notifications_country_war
+				war = yes # Redundant, probably
+				any_current_war = {
+					NOT = { has_variable = z_notifications_war_started }
+				}
+			}
+			# --- If true, save some scopes for further inspection
+			save_scope_as = z_notifications_country
+			random_current_war = {
+				limit = {
+					NOT = { has_variable = z_notifications_war_started }
+				}
+				save_scope_as = z_notifications_war
+				ordered_war_attacker = { save_scope_as = z_notifications_war_attacker }
+				ordered_war_defender = { save_scope_as = z_notifications_war_defender }
+				# --- Now we know who's who in this war. Is this country allowed to send notifications, or should the notification come from another country?
+				if = {
+					limit = {
+						# --- Only allowed to send notifications if attacker, defender, or neither of those have notifications enabled.
+						OR = {
+							scope:z_notifications_country = scope:z_notifications_war_attacker
+							scope:z_notifications_country = scope:z_notifications_war_defender
+							NAND = {
+								scope:z_notifications_war_attacker = { has_variable = z_notifications_country_war }
+								scope:z_notifications_war_defender = { has_variable = z_notifications_country_war }
+							}
+						}
+					}
+					# --- Permission granted. Mark war as having been reported.
+					set_variable = {
+						name = z_notifications_war_started
+						value = 1
+					}
+					# --- Send reports. Which report depends on what roles the notifying country has in this war.
+					every_country = {
+						limit = { is_ai = no }
+						if = {
+							limit = {
+								scope:z_notifications_country = scope:z_notifications_war_attacker
+							}
+							trigger_event = { id = z_notifications.3 }
+						}
+						else_if = {
+							limit = {
+								scope:z_notifications_country = scope:z_notifications_war_defender
+							}
+							trigger_event = { id = z_notifications.4 }
+						}
+						else_if = {
+							limit = {
+								scope:z_notifications_country = {
+									any_current_war = {
+										any_war_attacker = {
+											this = scope:z_notifications_country
+										}
+									}
+								}
+							}
+							trigger_event = { id = z_notifications.5 }
+						}
+						else_if = {
+							limit = {
+								scope:z_notifications_country = {
+									any_current_war = {
+										any_war_defender = {
+											this = scope:z_notifications_country
+										}
+									}
+								}
+							}
+							trigger_event = { id = z_notifications.6 }
+						}
+						else = {
+							trigger_event = { id = z_notifications.7 }
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+#
+#	War ended
+#
+#-----------------------------------------------------------------------------------------
+
+z_notifications_on_ending_war = {
+	effect = {
+		if {
+			limit = {
+				has_variable = z_notifications_country_war
+				trigger_if = {
+					limit = {
+						is_subject = yes
+					}
+					overlord = {
+						NOT = { has_variable = z_notifications_country_war }
+					}
+				}
+			}
+			save_scope_as = z_notifications_country
+			current_ruler = { save_scope_as = z_notifications_character }
+			every_country = {
+				limit = { is_ai = no }
+				trigger_event = { id = z_notifications.8 }
+			}
+		}
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+#
+#	Country military annexed
+#
+#-----------------------------------------------------------------------------------------
+
+z_notifications_on_military_annex = {
+	effect = {
+		if {
+			limit = {
+				OR = {
+					has_variable = z_notifications_country_war
+					scope:actor = { has_variable = z_notifications_country_war }
+				}
+			}
+			save_scope_as = z_notifications_country
+			scope:actor.current_ruler = { save_scope_as = z_notifications_character }
+			every_country = {
+				limit = { is_ai = no }
+				trigger_event = { id = z_notifications.403 }
+			}
+		}
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+#
+#	Country diplo annexed
+#
+#-----------------------------------------------------------------------------------------
+
+z_notifications_on_diplomatic_annex = {
+	effect = {
+		if {
+			limit = {
+				OR = {
+					has_variable = z_notifications_country_government
+					scope:actor = { has_variable = z_notifications_country_government }
+				}
+			}
+			save_scope_as = z_notifications_country
+			scope:actor.current_ruler = { save_scope_as = z_notifications_character }
+			every_country = {
+				limit = { is_ai = no }
+				trigger_event = { id = z_notifications.404 }
+			}
+		}
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+#
+#	GW completed
+#
+#-----------------------------------------------------------------------------------------
+
+z_notifications_on_great_work_completed = {
+	effect = {
+		if {
+			limit = {
+				scope:province.owner = { has_variable = z_notifications_country_government }
+			}
+			scope:province.owner = { save_scope_as = z_notifications_country }
+			scope:province.owner.current_ruler = { save_scope_as = z_notifications_character }
+			every_country = {
+				limit = { is_ai = no }
+				trigger_event = { id = z_notifications.405 }
+			}
+		}
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+#
+#	Character is born (= character has child)
+#
+#-----------------------------------------------------------------------------------------
+
+z_notifications_on_being_born = {
+	effect = {
+		if = {
+			limit = {
+				OR = {
+					AND = {
+						exists = father
+						father = { has_variable = z_notifications_character_life }
+					}
+					AND = {
+						exists = mother
+						mother = { has_variable = z_notifications_character_life }
+					}
+				}
+			}
+			if = {
+				limit = {
+					exists = father
+					father = { has_variable = z_notifications_character_life }
+				}
+				father = { save_scope_as = z_notifications_character }
+			}
+			else = {
+				mother = { save_scope_as = z_notifications_character }
+			}
+			save_scope_as = z_notifications_child
+			employer = { save_scope_as = z_notifications_country }
+			every_country = {
+				limit = { is_ai = no }
+				trigger_event = { id = z_notifications.204 }
+			}
+		}
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+#
+#	Character comes of age
+#
+#-----------------------------------------------------------------------------------------
+
+z_notifications_on_becoming_adult = {
+	effect = {
+		if = {
+			limit = {
+				has_variable = z_notifications_character_life
+			}
+			save_scope_as = z_notifications_character
+			employer = { save_scope_as = z_notifications_country }
+			every_country = {
+				limit = { is_ai = no }
+				trigger_event = { id = z_notifications.205 }
+			}
+		}
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+#
+#	Character is being imprisoned
+#
+#-----------------------------------------------------------------------------------------
+
+z_notifications_on_being_imprisoned = {
+	effect = {
+		if = {
+			limit = {
+				has_variable = z_notifications_character_life
+			}
+			save_scope_as = z_notifications_character
+			employer = { save_scope_as = z_notifications_country }
+			every_country = {
+				limit = { is_ai = no }
+				trigger_event = { id = z_notifications.206 }
+			}
+		}
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+#
+#	Character changes country
+#
+#-----------------------------------------------------------------------------------------
+
+z_notifications_on_move_country = {
+	effect = {
+		if = {
+			limit = {
+				has_variable = z_notifications_character_life
+			}
+			save_scope_as = z_notifications_character
+			employer = { save_scope_as = z_notifications_country }
+			every_country = {
+				limit = { is_ai = no }
+				trigger_event = { id = z_notifications.207 }
+			}
+		}
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+#
+#	Character dies
+#
+#-----------------------------------------------------------------------------------------
+
+z_notifications_on_character_death = {
+	effect = {
+		if = {
+			limit = {
+				has_variable = z_notifications_character_death
+			}
+			save_scope_as = z_notifications_character
+			employer = { save_scope_as = z_notifications_country }
+			every_country = {
+				limit = { is_ai = no }
+				trigger_event = { id = z_notifications.201 }
+			}
+		}
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+#
+#	Siege won (= city lost) scope = conquering commander
+#
+#-----------------------------------------------------------------------------------------
+
+z_notifications_on_siege_won = {
+	effect = {
+		if {
+			limit = {
+				scope:target = {
+					is_capital = yes
+					total_population >= 25
+				}
+				OR = {
+					scope:target.owner = {
+						has_variable = z_notifications_country_war
+					}
+					AND = {
+						has_variable = z_notifications_character_office
+						scope:target = {
+							has_city_status = yes
+						}
+					}
+					#employer = {
+					#	has_variable = z_notifications_country_war
+					#}
+				}
+			}
+			save_scope_as = z_notifications_character
+			employer = { save_scope_as = z_notifications_conqueror }
+			scope:target = {
+				save_scope_as = z_notifications_capital
+				owner = { save_scope_as = z_notifications_country }
+			}
+			every_country = {
+				limit = { is_ai = no }
+				if = {
+					limit = {
+						scope:z_notifications_conqueror = scope:z_notifications_country
+					}
+					trigger_event = { id = z_notifications.401 }
+				}
+				else = {
+					trigger_event = { id = z_notifications.401 }
+				}
+			}
+		}
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+#
+#	Office gained
+#
+#-----------------------------------------------------------------------------------------
+
+z_notifications_on_office_gained = {
+	effect = {
+		if {
+			limit = {
+				has_variable = z_notifications_character_office
+			}
+			save_scope_as = z_notifications_character
+			employer = { save_scope_as = z_notifications_country }
+			every_country = {
+				limit = { is_ai = no }
+				trigger_event = { id = z_notifications.202 }
+			}
+		}
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+#
+#	Office lost
+#
+#-----------------------------------------------------------------------------------------
+
+z_notifications_on_office_lost = {
+	effect = {
+		if {
+			limit = {
+				is_alive = yes
+				has_variable = z_notifications_character_office
+			}
+			save_scope_as = z_notifications_character
+			employer = { save_scope_as = z_notifications_country }
+			every_country = {
+				limit = { is_ai = no }
+				trigger_event = { id = z_notifications.203 }
+			}
+		}
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+#
+#	Culture integrated
+#
+#-----------------------------------------------------------------------------------------
+
+z_notifications_on_culture_integration_100 = {
+	effect = {
+		if {
+			limit = {
+				has_variable = z_notifications_country_government
+			}
+			save_scope_as = z_notifications_country
+			current_ruler = { save_scope_as = z_notifications_character }
+			every_country = {
+				limit = { is_ai = no }
+				trigger_event = { id = z_notifications.402 }
+			}
+		}
+	}
+}

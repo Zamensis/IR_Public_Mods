@@ -1,0 +1,156 @@
+﻿# --------------------------------------------------------------------------------
+# Clear war participants
+# --------------------------------------------------------------------------------
+z_limes_civil_war_clear_effect = {
+	if = {
+		limit = {
+			has_variable = z_limes_civil_war_attacker
+			OR = {
+				is_ai = no
+				has_civil_war = no
+			}
+		}
+		remove_variable = z_limes_civil_war_attacker
+	}
+	if = {
+		limit = {
+			has_variable = z_limes_civil_war_defender
+			OR = {
+				is_ai = no
+				has_civil_war = no
+			}
+		}
+		remove_variable = z_limes_civil_war_defender
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Save war participants
+# --------------------------------------------------------------------------------
+z_limes_civil_war_save_effect = {
+	if = {
+		limit = {
+			is_ai = yes
+			has_civil_war = yes
+			NOR = {
+				has_variable = z_limes_civil_war_attacker
+				has_variable = z_limes_civil_war_defender
+			}
+		}
+		if = {
+			limit = {
+				any_current_war = {
+					is_civil_war = yes
+					is_war_leader = root
+					any_war_attacker = { this = root }
+					any_war_participant = {
+						civil_war_with = root
+						is_ai = yes
+					}
+				}
+			}
+			set_variable = { name = z_limes_civil_war_attacker }
+		}
+		else_if = {
+			limit = {
+				any_current_war = {
+					is_civil_war = yes
+					is_war_leader = root
+					any_war_defender = { this = root }
+					any_war_participant = {
+						civil_war_with = root
+						is_ai = yes
+					}
+				}
+			}
+			set_variable = { name = z_limes_civil_war_defender }
+		}
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Precipitate the end of AI-only civil wars in favour of the dominant side
+# --------------------------------------------------------------------------------
+z_limes_civil_war_blob_effect = {
+	if = {
+		# Check if this is a civil war and has an attacker and defender saved
+		limit = {
+			z_limes_rules_cw_faster = 1
+			has_civil_war = yes
+			has_variable = z_limes_civil_war_attacker
+			any_current_war = {
+				is_civil_war = yes
+				is_war_leader = root
+				any_war_participant = { has_variable = z_limes_civil_war_defender }
+			}
+			NOT = { has_variable = z_limes_civil_war_cooldown }
+		}
+		# Set cooldown
+		set_variable = {
+			name = z_limes_civil_war_cooldown
+			days = 45
+		}
+		# Save attacker/defender scopes
+		save_scope_as = z_limes_civil_war_attacker
+		random_current_war = {
+			limit = {
+				is_civil_war = yes
+				is_war_leader = root
+			}
+			random_war_participant = {
+				limit = { has_variable = z_limes_civil_war_defender }
+				save_scope_as = z_limes_civil_war_defender
+			}
+		}
+		# Save winner/loser scopes
+		if = {
+			limit = { scope:z_limes_civil_war_defender.num_of_cities >= scope:z_limes_civil_war_attacker.num_of_cities }
+			scope:z_limes_civil_war_defender = { save_scope_as = z_limes_civil_war_winner }
+			scope:z_limes_civil_war_attacker = { save_scope_as = z_limes_civil_war_loser }
+		}
+		else = {
+			scope:z_limes_civil_war_attacker = { save_scope_as = z_limes_civil_war_winner }
+			scope:z_limes_civil_war_defender = { save_scope_as = z_limes_civil_war_loser }
+		}
+		# Just blob it
+		if = {
+			limit = {
+				scope:z_limes_civil_war_loser.num_of_cities >= 10
+				z_limes_civil_war_winner_owns >= 0.7 # Winner owns x% of the total territory
+			}
+			while = {
+				count = z_limes_civil_war_loser_loses # Loser loses y% of its territory
+				scope:z_limes_civil_war_loser = {
+					random_owned_province = {
+						limit = {
+							any_neighbor_province = {
+								has_owner = yes
+								owner = scope:z_limes_civil_war_winner
+							}
+						}
+						set_owned_by = scope:z_limes_civil_war_winner
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				z_limes_civil_war_winner_owns >= 0.9
+				scope:z_limes_civil_war_loser.num_of_cities > 1
+				NOT = { has_variable = z_limes_civil_war_blob_effect_cooldown }
+			}
+			scope:z_limes_civil_war_loser = {
+				every_owned_province = {
+					limit = {
+						NOT = { this = scope:z_limes_civil_war_loser.capital_scope }
+					}
+					set_owned_by = scope:z_limes_civil_war_winner
+				}
+			}
+			set_variable = {
+				name = z_limes_civil_war_blob_effect_cooldown
+				days = 80
+			}
+		}
+	}
+}

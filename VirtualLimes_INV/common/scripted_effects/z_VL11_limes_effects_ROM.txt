@@ -1,0 +1,98 @@
+﻿# --------------------------------------------------------------------------------
+# Apply Limes to AI Rome (expansion mapped out in triggers)
+# --------------------------------------------------------------------------------
+z_limes_main_effect_ROM = {
+	z_limes_main_effect_ROM_b = { REGION = italy }
+	z_limes_main_effect_ROM_b = { REGION = cisalpine_gaul_a }
+	z_limes_main_effect_ROM_b = { REGION = cisalpine_gaul_b }
+	z_limes_main_effect_ROM_b = { REGION = iberia_a }
+	z_limes_main_effect_ROM_b = { REGION = iberia_b }
+	z_limes_main_effect_ROM_b = { REGION = iberia_c }
+	z_limes_main_effect_ROM_b = { REGION = iberia_d }
+	z_limes_main_effect_ROM_b = { REGION = iberia_e }
+	z_limes_main_effect_ROM_b = { REGION = iberia_f }
+	z_limes_main_effect_ROM_b = { REGION = iberia_g }
+	z_limes_main_effect_ROM_b = { REGION = illyria_a }
+	z_limes_main_effect_ROM_b = { REGION = illyria_b }
+	z_limes_main_effect_ROM_b = { REGION = greece_a }
+	z_limes_main_effect_ROM_b = { REGION = greece_b }
+	z_limes_main_effect_ROM_b = { REGION = macedonia }
+	z_limes_main_effect_ROM_b = { REGION = thrace }
+	z_limes_main_effect_ROM_b = { REGION = moesia }
+	z_limes_main_effect_ROM_b = { REGION = pannonia }
+	z_limes_main_effect_ROM_b = { REGION = dacia }
+	z_limes_main_effect_ROM_b = { REGION = gaul_a }
+	z_limes_main_effect_ROM_b = { REGION = gaul_b }
+	z_limes_main_effect_ROM_b = { REGION = gaul_c }
+	z_limes_main_effect_ROM_b = { REGION = gaul_d }
+	z_limes_main_effect_ROM_b = { REGION = gaul_e }
+	z_limes_main_effect_ROM_b = { REGION = gaul_f }
+	z_limes_main_effect_ROM_b = { REGION = rhaetia }
+	z_limes_main_effect_ROM_b = { REGION = agridecumates }
+	z_limes_main_effect_ROM_b = { REGION = africa_a }
+	z_limes_main_effect_ROM_b = { REGION = africa_b }
+	z_limes_main_effect_ROM_b = { REGION = africa_c }
+	z_limes_main_effect_ROM_b = { REGION = africa_d }
+	z_limes_main_effect_ROM_b = { REGION = africa_e }
+	z_limes_main_effect_ROM_b = { REGION = africa_f }
+	z_limes_main_effect_ROM_b = { REGION = africa_g }
+	z_limes_main_effect_ROM_b = { REGION = asia_a }
+	z_limes_main_effect_ROM_b = { REGION = asia_b }
+	z_limes_main_effect_ROM_b = { REGION = asia_c }
+	z_limes_main_effect_ROM_b = { REGION = asia_d }
+	z_limes_main_effect_ROM_b = { REGION = asia_e }
+	z_limes_main_effect_ROM_b = { REGION = pontus_a }
+	z_limes_main_effect_ROM_b = { REGION = pontus_b }
+	z_limes_main_effect_ROM_b = { REGION = pontus_c }
+	z_limes_main_effect_ROM_b = { REGION = levant_a }
+	z_limes_main_effect_ROM_b = { REGION = levant_b }
+	z_limes_main_effect_ROM_b = { REGION = levant_c }
+	z_limes_main_effect_ROM_b = { REGION = levant_d }
+	z_limes_main_effect_ROM_b = { REGION = levant_e }
+	z_limes_main_effect_ROM_b = { REGION = britain }
+}
+
+# --------------------------------------------------------------------------------
+# Apply Limes to AI Rome (expansion mapped out in triggers)
+# --------------------------------------------------------------------------------
+z_limes_main_effect_ROM_b = {
+	while = {
+		limit = {
+			z_limes_ROM_$REGION$_allow = no
+			any_owned_province = {
+				z_limes_ROM_$REGION$ = yes
+				this.area = {
+					any_area_province = {
+						count >= z_limes_defines_min_mm_size
+						owner = root
+					}
+				}
+			}
+		}
+		ordered_owned_province = {
+			limit = {
+				z_limes_ROM_$REGION$ = yes
+				this.area = {
+					any_area_province = {
+						count >= z_limes_defines_min_mm_size
+						owner = root
+					}
+				}
+			}
+			order_by = total_population
+			save_scope_as = z_limes_mm_capital
+		}
+		z_limes_make_mm_effect = { ZONE = area }
+	}
+	while = {
+		limit = {
+			any_owned_province = { z_limes_ROM_empire_max = no }
+		}
+		ordered_owned_province = {
+			limit = { z_limes_ROM_empire_max = no }
+			order_by = total_population
+			save_scope_as = z_limes_mm_capital
+		}
+		z_limes_make_mm_effect = { ZONE = region }
+	}
+}

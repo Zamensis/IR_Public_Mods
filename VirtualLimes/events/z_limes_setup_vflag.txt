@@ -1,0 +1,16 @@
+﻿namespace = z_limes_setup_vflag
+
+#-----------------------------------------------------------------------------------------
+# Mod updated
+#-----------------------------------------------------------------------------------------
+z_limes_setup_vflag.1 = {
+	type = minor_country_event
+	title = "z_limes_setup_vflag.1.t"
+	desc = "z_limes_setup_vflag.1.desc"
+	left_portrait = current_ruler
+	interface_lock = no
+	
+	option = { # OK
+		name = "OK"
+	}
+}

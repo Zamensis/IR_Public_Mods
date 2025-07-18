@@ -1,0 +1,13 @@
+﻿on_game_initialized = {
+	events = {
+		lucky_nations.1
+	}
+}
+
+monthly_country_pulse = {
+	events = {
+		lucky_nations.2
+		lucky_nations.3
+		lucky_nations.4
+	}
+}

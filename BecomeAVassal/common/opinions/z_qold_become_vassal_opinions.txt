@@ -1,0 +1,16 @@
+﻿#################################################################################################	Opinions
+#################################################################################################
+z_qold_friendly_potential_protector = {
+	value = 15
+	yearly_decay = 1
+}
+
+z_qold_unfriendly_potential_protector = {
+	value = -30
+	yearly_decay = 1
+}
+
+z_qold_friendly_protector = {
+	value = 50
+	yearly_decay = 0.5
+}

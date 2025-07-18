@@ -1,0 +1,106 @@
+﻿# --------------------------------------------------------------------------------
+# Initialize the virtual timer
+# --------------------------------------------------------------------------------
+z_limes_setup_timer_effect = {
+	if = {
+		limit = {
+			NOT = { has_global_variable = z_limes_timer }
+			z_limes_defines_start_year = 450
+		}
+		if = {
+			limit = { current_date < 451.1.1 }
+			set_global_variable = {
+				name = z_limes_timer
+				value = 0
+			}
+		}
+		else_if = {
+			limit = { current_date < 501.1.1 }
+			set_global_variable = {
+				name = z_limes_timer
+				value = 50
+			}
+		}
+		else_if = {
+			limit = { current_date < 551.1.1 }
+			set_global_variable = {
+				name = z_limes_timer
+				value = 100
+			}
+		}
+		else_if = {
+			limit = { current_date < 601.1.1 }
+			set_global_variable = {
+				name = z_limes_timer
+				value = 150
+			}
+		}
+		else_if = {
+			limit = { current_date < 651.1.1 }
+			set_global_variable = {
+				name = z_limes_timer
+				value = 200
+			}
+		}
+		else_if = {
+			limit = { current_date < 701.1.1 }
+			set_global_variable = {
+				name = z_limes_timer
+				value = 250
+			}
+		}
+		else_if = {
+			limit = { current_date < 751.1.1 }
+			set_global_variable = {
+				name = z_limes_timer
+				value = 300
+			}
+		}
+		else_if = {
+			limit = { current_date < 801.1.1 }
+			set_global_variable = {
+				name = z_limes_timer
+				value = 350
+			}
+		}
+		else_if = {
+			limit = { current_date < 851.1.1 }
+			set_global_variable = {
+				name = z_limes_timer
+				value = 400
+			}
+		}
+		else = {
+			set_global_variable = {
+				name = z_limes_timer
+				value = 450
+			}
+		}
+	}
+	if = {
+		limit = {
+			current_date < 451.1.2 # Random values generated on game initialized will always be the same, so they must be re-generated ASAP after initialization
+		}
+		set_global_variable = {
+			name = z_limes_timer_speed
+			value = { 90 110 }
+		}
+		set_global_variable = {
+			name = z_limes_timer_offset
+			value = { 90 110 }
+		}
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Update the virtual timer (keep track of the actual number of years passing by, which can then be modified (speed/offset) to be used as a virtual timeline)
+# --------------------------------------------------------------------------------
+z_limes_update_timer_effect = {
+	if = {
+		limit = { owns = p:1 } # Fires once per year (not a big deal if nobody owns Rome once in a blue moon)
+		change_global_variable = {
+			name = z_limes_timer
+			add = 1
+		}
+	}
+}

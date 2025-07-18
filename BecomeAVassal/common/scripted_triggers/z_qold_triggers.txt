@@ -1,0 +1,47 @@
+﻿#################################################################################################	Check for potential overlord (Become vassal)
+#################################################################################################
+z_qold_is_potential_overlord = {
+	# Used in events / scope: country
+	NOT = {
+		this = root
+	}
+	OR = {
+		any_neighbour_country = {
+			this = root
+		}
+		alliance_with = root
+		trigger_if = {
+			limit = {
+				exists = this.current_ruler
+			}
+			this.current_ruler = {
+				is_friend = root.current_ruler
+			}
+		}
+		root = {
+			is_guaranteed_by = prev
+		}
+		this = {
+			any_owned_province = {
+				this.region = root.capital_scope.region
+			}
+		}
+	}
+	trigger_if = {
+		limit = {
+			war = yes
+		}
+		NOT = {
+			any_current_war = {
+				any_war_defender = { this = root }
+				any_war_attacker = { this = root }
+			}
+		}
+	}
+	num_of_cities >= z_qold_size
+	is_subject = no
+	opinion = {
+		target = root
+		value >= -10
+	}
+}

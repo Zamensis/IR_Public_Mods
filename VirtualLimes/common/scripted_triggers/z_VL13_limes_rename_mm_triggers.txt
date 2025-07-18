@@ -1,0 +1,63 @@
+﻿# --------------------------------------------------------------------------------
+# Rename triggers
+# --------------------------------------------------------------------------------
+z_limes_namable_region_trigger = {
+	capital_scope = { is_in_region = $WHICH$ }
+	z_limes_namable_trigger = { WHICH = $WHICH$ }
+	region:$WHICH$ = {
+		any_region_province = {
+			percent >= 0.45
+			owner = $OWNER$
+		}
+	}
+}
+
+z_limes_namable_tribe_trigger = {
+	primary_culture = $WHICH$
+	z_limes_namable_trigger = { WHICH = $WHICH$ }
+	NOT = {
+		has_variable = z_limes_mm_name_region
+	}
+	NOT = {
+		any_country = {
+			NOT = { this = $OWNER$ }
+			has_land = yes
+			culture = $OWNER$.culture
+		}
+	}
+}
+
+z_limes_namable_area_trigger = {
+	capital_scope = { is_in_area = $WHICH$ }
+	z_limes_namable_trigger = { WHICH = $WHICH$ }
+	NOT = {
+		has_variable = z_limes_mm_name_region
+		has_variable = z_limes_mm_name_tribe
+	}
+	OR = {
+		has_variable = z_limes_mm_name_area
+		NOT = { has_variable = z_limes_mm_name_area }
+	}
+	area:$WHICH$ = {
+		any_area_province = {
+			percent >= 0.5
+			owner = $OWNER$
+		}
+	}
+}
+
+z_limes_namable_trigger = {
+	is_ai = yes
+	has_variable = z_limes_mm_from
+	NOT = {
+		any_country = {
+			has_land = yes
+			has_variable = z_limes_mm_name_$WHICH$
+		}
+	}
+	NOR = {
+		is_tier_1_formable_trigger = yes
+		is_tier_2_formable_trigger = yes
+		is_endgame_tag_trigger = yes
+	}
+}

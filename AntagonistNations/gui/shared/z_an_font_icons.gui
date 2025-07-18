@@ -1,0 +1,49 @@
+texticon = {
+    icon = z_an_accept
+    iconsize = {
+        texture = "gfx/interface/icons/font_icons/font_icon_tick.dds"
+        size = { 25 25 }
+        offset = { 0 2 }
+        fontsize = 25
+    }
+}
+
+texticon = {
+    icon = z_an_refuse
+    iconsize = {
+        texture = "gfx/interface/icons/font_icons/font_icon_cross.dds"
+        size = { 25 25 }
+        offset = { 0 2 }
+        fontsize = 25
+    }
+}
+
+texticon = {
+    icon = z_an_random
+    iconsize = {
+        texture = "gfx/interface/icons/font_icons/z_an_random.dds"
+        size = { 25 25 }
+        offset = { 0 2 }
+        fontsize = 25
+    }
+}
+
+texticon = {
+    icon = z_an_randomhistorical
+    iconsize = {
+        texture = "gfx/interface/icons/font_icons/z_an_randomhistorical.dds"
+        size = { 25 25 }
+        offset = { 0 2 }
+        fontsize = 25
+    }
+}
+
+texticon = {
+    icon = z_an_historical
+    iconsize = {
+        texture = "gfx/interface/icons/font_icons/z_an_historical.dds"
+        size = { 25 25 }
+        offset = { 0 2 }
+        fontsize = 25
+    }
+}

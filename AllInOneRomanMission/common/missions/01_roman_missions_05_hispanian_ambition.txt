@@ -1,0 +1,212 @@
+﻿roman_5_hispanian_ambition = {
+	icon = rome_3
+	header = mission_image_rome
+
+	repeatable = no
+	
+	chance = {
+		factor = 3
+	}
+	
+	ai_chance = {
+		factor = 3
+	}
+	
+	potential = { 
+		NOT = { has_variable = roman_mission_05_hispanian_ambition }
+		tag = ROM
+		is_ai = yes
+		is_ai = no
+		has_dlc = "The Punic Wars"
+		owns = 3515
+		OR = {
+			has_completed_mission = roman_4_punic_rivals
+			OR = {
+				region:baetica_region = { #Carteia/Baetica
+					any_region_province = { owned_or_subject_owned = c:ROM }
+				}
+				region:contestania_region = { #Mastia/Contestania
+					any_region_province = { 
+						NOT = { is_in_area = balearides_area }
+						owned_or_subject_owned = c:ROM
+					}
+				}
+				region:tarraconensis_region = { #Emporion/Tarraconensis
+					any_region_province = { owned_or_subject_owned = c:ROM }
+				}
+				region:lusitania_region = { #Olisipo/Lusitania
+					any_region_province = { owned_or_subject_owned = c:ROM }
+				}
+				region:gallaecia_region = { #Lancia/Gallaecia
+					any_region_province = { owned_or_subject_owned = c:ROM }
+				}
+			}
+		}
+		is_subject = no
+		has_civil_war = no
+	}
+	
+	abort = {
+		ai_mission_back_out_trigger = yes
+	}
+
+	on_start = {
+		start_mission_ai_effect = yes
+		save_scope_as = me_rome_scope
+		if = {
+    		limit = { is_ai = yes }
+    		region:baetica_region = {
+    			every_region_province = { add_claim = ROOT }
+    		}
+    		region:contestania_region = {
+    			every_region_province = { add_claim = ROOT }
+    		}
+    		region:tarraconensis_region = {
+    			every_region_province = { add_claim = ROOT }
+    		}
+    		region:lusitania_region = {
+    			every_region_province = { add_claim = ROOT }
+    		}
+    		region:gallaecia_region = {
+    			every_region_province = { add_claim = ROOT }
+    		}
+    	}
+    }
+
+	on_abort = {
+    	custom_tooltip = general_mission_cooldown_tt
+		set_variable = {
+			name = roman_mission_05_hispanian_ambition
+			days = 7300
+		}
+    }
+
+    on_completion = {
+    	complete_mission_effect = yes
+    }
+	
+	roman_5_offer_iberians_protection_x = {
+		icon = task_political
+		allow = {
+			custom_tooltip = {
+				text = roman_5_offer_iberians_protection_tooltip
+				any_country = {
+					any_neighbour_country = {
+						OR = {
+							tag = ROM
+							is_subject_of = c:ROM
+						}
+					}
+					capital_scope = { 
+						OR = {
+							is_in_region = tarraconensis_region
+							is_in_region = baetica_region
+							is_in_region = lusitania_region
+							is_in_region = gallaecia_region
+							AND = {
+								is_in_region = contestania_region
+								NOT = { is_in_area = balearides_area }
+							}
+						}
+					}
+					OR = {
+						country_culture_group = iberia
+						country_culture_group = celt_iberia
+						country_culture_group = proto_european
+					}
+					is_subject = no
+					num_of_cities >= 4
+					opinion = { target = c:ROM value > -50 }
+					rank < c:ROM.rank
+					NOR = {
+						alliance_with = root
+						war_with = root
+					}
+					any_countries_at_war_with = {
+						NOR = {
+							country_culture_group = iberia
+							country_culture_group = celt_iberia
+							country_culture_group = proto_european
+							alliance_with = c:ROM
+						}
+						num_of_cities > prev.num_of_cities
+					}
+					save_temporary_scope_as = ibe_temp_scope
+				}
+				trigger_if = {
+					limit = { exists = scope:ibe_temp_scope }
+					NOT = { has_truce_with = scope:ibe_temp_scope }
+				}
+			}
+		}
+		
+		on_completion = {
+			custom_tooltip = roman_5_offer_iberians_protection_rewtt
+			ordered_country = {
+				limit = {
+					any_neighbour_country = {
+						OR = {
+							tag = ROM
+							is_subject_of = c:ROM
+						}
+					}
+					capital_scope = { 
+						OR = {
+							is_in_region = tarraconensis_region
+							is_in_region = baetica_region
+							is_in_region = lusitania_region
+							is_in_region = gallaecia_region
+							AND = {
+								is_in_region = contestania_region
+								NOT = { is_in_area = balearides_area }
+							}
+						}
+					}
+					OR = {
+						country_culture_group = iberia
+						country_culture_group = celt_iberia
+						country_culture_group = proto_european
+					}
+					is_subject = no
+					num_of_cities >= 4
+					opinion = { target = c:ROM value > -50 }
+					rank < c:ROM.rank
+					NOR = {
+						alliance_with = root
+						war_with = root
+					}
+					any_countries_at_war_with = {
+						NOR = {
+							country_culture_group = iberia
+							country_culture_group = celt_iberia
+							country_culture_group = proto_european
+							alliance_with = c:ROM
+						}
+						num_of_cities > prev.num_of_cities
+					}
+					save_temporary_scope_as = ibe_temp_scope
+					root = {
+						NOT = { has_truce_with = scope:ibe_temp_scope }
+					}
+				}
+				order_by = num_of_cities
+				save_scope_as = rm_protection_scope
+				ordered_countries_at_war_with = {
+					limit = {
+						NOR = {
+							country_culture_group = iberia
+							country_culture_group = celt_iberia
+							country_culture_group = proto_european
+							alliance_with = c:ROM
+						}
+						num_of_cities > prev.num_of_cities
+					}
+					order_by = num_of_cities
+					save_scope_as = rm_protection_enemy_scope
+				}
+			}
+			trigger_event = { id = me_roman_5_hispanian_ambition.5 }
+		}
+		final = yes
+	}
+}

@@ -1,0 +1,3 @@
+﻿l_english:
+ # OMEN MESSAGE BOX ---------------------------------------------------------------------------------------------------------------------------------------
+ CALL_OMEN_CONFIRMATION:3 "Calling on [DEITY.GetName|Y] can trigger either a #E Good#! or #E Bad Omen#!,\ndepending on our top religious minister's #E Loyalty#!.\n\nWe are hoping to gain:\n[DEITY.GetOmenEffect].\n$ACTIVATEEFFECT$ \n...but a #E Bad Omen#! could turn this effect around.\nNo other Omens can be called until $DATE$ ($DURATION$ Years)\n"

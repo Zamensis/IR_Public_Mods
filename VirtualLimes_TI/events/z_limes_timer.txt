@@ -1,0 +1,120 @@
+﻿namespace = z_limes_timer
+
+# Timer events. Sets a virtual timeline to follow, regardless of the actual date. Slightly different from game to game. Allows for more variability (and mod control).
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_timer.1 = {																				#########   TIMER INITIALIZATION
+	type = country_event																		#########
+	hidden = yes																				#########################################s
+	
+	trigger = {
+		owns = p:1
+	}
+	
+	immediate = {
+		set_global_variable = {
+			name = z_limes_timer
+			value = 0
+		}
+		set_global_variable = {
+			name = z_limes_tempo_randomizer
+			value = { 90 110 }
+		}
+		set_global_variable = {
+			name = z_limes_offset_randomizer
+			value = { 90 110 }
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_timer.2 = {																				#########   TIMER UPDATE, +1 EACH YEAR
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		owns = p:1
+	}
+	
+	immediate = {
+		if = {
+			limit = {
+				has_global_variable = z_limes_timer
+			}
+			change_global_variable = {
+				name = z_limes_timer
+				add = 1
+			}
+		}
+		else = {
+			set_global_variable = {
+				name = z_limes_timer
+				value = 0
+			}
+			if = {
+				limit = {
+					current_date >= 500.1.1
+				}
+				change_global_variable = {
+					name = z_limes_timer
+					add = 50
+				}
+			}
+			if = {
+				limit = {
+					current_date >= 550.1.1
+				}
+				change_global_variable = {
+					name = z_limes_timer
+					add = 50
+				}
+			}
+			if = {
+				limit = {
+					current_date >= 600.1.1
+				}
+				change_global_variable = {
+					name = z_limes_timer
+					add = 50
+				}
+			}
+			if = {
+				limit = {
+					current_date >= 650.1.1
+				}
+				change_global_variable = {
+					name = z_limes_timer
+					add = 50
+				}
+			}
+			if = {
+				limit = {
+					current_date >= 700.1.1
+				}
+				change_global_variable = {
+					name = z_limes_timer
+					add = 50
+				}
+			}
+			if = {
+				limit = {
+					current_date >= 750.1.1
+				}
+				change_global_variable = {
+					name = z_limes_timer
+					add = 50
+				}
+			}
+			set_global_variable = {
+				name = z_limes_tempo_randomizer
+				value = { 90 110 }
+			}
+			set_global_variable = {
+				name = z_limes_offset_randomizer
+				value = { 90 110 }
+			}
+		}
+	}
+}

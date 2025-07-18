@@ -1,0 +1,116 @@
+﻿#################################################################################################	Compare Cultures
+#################################################################################################
+z_sw_compare_cultures = {
+	# Used in events / scope: country
+	every_country_culture = {												# Add 'to-be-compared' cultures to the list
+		limit = {
+			#is_integrated = yes
+			NOT = {
+				is_in_list = z_sw_list_country_cultures
+				this = root.country_culture
+				has_country_culture_modifier = z_sw_native_majority
+			}
+		}
+		add_to_list = z_sw_list_country_cultures
+	}
+	
+	root.country_culture = {												# Remove 'not-to-be-compared' cultures from the list
+		if = {
+			limit = {
+				is_in_list = z_sw_list_country_cultures
+			}
+		}
+		remove_from_list = z_sw_list_country_cultures
+	}
+	
+	random_country_culture = {												# Pick one culture from the list to be compared
+		limit = {
+			is_in_list = z_sw_list_country_cultures
+		}
+		save_scope_as = z_sw_culture_A										# Mark as A
+		remove_from_list = z_sw_list_country_cultures						# Remove from the list
+	}
+}
+
+#################################################################################################	Noble Cultures Count Fix
+#################################################################################################
+z_sw_save_embrace_local_culture_scopes = {
+	random_country_culture = {
+		limit = {
+			has_country_culture_modifier = z_sw_embraced_culture
+		}
+		save_scope_as = z_sw_embraced_majority
+	}
+	random_country_culture = {
+		limit = {
+			has_country_culture_modifier = z_sw_deposed_culture
+		}
+		save_scope_as = z_sw_deposed_minority
+	}
+	random_owned_province = {
+		limit = {
+			any_pops_in_province = {
+				this.country_culture = {
+					has_country_culture_modifier = z_sw_embraced_culture
+				}
+			}
+		}
+		random_pops_in_province = {
+			limit = {
+				this.country_culture = {
+					has_country_culture_modifier = z_sw_embraced_culture
+				}
+			}
+			this.culture = {
+				save_scope_as = z_sw_embraced_majority_pop_culture
+			}
+		}
+	}
+	random_owned_province = {
+		limit = {
+			any_pops_in_province = {
+				this.country_culture = {
+					has_country_culture_modifier = z_sw_deposed_culture
+				}
+			}
+		}
+		random_pops_in_province = {
+			limit = {
+				this.country_culture = {
+					has_country_culture_modifier = z_sw_deposed_culture
+				}
+			}
+			this.culture = {
+				save_scope_as = z_sw_deposed_minority_pop_culture
+			}
+		}
+	}
+}
+
+#################################################################################################	Noble Cultures Count Fix
+#################################################################################################
+set_primary_culture_cleanup_effect_2 = {
+	random_owned_province = {
+		limit = {
+			NOT = {
+				this = root.capital_scope
+			}
+		}
+		create_country = {
+			save_scope_as = z_sw_noble_cultures_count_bugfix
+		}
+	}
+	every_owned_province = {
+		limit = {
+			NOT = {
+				this = root.capital_scope
+			}
+		}
+		set_owned_by = scope:z_sw_noble_cultures_count_bugfix
+	}
+	scope:z_sw_noble_cultures_count_bugfix = {
+		every_owned_province = {
+			set_owned_by = root
+		}
+	}
+}

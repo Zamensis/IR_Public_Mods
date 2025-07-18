@@ -1,0 +1,87 @@
+﻿# --------------------------------------------------------------------------------
+# Attack - Help the AI reach its historical goals
+# --------------------------------------------------------------------------------
+z_limes_attack_effect = {
+	if = {
+		limit = { z_has_limes_ROM = yes }
+		z_limes_attack_effect_ROM = yes
+	}
+	else_if = {
+		limit = { z_has_limes_PAR = yes }
+		z_limes_attack_effect_PAR = yes
+	}
+}
+
+# --------------------------------------------------------------------------------
+# # Attack - Help the AI reach its historical goals
+# --------------------------------------------------------------------------------
+z_limes_attack_effect_b = {
+	root = { save_scope_as = z_limes_attacker_country }
+	# Try attacking a neighbour first, preferably a big one
+	if = {
+		limit = {
+			any_neighbour_country = {
+				z_limes_be_attacked_trigger = yes
+				any_owned_province = { is_in_region = $REGION$ }
+			}
+		}
+		random_neighbour_country = {
+			limit = {
+				z_limes_be_attacked_trigger = yes
+				any_owned_province = { is_in_region = $REGION$ }
+			}
+			weight = {
+				modifier = {
+					factor = 2
+					num_of_cities >= 30
+				}
+			}
+			save_scope_as = z_limes_defender_country
+		}
+	}
+	# If no neighbour available, find a target oversea, preferably one that is already at war
+	else = {
+		random_country = {
+			limit = {
+				z_limes_be_attacked_trigger = yes
+				any_owned_province = { is_in_region = $REGION$ }
+			}
+			weight = {
+				modifier = {
+					factor = 10
+					war = yes
+				}
+				modifier = {
+					factor = 5
+					has_war_exhaustion > 10
+				}
+				modifier = {
+					factor = 5
+					stability < 40
+				}
+			}
+			save_scope_as = z_limes_defender_country
+		}
+	}
+	scope:z_limes_defender_country = {
+		ordered_owned_province = {
+			limit = { is_in_region = $REGION$ }
+			order_by = total_population
+			save_scope_as = z_limes_wargoal
+		}
+	}
+	z_limes_declare_war_effect = yes
+}
+
+# --------------------------------------------------------------------------------
+# # Attack - Help the AI reach its historical goals
+# --------------------------------------------------------------------------------
+z_limes_declare_war_effect = {
+	scope:z_limes_attacker_country = {
+		declare_war_with_wargoal = {
+			war_goal = conquer_wargoal
+			province = scope:z_limes_wargoal
+			target = scope:z_limes_defender_country
+		}
+	}
+}

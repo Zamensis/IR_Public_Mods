@@ -1,0 +1,69 @@
+﻿# --------------------------------------------------------------------------------
+# Can this country be forced to attack?
+# --------------------------------------------------------------------------------
+z_limes_attack_trigger = {
+	is_ai = yes
+	war = no
+	has_war_exhaustion < 35
+	stability >= 15
+}
+
+#---------------------------------------------------------------------------------
+# Can this AI attack a country within its expansion area?
+#---------------------------------------------------------------------------------
+z_limes_attack_trigger_default = {
+	z_limes_year >= 0
+	z_limes_attack_trigger = yes
+	any_country = {
+		z_limes_be_attacked_trigger = yes
+		any_owned_province = { is_in_region = $REGION$ }
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Can this AI be force-attacked by another AI?
+# --------------------------------------------------------------------------------
+z_limes_be_attacked_trigger = {
+	is_ai = yes
+	has_civil_war = no
+	NOR = {
+		this = root
+		alliance_with = root
+		is_subject_of = root
+		is_guaranteed_by = root
+		war_with = root
+		has_truce_with = root
+		this = { root = { has_truce_with = prev } }
+	}
+	OR = {
+		any_neighbour_country = { this = root }
+		AND = {
+			root = { has_coasts = yes }
+			has_coasts = yes
+		}
+	}
+}
+
+#---------------------------------------------------------------------------------
+# Can AI Rome attack a country in this region?
+#---------------------------------------------------------------------------------
+z_limes_attack_trigger_ROM = {
+	NOT = {
+		any_owned_province = { z_limes_ROM_$REGION$ = yes }
+	}
+	z_limes_attack_trigger_ROM_important = { REGION = $REGION$ }
+}
+
+#---------------------------------------------------------------------------------
+# Should AI Rome conquer every country in this region?
+#---------------------------------------------------------------------------------
+z_limes_attack_trigger_ROM_important = {
+	z_limes_year >= 20
+	z_limes_ROM_$REGION$_year = yes
+	z_limes_attack_trigger = yes
+	any_country = {
+		NOT = { this = root }
+		z_limes_be_attacked_trigger = yes
+		any_owned_province = { z_limes_ROM_$REGION$ = yes }
+	}
+}

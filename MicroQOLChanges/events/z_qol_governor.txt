@@ -1,0 +1,63 @@
+﻿namespace = z_qol_governor
+
+#-----------------------------------------------------------------------------------------
+# Propose the player with a new governor
+#-----------------------------------------------------------------------------------------
+z_qol_governor.1 = {
+	type = country_event
+	title = "z_qol_governor.1.t"
+	desc = {
+		triggered_desc = { # Non tribes
+			trigger = { is_tribal = no }
+			desc = "z_qol_governor.1.desc"
+		}
+		triggered_desc = { # Tribes
+			trigger = { is_tribal = yes }
+			desc = "z_qol_governor.1.desc.tribal"
+		}
+	}
+	picture = council_country
+	left_portrait = scope:z_qol_governor_old
+	right_portrait = scope:z_qol_governor_new
+	goto_location = scope:z_qol_governor_cap
+	
+	trigger = {
+		is_ai = no
+	}
+	
+	immediate = {
+		scope:z_qol_governor_cap.region = { save_scope_as = z_qol_governor_cap_region } # Used in desc (I know, it's not academic)
+	}
+	
+	option = { # Make him governor
+		name = "z_qol_governor.1.a"
+		ai_chance = { factor = 0 }
+		scope:z_qol_governor_cap = {
+			set_as_governor = scope:z_qol_governor_new
+		}
+	}
+	
+	option = { # No thanks
+		name = "z_qol_governor.1.b"
+		ai_chance = { factor = 100 }
+	}
+}
+
+z_qol_governor.2 = {
+	type = minor_country_event
+	title = "z_qol_governor.2.t"
+	desc = "z_qol_governor.2.desc"
+	left_portrait = scope:z_qol_governor_new
+	interface_lock = no
+	
+	immediate = {
+		scope:z_qol_governor_cap.region = { save_scope_as = z_qol_governor_cap_region } # Used in desc (I know, it's not academic)
+		scope:z_qol_governor_cap = {
+			set_as_governor = scope:z_qol_governor_new
+		}
+	}
+	
+	option = { # OK
+		name = "z_qol_governor.2.a"
+	}
+}

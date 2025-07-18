@@ -1,0 +1,150 @@
+﻿# --------------------------------------------------------------------------------
+# Mark this game as using this mod, for compatibility purposes if needed
+# --------------------------------------------------------------------------------
+z_limes_setup_vflag_effect = {
+	if = {
+		limit = {
+			OR = {
+				NOT = { has_global_variable = z_limes_flag }
+				NOT = { global_var:z_limes_flag = 3.00 }
+			}
+		}
+		set_global_variable = {
+			name = z_limes_flag
+			value = 3.00
+		}
+		#if = {
+		#	limit = { current_date > 450.10.1 }
+		#	every_country = {
+		#		limit = { is_ai = no }
+		#		trigger_event = { id = z_limes_setup_vflag.1 }
+		#	}
+		#}
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Set AI lucky factor for the rest of the game
+# --------------------------------------------------------------------------------
+z_limes_setup_lucky_effect = {
+	if = {
+		limit = {
+			OR = {
+				current_date < 451.1.2 # Random values generated on game initialized will always be the same, so they must be re-generated ASAP after initialization
+				NOT = { has_variable = z_limes_lucky_factor } # For countries not present on game initialized
+			}
+		}
+		set_variable = {
+			name = z_limes_lucky_factor
+			value = { 0 100 }
+		}
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Change start-up diplo stances
+# --------------------------------------------------------------------------------
+z_limes_setup_diplo_effect = {
+	if = {
+		limit = {
+			z_limes_defines_start_year = 450
+			current_date = 450.10.1
+		}
+		# --------------------------------------
+		# Carthage and main Numidian powers (set reciprocal truces)
+		# --------------------------------------
+		if = {
+			limit = {
+				c:CAR = { is_ai = yes } # Carthage
+				c:MSY = { is_ai = yes } # Massylia
+				c:MSS = { is_ai = yes } # Massaesylia
+				c:MAU = { is_ai = yes } # Mauretania
+			}
+			c:CAR = { # Carthage
+				add_truce = {
+					target = c:MSY # Massylia
+					duration = 1825 # 5 years
+				}
+			}
+			c:CAR = { # Carthage
+				add_truce = {
+					target = c:MSS # Massaesylia
+					duration = 1825 # 5 years
+				}
+			}
+			c:CAR = { # Carthage
+				add_truce = {
+					target = c:MAU # Mauretania
+					duration = 1825 # 5 years
+				}
+			}
+			c:MSY = { # Massylia
+				add_truce = {
+					target = c:CAR # Carthage
+					duration = 1825 # 5 years
+				}
+			}
+			c:MSS = { # Massaesylia
+				add_truce = {
+					target = c:CAR # Carthage
+					duration = 1825 # 5 years
+				}
+			}
+			c:MAU = { # Mauretania
+				add_truce = {
+					target = c:CAR # Carthage
+					duration = 1825 # 5 years
+				}
+			}
+		}
+		# --------------------------------------
+		# Seleucids, Bactria, Parthia and friends (set non-reciprocal truces)
+		# --------------------------------------
+		if = {
+			limit = {
+				c:SEL = { is_ai = yes } # Seleucids
+				c:BAC = { is_ai = yes } # Bactria
+				c:PRN = { is_ai = yes } # Parnia
+				c:PSS = { is_ai = yes } # Pissuria
+				c:ZNT = { is_ai = yes } # Zanthia
+				c:SCA = { is_ai = yes } # Sakia/Derbicia
+			}
+			c:SEL = { # Seleucids
+				add_truce = {
+					target = c:PRN # Parnia
+					duration = 7300 # 20 years (capped at 8?)
+				}
+				add_truce = {
+					target = c:PSS # Pissuria
+					duration = 7300 # 20 years (capped at 8?)
+				}
+				add_truce = {
+					target = c:ZNT # Zanthia
+					duration = 7300 # 20 years (capped at 8?)
+				}
+				add_truce = {
+					target = c:SCA # Sakia/Derbicia
+					duration = 7300 # 20 years (capped at 8?)
+				}
+			}
+			c:BAC = { # Bactria
+				add_truce = {
+					target = c:PRN # Parnia
+					duration = 7300 # 20 years (capped at 8?)
+				}
+				add_truce = {
+					target = c:PSS # Pissuria
+					duration = 7300 # 20 years (capped at 8?)
+				}
+				add_truce = {
+					target = c:ZNT # Zanthia
+					duration = 7300 # 20 years (capped at 8?)
+				}
+				add_truce = {
+					target = c:SCA # Sakia/Derbicia
+					duration = 7300 # 20 years (capped at 8?)
+				}
+			}
+		}
+	}
+}

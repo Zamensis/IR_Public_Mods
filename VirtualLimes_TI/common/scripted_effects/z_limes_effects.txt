@@ -1,0 +1,382 @@
+﻿#################################################################################################	MAKE A NEW LIMES SUBJECT
+#################################################################################################
+z_make_limes_subject = {
+	
+	# SAVE SCOPES
+	#########################################################################################
+	
+	scope:z_limes_sub_capital = {
+		create_country = {
+			save_scope_as = z_limes_sub
+		}
+	}
+	scope:z_limes_sub = {
+		create_character = {
+			culture = scope:z_limes_sub_capital.culture
+			save_scope_as = z_limes_sub_governor
+		}
+	}
+	
+	# SET UP COUNTRY
+	#########################################################################################
+	
+	scope:z_limes_sub = {
+		change_government = tribal_federation
+		z_limes_set_government = yes
+		set_as_ruler = scope:z_limes_sub_governor
+		z_limes_set_religion = yes
+		#z_limes_set_tech = yes
+		add_treasury = 25.0
+	}
+	
+	# SET SUBJECT TYPE
+	#########################################################################################
+	
+	root = {
+		save_scope_as = future_overlord
+	}
+	
+	random_list = {
+		80 = {
+			if = {
+				limit = {
+					z_has_limes_ROM = yes
+				}
+				make_subject = {
+					target = scope:z_limes_sub
+					type = roman_faa
+				}
+			}
+			else = {
+				make_subject = {
+					target = scope:z_limes_sub
+					type = z_frontier_outpost
+				}
+			}
+		}
+		20 = {
+			if = {
+				limit = {
+					is_tribal = yes
+				}
+				make_subject = {
+					target = scope:z_limes_sub
+					type = vassal_tribe
+				}
+			}
+			else = {
+				make_subject = {
+					target = scope:z_limes_sub
+					type = tributary
+				}
+			}
+		}
+	}
+	
+	# GIVE THE COUNTRY ITS PROVINCES / REMOVE OVERLORD CLAIM
+	#########################################################################################
+	
+	every_owned_province = {
+		limit = {
+			trigger_if = {
+				limit = {
+					root = {
+						OR = {
+							num_of_cities >= 1000
+							AND = {
+								has_variable = z_limes_toss_a_coin
+								var:z_limes_toss_a_coin <= 66
+								OR = {
+									# These regions are to be released as whole regions instead of individual areas
+									scope:z_limes_sub.capital_scope.region = region:mesopotamia_region
+									scope:z_limes_sub.capital_scope.region = region:assyria_region
+									scope:z_limes_sub.capital_scope.region = region:armenia_region
+									scope:z_limes_sub.capital_scope.region = region:colchis_region
+									scope:z_limes_sub.capital_scope.region = region:albania_region
+									scope:z_limes_sub.capital_scope.region = region:media_region
+									scope:z_limes_sub.capital_scope.region = region:persis_region
+									scope:z_limes_sub.capital_scope.region = region:ariana_region
+									#scope:z_limes_sub.capital_scope.region = region:gedrosia_region # Vanilla only
+									#scope:z_limes_sub.capital_scope.region = region:scythia_region # Vanilla only
+									scope:z_limes_sub.capital_scope.region = region:sogdiana_region
+									scope:z_limes_sub.capital_scope.region = region:sakia_region # Invictus only
+									scope:z_limes_sub.capital_scope.region = region:lower_egypt_region
+									AND = {
+										NOT = {
+											root.capital_scope.region = region:lower_egypt_region
+										}
+										scope:z_limes_sub.capital_scope.region = region:upper_egypt_region
+									}
+								}
+							}
+						}
+					}
+				}
+				region = scope:z_limes_sub.capital_scope.region
+			}
+			trigger_else = {
+				area = scope:z_limes_sub.capital_scope.area
+			}
+			trigger_if = {
+				limit = {
+					root = {
+						z_has_limes_CAR = yes # Carthaginian perk: keep coastal provinces under direct control
+					}
+				}
+				is_coastal = no
+			}
+		}
+		set_owned_by = scope:z_limes_sub
+	}
+	
+	if = {
+		limit = {
+			NOT = {
+				z_has_limes_ROM = yes
+			}
+		}
+		scope:z_limes_sub.capital_scope.area = {
+			every_area_province = {
+				add_claim = scope:z_limes_sub
+				remove_claim = root
+			}
+		}
+	}
+	
+	# SET COOLDOWN (LAST AS TO NOT MESS WITH PREVIOUS TRIGGERS)
+	#########################################################################################
+	
+	set_variable = {
+		name = z_limes_cooldown
+		days = 15
+	}
+	
+}
+
+#################################################################################################	FREE LIMES SUBJECT (E.G. IF TOO EARLY ON THE TIMELINE - OR RANDOMLY)
+#################################################################################################
+z_free_limes_subject = {
+	release_subject = scope:z_limes_sub
+	add_truce = {
+		target = scope:z_limes_sub
+		duration = 7200
+	}
+	scope:z_limes_sub = {
+		add_truce = {
+			target = root
+			duration = 7200
+		}
+	}
+}
+
+#################################################################################################	SET LIMES SUBJECT GOVERNMENT
+#################################################################################################
+z_limes_set_government = {
+	if = {
+		limit = {
+			root = { is_tribal = yes }
+		}
+		if = {
+			limit = {
+				root = {
+					government = tribal_chiefdom
+				}
+			}
+			this = { change_government = tribal_chiefdom }
+		}
+		else = {
+			this = { change_government = tribal_kingdom }
+		}
+	}
+	else_if = {
+		limit = {
+			root = { is_monarchy = yes }
+		}
+		this = { change_government = despotic_monarchy }
+	}
+	else_if = {
+		limit = {
+			root = {
+				OR = {
+					government = democratic_republic
+					government = athenian_republic
+				}
+			}
+		}
+		this = { change_government = democratic_republic }
+	}
+	else_if = {
+		limit = {
+			root = {
+				government = plutocratic_republic
+			}
+		}
+		this = { change_government = plutocratic_republic }
+	}
+	else = {
+		scope:z_limes_sub = {
+			random_list = {
+				50 = { change_government = aristocratic_republic }
+				50 = { change_government = oligarchic_republic }
+			}
+		}
+	}
+}
+
+#################################################################################################	SET LIMES SUBJECT TECH LEVEL
+#################################################################################################
+z_limes_set_tech = {
+	add_innovation = {
+		value = root.civic_tech
+		multiply = 0.75
+	}
+	add_innovation = {
+		value = root.oratory_tech
+		multiply = 0.75
+	}
+	add_innovation = {
+		value = root.religious_tech
+		multiply = 0.75
+	}
+	add_innovation = {
+		value = root.military_tech
+		multiply = 0.75
+	}
+}
+
+#################################################################################################	CLEAR MILITARY MARCHE LEVY SIZE MODIFIER
+#################################################################################################
+z_limes_clear_levy_size = {
+	if = {
+		limit = {
+			has_country_modifier = z_limes_levy_size_1
+		}
+		remove_country_modifier = z_limes_levy_size_1
+	}
+	else_if = {
+		limit = {
+			has_country_modifier = z_limes_levy_size_2
+		}
+		remove_country_modifier = z_limes_levy_size_2
+	}
+	else_if = {
+		limit = {
+			has_country_modifier = z_limes_levy_size_3
+		}
+		remove_country_modifier = z_limes_levy_size_3
+	}
+	else_if = {
+		limit = {
+			has_country_modifier = z_limes_levy_size_4
+		}
+		remove_country_modifier = z_limes_levy_size_4
+	}
+	else_if = {
+		limit = {
+			has_country_modifier = z_limes_levy_size_5
+		}
+		remove_country_modifier = z_limes_levy_size_5
+	}
+}
+
+#################################################################################################	AI ATTACKS ENEMY AI
+#################################################################################################
+z_limes_attack = {
+	random = {
+		chance = $ZCHANCE$
+		declare_war_with_wargoal = {
+			war_goal = conquer_wargoal
+			province = scope:z_limes_war_goal
+			target = scope:z_limes_war_target
+		}
+	}
+}
+
+#################################################################################################	AI ATTACKS ENEMY AI AREA
+#################################################################################################
+z_limes_attack_area = {
+	ordered_country = {
+		limit = {
+			trigger_if = {
+				limit = {
+					root = c:ROM
+				}
+				z_can_be_declared_upon = yes
+			}
+			trigger_if = {
+				limit = {
+					root = c:CAR
+				}
+				z_can_be_declared_upon = yes
+			}
+			is_ai = yes # In case this effect misfires somehow
+			any_owned_province = {
+				is_in_area = $ZTARGET$
+				is_coastal = yes
+			}
+		}
+		order_by = total_population
+		save_scope_as = z_limes_war_target
+		ordered_owned_province = {
+			limit = {
+				is_in_area = $ZTARGET$
+				is_coastal = yes
+			}
+			order_by = total_population
+			save_scope_as = z_limes_war_goal
+		}
+	}
+	scope:z_limes_war_goal.area = {
+		every_area_province = {
+			add_claim = root
+		}
+	}
+}
+
+#################################################################################################	AI ATTACKS ENEMY AI REGION
+#################################################################################################
+z_limes_attack_region = {
+	random_country = {
+		limit = {
+			z_can_be_declared_upon = yes
+			is_ai = yes # In case this effect misfires somehow
+			any_owned_province = {
+				is_in_region = $ZTARGET$
+			}
+		}
+		weight = {
+			modifier = {
+				factor = 1
+				any_neighbour_country = {
+					this = root
+				}
+			}
+			modifier = {
+				factor = 4
+				has_coasts = yes
+			}
+			modifier = {
+				factor = 0.1
+				has_coasts = no
+				NOT = {
+					any_neighbour_country = {
+						this = root
+					}
+				}
+			}
+		}
+		save_scope_as = z_limes_war_target
+		ordered_owned_province = {
+			limit = {
+				is_in_region = $ZTARGET$
+			}
+			order_by = total_population
+			save_scope_as = z_limes_war_goal
+		}
+	}
+	scope:z_limes_war_goal.region = {
+		every_region_province = {
+			add_claim = root
+		}
+	}
+}

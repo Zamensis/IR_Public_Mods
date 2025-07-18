@@ -1,0 +1,12 @@
+﻿l_english:
+ # EVENTS -----------------------------------------------------------------------------------------------------
+ z_qol_governor.1.t:0 "The governorship of [z_qol_governor_cap_region.GetName]"
+ z_qol_governor.1.desc:0 "The untimely death of [z_qol_governor_old.GetName] has left the region of [z_qol_governor_cap_region.GetName] in disarray. Without a steady hand, the local administration will soon struggle to manage its affairs.\n\nIn the capital, attention has turned to finding a suitable replacement, and a strong candidate has emerged: [z_qol_governor_new.GetName], currently unemployed, but talented, and a loyal servant of the State."
+ z_qol_governor.1.desc.tribal:0 "The untimely death of [z_qol_governor_old.GetName] has left the lands of [z_qol_governor_cap_region.GetName] in disarray. Without a steady hand, our authority will soon be challenged by the local elites.\n\nIn the capital, attention has turned to finding a suitable replacement, and a strong candidate has emerged: [z_qol_governor_new.GetName], currently unemployed, but talented, and a loyal servant of our interests."
+ z_qol_governor.1.a: "Send [z_qol_governor_new.GetHerHim] right away!"
+ z_qol_governor.1.b: "Let us examine our options first."
+ # ------------------------
+ z_qol_governor.2.t:0 "@z_qol_governor! [z_qol_governor_cap_region.GetName]"
+ z_qol_governor.2.desc:0 "[z_qol_governor_new.GetName] has been chosen to succeed [z_qol_governor_old.GetName] as governor of [z_qol_governor_cap_region.GetName]."
+ z_qol_governor.2.a:0 "Understood."
+ # ------------------------

@@ -1,0 +1,9 @@
+texticon = {
+    icon = z_qol_governor
+    iconsize = {
+        texture = "gfx/interface/icons/font_icons/z_qol_governor.dds"
+        size = { 25 25 }
+        offset = { 0 4 }
+        fontsize = 25
+    }
+}

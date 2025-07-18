@@ -1,0 +1,75 @@
+﻿# Governorshipability score: (martial*10)+(finesse*10)+(age-20)-(corruption/3)+(good traits)-(bad traits)+(good religion)+(good culture)
+# --------------------------------------------------------------------------------
+z_qol_governor_score = {
+	value = 0
+	# Base characteristics
+	add = {
+		value = 0
+		add = martial
+		multiply = 10
+		
+	}
+	add = {
+		value = 0
+		add = finesse
+		multiply = 10
+		
+	}
+	# Age
+	add = {
+		value = 0
+		add = age
+		subtract = 20
+		divide = 5
+	}
+	# Corruption
+	add = {
+		value = 0
+		add = corruption
+		divide = -3
+	}
+	# Good traits
+	add = {
+		value = 0
+		if = { limit = { has_trait = just } add = 1 }
+		if = { limit = { has_trait = merciful } add = 1 }
+		if = { limit = { has_trait = founder } add = 1 }
+		if = { limit = { has_trait = benefactor } add = 1 }
+		if = { limit = { has_trait = harsh } add = 1 }
+		if = { limit = { has_trait = assertive } add = 1 }
+		if = { limit = { has_trait = generous } add = 1 }
+		if = { limit = { has_trait = prominent } add = 1 }
+		if = { limit = { has_trait = guileless } add = 1 }
+		if = { limit = { has_trait = righteous } add = 1 }
+		if = { limit = { has_trait = honest } add = 1 }
+		multiply = 10
+	}
+	# Bad traits
+	add = {
+		value = 0
+		if = { limit = { has_trait = crafty } subtract = 3 }
+		if = { limit = { has_trait = corrupt } subtract = 3 }
+		if = { limit = { has_trait = deceitful } subtract = 1.5 }
+		multiply = 10
+	}
+	# Good cultures
+	add = {
+		value = 0
+		if = {
+			limit = {
+				OR = {
+					culture = employer.culture
+					culture = employer.current_ruler.culture
+				}
+			}
+			add = 2
+		}
+		else_if = {
+			limit = {
+				culture = scope:z_qol_governor_cap.culture
+			}
+			add = 3
+		}
+		multiply = 10
+	}
+}

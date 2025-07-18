@@ -1,0 +1,575 @@
+﻿#################################################################################################	Roll the Wheel of Fortuna!
+#################################################################################################
+z_bad_omens_roll_dice = {
+	
+	if = {
+		limit = {
+			any_character = {
+				z_has_high_priest_office_trigger = yes
+			}
+		}
+		random_character = {
+			limit = {
+				z_has_high_priest_office_trigger = yes
+			}
+			save_scope_as = z_highpriest
+		}
+	}
+
+	# Omen Polarity (Good/Bad)
+	random_list = {
+		55 = { # Officially 50/50 but secret +5% chance for Good Omen
+			modifier = {
+				add = z_bad_omens_hp_loyalty_pos
+			}
+			modifier = {
+				add = z_impiety_neg
+			}
+			root.current_ruler = {
+				set_variable = {
+					name = z_bad_omens_next_roll
+					value = 1
+				}
+			}
+		}
+		45 = {
+			modifier = {
+				add = z_bad_omens_hp_loyalty_neg
+			}
+			modifier = {
+				add = z_impiety_pos
+			}
+			root.current_ruler = {
+				set_variable = {
+					name = z_bad_omens_next_roll
+					value = 0
+				}
+			}
+		}
+	}
+	
+	# Omen Strength (from 1 to 5)
+	
+	root.current_ruler = { # I tried in svalues but it didn't work :(
+		set_variable = {
+			name = z_bad_omens_omen_strength_random
+			value = { 0 30 }
+		}
+	}
+	
+	if = {
+		limit = {
+			z_bad_omens_omen_strength >= 0
+			z_bad_omens_omen_strength < 10
+		}
+		root.current_ruler = {
+			set_variable = {
+				name = z_bad_omens_next_roll_strength
+				value = 1
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			z_bad_omens_omen_strength >= 10
+			z_bad_omens_omen_strength < 20
+		}
+		root.current_ruler = {
+			set_variable = {
+				name = z_bad_omens_next_roll_strength
+				value = 2
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			z_bad_omens_omen_strength >= 20
+			z_bad_omens_omen_strength < 30
+		}
+		root.current_ruler = {
+			set_variable = {
+				name = z_bad_omens_next_roll_strength
+				value = 3
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			z_bad_omens_omen_strength >= 30
+			z_bad_omens_omen_strength < 40
+		}
+		root.current_ruler = {
+			set_variable = {
+				name = z_bad_omens_next_roll_strength
+				value = 4
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			z_bad_omens_omen_strength >= 40
+		}
+		root.current_ruler = {
+			set_variable = {
+				name = z_bad_omens_next_roll_strength
+				value = 5
+			}
+		}
+	}
+	
+	clear_saved_scope = z_highpriest
+	
+}
+
+#################################################################################################	Remove Any Omen
+#################################################################################################
+z_bad_omens_remove_omen = {
+	if = {
+		limit = {
+			has_country_modifier = z_good_omen_1
+		}
+		remove_country_modifier = z_good_omen_1
+	}
+	if = {
+		limit = {
+			has_country_modifier = z_good_omen_2
+		}
+		remove_country_modifier = z_good_omen_2
+	}
+	if = {
+		limit = {
+			has_country_modifier = z_good_omen_3
+		}
+		remove_country_modifier = z_good_omen_3
+	}
+	if = {
+		limit = {
+			has_country_modifier = z_good_omen_4
+		}
+		remove_country_modifier = z_good_omen_4
+	}
+	if = {
+		limit = {
+			has_country_modifier = z_good_omen_5
+		}
+		remove_country_modifier = z_good_omen_5
+	}
+	if = {
+		limit = {
+			has_country_modifier = z_bad_omen_1
+		}
+		remove_country_modifier = z_bad_omen_1
+	}
+	if = {
+		limit = {
+			has_country_modifier = z_bad_omen_2
+		}
+		remove_country_modifier = z_bad_omen_2
+	}
+	if = {
+		limit = {
+			has_country_modifier = z_bad_omen_3
+		}
+		remove_country_modifier = z_bad_omen_3
+	}
+	if = {
+		limit = {
+			has_country_modifier = z_bad_omen_4
+		}
+		remove_country_modifier = z_bad_omen_4
+	}
+	if = {
+		limit = {
+			has_country_modifier = z_bad_omen_5
+		}
+		remove_country_modifier = z_bad_omen_5
+	}
+}
+
+#################################################################################################	Add Good Omen
+#################################################################################################		- Pick a Good Omen gravity
+z_bad_omens_add_good_omen = {
+	if = {
+		limit = {
+			root.current_ruler = {
+				var:z_bad_omens_next_roll_strength = 1
+			}
+		}
+		z_bad_omens_add_good_omen_event_1 = yes # Lowest gravity Bad Omen events
+	}
+	else_if = {
+		limit = {
+			root.current_ruler = {
+				var:z_bad_omens_next_roll_strength = 2
+			}
+		}
+		z_bad_omens_add_good_omen_event_2 = yes # Low gravity Bad Omen events
+	}
+	else_if = {
+		limit = {
+			root.current_ruler = {
+				var:z_bad_omens_next_roll_strength = 3
+			}
+		}
+		z_bad_omens_add_good_omen_event_3 = yes # Medium gravity Bad Omen events
+	}
+	else_if = {
+		limit = {
+			root.current_ruler = {
+				var:z_bad_omens_next_roll_strength = 4
+			}
+		}
+		z_bad_omens_add_good_omen_event_4 = yes # High gravity Bad Omen events
+	}
+	else_if = {
+		limit = {
+			root.current_ruler = {
+				var:z_bad_omens_next_roll_strength = 5
+			}
+		}
+		z_bad_omens_add_good_omen_event_5 = yes # Highest gravity Bad Omen events
+	}
+}
+
+#################################################################################################	Add Bad Omen
+#################################################################################################		- Pick a Bad Omen gravity
+z_bad_omens_add_bad_omen = {
+	if = {
+		limit = {
+			root.current_ruler = {
+				var:z_bad_omens_next_roll_strength = 1
+			}
+		}
+		z_bad_omens_add_bad_omen_event_1 = yes # Lowest gravity Bad Omen events
+	}
+	else_if = {
+		limit = {
+			root.current_ruler = {
+				var:z_bad_omens_next_roll_strength = 2
+			}
+		}
+		z_bad_omens_add_bad_omen_event_2 = yes # Low gravity Bad Omen events
+	}
+	else_if = {
+		limit = {
+			root.current_ruler = {
+				var:z_bad_omens_next_roll_strength = 3
+			}
+		}
+		z_bad_omens_add_bad_omen_event_3 = yes # Medium gravity Bad Omen events
+	}
+	else_if = {
+		limit = {
+			root.current_ruler = {
+				var:z_bad_omens_next_roll_strength = 4
+			}
+		}
+		z_bad_omens_add_bad_omen_event_4 = yes # High gravity Bad Omen events
+	}
+	else_if = {
+		limit = {
+			root.current_ruler = {
+				var:z_bad_omens_next_roll_strength = 5
+			}
+		}
+		z_bad_omens_add_bad_omen_event_5 = yes # Highest gravity Bad Omen events
+	}
+}
+
+#################################################################################################	Add Good Omen
+#################################################################################################		- Pick a random Good Omen flavour event
+# Lowest gravity Good Omen events
+z_bad_omens_add_good_omen_event_1 = {
+	random_list = {
+		10 = {
+			trigger_event = {
+				id = z_bad_omens.100
+			}
+		}
+	}
+}
+
+# Low gravity Good Omen events
+z_bad_omens_add_good_omen_event_2 = {
+	random_list = {
+		10 = {
+			trigger_event = {
+				id = z_bad_omens.101
+			}
+		}
+	}
+}
+
+# Medium gravity Good Omen events
+z_bad_omens_add_good_omen_event_3 = {
+	random_list = {
+		10 = {
+			trigger_event = {
+				id = z_bad_omens.102
+			}
+		}
+	}
+}
+
+# High gravity Good Omen events
+z_bad_omens_add_good_omen_event_4 = {
+	random_list = {
+		10 = {
+			trigger_event = {
+				id = z_bad_omens.103
+			}
+		}
+	}
+}
+
+# Highest gravity Good Omen events
+z_bad_omens_add_good_omen_event_5 = {
+	random_list = {
+		10 = {
+			trigger_event = {
+				id = z_bad_omens.104
+			}
+		}
+	}
+}
+
+#################################################################################################	Add Bad Omen
+#################################################################################################		- Pick a random Bad Omen flavour event
+# Lowest gravity Bad Omen events
+z_bad_omens_add_bad_omen_event_1 = {
+	random_list = {
+		10 = {
+			trigger_event = {
+				id = z_bad_omens.200
+			}
+		}
+	}
+}
+
+# Low gravity Bad Omen events
+z_bad_omens_add_bad_omen_event_2 = {
+	random_list = {
+		10 = {
+			trigger_event = {
+				id = z_bad_omens.201
+			}
+		}
+	}
+}
+
+# Medium gravity Bad Omen events
+z_bad_omens_add_bad_omen_event_3 = {
+	random_list = {
+		10 = {
+			trigger_event = {
+				id = z_bad_omens.202
+			}
+		}
+	}
+}
+
+# High gravity Bad Omen events
+z_bad_omens_add_bad_omen_event_4 = {
+	random_list = {
+		10 = {
+			trigger_event = {
+				id = z_bad_omens.203
+			}
+		}
+	}
+}
+
+# Highest gravity Bad Omen events
+z_bad_omens_add_bad_omen_event_5 = {
+	random_list = {
+		10 = {
+			trigger_event = {
+				id = z_bad_omens.204
+			}
+		}
+	}
+}
+
+#################################################################################################	Add Good Omens
+#################################################################################################		- Add the right modifier
+z_bad_omens_add_good_omen_1 = {
+	if = {
+		limit = {
+			religion = judaism
+		}
+		add_country_modifier = {
+			name = z_good_omen_1
+			duration = 2737
+		}
+	}
+	else = {
+		add_country_modifier = {
+			name = z_good_omen_1
+			duration = 1825
+		}
+	}
+}
+
+z_bad_omens_add_good_omen_2 = {
+	if = {
+		limit = {
+			religion = judaism
+		}
+		add_country_modifier = {
+			name = z_good_omen_2
+			duration = 2737
+		}
+	}
+	else = {
+		add_country_modifier = {
+			name = z_good_omen_2
+			duration = 1825
+		}
+	}
+}
+
+z_bad_omens_add_good_omen_3 = {
+	if = {
+		limit = {
+			religion = judaism
+		}
+		add_country_modifier = {
+			name = z_good_omen_3
+			duration = 2737
+		}
+	}
+	else = {
+		add_country_modifier = {
+			name = z_good_omen_3
+			duration = 1825
+		}
+	}
+}
+
+z_bad_omens_add_good_omen_4 = {
+	if = {
+		limit = {
+			religion = judaism
+		}
+		add_country_modifier = {
+			name = z_good_omen_4
+			duration = 2737
+		}
+	}
+	else = {
+		add_country_modifier = {
+			name = z_good_omen_4
+			duration = 1825
+		}
+	}
+}
+
+z_bad_omens_add_good_omen_5 = {
+	if = {
+		limit = {
+			religion = judaism
+		}
+		add_country_modifier = {
+			name = z_good_omen_5
+			duration = 2737
+		}
+	}
+	else = {
+		add_country_modifier = {
+			name = z_good_omen_5
+			duration = 1825
+		}
+	}
+}
+
+#################################################################################################	Add Bad Omens
+#################################################################################################		- Add the right modifier
+z_bad_omens_add_bad_omen_1 = {
+	if = {
+		limit = {
+			religion = judaism
+		}
+		add_country_modifier = {
+			name = z_bad_omen_1
+			duration = 2737
+		}
+	}
+	else = {
+		add_country_modifier = {
+			name = z_bad_omen_1
+			duration = 1825
+		}
+	}
+}
+
+z_bad_omens_add_bad_omen_2 = {
+	if = {
+		limit = {
+			religion = judaism
+		}
+		add_country_modifier = {
+			name = z_bad_omen_2
+			duration = 2737
+		}
+	}
+	else = {
+		add_country_modifier = {
+			name = z_bad_omen_2
+			duration = 1825
+		}
+	}
+}
+
+z_bad_omens_add_bad_omen_3 = {
+	if = {
+		limit = {
+			religion = judaism
+		}
+		add_country_modifier = {
+			name = z_bad_omen_3
+			duration = 2737
+		}
+	}
+	else = {
+		add_country_modifier = {
+			name = z_bad_omen_3
+			duration = 1825
+		}
+	}
+}
+
+z_bad_omens_add_bad_omen_4 = {
+	if = {
+		limit = {
+			religion = judaism
+		}
+		add_country_modifier = {
+			name = z_bad_omen_4
+			duration = 2737
+		}
+	}
+	else = {
+		add_country_modifier = {
+			name = z_bad_omen_4
+			duration = 1825
+		}
+	}
+}
+
+z_bad_omens_add_bad_omen_5 = {
+	if = {
+		limit = {
+			religion = judaism
+		}
+		add_country_modifier = {
+			name = z_bad_omen_5
+			duration = 2737
+		}
+	}
+	else = {
+		add_country_modifier = {
+			name = z_bad_omen_5
+			duration = 1825
+		}
+	}
+}

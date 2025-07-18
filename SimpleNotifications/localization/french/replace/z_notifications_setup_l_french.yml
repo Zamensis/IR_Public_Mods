@@ -1,0 +1,128 @@
+﻿l_french:
+ # COMMON ----------------------------------------------------------------------------------------------------------------------------------------------------
+ z_notifications_setup:0 "@z_notifications_icon! Notifications @z_notifications_icon!"
+ z_notifications_setup_desc:0 "Paramétrer les notifications pour ce personnage ou ce pays."
+ z_notifications_country: "Notifications du pays"
+ z_notifications_character: "Notifications du personnage"
+ z_notifications_choose_option:0 "Veuillez choisir une option ci-dessous :"
+ z_notifications_setup_close:0 "#E Confirmer#! ces paramètres"
+ z_notifications_setup_close.tt:0 "Enregistrer ces paramètres et fermer la fenêtre"
+ z_notifications_setup_back:0 "#E Retour#!"
+ z_notifications_setup_back.tt:0 "Retourner à la fenêtre précédente"
+ z_notifications_country_government:0 "#Y Nouveau dirigeant\nNouvelle culture intégrée\nNouvelle annexion diplomatique#!"
+ z_notifications_country_war:0 "#Y Guerre\nPerte de la capitale\nNouvelle annexion militaire#!"
+ z_notifications_character_death:0 "#Y Décès#!"
+ z_notifications_character_life:0 "#Y Majorité\nMariage\nNaissance d'un nouvel enfant\nDivorce/veuvage#!"
+ z_notifications_character_office:0 "#Y Nouvelle fonction\nPerte de fonction\nCapture d'une capitale ennemie\nAccession au pouvoir\nEmprisonnement\nExil#!"
+ z_notifications_country_all:0 "$z_notifications_country_government$\n$z_notifications_country_war$"
+ z_notifications_character_all:0 "$z_notifications_character_office$\n$z_notifications_character_life$\n$z_notifications_character_death$"
+ # EVENTS ----------------------------------------------------------------------------------------------------------------------------------------------------
+ z_notifications_setup.1.t:0 "$z_notifications_setup$"
+ z_notifications_setup.1.desc:0 "Nous pouvons recevoir des #E notifications#! pour ce pays ou de ce personnage.\n\n$z_notifications_choose_option$"
+ z_notifications_setup.1.a:0 "@[z_notifications_country.GetFlag]! [z_notifications_country.GetName]"
+ z_notifications_setup.1.a.tt:0 "Paramétrer les notifications pour @[z_notifications_country.GetFlag]! [z_notifications_country.GetName]"
+ z_notifications_setup.1.b:0 "@[z_notifications_country.GetFlag]! [z_notifications_character.GetName]"
+ z_notifications_setup.1.b.tt:0 "Paramétrer les notifications pour @[z_notifications_country.GetFlag]! [z_notifications_character.GetName]"
+ z_notifications_setup.1.c:0 "#E Fermer#!"
+ z_notifications_setup.1.c.tt:0 "Fermer la fenêtre"
+ # --------------------------------------------------------------------------------------------------------------------------------------------------
+ z_notifications_setup.2.t:0 "Notifications pour @[z_notifications_country.GetFlag]! [z_notifications_country.GetName]"
+ z_notifications_setup.2.desc:0 "Paramètres actuels des notifications pour @[z_notifications_country.GetFlag]! [z_notifications_country.GetName] :"
+ # ------------
+ z_notifications_setup.2.a.on:0 "#E Activer toutes#! les notifications"
+ z_notifications_setup.2.a.on.tt:0 "#G Activer#! les notifications lorsque ce pays connaît :\n$z_notifications_country_all$"
+ z_notifications_setup.2.a.off:0 "#E Désactiver toutes#! les notifications"
+ z_notifications_setup.2.a.off.tt:0 "#R Désactiver toutes les notifications pour ce pays#!"
+ # ------------
+ z_notifications_setup.2.b.on:0 "@z_notifications_government! #E Politique#! @z_notifications_disabled!"
+ z_notifications_setup.2.b.on.tt:0 "#G Activer#! les notifications lorsque ce pays connaît :\n$z_notifications_country_government$"
+ z_notifications_setup.2.b.off:0 "@z_notifications_government! #E Politique#! @z_notifications_enabled!"
+ z_notifications_setup.2.b.off.tt:0 "#R Désactiver#! les notifications lorsque ce pays connaît :\n$z_notifications_country_government$"
+ # ------------
+ z_notifications_setup.2.c.on:0 "@z_notifications_military! #E Militaire#! @z_notifications_disabled!"
+ z_notifications_setup.2.c.on.tt:0 "#G Activer#! les notifications lorsque ce pays connaît :\n$z_notifications_country_war$"
+ z_notifications_setup.2.c.off:0 "@z_notifications_military! #E Militaire#! @z_notifications_enabled!"
+ z_notifications_setup.2.c.off.tt:0 "#R Désactiver#! les notifications lorsque ce pays connaît :\n$z_notifications_country_war$"
+ # ------------
+ z_notifications_setup.2.copy:0 "@z_notifications_copy! #E Copier#! ces paramètres"
+ z_notifications_setup.2.copy.tt:0 "#G Copier#! ces paramètres vers un ensemble de pays"
+ # --------------------------------------------------------------------------------------------------------------------------------------------------
+ z_notifications_setup.3.t:0 "Notifications pour @[z_notifications_country.GetFlag]! [z_notifications_character.GetFirstName]"
+ z_notifications_setup.3.desc:0 "Paramètres actuels des notifications pour @[z_notifications_country.GetFlag]! [z_notifications_character.GetName] :"
+ # ------------
+ z_notifications_setup.3.a.on:0 "#E Activer toutes#! les notifications"
+ z_notifications_setup.3.a.on.tt:0 "#G Activer#! les notifications lorsque ce personnage connaît :\n$z_notifications_character_all$"
+ z_notifications_setup.3.a.off:0 "#E Désactiver toutes#! les notifications"
+ z_notifications_setup.3.a.off.tt:0 "#R Désactiver toutes les notifications pour ce personnage#!"
+ # ------------
+ z_notifications_setup.3.b.on:0 "@z_notifications_death! #E Décès#! @z_notifications_disabled!"
+ z_notifications_setup.3.b.on.tt:0 "#G Activer#! les notifications lorsque ce personnage connaît :\n$z_notifications_character_death$"
+ z_notifications_setup.3.b.off:0 "@z_notifications_death! #E Décès#! @z_notifications_enabled!"
+ z_notifications_setup.3.b.off.tt:0 "#R Désactiver#! les notifications lorsque ce personnage connaît :\n$z_notifications_character_death$"
+ # ------------
+ z_notifications_setup.3.c.on:0 "@z_notifications_office! #E Carrière#! @z_notifications_disabled!"
+ z_notifications_setup.3.c.on.tt:0 "#G Activer#! les notifications lorsque ce personnage connaît :\n$z_notifications_character_office$"
+ z_notifications_setup.3.c.off:0 "@z_notifications_office! #E Carrière#! @z_notifications_enabled!"
+ z_notifications_setup.3.c.off.tt:0 "#R Désactiver#! les notifications lorsque ce personnage connaît :\n$z_notifications_character_office$"
+ # ------------
+ z_notifications_setup.3.d.on:0 "@z_notifications_marriage! #E Vie personnelle#! @z_notifications_disabled!"
+ z_notifications_setup.3.d.on.tt:0 "#G Activer#! les notifications lorsque ce personnage connaît :\n$z_notifications_character_life$"
+ z_notifications_setup.3.d.off:0 "@z_notifications_marriage! #E Vie personnelle#! @z_notifications_enabled!"
+ z_notifications_setup.3.d.off.tt:0 "#R Désactiver#! les notifications lorsque ce personnage connaît :\n$z_notifications_character_life$"
+ # ------------
+ z_notifications_setup.3.copy:0 "$z_notifications_setup.2.copy$"
+ z_notifications_setup.3.copy.tt:0 "#G Copier#! ces paramètres vers un ensemble de personnages"
+ # --------------------------------------------------------------------------------------------------------------------------------------------------
+ z_notifications_setup.4.t:0 "Notifications pour @[z_notifications_country.GetFlag]! [z_notifications_country.GetName]"
+ z_notifications_setup.4.desc:0 "#E Copier#! les paramètres des notifications de @[z_notifications_country.GetFlag]! [z_notifications_country.GetName] vers :"
+ # ------------
+ z_notifications_setup.4.a:0 "Voisins actuels de @[ROOT.GetCountry.GetFlag]! [ROOT.GetCountry.GetName]"
+ z_notifications_setup.4.a.tt:0 "#G Copier#! les paramètres de @[z_notifications_country.GetFlag]! [z_notifications_country.GetName] vers #Y [SCOPE.ScriptValue('z_notifications_country_neighbors')|0]#! pays."
+ # ------------
+ z_notifications_setup.4.b:0 "Voisins actuels de @[z_notifications_country.GetFlag]! [z_notifications_country.GetName]"
+ z_notifications_setup.4.b.tt:0 "#G Copier#! les paramètres de @[z_notifications_country.GetFlag]! [z_notifications_country.GetName] vers #Y [SCOPE.ScriptValue('z_notifications_country_neighbors_target')|0]#! pays."
+ # ------------
+ z_notifications_setup.4.c:0 "#E Tous#! les pays"
+ z_notifications_setup.4.c.tt:0 "#G Copier#! les paramètres de @[z_notifications_country.GetFlag]! [z_notifications_country.GetName] vers #Y [SCOPE.ScriptValue('z_notifications_country_all')|0]#! pays."
+ # ------------
+ z_notifications_setup.4.d:0 "Pays de culture #E [ROOT.GetCountry.GetPrimaryCulture.GetName]#!"
+ z_notifications_setup.4.d.tt:0 "#G Copier#! les paramètres de @[z_notifications_country.GetFlag]! [z_notifications_country.GetName] vers #Y [SCOPE.ScriptValue('z_notifications_country_culture')|0]#! pays."
+ # ------------
+ z_notifications_setup.4.e:0 "Pays de culture #E [z_notifications_country.GetPrimaryCulture.GetName]#!"
+ z_notifications_setup.4.e.tt:0 "#G Copier#! les paramètres de @[z_notifications_country.GetFlag]! [z_notifications_country.GetName] vers #Y [SCOPE.ScriptValue('z_notifications_country_culture_target')|0]#! pays."
+ # ------------
+ z_notifications_setup.4.f:0 "Pays de culture #E [ROOT.GetCountry.GetPrimaryCulture.GetCultureGroup.GetName]#!"
+ z_notifications_setup.4.f.tt:0 "#G Copier#! les paramètres de @[z_notifications_country.GetFlag]! [z_notifications_country.GetName] vers #Y [SCOPE.ScriptValue('z_notifications_country_culture_group')|0]#! pays."
+ # ------------
+ z_notifications_setup.4.g:0 "Pays de culture #E [z_notifications_country.GetPrimaryCulture.GetCultureGroup.GetName]#!"
+ z_notifications_setup.4.g.tt:0 "#G Copier#! les paramètres de @[z_notifications_country.GetFlag]! [z_notifications_country.GetName] vers #Y [SCOPE.ScriptValue('z_notifications_country_culture_group_target')|0]#! pays."
+ # --------------------------------------------------------------------------------------------------------------------------------------------------
+ z_notifications_setup.5.t:0 "Notifications pour @[z_notifications_country.GetFlag]! [z_notifications_character.GetFirstName]"
+ z_notifications_setup.5.desc:0 "#E Copier#! les paramètres des notification de @[z_notifications_country.GetFlag]! [z_notifications_character.GetName] vers :"
+ # ------------
+ z_notifications_setup.5.a:0 "Dirigeants voisins de @[ROOT.GetCountry.GetFlag]! [ROOT.GetCountry.GetName]"
+ z_notifications_setup.5.a.tt:0 "#G Copier#! les paramètres de @[z_notifications_country.GetFlag]! [z_notifications_character.GetFirstName] vers #Y [SCOPE.ScriptValue('z_notifications_country_neighbors')|0]#! personnage(s)."
+ # ------------
+ z_notifications_setup.5.b:0 "Famille de @[z_notifications_country.GetFlag]! [z_notifications_character.GetFirstName]"
+ z_notifications_setup.5.b.tt:0 "#G Copier#! les paramètres de @[z_notifications_country.GetFlag]! [z_notifications_character.GetFirstName] vers #Y [SCOPE.ScriptValue('z_notifications_character_family_target')|0]#! personnage(s)."
+ # ------------
+ z_notifications_setup.5.c:0 "Dirigeants voisins de @[z_notifications_country.GetFlag]! [z_notifications_country.GetName]"
+ z_notifications_setup.5.c.tt:0 "#G Copier#! les paramètres de @[z_notifications_country.GetFlag]! [z_notifications_character.GetFirstName] vers #Y [SCOPE.ScriptValue('z_notifications_country_neighbors_target')|0]#! personnage(s)."
+ # ------------
+ z_notifications_setup.5.d:0 "Enfants de @[z_notifications_country.GetFlag]! [z_notifications_character.GetFirstName]"
+ z_notifications_setup.5.d.tt:0 "#G Copier#! les paramètres de @[z_notifications_country.GetFlag]! [z_notifications_character.GetFirstName] vers #Y [SCOPE.ScriptValue('z_notifications_character_children_target')|0]#! personnage(s)."
+ # ------------
+ z_notifications_setup.5.e:0 "Enfants de @[ROOT.GetCountry.GetFlag]! [ROOT.GetCountry.GetRuler.GetName]"
+ z_notifications_setup.5.e.tt:0 "#G Copier#! les paramètres de @[z_notifications_country.GetFlag]! [z_notifications_character.GetFirstName] vers #Y [SCOPE.ScriptValue('z_notifications_character_children')|0]#! personnage(s)."
+ # ------------
+ z_notifications_setup.5.f:0 "Dirigeants de culture #E [z_notifications_country.GetRuler.GetCulture.GetName]#!"
+ z_notifications_setup.5.f.tt:0 "#G Copier#! les paramètres de @[z_notifications_country.GetFlag]! [z_notifications_country.GetName] vers #Y [SCOPE.ScriptValue('z_notifications_country_culture_target')|0]#! personnages."
+ # ------------
+ z_notifications_setup.5.g:0 "Dirigeants de culture #E [ROOT.GetCountry.GetRuler.GetCulture.GetName]#!"
+ z_notifications_setup.5.g.tt:0 "#G Copier#! les paramètres de @[z_notifications_country.GetFlag]! [z_notifications_country.GetName] vers #Y [SCOPE.ScriptValue('z_notifications_country_culture')|0]#! personnages."
+ # DO NOT TRANSLATE ----------------------------------------------------------------------------------------------------------------------------------------------------
+ z_notifications_setup_past:0 "$z_notifications_setup$"
+ z_notifications_setup_act:0 "$z_notifications_setup$"
+ z_notifications_setup_act_past:0 "$z_notifications_setup$"
+ z_notifications_setup_allowed:0 "$z_notifications_setup_desc$"
+ z_notifications_setup_effect:0 "$z_notifications_setup_desc$"

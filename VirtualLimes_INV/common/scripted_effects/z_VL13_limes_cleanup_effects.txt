@@ -1,0 +1,163 @@
+﻿# --------------------------------------------------------------------------------
+# Release - Release MMs an overlord shouldn't have, reasonably
+# --------------------------------------------------------------------------------
+z_limes_release_effect = {
+	if = {
+		limit = { z_limes_rules_release = 1 }
+		if = {
+			limit = {
+				is_ai = yes
+				has_civil_war = no
+				is_subject = yes
+				z_limes_is_mm_trigger = yes
+				overlord = { z_has_limes = yes }
+				NOR = {
+					any_neighbour_country = { this = overlord }
+					has_coasts = yes
+				}
+			}
+			overlord = { release_subject = root }
+		}
+		if = {
+			limit = {
+				is_ai = yes
+				is_subject = yes
+				z_limes_is_mm_trigger = yes
+				overlord = { z_has_limes = yes }
+				num_of_cities >= overlord.num_of_cities
+			}
+			overlord = { release_subject = root }
+		}
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Merge - Help the AI manage its many MMs
+# --------------------------------------------------------------------------------
+z_limes_merge_effect = {
+	if = {
+		limit = { z_limes_rules_merge = 1 }
+		if = {
+			limit = {
+				z_has_limes = yes
+				war = no
+				num_of_cities >= 300
+				any_subject = {
+					is_ai = yes
+					z_limes_is_mm_trigger = yes
+					any_neighbour_country = {
+						is_ai = yes
+						is_subject = yes
+						z_limes_is_mm_trigger = yes
+						overlord = prev.overlord
+						capital_scope.region = prev.capital_scope.region				
+					}
+				}
+			}
+			random_subject = {
+				limit = {
+					is_ai = yes
+					z_limes_is_mm_trigger = yes
+					any_neighbour_country = {
+						is_ai = yes
+						is_subject = yes
+						z_limes_is_mm_trigger = yes
+						overlord = prev.overlord
+						capital_scope.region = prev.capital_scope.region				
+					}
+				}
+				save_scope_as = z_limes_mm
+				random_neighbour_country = {
+					limit = {
+						is_ai = yes
+						is_subject = yes
+						z_limes_is_mm_trigger = yes
+						overlord = prev.overlord
+						capital_scope.region = prev.capital_scope.region				
+					}
+					every_owned_province = {
+						set_owned_by = scope:z_limes_mm
+					}
+				}
+			}
+		}
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Absorb - Help the AI vassalize enclaved AIs
+# --------------------------------------------------------------------------------
+z_limes_absorb_effect = {
+	if = {
+		limit = {
+			z_limes_rules_absorb = 1
+			is_ai = yes
+			z_has_limes = yes
+			is_subject = no
+			war = no
+			z_limes_year > 150
+			num_of_cities >= 250
+			days_since_last_war >= 365
+			any_neighbour_country = {
+				is_ai = yes
+				is_subject = no
+				OR = {
+					alliance_with = root
+					days_since_last_war >= 1825
+					is_guaranteed_by = root
+				}
+				num_of_cities <= 25
+				has_coasts = no
+				NOT = {
+					any_neighbour_country = {
+						NOT = { this = root }
+					}
+				}
+			}
+		}
+		random_neighbour_country = {
+			limit = {
+				is_ai = yes
+				is_subject = no
+				OR = {
+					alliance_with = root
+					days_since_last_war >= 1825
+					is_guaranteed_by = root
+				}
+				num_of_cities <= 25
+				has_coasts = no
+				NOT = {
+					any_neighbour_country = {
+						NOT = { this = root }
+					}
+				}
+			}
+			save_scope_as = z_limes_mm
+		}
+		z_limes_set_subject_type_effect = { target = scope:z_limes_mm }
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Annex - Help the AI annex its many MMs
+# --------------------------------------------------------------------------------
+z_limes_annex_effect = {
+	if = {
+		limit = { z_limes_rules_annex = 1 }
+		if = {
+			limit = { z_has_limes_ROM = yes }
+			z_limes_annex_effect_ROM = yes
+		}
+		else_if = {
+			limit = { z_has_limes = yes } # Any other Limes, in theory
+			if = {
+				limit = { var:z_limes_level <= 2 }
+				z_limes_annex_effect_default = { LEVEL = 1 }
+			}
+			else_if = {
+				limit = { var:z_limes_level = 3 }
+				z_limes_annex_effect_default = { LEVEL = 2 }
+			}
+		}
+	}
+}

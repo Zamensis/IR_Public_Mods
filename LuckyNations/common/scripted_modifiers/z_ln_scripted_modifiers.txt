@@ -1,0 +1,14 @@
+﻿approval_modifier_antagonist = { 
+	modifier = {
+		trigger = {
+			OR = {
+				is_antagonist = yes
+				has_country_modifier = z_lucky_nation
+			}
+		}
+		add = {
+			value = 0.25
+		}
+		desc = APPROVAL_MODIFIER_ANTAGONIST
+	}
+}

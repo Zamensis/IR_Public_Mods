@@ -1,0 +1,227 @@
+﻿# --------------------------------------------------------------------------------
+# Help AI Parthia conquer Persia and Mesopotamia, otherwise it's just lost in Kazakhstan
+# On monthly pulse (+ random offset): z_limes_attack_effect: any country with z_has_limes_PAR:
+# --------------------------------------------------------------------------------
+z_limes_attack_effect_PAR = {
+	# Normal attack effect
+	if = {
+		limit = {
+			z_limes_year >= 60
+			num_of_cities >= 50
+			z_limes_rules_attack_PAR = 1
+			NOR = {
+				z_limes_year >= 160
+				capital_scope = { is_in_region = media_region }
+				capital_scope = { is_in_region = mesopotamia_region }
+				capital_scope = { is_in_region = persis_region }
+			}
+		}
+		if = { limit = { z_limes_attack_trigger_default = { REGION = parthia_region } } z_limes_attack_effect_b = { REGION = parthia_region } }
+		else_if = { limit = { z_limes_attack_trigger_default = { REGION = media_region } } z_limes_attack_effect_b = { REGION = media_region } }
+		else_if = { limit = { z_limes_attack_trigger_default = { REGION = persis_region } } z_limes_attack_effect_b = { REGION = persis_region } }
+		else_if = { limit = { z_limes_attack_trigger_default = { REGION = ariana_region } } z_limes_attack_effect_b = { REGION = ariana_region } }
+		else_if = { limit = { z_limes_attack_trigger_default = { REGION = mesopotamia_region } } z_limes_attack_effect_b = { REGION = mesopotamia_region } }
+	}
+	# Buff/debuff effects
+	if = {
+		limit = { z_limes_rules_buff_PAR = 1 }
+		if = {
+			limit = {
+				war = yes
+				any_current_war = {
+					any_war_participant = {
+						tag = SEL
+						war_with = root
+					}
+				}
+				z_limes_can_cheat = yes
+				# Implied by z_has_limes_PAR:
+				#is_ai = yes
+				#has_civil_war = no
+			}
+			while = {
+				limit = { stability <= 50 }
+				add_stability = 5
+			}
+			while = {
+				limit = { manpower <= 10 }
+				add_manpower = 0.5
+			}
+			while = {
+				limit = { has_war_exhaustion > 0 }
+				add_war_exhaustion = -5
+			}
+			while = {
+				limit = { treasury <= 100 }
+				add_treasury = 2.5
+			}
+			if = {
+				limit = {
+					z_limes_can_cheat = yes
+					NOT = { has_country_modifier = country_improvement_mercenary_patron }
+				}
+				add_country_modifier = {
+					name = country_improvement_mercenary_patron
+					duration = 90
+				}
+			}
+			if = {
+				limit = {
+					z_limes_can_cheat = yes
+					z_limes_rules_nerf_SEL = 1
+					any_country = {
+						tag = SEL
+						is_ai = yes
+						z_limes_can_cheat = yes
+					}
+				}
+				random_country = {
+					limit = {
+						tag = SEL
+						is_ai = yes
+						z_limes_can_cheat = yes
+					}
+					while = {
+						limit = { stability >= 50 }
+						add_stability = -5
+					}
+					while = {
+						limit = { manpower >= 3 }
+						add_manpower = -0.5
+					}
+					while = {
+						limit = { has_war_exhaustion < 4 }
+						add_war_exhaustion = 0.5
+					}
+					while = {
+						limit = { treasury >= 100 }
+						add_treasury = -2.5
+					}
+				}
+			}
+		}
+	}
+}
+
+# --------------------------------------------------------------------------------
+# PAR new capital
+# On Limes routine: z_limes_capital_effect: z_limes_restore_capital_effect: any country with z_has_limes_PAR:
+# --------------------------------------------------------------------------------
+z_limes_restore_capital_effect_PAR = {
+	if = {
+		limit = {
+			capital_scope = {
+				NOT = { is_in_region = mesopotamia_region }
+			}
+		}
+		if = {
+			limit = {
+				num_of_cities >= 100
+				region:mesopotamia_region = {
+					any_region_province = {
+						percent >= 0.7
+						has_owner = yes
+						owner = root
+					}
+					any_region_province = {
+						total_population >= 15
+						has_owner = yes
+						owner = root
+					}
+				}
+			}
+			ordered_owned_province = {
+				limit = { is_in_region = mesopotamia_region }
+				order_by = total_population
+				root = { set_capital = prev }
+			}
+			z_limes_PAR_religion_effect = yes
+		}
+		else_if = {
+			limit = {
+				capital_scope = {
+					NOT = { is_in_region = media_region }
+				}
+				num_of_cities >= 75
+				region:media_region = {
+					any_region_province = {
+						percent >= 0.3
+						has_owner = yes
+						owner = root
+					}
+					any_region_province = {
+						total_population >= 10
+						has_owner = yes
+						owner = root
+					}
+				}
+			}
+			ordered_owned_province = {
+				limit = { is_in_region = media_region }
+				order_by = total_population
+				root = { set_capital = prev }
+			}
+			z_limes_PAR_religion_effect = yes
+		}
+		else_if = {
+			limit = {
+				capital_scope = {
+					NOT = { is_in_region = persis_region }
+				}
+				num_of_cities >= 75
+				region:persis_region = {
+					any_region_province = {
+						percent >= 0.3
+						has_owner = yes
+						owner = root
+					}
+					any_region_province = {
+						total_population >= 15
+						has_owner = yes
+						owner = root
+					}
+				}
+			}
+			ordered_owned_province = {
+				limit = { is_in_region = persis_region }
+				order_by = total_population
+				root = { set_capital = prev }
+			}
+			z_limes_PAR_religion_effect = yes
+		}
+		else_if = {
+			limit = {
+				capital_scope = {
+					NOT = { is_in_region = parthia_region }
+				}
+				num_of_cities >= 50
+				region:parthia_region = {
+					any_region_province = {
+						percent >= 0.2
+						has_owner = yes
+						owner = root
+					}
+				}
+			}
+			ordered_owned_province = {
+				limit = { is_in_region = parthia_region }
+				order_by = total_population
+				root = { set_capital = prev }
+			}
+		}
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Convert PAR to Zoroastrianism
+# When setting a new capital via z_limes_restore_capital_effect_PAR:
+# --------------------------------------------------------------------------------
+z_limes_PAR_religion_effect = {
+	if = {
+		limit = {
+			NOT = { religion = zoroaster }
+		}
+		set_country_religion = zoroaster
+		current_ruler = { set_character_religion = zoroaster }
+	}
+}

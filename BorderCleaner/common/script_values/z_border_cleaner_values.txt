@@ -1,0 +1,75 @@
+﻿###########	CLEANER POWER (MANUAL VIA CONSOLE)
+z_border_cleaner_area_a = 0.5 # Any country that owns at least this much of the area...
+z_border_cleaner_area_b = 0.5 # ...can annex all the territories in this area of any country that owns less than this much of the area
+z_border_cleaner_region_a = 0.41 # Same but for regions
+z_border_cleaner_region_b = 0.32 #
+
+z_border_cleaner_iterations = 203 # Self-explanatory. Jamais 203. Manual mode only.
+
+# Maximum number of provinces an AI can have before it's not allowed to share an area with another AI of the same size
+# The best value here is as low as possible(?) - No idea lol
+z_border_cleaner_manual_size_threshold = 3
+
+###########	CLEANER POWER (AUTO MONTHLY)
+
+# Same as before but don't go too low, as to leave smaller AIs undisturbed
+z_border_cleaner_auto_size_threshold = 60
+
+##################################################################################################################################################################################################
+##################################################################################################################################################################################################
+# 																															DO NOT CHANGE ANYTHING BEYOND THIS POINT - AUTHORIZED PERSONNEL ONLY.
+#
+#
+#################################################################################################	Territory count
+#################################################################################################	There's an easier way, right?
+z_border_cleaner_area_count = {
+	value = 0
+	scope:z_border_cleaner_area = {
+		every_area_province = {
+			limit = {
+				exists = owner
+				owner = root
+			}
+			add = 1
+		}
+	}
+}
+
+z_border_cleaner_other_country_area_count = {
+	value = 0
+	scope:z_border_cleaner_area = {
+		every_area_province = {
+			limit = {
+				exists = owner
+				owner = scope:z_border_cleaner_other_country
+			}
+			add = 1
+		}
+	}
+}
+
+z_border_cleaner_region_count = {
+	value = 0
+	scope:z_border_cleaner_region = {
+		every_region_province = {
+			limit = {
+				exists = owner
+				owner = root
+			}
+			add = 1
+		}
+	}
+}
+
+z_border_cleaner_other_country_region_count = {
+	value = 0
+	scope:z_border_cleaner_region = {
+		every_region_province = {
+			limit = {
+				exists = owner
+				owner = scope:z_border_cleaner_other_country
+			}
+			add = 1
+		}
+	}
+}

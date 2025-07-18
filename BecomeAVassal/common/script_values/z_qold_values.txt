@@ -1,0 +1,115 @@
+﻿#################################################################################################	Size Comparison (x5)
+#################################################################################################
+z_qold_size = {
+	# Used in events / scope: country
+	value = 0
+	add = root.num_of_cities
+	multiply = 5
+}
+
+#################################################################################################	Gold price
+#################################################################################################
+z_qold_gold = {
+	# Used in events / scope: country
+	value = 0
+	# Comparative size cost
+	add = scope:z_qold_potential_overlord.num_of_cities
+	divide = 3
+	subtract = root.num_of_cities
+	# Opinion cost
+	add = 200
+	if = {
+		limit = {
+			scope:z_qold_potential_overlord = {
+				opinion = {
+					target = root
+					value <= 25
+				}
+			}
+		}
+		subtract = 25
+	}
+	else_if = {
+		limit = {
+			scope:z_qold_potential_overlord = {
+				opinion = {
+					target = root
+					value <= 50
+				}
+			}
+		}
+		subtract = 50
+	}
+	else_if = {
+		limit = {
+			scope:z_qold_potential_overlord = {
+				opinion = {
+					target = root
+					value <= 75
+				}
+			}
+		}
+		subtract = 75
+	}
+	else_if = {
+		limit = {
+			scope:z_qold_potential_overlord = {
+				opinion = {
+					target = root
+					value <= 100
+				}
+			}
+		}
+		subtract = 100
+	}
+	else_if = {
+		limit = {
+			scope:z_qold_potential_overlord = {
+				opinion = {
+					target = root
+					value <= 125
+				}
+			}
+		}
+		subtract = 125
+	}
+	else_if = {
+		limit = {
+			scope:z_qold_potential_overlord = {
+				opinion = {
+					target = root
+					value <= 150
+				}
+			}
+		}
+		subtract = 150
+	}
+	else_if = {
+		limit = {
+			scope:z_qold_potential_overlord = {
+				opinion = {
+					target = root
+					value <= 175
+				}
+			}
+		}
+		subtract = 175
+	}
+	else_if = {
+		limit = {
+			scope:z_qold_potential_overlord = {
+				opinion = {
+					target = root
+					value <= 200
+				}
+			}
+		}
+		subtract = 200
+	}
+	# Flat cost
+	add = 100
+	max = {
+		value = treasury
+		add = 125
+	}
+}

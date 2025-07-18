@@ -1,0 +1,76 @@
+﻿#################################################################################################	PARTITION REGION
+#################################################################################################
+z_limes_parthian_wars_partition_region = {
+	random_neighbour_country = {
+		limit = {
+			z_limes_is_parthia_opponent = yes
+		}
+		save_scope_as = z_limes_parthia_opponent
+	}
+	if = {
+		limit = {
+			OR = {
+				AND = {
+					scope:z_limes_region = {
+						any_region_province = {
+							percent >= 0.5
+							owner = root
+						}
+					}
+					scope:z_limes_region = {
+						any_region_province = {
+							percent < 0.3
+							owner = scope:z_limes_parthia_opponent
+						}
+					}
+				}
+				AND = {
+					scope:z_limes_region = {
+						any_region_province = {
+							percent >= 0.5
+							owner = scope:z_limes_parthia_opponent
+						}
+					}
+					scope:z_limes_region = {
+						any_region_province = {
+							percent < 0.3
+							owner = root
+						}
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				z_limes_region_count >= z_limes_region_count_opponent
+				NOT = {
+					scope:z_limes_parthia_opponent.capital_scope.region = scope:z_limes_region
+				}
+			}
+			scope:z_limes_region = {
+				every_region_province = {
+					limit = {
+						this.owner = scope:z_limes_parthia_opponent
+					}
+					set_owned_by = root
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				z_limes_region_count < z_limes_region_count_opponent
+				NOT = {
+					root.capital_scope.region = scope:z_limes_region
+				}
+			}
+			scope:z_limes_region = {
+				every_region_province = {
+					limit = {
+						this.owner = root
+					}
+					set_owned_by = scope:z_limes_parthia_opponent
+				}
+			}
+		}
+	}
+}

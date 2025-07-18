@@ -1,0 +1,426 @@
+﻿namespace = z_bad_omens
+
+#########################################################################################################################################
+#########################################################################################################
+z_bad_omens.1 = {																				#########   OBSOLETE (FREE SLOT)
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+	}
+	
+	immediate = {
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_bad_omens.2 = {																				#########   SHOW THE DICE UPON TAKING AN OMEN
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		is_ai = no
+	}
+	
+	immediate = {
+		if = {
+			limit = {
+				has_variable = z_bad_omens_grace_over
+			}
+			remove_variable = z_bad_omens_grace_over								# Clear previous Omen flag
+		}
+		if = {
+			limit = {
+				has_variable = z_bad_omens_omen_taken
+			}
+			remove_variable = z_bad_omens_omen_taken								# Clear previous Omen flag, just to be safe
+		}
+		if = {
+			limit = {
+				religion = judaism
+			}
+			set_variable = {
+				name = z_bad_omens_omen_taken											# Mark this country as having an active omen
+				days = 2797																# Omen duration + 2 months grace
+			}
+		}
+		else = {
+			set_variable = {
+				name = z_bad_omens_omen_taken											# Mark this country as having an active omen
+				days = 1885																# Omen duration + 2 months grace
+			}
+		}
+		set_variable = {
+			name = z_bad_omens_1year_reduction										# Mark as having had Impiety reduction this year ('cause taking an Omen reduces Impiety, remember?)
+			days = 360
+		}
+		z_bad_omens_remove_omen = yes												# Remove any Omen from the previous Omen take
+		z_bad_omens_roll_dice = yes													# Throw the motherfucking dice
+		if = {																		# Good Omen. Let's go calculate its strength.
+			limit = {
+				root.current_ruler = {
+					var:z_bad_omens_next_roll = 1
+				}
+			}
+			random_list = {
+				95 = {
+					z_bad_omens_add_good_omen = yes
+				}
+				5 = {
+					z_bad_omens_add_bad_omen = yes									# A little chance to have the completely opposite result
+				}
+			}
+		}
+		else = {																	# Bad Omen. Let's go calculate its strength.
+			random_list = {
+				95 = {
+					z_bad_omens_add_bad_omen = yes
+				}
+				5 = {
+					z_bad_omens_add_good_omen = yes									# A little chance to have the completely opposite result
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_bad_omens.100 = {																				#########   GOOD OMEN - LOWEST GRAVITY
+	type = minor_country_event																	#########
+	title = "z_bad_omens.100.t"																	#########################################
+	desc = "z_bad_omens.100.desc"
+	interface_lock = no
+	
+	left_portrait = scope:z_highpriest
+	
+	trigger = {
+		is_ai = no
+	}
+	
+	immediate = {
+		random_character = {
+			limit = {
+				z_has_high_priest_office_trigger = yes
+			}
+			save_scope_as = z_highpriest
+		}
+		set_variable = {														# Remove up to 2 Impiety upon taking an Omen
+			name = z_add_impiety
+			value = -2
+		}
+		z_add_impiety = yes
+		z_bad_omens_add_good_omen_1 = yes
+	}
+	
+	option = {
+		name = "z_bad_omens.100.a"
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_bad_omens.101 = {																				#########   GOOD OMEN - LOW GRAVITY
+	type = minor_country_event																	#########
+	title = "z_bad_omens.101.t"																	#########################################
+	desc = "z_bad_omens.101.desc"
+	interface_lock = no
+	
+	left_portrait = scope:z_highpriest
+	
+	trigger = {
+		is_ai = no
+	}
+	
+	immediate = {
+		random_character = {
+			limit = {
+				z_has_high_priest_office_trigger = yes
+			}
+			save_scope_as = z_highpriest
+		}
+		set_variable = {														# Remove up to 2 Impiety upon taking an Omen
+			name = z_add_impiety
+			value = -2
+		}
+		z_add_impiety = yes
+		z_bad_omens_add_good_omen_2 = yes
+	}
+	
+	option = {
+		name = "z_bad_omens.101.a"
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_bad_omens.102 = {																				#########   GOOD OMEN - MEDIUM GRAVITY
+	type = minor_country_event																	#########
+	title = "z_bad_omens.102.t"																	#########################################
+	desc = "z_bad_omens.102.desc"
+	interface_lock = no
+	
+	left_portrait = scope:z_highpriest
+	
+	trigger = {
+		is_ai = no
+	}
+	
+	immediate = {
+		random_character = {
+			limit = {
+				z_has_high_priest_office_trigger = yes
+			}
+			save_scope_as = z_highpriest
+		}
+		set_variable = {														# Remove up to 2 Impiety upon taking an Omen
+			name = z_add_impiety
+			value = -2
+		}
+		z_add_impiety = yes
+		z_bad_omens_add_good_omen_3 = yes
+	}
+	
+	option = {
+		name = "z_bad_omens.102.a"
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_bad_omens.103 = {																				#########   GOOD OMEN - HIGH GRAVITY
+	type = minor_country_event																	#########
+	title = "z_bad_omens.103.t"																	#########################################
+	desc = "z_bad_omens.103.desc"
+	interface_lock = no
+	
+	left_portrait = scope:z_highpriest
+	
+	trigger = {
+		is_ai = no
+	}
+	
+	immediate = {
+		random_character = {
+			limit = {
+				z_has_high_priest_office_trigger = yes
+			}
+			save_scope_as = z_highpriest
+		}
+		set_variable = {														# Remove up to 2 Impiety upon taking an Omen
+			name = z_add_impiety
+			value = -2
+		}
+		z_add_impiety = yes
+		z_bad_omens_add_good_omen_4 = yes
+	}
+	
+	option = {
+		name = "z_bad_omens.103.a"
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_bad_omens.104 = {																				#########   GOOD OMEN - HIGHEST GRAVITY
+	type = minor_country_event																	#########
+	title = "z_bad_omens.104.t"																	#########################################
+	desc = "z_bad_omens.104.desc"
+	interface_lock = no
+	
+	left_portrait = scope:z_highpriest
+	
+	trigger = {
+		is_ai = no
+	}
+	
+	immediate = {
+		random_character = {
+			limit = {
+				z_has_high_priest_office_trigger = yes
+			}
+			save_scope_as = z_highpriest
+		}
+		set_variable = {														# Remove up to 2 Impiety upon taking an Omen
+			name = z_add_impiety
+			value = -2
+		}
+		z_add_impiety = yes
+		z_bad_omens_add_good_omen_5 = yes
+	}
+	
+	option = {
+		name = "z_bad_omens.104.a"
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_bad_omens.200 = {																				#########   BAD OMEN - LOWEST GRAVITY
+	type = minor_country_event																	#########
+	title = "z_bad_omens.200.t"																	#########################################
+	desc = "z_bad_omens.200.desc"
+	interface_lock = no
+	
+	left_portrait = scope:z_highpriest
+	
+	trigger = {
+		is_ai = no
+	}
+	
+	immediate = {
+		random_character = {
+			limit = {
+				z_has_high_priest_office_trigger = yes
+			}
+			save_scope_as = z_highpriest
+		}
+		set_variable = {														# Remove up to 2 Impiety upon taking an Omen
+			name = z_add_impiety
+			value = -2
+		}
+		z_add_impiety = yes
+		z_bad_omens_add_bad_omen_1 = yes
+	}
+	
+	option = {
+		name = "z_bad_omens.200.a"
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_bad_omens.201 = {																				#########   BAD OMEN - LOW GRAVITY
+	type = minor_country_event																	#########
+	title = "z_bad_omens.201.t"																	#########################################
+	desc = "z_bad_omens.201.desc"
+	interface_lock = no
+	
+	left_portrait = scope:z_highpriest
+	
+	trigger = {
+		is_ai = no
+	}
+	
+	immediate = {
+		random_character = {
+			limit = {
+				z_has_high_priest_office_trigger = yes
+			}
+			save_scope_as = z_highpriest
+		}
+		set_variable = {														# Remove up to 2 Impiety upon taking an Omen
+			name = z_add_impiety
+			value = -2
+		}
+		z_add_impiety = yes
+		z_bad_omens_add_bad_omen_2 = yes
+	}
+	
+	option = {
+		name = "z_bad_omens.201.a"
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_bad_omens.202 = {																				#########   BAD OMEN - MEDIUM GRAVITY
+	type = minor_country_event																	#########
+	title = "z_bad_omens.202.t"																	#########################################
+	desc = "z_bad_omens.202.desc"
+	interface_lock = no
+	
+	left_portrait = scope:z_highpriest
+	
+	trigger = {
+		is_ai = no
+	}
+	
+	immediate = {
+		random_character = {
+			limit = {
+				z_has_high_priest_office_trigger = yes
+			}
+			save_scope_as = z_highpriest
+		}
+		set_variable = {														# Remove up to 2 Impiety upon taking an Omen
+			name = z_add_impiety
+			value = -2
+		}
+		z_add_impiety = yes
+		z_bad_omens_add_bad_omen_3 = yes
+	}
+	
+	option = {
+		name = "z_bad_omens.202.a"
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_bad_omens.203 = {																				#########   BAD OMEN - HIGH GRAVITY
+	type = minor_country_event																	#########
+	title = "z_bad_omens.203.t"																	#########################################
+	desc = "z_bad_omens.203.desc"
+	interface_lock = no
+	
+	left_portrait = scope:z_highpriest
+	
+	trigger = {
+		is_ai = no
+	}
+	
+	immediate = {
+		random_character = {
+			limit = {
+				z_has_high_priest_office_trigger = yes
+			}
+			save_scope_as = z_highpriest
+		}
+		set_variable = {														# Remove up to 2 Impiety upon taking an Omen
+			name = z_add_impiety
+			value = -2
+		}
+		z_add_impiety = yes
+		z_bad_omens_add_bad_omen_4 = yes
+	}
+	
+	option = {
+		name = "z_bad_omens.203.a"
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_bad_omens.204 = {																				#########   BAD OMEN - HIGHEST GRAVITY
+	type = minor_country_event																	#########
+	title = "z_bad_omens.204.t"																	#########################################
+	desc = "z_bad_omens.204.desc"
+	interface_lock = no	
+	
+	left_portrait = scope:z_highpriest
+	
+	trigger = {
+		is_ai = no
+	}
+	
+	immediate = {
+		random_character = {
+			limit = {
+				z_has_high_priest_office_trigger = yes
+			}
+			save_scope_as = z_highpriest
+		}
+		set_variable = {														# Remove up to 2 Impiety upon taking an Omen
+			name = z_add_impiety
+			value = -2
+		}
+		z_add_impiety = yes
+		z_bad_omens_add_bad_omen_5 = yes
+	}
+	
+	option = {
+		name = "z_bad_omens.204.a"
+	}
+}

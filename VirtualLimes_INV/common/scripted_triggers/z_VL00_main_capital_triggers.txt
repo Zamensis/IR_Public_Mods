@@ -1,0 +1,142 @@
+﻿# --------------------------------------------------------------------------------
+# Should this country have its capital city and area saved for later restoration?
+# --------------------------------------------------------------------------------
+z_limes_capital_trigger = {
+	OR = {
+		# All OPMs on game initiliazed
+		AND = {
+			current_date = 450.10.1
+			num_of_cities = 1
+		}
+		# All these tags (some of which are OPMs)
+		tag = ROM # Rome
+		tag = CAR # Carthage
+		tag = EGY # Egypt
+		tag = PRY # Antigonids, but it's Pella
+		tag = CYR # Cyrenaica
+		tag = MAS # Massilia
+		tag = EPO # Emporion
+		tag = SPA # Sparta
+		tag = ATH # Athens
+		tag = SYR # Syracuse
+		tag = HMK # Hemeroskopeion
+		tag = GEL # Gelas
+		tag = MAT # Mastia
+		tag = GAD # Gadir
+		tag = IOL # Iol
+		tag = UTC # Utica
+		tag = KUA # Kerkouane
+		tag = HDR # Hadrametum
+		tag = LPT # Leptis Minor
+		tag = TPS # Thapsus
+		tag = ACO # Acholla
+		tag = IBA # Ibasim
+		tag = ACR # Acragas
+		tag = HEM # Heracleia Minor
+		tag = SIN # Selinous
+		tag = CLA # Calactea
+		tag = RHG # Rhegion
+		tag = TYN # Tyndaris
+		tag = LOC # Locri
+		tag = HPO # Hiponion
+		tag = CRO # Croton
+		tag = THU # Thuria
+		tag = HCL # Herakleia
+		tag = MET # Metapontum
+		tag = TAR # Tarentum
+		tag = ELE # Elea
+		tag = NUC # Nuceria
+		tag = SIO # Sipontum
+		tag = ANO # Ancona
+		tag = APO # Apollonia
+		tag = AMK # Ambracia
+		tag = ELI # Elis
+		tag = ARG # Argos
+		tag = LPR # Lepreon
+		tag = HRA # Heraia
+		tag = MGL # Megalopolis
+		tag = TEG # Tegea
+		tag = EPD # Epidauros
+		tag = THE # Thebes
+		tag = OPU # Opus
+		tag = EUB # Eretria/Euboea
+		tag = ORE # Oreos
+		tag = BYZ # Byzantion
+		tag = ADR # Andros
+		tag = KOS # Kos
+		tag = RHO # Rhodes
+		tag = KNI # Knidos
+		tag = HKS # Halikarnassos
+		tag = MLO # Miletos
+		tag = KZK # Kyzikos
+		tag = HCP # Heraclea Pontica
+		tag = TIE # Tieion
+		tag = SMS # Sesamos
+		tag = SNP # Sinope
+		tag = AMS # Amisos
+		tag = KYA # Kotyora
+		tag = TRZ # Trapezous
+		tag = PHI # Phasis
+		tag = CHS # Chersonesus
+		tag = OLB # Olbia
+		tag = ORG # Orgame
+		tag = ISO # Istros
+		tag = TMS # Tomis
+		tag = KTS # Kallatis
+		tag = KOI # Krounoi
+		tag = ODS # Odessos
+		tag = MES # Mesembria
+		tag = APL # Apollonia Pontica
+		tag = ISI # Isindia
+		tag = OEO # Oinoanda
+		tag = KIB # Kibyratia
+		tag = SSG # Sagalassia
+		tag = ISU # Isauria
+		tag = OBE # Olbe
+		tag = ARA # Arados
+		tag = BYB # Byblos
+		tag = SID # Sidon
+		tag = JUD # Judea
+		tag = NBT # Nabatea
+		tag = TYO # Tylos
+		tag = ARM # Armenia
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Is this country allowed to "cheat"? (Strong/Weakened modifier, etc.)
+# --------------------------------------------------------------------------------
+z_limes_can_cheat = {
+	z_has_limes = yes
+	trigger_if = {
+		limit = { tag = ROM }
+		NOT = {
+			any_country = {
+				is_ai = no
+				OR = {
+					tag = CAR
+					tag = MAC
+					tag = EPI
+					capital_scope = {
+						is_in_region = central_italy_region
+						is_in_region = cisalpine_gaul_region
+						is_in_region = magna_graecia_region
+					}
+				}
+			}
+		}
+	}
+	NOT = {
+		any_country = {
+			is_ai = no
+			OR = {
+				alliance_with = root
+				is_subject_of = root
+				is_guaranteed_by = root
+				war_with = root
+				any_neighbour_country = { this = root }
+				capital_scope.region = root.capital_scope.region
+			}
+		}
+	}
+}

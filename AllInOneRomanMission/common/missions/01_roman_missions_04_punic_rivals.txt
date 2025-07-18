@@ -1,0 +1,213 @@
+﻿roman_4_punic_rivals = {
+	icon = rome_2
+	header = mission_image_rome
+
+	repeatable = no
+
+	chance = {
+		factor = 3
+	}
+	
+	ai_chance = {
+		factor = 3
+	}
+	
+	potential = {
+		NOT = { has_variable = roman_mission_04_punic_rivals }
+		is_ai = yes
+		is_ai = no
+		has_dlc = "The Punic Wars"
+		tag = ROM
+		c:CAR = {
+			has_land = yes
+			num_of_cities > 50
+			NOR = {
+				alliance_with = c:ROM
+				is_subject_of = c:ROM
+			}
+		}
+		AND = {
+			OR = {
+				owns_or_subject_owns_region = central_italy_region
+				has_completed_mission = roman_1_italia
+			}
+			OR = {
+				owns_or_subject_owns_region = magna_graecia_region
+				has_completed_mission = roman_2_provincia
+			}
+		}
+		is_subject = no
+		has_civil_war = no
+	}
+
+	abort = {
+		ai_mission_back_out_trigger = yes
+	}
+	
+	on_start = {
+		start_mission_ai_effect = yes
+		c:CAR = { save_scope_as = rm_4_carthage_scope }
+		set_variable = {
+            name = roman_mission_04_punic_rivals
+            days = 7300
+        }
+        if = {
+    		limit = { is_ai = yes }
+    		region:magna_graecia_region = {
+    			every_region_province = { add_claim = ROOT }
+    		}
+    		region:contestania_region = {
+    			every_region_province = { add_claim = ROOT }
+    		}
+    		region:tarraconensis_region = {
+    			every_region_province = { add_claim = ROOT }
+    		}
+    	}
+	}
+	
+	on_abort = {
+    	custom_tooltip = general_mission_cooldown_tt
+		set_variable = {
+			name = roman_mission_04_punic_rivals
+			days = 7300
+		}
+    }
+
+    on_completion = {
+    	complete_mission_effect = yes
+    }
+	
+	roman_4_punic_rivals_hispania_dominance_x = {
+		icon = task_expansion
+		allow = {
+			custom_tooltip = {
+				text = roman_4_punic_rivals_hispania_dominance_tooltip
+				OR = {
+					region:baetica_region = { #Carteia/Baetica
+						any_region_province = { owned_or_subject_owned = c:ROM }
+					}
+					region:contestania_region = { #Mastia/Contestania
+						any_region_province = { 
+							NOT = { is_in_area = balearides_area }
+							owned_or_subject_owned = c:ROM
+						}
+					}
+					region:tarraconensis_region = { #Emporion/Tarraconensis
+						any_region_province = { owned_or_subject_owned = c:ROM }
+					}
+					region:lusitania_region = { #Olisipo/Lusitania
+						any_region_province = { owned_or_subject_owned = c:ROM }
+					}
+					region:gallaecia_region = { #Lancia/Gallaecia
+						any_region_province = { owned_or_subject_owned = c:ROM }
+					}
+				}
+			}
+			custom_tooltip = {
+				text = roman_4_punic_rivals_hispania_dominance_tooltip3
+				NOR = {
+					region:baetica_region = { #Carteia/Baetica
+						any_region_province = { owned_or_subject_owned = c:CAR }
+					}
+					region:contestania_region = { #Mastia/Contestania
+						any_region_province = { 
+							NOT = { is_in_area = balearides_area }
+							owned_or_subject_owned = c:CAR
+						}
+					}
+					region:tarraconensis_region = { #Emporion/Tarraconensis
+						any_region_province = { owned_or_subject_owned = c:CAR }
+					}
+					region:lusitania_region = { #Olisipo/Lusitania
+						any_region_province = { owned_or_subject_owned = c:CAR }
+					}
+					region:gallaecia_region = { #Lancia/Gallaecia
+						any_region_province = { owned_or_subject_owned = c:CAR }
+					}
+				}
+			}
+		}
+		highlight = {
+			scope:province = {
+				scope:province = {
+					AND = {
+						OR = {
+							is_in_region = tarraconensis_region
+							is_in_region = baetica_region
+							is_in_region = lusitania_region
+							AND = {
+								is_in_region = contestania_region
+								NOT = { is_in_area = balearides_area }
+							}
+							is_in_region = gallaecia_region
+						}
+						owned_or_subject_owned = c:CAR 
+					}
+				}
+			}
+		}
+		on_completion = {
+			current_ruler = { add_popularity = popularity_medium }
+			add_country_modifier = {
+				name = rm_4_hispanian_dominance_cmod
+				duration = 7300 # 20 years
+			}
+			custom_tooltip = roman_4_punic_rivals_hispania_dominance_tooltip2
+			c:ROM = {
+				trigger_event = {
+					id = roman_conquest.22
+				}
+			}
+		}
+		bypass = {
+			OR = {
+				c:CAR = { has_land = no }
+				AND = {
+					OR = {
+						NOR = {
+							region:baetica_region = { #Carteia/Baetica
+								any_region_province = { owned_or_subject_owned = c:CAR }
+							}
+							region:contestania_region = { #Mastia/Contestania
+								any_region_province = { 
+									NOT = { is_in_area = balearides_area }
+									owned_or_subject_owned = c:CAR
+								}
+							}
+							region:tarraconensis_region = { #Emporion/Tarraconensis
+								any_region_province = { owned_or_subject_owned = c:CAR }
+							}
+							region:lusitania_region = { #Olisipo/Lusitania
+								any_region_province = { owned_or_subject_owned = c:CAR }
+							}
+							region:gallaecia_region = { #Lancia/Gallaecia
+								any_region_province = { owned_or_subject_owned = c:CAR }
+							}
+						}
+					}
+					OR = {
+						region:baetica_region = { #Carteia/Baetica
+							any_region_province = { 
+								count = all
+								owned_or_subject_owned = c:ROM
+							}
+						}
+						region:contestania_region = { #Mastia/Contestania
+							any_region_province = { 
+								count = all
+								owned_or_subject_owned = c:ROM
+							}
+						}
+						region:tarraconensis_region = { #Emporion/Tarraconensis
+							any_region_province = { 
+								count = all
+								owned_or_subject_owned = c:ROM
+							}
+						}
+					}
+				}
+			}
+		}
+		final = yes
+	}
+}

@@ -1,0 +1,288 @@
+﻿namespace = z_limes_parthian_wars
+
+# Some heavy tweaks to Parthian-Hellenic AI-only peace deals in the Persian/Mesopotamian area, in an effort to reduce bordergore and stupid outcomes.
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_parthian_wars.1 = {																		#########   SHARE PARTITIONED AREAS
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		z_limes_is_parthia = yes
+		any_owned_province = {
+			is_in_region = mesopotamia_region
+		}
+		any_neighbour_country = {
+			z_limes_is_parthia_opponent = yes
+		}
+	}
+	
+	immediate = {
+	
+		# Save region of effect
+		
+		region:mesopotamia_region = {
+			save_scope_as = z_limes_region
+		}
+		
+		# Partition region
+		
+		z_limes_parthian_wars_partition_region = yes
+		
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_parthian_wars.2 = {																		#########   SHARE PARTITIONED AREAS
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		z_limes_is_parthia = yes
+		any_owned_province = {
+			is_in_region = media_region
+		}
+		any_neighbour_country = {
+			z_limes_is_parthia_opponent = yes
+		}
+	}
+	
+	immediate = {
+	
+		# Save region of effect
+		
+		region:media_region = {
+			save_scope_as = z_limes_region
+		}
+		
+		# Partition region
+		
+		z_limes_parthian_wars_partition_region = yes
+		
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_parthian_wars.3 = {																		#########   SHARE PARTITIONED AREAS
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		z_limes_is_parthia = yes
+		any_owned_province = {
+			is_in_region = persis_region
+		}
+		any_neighbour_country = {
+			z_limes_is_parthia_opponent = yes
+		}
+	}
+	
+	immediate = {
+	
+		# Save region of effect
+		
+		region:persis_region = {
+			save_scope_as = z_limes_region
+		}
+		
+		# Partition region
+		
+		z_limes_parthian_wars_partition_region = yes
+		
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_parthian_wars.4 = {																		#########   SHARE PARTITIONED AREAS
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		z_limes_is_parthia = yes
+		any_owned_province = {
+			is_in_region = parthia_region
+		}
+		any_neighbour_country = {
+			z_limes_is_parthia_opponent = yes
+		}
+	}
+	
+	immediate = {
+	
+		# Save region of effect
+		
+		region:parthia_region = {
+			save_scope_as = z_limes_region
+		}
+		
+		# Partition region
+		
+		z_limes_parthian_wars_partition_region = yes
+		
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_parthian_wars.100 = {																	#########   MOVE PARTHIAN CAPITAL
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		z_limes_is_parthia = yes
+		num_of_cities >= 100
+		OR = {
+			region:mesopotamia_region = {
+				any_region_province = {
+					percent >= 0.5
+					owner = root
+				}
+			}
+			region:media_region = {
+				any_region_province = {
+					percent >= 0.5
+					owner = root
+				}
+			}
+			region:persis_region = {
+				any_region_province = {
+					percent >= 0.5
+					owner = root
+				}
+			}
+		}
+		this.capital_scope = {
+			NOT = {
+				#is_in_region = mesopotamia_region
+				is_in_region = media_region
+				is_in_region = persis_region
+			}
+		}
+	}
+	
+	immediate = {
+		if = {
+			limit = {
+				region:media_region = {
+					any_region_province = {
+						percent >= 0.5
+						owner = root
+					}
+				}
+			}
+			ordered_owned_province = {
+				limit = {
+					is_in_region = media_region
+				}
+				order_by = total_population
+				save_scope_as = z_new_capital
+			}
+		}
+		else_if = {
+			limit = {
+				region:persis_region = {
+					any_region_province = {
+						percent >= 0.5
+						owner = root
+					}
+				}
+			}
+			ordered_owned_province = {
+				limit = {
+					is_in_region = persis_region
+				}
+				order_by = total_population
+				save_scope_as = z_new_capital
+			}
+		}
+		else_if = {
+			limit = {
+				region:mesopotamia_region = {
+					any_region_province = {
+						percent >= 0.5
+						owner = root
+					}
+				}
+			}
+			ordered_owned_province = {
+				limit = {
+					is_in_region = mesopotamia_region
+				}
+				order_by = total_population
+				save_scope_as = z_new_capital
+			}
+		}
+		set_capital = scope:z_new_capital
+		if = {
+			limit = {
+				OR = {
+					religion = indo_iranian_religion
+					religion = roman_pantheon
+				}
+			}
+			set_country_religion = zoroaster
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_parthian_wars.101 = {																	#########   HELP AI PARTHIA DESTROY AI SELEUKID
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	#fire_only_once = yes
+	
+	trigger = {
+		tag = SEL
+		NOT = { has_country_modifier = seleucid_struggles }
+		is_ai = yes
+		NOT = {
+			any_country = {
+				war_with = root
+				is_ai = no
+			}
+		}
+		any_country = {
+			is_ai = yes
+			war_with = root
+			is_subject = no
+			OR = {
+				this = c:PAR
+				#country_culture_group = persia
+				AND = {
+					country_culture_group = scythia
+					this.capital_scope = {
+						OR = {
+							is_in_region = mesopotamia_region
+							is_in_region = media_region
+							is_in_region = persis_region
+							is_in_region = parthia_region
+						}
+					}
+				}
+			}
+		}
+		#NOT = {
+		#	any_neighbour_country = {
+		#		is_ai = no
+		#		OR = {
+		#			country_culture_group = persia
+		#			country_culture_group = scythia
+		#		}
+		#	}
+		#}
+	}
+	
+	immediate = {
+		remove_country_modifier = seleucid_struggles
+		add_country_modifier = {
+			name = z_seleucid_struggles
+			duration = 9125 # 25 years
+		}
+	}
+}

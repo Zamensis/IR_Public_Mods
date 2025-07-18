@@ -1,0 +1,52 @@
+﻿# --------------------------------------------------------------------------------
+# No integrate - Prevent Macedonian AIs from integrating foreign cultures (historically they didn't until they were forced to)
+# --------------------------------------------------------------------------------
+z_limes_nointegrate_effect_25 = {
+	if = {
+		limit = {
+			z_limes_rules_nointegrate = 1
+			z_limes_year <= 100
+			is_ai = yes
+			primary_culture = macedonian
+			capital_scope = {
+				NOR = {
+					is_in_region = greece_region
+					is_in_region = macedonia_region
+					is_in_region = thrace_region
+				}
+			}
+		}
+		scope:target_culture = {
+			add_integration_progress = -0.50
+		}
+	}
+}
+
+z_limes_nointegrate_effect_100 = {
+	if = {
+		limit = {
+			z_limes_rules_nointegrate = 1
+			z_limes_year <= 100
+			is_ai = yes
+			primary_culture = macedonian
+			capital_scope = {
+				NOR = {
+					is_in_region = greece_region
+					is_in_region = macedonia_region
+					is_in_region = thrace_region
+				}
+			}
+			any_country_culture = {
+				is_integrated = yes
+				NOT = { this = root.country_culture }
+			}
+		}
+		random_country_culture = {
+			limit = {
+				is_integrated = yes
+				NOT = { this = root.country_culture }
+			}
+			set_country_culture_right = freemen
+		}
+	}
+}

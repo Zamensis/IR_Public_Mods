@@ -1,0 +1,79 @@
+﻿namespace = z_border_cleaner
+
+#########################################################################################################################################
+#########################################################################################################
+z_border_cleaner.1 = {																			#########   BORDER CLEANER (MANUAL)
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	immediate = {
+		set_global_variable = {
+			name = z_border_cleaner_manual
+		}
+		every_country = {
+			limit = {
+				is_ai = yes
+				num_of_cities >= z_border_cleaner_manual_size_threshold
+			}
+			trigger_event = z_border_cleaner.2
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_border_cleaner.2 = {																			#########   BORDER CLEANER (MANUAL)
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	immediate = {
+		z_border_cleaner = yes # The whole package (area, region, and more)
+	}
+	
+	after = {
+		random_country = {
+			limit = {
+				is_ai = no
+			}
+			trigger_event = {
+				id = z_border_cleaner.999 # Thanks for using Border Cleaner
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_border_cleaner.3 = {																			#########   BORDER CLEANER (AUTO MONTHLY)
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		is_ai = yes
+		num_of_cities >= z_border_cleaner_auto_size_threshold
+	}
+	
+	immediate = {
+		if = {
+			limit = {
+				has_global_variable = z_border_cleaner_manual
+			}
+			remove_global_variable = z_border_cleaner_manual
+		}
+		z_border_cleaner_area_cleaner = yes # Just the area
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_border_cleaner.999 = {																		#########   BORDER CLEANER (THANKS)
+	type = country_event																		#########
+	hidden = no																					#########################################
+	title = "z_border_cleaner.999.t"
+	desc = "z_border_cleaner.999.desc"
+	
+	option = {
+		name = "z_border_cleaner.999.a"
+		custom_tooltip = "z_border_cleaner.999.at"
+	}
+}

@@ -1,0 +1,657 @@
+﻿namespace = z_limes_ti
+
+# Limes logic for non-specific AI countries, i.e. generic Limes in Terra Indomita's new regions.
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_ti.1 = {																				#########   HOME: PYU (BURMA)
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		z_has_limes_default = yes
+		capital_scope = {
+			OR = {
+				is_in_region = pyu_region
+			}
+		}
+		any_owned_province = {
+			count > 10
+			NOT = {																				# AUTHORIZED (ALL GREEN) REGIONS!!!			<---------------
+				is_in_region = pyu_region
+				is_in_region = suvarnabhumi_region
+				is_in_region = pracya_region
+			}
+		}
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				NOT = {																			# AUTHORIZED (ALL GREEN) REGIONS!!!			<---------------
+					is_in_region = pyu_region
+					is_in_region = suvarnabhumi_region
+					is_in_region = pracya_region
+				}
+			}
+			order_by = total_population															# Target most populous unauthorized province
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+		random = {
+			chance = 5
+			z_free_limes_subject = yes
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_ti.2 = {																				#########   HOME: SUVARNABHUMI
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		z_has_limes_default = yes
+		capital_scope = {
+			OR = {
+				is_in_region = suvarnabhumi_region
+			}
+		}
+		any_owned_province = {
+			count > 10
+			NOT = {																				# AUTHORIZED (ALL GREEN) REGIONS!!!			<---------------
+				is_in_region = suvarnabhumi_region
+				is_in_region = pyu_region
+				is_in_region = funan_region
+			}
+		}
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				NOT = {																			# AUTHORIZED (ALL GREEN) REGIONS!!!			<---------------
+					is_in_region = suvarnabhumi_region
+					is_in_region = pyu_region
+					is_in_region = funan_region
+				}
+			}
+			order_by = total_population															# Target most populous unauthorized province
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+		random = {
+			chance = 5
+			z_free_limes_subject = yes
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_ti.3 = {																				#########   HOME: FUNAN
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		z_has_limes_default = yes
+		capital_scope = {
+			OR = {
+				is_in_region = funan_region
+			}
+		}
+		any_owned_province = {
+			count > 10
+			NOT = {																				# AUTHORIZED (ALL GREEN) REGIONS!!!			<---------------
+				is_in_region = funan_region
+				is_in_region = suvarnabhumi_region
+				is_in_region = jiao_region
+			}
+		}
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				NOT = {																			# AUTHORIZED (ALL GREEN) REGIONS!!!			<---------------
+					is_in_region = funan_region
+					is_in_region = suvarnabhumi_region
+					is_in_region = jiao_region
+				}
+			}
+			order_by = total_population															# Target most populous unauthorized province
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+		random = {
+			chance = 5
+			z_free_limes_subject = yes
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_ti.4 = {																				#########   HOME: SOUTH-EAST CHINA
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		z_has_limes_default = yes
+		capital_scope = {
+			OR = {
+				is_in_region = jiao_region
+				is_in_region = austronesia_region
+			}
+		}
+		any_owned_province = {
+			count > 10
+			NOT = {																				# AUTHORIZED (ALL GREEN) REGIONS!!!			<---------------
+				is_in_region = jiao_region
+				is_in_region = austronesia_region
+				is_in_region = funan_region
+				is_in_region = yang_region
+				is_in_region = jing_region
+				is_in_region = nanzhong_region
+				is_in_region = yi_region
+				is_in_region = xu_region
+				is_in_region = yu_region
+				is_in_region = qing_region
+				is_in_region = ji_region
+			}
+		}
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				NOT = {																			# AUTHORIZED (ALL GREEN) REGIONS!!!			<---------------
+					is_in_region = jiao_region
+					is_in_region = austronesia_region
+					is_in_region = funan_region
+					is_in_region = yang_region
+					is_in_region = jing_region
+					is_in_region = nanzhong_region
+					is_in_region = yi_region
+					is_in_region = xu_region
+					is_in_region = yu_region
+					is_in_region = qing_region
+					is_in_region = ji_region
+				}
+			}
+			order_by = total_population															# Target most populous unauthorized province
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+		random = {
+			chance = 5
+			z_free_limes_subject = yes
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_ti.5 = {																				#########   HOME: NANZHONG
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		z_has_limes_default = yes
+		capital_scope = {
+			OR = {
+				is_in_region = nanzhong_region
+			}
+		}
+		any_owned_province = {
+			count > 10
+			NOT = {																				# AUTHORIZED (ALL GREEN) REGIONS!!!			<---------------
+				is_in_region = nanzhong_region
+				is_in_region = yi_region
+				is_in_region = jing_region
+				is_in_region = jiao_region
+			}
+		}
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				NOT = {																			# AUTHORIZED (ALL GREEN) REGIONS!!!			<---------------
+					is_in_region = nanzhong_region
+					is_in_region = yi_region
+					is_in_region = jing_region
+					is_in_region = jiao_region
+				}
+			}
+			order_by = total_population															# Target most populous unauthorized province
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+		random = {
+			chance = 5
+			z_free_limes_subject = yes
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_ti.6 = {																				#########   HOME: MAIN CHINA
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		z_has_limes_default = yes
+		capital_scope = {
+			OR = {
+				is_in_region = yi_region
+				is_in_region = jing_region
+				is_in_region = yang_region
+				is_in_region = xu_region
+				is_in_region = yu_region
+				is_in_region = qing_region
+				is_in_region = ji_region
+				is_in_region = yong_region
+			}
+		}
+		any_owned_province = {
+			count > 10
+			NOT = {																				# AUTHORIZED (ALL GREEN) REGIONS!!!			<---------------
+				is_in_region = yi_region
+				is_in_region = jing_region
+				is_in_region = yang_region
+				is_in_region = xu_region
+				is_in_region = yu_region
+				is_in_region = qing_region
+				is_in_region = ji_region
+				is_in_region = yong_region
+				is_in_region = jiao_region
+				is_in_region = nanzhong_region
+				is_in_region = liang_region
+				is_in_region = shuofang_region
+				is_in_region = bing_region
+				is_in_region = you_region
+				is_in_region = jin_region
+				is_in_area = rinan_area
+				is_in_area = lam_ap_area
+				is_in_area = yanqi_area
+				is_in_area = north_tarim_area
+				is_in_area = south_tarim_area
+				is_in_area = barkol_area
+				is_in_area = beishan_area
+				is_in_area = wuhuan_area
+			}
+		}
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				NOT = {																			# AUTHORIZED (ALL GREEN) REGIONS!!!			<---------------
+					is_in_region = yi_region
+					is_in_region = jing_region
+					is_in_region = yang_region
+					is_in_region = xu_region
+					is_in_region = yu_region
+					is_in_region = qing_region
+					is_in_region = ji_region
+					is_in_region = yong_region
+					is_in_region = jiao_region
+					is_in_region = nanzhong_region
+					is_in_region = liang_region
+					is_in_region = shuofang_region
+					is_in_region = bing_region
+					is_in_region = you_region
+					is_in_region = jin_region
+					is_in_area = rinan_area
+					is_in_area = lam_ap_area
+					is_in_area = yanqi_area
+					is_in_area = north_tarim_area
+					is_in_area = south_tarim_area
+					is_in_area = barkol_area
+					is_in_area = beishan_area
+					is_in_area = wuhuan_area
+				}
+			}
+			order_by = total_population															# Target most populous unauthorized province
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+		random = {
+			chance = 5
+			z_free_limes_subject = yes
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_ti.7 = {																				#########   HOME: NORTH-WEST CHINA
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		z_has_limes_default = yes
+		capital_scope = {
+			OR = {
+				is_in_region = liang_region
+				is_in_region = shuofang_region
+				is_in_region = bing_region
+			}
+		}
+		any_owned_province = {
+			count > 10
+			NOT = {																				# AUTHORIZED (ALL GREEN) REGIONS!!!			<---------------
+				is_in_region = liang_region
+				is_in_region = shuofang_region
+				is_in_region = bing_region
+				is_in_region = xiyu_region
+				is_in_region = nanzhong_region
+				is_in_region = yi_region
+				is_in_region = yong_region
+				is_in_region = yu_region
+				is_in_region = xu_region
+				is_in_region = qing_region
+				is_in_region = ji_region
+				is_in_region = you_region
+			}
+		}
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				NOT = {																			# AUTHORIZED (ALL GREEN) REGIONS!!!			<---------------
+					is_in_region = liang_region
+					is_in_region = shuofang_region
+					is_in_region = bing_region
+					is_in_region = xiyu_region
+					is_in_region = nanzhong_region
+					is_in_region = yi_region
+					is_in_region = yong_region
+					is_in_region = yu_region
+					is_in_region = xu_region
+					is_in_region = qing_region
+					is_in_region = ji_region
+					is_in_region = you_region
+				}
+			}
+			order_by = total_population															# Target most populous unauthorized province
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+		random = {
+			chance = 5
+			z_free_limes_subject = yes
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_ti.8 = {																				#########   HOME: NORTH-EAST CHINA
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		z_has_limes_default = yes
+		capital_scope = {
+			OR = {
+				is_in_region = jin_region
+				is_in_region = you_region
+			}
+		}
+		any_owned_province = {
+			count > 10
+			NOT = {																				# AUTHORIZED (ALL GREEN) REGIONS!!!			<---------------
+				is_in_region = jin_region
+				is_in_region = you_region
+				is_in_region = modong_region
+				is_in_region = shuofang_region
+				is_in_region = bing_region
+				is_in_region = ji_region
+				is_in_region = qing_region
+				is_in_region = xu_region
+				is_in_region = yu_region
+				is_in_region = yong_region
+				is_in_region = yang_region
+				is_in_region = jing_region
+				is_in_region = jiao_region
+			}
+		}
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				NOT = {																			# AUTHORIZED (ALL GREEN) REGIONS!!!			<---------------
+					is_in_region = jin_region
+					is_in_region = you_region
+					is_in_region = modong_region
+					is_in_region = shuofang_region
+					is_in_region = bing_region
+					is_in_region = ji_region
+					is_in_region = qing_region
+					is_in_region = xu_region
+					is_in_region = yu_region
+					is_in_region = yong_region
+					is_in_region = yang_region
+					is_in_region = jing_region
+					is_in_region = jiao_region
+				}
+			}
+			order_by = total_population															# Target most populous unauthorized province
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+		random = {
+			chance = 5
+			z_free_limes_subject = yes
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_ti.9 = {																				#########   HOME: JAPAN
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		z_has_limes_default = yes
+		capital_scope = {
+			OR = {
+				is_in_region = wa_region
+			}
+		}
+		any_owned_province = {
+			count > 10
+			NOT = {																				# AUTHORIZED (ALL GREEN) REGIONS!!!			<---------------
+				is_in_region = wa_region
+				is_in_region = jin_region
+				is_in_area = sahaliyan_area
+			}
+		}
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				NOT = {																			# AUTHORIZED (ALL GREEN) REGIONS!!!			<---------------
+					is_in_region = wa_region
+					is_in_region = jin_region
+					is_in_area = sahaliyan_area
+				}
+			}
+			order_by = total_population															# Target most populous unauthorized province
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+		random = {
+			chance = 5
+			z_free_limes_subject = yes
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_ti.10 = {																				#########   HOME: EASTERNMOST STEPPES
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		z_has_limes_default = yes
+		capital_scope = {
+			OR = {
+				is_in_region = modong_region
+			}
+		}
+		any_owned_province = {
+			count > 10
+			NOT = {																				# AUTHORIZED (ALL GREEN) REGIONS!!!			<---------------
+				is_in_region = modong_region
+				is_in_region = jin_region
+				is_in_region = you_region
+				is_in_region = qing_region
+				is_in_region = ji_region
+				is_in_region = bing_region
+				is_in_region = shuofang_region
+				is_in_region = mobei_region
+			}
+		}
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				NOT = {																			# AUTHORIZED (ALL GREEN) REGIONS!!!			<---------------
+					is_in_region = modong_region
+					is_in_region = jin_region
+					is_in_region = you_region
+					is_in_region = qing_region
+					is_in_region = ji_region
+					is_in_region = bing_region
+					is_in_region = shuofang_region
+					is_in_region = mobei_region
+				}
+			}
+			order_by = total_population															# Target most populous unauthorized province
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+		random = {
+			chance = 5
+			z_free_limes_subject = yes
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_ti.11 = {																				#########   HOME: MONGOLIA
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		z_has_limes_default = yes
+		capital_scope = {
+			OR = {
+				is_in_region = mobei_region
+				is_in_region = scytho_siberian_region
+			}
+		}
+		any_owned_province = {
+			count > 10
+			NOT = {																				# AUTHORIZED (ALL GREEN) REGIONS!!!			<---------------
+				is_in_region = mobei_region
+				is_in_region = scytho_siberian_region
+				is_in_region = hyperborea_region
+				is_in_region = central_asian_steppes_region
+				is_in_region = sakia_region
+				is_in_region = sogdiana_region
+				is_in_region = xiyu_region
+				is_in_region = liang_region
+				is_in_region = shuofang_region
+				is_in_region = modong_region
+			}
+		}
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				NOT = {																			# AUTHORIZED (ALL GREEN) REGIONS!!!			<---------------
+					is_in_region = mobei_region
+					is_in_region = scytho_siberian_region
+					is_in_region = hyperborea_region
+					is_in_region = central_asian_steppes_region
+					is_in_region = sakia_region
+					is_in_region = sogdiana_region
+					is_in_region = xiyu_region
+					is_in_region = liang_region
+					is_in_region = shuofang_region
+					is_in_region = modong_region
+				}
+			}
+			order_by = total_population															# Target most populous unauthorized province
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+		random = {
+			chance = 5
+			z_free_limes_subject = yes
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_ti.12 = {																				#########   HOME: HYPERBOREA
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		z_has_limes_default = yes
+		capital_scope = {
+			OR = {
+				is_in_region = hyperborea_region
+			}
+		}
+		any_owned_province = {
+			count > 10
+			NOT = {																				# AUTHORIZED (ALL GREEN) REGIONS!!!			<---------------
+				is_in_region = hyperborea_region
+				is_in_region = venedia_region
+				is_in_region = borysthenia_region
+				is_in_region = central_asian_steppes_region
+				is_in_region = scytho_siberian_region
+				is_in_region = sarmatia_asiatica_region
+			}
+		}
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				NOT = {																			# AUTHORIZED (ALL GREEN) REGIONS!!!			<---------------
+					is_in_region = hyperborea_region
+					is_in_region = venedia_region
+					is_in_region = borysthenia_region
+					is_in_region = central_asian_steppes_region
+					is_in_region = scytho_siberian_region
+					is_in_region = sarmatia_asiatica_region
+				}
+			}
+			order_by = total_population															# Target most populous unauthorized province
+			save_scope_as = z_limes_sub_capital
+		}
+		z_make_limes_subject = yes
+		random = {
+			chance = 5
+			z_free_limes_subject = yes
+		}
+	}
+}

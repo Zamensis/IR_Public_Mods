@@ -1,0 +1,245 @@
+﻿#################################################################################################	Primary Culture Population
+#################################################################################################
+z_sw_primary_culture = {
+	# Used in events / scope: country
+	value = 0
+	every_owned_province = {
+		every_pops_in_province = {
+			limit = {
+				this.country_culture = root.country_culture
+			}
+			add = 1
+		}
+	}
+}
+
+#################################################################################################	Primary Group Population
+#################################################################################################
+z_sw_primary_culture_group = {
+	# Used in events / scope: country
+	value = 0
+	every_owned_province = {
+		every_pops_in_province = {
+			limit = {
+				this.culture.culture_group = root.culture.culture_group
+			}
+			add = 1
+		}
+	}
+}
+
+#################################################################################################	Culture X Population
+#################################################################################################
+z_sw_this_culture = {
+	# Used in events / scope: country
+	value = 0
+	every_owned_province = {
+		every_pops_in_province = {
+			limit = {
+				this.country_culture = scope:z_sw_voiceless_culture
+			}
+			add = 1
+		}
+	}
+}
+
+#################################################################################################	Culture A Population in Capital Area
+#################################################################################################
+z_sw_culture_A_capital_area = {
+	# Used in events / scope: country
+	value = 0
+	every_owned_province = {
+		limit = {
+			this.area = root.capital_scope.area
+		}
+		every_pops_in_province = {
+			limit = {
+				this.country_culture = scope:z_sw_culture_A
+			}
+			add = 1
+		}
+	}
+}
+
+#################################################################################################	Culture B Population in Capital Area
+#################################################################################################
+z_sw_culture_B_capital_area = {
+	# Used in events / scope: country
+	value = 0
+	every_owned_province = {
+		limit = {
+			this.area = root.capital_scope.area
+		}
+		every_pops_in_province = {
+			limit = {
+				this.country_culture = scope:z_sw_culture_B
+			}
+			add = 1
+		}
+	}
+}
+
+#################################################################################################	Culture A Population in Capital Region
+#################################################################################################
+z_sw_culture_A_capital_region = {
+	# Used in events / scope: country
+	value = 0
+	every_owned_province = {
+		limit = {
+			this.region = root.capital_scope.region
+		}
+		every_pops_in_province = {
+			limit = {
+				this.country_culture = scope:z_sw_culture_A
+			}
+			add = 1
+		}
+	}
+}
+
+#################################################################################################	Culture B Population in Capital Region
+#################################################################################################
+z_sw_culture_B_capital_region = {
+	# Used in events / scope: country
+	value = 0
+	every_owned_province = {
+		limit = {
+			this.region = root.capital_scope.region
+		}
+		every_pops_in_province = {
+			limit = {
+				this.country_culture = scope:z_sw_culture_B
+			}
+			add = 1
+		}
+	}
+}
+
+#################################################################################################	Culture A Population in Entire Country
+#################################################################################################
+z_sw_culture_A_country = {
+	# Used in events / scope: country
+	value = 0
+	every_owned_province = {
+		every_pops_in_province = {
+			limit = {
+				this.country_culture = scope:z_sw_culture_A
+			}
+			add = 1
+		}
+	}
+}
+
+#################################################################################################	Culture B Population in Entire Country
+#################################################################################################
+z_sw_culture_B_country = {
+	# Used in events / scope: country
+	value = 0
+	every_owned_province = {
+		every_pops_in_province = {
+			limit = {
+				this.country_culture = scope:z_sw_culture_B
+			}
+			add = 1
+		}
+	}
+}
+
+#################################################################################################	Total Population
+#################################################################################################
+z_sw_country_population = {
+	# Used in events / scope: country
+	value = country_population
+}
+
+#################################################################################################	Total Population / 2
+#################################################################################################
+z_sw_country_population_d2 = {
+	# Used in events / scope: country
+	value = country_population
+	divide = 2
+}
+
+#################################################################################################	Total Population / 4
+#################################################################################################
+z_sw_country_population_d4 = {
+	# Used in events / scope: country
+	value = country_population
+	divide = 4
+}
+
+#################################################################################################	Total Population in Capital Area
+#################################################################################################
+z_sw_capital_area_population = {
+	# Used in events / scope: country
+	value = 0
+	every_owned_province = {
+		limit = {
+			this.area = root.capital_scope.area
+		}
+		every_pops_in_province = {
+			add = 1
+		}
+	}
+}
+
+#################################################################################################	Total Population in Capital Area / 2
+#################################################################################################
+z_sw_capital_area_population_d2 = {
+	# Used in events / scope: country
+	value = 0
+	every_owned_province = {
+		limit = {
+			this.area = root.capital_scope.area
+		}
+		every_pops_in_province = {
+			add = 1
+		}
+	}
+	divide = 2
+}
+
+#################################################################################################	Total Population in Capital Region / 2
+#################################################################################################
+z_sw_capital_region_population_d2 = {
+	# Used in events / scope: country
+	value = 0
+	every_owned_province = {
+		limit = {
+			this.region = root.capital_scope.region
+		}
+		every_pops_in_province = {
+			add = 1
+		}
+	}
+	divide = 2
+}
+
+#################################################################################################	Culture X Population / Primary Culture Population
+#################################################################################################
+z_sw_culture_ratio_A = {
+	# Used in events / scope: country
+	value = z_sw_this_culture
+	divide = z_sw_primary_culture
+	multiply = 100
+}
+
+#################################################################################################	Primary Group Population / Total Population
+#################################################################################################
+z_sw_culture_ratio_B = {
+	# Used in events / scope: country
+	value = z_sw_primary_culture_group
+	divide = z_sw_country_population
+	multiply = 100
+}
+
+#################################################################################################	Threshold for civil war after taking the Embrace Local Culture decision
+#################################################################################################
+z_sw_elc_war_threshold = {
+	# Used in events / scope: country
+	value = 0
+	add = root.stability
+	add = root.legitimacy
+	add = root.current_ruler.popularity
+	divide = 3
+}

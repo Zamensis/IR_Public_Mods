@@ -1,0 +1,100 @@
+﻿#################################################################################################	Ruler Zeal as luck modifier
+#################################################################################################
+z_bad_omens_ruler_zeal_pos = {
+	value = root.current_ruler.zeal
+}
+
+z_bad_omens_ruler_zeal_neg = {
+	value = root.current_ruler.zeal
+	multiply = -1
+}
+
+#################################################################################################	High Priest Zeal as luck modifier
+#################################################################################################
+z_bad_omens_hp_zeal_pos = {
+	value = 0
+	if = {
+		limit = {
+			exists = scope:z_highpriest
+		}
+		add = scope:z_highpriest.zeal
+	}
+}
+
+z_bad_omens_hp_zeal_neg = {
+	value = 0
+	if = {
+		limit = {
+			exists = scope:z_highpriest
+		}
+		add = scope:z_highpriest.zeal
+	}
+	multiply = -1
+}
+
+#################################################################################################	High Priest Loyalty as luck modifier
+#################################################################################################
+z_bad_omens_hp_loyalty_pos = {
+	value = 0
+	if = {
+		limit = {
+			exists = scope:z_highpriest
+		}
+		add = scope:z_highpriest.loyalty
+	}
+	multiply = 0.5
+}
+
+z_bad_omens_hp_loyalty_neg = {
+	value = 0
+	if = {
+		limit = {
+			exists = scope:z_highpriest
+		}
+		add = scope:z_highpriest.loyalty
+	}
+	multiply = -0.5
+}
+
+#################################################################################################	Impiety as luck modifier
+#################################################################################################
+z_impiety_pos = {
+	value = z_impiety
+	multiply = 10
+}
+
+z_impiety_neg = {
+	value = z_impiety
+	multiply = -10
+}
+
+#################################################################################################	Calculate Omen Strength
+#################################################################################################
+z_bad_omens_omen_strength = {
+	value = z_bad_omens_ruler_zeal_pos
+	add = z_bad_omens_hp_zeal_pos
+	add = root.current_ruler.var:z_bad_omens_omen_strength_random
+	multiply = z_bad_omens_religious_unity
+}
+
+#################################################################################################	Religious Unity
+#################################################################################################
+z_bad_omens_religious_unity = {
+	value = 0
+	every_owned_province = {
+		every_pops_in_province = {
+			limit = {
+				this.religion = root.religion
+			}
+			add = 1
+		}
+	}
+	divide = {
+		value = 0
+		every_owned_province = {
+			every_pops_in_province = {
+				add = 1
+			}
+		}
+	}
+}

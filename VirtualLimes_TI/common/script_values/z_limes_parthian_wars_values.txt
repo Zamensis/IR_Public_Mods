@@ -1,0 +1,27 @@
+﻿#################################################################################################	Check belligerent sizes
+#################################################################################################
+z_limes_region_count = {
+	value = 0
+	scope:z_limes_region = {
+		every_region_province = {
+			limit = {
+				has_owner = yes
+				this.owner = root
+			}
+			add = 1
+		}
+	}
+}
+
+z_limes_region_count_opponent = {
+	value = 0
+	scope:z_limes_region = {
+		every_region_province = {
+			limit = {
+				has_owner = yes
+				this.owner = scope:z_limes_parthia_opponent
+			}
+			add = 1
+		}
+	}
+}

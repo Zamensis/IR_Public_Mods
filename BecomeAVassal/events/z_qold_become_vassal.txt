@@ -1,0 +1,654 @@
+﻿namespace = z_qold_become_vassal
+
+#########################################################################################################################################
+#########################################################################################################
+z_qold_become_vassal.1 = {																		#########   Seek Potential Overlords
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		any_country = {
+			z_qold_is_potential_overlord = yes
+		}
+	}
+	
+	immediate = {
+		if = {
+			limit = {
+				any_country = {
+					z_qold_is_potential_overlord = yes
+				}
+			}
+			ordered_country = {
+				limit = {
+					z_qold_is_potential_overlord = yes
+				}
+				order_by = num_of_cities
+				save_scope_as = z_qold_potential_overlord_1
+			}
+		}
+		if = {
+			limit = {
+				any_country = {
+					z_qold_is_potential_overlord = yes
+					NOT = {
+						this = scope:z_qold_potential_overlord_1
+					}
+				}
+			}
+			ordered_country = {
+				limit = {
+					z_qold_is_potential_overlord = yes
+					NOT = {
+						this = scope:z_qold_potential_overlord_1
+					}
+				}
+				order_by = num_of_cities
+				save_scope_as = z_qold_potential_overlord_2
+			}
+		}
+		if = {
+			limit = {
+				any_country = {
+					z_qold_is_potential_overlord = yes
+					NOT = {
+						this = scope:z_qold_potential_overlord_1
+						this = scope:z_qold_potential_overlord_2
+					}
+				}
+			}
+			ordered_country = {
+				limit = {
+					z_qold_is_potential_overlord = yes
+					NOT = {
+						this = scope:z_qold_potential_overlord_1
+						this = scope:z_qold_potential_overlord_2
+					}
+				}
+				order_by = num_of_cities
+				save_scope_as = z_qold_potential_overlord_3
+			}
+		}
+		if = {
+			limit = {
+				any_country = {
+					z_qold_is_potential_overlord = yes
+					NOT = {
+						this = scope:z_qold_potential_overlord_1
+						this = scope:z_qold_potential_overlord_2
+						this = scope:z_qold_potential_overlord_3
+					}
+				}
+			}
+			ordered_country = {
+				limit = {
+					z_qold_is_potential_overlord = yes
+					NOT = {
+						this = scope:z_qold_potential_overlord_1
+						this = scope:z_qold_potential_overlord_2
+						this = scope:z_qold_potential_overlord_3
+					}
+				}
+				order_by = num_of_cities
+				save_scope_as = z_qold_potential_overlord_4
+			}
+		}
+		if = {
+			limit = {
+				any_country = {
+					z_qold_is_potential_overlord = yes
+					NOT = {
+						this = scope:z_qold_potential_overlord_1
+						this = scope:z_qold_potential_overlord_2
+						this = scope:z_qold_potential_overlord_3
+						this = scope:z_qold_potential_overlord_4
+					}
+				}
+			}
+			ordered_country = {
+				limit = {
+					z_qold_is_potential_overlord = yes
+					NOT = {
+						this = scope:z_qold_potential_overlord_1
+						this = scope:z_qold_potential_overlord_2
+						this = scope:z_qold_potential_overlord_3
+						this = scope:z_qold_potential_overlord_4
+					}
+				}
+				order_by = num_of_cities
+				save_scope_as = z_qold_potential_overlord_5
+			}
+		}
+		hidden_effect = {
+			if = {
+				limit = {
+					exists = scope:z_qold_potential_overlord_5
+				}
+				trigger_event = {
+					id = z_qold_become_vassal.6		# 5 potential overlords
+				}
+			}
+			else_if = {
+				limit = {
+					exists = scope:z_qold_potential_overlord_4
+				}
+				trigger_event = {
+					id = z_qold_become_vassal.5		# 4 potential overlords
+				}
+			}
+			else_if = {
+				limit = {
+					exists = scope:z_qold_potential_overlord_3
+				}
+				trigger_event = {
+					id = z_qold_become_vassal.4		# 3 potential overlords
+				}
+			}
+			else_if = {
+				limit = {
+					exists = scope:z_qold_potential_overlord_2
+				}
+				trigger_event = {
+					id = z_qold_become_vassal.3		# 2 potential overlords
+				}
+			}
+			else_if = {
+				limit = {
+					exists = scope:z_qold_potential_overlord_1
+				}
+				trigger_event = {
+					id = z_qold_become_vassal.2		# 1 potential overlord
+				}
+			}
+		}
+	}
+	
+	after = {
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_qold_become_vassal.2 = {																		#########   Choose Potential Overlords - 1 Candidate
+	type = country_event																		#########
+	title = "z_qold_become_vassal.2.t"															#########################################
+	desc = "z_qold_become_vassal.2.desc"
+	
+	picture = council_country
+	
+	left_portrait = root.current_ruler
+	right_portrait = scope:z_qold_potential_overlord_1.current_ruler
+	
+	trigger = {
+	}
+	
+	immediate = {
+	}
+	
+	option = {
+		name = "z_qold_become_vassal.2.a"
+		add_political_influence = -25
+		custom_tooltip = z_qold_become_vassal.2.at
+		reverse_add_opinion = { target = scope:z_qold_potential_overlord_1 modifier = z_qold_friendly_potential_protector }
+		scope:z_qold_potential_overlord_1 = {
+			save_scope_as = z_qold_potential_overlord
+		}
+	}
+	
+	option = {
+		name = "z_qold_become_vassal.2.f"
+		custom_tooltip = z_qold_become_vassal.2.ft
+		hidden_effect = {
+			z_qold_clear_vassal_scopes = yes
+		}
+	}
+	
+	after = {
+		if = {
+			limit = {
+				exists = scope:z_qold_potential_overlord
+			}
+			z_qold_protectors_response = yes
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_qold_become_vassal.3 = {																		#########   Choose Potential Overlords - 2 Candidates
+	type = country_event																		#########
+	title = "z_qold_become_vassal.3.t"															#########################################
+	desc = "z_qold_become_vassal.3.desc"
+	
+	picture = council_country
+	
+	left_portrait = root.current_ruler
+	right_portrait = scope:z_qold_potential_overlord_1.current_ruler
+	right_portrait = scope:z_qold_potential_overlord_2.current_ruler
+	
+	trigger = {
+	}
+	
+	immediate = {
+	}
+	
+	option = {
+		name = "z_qold_become_vassal.2.a"
+		add_political_influence = -25
+		custom_tooltip = z_qold_become_vassal.2.at
+		reverse_add_opinion = { target = scope:z_qold_potential_overlord_1 modifier = z_qold_friendly_potential_protector }
+		reverse_add_opinion = { target = scope:z_qold_potential_overlord_2 modifier = z_qold_unfriendly_potential_protector }
+		scope:z_qold_potential_overlord_1 = {
+			save_scope_as = z_qold_potential_overlord
+		}
+		scope:z_qold_potential_overlord_2 = {
+			save_scope_as = z_qold_potential_contender
+		}
+	}
+	
+	option = {
+		name = "z_qold_become_vassal.2.b"
+		add_political_influence = -25
+		custom_tooltip = z_qold_become_vassal.2.bt
+		reverse_add_opinion = { target = scope:z_qold_potential_overlord_1 modifier = z_qold_unfriendly_potential_protector }
+		reverse_add_opinion = { target = scope:z_qold_potential_overlord_2 modifier = z_qold_friendly_potential_protector }
+		scope:z_qold_potential_overlord_2 = {
+			save_scope_as = z_qold_potential_overlord
+		}
+		scope:z_qold_potential_overlord_1 = {
+			save_scope_as = z_qold_potential_contender
+		}
+	}
+	
+	option = {
+		name = "z_qold_become_vassal.2.f"
+		custom_tooltip = z_qold_become_vassal.2.ft
+		hidden_effect = {
+			z_qold_clear_vassal_scopes = yes
+		}
+	}
+	
+	after = {
+		if = {
+			limit = {
+				exists = scope:z_qold_potential_overlord
+			}
+			z_qold_protectors_response = yes
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_qold_become_vassal.4 = {																		#########   Choose Potential Overlords - 3 Candidates
+	type = country_event																		#########
+	title = "z_qold_become_vassal.4.t"															#########################################
+	desc = "z_qold_become_vassal.4.desc"
+	
+	picture = council_country
+	
+	left_portrait = root.current_ruler
+	left_portrait = scope:z_qold_potential_overlord_2.current_ruler
+	right_portrait = scope:z_qold_potential_overlord_1.current_ruler
+	right_portrait = scope:z_qold_potential_overlord_3.current_ruler
+	
+	trigger = {
+	}
+	
+	immediate = {
+	}
+	
+	option = {
+		name = "z_qold_become_vassal.2.a"
+		add_political_influence = -25
+		custom_tooltip = z_qold_become_vassal.2.at
+		reverse_add_opinion = { target = scope:z_qold_potential_overlord_1 modifier = z_qold_friendly_potential_protector }
+		reverse_add_opinion = { target = scope:z_qold_potential_overlord_2 modifier = z_qold_unfriendly_potential_protector }
+		reverse_add_opinion = { target = scope:z_qold_potential_overlord_3 modifier = z_qold_unfriendly_potential_protector }
+		scope:z_qold_potential_overlord_1 = {
+			save_scope_as = z_qold_potential_overlord
+		}
+		scope:z_qold_potential_overlord_2 = {
+			save_scope_as = z_qold_potential_contender
+		}
+	}
+	
+	option = {
+		name = "z_qold_become_vassal.2.b"
+		add_political_influence = -25
+		custom_tooltip = z_qold_become_vassal.2.bt
+		reverse_add_opinion = { target = scope:z_qold_potential_overlord_1 modifier = z_qold_unfriendly_potential_protector }
+		reverse_add_opinion = { target = scope:z_qold_potential_overlord_2 modifier = z_qold_friendly_potential_protector }
+		reverse_add_opinion = { target = scope:z_qold_potential_overlord_3 modifier = z_qold_unfriendly_potential_protector }
+		scope:z_qold_potential_overlord_2 = {
+			save_scope_as = z_qold_potential_overlord
+		}
+		scope:z_qold_potential_overlord_1 = {
+			save_scope_as = z_qold_potential_contender
+		}
+	}
+	
+	option = {
+		name = "z_qold_become_vassal.2.c"
+		add_political_influence = -25
+		custom_tooltip = z_qold_become_vassal.2.ct
+		reverse_add_opinion = { target = scope:z_qold_potential_overlord_1 modifier = z_qold_unfriendly_potential_protector }
+		reverse_add_opinion = { target = scope:z_qold_potential_overlord_2 modifier = z_qold_unfriendly_potential_protector }
+		reverse_add_opinion = { target = scope:z_qold_potential_overlord_3 modifier = z_qold_friendly_potential_protector }
+		scope:z_qold_potential_overlord_3 = {
+			save_scope_as = z_qold_potential_overlord
+		}
+		scope:z_qold_potential_overlord_1 = {
+			save_scope_as = z_qold_potential_contender
+		}
+	}
+	
+	option = {
+		name = "z_qold_become_vassal.2.f"
+		custom_tooltip = z_qold_become_vassal.2.ft
+		hidden_effect = {
+			z_qold_clear_vassal_scopes = yes
+		}
+	}
+	
+	after = {
+		if = {
+			limit = {
+				exists = scope:z_qold_potential_overlord
+			}
+			z_qold_protectors_response = yes
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_qold_become_vassal.5 = {																		#########   Choose Potential Overlords - 4 Candidates
+	type = country_event																		#########
+	title = "z_qold_become_vassal.5.t"															#########################################
+	desc = "z_qold_become_vassal.5.desc"
+	
+	picture = council_country
+	
+	left_portrait = root.current_ruler
+	left_portrait = scope:z_qold_potential_overlord_2.current_ruler
+	right_portrait = scope:z_qold_potential_overlord_1.current_ruler
+	right_portrait = scope:z_qold_potential_overlord_3.current_ruler
+	right_portrait = scope:z_qold_potential_overlord_4.current_ruler
+	
+	trigger = {
+	}
+	
+	immediate = {
+	}
+	
+	option = {
+		name = "z_qold_become_vassal.2.a"
+		add_political_influence = -25
+		custom_tooltip = z_qold_become_vassal.2.at
+		reverse_add_opinion = { target = scope:z_qold_potential_overlord_1 modifier = z_qold_friendly_potential_protector }
+		reverse_add_opinion = { target = scope:z_qold_potential_overlord_2 modifier = z_qold_unfriendly_potential_protector }
+		reverse_add_opinion = { target = scope:z_qold_potential_overlord_3 modifier = z_qold_unfriendly_potential_protector }
+		reverse_add_opinion = { target = scope:z_qold_potential_overlord_4 modifier = z_qold_unfriendly_potential_protector }
+		scope:z_qold_potential_overlord_1 = {
+			save_scope_as = z_qold_potential_overlord
+		}
+		scope:z_qold_potential_overlord_2 = {
+			save_scope_as = z_qold_potential_contender
+		}
+	}
+	
+	option = {
+		name = "z_qold_become_vassal.2.b"
+		add_political_influence = -25
+		custom_tooltip = z_qold_become_vassal.2.bt
+		reverse_add_opinion = { target = scope:z_qold_potential_overlord_1 modifier = z_qold_unfriendly_potential_protector }
+		reverse_add_opinion = { target = scope:z_qold_potential_overlord_2 modifier = z_qold_friendly_potential_protector }
+		reverse_add_opinion = { target = scope:z_qold_potential_overlord_3 modifier = z_qold_unfriendly_potential_protector }
+		reverse_add_opinion = { target = scope:z_qold_potential_overlord_4 modifier = z_qold_unfriendly_potential_protector }
+		scope:z_qold_potential_overlord_2 = {
+			save_scope_as = z_qold_potential_overlord
+		}
+		scope:z_qold_potential_overlord_1 = {
+			save_scope_as = z_qold_potential_contender
+		}
+	}
+	
+	option = {
+		name = "z_qold_become_vassal.2.c"
+		add_political_influence = -25
+		custom_tooltip = z_qold_become_vassal.2.ct
+		reverse_add_opinion = { target = scope:z_qold_potential_overlord_1 modifier = z_qold_unfriendly_potential_protector }
+		reverse_add_opinion = { target = scope:z_qold_potential_overlord_2 modifier = z_qold_unfriendly_potential_protector }
+		reverse_add_opinion = { target = scope:z_qold_potential_overlord_3 modifier = z_qold_friendly_potential_protector }
+		reverse_add_opinion = { target = scope:z_qold_potential_overlord_4 modifier = z_qold_unfriendly_potential_protector }
+		scope:z_qold_potential_overlord_3 = {
+			save_scope_as = z_qold_potential_overlord
+		}
+		scope:z_qold_potential_overlord_1 = {
+			save_scope_as = z_qold_potential_contender
+		}
+	}
+	
+	option = {
+		name = "z_qold_become_vassal.2.d"
+		add_political_influence = -25
+		custom_tooltip = z_qold_become_vassal.2.dt
+		reverse_add_opinion = { target = scope:z_qold_potential_overlord_1 modifier = z_qold_unfriendly_potential_protector }
+		reverse_add_opinion = { target = scope:z_qold_potential_overlord_2 modifier = z_qold_unfriendly_potential_protector }
+		reverse_add_opinion = { target = scope:z_qold_potential_overlord_3 modifier = z_qold_unfriendly_potential_protector }
+		reverse_add_opinion = { target = scope:z_qold_potential_overlord_4 modifier = z_qold_friendly_potential_protector }
+		scope:z_qold_potential_overlord_4 = {
+			save_scope_as = z_qold_potential_overlord
+		}
+		scope:z_qold_potential_overlord_1 = {
+			save_scope_as = z_qold_potential_contender
+		}
+	}
+	
+	option = {
+		name = "z_qold_become_vassal.2.f"
+		custom_tooltip = z_qold_become_vassal.2.ft
+		hidden_effect = {
+			z_qold_clear_vassal_scopes = yes
+		}
+	}
+	
+	after = {
+		if = {
+			limit = {
+				exists = scope:z_qold_potential_overlord
+			}
+			z_qold_protectors_response = yes
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_qold_become_vassal.6 = {																		#########   Choose Potential Overlords - 5 Candidates
+	type = country_event																		#########
+	title = "z_qold_become_vassal.6.t"															#########################################
+	desc = "z_qold_become_vassal.6.desc"
+	
+	picture = council_country
+	
+	left_portrait = root.current_ruler
+	left_portrait = scope:z_qold_potential_overlord_2.current_ruler
+	left_portrait = scope:z_qold_potential_overlord_4.current_ruler
+	right_portrait = scope:z_qold_potential_overlord_1.current_ruler
+	right_portrait = scope:z_qold_potential_overlord_3.current_ruler
+	right_portrait = scope:z_qold_potential_overlord_5.current_ruler
+	
+	trigger = {
+	}
+	
+	immediate = {
+	}
+	
+	option = {
+		name = "z_qold_become_vassal.2.a"
+		add_political_influence = -25
+		custom_tooltip = z_qold_become_vassal.2.at
+		reverse_add_opinion = { target = scope:z_qold_potential_overlord_1 modifier = z_qold_friendly_potential_protector }
+		reverse_add_opinion = { target = scope:z_qold_potential_overlord_2 modifier = z_qold_unfriendly_potential_protector }
+		reverse_add_opinion = { target = scope:z_qold_potential_overlord_3 modifier = z_qold_unfriendly_potential_protector }
+		reverse_add_opinion = { target = scope:z_qold_potential_overlord_4 modifier = z_qold_unfriendly_potential_protector }
+		reverse_add_opinion = { target = scope:z_qold_potential_overlord_5 modifier = z_qold_unfriendly_potential_protector }
+		scope:z_qold_potential_overlord_1 = {
+			save_scope_as = z_qold_potential_overlord
+		}
+		scope:z_qold_potential_overlord_2 = {
+			save_scope_as = z_qold_potential_contender
+		}
+	}
+	
+	option = {
+		name = "z_qold_become_vassal.2.b"
+		add_political_influence = -25
+		custom_tooltip = z_qold_become_vassal.2.bt
+		reverse_add_opinion = { target = scope:z_qold_potential_overlord_1 modifier = z_qold_unfriendly_potential_protector }
+		reverse_add_opinion = { target = scope:z_qold_potential_overlord_2 modifier = z_qold_friendly_potential_protector }
+		reverse_add_opinion = { target = scope:z_qold_potential_overlord_3 modifier = z_qold_unfriendly_potential_protector }
+		reverse_add_opinion = { target = scope:z_qold_potential_overlord_4 modifier = z_qold_unfriendly_potential_protector }
+		reverse_add_opinion = { target = scope:z_qold_potential_overlord_5 modifier = z_qold_unfriendly_potential_protector }
+		scope:z_qold_potential_overlord_2 = {
+			save_scope_as = z_qold_potential_overlord
+		}
+		scope:z_qold_potential_overlord_1 = {
+			save_scope_as = z_qold_potential_contender
+		}
+	}
+	
+	option = {
+		name = "z_qold_become_vassal.2.c"
+		add_political_influence = -25
+		custom_tooltip = z_qold_become_vassal.2.ct
+		reverse_add_opinion = { target = scope:z_qold_potential_overlord_1 modifier = z_qold_unfriendly_potential_protector }
+		reverse_add_opinion = { target = scope:z_qold_potential_overlord_2 modifier = z_qold_unfriendly_potential_protector }
+		reverse_add_opinion = { target = scope:z_qold_potential_overlord_3 modifier = z_qold_friendly_potential_protector }
+		reverse_add_opinion = { target = scope:z_qold_potential_overlord_4 modifier = z_qold_unfriendly_potential_protector }
+		reverse_add_opinion = { target = scope:z_qold_potential_overlord_5 modifier = z_qold_unfriendly_potential_protector }
+		scope:z_qold_potential_overlord_3 = {
+			save_scope_as = z_qold_potential_overlord
+		}
+		scope:z_qold_potential_overlord_1 = {
+			save_scope_as = z_qold_potential_contender
+		}
+	}
+	
+	option = {
+		name = "z_qold_become_vassal.2.d"
+		add_political_influence = -25
+		custom_tooltip = z_qold_become_vassal.2.dt
+		reverse_add_opinion = { target = scope:z_qold_potential_overlord_1 modifier = z_qold_unfriendly_potential_protector }
+		reverse_add_opinion = { target = scope:z_qold_potential_overlord_2 modifier = z_qold_unfriendly_potential_protector }
+		reverse_add_opinion = { target = scope:z_qold_potential_overlord_3 modifier = z_qold_unfriendly_potential_protector }
+		reverse_add_opinion = { target = scope:z_qold_potential_overlord_4 modifier = z_qold_friendly_potential_protector }
+		reverse_add_opinion = { target = scope:z_qold_potential_overlord_5 modifier = z_qold_unfriendly_potential_protector }
+		scope:z_qold_potential_overlord_4 = {
+			save_scope_as = z_qold_potential_overlord
+		}
+		scope:z_qold_potential_overlord_1 = {
+			save_scope_as = z_qold_potential_contender
+		}
+	}
+	
+	option = {
+		name = "z_qold_become_vassal.2.e"
+		add_political_influence = -25
+		custom_tooltip = z_qold_become_vassal.2.et
+		reverse_add_opinion = { target = scope:z_qold_potential_overlord_1 modifier = z_qold_unfriendly_potential_protector }
+		reverse_add_opinion = { target = scope:z_qold_potential_overlord_2 modifier = z_qold_unfriendly_potential_protector }
+		reverse_add_opinion = { target = scope:z_qold_potential_overlord_3 modifier = z_qold_unfriendly_potential_protector }
+		reverse_add_opinion = { target = scope:z_qold_potential_overlord_4 modifier = z_qold_unfriendly_potential_protector }
+		reverse_add_opinion = { target = scope:z_qold_potential_overlord_5 modifier = z_qold_friendly_potential_protector }
+		scope:z_qold_potential_overlord_5 = {
+			save_scope_as = z_qold_potential_overlord
+		}
+		scope:z_qold_potential_overlord_1 = {
+			save_scope_as = z_qold_potential_contender
+		}
+	}
+	
+	option = {
+		name = "z_qold_become_vassal.2.f"
+		custom_tooltip = z_qold_become_vassal.2.ft
+		hidden_effect = {
+			z_qold_clear_vassal_scopes = yes
+		}
+	}
+	
+	after = {
+		if = {
+			limit = {
+				exists = scope:z_qold_potential_overlord
+			}
+			trigger_event = {
+				id = z_qold_become_vassal.7
+				days = { 30 90 }
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_qold_become_vassal.7 = {																		#########   Court Potential Overlord - First Delegation Arrives
+	type = country_event																		#########
+	title = "z_qold_become_vassal.7.t"															#########################################
+	desc = "z_qold_become_vassal.7.desc"
+	
+	left_portrait = root.current_ruler
+	right_portrait = scope:z_qold_potential_overlord.current_ruler
+	
+	picture = council_country
+	
+	trigger = {
+		exists = scope:z_qold_potential_overlord
+	}
+	
+	immediate = {
+	}
+	
+	option = {
+		name = "z_qold_become_vassal.7.b"
+		#custom_tooltip = "z_qold_become_vassal.7.bt"
+		add_treasury = {
+			value = 0
+			subtract = z_qold_gold
+		}
+		z_qold_become_tributarized = yes
+		reverse_add_opinion = { target = scope:z_qold_potential_overlord modifier = z_qold_friendly_protector }
+	}
+	
+	option = {
+		name = "z_qold_become_vassal.7.a"
+		trigger = {
+			NOT = {
+				scope:z_qold_potential_overlord = {	
+					is_tribal = no
+					capital_scope = {
+						civilization_value > root.capital_scope.civilization_value
+					}
+					root = {
+						is_tribal = yes
+					}
+				}
+			}
+		}
+		#custom_tooltip = "z_qold_become_vassal.7.at"
+		add_treasury = {
+			value = 0
+			subtract = z_qold_gold
+			divide = 2
+		}
+		z_qold_become_vassalized = yes
+		reverse_add_opinion = { target = scope:z_qold_potential_overlord modifier = z_qold_friendly_protector }
+	}
+	
+	option = {
+		name = "z_qold_become_vassal.7.c"
+		custom_tooltip = "z_qold_become_vassal.7.ct"
+	}
+}

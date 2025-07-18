@@ -1,0 +1,204 @@
+﻿namespace = z_limes_civil_wars
+
+# Some Civil war tweaks in an effort to reduce bordergore.
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_civil_wars.1 = {																		#########   SAVE WAR PARTICIPANTS - ATTACKER (REVOLT)
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		is_ai = yes
+		has_civil_war = yes
+		any_current_war = {
+			is_civil_war = yes
+			is_war_leader = root
+			any_war_attacker = {
+				this = root
+			}
+			any_war_participant = {
+				civil_war_with = root
+				is_ai = yes
+			}
+		}
+		NOT = {
+			has_variable = z_limes_civil_war_attacker
+		}
+	}
+	
+	immediate = {
+		if = {
+			limit = {
+				has_variable = z_limes_civil_war_defender
+			}
+			remove_variable = z_limes_civil_war_defender
+		}
+		set_variable = {
+			name = z_limes_civil_war_attacker
+		}
+	}	
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_civil_wars.2 = {																		#########   SAVE WAR PARTICIPANTS - DEFENDER (LEGIT)
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		is_ai = yes
+		has_civil_war = yes
+		any_current_war = {
+			is_civil_war = yes
+			is_war_leader = root
+			any_war_defender = {
+				this = root
+			}
+			any_war_participant = {
+				civil_war_with = root
+				is_ai = yes
+			}
+		}
+		NOT = {
+			has_variable = z_limes_civil_war_defender
+		}
+	}
+	
+	immediate = {
+		if = {
+			limit = {
+				has_variable = z_limes_civil_war_attacker
+			}
+			remove_variable = z_limes_civil_war_attacker
+		}
+		set_variable = {
+			name = z_limes_civil_war_defender
+		}
+	}	
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_civil_wars.3 = {																		#########   CLEAR WAR PARTICIPANTS
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		OR = {
+			has_variable = z_limes_civil_war_attacker
+			has_variable = z_limes_civil_war_defender
+		}
+		OR = {
+			is_ai = no
+			NOT = {
+				any_current_war = {
+					is_civil_war = yes
+					is_war_leader = root
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		if = {
+			limit = {
+				has_variable = z_limes_civil_war_attacker
+			}
+			remove_variable = z_limes_civil_war_attacker
+		}
+		if = {
+			limit = {
+				has_variable = z_limes_civil_war_defender
+			}
+			remove_variable = z_limes_civil_war_defender
+		}
+	}		
+}	
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_civil_wars.4 = {																		#########   SNOWBALL AI-ONLY CIVIL WAR
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		is_ai = yes
+		has_civil_war = yes
+		any_current_war = {
+			is_civil_war = yes
+			is_war_leader = root
+			any_war_participant = {
+				civil_war_with = root
+				is_ai = yes
+			}
+		}
+		NOT = {
+			has_variable = "z_limes_civil_wars_cooldown"	
+		}
+	}
+	
+	immediate = {
+        random_current_war = {
+            limit = {
+                is_civil_war = yes
+                is_war_leader = root
+                any_war_participant = {
+					civil_war_with = root
+					is_ai = yes
+				}
+            }
+            random_war_participant = {
+                limit = {
+					is_ai = yes
+					civil_war_with = root
+				}
+                save_scope_as = z_limes_civil_war_opponent
+            }
+        }
+		set_variable = {
+			name = z_limes_civil_wars_cooldown
+			days = 45
+		}
+		scope:z_limes_civil_war_opponent = {
+			set_variable = {
+				name = z_limes_civil_wars_cooldown
+				days = 45
+			}
+		}
+		if = {
+			limit = {
+				root.num_of_cities >= scope:z_limes_civil_war_opponent.num_of_cities
+			}
+			save_scope_as = z_limes_civil_war_winner
+			scope:z_limes_civil_war_opponent = {
+				save_scope_as = z_limes_civil_war_loser
+			}
+		}
+		else = {
+			save_scope_as = z_limes_civil_war_loser
+			scope:z_limes_civil_war_opponent = {
+				save_scope_as = z_limes_civil_war_winner
+			}
+		}
+		if = {
+			limit = {
+				z_limes_civil_war_winner_score > 0.7 # Winner owns x% of the territory
+				scope:z_limes_civil_war_loser.num_of_cities > 10
+			}
+			while = {
+				count = z_limes_civil_war_loser_annexion # Winner loses y% of its territory
+				random_province = {
+					limit = {
+						this.total_population >= 1
+						this.owner = scope:z_limes_civil_war_loser
+						any_neighbor_province = {
+							this.owner = scope:z_limes_civil_war_winner
+						}
+					}
+					set_owned_by = scope:z_limes_civil_war_winner
+				}
+			}
+		}
+	}
+}

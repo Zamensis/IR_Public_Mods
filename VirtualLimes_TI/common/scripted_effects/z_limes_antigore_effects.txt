@@ -1,0 +1,65 @@
+﻿#################################################################################################	CREATE COUNTRY
+#################################################################################################
+z_antigore_create_country = {
+	scope:z_antigore_cap = {	
+		create_country = {
+			save_scope_as = z_antigore_new
+			set_primary_culture = scope:z_antigore_cap.culture
+		}
+	}
+	z_limes_set_government = yes
+	scope:z_antigore_new = {
+		create_character = {
+			save_scope_as = z_antigore_gov 
+			culture = scope:z_antigore_cap.culture
+		}
+		set_as_ruler = scope:z_antigore_gov 
+		add_treasury = 50.0
+	}
+	z_limes_set_religion = yes
+}
+
+#################################################################################################	AFTERMATH
+#################################################################################################
+z_antigore_aftermath = {
+	random = {
+		chance = 66
+		if = {
+			limit = {
+				is_tribal = yes
+			}
+			make_subject = {
+				target = scope:z_antigore_new
+				type = vassal_tribe
+			}
+		}
+		else = {
+			make_subject = {
+				target = scope:z_antigore_new
+				type = tributary
+			}
+		}
+	}
+	if = {
+		limit = {
+			scope:z_antigore_new = {
+				is_subject = no
+			}
+			any_country = {
+				is_ai = no
+				war_with = root
+				NOT = {
+					war_with = scope:z_antigore_new
+				}
+				any_neighbour_country = {
+					this = scope:z_antigore_new
+				}
+			}
+		}
+		declare_war_with_wargoal = {
+			war_goal = conquer_wargoal
+			province = scope:z_antigore_new.capital_scope
+			target = scope:z_antigore_new
+		}
+	}
+}

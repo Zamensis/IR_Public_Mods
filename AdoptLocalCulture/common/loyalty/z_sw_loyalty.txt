@@ -1,0 +1,9 @@
+﻿z_sw_loyalty_deposed_minority_leader = {
+	value = -30
+	months = 60
+}
+
+z_sw_loyalty_embraced_majority_leader = {
+	value = -30
+	months = 60
+}

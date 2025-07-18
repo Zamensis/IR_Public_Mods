@@ -1,0 +1,2047 @@
+﻿namespace = z_limes_antigore
+
+# Put some order in empires that end up heavily split in the Hellenistic world (SEL, PAR, MRY, EGY, typically).
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_antigore.101 = {																		#########   SPLIT EMPIRES: HOME REGION 1
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		is_ai = yes
+		is_subject = no
+		has_civil_war = no
+		NOT = { has_variable = "z_antigore_cooldown" }
+		capital_scope = {									# BASE ZONE
+			z_limes_antigore_region_1 = yes
+		}
+		OR = {
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_8 = yes
+				}
+				z_limes_antigore_controls_region_7 = no
+			}
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_7 = yes
+				}
+				z_limes_antigore_controls_region_6 = no
+			}
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_6 = yes
+				}
+				z_limes_antigore_controls_region_9 = no
+			}
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_9 = yes
+				}
+				z_limes_antigore_controls_region_5 = no
+			}
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_5 = yes
+				}
+				z_limes_antigore_controls_region_4 = no
+			}
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_4 = yes
+				}
+				z_limes_antigore_controls_region_3 = no
+			}
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_3 = yes
+				}
+				z_limes_antigore_controls_region_2 = no
+			}
+		}
+	}
+		
+	immediate = {
+		set_variable = {
+			name = "z_antigore_cooldown"
+			days = 15
+		}
+	}
+		
+	option = {
+		if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_8 = yes
+				}
+				z_limes_antigore_controls_region_7 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.208
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_7 = yes
+				}
+				z_limes_antigore_controls_region_6 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.207
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_6 = yes
+				}
+				z_limes_antigore_controls_region_9 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.206
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_9 = yes
+				}
+				z_limes_antigore_controls_region_5 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.209
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_5 = yes
+				}
+				z_limes_antigore_controls_region_4 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.205
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_4 = yes
+				}
+				z_limes_antigore_controls_region_3 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.204
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_3 = yes
+				}
+				z_limes_antigore_controls_region_2 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.203
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_antigore.102 = {																		#########   SPLIT EMPIRES: HOME REGION 2
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		is_ai = yes
+		is_subject = no
+		has_civil_war = no
+		NOT = { has_variable = "z_antigore_cooldown" }
+		capital_scope = {									# BASE ZONE
+			z_limes_antigore_region_2 = yes
+		}
+		OR = {
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_8 = yes
+				}
+				z_limes_antigore_controls_region_7 = no
+			}
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_7 = yes
+				}
+				z_limes_antigore_controls_region_6 = no
+			}
+			
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_6 = yes
+				}
+				z_limes_antigore_controls_region_9 = no
+			}
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_9 = yes
+				}
+				z_limes_antigore_controls_region_5 = no
+			}
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_5 = yes
+				}
+				z_limes_antigore_controls_region_4 = no
+			}
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_4 = yes
+				}
+				z_limes_antigore_controls_region_3 = no
+			}
+		}
+	}
+		
+	immediate = {
+		set_variable = {
+			name = "z_antigore_cooldown"
+			days = 15
+		}
+	}
+		
+	option = {
+		if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_8 = yes
+				}
+				z_limes_antigore_controls_region_7 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.208
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_7 = yes
+				}
+				z_limes_antigore_controls_region_6 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.207
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_6 = yes
+				}
+				z_limes_antigore_controls_region_9 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.206
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_9 = yes
+				}
+				z_limes_antigore_controls_region_5 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.209
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_5 = yes
+				}
+				z_limes_antigore_controls_region_4 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.205
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_4 = yes
+				}
+				z_limes_antigore_controls_region_3 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.204
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_antigore.103 = {																		#########   SPLIT EMPIRES: HOME REGION 3
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		is_ai = yes
+		is_subject = no
+		has_civil_war = no
+		NOT = { has_variable = "z_antigore_cooldown" }
+		capital_scope = {									# BASE ZONE
+			z_limes_antigore_region_3 = yes
+		}
+		OR = {
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_8 = yes
+				}
+				z_limes_antigore_controls_region_7 = no
+			}
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_7 = yes
+				}
+				z_limes_antigore_controls_region_6 = no
+			}
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_6 = yes
+				}
+				z_limes_antigore_controls_region_9 = no
+			}
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_9 = yes
+				}
+				z_limes_antigore_controls_region_5 = no
+			}
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_5 = yes
+				}
+				z_limes_antigore_controls_region_4 = no
+			}
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_1 = yes
+				}
+				z_limes_antigore_controls_region_2 = no
+			}
+		}
+	}
+		
+	immediate = {
+		set_variable = {
+			name = "z_antigore_cooldown"
+			days = 15
+		}
+	}
+		
+	option = {
+		if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_8 = yes
+				}
+				z_limes_antigore_controls_region_7 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.208
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_7 = yes
+				}
+				z_limes_antigore_controls_region_6 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.207
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_6 = yes
+				}
+				z_limes_antigore_controls_region_9 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.206
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_9 = yes
+				}
+				z_limes_antigore_controls_region_5 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.209
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_5 = yes
+				}
+				z_limes_antigore_controls_region_4 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.205
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_1 = yes
+				}
+				z_limes_antigore_controls_region_2 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.201
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_antigore.104 = {																		#########   SPLIT EMPIRES: HOME REGION 4
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		is_ai = yes
+		is_subject = no
+		has_civil_war = no
+		NOT = { has_variable = "z_antigore_cooldown" }
+		capital_scope = {									# BASE ZONE
+			z_limes_antigore_region_4 = yes
+		}
+		OR = {
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_8 = yes
+				}
+				z_limes_antigore_controls_region_7 = no
+			}
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_7 = yes
+				}
+				z_limes_antigore_controls_region_6 = no
+			}
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_6 = yes
+				}
+				z_limes_antigore_controls_region_9 = no
+			}
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_9 = yes
+				}
+				z_limes_antigore_controls_region_5 = no
+			}
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_1 = yes
+				}
+				z_limes_antigore_controls_region_2 = no
+			}
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_2 = yes
+				}
+				z_limes_antigore_controls_region_3 = no
+			}
+		}
+	}
+		
+	immediate = {
+		set_variable = {
+			name = "z_antigore_cooldown"
+			days = 15
+		}
+	}
+		
+	option = {
+		if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_8 = yes
+				}
+				z_limes_antigore_controls_region_7 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.208
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_7 = yes
+				}
+				z_limes_antigore_controls_region_6 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.207
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_6 = yes
+				}
+				z_limes_antigore_controls_region_9 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.206
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_9 = yes
+				}
+				z_limes_antigore_controls_region_5 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.209
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_1 = yes
+				}
+				z_limes_antigore_controls_region_2 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.201
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_2 = yes
+				}
+				z_limes_antigore_controls_region_3 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.202
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_antigore.105 = {																		#########   SPLIT EMPIRES: HOME REGION 5
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		is_ai = yes
+		is_subject = no
+		has_civil_war = no
+		NOT = { has_variable = "z_antigore_cooldown" }
+		capital_scope = {									# BASE ZONE
+			z_limes_antigore_region_5 = yes
+		}
+		OR = {
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_8 = yes
+				}
+				z_limes_antigore_controls_region_7 = no
+			}
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_7 = yes
+				}
+				z_limes_antigore_controls_region_6 = no
+			}
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_6 = yes
+				}
+				z_limes_antigore_controls_region_9 = no
+			}
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_1 = yes
+				}
+				z_limes_antigore_controls_region_2 = no
+			}
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_2 = yes
+				}
+				z_limes_antigore_controls_region_3 = no
+			}
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_3 = yes
+				}
+				z_limes_antigore_controls_region_4 = no
+			}
+		}
+	}
+		
+	immediate = {
+		set_variable = {
+			name = "z_antigore_cooldown"
+			days = 15
+		}
+	}
+		
+	option = {
+		if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_8 = yes
+				}
+				z_limes_antigore_controls_region_7 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.208
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_7 = yes
+				}
+				z_limes_antigore_controls_region_6 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.207
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_6 = yes
+				}
+				z_limes_antigore_controls_region_9 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.206
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_1 = yes
+				}
+				z_limes_antigore_controls_region_2 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.201
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_2 = yes
+				}
+				z_limes_antigore_controls_region_3 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.202
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_3 = yes
+				}
+				z_limes_antigore_controls_region_4 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.203
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_antigore.106 = {																		#########   SPLIT EMPIRES: HOME REGION 6
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		is_ai = yes
+		is_subject = no
+		has_civil_war = no
+		NOT = { has_variable = "z_antigore_cooldown" }
+		capital_scope = {									# BASE ZONE
+			z_limes_antigore_region_6 = yes
+		}
+		OR = {
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_8 = yes
+				}
+				z_limes_antigore_controls_region_7 = no
+			}
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_1 = yes
+				}
+				z_limes_antigore_controls_region_2 = no
+			}
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_2 = yes
+				}
+				z_limes_antigore_controls_region_3 = no
+			}
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_3 = yes
+				}
+				z_limes_antigore_controls_region_4 = no
+			}
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_4 = yes
+				}
+				z_limes_antigore_controls_region_5 = no
+			}
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_5 = yes
+				}
+				z_limes_antigore_controls_region_9 = no
+			}
+		}
+	}
+		
+	immediate = {
+		set_variable = {
+			name = "z_antigore_cooldown"
+			days = 15
+		}
+	}
+		
+	option = {
+		if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_8 = yes
+				}
+				z_limes_antigore_controls_region_7 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.208
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_1 = yes
+				}
+				z_limes_antigore_controls_region_2 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.201
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_2 = yes
+				}
+				z_limes_antigore_controls_region_3 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.202
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_3 = yes
+				}
+				z_limes_antigore_controls_region_4 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.203
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_4 = yes
+				}
+				z_limes_antigore_controls_region_5 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.204
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_5 = yes
+				}
+				z_limes_antigore_controls_region_9 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.205
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_antigore.107 = {																		#########   SPLIT EMPIRES: HOME REGION 7
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		is_ai = yes
+		is_subject = no
+		has_civil_war = no
+		NOT = { has_variable = "z_antigore_cooldown" }
+		capital_scope = {									# BASE ZONE
+			z_limes_antigore_region_7 = yes
+		}
+		OR = {
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_1 = yes
+				}
+				z_limes_antigore_controls_region_2 = no
+			}
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_2 = yes
+				}
+				z_limes_antigore_controls_region_3 = no
+			}
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_3 = yes
+				}
+				z_limes_antigore_controls_region_4 = no
+			}
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_4 = yes
+				}
+				z_limes_antigore_controls_region_5 = no
+			}
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_5 = yes
+				}
+				z_limes_antigore_controls_region_9 = no
+			}
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_9 = yes
+				}
+				z_limes_antigore_controls_region_6 = no
+			}
+		}
+	}
+		
+	immediate = {
+		set_variable = {
+			name = "z_antigore_cooldown"
+			days = 15
+		}
+	}
+		
+	option = {
+		if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_1 = yes
+				}
+				z_limes_antigore_controls_region_2 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.201
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_2 = yes
+				}
+				z_limes_antigore_controls_region_3 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.202
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_3 = yes
+				}
+				z_limes_antigore_controls_region_4 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.203
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_4 = yes
+				}
+				z_limes_antigore_controls_region_5 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.204
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_5 = yes
+				}
+				z_limes_antigore_controls_region_9 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.205
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_9 = yes
+				}
+				z_limes_antigore_controls_region_6 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.209
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_antigore.108 = {																		#########   SPLIT EMPIRES: HOME REGION 8
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		is_ai = yes
+		is_subject = no
+		has_civil_war = no
+		NOT = { has_variable = "z_antigore_cooldown" }
+		capital_scope = {									# BASE ZONE
+			z_limes_antigore_region_8 = yes
+		}
+		OR = {
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_1 = yes
+				}
+				z_limes_antigore_controls_region_2 = no
+			}
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_2 = yes
+				}
+				z_limes_antigore_controls_region_3 = no
+			}
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_3 = yes
+				}
+				z_limes_antigore_controls_region_4 = no
+			}
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_4 = yes
+				}
+				z_limes_antigore_controls_region_5 = no
+			}
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_5 = yes
+				}
+				z_limes_antigore_controls_region_9 = no
+			}
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_9 = yes
+				}
+				z_limes_antigore_controls_region_6 = no
+			}
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_6 = yes
+				}
+				z_limes_antigore_controls_region_7 = no
+			}
+		}
+	}
+		
+	immediate = {
+		set_variable = {
+			name = "z_antigore_cooldown"
+			days = 15
+		}
+	}
+		
+	option = {
+		if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_1 = yes
+				}
+				z_limes_antigore_controls_region_2 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.201
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_2 = yes
+				}
+				z_limes_antigore_controls_region_3 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.202
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_3 = yes
+				}
+				z_limes_antigore_controls_region_4 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.203
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_4 = yes
+				}
+				z_limes_antigore_controls_region_5 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.204
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_5 = yes
+				}
+				z_limes_antigore_controls_region_9 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.205
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_9 = yes
+				}
+				z_limes_antigore_controls_region_6 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.209
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_6 = yes
+				}
+				z_limes_antigore_controls_region_7 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.206
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_antigore.109 = {																		#########   SPLIT EMPIRES: HOME REGION 9
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		is_ai = yes
+		is_subject = no
+		has_civil_war = no
+		NOT = { has_variable = "z_antigore_cooldown" }
+		capital_scope = {									# BASE ZONE
+			z_limes_antigore_region_9 = yes
+		}
+		OR = {
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_8 = yes
+				}
+				z_limes_antigore_controls_region_7 = no
+			}
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_7 = yes
+				}
+				z_limes_antigore_controls_region_6 = no
+			}
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_1 = yes
+				}
+				z_limes_antigore_controls_region_2 = no
+			}
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_2 = yes
+				}
+				z_limes_antigore_controls_region_3 = no
+			}
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_3 = yes
+				}
+				z_limes_antigore_controls_region_4 = no
+			}
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_4 = yes
+				}
+				z_limes_antigore_controls_region_5 = no
+			}
+		}
+	}
+		
+	immediate = {
+		set_variable = {
+			name = "z_antigore_cooldown"
+			days = 15
+		}
+	}
+		
+	option = {
+		if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_8 = yes
+				}
+				z_limes_antigore_controls_region_7 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.208
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_7 = yes
+				}
+				z_limes_antigore_controls_region_6 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.207
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_1 = yes
+				}
+				z_limes_antigore_controls_region_2 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.201
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_2 = yes
+				}
+				z_limes_antigore_controls_region_3 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.202
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_3 = yes
+				}
+				z_limes_antigore_controls_region_4 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.203
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_4 = yes
+				}
+				z_limes_antigore_controls_region_5 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.204
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_antigore.201 = {																		#########   SPLIT EMPIRES: FREE REGION 1
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_limes_antigore_region_1 = yes
+			}
+			order_by = total_population
+			save_scope_as = z_antigore_cap
+		}
+		hidden_effect = {
+			z_antigore_create_country = yes
+			every_owned_province = {
+				limit = {
+					z_limes_antigore_region_1 = yes
+				}
+				set_owned_by = scope:z_antigore_new
+			}
+		}
+		z_antigore_aftermath = yes
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_antigore.202 = {																		#########   SPLIT EMPIRES: FREE REGION 2
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_limes_antigore_region_2 = yes
+			}
+			order_by = total_population
+			save_scope_as = z_antigore_cap
+		}
+		hidden_effect = {
+			z_antigore_create_country = yes
+			every_owned_province = {
+				limit = {
+					z_limes_antigore_region_2 = yes
+				}
+				set_owned_by = scope:z_antigore_new
+			}
+		}
+		z_antigore_aftermath = yes
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_antigore.203 = {																		#########   SPLIT EMPIRES: FREE REGION 3
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_limes_antigore_region_3 = yes
+			}
+			order_by = total_population
+			save_scope_as = z_antigore_cap
+		}
+		hidden_effect = {
+			z_antigore_create_country = yes
+			every_owned_province = {
+				limit = {
+					z_limes_antigore_region_3 = yes
+				}
+				set_owned_by = scope:z_antigore_new
+			}
+		}
+		z_antigore_aftermath = yes
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_antigore.204 = {																		#########   SPLIT EMPIRES: FREE REGION 4
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_limes_antigore_region_4 = yes
+			}
+			order_by = total_population
+			save_scope_as = z_antigore_cap
+		}
+		hidden_effect = {
+			z_antigore_create_country = yes
+			every_owned_province = {
+				limit = {
+					z_limes_antigore_region_4 = yes
+				}
+				set_owned_by = scope:z_antigore_new
+			}
+		}
+		z_antigore_aftermath = yes
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_antigore.205 = {																		#########   SPLIT EMPIRES: FREE REGION 5
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_limes_antigore_region_5 = yes
+			}
+			order_by = total_population
+			save_scope_as = z_antigore_cap
+		}
+		hidden_effect = {
+			z_antigore_create_country = yes
+			every_owned_province = {
+				limit = {
+					z_limes_antigore_region_5 = yes
+				}
+				set_owned_by = scope:z_antigore_new
+			}
+		}
+		z_antigore_aftermath = yes
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_antigore.206 = {																		#########   SPLIT EMPIRES: FREE REGION 6
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_limes_antigore_region_6 = yes
+			}
+			order_by = total_population
+			save_scope_as = z_antigore_cap
+		}
+		hidden_effect = {
+			z_antigore_create_country = yes
+			every_owned_province = {
+				limit = {
+					z_limes_antigore_region_6 = yes
+				}
+				set_owned_by = scope:z_antigore_new
+			}
+		}
+		z_antigore_aftermath = yes
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_antigore.207 = {																		#########   SPLIT EMPIRES: FREE REGION 7
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_limes_antigore_region_7 = yes
+			}
+			order_by = total_population
+			save_scope_as = z_antigore_cap
+		}
+		hidden_effect = {
+			z_antigore_create_country = yes
+			every_owned_province = {
+				limit = {
+					z_limes_antigore_region_7 = yes
+				}
+				set_owned_by = scope:z_antigore_new
+			}
+		}
+		z_antigore_aftermath = yes
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_antigore.208 = {																		#########   SPLIT EMPIRES: FREE REGION 8
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_limes_antigore_region_8 = yes
+			}
+			order_by = total_population
+			save_scope_as = z_antigore_cap
+		}
+		hidden_effect = {
+			z_antigore_create_country = yes
+			every_owned_province = {
+				limit = {
+					z_limes_antigore_region_8 = yes
+				}
+				set_owned_by = scope:z_antigore_new
+			}
+		}
+		z_antigore_aftermath = yes
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_antigore.209 = {																		#########   SPLIT EMPIRES: FREE REGION 9
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_limes_antigore_region_9 = yes
+			}
+			order_by = total_population
+			save_scope_as = z_antigore_cap
+		}
+		hidden_effect = {
+			z_antigore_create_country = yes
+			every_owned_province = {
+				limit = {
+					z_limes_antigore_region_9 = yes
+				}
+				set_owned_by = scope:z_antigore_new
+			}
+		}
+		z_antigore_aftermath = yes
+	}
+}
+
+#########################################################################################################################################			############
+#########################################################################################################################################	EGYPT	############
+#########################################################################################################################################			############
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_antigore.110 = {																		#########   SPLIT EMPIRES: HOME REGION 10
+	type = country_event																		#########
+	hidden = yes																				#########################################																				#########################################
+	
+	trigger = {
+		is_ai = yes
+		is_subject = no
+		has_civil_war = no
+		NOT = { has_variable = "z_antigore_cooldown" }
+		capital_scope = {									# BASE ZONE
+			OR = {											# ZONE 1+2+3+4 - ASIA
+				z_limes_antigore_region_1 = yes
+				z_limes_antigore_region_2 = yes
+				z_limes_antigore_region_3 = yes
+				z_limes_antigore_region_4 = yes
+			}
+		}
+		OR = {
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_11 = yes
+				}
+				z_limes_antigore_controls_region_10 = no
+			}
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_15 = yes
+				}
+				z_limes_antigore_controls_region_10 = no
+			}
+		}
+	}
+		
+	immediate = {
+		set_variable = {
+			name = "z_antigore_cooldown"
+			days = 15
+		}
+	}
+		
+	option = {
+		if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_11 = yes
+				}
+				z_limes_antigore_controls_region_10 = no
+			}
+			random = {
+				chance = 4
+				trigger_event = {
+					id = z_limes_antigore.211
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_15 = yes
+				}
+				z_limes_antigore_controls_region_10 = no
+			}
+			random = {
+				chance = 4
+				trigger_event = {
+					id = z_limes_antigore.215
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_antigore.111 = {																		#########   SPLIT EMPIRES: HOME REGION 11
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		is_ai = yes
+		is_subject = no
+		has_civil_war = no
+		NOT = { has_variable = "z_antigore_cooldown" }
+		capital_scope = {									# BASE ZONE
+			z_limes_antigore_region_11 = yes
+		}
+		OR = {
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					OR = {											# ZONE 1+2+3+4 - ASIA
+						z_limes_antigore_region_1 = yes
+						z_limes_antigore_region_2 = yes
+						z_limes_antigore_region_3 = yes
+						z_limes_antigore_region_4= yes
+					}
+				}
+				z_limes_antigore_controls_region_10 = no
+			}
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_15 = yes
+				}
+				z_limes_antigore_controls_region_10 = no
+			}
+		}
+	}
+		
+	immediate = {
+		set_variable = {
+			name = "z_antigore_cooldown"
+			days = 15
+		}
+	}
+		
+	option = {
+		if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					OR = {											# ZONE 1+2+3+4 - ASIA
+						z_limes_antigore_region_1 = yes
+						z_limes_antigore_region_2 = yes
+						z_limes_antigore_region_3 = yes
+						z_limes_antigore_region_4 = yes
+					}
+				}
+				z_limes_antigore_controls_region_10 = no
+			}
+			random = {
+				chance = 4
+				trigger_event = {
+					id = z_limes_antigore.210
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_15 = yes
+				}
+				z_limes_antigore_controls_region_10 = no
+			}
+			random = {
+				chance = 4
+				trigger_event = {
+					id = z_limes_antigore.215
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_antigore.210 = {																		#########   SPLIT EMPIRES: FREE REGION 1+2+3+4
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				OR = {											# ZONE 1+2+3+4 - ASIA
+					z_limes_antigore_region_1 = yes
+					z_limes_antigore_region_2 = yes
+					z_limes_antigore_region_3 = yes
+					z_limes_antigore_region_4 = yes
+				}
+			}
+			order_by = total_population
+			save_scope_as = z_antigore_cap
+		}
+		hidden_effect = {
+			z_antigore_create_country = yes
+			every_owned_province = {
+				limit = {
+					OR = {											# ZONE 1+2+3+4 - ASIA
+						z_limes_antigore_region_1 = yes
+						z_limes_antigore_region_2 = yes
+						z_limes_antigore_region_3 = yes
+						z_limes_antigore_region_4 = yes
+					}
+				}
+				set_owned_by = scope:z_antigore_new
+			}
+		}
+		z_antigore_aftermath = yes
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_antigore.211 = {																		#########   SPLIT EMPIRES: FREE REGION 11
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_limes_antigore_region_11 = yes
+			}
+			order_by = total_population
+			save_scope_as = z_antigore_cap
+		}
+		hidden_effect = {
+			z_antigore_create_country = yes
+			every_owned_province = {
+				limit = {
+					z_limes_antigore_region_11 = yes
+				}
+				set_owned_by = scope:z_antigore_new
+			}
+		}
+		z_antigore_aftermath = yes
+	}
+}
+
+#########################################################################################################################################			############
+#########################################################################################################################################	AFRICA	############
+#########################################################################################################################################			############
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_antigore.112 = {																		#########   SPLIT EMPIRES: HOME REGION 12
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		is_ai = yes
+		is_subject = no
+		has_civil_war = no
+		NOT = { has_variable = "z_antigore_cooldown" }
+		capital_scope = {									# BASE ZONE
+			z_limes_antigore_region_12 = yes
+		}
+		OR = {
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_14 = yes
+				}
+				z_limes_antigore_controls_region_13 = no
+			}
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_15 = yes
+				}
+				z_limes_antigore_controls_region_14 = no
+			}
+		}
+	}
+		
+	immediate = {
+		set_variable = {
+			name = "z_antigore_cooldown"
+			days = 15
+		}
+	}
+		
+	option = {
+		if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_14 = yes
+				}
+				z_limes_antigore_controls_region_13 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.214
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_15 = yes
+				}
+				z_limes_antigore_controls_region_14 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.215
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_antigore.113 = {																		#########   SPLIT EMPIRES: HOME REGION 13
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		is_ai = yes
+		is_subject = no
+		has_civil_war = no
+		NOT = { has_variable = "z_antigore_cooldown" }
+		capital_scope = {									# BASE ZONE
+			z_limes_antigore_region_13 = yes
+		}
+		OR = {
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_15 = yes
+				}
+				z_limes_antigore_controls_region_14 = no
+			}
+		}
+	}
+		
+	immediate = {
+		set_variable = {
+			name = "z_antigore_cooldown"
+			days = 15
+		}
+	}
+		
+	option = {
+		if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_15 = yes
+				}
+				z_limes_antigore_controls_region_14 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.215
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_antigore.114 = {																		#########   SPLIT EMPIRES: HOME REGION 14
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		is_ai = yes
+		is_subject = no
+		has_civil_war = no
+		NOT = { has_variable = "z_antigore_cooldown" }
+		capital_scope = {									# BASE ZONE
+			z_limes_antigore_region_14 = yes
+		}
+		OR = {
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_12 = yes
+				}
+				z_limes_antigore_controls_region_13 = no
+			}
+		}
+	}
+		
+	immediate = {
+		set_variable = {
+			name = "z_antigore_cooldown"
+			days = 15
+		}
+	}
+		
+	option = {
+		if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_12 = yes
+				}
+				z_limes_antigore_controls_region_13 = no
+			}
+			trigger_event = {
+				id = z_limes_antigore.212
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_antigore.115 = {																		#########   SPLIT EMPIRES: HOME REGION 15
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		is_ai = yes
+		is_subject = no
+		has_civil_war = no
+		NOT = { has_variable = "z_antigore_cooldown" }
+		capital_scope = {									# BASE ZONE
+			z_limes_antigore_region_15 = yes
+		}
+		OR = {
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					OR = {											# ZONE 1+2+3+4 - ASIA
+						z_limes_antigore_region_1 = yes
+						z_limes_antigore_region_2 = yes
+						z_limes_antigore_region_3 = yes
+						z_limes_antigore_region_4 = yes
+					}
+				}
+				z_limes_antigore_controls_region_10 = no
+			}
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_11 = yes
+				}
+				z_limes_antigore_controls_region_10 = no
+			}
+			AND = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_13 = yes
+				}
+				z_limes_antigore_controls_region_14 = no
+			}
+		}
+	}
+		
+	immediate = {
+		set_variable = {
+			name = "z_antigore_cooldown"
+			days = 15
+		}
+	}
+		
+	option = {
+		if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					OR = {											# ZONE 1+2+3+4 - ASIA
+						z_limes_antigore_region_1 = yes
+						z_limes_antigore_region_2 = yes
+						z_limes_antigore_region_3 = yes
+						z_limes_antigore_region_4 = yes
+					}
+				}
+				z_limes_antigore_controls_region_10 = no
+			}
+			random = {
+				chance = 4
+				trigger_event = {
+					id = z_limes_antigore.210
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_11 = yes
+				}
+				z_limes_antigore_controls_region_10 = no
+			}
+			random = {
+				chance = 4
+				trigger_event = {
+					id = z_limes_antigore.211
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {								# NON-NEIGHBOURING ZONE
+					z_limes_antigore_region_13 = yes
+				}
+				z_limes_antigore_controls_region_14 = no
+			}
+			random = {
+				chance = 4
+				trigger_event = {
+					id = z_limes_antigore.213
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_antigore.212 = {																		#########   SPLIT EMPIRES: FREE REGION 12
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_limes_antigore_region_12 = yes
+			}
+			order_by = total_population
+			save_scope_as = z_antigore_cap
+		}
+		hidden_effect = {
+			z_antigore_create_country = yes
+			every_owned_province = {
+				limit = {
+					z_limes_antigore_region_12 = yes
+				}
+				set_owned_by = scope:z_antigore_new
+			}
+		}
+		z_antigore_aftermath = yes
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_antigore.213 = {																		#########   SPLIT EMPIRES: FREE REGION 13
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_limes_antigore_region_13 = yes
+			}
+			order_by = total_population
+			save_scope_as = z_antigore_cap
+		}
+		hidden_effect = {
+			z_antigore_create_country = yes
+			every_owned_province = {
+				limit = {
+					z_limes_antigore_region_13 = yes
+				}
+				set_owned_by = scope:z_antigore_new
+			}
+		}
+		z_antigore_aftermath = yes
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_antigore.214 = {																		#########   SPLIT EMPIRES: FREE REGION 14
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_limes_antigore_region_14 = yes
+			}
+			order_by = total_population
+			save_scope_as = z_antigore_cap
+		}
+		hidden_effect = {
+			z_antigore_create_country = yes
+			every_owned_province = {
+				limit = {
+					z_limes_antigore_region_14 = yes
+				}
+				set_owned_by = scope:z_antigore_new
+			}
+		}
+		z_antigore_aftermath = yes
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_antigore.215 = {																		#########   SPLIT EMPIRES: FREE REGION 15
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				z_limes_antigore_region_15 = yes
+			}
+			order_by = total_population
+			save_scope_as = z_antigore_cap
+		}
+		hidden_effect = {
+			z_antigore_create_country = yes
+			every_owned_province = {
+				limit = {
+					z_limes_antigore_region_15 = yes
+				}
+				set_owned_by = scope:z_antigore_new
+			}
+		}
+		z_antigore_aftermath = yes
+	}
+}

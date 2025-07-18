@@ -1,0 +1,14 @@
+﻿#################################################################################################	Save nations scopes for settings pop-up
+#################################################################################################
+z_save_historical_antag_nations = {
+	c:ROM = { save_scope_as = z_an_hist_1 }
+	c:PAR = { save_scope_as = z_an_hist_2 }
+	c:SEL = { save_scope_as = z_an_hist_3 }
+	c:EGY = { save_scope_as = z_an_hist_4 }
+	c:MAC = { save_scope_as = z_an_hist_5 }
+	c:CAR = { save_scope_as = z_an_hist_6 }
+	c:ARM = { save_scope_as = z_an_hist_7 }
+	c:CHL = { save_scope_as = z_an_hist_8 }
+	c:EPI = { save_scope_as = z_an_hist_9 }
+	c:KIO = { save_scope_as = z_an_hist_10 }
+}

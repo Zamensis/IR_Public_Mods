@@ -1,0 +1,77 @@
+﻿# --------------------------------------------------------------------------------
+# Claim effects - In the rare instance where the player uses MMs, they make claims for him
+# --------------------------------------------------------------------------------
+z_VL_limes_claim_effect = {
+	if = {
+		limit = {
+			z_limes_is_mm_trigger = yes
+			overlord = {
+				is_ai = no
+				has_civil_war = no
+			}
+			any_neighbour_country = { has_land = yes }
+		}
+		random_owned_province = { remove_claim = root.overlord }
+		random_neighbour_country = {
+			limit = {
+				has_land = yes
+				NOR = {
+					this = root.overlord
+					AND = {
+						is_subject = yes
+						overlord = root.overlord
+					}
+					alliance_with = root.overlord
+					is_guaranteed_by = root.overlord
+					war_with = root.overlord
+				}
+			}
+			random_owned_province = {
+				limit = {
+					any_neighbor_province = {
+						has_owner = yes
+						owner = root
+					}
+				}
+				add_claim = root.overlord
+			}
+		}
+	}
+}
+
+z_VL_limes_list_metropolis_provinces_effect = {
+	capital_scope = { add_to_list = z_limes_metropolis }
+	while = {
+		count = 20
+		every_owned_province = {
+			limit = {
+				has_owner = yes
+				any_neighbor_province = { is_in_list = z_limes_metropolis }
+				NOT = { is_in_list = z_limes_metropolis }
+			}
+			add_to_list = z_limes_metropolis
+			every_neighbor_province = {
+				limit = {
+					has_owner = yes
+					owner = root
+					NOT = { is_in_list = z_limes_metropolis }
+				}
+				add_to_list = z_limes_metropolis
+			}
+		}
+	}
+	every_owned_province = {
+		limit = {
+			NOT = { is_in_list = z_limes_metropolis }
+		}
+		save_scope_as = z_limes_mm_capital
+		root = { z_limes_make_mm_effect = { ZONE = region } }
+		owner = {
+			every_owned_province = { remove_from_list = z_limes_metropolis }
+		}
+	}
+	every_owned_province = {
+		limit = { is_in_list = z_limes_metropolis }
+		remove_from_list = z_limes_metropolis
+	}
+}

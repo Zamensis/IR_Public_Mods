@@ -1,0 +1,9 @@
+﻿# --------------------------------------------------------------------------------
+# Ruler global score
+# --------------------------------------------------------------------------------
+z_limes_ruler_score = {
+	add = current_ruler.martial
+	add = current_ruler.charisma
+	add = current_ruler.finesse
+	add = current_ruler.zeal
+}

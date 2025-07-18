@@ -1,0 +1,87 @@
+﻿#-----------------------------------------------------------------------------------------
+#
+#	Values used in country notifications
+#
+#-----------------------------------------------------------------------------------------
+z_notifications_war_attacker_allies = {
+	value = 0
+	scope:z_notifications_war = {
+		every_war_attacker = {
+			add = 1
+		}
+	}
+}
+
+z_notifications_war_defender_allies = {
+	value = 0
+	scope:z_notifications_war = {
+		every_war_defender = {
+			add = 1
+		}
+	}
+}
+
+z_notifications_war_attacker_size = {
+	value = 0
+	scope:z_notifications_war = {
+		every_war_attacker = {
+			every_owned_province = {
+				add = 1
+			}
+		}
+	}
+}
+
+z_notifications_war_defender_size = {
+	value = 0
+	scope:z_notifications_war = {
+		every_war_defender = {
+			every_owned_province = {
+				add = 1
+			}
+		}
+	}
+}
+
+z_notifications_war_attacker_fpop = {
+	value = 0
+	scope:z_notifications_war = {
+		every_war_attacker = {
+			every_country_culture = {
+				limit = {
+					OR = {
+						is_integrated = yes
+						this.culture = prev.culture
+					}
+				}
+				add = country_culture_pop_count
+			}
+		}
+	}
+}
+
+z_notifications_war_defender_fpop = {
+	value = 0
+	scope:z_notifications_war = {
+		every_war_defender = {
+			every_country_culture = {
+				limit = {
+					OR = {
+						is_integrated = yes
+						this.culture = prev.culture
+					}
+				}
+				add = country_culture_pop_count
+			}
+		}
+	}
+}
+
+z_notifications_war_capital_fallen = {
+	value = 0
+	scope:target = {
+		every_pops_in_province = {
+			add = 1
+		}
+	}
+}

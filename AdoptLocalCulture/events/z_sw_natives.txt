@@ -1,0 +1,956 @@
+﻿namespace = z_sw_natives
+
+#########################################################################################################################################
+#########################################################################################################
+z_sw_natives.1 = {																				#########   Find Native Majority In Capital Area
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		is_ai = no
+		any_country_culture = {
+			#is_integrated = yes
+			NOT = {
+				this = root.country_culture
+				has_country_culture_modifier = z_sw_native_majority
+			}
+		}
+		NOT = {
+			has_country_modifier = z_sw_local_culture_embraced_country
+			z_sw_primary_culture >= z_sw_country_population_d4
+		}
+	}
+	
+	immediate = {
+		z_sw_compare_cultures = yes
+		while = {																# Start loop
+			limit = {
+				any_country_culture = {											# Check whether there are still cultures on the list
+					is_in_list = z_sw_list_country_cultures
+				}
+			}
+			random_country_culture = {											# If so, pick one at random
+				limit = {
+					is_in_list = z_sw_list_country_cultures
+				}
+				save_scope_as = z_sw_culture_B									# Mark as B
+				remove_from_list = z_sw_list_country_cultures					# Remove from the list
+			}
+			if = {
+				limit = {														# If pop B is greater than pop A...
+					exists = scope:z_sw_culture_B
+					z_sw_culture_B_capital_area > z_sw_culture_A_capital_area
+				}																# ...then pop B...
+				scope:z_sw_culture_B = {
+					save_scope_as = z_sw_culture_A								# ...becomes pop A.
+				}
+			}
+		}																		# End loop / Repeat
+	}
+		
+	option = {
+		hidden_effect = {
+			if = {
+				limit = {
+					z_sw_culture_A_capital_area > z_sw_capital_area_population_d2
+					scope:z_sw_culture_A = {
+						NOT = {
+							has_country_culture_modifier = z_sw_native_majority
+						}
+					}							
+				}
+				scope:z_sw_culture_A = {
+					save_scope_as = z_sw_culture_B								# Fix tooltip
+					add_country_culture_modifier = {							# Add Oppressed Majority
+						name = z_sw_native_majority
+						duration = -1
+					}
+				}
+			}
+		}
+	}
+	
+	after = {
+		if = {
+			limit = {
+				any_country_culture = {
+					has_country_culture_modifier = z_sw_native_majority
+				}
+			}
+			clear_saved_scope = z_sw_culture_A										# Clear scopes
+			clear_saved_scope = z_sw_culture_B
+			every_country_culture = {												# Clear list
+				limit = {
+					is_in_list = z_sw_list_country_cultures
+				}
+				remove_from_list = z_sw_list_country_cultures
+			}
+		}
+		else = {
+			clear_saved_scope = z_sw_culture_A										# Clear scopes
+			clear_saved_scope = z_sw_culture_B
+			every_country_culture = {												# Clear list
+				limit = {
+					is_in_list = z_sw_list_country_cultures
+				}
+				remove_from_list = z_sw_list_country_cultures
+			}
+			trigger_event = { id = z_sw_natives.2 }
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_sw_natives.2 = {																				#########   Find Native Majority In Capital Region
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		is_ai = no
+		any_country_culture = {
+			#is_integrated = yes
+			NOT = {
+				this = root.country_culture
+				has_country_culture_modifier = z_sw_native_majority
+			}
+		}
+		NOT = {
+			has_country_modifier = z_sw_local_culture_embraced_country
+			z_sw_primary_culture >= z_sw_country_population_d4
+		}
+	}
+	
+	immediate = {
+		z_sw_compare_cultures = yes
+		while = {																# Start loop
+			limit = {
+				any_country_culture = {											# Check whether there are still cultures on the list
+					is_in_list = z_sw_list_country_cultures
+				}
+			}
+			random_country_culture = {											# If so, pick one at random
+				limit = {
+					is_in_list = z_sw_list_country_cultures
+				}
+				save_scope_as = z_sw_culture_B									# Mark as B
+				remove_from_list = z_sw_list_country_cultures					# Remove from the list
+			}
+			if = {
+				limit = {														# If pop B is greater than pop A...
+					exists = scope:z_sw_culture_B
+					z_sw_culture_B_capital_region > z_sw_culture_A_capital_region
+				}																# ...then pop B...
+				scope:z_sw_culture_B = {
+					save_scope_as = z_sw_culture_A								# ...becomes pop A.
+				}
+			}
+		}																		# End of loop / Repeat
+	}
+		
+	option = {
+		hidden_effect = {
+			if = {
+				limit = {
+					z_sw_culture_A_capital_region > z_sw_capital_region_population_d2
+					scope:z_sw_culture_A = {
+						NOT = {
+							has_country_culture_modifier = z_sw_native_majority
+						}
+					}							
+				}
+				scope:z_sw_culture_A = {
+					save_scope_as = z_sw_culture_B								# Fix tooltip
+					add_country_culture_modifier = {							# Add Oppressed Majority
+						name = z_sw_native_majority
+						duration = -1
+					}
+				}
+			}
+		}
+	}
+	
+	after = {
+		if = {
+			limit = {
+				any_country_culture = {
+					has_country_culture_modifier = z_sw_native_majority
+				}							
+			}
+			clear_saved_scope = z_sw_culture_A										# Clear scopes
+			clear_saved_scope = z_sw_culture_B
+			every_country_culture = {												# Clear list
+				limit = {
+					is_in_list = z_sw_list_country_cultures
+				}
+				remove_from_list = z_sw_list_country_cultures
+			}
+		}
+		else = {
+			clear_saved_scope = z_sw_culture_A										# Clear scopes
+			clear_saved_scope = z_sw_culture_B
+			every_country_culture = {												# Clear list
+				limit = {
+					is_in_list = z_sw_list_country_cultures
+				}
+				remove_from_list = z_sw_list_country_cultures
+			}
+			trigger_event = { id = z_sw_natives.3 }
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_sw_natives.3 = {																				#########   Find Native Majority In Entire Country
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		is_ai = no
+		any_country_culture = {
+			#is_integrated = yes
+			NOT = {
+				this = root.country_culture
+				has_country_culture_modifier = z_sw_native_majority
+			}
+		}
+		NOT = {
+			has_country_modifier = z_sw_local_culture_embraced_country
+			z_sw_primary_culture >= z_sw_country_population_d2
+		}
+	}
+	
+	immediate = {
+		z_sw_compare_cultures = yes
+		while = {																# Start loop
+			limit = {
+				any_country_culture = {											# Check whether there are still cultures on the list
+					is_in_list = z_sw_list_country_cultures
+				}
+			}
+			random_country_culture = {											# If so, pick one at random
+				limit = {
+					is_in_list = z_sw_list_country_cultures
+				}
+				save_scope_as = z_sw_culture_B									# Mark as B
+				remove_from_list = z_sw_list_country_cultures					# Remove from the list
+			}
+			if = {
+				limit = {														# If pop B is greater than pop A...
+					exists = scope:z_sw_culture_B
+					z_sw_culture_B_country > z_sw_culture_A_country
+				}																# ...then pop B...
+				scope:z_sw_culture_B = {
+					save_scope_as = z_sw_culture_A								# ...becomes pop A.
+				}
+			}
+		}																		# End of loop / Repeat
+	}
+		
+	option = {
+		hidden_effect = {
+			if = {
+				limit = {
+					z_sw_culture_A_country > z_sw_country_population_d2
+					scope:z_sw_culture_A = {
+						NOT = {
+							has_country_culture_modifier = z_sw_native_majority
+						}
+					}							
+				}
+				scope:z_sw_culture_A = {
+					save_scope_as = z_sw_culture_B								# Fix tooltip
+					add_country_culture_modifier = {							# Add Oppressed Majority
+						name = z_sw_native_majority
+						duration = -1
+					}
+				}
+			}
+		}
+	}
+	
+	after = {
+		clear_saved_scope = z_sw_culture_A										# Clear scopes
+		clear_saved_scope = z_sw_culture_B
+		every_country_culture = {												# Clear list
+			limit = {
+				is_in_list = z_sw_list_country_cultures
+			}
+			remove_from_list = z_sw_list_country_cultures
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_sw_natives.4 = {																				#########   Clear Native Majority
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		#is_ai = no
+		any_country_culture = {
+			has_country_culture_modifier = z_sw_native_majority
+		}
+	}
+	
+	immediate = {
+		random_country_culture = {
+			limit = {
+				has_country_culture_modifier = z_sw_native_majority
+			}
+			save_scope_as = z_sw_culture_A
+		}
+	}
+		
+	option = {
+		hidden_effect = {
+			if = {
+				limit = {
+					OR = {
+						z_sw_primary_culture >= z_sw_country_population_d2
+						has_country_modifier = z_sw_local_culture_embraced_country
+						scope:z_sw_culture_A = {
+							this = root.country_culture
+						}
+						#scope:z_sw_culture_A = {
+						#	is_integrated = no
+						#}
+						NOT = {
+							z_sw_culture_A_capital_area > z_sw_capital_area_population_d2
+							z_sw_culture_A_capital_region > z_sw_capital_region_population_d2
+							z_sw_culture_A_country > z_sw_country_population_d2
+						}
+					}
+				}
+				scope:z_sw_culture_A = {
+					remove_country_culture_modifier = z_sw_native_majority
+				}
+			}
+		}
+	}
+	
+	after = {
+		clear_saved_scope = z_sw_culture_A
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_sw_natives.100 = {																			#########   Embrace Local Culture
+	type = country_event																		#########
+	title = "z_sw_natives.100.t"																#########################################
+	desc = "z_sw_natives.100.desc"
+	picture = shrine_city
+	
+	left_portrait = root.current_ruler
+	#right_portrait = 
+	
+	trigger = {
+		is_ai = no
+		any_country_culture = {
+			NOT = {
+				this = root.country_culture
+			}
+			has_country_culture_modifier = z_sw_native_majority
+		}
+		any_owned_province = {
+			any_pops_in_province = {
+				this.country_culture = {
+					has_country_culture_modifier = z_sw_native_majority
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		set_variable = {
+			name = z_sw_embrace_local_culture_cooldown
+			days = 3650
+		}
+		random_country_culture = {
+			limit = {
+				has_country_culture_modifier = z_sw_native_majority
+			}
+			save_scope_as = z_sw_embraced_majority
+		}
+		root.country_culture = {
+			save_scope_as = z_sw_ruling_minority
+		}
+		root.current_ruler.culture = {
+			save_scope_as = z_sw_ruling_minority_pop_culture
+		}
+		random_owned_province = {
+			limit = {
+				any_pops_in_province = {
+					this.country_culture = {
+						has_country_culture_modifier = z_sw_native_majority
+					}
+				}
+			}
+			random_pops_in_province = {
+				limit = {
+					this.country_culture = {
+						has_country_culture_modifier = z_sw_native_majority
+					}
+				}
+				this.culture = {
+					save_scope_as = z_sw_embraced_majority_pop_culture
+				}
+			}
+		}
+		root.current_ruler = {
+			save_scope_as = z_sw_embracing_ruler
+		}
+	}
+		
+	option = {
+		name = "z_sw_natives.100.a"
+		root.current_ruler = {
+			set_culture = scope:z_sw_embraced_majority_pop_culture
+		}
+		if = {
+			limit = {
+				NOT = {
+					primary_culture = scope:z_sw_embraced_majority_pop_culture
+				}
+			}
+			set_primary_culture_cleanup_effect = {
+				NEW_PRIMARY_CULTURE = scope:z_sw_embraced_majority_pop_culture
+				MAKE_OLD_CULTURE_INTEGRATED = yes
+			}
+		}
+		if = {																					# Remove cultural maluses
+			limit = {
+				scope:z_sw_embraced_majority = {
+					has_country_culture_modifier = z_sw_native_majority
+				}
+			}
+			scope:z_sw_embraced_majority = {
+				remove_country_culture_modifier = z_sw_native_majority
+			}
+		}
+		scope:z_sw_embraced_majority = {
+			add_country_culture_modifier = {
+				name = z_sw_embraced_culture
+				duration = 3650
+			}
+		}
+		custom_tooltip = z_sw_natives.100.at
+		scope:z_sw_ruling_minority = {
+			add_country_culture_modifier = {
+				name = z_sw_deposed_culture
+				duration = 3650
+			}
+		}
+		hidden_effect = {
+			set_primary_culture_cleanup_effect_2 = yes											# Noble Cultures Count Bugfix
+			every_character = {
+				limit = {
+					this.culture = scope:z_sw_ruling_minority_pop_culture
+					NOT = {
+						has_trait = zealous
+					}
+					OR = {
+						AND = {
+							has_trait = tolerant
+							loyalty > 50
+						}
+						AND = {
+							is_child_of = root.current_ruler
+							age >= 16
+							loyalty > 55
+						}
+						AND = {
+							this.spouse = root.current_ruler
+							loyalty > 40
+						}
+						AND = {
+							is_friend = root.current_ruler
+							loyalty > 50
+						}
+						loyalty > 70
+					}
+				}
+				random_list = {
+					33 = {
+						set_culture = scope:z_sw_embraced_majority_pop_culture
+					}
+					67 = {}
+				}
+			}
+			every_character = {
+				limit = {
+					this.culture = scope:z_sw_ruling_minority_pop_culture
+					AND = {
+						is_child_of = root.current_ruler
+						age < 16
+					}
+				}
+				set_culture = scope:z_sw_embraced_majority_pop_culture
+			}
+			if = {
+				limit = {
+					tag = EGY
+				}
+				hidden_effect = {
+					set_country_heritage = river_plain_heritage
+					change_country_name = "EGYPT_NAME"
+					change_country_flag = EGYPTIAN_FLAG
+					change_country_adjective = "EGYPT_ADJECTIVE"
+					change_country_color = "egypt_color"
+					change_country_tag = EGT
+				}
+			}
+		}
+	}
+	
+	after = {
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_sw_natives.101 = {																			#########   Embrace Local Culture - Convert Loyal or Tolerant Characters (Hidden)
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		has_country_modifier = z_sw_local_culture_embraced_country
+		any_character = {
+			age >= 20
+			NOT = {
+				has_trait = zealous
+				this.culture = root.current_ruler.culture
+			}
+			OR = {
+				loyalty > 65
+				AND = {
+					loyalty > 50
+					OR = {
+						is_friend = root.current_ruler
+						has_trait = tolerant
+					}
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		random_character = {
+			limit = {
+				age >= 20
+				NOT = {
+					has_trait = zealous
+					this.culture = root.current_ruler.culture
+				}
+				OR = {
+					loyalty > 65
+					AND = {
+						loyalty > 50
+						OR = {
+							is_friend = root.current_ruler
+							has_trait = tolerant
+						}
+					}
+				}
+			}
+			this.culture = {
+				save_scope_as = z_sw_converted_former_culture
+			}
+			save_scope_as = z_sw_converted_character
+		}
+		scope:z_sw_converted_character = {
+			set_culture = root.current_ruler.culture
+		}
+	}
+	
+	after = {
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_sw_natives.200 = {																			#########   Embrace Local Culture - Search for an eligible former primary culture leader
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		is_ai = no
+		is_subject = no
+		z_sw_elc_war_threshold < 50
+		has_country_modifier = z_sw_local_culture_embraced_country
+		any_country_culture = {
+			has_country_culture_modifier = z_sw_embraced_culture
+		}
+		any_country_culture = {
+			has_country_culture_modifier = z_sw_deposed_culture
+		}
+		NOT = {
+			has_variable = z_sw_ruler_challenged_cooldown
+			has_variable = z_sw_ruler_challenged_by_former_primary_culture_cooldown
+		}
+	}
+	
+	immediate = {
+		z_sw_save_embrace_local_culture_scopes = yes
+		if = {
+			limit = {
+				any_character = {
+					this.culture = scope:z_sw_deposed_minority_pop_culture
+					loyalty < 50
+					OR = {
+						is_governor = yes
+						is_general = yes
+						has_any_office = yes
+					}
+				}
+			}
+			random_character = {
+				limit = {
+					this.culture = scope:z_sw_deposed_minority_pop_culture
+					loyalty < 50
+					OR = {
+						is_governor = yes
+						is_general = yes
+						has_any_office = yes
+					}
+				}
+				save_scope_as = z_sw_deposed_minority_leader
+			}
+			if = {
+				limit = {
+					any_owned_province = {
+						NOT = {
+							this = root.capital_scope
+						}
+						dominant_province_culture = scope:z_sw_deposed_minority_pop_culture
+					}
+				}
+				ordered_owned_province = {
+					limit = {
+						NOT = {
+							this = root.capital_scope
+						}
+						dominant_province_culture = scope:z_sw_deposed_minority_pop_culture
+					}
+					order_by = total_population
+					save_scope_as = z_sw_deposed_minority_capital
+				}
+				trigger_event = {
+					id = z_sw_natives.201
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_sw_natives.201 = {																			#########   Embrace Local Culture - Former primary culture ultimatum
+	type = country_event																		#########
+	title = "z_sw_natives.201.t"																#########################################
+	desc = "z_sw_natives.201.desc"
+	picture = looting
+	
+	left_portrait = root.current_ruler
+	right_portrait = scope:z_sw_deposed_minority_leader
+	
+	immediate = {
+		set_variable = {
+			name = z_sw_ruler_challenged_cooldown
+			days = 365
+		}
+		set_variable = {
+			name = z_sw_ruler_challenged_by_former_primary_culture_cooldown
+			days = 3650
+		}
+	}
+	
+	option = {																					# Disperse them!
+		name = "z_sw_natives.201.a"
+		add_stability = -5
+		add_legitimacy = -5
+		add_tyranny = 10
+		random_list = {
+			50 = {																				# Civil war!
+				custom_tooltip = z_sw_natives.201.at2
+				custom_tooltip = z_sw_natives.201.at3
+				hidden_effect = {
+					scope:z_sw_deposed_minority_capital = {
+						create_country = {
+							save_scope_as = z_sw_deposed_minority_rebellion
+							if = {
+								limit = {
+									root = {
+										is_tribal = yes
+									}
+								}
+								if = {
+									limit = { government = tribal_chiefdom }
+									scope:z_sw_deposed_minority_rebellion = { change_government = tribal_chiefdom }
+								}
+								else = {
+									scope:z_sw_deposed_minority_rebellion = { change_government = tribal_kingdom }
+								}
+							}
+							else_if = {
+								scope:z_sw_deposed_minority_rebellion = { change_government = despotic_monarchy }
+							}
+							set_as_ruler = scope:z_sw_deposed_minority_leader
+							scope:z_sw_deposed_minority_leader = {
+								add_treasury = 100
+							}
+							add_treasury = 500
+							root = {
+								every_owned_province = {
+									limit = {
+										NOT = {
+											this = root.capital_scope
+										}
+										dominant_province_culture = scope:z_sw_deposed_minority_pop_culture
+									}
+									set_owned_by = scope:z_sw_deposed_minority_rebellion
+								}
+							}
+							declare_war_with_wargoal = {
+								war_goal = imperial_conquest_wargoal
+								province = root.capital_scope
+								target = root
+							}
+						}
+					}
+				}
+			}
+			50 = {																				# They are dispersed
+				custom_tooltip = z_sw_natives.201.at1
+				scope:z_sw_deposed_minority_leader = {
+					death = { death_reason = death_execution }
+				}
+			}
+		}
+	}
+	
+	#option = {																					# Yield
+	#	name = "z_sw_natives.201.b"
+	#	add_stability = 5
+	#	add_legitimacy = 5
+	#	set_as_ruler = scope:z_sw_deposed_minority_leader
+	#	if = {
+	#		limit = {
+	#			NOT = {
+	#				primary_culture = scope:z_sw_deposed_minority_pop_culture
+	#			}
+	#		}
+	#		set_primary_culture_cleanup_effect = {
+	#			NEW_PRIMARY_CULTURE = scope:z_sw_deposed_minority_pop_culture
+	#			MAKE_OLD_CULTURE_INTEGRATED = yes
+	#		}
+	#	}
+	#	if = {																					# Cleanup decision-related modifiers
+	#		limit = {
+	#			has_country_modifier = z_sw_local_culture_embraced_country
+	#		}
+	#		remove_country_modifier = z_sw_local_culture_embraced_country
+	#	}
+	#	if = {																					# Cleanup decision-related modifiers
+	#		limit = {
+	#			scope:z_sw_embraced_majority = {
+	#				has_country_culture_modifier = z_sw_embraced_culture
+	#			}
+	#		}
+	#		scope:z_sw_embraced_majority = {
+	#			remove_country_culture_modifier = z_sw_embraced_culture
+	#		}
+	#	}
+	#	if = {																					# Cleanup decision-related modifiers
+	#		limit = {
+	#			scope:z_sw_deposed_minority = {
+	#				has_country_culture_modifier = z_sw_deposed_culture
+	#			}
+	#		}
+	#		scope:z_sw_deposed_minority = {
+	#			remove_country_culture_modifier = z_sw_deposed_culture
+	#		}
+	#	}
+	#	hidden_effect = {
+	#		set_primary_culture_cleanup_effect_2 = yes											# Noble Cultures Count Bugfix
+	#	}
+	#}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_sw_natives.300 = {																			#########   Embrace Local Culture - Search for an eligible newer primary culture leader
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		is_ai = no
+		is_subject = no
+		z_sw_elc_war_threshold < 50
+		has_country_modifier = z_sw_local_culture_embraced_country
+		any_country_culture = {
+			has_country_culture_modifier = z_sw_embraced_culture
+		}
+		any_country_culture = {
+			has_country_culture_modifier = z_sw_deposed_culture
+		}
+		NOT = {
+			has_variable = z_sw_ruler_challenged_cooldown
+			has_variable = z_sw_ruler_challenged_by_newer_primary_culture_cooldown
+		}
+	}
+	
+	immediate = {
+		z_sw_save_embrace_local_culture_scopes = yes
+		if = {
+			limit = {
+				any_character = {
+					this.culture = scope:z_sw_embraced_majority_pop_culture
+					loyalty < 50
+					OR = {
+						is_governor = yes
+						is_general = yes
+						has_any_office = yes
+					}
+				}
+			}
+			random_character = {
+				limit = {
+					this.culture = scope:z_sw_embraced_majority_pop_culture
+					loyalty < 50
+					OR = {
+						is_governor = yes
+						is_general = yes
+						has_any_office = yes
+					}
+				}
+				save_scope_as = z_sw_embraced_majority_leader
+			}
+			if = {
+				limit = {
+					any_owned_province = {
+						NOT = {
+							this = root.capital_scope
+						}
+						dominant_province_culture = scope:z_sw_embraced_majority_pop_culture
+					}
+				}
+				ordered_owned_province = {
+					limit = {
+						NOT = {
+							this = root.capital_scope
+						}
+						dominant_province_culture = scope:z_sw_embraced_majority_pop_culture
+					}
+					order_by = total_population
+					save_scope_as = z_sw_embraced_majority_capital
+				}
+				trigger_event = {
+					id = z_sw_natives.301
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_sw_natives.301 = {																			#########   Embrace Local Culture - Newer primary culture ultimatum
+	type = country_event																		#########
+	title = "z_sw_natives.301.t"																#########################################
+	desc = "z_sw_natives.301.desc"
+	picture = looting
+	
+	left_portrait = root.current_ruler
+	right_portrait = scope:z_sw_embraced_majority_leader
+	
+	immediate = {
+		set_variable = {
+			name = z_sw_ruler_challenged_cooldown
+			days = 365
+		}
+		set_variable = {
+			name = z_sw_ruler_challenged_by_newer_primary_culture_cooldown
+			days = 3650
+		}
+	}
+	
+	option = {																					# Disperse them!
+		name = "z_sw_natives.301.a"
+		add_stability = -5
+		add_legitimacy = -5
+		add_tyranny = 10
+		random_list = {
+			50 = {																				# Civil war!
+				custom_tooltip = z_sw_natives.301.at2
+				custom_tooltip = z_sw_natives.301.at3
+				hidden_effect = {
+					scope:z_sw_embraced_majority_capital = {
+						create_country = {
+							save_scope_as = z_sw_embraced_majority_rebellion
+							if = {
+								limit = {
+									root = {
+										is_tribal = yes
+									}
+								}
+								if = {
+									limit = { government = tribal_chiefdom }
+									scope:z_sw_embraced_majority_rebellion = { change_government = tribal_chiefdom }
+								}
+								else = {
+									scope:z_sw_embraced_majority_rebellion = { change_government = tribal_kingdom }
+								}
+							}
+							else_if = {
+								scope:z_sw_embraced_majority_rebellion = { change_government = despotic_monarchy }
+							}
+							set_as_ruler = scope:z_sw_embraced_majority_leader
+							scope:z_sw_embraced_majority_leader = {
+								add_treasury = 100
+							}
+							add_treasury = 500
+							root = {
+								every_owned_province = {
+									limit = {
+										NOT = {
+											this = root.capital_scope
+										}
+										dominant_province_culture = scope:z_sw_embraced_majority_pop_culture
+									}
+									random_list = {
+										75 = {
+											set_owned_by = scope:z_sw_embraced_majority_rebellion
+										}
+										25 = {}
+									}
+								}
+							}
+							declare_war_with_wargoal = {
+								war_goal = imperial_conquest_wargoal
+								province = root.capital_scope
+								target = root
+							}
+						}
+					}
+				}
+			}
+			50 = {																				# They are dispersed
+				custom_tooltip = z_sw_natives.301.at1
+				scope:z_sw_embraced_majority_leader = {
+					death = { death_reason = death_execution }
+				}
+			}
+		}
+	}
+	
+	option = {																					# Yield
+		name = "z_sw_natives.301.b"
+		add_stability = 5
+		add_legitimacy = 5
+		set_as_ruler = scope:z_sw_embraced_majority_leader
+	}
+}

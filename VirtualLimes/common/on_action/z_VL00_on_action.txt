@@ -1,0 +1,161 @@
+﻿#-----------------------------------------------------------------------------------------
+# Vanilla on_actions
+#-----------------------------------------------------------------------------------------
+on_game_initialized = {
+	on_actions = {
+		z_VL_routine							# Main routine - Initialize or update common VL settings (modifiers, level, etc.)
+		z_VL_limes								# Main VL function - Create MMs along natural/historical boundaries
+	}
+}
+
+on_ending_war = {
+	on_actions = {
+		z_VL_routine							# Main routine - Initialize or update common VL settings (modifiers, level, etc.)
+		z_VL_limes								# Main VL function - Create MMs along natural/historical boundaries
+		z_VL_peace								# Peace effects - Fix some bordergore immediately after war ended
+	}
+}
+
+monthly_country_pulse = {
+	on_actions = {
+		delay = { days = { 5 25 } }
+		z_VL_attack								# Attack effects - Help the AI reach its historical goals
+		z_VL_civil_war							# Civil war effects - Precipitate the end of AI-only civil wars (major cause of bordergore)
+	}
+}
+
+yearly_country_pulse = {
+	on_actions = {
+		z_VL_yearly_country_pulse
+		z_VL_routine							# Main routine - Initialize or update common VL settings (modifiers, level, etc.)
+		z_VL_nointegrate_100					# No integrate effects - Prevent the Diadochi from integrating their native pops before a certain threshold
+		
+		delay = { days = { 15 350 } }
+		z_VL_limes_cleanup						# Cleanup effects - Release, merge, absorb, rename, annex
+		z_VL_limes_claim						# Claim effects - In the rare instance where the player uses MMs, they make claims for him
+	}
+}
+
+on_culture_integration_25 = {
+	on_actions = {
+		z_VL_nointegrate_25						# No integrate effects - Prevent the Diadochi from integrating their native pops before a certain threshold
+	}
+}
+
+on_culture_integration_100 = {
+	on_actions = {
+		z_VL_nointegrate_100					# No integrate effects - Prevent the Diadochi from integrating their native pops before a certain threshold
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# Yearly regular update
+#-----------------------------------------------------------------------------------------
+z_VL_yearly_country_pulse = {
+	effect = {
+		# Update timer
+		z_limes_update_timer_effect = yes
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# Limes routine - Initialize or update common VL settings
+#-----------------------------------------------------------------------------------------
+z_VL_routine = {
+	effect = {
+		if = {
+			limit = { has_land = yes } # Exclude REB etc.
+			# Initializations, if applicable (once per game or country)
+			z_limes_setup_timer_effect = yes
+			z_limes_setup_diplo_effect = yes
+			z_limes_setup_vflag_effect = yes
+			z_limes_setup_lucky_effect = yes
+			# Normal routine (as often as needed)
+			z_limes_capital_effect = yes
+			z_limes_aimod_effect = yes
+			z_limes_level_effect = yes
+			# Hide harmless errors in the log
+			z_limes_fix_effect = yes
+		}
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# NoIntegrate - Prevent Macedonian AIs from integrating foreign cultures (historically they didn't until they were forced to)
+#-----------------------------------------------------------------------------------------
+z_VL_nointegrate_25 = {
+	effect = {
+		z_limes_nointegrate_effect_25 = yes
+	}
+}
+
+z_VL_nointegrate_100 = {
+	effect = {
+		z_limes_nointegrate_effect_100 = yes
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# Main Limes effect - Apply the Limes depending on country ruleset
+#-----------------------------------------------------------------------------------------
+z_VL_limes = {
+	effect = {
+		z_limes_main_effect = yes # Main Limes effect - Apply the Limes depending on current ruleset
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# Cleanup effects - Release, merge, absorb, rename, annex
+#-----------------------------------------------------------------------------------------
+z_VL_limes_cleanup = {
+	effect = {
+		z_limes_release_effect = yes # Release effects - Release MMs an overlord shouldn't have, reasonably
+		z_limes_merge_effect = yes # Merge effects - Help the AI manage its many MMs
+		z_limes_absorb_effect = yes # Absorb effects - Help the AI vassalize enclaved AIs
+		z_limes_rename_mm_effect = yes # Rename effects - Rename MMs and former MMs when applicable for more immersion
+		z_limes_annex_effect = yes # Annex effects - Help the AI annex its many MMs
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# Claim effects - In the rare instance where the player uses MMs, they make claims for him
+#-----------------------------------------------------------------------------------------
+z_VL_limes_claim = {
+	effect = {
+		z_VL_limes_claim_effect = yes # As a MM, claim a random province for the human overlord
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# Attack effects - Help the AI reach its historical goals
+#-----------------------------------------------------------------------------------------
+z_VL_attack = {
+	effect = {
+		random = {
+			chance = 5
+			z_limes_attack_effect = yes # Attack effects - Help the AI reach its historical goals
+		}
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# Peace effects - AI vs AI peace treaty cleanup
+#-----------------------------------------------------------------------------------------
+z_VL_peace = {
+	effect = {
+		z_limes_peace_default_effect = yes # AI vs AI "clean deals" in strategic locations
+		z_limes_peace_nosplit_effect = yes # Prevent the AI from being split in very distant parts
+		z_limes_peace_ROM_CAR_effect = yes # AI ROM vs AI CAR peace treaties
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# Civil war effects - Precipitate the end of AI-only civil wars (major cause of bordergore)
+#-----------------------------------------------------------------------------------------
+z_VL_civil_war = {
+	effect = {
+		z_limes_civil_war_clear_effect = yes # Clear war participants
+		z_limes_civil_war_save_effect = yes # Save war participants
+		z_limes_civil_war_blob_effect = yes # Precipitate the end of AI-only civil wars
+	}
+}

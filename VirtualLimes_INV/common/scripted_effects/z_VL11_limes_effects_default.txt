@@ -1,0 +1,376 @@
+﻿# --------------------------------------------------------------------------------
+# Every region must be included here + have its own Limes trigger!
+# --------------------------------------------------------------------------------
+z_limes_main_effect_default = {
+	capital_scope = {
+		switch = {
+			trigger = is_in_region
+			africa_region = { root = { z_limes_main_effect_default_b = { CAPITAL = africa_region LEVEL = $LEVEL$ } } }
+			albania_region = { root = { z_limes_main_effect_default_b = { CAPITAL = albania_region LEVEL = $LEVEL$ } } }
+			arabia_region = { root = { z_limes_main_effect_default_b = { CAPITAL = arabia_region LEVEL = $LEVEL$ } } }
+			arabia_felix_region = { root = { z_limes_main_effect_default_b = { CAPITAL = arabia_felix_region LEVEL = $LEVEL$ } } }
+			ariana_region = { root = { z_limes_main_effect_default_b = { CAPITAL = ariana_region LEVEL = $LEVEL$ } } }
+			armenia_region = { root = { z_limes_main_effect_default_b = { CAPITAL = armenia_region LEVEL = $LEVEL$ } } }
+			armorica_region = { root = { z_limes_main_effect_default_b = { CAPITAL = armorica_region LEVEL = $LEVEL$ } } }
+			asia_region = { root = { z_limes_main_effect_default_b = { CAPITAL = asia_region LEVEL = $LEVEL$ } } }
+			assyria_region = { root = { z_limes_main_effect_default_b = { CAPITAL = assyria_region LEVEL = $LEVEL$ } } }
+			atlas_region = { root = { z_limes_main_effect_default_b = { CAPITAL = atlas_region LEVEL = $LEVEL$ } } } # Invictus only
+			aparanta_region = { root = { z_limes_main_effect_default_b = { CAPITAL = aparanta_region LEVEL = $LEVEL$ } } }
+			aquitaine_region = { root = { z_limes_main_effect_default_b = { CAPITAL = aquitaine_region LEVEL = $LEVEL$ } } }
+			avanti_region = { root = { z_limes_main_effect_default_b = { CAPITAL = avanti_region LEVEL = $LEVEL$ } } }
+			bactriana_region = { root = { z_limes_main_effect_default_b = { CAPITAL = bactriana_region LEVEL = $LEVEL$ } } }
+			baetica_region = { root = { z_limes_main_effect_default_b = { CAPITAL = baetica_region LEVEL = $LEVEL$ } } }
+			belgica_region = { root = { z_limes_main_effect_default_b = { CAPITAL = belgica_region LEVEL = $LEVEL$ } } }
+			bithynia_region = { root = { z_limes_main_effect_default_b = { CAPITAL = bithynia_region LEVEL = $LEVEL$ } } }
+			bohemia_area = { root = { z_limes_main_effect_default_b = { CAPITAL = bohemia_area LEVEL = $LEVEL$ } } }
+			borysthenia_region = { root = { z_limes_main_effect_default_b = { CAPITAL = borysthenia_region LEVEL = $LEVEL$ } } } # Invictus only
+			britain_region = { root = { z_limes_main_effect_default_b = { CAPITAL = britain_region LEVEL = $LEVEL$ } } }
+			burma_region = { root = { z_limes_main_effect_default_b = { CAPITAL = burma_region LEVEL = $LEVEL$ } } } # Invictus only
+			caledonia_region = { root = { z_limes_main_effect_default_b = { CAPITAL = caledonia_region LEVEL = $LEVEL$ } } }
+			cappadocia_region = { root = { z_limes_main_effect_default_b = { CAPITAL = cappadocia_region LEVEL = $LEVEL$ } } }
+			cappadocia_pontica_region = { root = { z_limes_main_effect_default_b = { CAPITAL = cappadocia_pontica_region LEVEL = $LEVEL$ } } }
+			central_asian_steppes_region = { root = { z_limes_main_effect_default_b = { CAPITAL = central_asian_steppes_region LEVEL = $LEVEL$ } } } # Invictus only
+			central_gaul_region = { root = { z_limes_main_effect_default_b = { CAPITAL = central_gaul_region LEVEL = $LEVEL$ } } }
+			central_italy_region = { root = { z_limes_main_effect_default_b = { CAPITAL = central_italy_region LEVEL = $LEVEL$ } } }
+			cilicia_region = { root = { z_limes_main_effect_default_b = { CAPITAL = cilicia_region LEVEL = $LEVEL$ } } }
+			cisalpine_gaul_region = { root = { z_limes_main_effect_default_b = { CAPITAL = cisalpine_gaul_region LEVEL = $LEVEL$ } } }
+			colchis_region = { root = { z_limes_main_effect_default_b = { CAPITAL = colchis_region LEVEL = $LEVEL$ } } }
+			contestania_region = { root = { z_limes_main_effect_default_b = { CAPITAL = contestania_region LEVEL = $LEVEL$ } } }
+			cyrenaica_region = { root = { z_limes_main_effect_default_b = { CAPITAL = cyrenaica_region LEVEL = $LEVEL$ } } }
+			dacia_region = { root = { z_limes_main_effect_default_b = { CAPITAL = dacia_region LEVEL = $LEVEL$ } } }
+			dravida_region = { root = { z_limes_main_effect_default_b = { CAPITAL = dravida_region LEVEL = $LEVEL$ } } }
+			fezzan_region = { root = { z_limes_main_effect_default_b = { CAPITAL = fezzan_region LEVEL = $LEVEL$ } } } # Invictus only
+			galatia_region = { root = { z_limes_main_effect_default_b = { CAPITAL = galatia_region LEVEL = $LEVEL$ } } }
+			gallaecia_region = { root = { z_limes_main_effect_default_b = { CAPITAL = gallaecia_region LEVEL = $LEVEL$ } } }
+			gandhara_region = { root = { z_limes_main_effect_default_b = { CAPITAL = gandhara_region LEVEL = $LEVEL$ } } }
+			#gedrosia_region = { root = { z_limes_main_effect_default_b = { CAPITAL = gedrosia_region LEVEL = $LEVEL$ } } } # Vanilla only
+			germania_region = { root = { z_limes_main_effect_default_b = { CAPITAL = germania_region LEVEL = $LEVEL$ } } }
+			germania_superior_region = { root = { z_limes_main_effect_default_b = { CAPITAL = germania_superior_region LEVEL = $LEVEL$ } } }
+			#gerrha_region = { root = { z_limes_main_effect_default_b = { CAPITAL = gerrha_region LEVEL = $LEVEL$ } } } # Vanilla only
+			greece_region = { root = { z_limes_main_effect_default_b = { CAPITAL = greece_region LEVEL = $LEVEL$ } } }
+			himalayan_region = { root = { z_limes_main_effect_default_b = { CAPITAL = himalayan_region LEVEL = $LEVEL$ } } }
+			hyperborea_region = { root = { z_limes_main_effect_default_b = { CAPITAL = hyperborea_region LEVEL = $LEVEL$ } } } # Invictus only
+			illyria_region = { root = { z_limes_main_effect_default_b = { CAPITAL = illyria_region LEVEL = $LEVEL$ } } }
+			karnata_region = { root = { z_limes_main_effect_default_b = { CAPITAL = karnata_region LEVEL = $LEVEL$ } } }
+			lower_egypt_region = { root = { z_limes_main_effect_default_b = { CAPITAL = lower_egypt_region LEVEL = $LEVEL$ } } }
+			lower_nubia_region = { root = { z_limes_main_effect_default_b = { CAPITAL = lower_nubia_region LEVEL = $LEVEL$ } } } # Invictus only
+			lusitania_region = { root = { z_limes_main_effect_default_b = { CAPITAL = lusitania_region LEVEL = $LEVEL$ } } }
+			macedonia_region = { root = { z_limes_main_effect_default_b = { CAPITAL = macedonia_region LEVEL = $LEVEL$ } } }
+			madhyadesa_region = { root = { z_limes_main_effect_default_b = { CAPITAL = madhyadesa_region LEVEL = $LEVEL$ } } }
+			magna_graecia_region = { root = { z_limes_main_effect_default_b = { CAPITAL = magna_graecia_region LEVEL = $LEVEL$ } } }
+			maru_region = { root = { z_limes_main_effect_default_b = { CAPITAL = maru_region LEVEL = $LEVEL$ } } }
+			mauretainia_region = { root = { z_limes_main_effect_default_b = { CAPITAL = mauretainia_region LEVEL = $LEVEL$ } } }
+			media_region = { root = { z_limes_main_effect_default_b = { CAPITAL = media_region LEVEL = $LEVEL$ } } }
+			mesopotamia_region = { root = { z_limes_main_effect_default_b = { CAPITAL = mesopotamia_region LEVEL = $LEVEL$ } } }
+			moesia_region = { root = { z_limes_main_effect_default_b = { CAPITAL = moesia_region LEVEL = $LEVEL$ } } }
+			moesia_s_region = { root = { z_limes_main_effect_default_b = { CAPITAL = moesia_s_region LEVEL = $LEVEL$ } } } # Invictus only
+			nubia_region = { root = { z_limes_main_effect_default_b = { CAPITAL = nubia_region LEVEL = $LEVEL$ } } }
+			numidia_region = { root = { z_limes_main_effect_default_b = { CAPITAL = numidia_region LEVEL = $LEVEL$ } } }
+			palestine_region = { root = { z_limes_main_effect_default_b = { CAPITAL = palestine_region LEVEL = $LEVEL$ } } }
+			pannonia_region = { root = { z_limes_main_effect_default_b = { CAPITAL = pannonia_region LEVEL = $LEVEL$ } } }
+			parthia_region = { root = { z_limes_main_effect_default_b = { CAPITAL = parthia_region LEVEL = $LEVEL$ } } }
+			persis_region = { root = { z_limes_main_effect_default_b = { CAPITAL = persis_region LEVEL = $LEVEL$ } } }
+			pracya_region = { root = { z_limes_main_effect_default_b = { CAPITAL = pracya_region LEVEL = $LEVEL$ } } }
+			punt_region = { root = { z_limes_main_effect_default_b = { CAPITAL = punt_region LEVEL = $LEVEL$ } } }
+			rhaetia_region = { root = { z_limes_main_effect_default_b = { CAPITAL = rhaetia_region LEVEL = $LEVEL$ } } }
+			sakia_region = { root = { z_limes_main_effect_default_b = { CAPITAL = sakia_region LEVEL = $LEVEL$ } } } # Invictus only
+			sarmatia_asiatica_region = { root = { z_limes_main_effect_default_b = { CAPITAL = sarmatia_asiatica_region LEVEL = $LEVEL$ } } }
+			#sarmatia_europea_region = { root = { z_limes_main_effect_default_b = { CAPITAL = sarmatia_europea_region LEVEL = $LEVEL$ } } } # Vanilla only
+			scandinavia_region = { root = { z_limes_main_effect_default_b = { CAPITAL = scandinavia_region LEVEL = $LEVEL$ } } }
+			scythia_region = { root = { z_limes_main_effect_default_b = { CAPITAL = scythia_region LEVEL = $LEVEL$ } } }
+			sogdiana_region = { root = { z_limes_main_effect_default_b = { CAPITAL = sogdiana_region LEVEL = $LEVEL$ } } }
+			syria_region = { root = { z_limes_main_effect_default_b = { CAPITAL = syria_region LEVEL = $LEVEL$ } } }
+			tarraconensis_region = { root = { z_limes_main_effect_default_b = { CAPITAL = tarraconensis_region LEVEL = $LEVEL$ } } }
+			taurica_region = { root = { z_limes_main_effect_default_b = { CAPITAL = taurica_region LEVEL = $LEVEL$ } } }
+			thrace_region = { root = { z_limes_main_effect_default_b = { CAPITAL = thrace_region LEVEL = $LEVEL$ } } }
+			tibet_region = { root = { z_limes_main_effect_default_b = { CAPITAL = tibet_region LEVEL = $LEVEL$ } } }
+			transalpine_gaul_region = { root = { z_limes_main_effect_default_b = { CAPITAL = transalpine_gaul_region LEVEL = $LEVEL$ } } }
+			#transcaucasia_region = { root = { z_limes_main_effect_default_b = { CAPITAL = transcaucasia_region LEVEL = $LEVEL$ } } } # Vanilla only
+			upper_egypt_region = { root = { z_limes_main_effect_default_b = { CAPITAL = upper_egypt_region LEVEL = $LEVEL$ } } }
+			venedia_region = { root = { z_limes_main_effect_default_b = { CAPITAL = venedia_region LEVEL = $LEVEL$ } } }
+			vindhyaprstha_region = { root = { z_limes_main_effect_default_b = { CAPITAL = vindhyaprstha_region LEVEL = $LEVEL$ } } }
+			vistulia_region = { root = { z_limes_main_effect_default_b = { CAPITAL = vistulia_region LEVEL = $LEVEL$ } } }
+		}
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region = $CAPITAL$, root has var:z_limes_level = $LEVEL$
+# --------------------------------------------------------------------------------
+z_limes_main_effect_default_b = {
+	while = {
+		limit = {
+			any_owned_province = {
+				z_limes_$CAPITAL$_trigger_$LEVEL$ = no
+				this.area = {
+					trigger_if = {
+						limit = {
+							root = { government = tribal_chiefdom }
+						}
+						any_area_province = {
+							count >= z_limes_defines_min_mm_size_tribal
+							owner = root
+						}
+					}
+					trigger_else = {
+						any_area_province = {
+							count >= z_limes_defines_min_mm_size
+							owner = root
+						}
+					}
+				}
+			}
+		}
+		ordered_owned_province = {
+			limit = {
+				z_limes_$CAPITAL$_trigger_$LEVEL$ = no
+				this.area = {
+					trigger_if = {
+						limit = {
+							root = { government = tribal_chiefdom }
+						}
+						any_area_province = {
+							count >= z_limes_defines_min_mm_size_tribal
+							owner = root
+						}
+					}
+					trigger_else = {
+						any_area_province = {
+							count >= z_limes_defines_min_mm_size
+							owner = root
+						}
+					}
+				}
+			}
+			order_by = total_population
+			save_scope_as = z_limes_mm_capital
+		}
+		if = {
+			limit = { num_of_cities < 200 }
+			z_limes_make_mm_effect = { ZONE = area }
+		}
+		else = {
+			z_limes_make_mm_effect = { ZONE = region }
+		}
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Set Limes level (every region must be included here!)
+# -> z_VL_routine:
+# --------------------------------------------------------------------------------
+z_limes_level_effect = {
+	set_variable = {
+		name = z_limes_level
+		value = 1
+	}
+	capital_scope = {
+		switch = {
+			trigger = is_in_region
+			africa_region = { root = { z_limes_set_level_effect_b = { CAPITAL = africa_region } } }
+			albania_region = { root = { z_limes_set_level_effect_b = { CAPITAL = albania_region } } }
+			arabia_region = { root = { z_limes_set_level_effect_b = { CAPITAL = arabia_region } } }
+			arabia_felix_region = { root = { z_limes_set_level_effect_b = { CAPITAL = arabia_felix_region } } }
+			armorica_region = { root = { z_limes_set_level_effect_b = { CAPITAL = armorica_region } } }
+			armenia_region = { root = { z_limes_set_level_effect_b = { CAPITAL = armenia_region } } }
+			ariana_region = { root = { z_limes_set_level_effect_b = { CAPITAL = ariana_region } } }
+			asia_region = { root = { z_limes_set_level_effect_b = { CAPITAL = asia_region } } }
+			assyria_region = { root = { z_limes_set_level_effect_b = { CAPITAL = assyria_region } } }
+			atlas_region = { root = { z_limes_set_level_effect_b = { CAPITAL = atlas_region } } } # Invictus only
+			aparanta_region = { root = { z_limes_set_level_effect_b = { CAPITAL = aparanta_region } } }
+			aquitaine_region = { root = { z_limes_set_level_effect_b = { CAPITAL = aquitaine_region } } }
+			avanti_region = { root = { z_limes_set_level_effect_b = { CAPITAL = avanti_region } } }
+			bactriana_region = { root = { z_limes_set_level_effect_b = { CAPITAL = bactriana_region } } }
+			baetica_region = { root = { z_limes_set_level_effect_b = { CAPITAL = baetica_region } } }
+			belgica_region = { root = { z_limes_set_level_effect_b = { CAPITAL = belgica_region } } }
+			bithynia_region = { root = { z_limes_set_level_effect_b = { CAPITAL = bithynia_region } } }
+			bohemia_area = { root = { z_limes_set_level_effect_b = { CAPITAL = bohemia_area } } }
+			borysthenia_region = { root = { z_limes_set_level_effect_b = { CAPITAL = borysthenia_region } } } # Invictus only
+			britain_region = { root = { z_limes_set_level_effect_b = { CAPITAL = britain_region } } }
+			burma_region = { root = { z_limes_set_level_effect_b = { CAPITAL = burma_region } } } # Invictus only
+			caledonia_region = { root = { z_limes_set_level_effect_b = { CAPITAL = caledonia_region } } }
+			cappadocia_region = { root = { z_limes_set_level_effect_b = { CAPITAL = cappadocia_region } } }
+			cappadocia_pontica_region = { root = { z_limes_set_level_effect_b = { CAPITAL = cappadocia_pontica_region } } }
+			central_asian_steppes_region = { root = { z_limes_set_level_effect_b = { CAPITAL = central_italy_region } } } # Invictus only
+			central_gaul_region = { root = { z_limes_set_level_effect_b = { CAPITAL = central_gaul_region } } }
+			central_italy_region = { root = { z_limes_set_level_effect_b = { CAPITAL = central_italy_region } } }
+			cilicia_region = { root = { z_limes_set_level_effect_b = { CAPITAL = cilicia_region } } }
+			cisalpine_gaul_region = { root = { z_limes_set_level_effect_b = { CAPITAL = cisalpine_gaul_region } } }
+			colchis_region = { root = { z_limes_set_level_effect_b = { CAPITAL = colchis_region } } }
+			contestania_region = { root = { z_limes_set_level_effect_b = { CAPITAL = contestania_region } } }
+			cyrenaica_region = { root = { z_limes_set_level_effect_b = { CAPITAL = cyrenaica_region } } }
+			dacia_region = { root = { z_limes_set_level_effect_b = { CAPITAL = dacia_region } } }
+			dravida_region = { root = { z_limes_set_level_effect_b = { CAPITAL = dravida_region } } }
+			fezzan_region = { root = { z_limes_set_level_effect_b = { CAPITAL = fezzan_region } } } # Invictus only
+			galatia_region = { root = { z_limes_set_level_effect_b = { CAPITAL = galatia_region } } }
+			gallaecia_region = { root = { z_limes_set_level_effect_b = { CAPITAL = gallaecia_region } } }
+			gandhara_region = { root = { z_limes_set_level_effect_b = { CAPITAL = gandhara_region } } }
+			gedrosia_region = { root = { z_limes_set_level_effect_b = { CAPITAL = gedrosia_region } } }
+			germania_region = { root = { z_limes_set_level_effect_b = { CAPITAL = germania_region } } }
+			germania_superior_region = { root = { z_limes_set_level_effect_b = { CAPITAL = germania_superior_region } } }
+			#gerrha_region = { root = { z_limes_set_level_effect_b = { CAPITAL = gerrha_region } } } # Vanilla only
+			greece_region = { root = { z_limes_set_level_effect_b = { CAPITAL = greece_region } } }
+			himalayan_region = { root = { z_limes_set_level_effect_b = { CAPITAL = himalayan_region } } }
+			hyperborea_region = { root = { z_limes_set_level_effect_b = { CAPITAL = hyperborea_region } } } # Invictus only
+			illyria_region = { root = { z_limes_set_level_effect_b = { CAPITAL = illyria_region } } }
+			karnata_region = { root = { z_limes_set_level_effect_b = { CAPITAL = karnata_region } } }
+			lower_egypt_region = { root = { z_limes_set_level_effect_b = { CAPITAL = lower_egypt_region } } }
+			lower_nubia_region = { root = { z_limes_set_level_effect_b = { CAPITAL = lower_nubia_region } } } # Invictus only
+			lusitania_region = { root = { z_limes_set_level_effect_b = { CAPITAL = lusitania_region } } }
+			macedonia_region = { root = { z_limes_set_level_effect_b = { CAPITAL = macedonia_region } } }
+			magna_graecia_region = { root = { z_limes_set_level_effect_b = { CAPITAL = magna_graecia_region } } }
+			madhyadesa_region = { root = { z_limes_set_level_effect_b = { CAPITAL = madhyadesa_region } } }
+			maru_region = { root = { z_limes_set_level_effect_b = { CAPITAL = maru_region } } }
+			mauretainia_region = { root = { z_limes_set_level_effect_b = { CAPITAL = mauretainia_region } } }
+			media_region = { root = { z_limes_set_level_effect_b = { CAPITAL = media_region } } }
+			mesopotamia_region = { root = { z_limes_set_level_effect_b = { CAPITAL = mesopotamia_region } } }
+			moesia_region = { root = { z_limes_set_level_effect_b = { CAPITAL = moesia_region } } }
+			moesia_s_region = { root = { z_limes_set_level_effect_b = { CAPITAL = moesia_s_region } } } # Invictus only
+			nubia_region = { root = { z_limes_set_level_effect_b = { CAPITAL = nubia_region } } }
+			numidia_region = { root = { z_limes_set_level_effect_b = { CAPITAL = numidia_region } } }
+			palestine_region = { root = { z_limes_set_level_effect_b = { CAPITAL = palestine_region } } }
+			pannonia_region = { root = { z_limes_set_level_effect_b = { CAPITAL = pannonia_region } } }
+			parthia_region = { root = { z_limes_set_level_effect_b = { CAPITAL = parthia_region } } }
+			persis_region = { root = { z_limes_set_level_effect_b = { CAPITAL = persis_region } } }
+			pracya_region = { root = { z_limes_set_level_effect_b = { CAPITAL = pracya_region } } }
+			punt_region = { root = { z_limes_set_level_effect_b = { CAPITAL = punt_region } } }
+			rhaetia_region = { root = { z_limes_set_level_effect_b = { CAPITAL = rhaetia_region } } }
+			sakia_region = { root = { z_limes_set_level_effect_b = { CAPITAL = sakia_region } } } # Invictus only
+			sarmatia_asiatica_region = { root = { z_limes_set_level_effect_b = { CAPITAL = sarmatia_asiatica_region } } }
+			#sarmatia_europea_region = { root = { z_limes_set_level_effect_b = { CAPITAL = sarmatia_europea_region } } } # Vanilla only
+			scandinavia_region = { root = { z_limes_set_level_effect_b = { CAPITAL = scandinavia_region } } }
+			scythia_region = { root = { z_limes_set_level_effect_b = { CAPITAL = scythia_region } } }
+			sogdiana_region = { root = { z_limes_set_level_effect_b = { CAPITAL = sogdiana_region } } }
+			syria_region = { root = { z_limes_set_level_effect_b = { CAPITAL = syria_region } } }
+			tarraconensis_region = { root = { z_limes_set_level_effect_b = { CAPITAL = tarraconensis_region } } }
+			taurica_region = { root = { z_limes_set_level_effect_b = { CAPITAL = taurica_region } } }
+			thrace_region = { root = { z_limes_set_level_effect_b = { CAPITAL = thrace_region } } }
+			tibet_region = { root = { z_limes_set_level_effect_b = { CAPITAL = tibet_region } } }
+			transalpine_gaul_region = { root = { z_limes_set_level_effect_b = { CAPITAL = transalpine_gaul_region } } }
+			#transcaucasia_region = { root = { z_limes_set_level_effect_b = { CAPITAL = transcaucasia_region } } } # Vanilla only
+			upper_egypt_region = { root = { z_limes_set_level_effect_b = { CAPITAL = upper_egypt_region } } }
+			venedia_region = { root = { z_limes_set_level_effect_b = { CAPITAL = venedia_region } } }
+			vindhyaprstha_region = { root = { z_limes_set_level_effect_b = { CAPITAL = vindhyaprstha_region } } }
+			vistulia_region = { root = { z_limes_set_level_effect_b = { CAPITAL = vistulia_region } } }
+		}
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Set (or update) Limes level - Code can probably be optimized but beware of dependencies
+# -> z_VL_routine: z_limes_set_level_effect:
+# --------------------------------------------------------------------------------
+z_limes_set_level_effect_b = {
+	# Everyone starts at level 1 - Already set upstream in case this effect doesn't trigger
+	# Temporary variables
+	set_variable = {
+		name = z_limes_level_t0
+		value = 0
+	}
+	set_variable = {
+		name = z_limes_level_t1
+		value = 0
+	}
+	# Count every inhabitable province in expansion area 1
+	every_province = {
+		limit = {
+			z_limes_$CAPITAL$_trigger_1 = yes
+			is_uninhabitable = no
+		}
+		root = {
+			change_variable = {
+				name = z_limes_level_t0
+				add = 1
+			}
+		}
+	}
+	# Count every owned province in expansion area 1
+	every_owned_province = {
+		limit = {
+			z_limes_$CAPITAL$_trigger_1 = yes
+			owned_or_subject_owned = root
+		}
+		root = {
+			change_variable = {
+				name = z_limes_level_t1
+				add = 1
+			}
+		}
+	}
+	# If x% of all inhabitable provinces in expansion area 1 are owned, gain 1 level: become level 2, get entry to expansion area 2
+	if = {
+		limit = {
+			OR = {
+				z_limes_level_td >= z_limes_defines_l2
+				AND = {
+					num_of_cities >= 150
+					OR = {
+						z_limes_total_population >= z_limes_defines_l2_population
+						z_limes_pop_density >= z_limes_defines_l2_density
+					}
+				}
+			}
+		}
+		change_variable = {
+			name = z_limes_level
+			add = 1
+		}
+		# Prepare for level 2, reset temporary variables
+		set_variable = {
+			name = z_limes_level_t0
+			value = 0
+		}
+		set_variable = {
+			name = z_limes_level_t1
+			value = 0
+		}
+		# Count every inhabitable province in expansion area 2
+		every_province = {
+			limit = {
+				z_limes_$CAPITAL$_trigger_2 = yes
+				is_uninhabitable = no
+			}
+			root = {
+				change_variable = {
+					name = z_limes_level_t0
+					add = 1
+				}
+			}
+		}
+		# Count every owned province in expansion area 2
+		every_owned_province = {
+			limit = {
+				z_limes_$CAPITAL$_trigger_2 = yes
+				owned_or_subject_owned = root
+			}
+			root = {
+				change_variable = {
+					name = z_limes_level_t1
+					add = 1
+				}
+			}
+		}
+		# If x% of all inhabitable provinces in expansion area 2 are owned, gain 1 level: become level 3, get entry to expansion area 3
+		if = {
+			limit = {
+				OR = {
+					z_limes_level_td >= z_limes_defines_l3
+					AND = {
+						num_of_cities >= 150
+						OR = {
+							z_limes_total_population >= z_limes_defines_l3_population
+							z_limes_pop_density >= z_limes_defines_l3_density
+						}
+					}
+				}
+			}
+			change_variable = {
+				name = z_limes_level
+				add = 1
+			}
+		}
+	}
+	# Cleanup
+	remove_variable = z_limes_level_t0
+	remove_variable = z_limes_level_t1
+}

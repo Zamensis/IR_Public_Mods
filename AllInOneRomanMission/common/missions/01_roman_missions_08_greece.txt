@@ -1,0 +1,137 @@
+﻿roman_mission_08_greece = {
+    header = "mission_image_rome"
+    icon = "rome_4"
+
+    repeatable = no
+
+    chance = {
+    	factor = 8
+    }
+	
+	ai_chance = {
+		factor = 15
+		modifier = {
+			factor = 0
+			NOT = {
+				has_completed_mission = roman_2_provincia
+			}
+		}
+	}
+
+    potential = {
+        NOT = { has_variable = roman_mission_08_greece }
+		is_ai = yes
+		is_ai = no
+        has_dlc = "The Punic Wars"
+    	tag = ROM
+    	OR = {
+    		any_owned_province = {
+    			is_in_region = greece_region
+    		}
+    		has_completed_mission = roman_1_italia
+    	}
+        is_subject = no
+        has_civil_war = no
+    }
+
+    abort = {
+        ai_mission_back_out_trigger = yes
+    }
+
+    on_start = {
+        start_mission_ai_effect = yes
+    	root = { save_scope_as = mission_country }
+    	c:EGY = { save_scope_as = egypt_country }
+    	c:MAC = { save_scope_as = macedon_country }
+    	c:TRE = { save_scope_as = thrace_country }
+    	c:PRY = { save_scope_as = phrygia_country }
+    	c:SEL = { save_scope_as = seleucid_country }
+    	p:422 = { save_scope_as = apollonia_province }
+    	p:4088 = { save_scope_as = rhizon_province }
+		if = {
+			limit = {
+				is_ai = yes
+				NOT = {
+					any_country = {
+						capital_scope = {
+							is_in_region = illyria_region
+						}
+						is_ai = no
+					}
+				}
+			}
+			every_country = {
+				limit = {
+					capital_scope = {
+						is_in_region = illyria_region
+					}
+					OR = {
+						is_tribal = yes
+						num_of_cities <= 40
+					}
+					is_ai = yes
+					NOT = {
+						AND = {
+							is_subject = yes
+							overlord = {
+								is_ai = no
+							}
+						}
+					}
+				}
+				every_owned_province = {
+					limit = {
+						is_in_region = illyria_region
+					}
+					set_owned_by = c:ROM
+				}
+			}
+		}
+        if = {
+            limit = { is_ai = yes }
+            region:illyria_region = {
+                every_region_province = { add_claim = ROOT }
+            }
+            region:greece_region = {
+                every_region_province = { add_claim = ROOT }
+            }
+            region:macedonia_region = {
+                every_region_province = { add_claim = ROOT }
+            }
+            region:thrace_region = {
+                every_region_province = { add_claim = ROOT }
+            }
+        }
+    }
+
+    on_abort = {
+        custom_tooltip = general_mission_cooldown_tt
+        set_variable = {
+            name = roman_mission_08_greece
+            days = 7300
+        }
+    }
+
+    on_completion = {
+        complete_mission_effect = yes
+    }
+
+    roman_mission_08_greece_task_x = { # Eastern Strike Fleet
+        icon = "task_expansion"
+
+        allow = {
+        	custom_tooltip = {
+        		text = roman_mission_08_greece_task_1_trigger_tt
+        		roman_mission_eastern_strike_fleet_current_svalue >= roman_mission_eastern_strike_fleet_max_svalue
+        	}
+        }
+
+        on_completion = {
+        	add_country_modifier = {
+        		name = roman_mission_eastern_strike_fleet_modifier
+        		duration = 3650
+        	}
+        }
+		final = yes
+    }
+}

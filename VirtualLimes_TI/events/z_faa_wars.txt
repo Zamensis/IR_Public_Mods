@@ -1,0 +1,1164 @@
+﻿namespace = z_faa_wars
+
+# Prompt AI Rome into war against other AI's in strategic areas, if late on schedule.
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa_wars.101 = {																				#########   ITALY/SICILY/SARDINIA
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		z_current_year > 40 # 490 AUC / -260 BCE
+		z_has_limes_ROM = yes
+		z_can_wage_war = yes
+		has_country_modifier = z_strong_ai
+		any_owned_province = { is_in_area = croton_area }
+		any_owned_province = { is_in_area = north_etruria_area }
+		any_country = {
+			z_can_be_declared_upon = yes
+			any_owned_province = {
+				OR = {
+					is_in_region = magna_graecia_region
+					is_in_region = central_italy_region
+					is_in_area = west_sicily_area
+					is_in_area = syracuse_area
+					is_in_area = east_sicily_area
+					is_in_area = corsica_area
+					is_in_area = sardinia_septentrionalis
+					is_in_area = sardinia_meridionalis
+				}
+				NOT = {
+					this = p:1471 # Malta
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		if = {
+			limit = {
+				any_country = {
+					z_can_be_declared_upon = yes
+					any_owned_province = {
+						is_in_region = magna_graecia_region
+					}
+				}
+			}
+			z_limes_attack_region = { ZTARGET = magna_graecia_region }
+		}
+		else_if = {
+			limit = {
+				any_country = {
+					z_can_be_declared_upon = yes
+					any_owned_province = {
+						is_in_region = central_italy_region
+					}
+				}
+			}
+			z_limes_attack_region = { ZTARGET = central_italy_region }
+		}
+		else_if = {
+			limit = {
+				any_country = {
+					z_can_be_declared_upon = yes
+					any_owned_province = {
+						is_in_area = west_sicily_area
+						is_coastal = yes
+					}
+				}
+			}
+			z_limes_attack_area = { ZTARGET = west_sicily_area }
+		}
+		else_if = {
+			limit = {
+				any_country = {
+					z_can_be_declared_upon = yes
+					any_owned_province = {
+						is_in_area = syracuse_area
+						is_coastal = yes
+					}
+				}
+			}
+			z_limes_attack_area = { ZTARGET = syracuse_area }
+		}
+		else_if = {
+			limit = {
+				any_country = {
+					z_can_be_declared_upon = yes
+					any_owned_province = {
+						is_in_area = east_sicily_area
+						is_coastal = yes
+					}
+				}
+			}
+			z_limes_attack_area = { ZTARGET = east_sicily_area }
+		}
+		else_if = {
+			limit = {
+				any_country = {
+					z_can_be_declared_upon = yes
+					any_owned_province = {
+						is_in_area = corsica_area
+						is_coastal = yes
+					}
+				}
+			}
+			z_limes_attack_area = { ZTARGET = corsica_area }
+		}
+		else_if = {
+			limit = {
+				any_country = {
+					z_can_be_declared_upon = yes
+					any_owned_province = {
+						is_in_area = sardinia_septentrionalis
+						is_coastal = yes
+					}
+				}
+			}
+			z_limes_attack_area = { ZTARGET = sardinia_septentrionalis }
+		}
+		else_if = {
+			limit = {
+				any_country = {
+					z_can_be_declared_upon = yes
+					any_owned_province = {
+						is_in_area = sardinia_meridionalis
+						is_coastal = yes
+					}
+				}
+			}
+			z_limes_attack_area = { ZTARGET = sardinia_meridionalis }
+		}
+		z_limes_attack = { ZCHANCE = 100 }
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa_wars.102 = {																				#########   IBERIA (COAST)
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		z_current_year > 70 # 520 AUC / -230 BCE (Opposite route as Carthage but 30 years later)
+		z_current_year < 300 # 750 AUC / 0 CE
+		z_has_limes_ROM = yes
+		z_can_wage_war = yes
+		has_country_modifier = z_strong_ai
+		region:central_italy_region = {
+			any_region_province = {
+				percent >= 0.75
+				this.owner = root
+			}
+		}
+		region:magna_graecia_region = {
+			any_region_province = {
+				percent >= 0.75
+				this.owner = root
+			}
+		}
+		OR = {
+			any_owned_province = { is_in_area = corsica_area }
+			any_owned_province = { is_in_area = sardinia_meridionalis }
+			any_owned_province = { is_in_area = sardinia_septentrionalis }
+		}
+		OR = {
+			AND = {
+				region:tarraconensis_region = {
+					any_region_province = {
+						percent < 0.2
+						owned_or_subject_owned = root
+					}
+				}
+				any_country = {
+					z_can_be_declared_upon = yes
+					any_owned_province = {
+						is_in_region = tarraconensis_region
+					}
+				}
+			}
+			AND = {
+				region:contestania_region = {
+					any_region_province = {
+						percent < 0.2
+						owned_or_subject_owned = root
+					}
+				}
+				any_country = {
+					z_can_be_declared_upon = yes
+					any_owned_province = {
+						is_in_region = contestania_region
+					}
+				}
+			}
+			AND = {
+				region:baetica_region = {
+					any_region_province = {
+						percent < 0.5
+						owned_or_subject_owned = root
+					}
+				}
+				any_country = {
+					z_can_be_declared_upon = yes
+					any_owned_province = {
+						is_in_region = baetica_region
+					}
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		if = {
+			limit = {
+				region:tarraconensis_region = {
+					any_region_province = {
+						percent < 0.2
+						owned_or_subject_owned = root
+					}
+				}
+				any_country = {
+					z_can_be_declared_upon = yes
+					any_owned_province = {
+						is_in_region = tarraconensis_region
+					}
+				}
+			}
+			z_limes_attack_region = { ZTARGET = tarraconensis_region }
+		}
+		else_if = {
+			limit = {
+				region:contestania_region = {
+					any_region_province = {
+						percent < 0.2
+						owned_or_subject_owned = root
+					}
+				}
+				any_country = {
+					z_can_be_declared_upon = yes
+					any_owned_province = {
+						is_in_region = contestania_region
+					}
+				}
+			}
+			z_limes_attack_region = { ZTARGET = contestania_region }
+		}
+		else_if = {
+			limit = {
+				region:baetica_region = {
+					any_region_province = {
+						percent < 0.5
+						owned_or_subject_owned = root
+					}
+				}
+				any_country = {
+					z_can_be_declared_upon = yes
+					any_owned_province = {
+						is_in_region = baetica_region
+					}
+				}
+			}
+			z_limes_attack_region = { ZTARGET = baetica_region }
+		}
+		z_limes_attack = { ZCHANCE = 10 }
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa_wars.103 = {																				#########   GREECE
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		z_current_year > 110 # 560 AUC / -190 BCE
+		z_current_year < 300 # 750 AUC / 0 CE
+		z_has_limes_ROM = yes
+		z_can_wage_war = yes
+		has_country_modifier = z_strong_ai
+		region:central_italy_region = {
+			any_region_province = {
+				percent >= 0.75
+				this.owner = root
+			}
+		}
+		region:magna_graecia_region = {
+			any_region_province = {
+				percent >= 0.75
+				this.owner = root
+			}
+		}
+		OR = {
+			AND = {
+				region:macedonia_region = {
+					any_region_province = {
+						percent < 0.1
+						owned_or_subject_owned = root
+					}
+				}
+				any_country = {
+					z_can_be_declared_upon = yes
+					any_owned_province = {
+						is_in_region = macedonia_region
+					}
+				}
+			}
+			AND = {
+				region:greece_region = {
+					any_region_province = {
+						percent < 0.75
+						owned_or_subject_owned = root
+					}
+				}
+				any_country = {
+					z_can_be_declared_upon = yes
+					any_owned_province = {
+						is_in_region = greece_region
+					}
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		if = {
+			limit = {
+				region:macedonia_region = {
+					any_region_province = {
+						percent < 0.1
+						owned_or_subject_owned = root
+					}
+				}
+				any_country = {
+					z_can_be_declared_upon = yes
+					any_owned_province = {
+						is_in_region = macedonia_region
+					}
+				}
+			}
+			z_limes_attack_region = { ZTARGET = macedonia_region }
+		}
+		else_if = {
+			limit = {
+				region:greece_region = {
+					any_region_province = {
+						percent < 0.75
+						owned_or_subject_owned = root
+					}
+				}
+				any_country = {
+					z_can_be_declared_upon = yes
+					any_owned_province = {
+						is_in_region = greece_region
+					}
+				}
+			}
+			z_limes_attack_region = { ZTARGET = greece_region }
+		}
+		z_limes_attack = { ZCHANCE = 10 }
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa_wars.104 = {																				#########   ASIA
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		z_current_year > 170 # 620 AUC / -130 BCE
+		z_current_year < 300 # 750 AUC / 0 CE
+		z_has_limes_ROM = yes
+		z_can_wage_war = yes
+		has_country_modifier = z_strong_ai
+		region:central_italy_region = {
+			any_region_province = {
+				percent >= 0.75
+				this.owner = root
+			}
+		}
+		region:magna_graecia_region = {
+			any_region_province = {
+				percent >= 0.75
+				this.owner = root
+			}
+		}
+		region:macedonia_region = {
+			any_region_province = {
+				percent >= 0.2
+				owned_or_subject_owned = root
+			}
+		}
+		region:greece_region = {
+			any_region_province = {
+				percent >= 0.5
+				owned_or_subject_owned = root
+			}
+		}
+		OR = {
+			AND = {
+				region:asia_region = {
+					any_region_province = {
+						percent < 0.2
+						owned_or_subject_owned = root
+					}
+				}
+				any_country = {
+					z_can_be_declared_upon = yes
+					any_owned_province = {
+						is_in_region = asia_region
+					}
+				}
+			}
+			AND = {
+				region:cilicia_region = {
+					any_region_province = {
+						percent < 0.1
+						owned_or_subject_owned = root
+					}
+				}
+				any_country = {
+					z_can_be_declared_upon = yes
+					any_owned_province = {
+						is_in_region = cilicia_region
+					}
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		if = {
+			limit = {
+				region:asia_region = {
+					any_region_province = {
+						percent < 0.2
+						owned_or_subject_owned = root
+					}
+				}
+				any_country = {
+					z_can_be_declared_upon = yes
+					any_owned_province = {
+						is_in_region = asia_region
+					}
+				}
+			}
+			z_limes_attack_region = { ZTARGET = asia_region }
+		}
+		else_if = {
+			limit = {
+				region:cilicia_region = {
+					any_region_province = {
+						percent < 0.1
+						owned_or_subject_owned = root
+					}
+				}
+				any_country = {
+					z_can_be_declared_upon = yes
+					any_owned_province = {
+						is_in_region = cilicia_region
+					}
+				}
+			}
+			z_limes_attack_region = { ZTARGET = cilicia_region }
+		}
+		z_limes_attack = { ZCHANCE = 10 }
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa_wars.105 = {																				#########   SYRIA
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		z_current_year > 235 # 665 AUC / -85 BCE
+		z_current_year < 300 # 750 AUC / 0 CE
+		z_has_limes_ROM = yes
+		z_can_wage_war = yes
+		has_country_modifier = z_strong_ai
+		region:central_italy_region = {
+			any_region_province = {
+				percent >= 0.75
+				this.owner = root
+			}
+		}
+		region:magna_graecia_region = {
+			any_region_province = {
+				percent >= 0.75
+				this.owner = root
+			}
+		}
+		region:greece_region = {
+			any_region_province = {
+				percent >= 0.5
+				owned_or_subject_owned = root
+			}
+		}
+		region:asia_region = {
+			any_region_province = {
+				percent >= 0.2
+				owned_or_subject_owned = root
+			}
+		}
+		region:cilicia_region = {
+			any_region_province = {
+				percent >= 0.1
+				owned_or_subject_owned = root
+			}
+		}
+		OR = {
+			AND = {
+				region:asia_region = {
+					any_region_province = {
+						percent < 0.5
+						owned_or_subject_owned = root
+					}
+				}
+				any_country = {
+					z_can_be_declared_upon = yes
+					any_owned_province = {
+						is_in_region = asia_region
+					}
+				}
+			}
+			AND = {
+				region:cilicia_region = {
+					any_region_province = {
+						percent < 0.5
+						owned_or_subject_owned = root
+					}
+				}
+				any_country = {
+					z_can_be_declared_upon = yes
+					any_owned_province = {
+						is_in_region = cilicia_region
+					}
+				}
+			}
+			AND = {
+				region:syria_region = {
+					any_region_province = {
+						percent < 0.2
+						owned_or_subject_owned = root
+					}
+				}
+				any_country = {
+					z_can_be_declared_upon = yes
+					any_owned_province = {
+						is_in_region = syria_region
+					}
+				}
+			}
+			AND = {
+				region:palestine_region = {
+					any_region_province = {
+						percent < 0.2
+						owned_or_subject_owned = root
+					}
+				}
+				any_country = {
+					z_can_be_declared_upon = yes
+					any_owned_province = {
+						is_in_region = palestine_region
+					}
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		if = {
+			limit = {
+				region:asia_region = {
+					any_region_province = {
+						percent < 0.5
+						owned_or_subject_owned = root
+					}
+				}
+				any_country = {
+					z_can_be_declared_upon = yes
+					any_owned_province = {
+						is_in_region = asia_region
+					}
+				}
+			}
+			z_limes_attack_region = { ZTARGET = asia_region }
+		}
+		else_if = {
+			limit = {
+				region:cilicia_region = {
+					any_region_province = {
+						percent < 0.5
+						owned_or_subject_owned = root
+					}
+				}
+				any_country = {
+					z_can_be_declared_upon = yes
+					any_owned_province = {
+						is_in_region = cilicia_region
+					}
+				}
+			}
+			z_limes_attack_region = { ZTARGET = cilicia_region }
+		}
+		else_if = {
+			limit = {
+				region:syria_region = {
+					any_region_province = {
+						percent < 0.2
+						owned_or_subject_owned = root
+					}
+				}
+				any_country = {
+					z_can_be_declared_upon = yes
+					any_owned_province = {
+						is_in_region = syria_region
+					}
+				}
+			}
+			z_limes_attack_region = { ZTARGET = syria_region }
+		}
+		else_if = {
+			limit = {
+				region:palestine_region = {
+					any_region_province = {
+						percent < 0.2
+						owned_or_subject_owned = root
+					}
+				}
+				any_country = {
+					z_can_be_declared_upon = yes
+					any_owned_province = {
+						is_in_region = palestine_region
+					}
+				}
+			}
+			z_limes_attack_region = { ZTARGET = palestine_region }
+		}
+		z_limes_attack = { ZCHANCE = 10 }
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa_wars.106 = {																				#########   AFRICA
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		z_current_year > 90 # 540 AUC / -210 BCE
+		z_current_year < 300 # 750 AUC / 0 CE
+		z_has_limes_ROM = yes
+		z_can_wage_war = yes
+		has_country_modifier = z_strong_ai
+		region:central_italy_region = {
+			any_region_province = {
+				percent >= 0.75
+				this.owner = root
+			}
+		}
+		region:magna_graecia_region = {
+			any_region_province = {
+				percent >= 0.75
+				this.owner = root
+			}
+		}
+		OR = {
+			AND = {
+				region:africa_region = {
+					any_region_province = {
+						percent < 0.5
+						owned_or_subject_owned = root
+					}
+				}
+				any_country = {
+					z_can_be_declared_upon = yes
+					any_owned_province = {
+						is_in_region = africa_region
+					}
+				}
+			}
+			AND = {
+				region:cyrenaica_region = {
+					any_region_province = {
+						percent < 0.1
+						owned_or_subject_owned = root
+					}
+				}
+				region:greece_region = {
+					any_region_province = {
+						percent >= 0.5
+						owned_or_subject_owned = root
+					}
+				}
+				any_country = {
+					z_can_be_declared_upon = yes
+					any_owned_province = {
+						is_in_region = cyrenaica_region
+					}
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		if = {
+			limit = {
+				region:africa_region = {
+					any_region_province = {
+						percent < 0.5
+						owned_or_subject_owned = root
+					}
+				}
+				any_country = {
+					z_can_be_declared_upon = yes
+					any_owned_province = {
+						is_in_region = africa_region
+					}
+				}
+			}
+			z_limes_attack_region = { ZTARGET = africa_region }
+		}
+		else_if = {
+			limit = {
+				region:cyrenaica_region = {
+					any_region_province = {
+						percent < 0.5
+						owned_or_subject_owned = root
+					}
+				}
+				any_country = {
+					z_can_be_declared_upon = yes
+					any_owned_province = {
+						is_in_region = cyrenaica_region
+					}
+				}
+			}
+			z_limes_attack_region = { ZTARGET = cyrenaica_region }
+		}
+		z_limes_attack = { ZCHANCE = 10 }
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa_wars.107 = {																				#########   EGYPT
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		z_current_year > 240 # 690 AUC / -60 BCE
+		z_current_year < 300 # 750 AUC / 0 CE
+		z_has_limes_ROM = yes
+		z_can_wage_war = yes
+		has_country_modifier = z_strong_ai
+		region:central_italy_region = {
+			any_region_province = {
+				percent >= 0.75
+				this.owner = root
+			}
+		}
+		region:magna_graecia_region = {
+			any_region_province = {
+				percent >= 0.75
+				this.owner = root
+			}
+		}
+		region:greece_region = {
+			any_region_province = {
+				percent >= 0.5
+				owned_or_subject_owned = root
+			}
+		}
+		region:africa_region = {
+			any_region_province = {
+				percent >= 0.4
+				owned_or_subject_owned = root
+			}
+		}
+		region:cyrenaica_region = {
+			any_region_province = {
+				percent >= 0.1
+				owned_or_subject_owned = root
+			}
+		}
+		OR = {
+			AND = {
+				region:lower_egypt_region = {
+					any_region_province = {
+						percent < 0.8
+						owned_or_subject_owned = root
+					}
+				}
+				any_country = {
+					z_can_be_declared_upon = yes
+					any_owned_province = {
+						is_in_region = lower_egypt_region
+					}
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		if = {
+			limit = {
+				region:lower_egypt_region = {
+					any_region_province = {
+						percent < 0.8
+						owned_or_subject_owned = root
+					}
+				}
+				any_country = {
+					z_can_be_declared_upon = yes
+					any_owned_province = {
+						is_in_region = lower_egypt_region
+					}
+				}
+			}
+			z_limes_attack_region = { ZTARGET = lower_egypt_region }
+		}
+		z_limes_attack = { ZCHANCE = 15 }
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa_wars.108 = {																				#########   GAUL
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		z_current_year > 230 # 680 AUC / -70 BCE
+		z_current_year < 300 # 750 AUC / 0 CE
+		z_has_limes_ROM = yes
+		z_can_wage_war = yes
+		has_country_modifier = z_strong_ai
+		region:central_italy_region = {
+			any_region_province = {
+				percent >= 0.75
+				this.owner = root
+			}
+		}
+		region:magna_graecia_region = {
+			any_region_province = {
+				percent >= 0.75
+				this.owner = root
+			}
+		}
+		region:cisalpine_gaul_region = {
+			any_region_province = {
+				percent >= 0.5
+				owned_or_subject_owned = root
+			}
+		}
+		OR = {
+			AND = {
+				region:transalpine_gaul_region = {
+					any_region_province = {
+						percent < 0.75
+						owned_or_subject_owned = root
+					}
+				}
+				any_country = {
+					z_can_be_declared_upon = yes
+					any_owned_province = {
+						is_in_region = transalpine_gaul_region
+					}
+				}
+			}
+			AND = {
+				region:central_gaul_region = {
+					any_region_province = {
+						percent < 0.5
+						owned_or_subject_owned = root
+					}
+				}
+				any_country = {
+					z_can_be_declared_upon = yes
+					any_owned_province = {
+						is_in_region = central_gaul_region
+					}
+				}
+			}
+			AND = {
+				region:aquitaine_region = {
+					any_region_province = {
+						percent < 0.5
+						owned_or_subject_owned = root
+					}
+				}
+				any_country = {
+					z_can_be_declared_upon = yes
+					any_owned_province = {
+						is_in_region = aquitaine_region
+					}
+				}
+			}
+			AND = {
+				region:belgica_region = {
+					any_region_province = {
+						percent < 0.5
+						owned_or_subject_owned = root
+					}
+				}
+				any_country = {
+					z_can_be_declared_upon = yes
+					any_owned_province = {
+						is_in_region = belgica_region
+					}
+				}
+			}
+			AND = {
+				region:armorica_region = {
+					any_region_province = {
+						percent < 0.5
+						owned_or_subject_owned = root
+					}
+				}
+				any_country = {
+					z_can_be_declared_upon = yes
+					any_owned_province = {
+						is_in_region = armorica_region
+					}
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		if = {
+			limit = {
+				region:transalpine_gaul_region = {
+					any_region_province = {
+						percent < 0.75
+						owned_or_subject_owned = root
+					}
+				}
+				any_country = {
+					z_can_be_declared_upon = yes
+					any_owned_province = {
+						is_in_region = transalpine_gaul_region
+					}
+				}
+			}
+			z_limes_attack_region = { ZTARGET = transalpine_gaul_region }
+		}
+		else_if = {
+			limit = {
+				region:central_gaul_region = {
+					any_region_province = {
+						percent < 0.5
+						owned_or_subject_owned = root
+					}
+				}
+				any_country = {
+					z_can_be_declared_upon = yes
+					any_owned_province = {
+						is_in_region = central_gaul_region
+					}
+				}
+			}
+			z_limes_attack_region = { ZTARGET = central_gaul_region }
+		}
+		else_if = {
+			limit = {
+				region:aquitaine_region = {
+					any_region_province = {
+						percent < 0.5
+						owned_or_subject_owned = root
+					}
+				}
+				any_country = {
+					z_can_be_declared_upon = yes
+					any_owned_province = {
+						is_in_region = aquitaine_region
+					}
+				}
+			}
+			z_limes_attack_region = { ZTARGET = aquitaine_region }
+		}
+		else_if = {
+			limit = {
+				region:belgica_region = {
+					any_region_province = {
+						percent < 0.5
+						owned_or_subject_owned = root
+					}
+				}
+				any_country = {
+					z_can_be_declared_upon = yes
+					any_owned_province = {
+						is_in_region = belgica_region
+					}
+				}
+			}
+			z_limes_attack_region = { ZTARGET = belgica_region }
+		}
+		else_if = {
+			limit = {
+				region:armorica_region = {
+					any_region_province = {
+						percent < 0.5
+						owned_or_subject_owned = root
+					}
+				}
+				any_country = {
+					z_can_be_declared_upon = yes
+					any_owned_province = {
+						is_in_region = armorica_region
+					}
+				}
+			}
+			z_limes_attack_region = { ZTARGET = armorica_region }
+		}
+		z_limes_attack = { ZCHANCE = 15 }
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa_wars.109 = {																				#########   CISALPINE
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		z_current_year > 150 # 600 AUC / -150 BCE
+		z_has_limes_ROM = yes
+		z_can_wage_war = yes
+		has_country_modifier = z_strong_ai
+		any_owned_province = { is_in_area = croton_area }
+		any_country = {
+			z_can_be_declared_upon = yes
+			any_owned_province = {
+				is_in_region = cisalpine_gaul_region
+			}
+		}
+	}
+	
+	immediate = {
+		if = {
+			limit = {
+				any_country = {
+					z_can_be_declared_upon = yes
+					any_owned_province = {
+						is_in_region = cisalpine_gaul_region
+					}
+				}
+			}
+			z_limes_attack_region = { ZTARGET = cisalpine_gaul_region }
+		}
+		z_limes_attack = { ZCHANCE = 100 }
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_faa_wars.200 = {																				#########   FULL-BLOWN EXPANSION
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		z_current_year >= 250 # 700 AUC / 50 BCE
+		z_current_year < 430 # 880 AUC / 130 CE
+		z_has_limes_ROM = yes
+		num_of_cities >= 1000
+		z_can_wage_war = yes
+		z_faa_core_under_control = yes
+		#has_country_modifier = z_strong_ai
+		any_country = {
+			z_can_be_declared_upon = yes
+			this.capital_scope = {
+				z_faa_empire_max = yes
+			}
+			trigger_if = {
+				limit = {
+					region:lower_egypt_region = {
+						any_region_province = {
+							percent < 0.5
+							owned_or_subject_owned = root
+						}
+					}
+				}
+				NOT = {
+					this.capital_scope.region = region:upper_egypt_region
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		save_scope_as = future_overlord
+		random_province = {
+			limit = {
+				has_owner = yes
+				this.owner = {
+					z_can_be_declared_upon = yes
+					this.capital_scope = {
+						z_faa_empire_max = yes
+					}
+				}
+				trigger_if = {
+					limit = {
+						region:lower_egypt_region = {
+							any_region_province = {
+								percent < 0.5
+								owned_or_subject_owned = root
+							}
+						}
+					}
+					NOT = {
+						this.region = region:upper_egypt_region # To avoid Rome attacking the South without having the North
+						this.owner.capital_scope.region = region:upper_egypt_region
+					}
+				}
+			}
+			this.owner = {
+				save_scope_as = z_limes_war_target
+			}
+		}
+		scope:z_limes_war_target = {
+			capital_scope = {
+				save_scope_as = z_limes_war_goal
+			}
+			capital_scope.region = {
+				save_scope_as = z_faa_attack_this
+			}
+		}
+		random_list = {
+			50 = {
+				modifier = {
+					add = scope:z_limes_war_target.num_of_cities
+				}
+				scope:z_faa_attack_this = {
+					every_region_province = {
+						add_claim = root
+					}
+				}
+				z_limes_attack = { ZCHANCE = 100 }
+			}
+			50 = {
+				trigger = {
+					scope:z_limes_war_target.num_of_cities < 75
+				}
+				random_list = {
+					66 = {
+						make_subject = {
+							target = scope:z_limes_war_target
+							type = roman_faa
+						}
+					}
+					33 = {
+						make_subject = {
+							target = scope:z_limes_war_target
+							type = client_state
+						}
+					}
+				}
+			}
+		}
+	}
+}

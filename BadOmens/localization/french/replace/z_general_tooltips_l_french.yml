@@ -1,0 +1,3 @@
+﻿l_french:
+ # OMEN MESSAGE BOX ---------------------------------------------------------------------------------------------------------------------------------------
+ CALL_OMEN_CONFIRMATION:3 "Convoquer [DEITY.GetName|Y] peut déclencher un #E bon#! ou un #E mauvais présage#!,\ndépendant de la #E loyauté#! de notre principal ministre religieux.\n\nNous espérons bénéficier de :\n[DEITY.GetOmenEffect].\n$ACTIVATEEFFECT$ \n...cependant un #E mauvais présage#! pourrait produire l'effet inverse.\nAucun autre présage ne pourra être convoqué jusqu'au $DATE$ ($DURATION$ ans)\n"

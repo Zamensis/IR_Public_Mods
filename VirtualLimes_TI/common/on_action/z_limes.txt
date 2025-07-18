@@ -1,0 +1,239 @@
+﻿#################################################################################################	Virtual Limes - Core Features
+#################################################################################################
+on_game_initialized = {
+
+	on_actions = {
+	
+		z_limes_initialization			# Initialization
+		
+	}
+	
+}
+
+monthly_country_pulse = {
+	
+	on_actions = {
+	
+		z_limes_monthly					# Default monthly pulse
+		z_limes_monthly_limes			# "Limes" mechanics
+		
+	}
+	
+}
+
+yearly_country_pulse = {
+
+	events = {
+	
+		# Timer
+		z_limes_timer.2					# Increase year count by 1.
+		
+	}
+	
+	on_actions = {
+	
+		z_limes_yearly					# Default yearly pulse
+		z_limes_yearly_immediate		# Immediate yearly pulse
+		z_limes_yearly_antigore			# Antigore mechanics
+		
+	}
+	
+}
+
+#################################################################################################	Initialization
+#################################################################################################
+z_limes_initialization = {
+
+	events = {
+		
+		# Yearly check
+		z_limes_common.100				# Yearly check
+	
+		# Main initialization event
+		z_limes_common.9999				#
+	
+		# Timer
+		z_limes_timer.1					# Set timer
+		
+		# Capitals - Inspired by @duart_77
+		z_limes_capitals.1				# Save capital location
+		
+	}
+	
+}
+
+#################################################################################################	Default monthly pulse
+#################################################################################################
+z_limes_monthly = {
+
+	events = {
+	
+		delay = { days = { 1 27 } }
+		
+		# Release faraway MM's
+		z_limes_common.1				# 
+		
+		# Absorb enclaved alliances
+		z_limes_common.4				# 
+		
+		# Civil Wars
+		z_limes_civil_wars.1			# Save AI-only civil war leaders
+		z_limes_civil_wars.2			# Save AI-only civil war leaders
+		z_limes_civil_wars.3			# Clear AI-only civil war leaders		
+		z_limes_civil_wars.4			# Precipitate the end of AI-only civil war
+		
+		# Punic Wars
+		z_limes_punic_wars.1			# Save Carthage for last
+		z_limes_punic_wars.2			# Partitions
+		z_limes_punic_wars.3			# Partitions
+		z_limes_punic_wars.4			# Baleares ask for Roman protection
+		z_limes_punic_wars.6			# Carthage in Sicily / Sardinia
+		z_limes_punic_wars.7			# Carthage in Hispania
+		
+		# Parthian Wars
+		z_limes_parthian_wars.1			# Partition Mesopotamia
+		z_limes_parthian_wars.2			# Partition Media
+		z_limes_parthian_wars.3			# Partition Persia
+		z_limes_parthian_wars.4			# Partition Parthia
+		
+	}
+
+}
+
+#################################################################################################	"Limes" mechanics
+#################################################################################################
+z_limes_monthly_limes = {
+	
+	events = {
+	
+		delay = { days = { 1 27 } }
+	
+		z_limes.1						# 
+		z_limes.2						# 
+		z_limes.3						# 
+		#z_limes.4						# Invictus
+		z_limes.5						# 
+		z_limes.6						# 
+		z_limes.7						# 
+		z_limes.8						# 
+		z_limes.9						# 
+		z_limes.10						# 
+		z_limes.11						# 
+		z_limes.12						# 
+		z_limes.13						# 
+		z_limes.14						# 
+		z_limes.15						# 
+		z_limes.16						# 
+		z_limes.17						# 
+		z_limes.18						# 
+		z_limes.19						# 
+		z_limes.20						# 
+		z_limes.21						# 
+		z_limes.22						# 
+		z_limes.23						# 
+		z_limes.24						# 
+		z_limes.25						# 
+		z_limes.26						# 
+		z_limes.27						# 
+		
+		# SPECIAL
+		z_limes_special.1				# SEL, PRY
+		z_limes_special.2				# MRY
+		z_limes_special.3				# PAR, PRN, ZNT, DHE
+		z_limes_special.4				# CAR
+		
+		# TERRA INDOMITA
+		z_limes_ti.1					# 
+		z_limes_ti.2					# 
+		z_limes_ti.3					# 
+		z_limes_ti.4					# 
+		z_limes_ti.5					# 
+		z_limes_ti.6					# 
+		z_limes_ti.7					# 
+		z_limes_ti.8					# 
+		z_limes_ti.9					# 
+		z_limes_ti.10					# 
+		z_limes_ti.11					# 
+		z_limes_ti.12					# 
+		
+	}
+	
+}
+
+#################################################################################################	Default yearly pulse
+#################################################################################################
+z_limes_yearly = {
+
+	events = {
+	
+		delay = { days = { 1 360 } }
+	
+		# Merge MMs in same area
+		z_limes_common.2				# 
+		
+		# Merge MMs in same region
+		z_limes_common.3				# 
+		
+		# Free MMs bigger than their overlord
+		z_limes_common.5				# 
+		
+		# Punic Wars
+		z_limes_punic_wars.5			# Carthage leaves non-coastal Africa
+		
+		# Parthian Wars
+		z_limes_parthian_wars.100		# Move Parthian capital
+		z_limes_parthian_wars.101		# Help AI Parthia against AI Seleukids
+		
+	}
+}
+
+#################################################################################################	Immediate yearly pulse
+#################################################################################################
+z_limes_yearly_immediate = {
+
+	events = {
+		
+		# Set Limes chance factor for the whole game
+		z_limes_common.100				# Toss a coin
+		
+		# Give MMs their correct levy size multiplier
+		z_limes_common.6				# 
+		
+		# Hellenistic decline
+		z_limes_common.200				# 
+		
+		# Capitals - Inspired by @duart_77
+		z_limes_capitals.2				# Restore capital
+		z_limes_capitals.3				# Transfer data when civil war
+		
+	}
+}
+
+#################################################################################################	Antisplit mechanics
+#################################################################################################
+z_limes_yearly_antigore = {
+	
+	random_events = {
+	
+		delay = { days = { 1 360 } }
+	
+		# Split disjointed empires
+		20 = z_limes_antigore.101		# From Anatolia to the Ganges
+		20 = z_limes_antigore.102		#  "
+		20 = z_limes_antigore.103		#  "
+		20 = z_limes_antigore.104		#  "
+		20 = z_limes_antigore.105		#  "
+		20 = z_limes_antigore.106		#  "
+		20 = z_limes_antigore.107		#  "
+		20 = z_limes_antigore.108		#  "
+		20 = z_limes_antigore.109		#  "
+		20 = z_limes_antigore.110		# Egypt
+		20 = z_limes_antigore.111		#  "
+		20 = z_limes_antigore.112		# Africa
+		20 = z_limes_antigore.113		#  "
+		20 = z_limes_antigore.114		#  "
+		20 = z_limes_antigore.115		#  "
+		
+	}
+	
+}

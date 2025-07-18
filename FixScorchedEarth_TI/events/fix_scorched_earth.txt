@@ -1,0 +1,276 @@
+﻿namespace = fix_scorched_earth
+
+fix_scorched_earth.1 = {															######### FIX SCORCHED EARTH	#########
+	type = province_event																
+	hidden = yes
+	title = "fix_scorched_earth.1.t"
+	desc = "fix_scorched_earth.1.desc"
+	
+	trigger = {
+		is_sea = no
+		is_inhabitable = yes
+		has_owner = yes
+		root.owner = {
+			is_ai = yes
+			war = no
+		}
+		any_neighbor_province = {
+			is_sea = no
+			is_uninhabitable = no
+			has_owner = no
+			NOT = {
+				is_in_region = dacia_region
+				is_in_region = atlas_region
+				is_in_region = fezzan_region
+				is_in_region = mauretainia_region
+				is_in_region = upper_egypt_region
+				is_in_region = lower_nubia_region
+				is_in_region = upper_nubia_region
+				is_in_region = punt_region
+				is_in_region = arabia_region
+				is_in_region = arabia_felix_region
+				is_in_region = tibet_region
+				is_in_region = xiyu_region
+				is_in_region = sogdiana_region
+				is_in_region = central_asian_steppes_region
+				is_in_region = sarmatia_asiatica_region
+				is_in_region = taurica_region
+				is_in_region = albania_region
+				is_in_region = scythia_region
+				is_in_region = borysthenia_region
+				is_in_region = vistulia_region
+				is_in_region = venedia_region
+				is_in_region = bohemia_area
+				is_in_area = transcarpathia_occidentalis_area
+				is_in_region = germania_region
+				is_in_region = scandinavia_region
+				is_in_region = pyu_region
+				is_in_region = suvarnabhumi_region
+				is_in_region = funan_region
+				is_in_region = austronesia_region
+				is_in_region = jiao_region
+				is_in_region = nanzhong_region
+				is_in_region = yi_region
+				is_in_region = jing_region
+				is_in_region = yang_region
+				is_in_region = xu_region
+				is_in_region = yu_region
+				is_in_region = qing_region
+				is_in_region = ji_region
+				is_in_region = yong_region
+				is_in_region = liang_region
+				is_in_region = shuofang_region
+				is_in_region = bing_region
+				is_in_region = jin_region
+				is_in_region = you_region
+				is_in_region = wa_region
+				is_in_region = modong_region
+				is_in_region = mobei_region
+				is_in_region = scytho_siberian_region
+				is_in_region = hyperborea_region
+				is_in_area = corsica_area
+				is_in_region = burma_region
+			}
+			NOT = {
+				any_neighbor_province = {
+					has_owner = yes
+					owner = {
+						war = yes
+					}
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		ordered_neighbor_province = {
+			limit = {
+				is_sea = no
+				is_inhabitable = yes
+				has_owner = no
+				NOT = {
+					is_in_region = dacia_region
+					is_in_region = atlas_region
+					is_in_region = fezzan_region
+					is_in_region = mauretainia_region
+					is_in_region = upper_egypt_region
+					is_in_region = lower_nubia_region
+					is_in_region = upper_nubia_region
+					is_in_region = punt_region
+					is_in_region = arabia_region
+					is_in_region = arabia_felix_region
+					is_in_region = tibet_region
+					is_in_region = xiyu_region
+					is_in_region = sogdiana_region
+					is_in_region = central_asian_steppes_region
+					is_in_region = sarmatia_asiatica_region
+					is_in_region = taurica_region
+					is_in_region = albania_region
+					is_in_region = scythia_region
+					is_in_region = borysthenia_region
+					is_in_region = vistulia_region
+					is_in_region = venedia_region
+					is_in_region = bohemia_area
+					is_in_area = transcarpathia_occidentalis_area
+					is_in_region = germania_region
+					is_in_region = scandinavia_region
+					is_in_region = pyu_region
+					is_in_region = suvarnabhumi_region
+					is_in_region = funan_region
+					is_in_region = austronesia_region
+					is_in_region = jiao_region
+					is_in_region = nanzhong_region
+					is_in_region = yi_region
+					is_in_region = jing_region
+					is_in_region = yang_region
+					is_in_region = xu_region
+					is_in_region = yu_region
+					is_in_region = qing_region
+					is_in_region = ji_region
+					is_in_region = yong_region
+					is_in_region = liang_region
+					is_in_region = shuofang_region
+					is_in_region = bing_region
+					is_in_region = jin_region
+					is_in_region = you_region
+					is_in_region = wa_region
+					is_in_region = modong_region
+					is_in_region = mobei_region
+					is_in_region = scytho_siberian_region
+					is_in_region = hyperborea_region
+					is_in_area = corsica_area
+					is_in_region = burma_region
+				}
+				NOT = {
+					any_neighbor_province = {
+						has_owner = yes
+						owner = {
+							war = yes
+						}
+					}
+				}
+			}
+			set_owned_by = root.owner
+			root.owner = {
+				every_owned_province = {
+					limit = {
+						is_inhabitable = yes
+						total_population < 1
+					}
+					create_pop = freemen
+				}
+			}
+		}
+	}
+}
+
+fix_scorched_earth.2 = {															######### FIX ONE-PROVINCE NON-COASTAL ENCLAVES	#########
+	type = country_event																
+	hidden = yes
+	title = "fix_scorched_earth.2.t"
+	desc = "fix_scorched_earth.2.desc"
+	
+	trigger = {
+		is_ai = yes
+		war = no
+		any_owned_province = { count >= 10 }
+		any_owned_province = {
+			is_coastal = no
+			NOT = {
+				any_neighbor_province = { owner = root }
+			}
+			any_neighbor_province = {
+				has_owner = yes
+				owner = { war = no }
+			}
+		}
+	}
+	
+	immediate = {
+		ordered_owned_province = {
+			limit = {
+				is_coastal = no
+				NOT = {
+					any_neighbor_province = { owner = root }
+				}
+				any_neighbor_province = {
+					has_owner = yes
+					owner = { war = no }
+				}
+			}
+			order_by = total_population
+			ordered_neighbor_province = {
+				limit = {
+					has_owner = yes
+					owner = { war = no }
+				}
+				order_by = total_population
+				save_scope_as = z_enclave_neighbor_province
+			}
+			set_owned_by = scope:z_enclave_neighbor_province.owner
+		}
+	}
+}
+
+fix_scorched_earth.3 = {															######### FIX ONE-PROVINCE UNINHABITED ENCLAVES	#########
+	type = province_event																
+	hidden = yes
+	title = "fix_scorched_earth.3.t"
+	desc = "fix_scorched_earth.3.desc"
+	
+	trigger = {
+		is_inhabitable = yes
+		has_owner = yes
+		root.owner = {
+			is_ai = yes
+			war = no
+		}
+		any_neighbor_province = {
+			is_sea = no
+			is_inhabitable = yes
+			has_owner = no
+			NOT = {
+				any_neighbor_province = {
+					is_inhabitable = yes
+					has_owner = no
+				}
+				any_neighbor_province = {
+					has_owner = yes
+					owner = { war = yes }
+				}
+			}
+		}
+	}
+			
+	
+	immediate = {
+		ordered_neighbor_province = {
+			limit = {
+				is_sea = no
+				is_inhabitable = yes
+				has_owner = no
+				NOT = {
+					any_neighbor_province = {
+						is_inhabitable = yes
+						has_owner = no
+					}
+					any_neighbor_province = {
+						has_owner = yes
+						owner = { war = yes }
+					}
+				}
+			}
+			order_by = total_population
+			set_owned_by = root.owner
+			root.owner = {
+				every_owned_province = {
+					limit = {
+						is_inhabitable = yes
+						total_population < 1
+					}
+					create_pop = freemen
+				}
+			}
+		}		
+	}
+}

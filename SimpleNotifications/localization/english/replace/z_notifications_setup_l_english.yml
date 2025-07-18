@@ -1,0 +1,128 @@
+﻿l_english:
+ # COMMON ----------------------------------------------------------------------------------------------------------------------------------------------------
+ z_notifications_setup:0 "@z_notifications_icon! Notifications @z_notifications_icon!"
+ z_notifications_setup_desc:0 "Set notifications for this character or country."
+ z_notifications_country: "Country notifications"
+ z_notifications_character: "Character notifications"
+ z_notifications_choose_option:0 ""
+ z_notifications_setup_close:0 "#E Confirm#! these settings"
+ z_notifications_setup_close.tt:0 "Save these settings and close the window"
+ z_notifications_setup_back:0 "#E Back#!"
+ z_notifications_setup_back.tt:0 "Return to the previous window"
+ z_notifications_country_government:0 "#Y New ruler\nNew cultural integration\nNew subject annexation#!"
+ z_notifications_country_war:0 "#Y Start of a new war\nLoss of the capital city\nNew military annexation#!"
+ z_notifications_character_death:0 "#Y Death#!"
+ z_notifications_character_life:0 "#Y Majority\nMarriage\nNew child born\nDivorce/widowhood#!"
+ z_notifications_character_office:0 "#Y Accession to power\nNew office\nOffice lost\nCapture of an enemy capital\nImprisonment\nExile#!"
+ z_notifications_country_all:0 "$z_notifications_country_government$\n$z_notifications_country_war$"
+ z_notifications_character_all:0 "$z_notifications_character_office$\n$z_notifications_character_life$\n$z_notifications_character_death$"
+ # EVENTS ----------------------------------------------------------------------------------------------------------------------------------------------------
+ z_notifications_setup.1.t:0 "$z_notifications_setup$"
+ z_notifications_setup.1.desc:0 "We can opt to receive #E notifications#! for this country or this character."
+ z_notifications_setup.1.a:0 "@[z_notifications_country.GetFlag]! [z_notifications_country.GetName]"
+ z_notifications_setup.1.a.tt:0 "Notification settings for @[z_notifications_country.GetFlag]! [z_notifications_country.GetName]"
+ z_notifications_setup.1.b:0 "@[z_notifications_country.GetFlag]! [z_notifications_character.GetName]"
+ z_notifications_setup.1.b.tt:0 "Notification settings for @[z_notifications_country.GetFlag]! [z_notifications_character.GetName]"
+ z_notifications_setup.1.c:0 "#E Close#!"
+ z_notifications_setup.1.c.tt:0 "Close this window"
+ # --------------------------------------------------------------------------------------------------------------------------------------------------
+ z_notifications_setup.2.t:0 "Settings for @[z_notifications_country.GetFlag]! [z_notifications_country.GetName]"
+ z_notifications_setup.2.desc:0 "Current notification settings for @[z_notifications_country.GetFlag]! [z_notifications_country.GetName]:"
+ # ------------
+ z_notifications_setup.2.a.on:0 "#E Enable all#! notifications"
+ z_notifications_setup.2.a.on.tt:0 "#G Enable#! notifications for:\n$z_notifications_country_all$"
+ z_notifications_setup.2.a.off:0 "#E Disable all#! notifications"
+ z_notifications_setup.2.a.off.tt:0 "#R Disable all notifications for this country#!"
+ # ------------
+ z_notifications_setup.2.b.on:0 "@z_notifications_government! #E Government#! @z_notifications_disabled!"
+ z_notifications_setup.2.b.on.tt:0 "#G Enable#! notifications for:\n$z_notifications_country_government$"
+ z_notifications_setup.2.b.off:0 "@z_notifications_government! #E Government#! @z_notifications_enabled!"
+ z_notifications_setup.2.b.off.tt:0 "#R Disable#! notifications for:\n$z_notifications_country_government$"
+ # ------------
+ z_notifications_setup.2.c.on:0 "@z_notifications_military! #E Military#! @z_notifications_disabled!"
+ z_notifications_setup.2.c.on.tt:0 "#G Enable#! notifications for:\n$z_notifications_country_war$"
+ z_notifications_setup.2.c.off:0 "@z_notifications_military! #E Military#! @z_notifications_enabled!"
+ z_notifications_setup.2.c.off.tt:0 "#R Disable#! notifications for:\n$z_notifications_country_war$"
+ # ------------
+ z_notifications_setup.2.copy:0 "@z_notifications_copy! #E Export#! these settings"
+ z_notifications_setup.2.copy.tt:0 "#G Export#! these settings to a group of countries"
+ # --------------------------------------------------------------------------------------------------------------------------------------------------
+ z_notifications_setup.3.t:0 "Settings for @[z_notifications_country.GetFlag]! [z_notifications_character.GetFirstName]"
+ z_notifications_setup.3.desc:0 "Current notification settings for @[z_notifications_country.GetFlag]! [z_notifications_character.GetName]:"
+ # ------------
+ z_notifications_setup.3.a.on:0 "#E Enable all#! notifications"
+ z_notifications_setup.3.a.on.tt:0 "#G Enable#! notifications for:\n$z_notifications_character_all$"
+ z_notifications_setup.3.a.off:0 "#E Disable all#! notifications"
+ z_notifications_setup.3.a.off.tt:0 "#R Disable all notifications for this character#!"
+ # ------------
+ z_notifications_setup.3.b.on:0 "@z_notifications_death! #E Death#! @z_notifications_disabled!"
+ z_notifications_setup.3.b.on.tt:0 "#G Enable#! notifications for:\n$z_notifications_character_death$"
+ z_notifications_setup.3.b.off:0 "@z_notifications_death! #E Death#! @z_notifications_enabled!"
+ z_notifications_setup.3.b.off.tt:0 "#R Disable#! notifications for:\n$z_notifications_character_death$"
+ # ------------
+ z_notifications_setup.3.c.on:0 "@z_notifications_office! #E Career#! @z_notifications_disabled!"
+ z_notifications_setup.3.c.on.tt:0 "#G Enable#! notifications for:\n$z_notifications_character_office$"
+ z_notifications_setup.3.c.off:0 "@z_notifications_office! #E Career#! @z_notifications_enabled!"
+ z_notifications_setup.3.c.off.tt:0 "#R Disable#! notifications for:\n$z_notifications_character_office$"
+ # ------------
+ z_notifications_setup.3.d.on:0 "@z_notifications_marriage! #E Personal#! @z_notifications_disabled!"
+ z_notifications_setup.3.d.on.tt:0 "#G Enable#! notifications for:\n$z_notifications_character_life$"
+ z_notifications_setup.3.d.off:0 "@z_notifications_marriage! #E Personal#! @z_notifications_enabled!"
+ z_notifications_setup.3.d.off.tt:0 "#R Disable#! notifications for:\n$z_notifications_character_life$"
+ # ------------
+ z_notifications_setup.3.copy:0 "$z_notifications_setup.2.copy$"
+ z_notifications_setup.3.copy.tt:0 "#G Export#! these settings to a group of characters"
+ # --------------------------------------------------------------------------------------------------------------------------------------------------
+ z_notifications_setup.4.t:0 "Settings for @[z_notifications_country.GetFlag]! [z_notifications_country.GetName]"
+ z_notifications_setup.4.desc:0 "#E Export#! notification settings from @[z_notifications_country.GetFlag]! [z_notifications_country.GetName] to:"
+ # ------------
+ z_notifications_setup.4.a:0 "Neighbors of @[ROOT.GetCountry.GetFlag]! [ROOT.GetCountry.GetName]"
+ z_notifications_setup.4.a.tt:0 "#G Export#! settings from @[z_notifications_country.GetFlag]! [z_notifications_country.GetName] to #Y [SCOPE.ScriptValue('z_notifications_country_neighbors')|0]#! countries."
+ # ------------
+ z_notifications_setup.4.b:0 "Neighbors of @[z_notifications_country.GetFlag]! [z_notifications_country.GetName]"
+ z_notifications_setup.4.b.tt:0 "#G Export#! settings from @[z_notifications_country.GetFlag]! [z_notifications_country.GetName] to #Y [SCOPE.ScriptValue('z_notifications_country_neighbors_target')|0]#! countries."
+ # ------------
+ z_notifications_setup.4.c:0 "#E All#! countries"
+ z_notifications_setup.4.c.tt:0 "#G Export#! settings from @[z_notifications_country.GetFlag]! [z_notifications_country.GetName] to #Y [SCOPE.ScriptValue('z_notifications_country_all')|0]#! countries."
+ # ------------
+ z_notifications_setup.4.d:0 "#E [ROOT.GetCountry.GetPrimaryCulture.GetName]#! regimes"
+ z_notifications_setup.4.d.tt:0 "#G Export#! settings from @[z_notifications_country.GetFlag]! [z_notifications_country.GetName] to #Y [SCOPE.ScriptValue('z_notifications_country_culture')|0]#! countries."
+ # ------------
+ z_notifications_setup.4.e:0 "#E [z_notifications_country.GetPrimaryCulture.GetName]#! regimes"
+ z_notifications_setup.4.e.tt:0 "#G Export#! settings from @[z_notifications_country.GetFlag]! [z_notifications_country.GetName] to #Y [SCOPE.ScriptValue('z_notifications_country_culture_target')|0]#! countries."
+ # ------------
+ z_notifications_setup.4.f:0 "#E [ROOT.GetCountry.GetPrimaryCulture.GetCultureGroup.GetName]#! regimes"
+ z_notifications_setup.4.f.tt:0 "#G Export#! settings from @[z_notifications_country.GetFlag]! [z_notifications_country.GetName] to #Y [SCOPE.ScriptValue('z_notifications_country_culture_group')|0]#! countries."
+ # ------------
+ z_notifications_setup.4.g:0 "#E [z_notifications_country.GetPrimaryCulture.GetCultureGroup.GetName]#! regimes"
+ z_notifications_setup.4.g.tt:0 "#G Export#! settings from @[z_notifications_country.GetFlag]! [z_notifications_country.GetName] to #Y [SCOPE.ScriptValue('z_notifications_country_culture_group_target')|0]#! countries."
+ # --------------------------------------------------------------------------------------------------------------------------------------------------
+ z_notifications_setup.5.t:0 "Settings for @[z_notifications_country.GetFlag]! [z_notifications_character.GetFirstName]"
+ z_notifications_setup.5.desc:0 "#E Export#! settings from @[z_notifications_country.GetFlag]! [z_notifications_character.GetName] to:"
+ # ------------
+ z_notifications_setup.5.a:0 "Rulers neighboring @[ROOT.GetCountry.GetFlag]! [ROOT.GetCountry.GetName]"
+ z_notifications_setup.5.a.tt:0 "#G Export#! settings from @[z_notifications_country.GetFlag]! [z_notifications_character.GetFirstName] to #Y [SCOPE.ScriptValue('z_notifications_country_neighbors')|0]#! character(s)."
+ # ------------
+ z_notifications_setup.5.b:0 "Family of @[z_notifications_country.GetFlag]! [z_notifications_character.GetFirstName]"
+ z_notifications_setup.5.b.tt:0 "#G Export#! settings from @[z_notifications_country.GetFlag]! [z_notifications_character.GetFirstName] to #Y [SCOPE.ScriptValue('z_notifications_character_family_target')|0]#! character(s)."
+ # ------------
+ z_notifications_setup.5.c:0 "Rulers neighboring @[z_notifications_country.GetFlag]! [z_notifications_country.GetName]"
+ z_notifications_setup.5.c.tt:0 "#G Export#! settings from @[z_notifications_country.GetFlag]! [z_notifications_character.GetFirstName] to #Y [SCOPE.ScriptValue('z_notifications_country_neighbors_target')|0]#! character(s)."
+ # ------------
+ z_notifications_setup.5.d:0 "Children of @[z_notifications_country.GetFlag]! [z_notifications_character.GetFirstName]"
+ z_notifications_setup.5.d.tt:0 "#G Export#! settings from @[z_notifications_country.GetFlag]! [z_notifications_character.GetFirstName] to #Y [SCOPE.ScriptValue('z_notifications_character_children_target')|0]#! character(s)."
+ # ------------
+ z_notifications_setup.5.e:0 "Children of @[ROOT.GetCountry.GetFlag]! [ROOT.GetCountry.GetRuler.GetName]"
+ z_notifications_setup.5.e.tt:0 "#G Export#! settings from @[z_notifications_country.GetFlag]! [z_notifications_character.GetFirstName] to #Y [SCOPE.ScriptValue('z_notifications_character_children')|0]#! character(s)."
+ # ------------
+ z_notifications_setup.5.f:0 "#E [z_notifications_country.GetRuler.GetCulture.GetName]#! rulers"
+ z_notifications_setup.5.f.tt:0 "#G Export#! settings from @[z_notifications_country.GetFlag]! [z_notifications_character.GetFirstName] to #Y [SCOPE.ScriptValue('z_notifications_country_culture_target')|0]#! character(s)."
+ # ------------
+ z_notifications_setup.5.g:0 "#E [ROOT.GetCountry.GetRuler.GetCulture.GetName]#! rulers"
+ z_notifications_setup.5.g.tt:0 "#G Export#! settings from @[z_notifications_country.GetFlag]! [z_notifications_character.GetFirstName] to #Y [SCOPE.ScriptValue('z_notifications_country_culture')|0]#! character(s)."
+ # DO NOT TRANSLATE ----------------------------------------------------------------------------------------------------------------------------------------------------
+ z_notifications_setup_past:0 "$z_notifications_setup$"
+ z_notifications_setup_act:0 "$z_notifications_setup$"
+ z_notifications_setup_act_past:0 "$z_notifications_setup$"
+ z_notifications_setup_allowed:0 "$z_notifications_setup_desc$"
+ z_notifications_setup_effect:0 "$z_notifications_setup_desc$"

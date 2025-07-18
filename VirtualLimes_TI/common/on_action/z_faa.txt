@@ -1,0 +1,216 @@
+﻿#################################################################################################	"Friends & Allies" (VL for Rome only)
+#################################################################################################
+on_game_initialized = {
+}
+
+monthly_country_pulse = {
+	
+	on_actions = {
+	
+		z_faa_monthly					# FAA Default monthly pulse
+		z_faa_monthly_limes				# FAA "Limes" mechanics
+		
+	}
+	
+}
+
+yearly_country_pulse = {
+	
+	on_actions = {
+	
+		z_faa_yearly					# FAA Default yearly pulse
+		
+	}
+	
+}
+
+#################################################################################################	FAA Default monthly pulse
+#################################################################################################
+z_faa_monthly = {
+
+	events = {
+	
+		delay = { days = { 1 27 } }
+		
+		# Strong/Weak modifiers
+		z_faa_common.1 			# Rome chooses her fate
+		z_faa_common.2 			# Rome rethinks her fate
+		z_faa_common.3			# Rome receives her fate
+		z_faa_common.4			# Make Rome Great Again (MGRA)
+		z_faa_common.5			# Give superpower modifiers
+		z_faa_common.6			# Remove superpower modifiers
+		
+		# Prompt Roman wars (and others too)
+		z_faa_wars.101			# Italy / Sicily / Sardinia
+		z_faa_wars.109			# Cisalpine
+		
+	}
+	
+	random_events = {
+	
+		delay = { days = { 1 27 } }
+		
+		50 = 0
+		
+		# Prompt Roman wars (and others too)
+		20 = z_faa_wars.102			# Rome in Iberia (Coast)
+		20 = z_faa_wars.103			# Greece
+		20 = z_faa_wars.104			# Asia
+		20 = z_faa_wars.105			# Syria
+		50 = z_faa_wars.106			# Africa
+		20 = z_faa_wars.107			# Egypt
+		20 = z_faa_wars.108			# Gaul
+		
+	}
+	
+}
+
+#################################################################################################	FAA "Limes" mechanics
+#################################################################################################
+z_faa_monthly_limes = {
+
+	random_events = {
+	
+		#delay = { days = { 1 27 } }
+		
+		25 = 0
+		
+		25 = z_faa.1				# Limes: Italy
+		25 = z_faa.2				# Limes: Cisalpine A
+		25 = z_faa.3				# Limes: Cisalpine B
+		25 = z_faa.4				# Limes: Iberia A
+		25 = z_faa.5				# Limes: Iberia B
+		25 = z_faa.6				# Limes: Iberia C
+		25 = z_faa.7				# Limes: Iberia D
+		25 = z_faa.8				# Limes: Iberia E
+		25 = z_faa.9				# Limes: Iberia F
+		25 = z_faa.10				# Limes: Iberia G
+		25 = z_faa.11				# Limes: Illyria A
+		25 = z_faa.12				# Limes: Illyria B
+		25 = z_faa.13				# Limes: Greece A
+		25 = z_faa.14				# Limes: Greece B
+		25 = z_faa.15				# Limes: Macedonia
+		25 = z_faa.16				# Limes: Thrace
+		25 = z_faa.17				# Limes: Moesia
+		25 = z_faa.18				# Limes: Dacia
+		25 = z_faa.19				# Limes: Pannonia
+		25 = z_faa.20				# Limes: Gaul A
+		25 = z_faa.21				# Limes: Gaul B
+		25 = z_faa.22				# Limes: Gaul C
+		25 = z_faa.23				# Limes: Gaul D
+		25 = z_faa.24				# Limes: Gaul E
+		25 = z_faa.25				# Limes: Gaul F
+		25 = z_faa.26				# Limes: Rhaetia
+		25 = z_faa.27				# Limes: Agri Decumates
+		25 = z_faa.28				# Limes: Africa A
+		25 = z_faa.29				# Limes: Africa B
+		25 = z_faa.30				# Limes: Africa C
+		25 = z_faa.31				# Limes: Africa D
+		25 = z_faa.32				# Limes: Africa E
+		25 = z_faa.33				# Limes: Africa F
+		25 = z_faa.34				# Limes: Africa G
+		25 = z_faa.35				# Limes: Asia A
+		25 = z_faa.36				# Limes: Asia B
+		25 = z_faa.37				# Limes: Asia C
+		25 = z_faa.38				# Limes: Asia D
+		25 = z_faa.39				# Limes: Asia E
+		25 = z_faa.40				# Limes: Pontus A
+		25 = z_faa.41				# Limes: Pontus B
+		25 = z_faa.42				# Limes: Pontus C
+		25 = z_faa.43				# Limes: Levant A
+		25 = z_faa.44				# Limes: Levant B
+		25 = z_faa.45				# Limes: Levant C
+		25 = z_faa.46				# Limes: Levant D
+		25 = z_faa.47				# Limes: Levant E
+		25 = z_faa.48				# Limes: Britain
+		
+	}
+		
+	random_events = {
+	
+		#delay = { days = { 1 27 } }
+		
+		25 = 0
+		
+		10 = z_faa.100				# Diplo-annex: Italy
+		10 = z_faa.101				# Diplo-annex: Italy
+		10 = z_faa.102				# Diplo-annex: Cisalpine A
+		10 = z_faa.103				# Diplo-annex: Cisalpine B
+		10 = z_faa.104				# Diplo-annex: Iberia A
+		10 = z_faa.105				# Diplo-annex: Iberia B
+		10 = z_faa.106				# Diplo-annex: Iberia C
+		10 = z_faa.107				# Diplo-annex: Iberia D
+		10 = z_faa.108				# Diplo-annex: Iberia E
+		10 = z_faa.109				# Diplo-annex: Iberia F
+		10 = z_faa.110				# Diplo-annex: Iberia G
+		10 = z_faa.111				# Diplo-annex: Illyria A
+		10 = z_faa.112				# Diplo-annex: Illyria B
+		10 = z_faa.113				# Diplo-annex: Greece A
+		10 = z_faa.114				# Diplo-annex: Greece B
+		10 = z_faa.115				# Diplo-annex: Macedonia
+		10 = z_faa.116				# Diplo-annex: Thrace
+		10 = z_faa.117				# Diplo-annex: Moesia
+		10 = z_faa.118				# Diplo-annex: Dacia
+		10 = z_faa.119				# Diplo-annex: Pannonia
+		10 = z_faa.120				# Diplo-annex: Gaul A
+		10 = z_faa.121				# Diplo-annex: Gaul B
+		10 = z_faa.122				# Diplo-annex: Gaul C
+		10 = z_faa.123				# Diplo-annex: Gaul D
+		10 = z_faa.124				# Diplo-annex: Gaul E
+		10 = z_faa.125				# Diplo-annex: Gaul F
+		10 = z_faa.126				# Diplo-annex: Rhaetia
+		10 = z_faa.127				# Diplo-annex: Agri Decumates
+		10 = z_faa.128				# Diplo-annex: Africa A
+		10 = z_faa.129				# Diplo-annex: Africa B
+		10 = z_faa.130				# Diplo-annex: Africa C
+		10 = z_faa.131				# Diplo-annex: Africa D
+		10 = z_faa.132				# Diplo-annex: Africa E
+		10 = z_faa.133				# Diplo-annex: Africa F
+		10 = z_faa.134				# Diplo-annex: Africa G
+		10 = z_faa.135				# Diplo-annex: Asia A
+		10 = z_faa.136				# Diplo-annex: Asia B
+		10 = z_faa.137				# Diplo-annex: Asia C
+		10 = z_faa.138				# Diplo-annex: Asia D
+		10 = z_faa.139				# Diplo-annex: Asia E
+		10 = z_faa.140				# Diplo-annex: Pontus A
+		10 = z_faa.141				# Diplo-annex: Pontus B
+		10 = z_faa.142				# Diplo-annex: Pontus C
+		10 = z_faa.143				# Diplo-annex: Levant A
+		10 = z_faa.144				# Diplo-annex: Levant B
+		10 = z_faa.145				# Diplo-annex: Levant C
+		10 = z_faa.146				# Diplo-annex: Levant D
+		10 = z_faa.147				# Diplo-annex: Levant E
+		10 = z_faa.148				# Diplo-annex: Britain
+		
+	}
+	
+}
+
+#################################################################################################	FAA Default yearly pulse
+#################################################################################################
+z_faa_yearly = {
+
+	events = {
+	
+		delay = { days = { 1 360 } }
+		
+		# More Limes
+		z_faa.999				# Limes: Neverland
+		z_faa_wars.200			# Full-blown expansion
+		
+		# Release faraway FAA's
+		z_faa_common.100		#
+		
+		# Merge FAAs in same area
+		z_faa_common.200			# 
+		
+		# Merge FAAs in same region
+		z_faa_common.201			# Numidia
+		z_faa_common.202			# Cyrenaica
+		z_faa_common.203			# Mauretania
+		z_faa_common.204			# Egypt
+		z_faa_common.205			# Armenia
+		z_faa_common.206			# Other regions, but rare
+		
+	}
+}

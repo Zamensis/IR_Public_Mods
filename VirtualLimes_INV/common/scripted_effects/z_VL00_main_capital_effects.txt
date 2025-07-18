@@ -1,0 +1,152 @@
+﻿# --------------------------------------------------------------------------------
+# Restore capital (if applicable) and save capital (if applicable)
+# --------------------------------------------------------------------------------
+z_limes_capital_effect = {
+	# --------------------------------------------------------------------------------
+	# Save capital, default case
+	# --------------------------------------------------------------------------------
+	if = {
+		limit = { z_limes_capital_trigger = yes }
+		z_limes_save_capital_effect = yes
+	}
+	# --------------------------------------------------------------------------------
+	# Save capital, revolt case
+	# --------------------------------------------------------------------------------
+	if = {
+		limit = {
+			has_civil_war = yes
+			has_variable = z_limes_capital_city
+			has_variable = z_limes_capital_area
+			any_current_war = {
+				is_war_leader = root
+				any_war_participant = {
+					has_civil_war = yes
+					NAND = {
+						has_variable = z_limes_capital_city
+						has_variable = z_limes_capital_area
+					}
+				}
+			}
+		}
+		random_current_war = {
+			limit = {
+				is_war_leader = root
+				any_war_participant = {
+					has_civil_war = yes
+					NOT = {
+						has_variable = z_limes_capital_city
+						has_variable = z_limes_capital_area
+					}
+				}
+			}
+			random_war_participant = {
+				limit = {
+					has_civil_war = yes
+					NAND = {
+						has_variable = z_limes_capital_city
+						has_variable = z_limes_capital_area
+					}
+				}
+				set_variable = {
+					name = z_limes_capital_city
+					value = root.var:z_limes_capital_city
+				}
+				set_variable = {
+					name = z_limes_capital_area
+					value = root.var:z_limes_capital_area
+				}
+			}
+		}
+	}
+	# --------------------------------------------------------------------------------
+	# Restore capital, if applicable
+	# --------------------------------------------------------------------------------
+	# If capital was saved previously, check if it needs to be restored and if so, restore it
+	if = {
+		limit = { z_limes_rules_capital = 1 }
+		z_limes_restore_capital_effect = yes
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Save capital
+# --------------------------------------------------------------------------------
+z_limes_save_capital_effect = {
+	if = {
+		limit = {
+			NAND = {
+				has_variable = z_limes_capital_city
+				has_variable = z_limes_capital_area
+			}
+		}
+		if = {
+			limit = {
+				tag = PRY # Antigonids, ite domum
+			}
+			set_variable = {
+				name = z_limes_capital_city
+				value = c:MAC.capital_scope # Pella hehehehe
+			}
+			set_variable = {
+				name = z_limes_capital_area
+				value = c:MAC.capital_scope.area
+			}
+		}
+		else = {
+			set_variable = {
+				name = z_limes_capital_city
+				value = capital_scope
+			}
+			set_variable = {
+				name = z_limes_capital_area
+				value = capital_scope.area
+			}
+		}
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Restore capital
+# --------------------------------------------------------------------------------
+z_limes_restore_capital_effect = {
+	if = {
+		limit = {
+			is_ai = yes
+			has_variable = z_limes_capital_area
+			has_variable = z_limes_capital_city
+			capital_scope = {
+				NOT = { this = root.var:z_limes_capital_city }
+			}		
+			OR = {
+				owns = var:z_limes_capital_city
+				var:z_limes_capital_area = {
+					any_area_province = {
+						count >= 5
+						owner = root
+					}
+					any_area_province = {
+						owner = root
+						total_population >= 10
+					}
+				}
+			}
+		}
+		if = {
+			limit = { owns = var:z_limes_capital_city }
+			set_capital = var:z_limes_capital_city
+		}
+		else = {
+			ordered_owned_province = {
+				limit = { this.area = root.var:z_limes_capital_area }
+				order_by = total_population
+				root = { set_capital = prev }
+			}
+		}
+	}
+	if = {
+		limit = {
+			z_has_limes_PAR = yes
+		}
+		z_limes_restore_capital_effect_PAR = yes
+	}
+}

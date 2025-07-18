@@ -1,0 +1,38 @@
+﻿#################################################################################################	Check belligerent sizes
+#################################################################################################	
+z_limes_civil_war_winner_score = {
+	value = 0
+	add = scope:z_limes_civil_war_winner.num_of_cities
+	divide = {
+		value = scope:z_limes_civil_war_winner.num_of_cities
+		add = scope:z_limes_civil_war_loser.num_of_cities
+	}
+}
+
+#################################################################################################	% of territory lost by the loser each time the event fires
+#################################################################################################
+z_limes_civil_war_loser_annexion = {
+	value = 0
+	add = scope:z_limes_civil_war_loser.num_of_cities
+	multiply = 0.08
+	if = {
+		limit = {
+			scope:z_limes_civil_war_loser = {
+				has_variable = z_limes_civil_war_defender
+			}
+		}
+		divide = 2
+	}
+	min = 1
+	max = 10
+}
+
+#################################################################################################	Ruler score
+#################################################################################################
+z_limes_ruler_score = {
+	value = 0
+	add = root.current_ruler.martial
+	add = root.current_ruler.charisma
+	add = root.current_ruler.finesse
+	add = root.current_ruler.zeal
+}

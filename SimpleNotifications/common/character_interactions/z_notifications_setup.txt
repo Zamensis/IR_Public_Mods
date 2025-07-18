@@ -1,0 +1,47 @@
+﻿#-----------------------------------------------------------------------------------------
+#
+#	Open setup window, based on scope:target, choose whether to setup country or character notifications, or cancel
+#
+#-----------------------------------------------------------------------------------------
+
+z_notifications_setup = {
+
+	on_other_nation = no 
+	on_own_nation = no
+	message = no
+	#close_ui = yes
+	
+	sound = "event:/SFX/UI/Character/Unique/sfx_ui_character_befriend"
+	
+	potential_trigger = {
+		hidden:scope:target = {
+			is_alive = yes
+			is_mercenary = no
+			prisoner = no
+			NOT = { this = scope:actor.current_ruler }
+		}
+	}
+	
+	allowed_trigger = {
+		custom_tooltip = {
+			text = "z_notifications_setup_allowed"
+			#hidden:scope:target = {
+			#	NOT = { employer = scope:actor }
+			#}
+		}
+	}
+	
+	effect = {
+		custom_tooltip = "z_notifications_setup_effect"
+		z_notifications_settings = yes
+	}
+	
+	ai_will_do = {
+		modifier = {
+			add = 0
+			trigger = {
+				always = no
+			}
+		}
+	}
+}

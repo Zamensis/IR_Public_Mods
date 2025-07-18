@@ -1,0 +1,603 @@
+﻿#################################################################################################	Clear Impiety
+#################################################################################################
+z_clear_impiety = {
+	if = {
+		limit = {
+			has_country_modifier = z_impiety_1
+		}
+		remove_country_modifier = z_impiety_1
+	}
+	if = {
+		limit = {
+			has_country_modifier = z_impiety_2
+		}
+		remove_country_modifier = z_impiety_2
+	}
+	if = {
+		limit = {
+			has_country_modifier = z_impiety_3
+		}
+		remove_country_modifier = z_impiety_3
+	}
+	if = {
+		limit = {
+			has_country_modifier = z_impiety_4
+		}
+		remove_country_modifier = z_impiety_4
+	}
+	if = {
+		limit = {
+			has_country_modifier = z_impiety_5
+		}
+		remove_country_modifier = z_impiety_5
+	}
+	if = {
+		limit = {
+			has_country_modifier = z_impiety_6
+		}
+		remove_country_modifier = z_impiety_6
+	}
+	if = {
+		limit = {
+			has_country_modifier = z_impiety_7
+		}
+		remove_country_modifier = z_impiety_7
+	}
+	if = {
+		limit = {
+			has_country_modifier = z_impiety_8
+		}
+		remove_country_modifier = z_impiety_8
+	}
+	if = {
+		limit = {
+			has_country_modifier = z_impiety_9
+		}
+		remove_country_modifier = z_impiety_9
+	}
+	if = {
+		limit = {
+			has_country_modifier = z_impiety_10
+		}
+		remove_country_modifier = z_impiety_10
+	}
+	if = {
+		limit = {
+			has_country_modifier = z_impiety_tribal_1
+		}
+		remove_country_modifier = z_impiety_tribal_1
+	}
+	if = {
+		limit = {
+			has_country_modifier = z_impiety_tribal_2
+		}
+		remove_country_modifier = z_impiety_tribal_2
+	}
+	if = {
+		limit = {
+			has_country_modifier = z_impiety_tribal_3
+		}
+		remove_country_modifier = z_impiety_tribal_3
+	}
+	if = {
+		limit = {
+			has_country_modifier = z_impiety_tribal_4
+		}
+		remove_country_modifier = z_impiety_tribal_4
+	}
+	if = {
+		limit = {
+			has_country_modifier = z_impiety_tribal_5
+		}
+		remove_country_modifier = z_impiety_tribal_5
+	}
+	if = {
+		limit = {
+			has_country_modifier = z_impiety_tribal_6
+		}
+		remove_country_modifier = z_impiety_tribal_6
+	}
+	if = {
+		limit = {
+			has_country_modifier = z_impiety_tribal_7
+		}
+		remove_country_modifier = z_impiety_tribal_7
+	}
+	if = {
+		limit = {
+			has_country_modifier = z_impiety_tribal_8
+		}
+		remove_country_modifier = z_impiety_tribal_8
+	}
+	if = {
+		limit = {
+			has_country_modifier = z_impiety_tribal_9
+		}
+		remove_country_modifier = z_impiety_tribal_9
+	}
+	if = {
+		limit = {
+			has_country_modifier = z_impiety_tribal_10
+		}
+		remove_country_modifier = z_impiety_tribal_10
+	}
+	if = {
+		limit = {
+			has_country_modifier = z_impiety_republic_1
+		}
+		remove_country_modifier = z_impiety_republic_1
+	}
+	if = {
+		limit = {
+			has_country_modifier = z_impiety_republic_2
+		}
+		remove_country_modifier = z_impiety_republic_2
+	}
+	if = {
+		limit = {
+			has_country_modifier = z_impiety_republic_3
+		}
+		remove_country_modifier = z_impiety_republic_3
+	}
+	if = {
+		limit = {
+			has_country_modifier = z_impiety_republic_4
+		}
+		remove_country_modifier = z_impiety_republic_4
+	}
+	if = {
+		limit = {
+			has_country_modifier = z_impiety_republic_5
+		}
+		remove_country_modifier = z_impiety_republic_5
+	}
+	if = {
+		limit = {
+			has_country_modifier = z_impiety_republic_6
+		}
+		remove_country_modifier = z_impiety_republic_6
+	}
+	if = {
+		limit = {
+			has_country_modifier = z_impiety_republic_7
+		}
+		remove_country_modifier = z_impiety_republic_7
+	}
+	if = {
+		limit = {
+			has_country_modifier = z_impiety_republic_8
+		}
+		remove_country_modifier = z_impiety_republic_8
+	}
+	if = {
+		limit = {
+			has_country_modifier = z_impiety_republic_9
+		}
+		remove_country_modifier = z_impiety_republic_9
+	}
+	if = {
+		limit = {
+			has_country_modifier = z_impiety_republic_10
+		}
+		remove_country_modifier = z_impiety_republic_10
+	}
+}
+#################################################################################################	Add Impiety
+#################################################################################################
+z_add_impiety = {
+	save_scope_as = z_this_country
+	set_variable = {
+		name = z_new_impiety
+		value = z_impiety
+	}
+	change_variable = {
+		name = z_new_impiety
+		add = var:z_add_impiety
+	}
+	set_variable = {
+		name = z_display_impiety
+		value = var:z_add_impiety
+	}
+	hidden_effect = {
+		z_clear_impiety = yes # In case gov type has changed
+	}
+	z_update_impiety = yes
+	remove_variable = z_new_impiety
+	if = {
+		limit = {
+			var:z_display_impiety > 0
+		}
+		custom_tooltip = "z_add_impiety"
+	}
+	else = {
+		custom_tooltip = "z_remove_impiety"
+	}
+}
+
+#################################################################################################	Divide Impiety by 2
+#################################################################################################
+z_divide_impiety_2 = {
+	save_scope_as = z_this_country
+	set_variable = {
+		name = z_new_impiety
+		value = z_impiety
+	}
+	change_variable = {
+		name = z_new_impiety
+		divide = 2 # If decimal, rounded up due to how z_update_impiety operates -> Player goes from Impiety 5 to 3 (~2.5) -> As should be
+	}
+	hidden_effect = {
+		z_clear_impiety = yes
+	}
+	z_update_impiety = yes
+	remove_variable = z_new_impiety
+	custom_tooltip = "z_divide_impiety_2"
+}
+
+#################################################################################################	Update Impiety
+#################################################################################################
+z_update_impiety = {
+	if = {
+		limit = {
+			is_tribal = yes
+		}
+		while = {
+			limit = {
+				var:z_new_impiety > 0
+			}
+			z_add_impiety_tribal = yes
+		}
+	}
+	else_if = {
+		limit = {
+			is_republic = yes
+		}
+		while = {
+			limit = {
+				var:z_new_impiety > 0
+			}
+			z_add_impiety_republic = yes
+		}
+	}
+	else = {
+		while = {
+			limit = {
+				var:z_new_impiety > 0
+			}
+			z_add_impiety_monarchy = yes
+		}
+	}
+}
+
+#################################################################################################	Add 1 Impiety (Monarchy)
+#################################################################################################
+z_add_impiety_monarchy = {
+	hidden_effect = {
+		if = {
+			limit = {
+				z_impiety = 0
+			}
+			z_clear_impiety = yes
+			add_country_modifier = {
+				name = z_impiety_1
+				duration = -1
+			}
+		}
+		else_if = {
+			limit = {
+				z_impiety = 1
+			}
+			z_clear_impiety = yes
+			add_country_modifier = {
+				name = z_impiety_2
+				duration = -1
+			}
+		}
+		else_if = {
+			limit = {
+				z_impiety = 2
+			}
+			z_clear_impiety = yes
+			add_country_modifier = {
+				name = z_impiety_3
+				duration = -1
+			}
+		}
+		else_if = {
+			limit = {
+				z_impiety = 3
+			}
+			z_clear_impiety = yes
+			add_country_modifier = {
+				name = z_impiety_4
+				duration = -1
+			}
+		}
+		else_if = {
+			limit = {
+				z_impiety = 4
+			}
+			z_clear_impiety = yes
+			add_country_modifier = {
+				name = z_impiety_5
+				duration = -1
+			}
+		}
+		else_if = {
+			limit = {
+				z_impiety = 5
+			}
+			z_clear_impiety = yes
+			add_country_modifier = {
+				name = z_impiety_6
+				duration = -1
+			}
+		}
+		else_if = {
+			limit = {
+				z_impiety = 6
+			}
+			z_clear_impiety = yes
+			add_country_modifier = {
+				name = z_impiety_7
+				duration = -1
+			}
+		}
+		else_if = {
+			limit = {
+				z_impiety = 7
+			}
+			z_clear_impiety = yes
+			add_country_modifier = {
+				name = z_impiety_8
+				duration = -1
+			}
+		}
+		else_if = {
+			limit = {
+				z_impiety = 8
+			}
+			z_clear_impiety = yes
+			add_country_modifier = {
+				name = z_impiety_9
+				duration = -1
+			}
+		}
+		else_if = {
+			limit = {
+				z_impiety = 9
+			}
+			z_clear_impiety = yes
+			add_country_modifier = {
+				name = z_impiety_10
+				duration = -1
+			}
+		}
+		change_variable = {
+			name = z_new_impiety
+			subtract = 1
+		}
+	}
+}
+
+#################################################################################################	Add 1 Impiety (Tribal)
+#################################################################################################
+z_add_impiety_tribal = {
+	hidden_effect = {
+		if = {
+			limit = {
+				z_impiety = 0
+			}
+			z_clear_impiety = yes
+			add_country_modifier = {
+				name = z_impiety_tribal_1
+				duration = -1
+			}
+		}
+		else_if = {
+			limit = {
+				z_impiety = 1
+			}
+			z_clear_impiety = yes
+			add_country_modifier = {
+				name = z_impiety_tribal_2
+				duration = -1
+			}
+		}
+		else_if = {
+			limit = {
+				z_impiety = 2
+			}
+			z_clear_impiety = yes
+			add_country_modifier = {
+				name = z_impiety_tribal_3
+				duration = -1
+			}
+		}
+		else_if = {
+			limit = {
+				z_impiety = 3
+			}
+			z_clear_impiety = yes
+			add_country_modifier = {
+				name = z_impiety_tribal_4
+				duration = -1
+			}
+		}
+		else_if = {
+			limit = {
+				z_impiety = 4
+			}
+			z_clear_impiety = yes
+			add_country_modifier = {
+				name = z_impiety_tribal_5
+				duration = -1
+			}
+		}
+		else_if = {
+			limit = {
+				z_impiety = 5
+			}
+			z_clear_impiety = yes
+			add_country_modifier = {
+				name = z_impiety_tribal_6
+				duration = -1
+			}
+		}
+		else_if = {
+			limit = {
+				z_impiety = 6
+			}
+			z_clear_impiety = yes
+			add_country_modifier = {
+				name = z_impiety_tribal_7
+				duration = -1
+			}
+		}
+		else_if = {
+			limit = {
+				z_impiety = 7
+			}
+			z_clear_impiety = yes
+			add_country_modifier = {
+				name = z_impiety_tribal_8
+				duration = -1
+			}
+		}
+		else_if = {
+			limit = {
+				z_impiety = 8
+			}
+			z_clear_impiety = yes
+			add_country_modifier = {
+				name = z_impiety_tribal_9
+				duration = -1
+			}
+		}
+		else_if = {
+			limit = {
+				z_impiety = 9
+			}
+			z_clear_impiety = yes
+			add_country_modifier = {
+				name = z_impiety_tribal_10
+				duration = -1
+			}
+		}
+		change_variable = {
+			name = z_new_impiety
+			subtract = 1
+		}
+	}
+}
+
+#################################################################################################	Add 1 Impiety (Republic)
+#################################################################################################
+z_add_impiety_republic = {
+	hidden_effect = {
+		if = {
+			limit = {
+				z_impiety = 0
+			}
+			z_clear_impiety = yes
+			add_country_modifier = {
+				name = z_impiety_republic_1
+				duration = -1
+			}
+		}
+		else_if = {
+			limit = {
+				z_impiety = 1
+			}
+			z_clear_impiety = yes
+			add_country_modifier = {
+				name = z_impiety_republic_2
+				duration = -1
+			}
+		}
+		else_if = {
+			limit = {
+				z_impiety = 2
+			}
+			z_clear_impiety = yes
+			add_country_modifier = {
+				name = z_impiety_republic_3
+				duration = -1
+			}
+		}
+		else_if = {
+			limit = {
+				z_impiety = 3
+			}
+			z_clear_impiety = yes
+			add_country_modifier = {
+				name = z_impiety_republic_4
+				duration = -1
+			}
+		}
+		else_if = {
+			limit = {
+				z_impiety = 4
+			}
+			z_clear_impiety = yes
+			add_country_modifier = {
+				name = z_impiety_republic_5
+				duration = -1
+			}
+		}
+		else_if = {
+			limit = {
+				z_impiety = 5
+			}
+			z_clear_impiety = yes
+			add_country_modifier = {
+				name = z_impiety_republic_6
+				duration = -1
+			}
+		}
+		else_if = {
+			limit = {
+				z_impiety = 6
+			}
+			z_clear_impiety = yes
+			add_country_modifier = {
+				name = z_impiety_republic_7
+				duration = -1
+			}
+		}
+		else_if = {
+			limit = {
+				z_impiety = 7
+			}
+			z_clear_impiety = yes
+			add_country_modifier = {
+				name = z_impiety_republic_8
+				duration = -1
+			}
+		}
+		else_if = {
+			limit = {
+				z_impiety = 8
+			}
+			z_clear_impiety = yes
+			add_country_modifier = {
+				name = z_impiety_republic_9
+				duration = -1
+			}
+		}
+		else_if = {
+			limit = {
+				z_impiety = 9
+			}
+			z_clear_impiety = yes
+			add_country_modifier = {
+				name = z_impiety_republic_10
+				duration = -1
+			}
+		}
+		change_variable = {
+			name = z_new_impiety
+			subtract = 1
+		}
+	}
+}

@@ -1,0 +1,58 @@
+﻿#################################################################################################	Judas Priest is my High Priest
+#################################################################################################
+
+# Unchanged from Vanilla except for the skill_modifier part
+
+office_high_priest_monarchy = {
+	type = monarchy
+	skill = zeal
+
+
+	skill_modifier = {
+		global_citizen_happyness = 0.012
+	}
+	personal_modifier = {
+		monthly_wage_for_character = 0.01
+		monthly_character_prominence = 0.05
+
+		monthly_character_fam_prestige = 0.1
+
+		monthly_character_experience = 0.8
+
+		prominence = 30
+	}
+}
+
+office_high_priest = {
+	type = tribal
+	skill = zeal
+
+
+	skill_modifier = {
+		stability_cost_modifier = -0.02
+	}
+	personal_modifier = {
+		prominence = 5
+		monthly_character_fam_prestige = 0.1
+		monthly_character_prominence = 0.1
+		monthly_character_experience = 0.8
+		monthly_wage_for_character = 0.01
+	}
+}
+
+office_augur = {
+	type = republic
+	skill = zeal
+
+
+	skill_modifier = {
+		global_citizen_happyness = 0.012
+	}
+	personal_modifier = {
+		prominence = 5
+		monthly_character_fam_prestige = 0.1
+		monthly_character_prominence = 0.05
+		monthly_character_experience = 0.6
+		monthly_wage_for_character = 0.01
+	}
+}

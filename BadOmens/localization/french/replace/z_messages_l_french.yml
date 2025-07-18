@@ -1,0 +1,4 @@
+﻿l_french:
+ # OMEN MESSAGE BOX ---------------------------------------------------------------------------------------------------------------------------------------
+ #OMEN_SUCCESS:0 "Nous avons convoqué un présage !"
+ OMEN_2:1 "$TITLE$, nous avons convoqué"

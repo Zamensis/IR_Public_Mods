@@ -1,0 +1,30 @@
+﻿#################################################################################################	CURRENT (MODIFIED) YEAR / VIRTUAL TIMELINE
+#################################################################################################
+z_current_year = {
+	value = global_var:z_limes_timer
+	multiply = z_limes_timer_tempo
+	add = z_limes_timer_offset
+}
+
+#################################################################################################	CURRENT YEAR IN AUC FOR DEBUG PURPOSES
+#################################################################################################
+z_current_year_auc = {
+	value = 450
+	add = global_var:z_limes_timer
+}
+
+#################################################################################################	TIMER MULTIPLIER
+#################################################################################################	
+z_limes_timer_tempo = {
+	value = 1.15											# Default timer tempo, to be randomized
+	multiply = global_var:z_limes_tempo_randomizer
+	divide = 100
+}
+
+#################################################################################################	TIMER OFFSET
+#################################################################################################	
+z_limes_timer_offset = {
+	value = -10												# Default timer offset, to be randomized
+	multiply = global_var:z_limes_offset_randomizer
+	divide = 100
+}

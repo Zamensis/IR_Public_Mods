@@ -1,0 +1,54 @@
+﻿# THE LIMES									# EFFECT WHEN ENABLED (0 = disabled, 1 = enabled)
+# ----------------							# --------------------------------------------
+z_limes_rules_limes = 1						# The AI creates Marches along the borders of its historical/natural Expansion Zone (EZ)
+z_limes_rules_limes_ROM = 1					# AI Rome has its own special EZ that unlocks gradually, following the historical timeline (if set to 0, Rome is treated as any other Italian power)
+z_limes_rules_merge = 1						# The AI merges Marches in the same regions over time
+z_limes_rules_annex = 1						# The AI can diplo-annex its Marches for free as its EZ grows
+z_limes_rules_release = 1					# The AI releases Marches if they don't have a common border, unless they are coastal
+z_limes_rules_absorb = 1					# The AI can vassalize small enclaved, non-coastal AIs for free
+z_limes_rules_rename = 0					# In some cases, when applicable, Marche names are based on area, region or main culture (default off)
+z_limes_rules_player_mm = 1					# The player releases Marches instead of Tributaries after researching the "Tributary Concessions" invention
+
+# HISTORICAL TWEAKS							# EFFECT WHEN ENABLED (0 = disabled, 1 = enabled)
+# ----------------							# --------------------------------------------
+z_limes_rules_buff_ROM = 1					# Buff AI Rome, helping the historical outcome (but there's a small chance it gets nerfed instead!)
+z_limes_rules_buff_PAR = 1					# Buff AI Parthia when fighting AI Seleucid, helping their historical victory
+z_limes_rules_nerf_SEL = 1					# Nerf AI Seleucid when fighting AI Parthia, helping their historical defeat
+z_limes_rules_nerf_EGY_SEL = 1				# Nerf AI Egypt and Seleucid when not ruled by Ptolemy I or Seleukos I or one of their children, helping the historical decline of their dynasties
+z_limes_rules_decline = 1					# Nerf AI Successor empires when ruled by a weak character, helping their historical decline
+z_limes_rules_player_protection = 1			# The previous buffs and debuffs only apply when NO player is nearby (if set to 0, they apply regardless of the presence of a player nearby)
+z_limes_rules_attack_ROM = 1				# AI Rome can be prompted to attack AI-controlled targets to achieve a more historical outcome
+z_limes_rules_attack_PAR = 1				# AI Parthia can be prompted to attack AI-controlled targets to achieve a more historical outcome
+z_limes_rules_nointegrate = 1				# Non-European AI countries of Macedonian culture aren't allowed to integrate other cultures until ~100 years into the game
+z_limes_rules_SEL_color = 1					# Recolor AI Seleucids when they aren't ruled by a Hellenic dynasty as a result of losing a civil war: 1 = green, 2 = indigo, 3 = sand, 0 = disabled
+
+# ANTI-BORDERGORE TWEAKS					# EFFECT WHEN ENABLED (0 = disabled, 1 = enabled)
+# ----------------							# --------------------------------------------
+z_limes_rules_capital = 1					# City-based countries restore their historical capital if they lose it and then recover it
+z_limes_rules_clean_deals = 1				# When some regions like the Nile Delta are shared between two large AI empires, and one side owns more than 70% of it, it wins it all
+z_limes_rules_spare_carthage = 0			# AI Rome won't annex AI Carthage (the city) if it still has a strong presence in Africa and Numidia (default: 0)
+z_limes_rules_punic_league = 1				# Rename AI Carthage as "Punic League" if the capital is lost, until it is recovered
+z_limes_rules_cw_fewer = 1					# Increase CW threshold for AIs (Normal difficulty only), reducing the number of civil wars potentially ruining the map
+z_limes_rules_cw_faster = 1					# Wrap up AI civil wars when one side owns most of the territory, reducing the risk of civil wars ruining the map
+z_limes_rules_nosplit = 1					# Large AI empires can spawn new countries when they are split into very distant parts (not super effective but it adds up to the rest)
+
+# DEFAULT LIMES TWEAKS						# DESCRIPTION
+#----------------							# --------------------------------------------
+z_limes_defines_limes_amount = 95			# What % of all AI countries should the Limes apply to? (100 = all of them)
+z_limes_defines_l2 = 0.5					# What % of the 1st Expansion Zone must be owned or subject-owned to unlock the 2nd Expansion Zone? (0 = no Limes, 1 = super-strict Limes)
+z_limes_defines_l2_population = 1000		# ...or the 2nd Expansion Zone can be unlocked by having 150+ territories and this total population
+z_limes_defines_l2_density = 7.5			# ...or the 2nd Expansion Zone can be unlocked by having 150+ territories and this population density
+z_limes_defines_l3 = 0.25					# What % of the 2nd Expansion Zone must be owned or subject-owned to unlock the 3rd Expansion Zone?
+z_limes_defines_l3_population = 2500		# ...or the 3rd Expansion Zone can be unlocked by having 150+ territories and this total population
+z_limes_defines_l3_density = 10				# ...or the 3rd Expansion Zone can be unlocked by having 150+ territories and this population density
+
+# MILITARY MARCHES TWEAKS					# DESCRIPTION
+#----------------							# --------------------------------------------
+z_limes_defines_min_size = 35				# AI countries must own at least this many provinces before they can release Military Marches
+z_limes_defines_min_mm_size = 1				# Minimum Military Marche size
+z_limes_defines_min_mm_size_tribal = 3		# Same but for Migratory Tribes
+
+# MISC										# DESCRIPTION
+#----------------							# --------------------------------------------
+z_limes_defines_start_year = 450			# Starting year, change this if the mod uses a different starting year
+z_limes_defines_clean_deals_threshold = 125	# How many territories must two AI empires own each, for the "clean deals" game rule to apply?

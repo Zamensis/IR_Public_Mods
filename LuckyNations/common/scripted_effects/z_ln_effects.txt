@@ -1,0 +1,123 @@
+﻿#################################################################################################	Save nations scopes for settings pop-up
+#################################################################################################
+z_save_historical_lucky_nations = {
+	c:PRY = { save_scope_as = z_ln_hist_1 }
+	c:ARM = { save_scope_as = z_ln_hist_2 }
+	c:BAC = { save_scope_as = z_ln_hist_3 }
+	c:CAR = { save_scope_as = z_ln_hist_4 }
+	c:CHL = { save_scope_as = z_ln_hist_5 }
+	c:EPI = { save_scope_as = z_ln_hist_6 }
+	c:MAC = { save_scope_as = z_ln_hist_7 }
+	c:MSY = { save_scope_as = z_ln_hist_8 }
+	c:KIO = { save_scope_as = z_ln_hist_9 }
+	c:SEL = { save_scope_as = z_ln_hist_10 }
+}
+
+z_save_uneligible_lucky_nations = {
+	c:ROM = { save_scope_as = z_ln_unel_1 }
+	c:MRY = { save_scope_as = z_ln_unel_2 }
+	c:PAR = { save_scope_as = z_ln_unel_3 }
+	c:PRN = { save_scope_as = z_ln_unel_4 }
+	c:ZNT = { save_scope_as = z_ln_unel_5 }
+	c:PSS = { save_scope_as = z_ln_unel_6 }
+	c:SCA = { save_scope_as = z_ln_unel_7 }
+}
+
+#################################################################################################	Free pops.
+#################################################################################################
+z_lucky_pops = {
+	every_owned_province = {							# A percentage of the local population
+		limit = {
+			this.total_population > 0
+		}
+		every_pops_in_province = {
+			limit = {
+				pop_type = nobles
+			}
+			random = {
+				chance = 25
+				prev = {
+					create_pop = nobles
+				}
+			}
+		}
+		every_pops_in_province = {
+			limit = {
+				pop_type = citizen
+			}
+			random = {
+				chance = 25
+				prev = {
+					create_pop = citizen
+				}
+			}
+		}
+		every_pops_in_province = {
+			limit = {
+				pop_type = freemen
+			}
+			random = {
+				chance = 20
+				prev = {
+					create_pop = freemen
+				}
+			}
+		}
+		every_pops_in_province = {
+			limit = {
+				pop_type = tribesmen
+			}
+			random = {
+				chance = 20
+				prev = {
+					create_pop = tribesmen
+				}
+			}
+		}
+		every_pops_in_province = {
+			limit = {
+				pop_type = slaves
+			}
+			random = {
+				chance = 25
+				prev = {
+					create_pop = slaves
+				}
+			}
+		}
+	}
+	capital_scope = {									# Additional flat numbers in the capital city
+		while = {
+			count = z_lucky_nobles_capital
+			create_pop = nobles
+		}
+		while = {
+			count = z_lucky_citizen_capital
+			create_pop = citizen
+		}
+		while = {
+			count = z_lucky_freemen_capital
+			create_pop = freemen
+		}
+		while = {
+			count = z_lucky_tribesmen_capital
+			create_pop = tribesmen
+		}
+		while = {
+			count = z_lucky_slaves_capital
+			create_pop = slaves
+		}
+	}
+	every_owned_province = {							# No province under X pops
+		limit = {
+			this.total_population > 0
+			this.total_population < 5
+		}
+		while = {
+			limit = {
+				this.total_population < 5
+			}
+			create_pop = freemen
+		}
+	}
+}

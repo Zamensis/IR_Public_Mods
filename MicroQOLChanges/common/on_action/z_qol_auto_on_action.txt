@@ -1,0 +1,135 @@
+﻿#-----------------------------------------------------------------------------------------
+# Vanilla on_actions
+#-----------------------------------------------------------------------------------------
+on_game_initialized = {
+	on_actions = {
+		z_qol_auto					# Automatic functions
+	}
+}
+
+yearly_country_pulse = {
+	on_actions = {
+		z_qol_auto					# Automatic functions
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# Automatic functions
+#-----------------------------------------------------------------------------------------
+z_qol_auto = {
+	effect = {
+		if = {
+			limit = { is_ai = no }
+			# Auto trade
+			#---------------------------------------------------------
+			if = {
+				limit = { z_qol_auto_trade >= 1 }
+				every_owned_province = {
+					limit = {
+						is_state_capital = yes
+						NOT = { this = root.capital_scope }
+					}
+					state = { set_automated_trading = yes }
+				}
+			}
+			# Auto harsh treatment
+			#---------------------------------------------------------
+			if = {
+				limit = { z_qol_auto_harsh_treatment = 1 }
+				every_owned_province = {
+					limit = {
+						is_state_capital = yes
+						NOT = { governor_policy = harsh_treatment }
+						NOT = { this = root.capital_scope }
+					}
+					state = {
+						if = {
+							limit = {
+								state_level_loyalty < z_qol_auto_harsh_treatment_loyalty
+								root = { political_influence >= z_qol_auto_harsh_treatment_cost }
+							}
+							set_governor_policy = harsh_treatment
+							root = {
+								add_political_influence = {
+									value = 0
+									add = z_qol_auto_harsh_treatment_cost
+									multiply = -1
+								}
+							}
+						}
+					}
+				}
+			}
+			# Auto influence scheme
+			#---------------------------------------------------------
+			if = {
+				limit = {
+					z_qol_auto_influence = 1
+					has_land = yes
+					current_ruler = {
+						trigger_if = {
+							limit = {
+								root = { is_monarchy = yes }
+							}
+							popularity >= z_qol_auto_influence_monarchy
+						}
+						trigger_else = {
+							popularity >= z_qol_auto_influence_default
+						}
+						# Doesn't check for schemes that would be added by mods
+						NOR = {
+							has_ambition = ambition_grow_up
+							has_ambition = scheme_assassinate
+							has_ambition = scheme_provoke_rival
+							has_ambition = scheme_make_friends
+							has_ambition = scheme_hold_games
+							has_ambition = scheme_invest
+							has_ambition = scheme_steal
+							has_ambition = scheme_seek_treatment
+							has_ambition = scheme_steal_holding
+							has_ambition = scheme_seek_patron
+							has_ambition = scheme_buy_holding
+							has_ambition = scheme_gamble
+							has_ambition = scheme_pitfighting
+							has_ambition = scheme_buy_troop_loyalty
+							has_ambition = scheme_demand_office
+							has_ambition = scheme_purchase_power_base
+							has_ambition = scheme_disloyalty_self
+							has_ambition = scheme_disloyalty_other
+							has_ambition = scheme_expand_family_estates
+							has_ambition = scheme_escape_prison
+							has_ambition = scheme_governor_extort
+							has_ambition = scheme_influence
+							has_ambition = scheme_ruler_invest
+							has_ambition = scheme_ruler_legitimacy
+							has_ambition = scheme_invest_in_agriculture
+							has_ambition = scheme_invest_in_mining
+							has_ambition = scheme_hold_religious_festival
+							has_ambition = scheme_offer_marriage_to_ruler
+							has_ambition = scheme_seek_a_spouse
+						}
+					}
+				}
+				current_ruler = { set_ambition = scheme_influence }
+			}
+			# Auto remove pirate havens (it's a cheat if you know how to enable it, but don't tell anyone)
+			#---------------------------------------------------------
+			if = {
+				limit = {
+					z_qol_pirates = 99
+					has_land = yes
+				}
+				every_owned_province = {
+					limit = { has_province_modifier = pirate_haven_modifier }
+					remove_province_modifier = pirate_haven_modifier
+				}
+				every_subject = {
+					every_owned_province = {
+						limit = { has_province_modifier = pirate_haven_modifier }
+						remove_province_modifier = pirate_haven_modifier
+					}
+				}
+			}
+		}
+	}
+}

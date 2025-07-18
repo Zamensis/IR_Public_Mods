@@ -1,0 +1,315 @@
+﻿namespace = z_impiety
+
+#########################################################################################################################################
+#########################################################################################################
+z_impiety.1 = {																					#########   Give Impiety on the 1st month of not taking an Omen
+	type = minor_country_event																	#########		- Also a warning for the player
+	title = "z_impiety.1.t"																		#########################################
+	desc = "z_impiety.1.desc"
+	interface_lock = no
+	
+	left_portrait = scope:z_highpriest
+	
+	trigger = {
+		is_ai = no
+		current_date >= 450.12.1													# 2 months grace at the start of the game
+		NOT = {
+			has_variable = z_bad_omens_omen_taken									# Cooldown of 5 years + 2 months grace
+		}
+		has_any_omen = no
+		NOT = {
+			has_variable = z_bad_omens_grace_over									# Has not already been punished a 1st time, and warned
+		}
+		NOT = {
+			has_variable = z_bad_omens_1year_grace									# Has not been punished in the previous year
+		}
+		z_impiety < 10																# Impiety not already at max
+	}
+	
+	immediate = {
+		set_variable = {
+			name = z_bad_omens_grace_over											# Mark as having been punished a 1st time, and warned (removed upon taking an omen)
+		}
+		if = {
+			limit = {
+				has_variable = z_bad_omens_1year_grace
+			}
+			remove_variable = z_bad_omens_1year_grace
+		}
+		set_variable = {
+			name = z_bad_omens_1year_grace											# Mark as having been punished this year (freezes default yearly Impiety increase)
+			days = 360
+		}
+		random_character = {
+			limit = {
+				z_has_high_priest_office_trigger = yes
+			}
+			save_scope_as = z_highpriest
+		}
+		set_variable = {															# Add up to 2 Impiety
+			name = z_add_impiety													# This is how you "add" Impiety:
+			value = 2																# Positive or negative value here
+		}																			# Close the door
+		z_add_impiety = yes															# Unleash math (same name for negative values)
+	}
+	
+	option = {
+		name = "z_impiety.1.a"
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_impiety.2 = {																					#########   Give Impiety on every year of not taking an Omen
+	type = minor_country_event																	#########		- Not visible for the player
+	title = "z_impiety.2.t"																		#########################################
+	desc = "z_impiety.2.desc"
+	interface_lock = no
+	
+	left_portrait = scope:z_highpriest
+	
+	trigger = {
+		is_ai = no
+		current_date >= 451.1.1														# 3 months grace at the start of the game
+		NOT = {
+			has_variable = z_bad_omens_omen_taken									# Cooldown of 5 years + 2 months grace
+		}
+		has_any_omen = no
+		has_variable = z_bad_omens_grace_over										# Has already been punished a 1st time, and warned
+		NOT = {
+			has_variable = z_bad_omens_1year_grace									# Has not been punished in the previous year
+		}
+		z_impiety < 10																# Impiety not already at max
+	}
+	
+	immediate = {
+		random_character = {
+			limit = {
+				z_has_high_priest_office_trigger = yes
+			}
+			save_scope_as = z_highpriest
+		}
+		if = {
+			limit = {
+				has_variable = z_bad_omens_1year_grace
+			}
+			remove_variable = z_bad_omens_1year_grace
+		}
+		set_variable = {
+			name = z_bad_omens_1year_grace											# Mark as having been punished this year (freezes default yearly Impiety increase)
+			days = 360
+		}
+		set_variable = {															# Add up to 2 Impiety
+			name = z_add_impiety
+			value = 2
+		}
+		z_add_impiety = yes
+	}
+	
+	option = {
+		name = "z_impiety.2.a"
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_impiety.3 = {																					#########   Remove Impiety on every year of having an Omen
+	type = minor_country_event																	#########		- Not visible for the player
+	title = "z_impiety.3.t"																		#########################################
+	desc = "z_impiety.3.desc"
+	interface_lock = no
+	
+	left_portrait = scope:z_highpriest
+	
+	trigger = {
+		is_ai = no
+		current_date >= 451.1.1														# 3 months grace at the start of the game
+		has_variable = z_bad_omens_omen_taken										# Cooldown of 5 years + 2 months grace
+		has_any_omen = yes
+		NOT = {
+			has_variable = z_bad_omens_1year_reduction								# Has not had Impiety reduction in the previous year
+		}
+		z_impiety > 0																# Impiety not already at min
+	}
+	
+	immediate = {
+		random_character = {
+			limit = {
+				z_has_high_priest_office_trigger = yes
+			}
+			save_scope_as = z_highpriest
+		}
+		if = {
+			limit = {
+				has_variable = z_bad_omens_1year_reduction
+			}
+			remove_variable = z_bad_omens_1year_reduction
+		}
+		set_variable = {
+			name = z_bad_omens_1year_reduction										# Mark as having had Impiety reduction this year (freezes default yearly Impiety decrease)
+			days = 360
+		}
+		set_variable = {															# Remove 1 Impiety
+			name = z_add_impiety
+			value = -1
+		}
+		z_add_impiety = yes
+	}
+	
+	option = {
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_impiety.4 = {																					#########   Remove Impiety on Ruler change
+	type = minor_country_event																	#########
+	title = "z_impiety.4.t"																		#########################################
+	desc = "z_impiety.4.desc"
+	interface_lock = no
+	
+	left_portrait = root.current_ruler
+	
+	trigger = {
+		is_ai = no
+		current_date >= 451.1.1														# 3 months grace at the start of the game
+		z_impiety > 0																# Impiety not already at min
+	}
+	
+	immediate = {
+		if = {
+			limit = {
+				is_republic = yes
+			}
+			set_variable = {														# Remove 1 Impiety
+				name = z_add_impiety
+				value = -1
+			}
+			z_add_impiety = yes
+		}
+		else = {
+			z_divide_impiety_2 = yes
+		}
+	}
+	
+	option = {
+		name = "z_impiety.4.a"
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_impiety.5 = {																					#########   Give Free Innovation - Roll Dice
+	type = country_event																		#########
+	title = "z_impiety.5.t"																		#########################################
+	desc = "z_impiety.5.desc"
+	hidden = yes
+	
+	trigger = {
+		is_ai = no
+		current_date >= 451.1.1														# 3 months grace at the start of the game
+		z_impiety >= 1
+		NOT = {
+			has_variable = z_bad_omens_9m_innovation								# Has not had a free innovation in the past 9 months
+		}
+	}
+	
+	immediate = {
+		random_list = {
+			0 = {
+				modifier = {
+					add = z_impiety_pos
+				}
+				set_variable = {
+					name = z_bad_omens_9m_innovation
+					days = 270 # 9 months
+				}
+				trigger_event = {
+					id = z_impiety.6
+				}
+			}
+			100 = {
+				modifier = {
+					add = z_impiety_neg
+				}
+				modifier = {
+					add = 10 # Skew RNG (Not cool, I know)
+				}
+			}
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_impiety.6 = {																					#########   Give Free Innovation
+	type = minor_country_event																	#########
+	title = "z_impiety.6.t"																		#########################################
+	desc = "z_impiety.6.desc"
+	interface_lock = no
+	
+	left_portrait = scope:z_tech_anarchist
+	
+	trigger = {
+	}
+	
+	immediate = {
+		random_character = {
+			limit = {
+				has_tech_office = yes
+			}
+			save_scope_as = z_tech_anarchist
+		}
+	}
+	
+	option = {
+		name = "z_impiety.6.a"
+		scope:z_tech_anarchist = {
+			add_character_experience = 2.5
+		}
+		add_innovation = 1
+		random_list = {
+			30 = {
+				set_variable = {														# Add 1 Impiety
+					name = z_add_impiety
+					value = 1
+				}
+				z_add_impiety = yes
+			}
+			70 = {
+			}
+		}
+	}
+	
+	option = {
+		name = "z_impiety.6.b"
+		set_variable = {																# Remove 1 Impiety
+			name = z_add_impiety
+			value = -1
+		}
+		z_add_impiety = yes
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_impiety.7 = {																					#########   Yearly Impiety check (makes sure it's the right gov type)
+	type = country_event																		#########
+	title = "z_impiety.7.t"																		#########################################
+	desc = "z_impiety.7.desc"
+	hidden = yes
+	
+	trigger = {
+		z_impiety > 0
+	}
+	
+	immediate = {
+		set_variable = {
+			name = z_new_impiety
+			value = z_impiety
+		}
+		z_clear_impiety = yes
+		z_update_impiety = yes
+		remove_variable = z_new_impiety
+	}
+}

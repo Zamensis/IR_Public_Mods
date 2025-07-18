@@ -1,0 +1,172 @@
+﻿namespace = z_limes_capitals
+
+# Make sure certain AI's keep their capital in the same damn province.
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_capitals.1 = {																			#########   SAVE CAPITAL AREA/CITY IDs
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		#is_ai = yes
+		#is_subject = no
+		OR = {
+			NOT = { has_variable = z_capital_area }
+			NOT = { has_variable = z_capital_city }
+		}
+		z_has_capital_saved = yes
+	}
+	
+	option = {
+		set_variable = {
+			name = z_capital_area
+			value = root.capital_scope.area
+		}
+		set_variable = {
+			name = z_capital_city
+			value = root.capital_scope
+		}
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_capitals.2 = {																			#########   RESTORE CAPITAL AREA/CITY
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		is_ai = yes
+		#is_subject = no
+		
+		has_variable = z_capital_area
+		has_variable = z_capital_city
+		
+		root.capital_scope.area = {
+			NOT = {
+				this = root.var:z_capital_area
+			}
+		}		
+		OR = {
+			owns = root.var:z_capital_city
+			AND = {
+				root.var:z_capital_area = {
+					any_area_province = {
+						owner = root
+						total_population >= 10
+					}
+				}
+				root.var:z_capital_area = {
+					any_area_province = {
+						count >= 5
+						owner = root
+					}
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		if = {
+			limit = {
+				owns = root.var:z_capital_city
+			}
+			root.var:z_capital_city = {
+				save_scope_as = z_new_capital
+			}
+		}
+		else = {
+			ordered_owned_province = {
+				limit = {
+					this.area = root.var:z_capital_area
+				}
+				order_by = total_population
+				save_scope_as = z_new_capital
+			}
+		}
+	}
+	
+	option = {
+		set_capital = scope:z_new_capital
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+z_limes_capitals.3 = {																			#########   CIVIL WAR FIX
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		z_has_capital_saved = yes
+		has_variable = z_capital_city
+		has_variable = z_capital_area
+		has_civil_war = yes
+		any_current_war = {
+			is_war_leader = root
+			any_war_participant = {
+                has_civil_war = yes
+				NOT = {
+					has_variable = z_capital_city
+					has_variable = z_capital_area
+				}
+            }
+		}
+	}
+	
+	immediate = {
+		random_current_war = {
+			limit = {
+				is_war_leader = root
+				any_war_participant = {
+					has_civil_war = yes
+					NOT = {
+						has_variable = z_capital_city
+						has_variable = z_capital_area
+					}
+				}
+			}
+			random_war_participant = {
+				limit = {
+					has_civil_war = yes
+					NOT = {
+						has_variable = z_capital_city
+						has_variable = z_capital_area
+					}
+				}
+				save_scope_as = z_revolt
+			}
+		}
+		if = {
+			limit = {
+				scope:z_revolt = {
+					NOT = {
+						has_variable = z_capital_city
+					}
+				}
+			}
+			scope:z_revolt = {
+				set_variable = {
+					name = z_capital_city
+					value = root.var:z_capital_city
+				}
+			}
+		}
+		if = {
+			limit = {
+				scope:z_revolt = {
+					NOT = {
+						has_variable = z_capital_area
+					}
+				}
+			}
+			scope:z_revolt = {
+				set_variable = {
+					name = z_capital_area
+					value = root.var:z_capital_area
+				}
+			}
+		}
+	}
+}

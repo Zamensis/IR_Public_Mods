@@ -1,0 +1,123 @@
+﻿#-----------------------------------------------------------------------------------------
+# Vanilla on_actions
+#-----------------------------------------------------------------------------------------
+on_game_initialized = {
+	on_actions = {
+		z_qol_tyranny_set_vars			# Prep it
+	}
+}
+
+yearly_country_pulse = {
+	on_actions = {
+		z_qol_tyranny_set_vars			# Prep it
+		z_qol_tyranny_save_vars			# Prep it
+		z_qol_tyranny_decay_vars		# Natural decay
+	}
+}
+
+on_ruler_change = {
+	on_actions = {
+		z_qol_tyranny_reset_vars		# Do it
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# Prep it
+#-----------------------------------------------------------------------------------------
+z_qol_tyranny_set_vars = {
+	effect = {
+		if = {
+			limit = {
+				z_qol_reset_tyranny = 1
+				is_republic = yes
+				NAND = {
+					has_variable = z_qol_tyranny_opti
+					has_variable = z_qol_tyranny_boni
+					has_variable = z_qol_tyranny_popu
+					has_variable = z_qol_tyranny_olig
+					has_variable = z_qol_tyranny_trad
+					has_variable = z_qol_tyranny_demo
+				}
+			}
+			set_variable = {
+				name = z_qol_tyranny_opti
+				value = 0
+			}
+			set_variable = {
+				name = z_qol_tyranny_boni
+				value = 0
+			}
+			set_variable = {
+				name = z_qol_tyranny_popu
+				value = 0
+			}
+			set_variable = {
+				name = z_qol_tyranny_olig
+				value = 0
+			}
+			set_variable = {
+				name = z_qol_tyranny_trad
+				value = 0
+			}
+			set_variable = {
+				name = z_qol_tyranny_demo
+				value = 0
+			}
+		}
+	}
+}
+
+z_qol_tyranny_save_vars = {
+	effect = {
+		if = {
+			limit = {
+				z_qol_reset_tyranny = 1
+				is_republic = yes
+			}
+			z_qol_tyranny_save_effect = { target = current_ruler }
+		}
+	}
+}
+
+z_qol_tyranny_decay_vars = {
+	effect = {
+		if = {
+			limit = {
+				z_qol_reset_tyranny = 1
+				is_republic = yes
+			}
+			z_qol_tyranny_decay_effect = { target_not = current_ruler }
+		}
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# Do it
+#-----------------------------------------------------------------------------------------
+z_qol_tyranny_reset_vars = {
+	effect = {
+		if = {
+			limit = {
+				z_qol_reset_tyranny = 1
+				is_republic = yes
+			}
+			if = {
+				limit = {
+					scope:former_ruler = { is_alive = yes }
+					NOT = {
+						has_same_party = {
+							first = scope:former_ruler
+							second = current_ruler
+						}
+					}
+				}
+				z_qol_tyranny_save_effect = { target = scope:former_ruler }
+			}
+			else = {
+				z_qol_tyranny_save_effect = { target = current_ruler }
+			}
+			add_tyranny = z_qol_tyranny_reset_value
+			z_qol_tyranny_save_effect = { target = current_ruler }
+		}
+	}
+}

@@ -1,0 +1,80 @@
+﻿#################################################################################################	Number of lucky nations
+#################################################################################################
+z_num_of_lucky_nations = {
+	# Used in events / scope: country
+	value = 0
+	every_country = {
+		limit = {
+			has_country_modifier = z_lucky_nation
+		}
+		add = 1
+	}
+}
+
+#################################################################################################	Flat numbers in the capital
+#################################################################################################	Currently a total of 15
+
+z_lucky_nobles_capital = {
+	value = 0
+	if = {
+		limit = {
+			root = { is_tribal = yes }
+		}
+		add = 2
+	}
+	else = {
+		add = 2
+	}
+}
+
+z_lucky_citizen_capital = {
+	value = 0
+	if = {
+		limit = {
+			root = { is_tribal = yes }
+		}
+		add = 2
+	}
+	else = {
+		add = 3
+	}
+}
+
+z_lucky_freemen_capital = {
+	value = 0
+	if = {
+		limit = {
+			root = { is_tribal = yes }
+		}
+		add = 3
+	}
+	else = {
+		add = 5
+	}
+}
+
+z_lucky_tribesmen_capital = {
+	value = 0
+	if = {
+		limit = {
+			root = { is_tribal = yes }
+		}
+		add = 5
+	}
+	else = {
+		add = 0
+	}
+}
+
+z_lucky_slaves_capital = {
+	value = 0
+	if = {
+		limit = {
+			root = { is_tribal = yes }
+		}
+		add = 3
+	}
+	else = {
+		add = 5
+	}
+}

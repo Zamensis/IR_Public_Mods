@@ -1,0 +1,156 @@
+﻿# --------------------------------------------------------------------------------
+# Common rules for all tags
+# --------------------------------------------------------------------------------
+z_has_limes = {
+	# -------------------------
+	# Preconditions
+	# -------------------------
+	is_ai = yes
+	z_limes_rules_limes = 1
+	has_variable = z_limes_lucky_factor
+	has_variable = z_limes_level
+	# -------------------------
+	# Tags included/excluded
+	# -------------------------
+	NOT = { z_has_limes_never = yes } # Tags always exempted
+	OR = {
+		z_has_limes_always = yes # Tags always included
+		var:z_limes_lucky_factor <= z_limes_defines_limes_amount # A small chance of not being subjected to the Limes
+	}
+	# -------------------------
+	# Diplomacy
+	# -------------------------
+	is_subject = no
+	has_civil_war = no
+	OR = {
+		num_of_cities >= z_limes_defines_min_size # Small countries don't create MMs as to limit the number of worthless, ephemerous new tags
+		tag = ROM # But ROM bypasses this to be able create a couple MMs in Italy in very early game
+	}
+	# -------------------------
+	# Timeline Extender killswitch - If TE is present, disable VL after a certain date in order to delay the tag limit doomsday
+	# -------------------------
+	trigger_if = {
+		limit = {
+			has_global_variable = germanic_migration
+		}
+		current_date < 1000.1.1
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Tags always included/excluded regardless of lucky_factor
+# --------------------------------------------------------------------------------
+z_has_limes_always = {
+	OR = {
+		tag = ROM # Rome
+		tag = EGY # Egypt
+		tag = MRY # Maurya
+		tag = PAR # Parthia
+		tag = SCA # Parthia
+		tag = PSS # Parthia
+		tag = PRN # Parthia
+		tag = ZNT # Parthia
+		country_culture_group = scythia # Nomads
+	}
+}
+
+z_has_limes_never = {
+	OR = {
+		tag = ARS # Glory to Arstotzka
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Rules for all non-specific tags
+# --------------------------------------------------------------------------------
+z_has_limes_default = {
+	# Common precondition:
+	z_has_limes = yes
+	# Exclude non-default rulesets:
+	z_has_limes_ROM = no
+	z_has_limes_PAR = no
+	z_has_limes_EGY = no
+	z_has_limes_SEL = no
+	# Do not add conditions that would NOT be verified on_ending_war (e.g. war = no)
+}
+
+# --------------------------------------------------------------------------------
+# Rules for ROM specifically
+# --------------------------------------------------------------------------------
+# Basic Limes check
+z_has_limes_ROM = {
+	# Common precondition:
+	z_has_limes = yes
+	# Applies to:
+	tag = ROM
+	# When:
+	z_limes_rules_limes_ROM = 1
+	owns = p:1 # Lose Rome, get f-ed
+}
+
+# --------------------------------------------------------------------------------
+# Rules for PAR specifically
+# --------------------------------------------------------------------------------
+# Basic Limes check
+z_has_limes_PAR = {
+	# Common precondition:
+	z_has_limes = yes
+	# Applies to:
+	OR = {
+		tag = PTH
+		tag = PAR
+		tag = ZNT
+		tag = PRN
+		tag = PSS
+		tag = SCA
+		country_culture_group = scythia # Nomads
+	}
+	# When:
+	num_of_cities >= 25
+	capital_scope = {
+		OR = {
+			is_in_region = parthia_region
+			is_in_region = mesopotamia_region
+			is_in_region = media_region
+			is_in_region = persis_region
+			is_in_region = sarmatia_asiatica_region # Vanilla only
+			#is_in_region = sakia_region # Invictus only
+		}
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Rules for EGY specifically
+# --------------------------------------------------------------------------------
+# Basic Limes check
+z_has_limes_EGY = {
+	# Common precondition:
+	z_has_limes = yes
+	# Applies to:
+	tag = EGY
+	# When:
+	num_of_cities >= 150
+	capital_scope = {
+		is_in_region = lower_egypt_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Rules for SEL specifically
+# --------------------------------------------------------------------------------
+# Basic Limes check
+z_has_limes_SEL = {
+	# Common precondition:
+	z_has_limes = yes
+	# Applies to:
+	tag = SEL
+	# When:
+	num_of_cities >= 150
+	capital_scope = {
+		OR = {
+			is_in_region = mesopotamia_region
+			is_in_region = syria_region
+			is_in_region = assyria_region
+		}
+	}
+}

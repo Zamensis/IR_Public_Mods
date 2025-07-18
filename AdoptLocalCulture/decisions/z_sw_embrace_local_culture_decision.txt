@@ -1,0 +1,69 @@
+﻿country_decisions = {
+	z_sw_embrace_local_culture_decision = {
+		potential = {
+			is_ai = no
+			NOT = {
+				has_variable = z_sw_embrace_local_culture_cooldown
+			}
+			any_country_culture = {
+				has_country_culture_modifier = z_sw_native_majority
+			}
+			NOT = {
+				has_country_modifier = z_sw_local_culture_embraced_country
+			}
+			NOT = {
+				any_country_culture = {
+					has_country_culture_modifier = z_sw_embraced_culture
+				}
+			}
+			NOT = {
+				any_country_culture = {
+					has_country_culture_modifier = z_sw_deposed_culture
+				}
+			}
+			OR = {
+				is_monarchy = yes
+				is_tribal = yes
+			}
+		}
+		allow = {
+			any_country_culture = {
+				has_country_culture_modifier = z_sw_native_majority
+				is_integrated = yes
+			}
+			political_influence >= 150
+			legitimacy >= 90
+			root.current_ruler = {
+				age >= 16
+				OR = {
+					has_trait = tolerant
+					popularity >= 70
+					AND = {
+						finesse >= 4
+						charisma >= 4
+						zeal >= 4
+					}
+				}
+			}
+			NOT = {
+				has_country_modifier = z_sw_local_culture_embraced_country
+			}
+		}
+		effect = {
+			add_political_influence = -150
+			custom_tooltip = "z_sw_embrace_local_culture_effect"
+			custom_tooltip = "z_sw_embrace_local_culture_effect_b"
+			add_stability = -10
+			add_legitimacy = -20
+			add_aggressive_expansion = 10
+			root.current_ruler = {
+				add_popularity = 15
+			}
+			add_country_modifier = {
+				name = z_sw_local_culture_embraced_country
+				duration = 3650
+			}
+			trigger_event = { id = z_sw_natives.100 }
+		}
+	}
+}

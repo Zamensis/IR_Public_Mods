@@ -1,0 +1,4 @@
+﻿l_german:
+ # OMEN MESSAGE BOX ---------------------------------------------------------------------------------------------------------------------------------------
+ OMEN_SUCCESS:0 "We have performed an Omen!"
+ OMEN_2:1 "My $TITLE$, we have invoked"

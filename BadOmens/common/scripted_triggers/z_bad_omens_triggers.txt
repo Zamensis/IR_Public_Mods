@@ -1,0 +1,9 @@
+﻿#################################################################################################	Only because the Vanilla one is broken!!
+#################################################################################################
+z_has_high_priest_office_trigger = {
+	OR = {
+		has_office = office_high_priest_monarchy
+		has_office = office_augur # This is the one that needed to be fixed
+		has_office = office_high_priest
+	}
+}

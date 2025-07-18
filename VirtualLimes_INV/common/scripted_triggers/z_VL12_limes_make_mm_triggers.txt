@@ -1,0 +1,13 @@
+﻿# --------------------------------------------------------------------------------
+# Is this country a MM?
+# --------------------------------------------------------------------------------
+z_limes_is_mm_trigger = {
+	OR = {
+		is_subject_type = z_limes_mm
+		is_subject_type = z_limes_mm_ROM
+		is_subject_type = z_limes_mm_p
+		is_subject_type = z_limes_mm_p_ROM
+		is_subject_type = z_frontier_outpost
+		is_subject_type = roman_faa
+	}
+}

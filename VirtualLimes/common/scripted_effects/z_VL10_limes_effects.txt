@@ -1,0 +1,24 @@
+﻿# --------------------------------------------------------------------------------
+# Main Limes effect - Apply the Limes depending on country ruleset
+# --------------------------------------------------------------------------------
+z_limes_main_effect = {
+	if = {
+		limit = { z_has_limes_ROM = yes }
+		z_limes_main_effect_ROM = yes
+	}
+	else_if = {
+		limit = { z_has_limes = yes } # Any other Limes, in theory
+		if = {
+			limit = { var:z_limes_level = 1 }
+			z_limes_main_effect_default = { LEVEL = 1 }
+		}
+		else_if = {
+			limit = { var:z_limes_level = 2 }
+			z_limes_main_effect_default = { LEVEL = 2 }
+		}
+		else_if = {
+			limit = { var:z_limes_level = 3 }
+			z_limes_main_effect_default = { LEVEL = 3 }
+		}
+	}
+}

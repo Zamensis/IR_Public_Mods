@@ -1,0 +1,3723 @@
+﻿# --------------------------------------------------------------------------------
+# Capital is_in_region africa_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_africa_region_trigger_1 = {
+	OR = {
+		is_in_region = africa_region
+		is_in_region = numidia_region
+		is_in_region = mauretainia_region
+		is_in_region = baetica_region
+		is_in_region = contestania_region
+		is_in_region = cyrenaica_region
+		is_in_region = magna_graecia_region
+		is_in_area = sardinia_septentrionalis
+		is_in_area = sardinia_meridionalis
+		is_in_area = corsica_area
+		is_in_area = mastiania_area
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_africa_region_trigger_2 = {
+	OR = {
+		z_limes_africa_region_trigger_1 = yes
+		is_in_region = tarraconensis_region
+		is_in_region = lower_egypt_region
+		is_in_region = palestine_region
+		is_in_region = syria_region
+		is_in_region = greece_region
+		is_in_region = central_italy_region
+		#is_in_region = atlas_region # Invictus only
+		#is_in_region = fezzan_region # Invictus only
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_africa_region_trigger_3 = {
+	OR = {
+		z_limes_africa_region_trigger_2 = yes
+		is_in_region = lusitania_region
+		is_in_region = transalpine_gaul_region
+		is_in_region = cisalpine_gaul_region
+		is_in_region = illyria_region
+		is_in_region = upper_egypt_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region albania_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_albania_region_trigger_1 = {
+	OR = {
+		is_in_region = albania_region
+		is_in_region = colchis_region
+		is_in_region = armenia_region
+		is_in_region = media_region
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_albania_region_trigger_2 = {
+	OR = {
+		z_limes_albania_region_trigger_1 = yes
+		is_in_region = parthia_region
+		is_in_region = cappadocia_pontica_region
+		is_in_region = cappadocia_region
+		is_in_region = assyria_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_albania_region_trigger_3 = {
+	OR = {
+		z_limes_albania_region_trigger_2 = yes
+		is_in_region = bithynia_region
+		is_in_region = mesopotamia_region
+		is_in_region = syria_region
+		is_in_region = persis_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region aparanta_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_aparanta_region_trigger_1 = {
+	OR = {
+		is_in_region = aparanta_region
+		is_in_region = maru_region
+		is_in_area = patalene_area
+		is_in_area = parecania_area
+		is_in_region = avanti_region
+		is_in_region = vindhyaprstha_region
+		is_in_region = karnata_region
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_aparanta_region_trigger_2 = {
+	OR = {
+		z_limes_aparanta_region_trigger_1 = yes
+		is_in_region = madhyadesa_region
+		is_in_region = dravida_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_aparanta_region_trigger_3 = {
+	OR = {
+		z_limes_aparanta_region_trigger_2 = yes
+		is_in_region = pracya_region
+		is_in_region = gandhara_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region aquitaine_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_aquitaine_region_trigger_1 = {
+	OR = {
+		is_in_region = aquitaine_region
+		is_in_region = tarraconensis_region
+		is_in_region = armorica_region
+		is_in_region = central_gaul_region
+		is_in_region = transalpine_gaul_region
+		is_in_area = tigurinia_area
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_aquitaine_region_trigger_2 = {
+	OR = {
+		z_limes_aquitaine_region_trigger_1 = yes
+		is_in_region = gallaecia_region
+		is_in_region = belgica_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_aquitaine_region_trigger_3 = {
+	OR = {
+		z_limes_aquitaine_region_trigger_2 = yes
+		is_in_region = contestania_region
+		is_in_region = germania_superior_region
+		is_in_region = britain_region
+		is_in_region = cisalpine_gaul_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region arabia_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_arabia_region_trigger_1 = {
+	OR = {
+		is_in_region = arabia_region
+		is_in_region = arabia_felix_region
+		is_in_region = palestine_region
+		is_in_region = syria_region
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_arabia_region_trigger_2 = {
+	OR = {
+		z_limes_arabia_region_trigger_1 = yes
+		is_in_region = gerrha_region # Vanilla only
+		is_in_region = lower_egypt_region
+		is_in_region = mesopotamia_region
+		is_in_region = assyria_region
+		is_in_region = cilicia_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_arabia_region_trigger_3 = {
+	OR = {
+		z_limes_arabia_region_trigger_2 = yes
+		is_in_region = punt_region
+		is_in_region = upper_egypt_region
+		is_in_region = cyrenaica_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region arabia_felix_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_arabia_felix_region_trigger_1 = {
+	OR = {
+		is_in_region = arabia_felix_region
+		is_in_region = arabia_region
+		#is_in_region = mesopotamia_region # Invictus only
+		is_in_region = gerrha_region # Vanilla only
+		trigger_if = { # If very lucky, allowed to access these 3 provinces on level 1
+			limit = {
+				has_variable = z_limes_lucky_factor
+				var:z_limes_lucky_factor >= 90
+			}
+			OR = {
+				this = p:7516
+				this = p:7517
+				this = p:7518
+			}
+		}
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_arabia_felix_region_trigger_2 = {
+	OR = {
+		z_limes_arabia_felix_region_trigger_1 = yes
+		is_in_region = palestine_region
+		#is_in_region = assyria_region # Invictus only
+		#is_in_region = persis_region # Invictus only
+		trigger_if = { # If lucky, allowed to access these 3 provinces on level 2
+			limit = {
+				has_variable = z_limes_lucky_factor
+				var:z_limes_lucky_factor >= 50
+			}
+			OR = {
+				this = p:7516
+				this = p:7517
+				this = p:7518
+			}
+		}
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_arabia_felix_region_trigger_3 = {
+	OR = {
+		z_limes_arabia_felix_region_trigger_2 = yes
+		is_in_region = punt_region
+		is_in_region = upper_egypt_region
+		is_in_region = lower_egypt_region
+		is_in_region = syria_region
+		is_in_region = assyria_region # Vanilla only
+		is_in_region = mesopotamia_region # Vanilla only
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region ariana_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_ariana_region_trigger_1 = {
+	OR = {
+		is_in_region = ariana_region
+		is_in_region = parthia_region
+		is_in_region = bactriana_region
+		is_in_region = gedrosia_region # Vanilla only
+		is_in_region = persis_region
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_ariana_region_trigger_2 = {
+	OR = {
+		z_limes_ariana_region_trigger_1 = yes
+		is_in_region = media_region
+		is_in_region = assyria_region
+		is_in_region = mesopotamia_region
+		is_in_region = gandhara_region
+		is_in_region = maru_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_ariana_region_trigger_3 = {
+	OR = {
+		z_limes_ariana_region_trigger_2 = yes
+		is_in_region = armenia_region
+		is_in_region = syria_region
+		#is_in_region = arabia_felix_region # Invictus only
+		is_in_region = gerrha_region # Vanilla only
+		is_in_region = sogdiana_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region armenia_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_armenia_region_trigger_1 = {
+	OR = {
+		is_in_region = armenia_region
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_armenia_region_trigger_2 = {
+	OR = {
+		z_limes_armenia_region_trigger_1 = yes
+		is_in_region = colchis_region
+		is_in_region = albania_region
+		is_in_region = cappadocia_pontica_region
+		is_in_region = cappadocia_region
+		is_in_region = cilicia_region
+		is_in_region = syria_region
+		is_in_region = assyria_region
+		is_in_region = mesopotamia_region
+		is_in_region = media_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_armenia_region_trigger_3 = {
+	OR = {
+		z_limes_armenia_region_trigger_2 = yes
+		is_in_region = persis_region
+		is_in_region = asia_region
+		is_in_region = bithynia_region
+		is_in_region = galatia_region
+		is_in_region = palestine_region
+		is_in_region = lower_egypt_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region armorica_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_armorica_region_trigger_1 = {
+	OR = {
+		is_in_region = armorica_region
+		is_in_region = aquitaine_region
+		is_in_region = central_gaul_region
+		is_in_region = belgica_region
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_armorica_region_trigger_2 = {
+	OR = {
+		z_limes_armorica_region_trigger_1 = yes
+		is_in_region = britain_region
+		is_in_region = transalpine_gaul_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_armorica_region_trigger_3 = {
+	OR = {
+		z_limes_armorica_region_trigger_2 = yes
+		is_in_region = gallaecia_region
+		is_in_region = tarraconensis_region
+		is_in_region = germania_superior_region
+		is_in_area = tigurinia_area
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region asia_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_asia_region_trigger_1 = {
+	OR = {
+		is_in_region = asia_region
+		is_in_region = thrace_region
+		is_in_region = macedonia_region
+		is_in_region = greece_region
+		is_in_region = galatia_region
+		is_in_region = bithynia_region
+		is_in_region = cilicia_region
+		is_in_region = cyrenaica_region
+		is_in_region = lower_egypt_region
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_asia_region_trigger_2 = {
+	OR = {
+		z_limes_asia_region_trigger_1 = yes
+		is_in_region = taurica_region
+		is_in_region = cappadocia_pontica_region
+		is_in_region = cappadocia_region
+		is_in_region = armenia_region
+		is_in_region = assyria_region
+		is_in_region = syria_region
+		is_in_region = palestine_region
+		is_in_region = upper_egypt_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_asia_region_trigger_3 = {
+	OR = {
+		z_limes_asia_region_trigger_2 = yes
+		is_in_region = moesia_region
+		#is_in_region = moesia_s_region # Invictus only
+		is_in_region = magna_graecia_region
+		is_in_region = colchis_region
+		is_in_region = mesopotamia_region
+		is_in_region = illyria_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region assyria_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_assyria_region_trigger_1 = {
+	OR = {
+		is_in_region = assyria_region
+		is_in_region = syria_region
+		is_in_region = mesopotamia_region
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_assyria_region_trigger_2 = {
+	OR = {
+		z_limes_assyria_region_trigger_1 = yes
+		is_in_region = galatia_region
+		is_in_region = cilicia_region
+		is_in_region = cappadocia_region
+		is_in_region = armenia_region
+		is_in_region = media_region
+		is_in_region = persis_region
+		is_in_region = palestine_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_assyria_region_trigger_3 = {
+	OR = {
+		z_limes_assyria_region_trigger_2 = yes
+		is_in_region = cappadocia_pontica_region
+		is_in_region = bithynia_region
+		is_in_region = asia_region
+		is_in_region = lower_egypt_region
+		is_in_region = arabia_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region atlas_region // Invictus only
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_atlas_region_trigger_1 = {
+	OR = {
+		#is_in_region = atlas_region # Invictus only
+		is_in_region = numidia_region
+		is_in_region = mauretainia_region
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_atlas_region_trigger_2 = {
+	OR = {
+		z_limes_atlas_region_trigger_1 = yes
+		is_in_region = africa_region
+		is_in_region = baetica_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_atlas_region_trigger_3 = {
+	OR = {
+		z_limes_atlas_region_trigger_2 = yes
+		is_in_region = lusitania_region
+		is_in_region = contestania_region
+		#is_in_region = fezzan_region # Invictus only
+		is_in_region = cyrenaica_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region avanti_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_avanti_region_trigger_1 = {
+	OR = {
+		is_in_region = avanti_region
+		is_in_region = madhyadesa_region
+		is_in_region = gandhara_region
+		is_in_region = maru_region
+		is_in_area = patalene_area
+		is_in_area = parecania_area
+		is_in_region = aparanta_region
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_avanti_region_trigger_2 = {
+	OR = {
+		z_limes_avanti_region_trigger_1 = yes
+		is_in_region = gedrosia_region # Vanilla only
+		is_in_region = ariana_region
+		is_in_region = vindhyaprstha_region
+		is_in_region = pracya_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_avanti_region_trigger_3 = {
+	OR = {
+		z_limes_avanti_region_trigger_2 = yes
+		is_in_region = karnata_region
+		is_in_region = dravida_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region bactriana_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_bactriana_region_trigger_1 = {
+	OR = {
+		is_in_region = bactriana_region
+		is_in_region = sogdiana_region
+		is_in_region = parthia_region
+		is_in_region = ariana_region
+		is_in_region = gedrosia_region # Vanilla only
+		is_in_region = gandhara_region
+		#is_in_area = kharesmia_superior # Invictus only
+		#is_in_area = kharesmia_area # Invictus only
+		#is_in_area = oxiana_ultima_area # Invictus only
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_bactriana_region_trigger_2 = {
+	OR = {
+		z_limes_bactriana_region_trigger_1 = yes
+		is_in_region = maru_region
+		is_in_region = avanti_region
+		is_in_region = madhyadesa_region
+		is_in_region = persis_region
+		is_in_region = media_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_bactriana_region_trigger_3 = {
+	OR = {
+		z_limes_bactriana_region_trigger_2 = yes
+		is_in_region = albania_region
+		is_in_region = armenia_region
+		is_in_region = mesopotamia_region
+		is_in_region = assyria_region
+		is_in_region = aparanta_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region baetica_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_baetica_region_trigger_1 = {
+	OR = {
+		is_in_region = baetica_region
+		is_in_region = contestania_region
+		is_in_region = lusitania_region
+		is_in_region = mauretainia_region
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_baetica_region_trigger_2 = {
+	OR = {
+		z_limes_baetica_region_trigger_1 = yes
+		is_in_region = gallaecia_region
+		is_in_region = tarraconensis_region
+		is_in_region = numidia_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_baetica_region_trigger_3 = {
+	OR = {
+		z_limes_baetica_region_trigger_2 = yes
+		is_in_region = africa_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region belgica_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_belgica_region_trigger_1 = {
+	OR = {
+		is_in_region = belgica_region
+		is_in_region = britain_region
+		is_in_region = armorica_region
+		is_in_region = central_gaul_region
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_belgica_region_trigger_2 = {
+	OR = {
+		z_limes_belgica_region_trigger_1 = yes
+		is_in_region = germania_superior_region
+		is_in_region = germania_region
+		is_in_region = aquitaine_region
+		is_in_region = transalpine_gaul_region
+		is_in_area = tigurinia_area
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_belgica_region_trigger_3 = {
+	OR = {
+		z_limes_belgica_region_trigger_2 = yes
+		is_in_region = caledonia_region
+		is_in_region = scandinavia_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region bithynia_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_bithynia_region_trigger_1 = {
+	OR = {
+		is_in_region = bithynia_region
+		is_in_region = thrace_region
+		is_in_region = asia_region
+		is_in_region = galatia_region
+		is_in_region = cappadocia_pontica_region
+		is_in_region = cappadocia_region
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_bithynia_region_trigger_2 = {
+	OR = {
+		z_limes_bithynia_region_trigger_1 = yes
+		is_in_region = taurica_region
+		is_in_region = colchis_region
+		is_in_region = armenia_region
+		is_in_region = assyria_region
+		is_in_region = mesopotamia_region
+		is_in_region = syria_region
+		is_in_region = palestine_region
+		is_in_region = lower_egypt_region
+		is_in_region = cyrenaica_region
+		is_in_region = greece_region
+		is_in_region = macedonia_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_bithynia_region_trigger_3 = {
+	OR = {
+		z_limes_bithynia_region_trigger_2 = yes
+		is_in_region = scythia_region
+		is_in_region = illyria_region
+		is_in_region = moesia_region
+		#is_in_region = moesia_s_region # Invictus only
+		is_in_region = albania_region
+		is_in_region = media_region
+		is_in_region = upper_egypt_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region bohemia_area
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_bohemia_area_trigger_1 = {
+	OR = {
+		is_in_region = bohemia_area
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_bohemia_area_trigger_2 = {
+	OR = {
+		z_limes_bohemia_area_trigger_1 = yes
+		is_in_region = germania_region
+		is_in_region = germania_superior_region
+		is_in_region = venedia_region
+		is_in_region = vistulia_region
+		is_in_region = pannonia_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_bohemia_area_trigger_3 = {
+	OR = {
+		z_limes_bohemia_area_trigger_2 = yes
+		is_in_region = scandinavia_region
+		is_in_region = rhaetia_region
+		is_in_region = cisalpine_gaul_region
+		is_in_region = dacia_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region borysthenia_region // Invictus only
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_borysthenia_region_trigger_1 = {
+	OR = {
+		#is_in_region = borysthenia_region # Invictus only
+		#is_in_region = hyperborea_region # Invictus only
+		is_in_region = venedia_region
+		#is_in_region = sarmatia_asiatica_region # Invictus only
+		#is_in_region = central_asian_steppes_region # Invictus only
+		is_in_region = scythia_region
+		is_in_region = vistulia_region
+		is_in_area = atara_area
+		is_in_area = darn_area
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_borysthenia_region_trigger_2 = {
+	OR = {
+		z_limes_borysthenia_region_trigger_1 = yes
+		is_in_region = albania_region
+		is_in_region = taurica_region
+		is_in_region = germania_region
+		is_in_region = bohemia_area
+		is_in_region = pannonia_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_borysthenia_region_trigger_3 = {
+	OR = {
+		z_limes_borysthenia_region_trigger_2 = yes
+		is_in_region = dacia_region
+		is_in_region = moesia_region
+		#is_in_region = moesia_region # Invictus only
+		is_in_region = colchis_region
+		#is_in_region = sakia_region # Invictus only
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region britain_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_britain_region_trigger_1 = {
+	OR = {
+		is_in_region = britain_region
+		is_in_region = caledonia_region
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_britain_region_trigger_2 = {
+	OR = {
+		z_limes_britain_region_trigger_1 = yes
+		is_in_area = armorica_minoris_area
+		is_in_area = armorica_centralis_area
+		is_in_area = armorica_maioris_area
+		is_in_area = cenomannia_area
+		is_in_area = veliocassia_area
+		is_in_area = morinia_area
+		is_in_area = menapia_area # Vanilla only
+		is_in_area = frisia_area
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_britain_region_trigger_3 = {
+	OR = {
+		z_limes_britain_region_trigger_2 = yes
+		is_in_region = armorica_region
+		is_in_region = aquitaine_region
+		is_in_region = scandinavia_region
+		is_in_area = chasuaria_area
+		is_in_area = chaucia_area
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region burma_region # Invictus only
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+#z_limes_burma_region_trigger_1 = {
+#	OR = {
+#		is_in_region = burma_region
+#	}
+#}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+#z_limes_burma_region_trigger_2 = {
+#	OR = {
+#		z_limes_burma_region_trigger_1 = yes
+#		is_in_region = pracya_region
+#	}
+#}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+#z_limes_burma_region_trigger_3 = {
+#	OR = {
+#		z_limes_burma_region_trigger_2 = yes
+#		is_in_region = vindhyaprstha_region
+#	}
+#}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region caledonia_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_caledonia_region_trigger_1 = {
+	OR = {
+		is_in_region = caledonia_region
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_caledonia_region_trigger_2 = {
+	OR = {
+		z_limes_caledonia_region_trigger_1 = yes
+		is_in_region = britain_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_caledonia_region_trigger_3 = {
+	OR = {
+		z_limes_caledonia_region_trigger_2 = yes
+		is_in_region = scandinavia_region
+		is_in_area = chasuaria_area
+		is_in_area = chaucia_area
+		is_in_area = frisia_area
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region cappadocia_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_cappadocia_region_trigger_1 = {
+	OR = {
+		is_in_region = cappadocia_region
+		is_in_region = cappadocia_pontica_region
+		is_in_region = bithynia_region
+		is_in_region = asia_region
+		is_in_region = galatia_region
+		is_in_region = cilicia_region
+		is_in_region = syria_region
+		is_in_region = assyria_region
+		is_in_region = armenia_region
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_cappadocia_region_trigger_2 = {
+	OR = {
+		z_limes_cappadocia_region_trigger_1 = yes
+		is_in_region = thrace_region
+		is_in_region = macedonia_region
+		is_in_region = greece_region
+		is_in_region = palestine_region
+		is_in_region = lower_egypt_region
+		is_in_region = colchis_region
+		is_in_region = mesopotamia_region
+		is_in_region = media_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_cappadocia_region_trigger_3 = {
+	OR = {
+		z_limes_cappadocia_region_trigger_2 = yes
+		is_in_region = persis_region
+		is_in_region = arabia_region
+		is_in_region = upper_egypt_region
+		is_in_region = cyrenaica_region
+		is_in_region = moesia_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region cappadocia_pontica_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_cappadocia_pontica_region_trigger_1 = {
+	OR = {
+		is_in_region = cappadocia_pontica_region
+		is_in_region = bithynia_region
+		is_in_region = cappadocia_region
+		is_in_region = colchis_region
+		is_in_region = armenia_region
+		is_in_region = assyria_region
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_cappadocia_pontica_region_trigger_2 = {
+	OR = {
+		z_limes_cappadocia_pontica_region_trigger_1 = yes
+		is_in_region = thrace_region
+		is_in_region = taurica_region
+		is_in_region = albania_region
+		is_in_region = media_region
+		is_in_region = mesopotamia_region
+		is_in_region = syria_region
+		is_in_region = cilicia_region
+		is_in_region = galatia_region
+		is_in_region = asia_region
+		is_in_region = palestine_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_cappadocia_pontica_region_trigger_3 = {
+	OR = {
+		z_limes_cappadocia_pontica_region_trigger_2 = yes
+		is_in_region = macedonia_region
+		is_in_region = greece_region
+		is_in_region = cyrenaica_region
+		is_in_region = lower_egypt_region
+		is_in_region = persis_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region cilicia_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_cilicia_region_trigger_1 = {
+	OR = {
+		is_in_region = cilicia_region
+		is_in_region = asia_region
+		is_in_region = bithynia_region
+		is_in_region = galatia_region
+		is_in_region = assyria_region
+		is_in_region = syria_region
+		is_in_region = palestine_region
+		is_in_region = lower_egypt_region
+		is_in_region = cappadocia_region
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_cilicia_region_trigger_2 = {
+	OR = {
+		z_limes_cilicia_region_trigger_1 = yes
+		is_in_region = thrace_region
+		is_in_region = macedonia_region
+		is_in_region = greece_region
+		is_in_region = cappadocia_pontica_region
+		is_in_region = armenia_region
+		is_in_region = mesopotamia_region
+		is_in_region = cyrenaica_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_cilicia_region_trigger_3 = {
+	OR = {
+		z_limes_cilicia_region_trigger_2 = yes
+		is_in_region = magna_graecia_region
+		is_in_region = africa_region
+		is_in_region = upper_egypt_region
+		is_in_region = media_region
+		is_in_region = persis_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region cisalpine_gaul_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_cisalpine_gaul_region_trigger_1 = {
+	OR = {
+		is_in_region = cisalpine_gaul_region
+		is_in_region = central_italy_region
+		is_in_region = magna_graecia_region
+		is_in_region = transalpine_gaul_region
+		is_in_region = illyria_region
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_cisalpine_gaul_region_trigger_2 = {
+	OR = {
+		z_limes_cisalpine_gaul_region_trigger_1 = yes
+		is_in_region = tarraconensis_region
+		is_in_region = aquitaine_region
+		is_in_region = greece_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_cisalpine_gaul_region_trigger_3 = {
+	OR = {
+		z_limes_cisalpine_gaul_region_trigger_2 = yes
+		is_in_region = contestania_region
+		is_in_region = baetica_region
+		is_in_region = africa_region
+		is_in_region = central_gaul_region
+		is_in_region = rhaetia_region
+		is_in_region = moesia_region
+		#is_in_region = moesia_s_region # Invictus only
+		is_in_region = macedonia_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region central_asian_steppes_region // Invictus only
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_central_asian_steppes_region_trigger_1 = {
+	OR = {
+		#is_in_region = central_asian_steppes_region # Invictus only
+		#is_in_region = borysthenia_region # Invictus only
+		#is_in_region = hyperborea_region # Invictus only
+		is_in_region = sarmatia_asiatica_region
+		#is_in_region = sakia_region # Invictus only
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_central_asian_steppes_region_trigger_2 = {
+	OR = {
+		z_limes_central_asian_steppes_region_trigger_1 = yes
+		is_in_region = scythia_region
+		is_in_region = taurica_region
+		is_in_region = albania_region
+		is_in_region = parthia_region
+		is_in_region = bactriana_region
+		is_in_region = sogdiana_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_central_asian_steppes_region_trigger_3 = {
+	OR = {
+		z_limes_central_asian_steppes_region_trigger_2 = yes
+		is_in_region = colchis_region
+		is_in_region = armenia_region
+		is_in_region = media_region
+		is_in_region = vistulia_region
+		is_in_region = venedia_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region central_gaul_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_central_gaul_region_trigger_1 = {
+	OR = {
+		is_in_region = central_gaul_region
+		is_in_region = aquitaine_region
+		is_in_region = armorica_region
+		is_in_region = belgica_region
+		is_in_region = transalpine_gaul_region
+		is_in_region = germania_superior_region
+		is_in_area = tigurinia_area
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_central_gaul_region_trigger_2 = {
+	OR = {
+		z_limes_central_gaul_region_trigger_1 = yes
+		is_in_region = rhaetia_region
+		is_in_region = tarraconensis_region
+		is_in_region = britain_region
+		is_in_region = cisalpine_gaul_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_central_gaul_region_trigger_3 = {
+	OR = {
+		z_limes_central_gaul_region_trigger_2 = yes
+		is_in_region = illyria_region
+		is_in_region = magna_graecia_region
+		is_in_region = central_italy_region
+		is_in_region = caledonia_region
+		is_in_region = gallaecia_region
+		is_in_region = contestania_region
+		is_in_region = pannonia_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region central_italy_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_central_italy_region_trigger_1 = {
+	OR = {
+		is_in_region = central_italy_region
+		is_in_region = magna_graecia_region
+		is_in_region = cisalpine_gaul_region
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_central_italy_region_trigger_2 = {
+	OR = {
+		z_limes_central_italy_region_trigger_1 = yes
+		is_in_region = transalpine_gaul_region
+		is_in_region = illyria_region
+		is_in_region = africa_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_central_italy_region_trigger_3 = {
+	OR = {
+		z_limes_central_italy_region_trigger_2 = yes
+		is_in_region = aquitaine_region
+		is_in_region = tarraconensis_region
+		is_in_region = lusitania_region
+		is_in_region = baetica_region
+		is_in_region = contestania_region
+		is_in_region = mauretainia_region
+		is_in_region = numidia_region
+		is_in_region = cyrenaica_region
+		is_in_region = macedonia_region
+		is_in_region = greece_region
+		is_in_region = thrace_region
+		is_in_region = moesia_region
+		#is_in_region = moesia_s_region # Invictus only
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region colchis_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_colchis_region_trigger_1 = {
+	OR = {
+		is_in_region = colchis_region
+		is_in_region = albania_region
+		is_in_region = armenia_region
+		is_in_region = cappadocia_pontica_region
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_colchis_region_trigger_2 = {
+	OR = {
+		z_limes_colchis_region_trigger_1 = yes
+		is_in_region = taurica_region
+		is_in_region = bithynia_region
+		is_in_region = cappadocia_region
+		is_in_region = assyria_region
+		is_in_region = media_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_colchis_region_trigger_3 = {
+	OR = {
+		z_limes_colchis_region_trigger_2 = yes
+		is_in_region = transcaucasia_region # Vanilla only
+		is_in_region = galatia_region
+		is_in_region = syria_region
+		is_in_region = mesopotamia_region
+		is_in_region = parthia_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region contestania_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_contestania_region_trigger_1 = {
+	OR = {
+		is_in_region = contestania_region
+		is_in_region = tarraconensis_region
+		is_in_region = baetica_region
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_contestania_region_trigger_2 = {
+	OR = {
+		z_limes_contestania_region_trigger_1 = yes
+		is_in_region = gallaecia_region
+		is_in_region = lusitania_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_contestania_region_trigger_3 = {
+	OR = {
+		z_limes_contestania_region_trigger_2 = yes
+		is_in_region = transalpine_gaul_region
+		is_in_region = aquitaine_region
+		is_in_region = mauretainia_region
+		is_in_region = numidia_region
+		is_in_region = africa_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region cyrenaica_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_cyrenaica_region_trigger_1 = {
+	OR = {
+		is_in_region = cyrenaica_region
+		is_in_region = africa_region
+		#is_in_region = fezzan_region # Invictus only
+		is_in_region = lower_egypt_region
+		is_in_region = upper_egypt_region
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_cyrenaica_region_trigger_2 = {
+	OR = {
+		z_limes_cyrenaica_region_trigger_1 = yes
+		is_in_region = numidia_region
+		is_in_region = magna_graecia_region
+		is_in_region = greece_region
+		is_in_region = asia_region
+		is_in_region = cilicia_region
+		is_in_region = syria_region
+		is_in_region = palestine_region
+		#is_in_region = lower_nubia_region # Invictus only
+		is_in_region = nubia_region
+		is_in_region = punt_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_cyrenaica_region_trigger_3 = {
+	OR = {
+		z_limes_cyrenaica_region_trigger_2 = yes
+		is_in_region = arabia_region
+		is_in_region = mauretainia_region
+		is_in_region = macedonia_region
+		is_in_region = galatia_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region dacia_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_dacia_region_trigger_1 = {
+	OR = {
+		is_in_region = dacia_region
+		is_in_region = pannonia_region
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_dacia_region_trigger_2 = {
+	OR = {
+		z_limes_dacia_region_trigger_1 = yes
+		is_in_region = scythia_region
+		is_in_region = thrace_region
+		is_in_region = moesia_region
+		#is_in_region = moesia_s_region # Invictus only
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_dacia_region_trigger_3 = {
+	OR = {
+		z_limes_dacia_region_trigger_2 = yes
+		is_in_region = vistulia_region
+		is_in_region = macedonia_region
+		is_in_region = illyria_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region dravida_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_dravida_region_trigger_1 = {
+	OR = {
+		is_in_region = dravida_region
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_dravida_region_trigger_2 = {
+	OR = {
+		z_limes_dravida_region_trigger_1 = yes
+		is_in_region = vindhyaprstha_region
+		is_in_region = karnata_region
+		is_in_region = aparanta_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_dravida_region_trigger_3 = {
+	OR = {
+		z_limes_dravida_region_trigger_2 = yes
+		#is_in_region = burma_region # Invictus only
+		is_in_region = maru_region
+		is_in_region = pracya_region
+		is_in_region = avanti_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region fezzan_region // Invictus only
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_fezzan_region_trigger_1 = {
+	OR = {
+		#is_in_region = fezzan_region # Invictus only
+		is_in_region = cyrenaica_region
+		is_in_region = africa_region
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_fezzan_region_trigger_2 = {
+	OR = {
+		z_limes_fezzan_region_trigger_1 = yes
+		is_in_region = numidia_region
+		is_in_region = mauretainia_region
+		is_in_region = lower_egypt_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_fezzan_region_trigger_3 = {
+	OR = {
+		z_limes_fezzan_region_trigger_2 = yes
+		is_in_region = baetica_region
+		is_in_region = upper_egypt_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region galatia_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_galatia_region_trigger_1 = {
+	OR = {
+		is_in_region = galatia_region
+		is_in_region = bithynia_region
+		is_in_region = asia_region
+		is_in_region = cilicia_region
+		is_in_region = syria_region
+		is_in_region = cappadocia_region
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_galatia_region_trigger_2 = {
+	OR = {
+		z_limes_galatia_region_trigger_1 = yes
+		is_in_region = thrace_region
+		is_in_region = macedonia_region
+		is_in_region = greece_region
+		is_in_region = lower_egypt_region
+		is_in_region = palestine_region
+		is_in_region = assyria_region
+		is_in_region = cappadocia_pontica_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_galatia_region_trigger_3 = {
+	OR = {
+		z_limes_galatia_region_trigger_2 = yes
+		is_in_region = colchis_region
+		is_in_region = armenia_region
+		is_in_region = mesopotamia_region
+		is_in_region = cyrenaica_region
+		is_in_region = upper_egypt_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region gallaecia_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_gallaecia_region_trigger_1 = {
+	OR = {
+		is_in_region = gallaecia_region
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_gallaecia_region_trigger_2 = {
+	OR = {
+		z_limes_gallaecia_region_trigger_1 = yes
+		is_in_region = lusitania_region
+		is_in_region = tarraconensis_region
+		is_in_region = aquitaine_region
+		is_in_area = vaccaeia_meridionalis_area
+		is_in_area = celtiberia_centralis_area
+		is_in_area = carpetania_area
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_gallaecia_region_trigger_3 = {
+	OR = {
+		z_limes_gallaecia_region_trigger_2 = yes
+		is_in_region = contestania_region
+		is_in_region = baetica_region
+		is_in_region = mauretainia_region
+		is_in_region = armorica_region
+		is_in_region = transalpine_gaul_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region gandhara_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_gandhara_region_trigger_1 = {
+	OR = {
+		is_in_region = gandhara_region
+		is_in_area = arachosia_area
+		is_in_area = bamyan_area
+		is_in_area = sattagydia_area
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_gandhara_region_trigger_2 = {
+	OR = {
+		z_limes_gandhara_region_trigger_1 = yes
+		is_in_region = maru_region
+		is_in_area = patalene_area
+		is_in_area = parecania_area
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_gandhara_region_trigger_3 = {
+	OR = {
+		z_limes_gandhara_region_trigger_2 = yes
+		is_in_region = madhyadesa_region
+		is_in_region = avanti_region
+		is_in_region = bactriana_region
+		is_in_region = ariana_region
+		is_in_region = gedrosia_region # Vanilla only
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region gedrosia_region // Vanilla only
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_gedrosia_region_trigger_1 = {
+	OR = {
+		is_in_region = gedrosia_region # Vanilla only
+		is_in_region = persis_region
+		is_in_region = ariana_region
+		is_in_region = maru_region
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_gedrosia_region_trigger_2 = {
+	OR = {
+		z_limes_gedrosia_region_trigger_1 = yes
+		is_in_region = gandhara_region
+		is_in_region = bactriana_region
+		is_in_region = parthia_region
+		is_in_region = media_region
+		is_in_region = mesopotamia_region
+		#is_in_region = arabia_felix_region # Invictus only
+		is_in_region = gerrha_region # Vanilla only
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_gedrosia_region_trigger_3 = {
+	OR = {
+		z_limes_gedrosia_region_trigger_2 = yes
+		is_in_region = armenia_region
+		is_in_region = assyria_region
+		is_in_region = avanti_region
+		is_in_region = aparanta_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region germania_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_germania_region_trigger_1 = {
+	OR = {
+		is_in_region = germania_region
+		is_in_region = germania_superior_region
+		is_in_region = scandinavia_region
+		is_in_region = bohemia_area
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_germania_region_trigger_2 = {
+	OR = {
+		z_limes_germania_region_trigger_1 = yes
+		is_in_region = belgica_region
+		is_in_region = venedia_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_germania_region_trigger_3 = {
+	OR = {
+		z_limes_germania_region_trigger_2 = yes
+		is_in_region = vistulia_region
+		is_in_region = central_gaul_region
+		is_in_region = armorica_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region germania_superior_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_germania_superior_region_trigger_1 = {
+	OR = {
+		is_in_region = germania_superior_region
+		is_in_region = belgica_region
+		is_in_region = central_gaul_region
+		is_in_region = germania_region
+		is_in_region = bohemia_area
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_germania_superior_region_trigger_2 = {
+	OR = {
+		z_limes_germania_superior_region_trigger_1 = yes
+		is_in_region = aquitaine_region
+		is_in_region = armorica_region
+		is_in_region = transalpine_gaul_region
+		is_in_region = rhaetia_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_germania_superior_region_trigger_3 = {
+	OR = {
+		z_limes_germania_superior_region_trigger_2 = yes
+		is_in_region = cisalpine_gaul_region
+		is_in_region = central_italy_region
+		is_in_region = tarraconensis_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region gerrha_region // Vanilla only
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_gerrha_region_trigger_1 = {
+	OR = {
+		is_in_region = gerrha_region # Vanilla only
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_gerrha_region_trigger_2 = {
+	OR = {
+		z_limes_gerrha_region_trigger_1 = yes
+		is_in_region = persis_region
+		is_in_region = mesopotamia_region
+		is_in_region = arabia_felix_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_gerrha_region_trigger_3 = {
+	OR = {
+		z_limes_gerrha_region_trigger_2 = yes
+		is_in_region = arabia_region
+		is_in_region = gedrosia_region # Vanilla only
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region greece_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_greece_region_trigger_1 = {
+	OR = {
+		is_in_region = greece_region
+		is_in_region = thrace_region
+		is_in_region = macedonia_region
+		is_in_region = bithynia_region
+		is_in_region = asia_region
+		is_in_region = magna_graecia_region
+		is_in_region = cilicia_region
+		is_in_region = cyrenaica_region
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_greece_region_trigger_2 = {
+	OR = {
+		z_limes_greece_region_trigger_1 = yes
+		is_in_region = illyria_region
+		is_in_region = lower_egypt_region
+		is_in_region = palestine_region
+		is_in_region = syria_region
+		is_in_region = taurica_region
+		is_in_region = cappadocia_pontica_region
+		is_in_region = cappadocia_region
+		is_in_region = galatia_region
+		is_in_region = cisalpine_gaul_region
+		is_in_region = central_italy_region
+		is_in_region = illyria_region
+		is_in_region = moesia_region
+		#is_in_region = moesia_s_region # Invictus only
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_greece_region_trigger_3 = {
+	OR = {
+		z_limes_greece_region_trigger_2 = yes
+		is_in_region = africa_region
+		is_in_region = upper_egypt_region
+		is_in_region = armenia_region
+		is_in_region = assyria_region
+		is_in_region = mesopotamia_region
+		is_in_region = media_region
+		is_in_region = persis_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region himalayan_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_himalayan_region_trigger_1 = {
+	OR = {
+		is_in_region = himalayan_region
+		is_in_area = jangtang_area
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_himalayan_region_trigger_2 = {
+	OR = {
+		z_limes_himalayan_region_trigger_1 = yes
+		is_in_region = sogdiana_region
+		is_in_region = bactriana_region
+		is_in_region = tibet_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_himalayan_region_trigger_3 = {
+	OR = {
+		z_limes_himalayan_region_trigger_2 = yes
+		is_in_region = gandhara_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region hyperborea_region // Invictus only
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_hyperborea_region_trigger_1 = {
+	OR = {
+		#is_in_region = hyperborea_region # Invictus only
+		#is_in_region = central_asian_steppes_region # Invictus only
+		#is_in_region = sarmatia_asiatica_region # Invictus only
+		#is_in_region = borysthenia_region # Invictus only
+		is_in_region = venedia_region
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_hyperborea_region_trigger_2 = {
+	OR = {
+		z_limes_hyperborea_region_trigger_1 = yes
+		is_in_region = vistulia_region
+		is_in_region = scythia_region
+		is_in_region = taurica_region
+		is_in_region = albania_region
+		#is_in_region = sakia_region # Invictus only
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_hyperborea_region_trigger_3 = {
+	OR = {
+		z_limes_hyperborea_region_trigger_2 = yes
+		is_in_region = germania_region
+		is_in_region = bohemia_area
+		is_in_region = pannonia_region
+		is_in_region = dacia_region
+		is_in_region = moesia_region
+		is_in_region = colchis_region
+		is_in_region = parthia_region
+		is_in_region = bactriana_region
+		is_in_region = sogdiana_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region illyria_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_illyria_region_trigger_1 = {
+	OR = {
+		is_in_region = illyria_region
+		#is_in_region = moesia_s_region # Invictus only
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_illyria_region_trigger_2 = {
+	OR = {
+		z_limes_illyria_region_trigger_1 = yes
+		is_in_region = moesia_region
+		is_in_region = macedonia_region
+		is_in_region = greece_region
+		is_in_region = cisalpine_gaul_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_illyria_region_trigger_3 = {
+	OR = {
+		z_limes_illyria_region_trigger_2 = yes
+		is_in_region = rhaetia_region
+		is_in_region = central_italy_region
+		is_in_region = magna_graecia_region
+		is_in_region = pannonia_region
+		is_in_region = dacia_region
+		is_in_region = thrace_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region karnata_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_karnata_region_trigger_1 = {
+	OR = {
+		is_in_region = karnata_region
+		is_in_region = aparanta_region
+		is_in_region = dravida_region
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_karnata_region_trigger_2 = {
+	OR = {
+		z_limes_karnata_region_trigger_1 = yes
+		is_in_region = vindhyaprstha_region
+		is_in_region = maru_region
+		is_in_region = avanti_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_karnata_region_trigger_3 = {
+	OR = {
+		z_limes_karnata_region_trigger_2 = yes
+		is_in_region = gandhara_region
+		is_in_region = madhyadesa_region
+		is_in_region = pracya_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region lower_egypt_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_lower_egypt_region_trigger_1 = {
+	OR = {
+		is_in_region = lower_egypt_region
+		is_in_region = upper_egypt_region
+		is_in_area = aswan_area
+		is_in_region = cyrenaica_region
+		is_in_region = palestine_region
+		is_in_region = syria_region
+		is_in_region = arabia_region
+		trigger_if = {
+			limit = { root = { country_culture_group = hellenic } }
+			OR = {
+				is_in_region = cilicia_region
+				is_in_region = greece_region
+				is_in_region = macedonia_region
+				is_in_region = asia_region
+			}
+		}
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_lower_egypt_region_trigger_2 = {
+	OR = {
+		z_limes_lower_egypt_region_trigger_1 = yes
+		is_in_region = thrace_region
+		is_in_region = bithynia_region
+		is_in_region = galatia_region
+		is_in_region = cappadocia_region
+		is_in_region = assyria_region
+		is_in_region = mesopotamia_region
+		trigger_if = {
+			limit = { root = { NOT = { country_culture_group = hellenic } } }
+			OR = {
+				is_in_region = cilicia_region
+				is_in_region = greece_region
+				is_in_region = macedonia_region
+				is_in_region = asia_region
+				#is_in_region = lower_nubia_region # Invictus only
+				is_in_region = nubia_region
+				is_in_region = punt_region
+			}
+		}
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_lower_egypt_region_trigger_3 = {
+	OR = {
+		z_limes_lower_egypt_region_trigger_2 = yes
+		is_in_region = arabia_felix_region
+		is_in_region = gerrha_region # Vanilla only
+		is_in_region = illyria_region
+		is_in_region = moesia_region
+		#is_in_region = moesia_s_region # Invictus only
+		is_in_region = cappadocia_pontica_region
+		is_in_region = armenia_region
+		is_in_region = media_region
+		is_in_region = persis_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region lower_nubia_region // Invictus only -> same as nubia_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_lower_nubia_region_trigger_1 = {
+	OR = {
+		z_limes_nubia_region_trigger_1 = yes
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_lower_nubia_region_trigger_2 = {
+	OR = {
+		z_limes_nubia_region_trigger_2 = yes
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_lower_nubia_region_trigger_3 = {
+	OR = {
+		z_limes_nubia_region_trigger_3 = yes
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region lusitania_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_lusitania_region_trigger_1 = {
+	OR = {
+		is_in_region = lusitania_region
+		is_in_region = gallaecia_region
+		is_in_region = baetica_region
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_lusitania_region_trigger_2 = {
+	OR = {
+		z_limes_lusitania_region_trigger_1 = yes
+		is_in_region = contestania_region
+		is_in_region = tarraconensis_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_lusitania_region_trigger_3 = {
+	OR = {
+		z_limes_lusitania_region_trigger_2 = yes
+		is_in_region = mauretainia_region
+		is_in_region = numidia_region
+		is_in_region = africa_region
+		is_in_region = transalpine_gaul_region
+		is_in_region = aquitaine_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region macedonia_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_macedonia_region_trigger_1 = {
+	OR = {
+		is_in_region = macedonia_region
+		is_in_region = moesia_region
+		is_in_region = thrace_region
+		is_in_region = greece_region
+		is_in_region = bithynia_region
+		is_in_region = asia_region
+		is_in_region = illyria_region
+		#is_in_region = moesia_s_region # Invictus only
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_macedonia_region_trigger_2 = {
+	OR = {
+		z_limes_macedonia_region_trigger_1 = yes
+		is_in_region = illyria_region
+		is_in_region = cyrenaica_region
+		is_in_region = lower_egypt_region
+		is_in_region = palestine_region
+		is_in_region = syria_region
+		is_in_region = taurica_region
+		is_in_region = cilicia_region
+		is_in_region = cappadocia_pontica_region
+		is_in_region = cappadocia_region
+		is_in_region = galatia_region
+		is_in_region = cisalpine_gaul_region
+		is_in_region = central_italy_region
+		is_in_region = magna_graecia_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_macedonia_region_trigger_3 = {
+	OR = {
+		z_limes_macedonia_region_trigger_2 = yes
+		is_in_region = africa_region
+		is_in_region = upper_egypt_region
+		is_in_region = armenia_region
+		is_in_region = assyria_region
+		is_in_region = mesopotamia_region
+		is_in_region = media_region
+		is_in_region = persis_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region madhyadesa_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_madhyadesa_region_trigger_1 = {
+	OR = {
+		is_in_region = madhyadesa_region
+		is_in_region = pracya_region
+		is_in_region = gandhara_region
+		is_in_region = maru_region
+		is_in_area = patalene_area
+		is_in_area = parecania_area
+		is_in_region = avanti_region
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_madhyadesa_region_trigger_2 = {
+	OR = {
+		z_limes_madhyadesa_region_trigger_1 = yes
+		is_in_region = aparanta_region
+		is_in_region = vindhyaprstha_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_madhyadesa_region_trigger_3 = {
+	OR = {
+		z_limes_madhyadesa_region_trigger_2 = yes
+		is_in_region = karnata_region
+		is_in_region = dravida_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region magna_graecia_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_magna_graecia_region_trigger_1 = {
+	OR = {
+		is_in_region = magna_graecia_region
+		is_in_region = central_italy_region
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_magna_graecia_region_trigger_2 = {
+	OR = {
+		z_limes_magna_graecia_region_trigger_1 = yes
+		is_in_region = cisalpine_gaul_region
+		is_in_region = greece_region
+		is_in_region = illyria_region
+		is_in_region = africa_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_magna_graecia_region_trigger_3 = {
+	OR = {
+		z_limes_magna_graecia_region_trigger_2 = yes
+		is_in_region = lusitania_region
+		is_in_region = contestania_region
+		is_in_region = tarraconensis_region
+		is_in_region = transalpine_gaul_region
+		is_in_region = baetica_region
+		is_in_region = mauretainia_region
+		is_in_region = numidia_region
+		is_in_region = cyrenaica_region
+		is_in_region = moesia_region
+		#is_in_region = moesia_s_region # Invictus only
+		is_in_region = macedonia_region
+		is_in_region = thrace_region
+		is_in_region = pannonia_region
+		is_in_region = lower_egypt_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region maru_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_maru_region_trigger_1 = {
+	OR = {
+		is_in_region = maru_region
+		is_in_area = patalene_area
+		is_in_area = parecania_area
+		is_in_region = gandhara_region
+		is_in_area = arachosia_area
+		is_in_area = bamyan_area
+		is_in_area = sattagydia_area
+		is_in_region = avanti_region
+		is_in_region = gedrosia_region # Vanilla only
+		#is_in_region = ariana_region # Invictus only
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_maru_region_trigger_2 = {
+	OR = {
+		z_limes_maru_region_trigger_1 = yes
+		is_in_region = ariana_region # Vanilla only
+		is_in_region = aparanta_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_maru_region_trigger_3 = {
+	OR = {
+		z_limes_maru_region_trigger_2 = yes
+		is_in_region = madhyadesa_region
+		is_in_region = vindhyaprstha_region
+		is_in_region = karnata_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region mauretainia_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_mauretainia_region_trigger_1 = {
+	OR = {
+		is_in_region = mauretainia_region
+		is_in_region = numidia_region
+		is_in_region = baetica_region
+		#is_in_region = atlas_region # Invictus only
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_mauretainia_region_trigger_2 = {
+	OR = {
+		z_limes_mauretainia_region_trigger_1 = yes
+		is_in_region = contestania_region
+		is_in_region = lusitania_region
+		is_in_region = africa_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_mauretainia_region_trigger_3 = {
+	OR = {
+		z_limes_mauretainia_region_trigger_2 = yes
+		is_in_region = gallaecia_region
+		is_in_region = tarraconensis_region
+		is_in_region = cyrenaica_region
+		#is_in_region = fezzan_region # Invictus only
+		is_in_region = lower_egypt_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region media_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_media_region_trigger_1 = {
+	OR = {
+		is_in_region = media_region
+		is_in_region = persis_region
+		is_in_region = parthia_region
+		trigger_if = {
+			limit = { root = { primary_culture = median } }
+			OR = {
+				is_in_area = paytankert_area
+				is_in_area = parskahayk_area
+				is_in_area = parsatunik_area
+			}
+		}
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_media_region_trigger_2 = {
+	OR = {
+		z_limes_media_region_trigger_1 = yes
+		is_in_region = albania_region
+		is_in_region = armenia_region
+		is_in_region = assyria_region
+		is_in_region = mesopotamia_region
+		is_in_region = ariana_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_media_region_trigger_3 = {
+	OR = {
+		z_limes_media_region_trigger_2 = yes
+		is_in_region = gedrosia_region # Vanilla only
+		is_in_region = colchis_region
+		is_in_region = cappadocia_pontica_region
+		is_in_region = cappadocia_region
+		is_in_region = galatia_region
+		is_in_region = syria_region
+		is_in_region = palestine_region
+		is_in_region = bactriana_region
+		is_in_region = cilicia_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region mesopotamia_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_mesopotamia_region_trigger_1 = {
+	OR = {
+		is_in_region = mesopotamia_region
+		is_in_region = assyria_region
+		this = p:944
+		#this = p:5399 # Invictus only
+		# Vanilla only
+		this = p:940
+		this = p:941
+		this = p:942
+		this = p:969
+		this = p:971
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_mesopotamia_region_trigger_2 = {
+	OR = {
+		z_limes_mesopotamia_region_trigger_1 = yes
+		is_in_region = cappadocia_region
+		is_in_region = cilicia_region
+		is_in_region = syria_region
+		is_in_region = palestine_region
+		is_in_region = persis_region
+		is_in_region = media_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_mesopotamia_region_trigger_3 = {
+	OR = {
+		z_limes_mesopotamia_region_trigger_2 = yes
+		is_in_region = thrace_region
+		is_in_region = macedonia_region
+		is_in_region = greece_region
+		is_in_region = asia_region
+		is_in_region = galatia_region
+		is_in_region = cappadocia_pontica_region
+		is_in_region = armenia_region
+		is_in_region = cyrenaica_region
+		is_in_region = lower_egypt_region
+		is_in_region = parthia_region
+		is_in_region = bactriana_region
+		is_in_region = ariana_region
+		is_in_region = gedrosia_region # Vanilla only
+		is_in_region = gerrha_region # Vanilla only
+		#is_in_region = arabia_felix_region # Invictus only
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region moesia_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_moesia_region_trigger_1 = {
+	OR = {
+		is_in_region = moesia_region
+		#is_in_region = moesia_s_region # Invictus only
+		is_in_region = illyria_region
+		is_in_region = macedonia_region
+		is_in_region = thrace_region
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_moesia_region_trigger_2 = {
+	OR = {
+		z_limes_moesia_region_trigger_1 = yes
+		is_in_region = greece_region
+		is_in_region = dacia_region
+		is_in_region = pannonia_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_moesia_region_trigger_3 = {
+	OR = {
+		z_limes_moesia_region_trigger_2 = yes
+		is_in_region = rhaetia_region
+		is_in_region = cisalpine_gaul_region
+		is_in_region = central_italy_region
+		is_in_region = magna_graecia_region
+		is_in_region = scythia_region
+		is_in_region = asia_region
+		is_in_region = bithynia_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region moesia_s_region // Invictus only
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_moesia_s_region_trigger_1 = {
+	OR = {
+		#is_in_region = moesia_s_region # Invictus only
+		is_in_region = moesia_region
+		is_in_region = illyria_region
+		is_in_region = macedonia_region
+		is_in_region = thrace_region
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_moesia_s_region_trigger_2 = {
+	OR = {
+		z_limes_moesia_s_region_trigger_1 = yes
+		is_in_region = greece_region
+		is_in_region = dacia_region
+		is_in_region = pannonia_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_moesia_s_region_trigger_3 = {
+	OR = {
+		z_limes_moesia_s_region_trigger_2 = yes
+		is_in_region = rhaetia_region
+		is_in_region = cisalpine_gaul_region
+		is_in_region = central_italy_region
+		is_in_region = magna_graecia_region
+		is_in_region = scythia_region
+		is_in_region = asia_region
+		is_in_region = bithynia_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region nubia_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_nubia_region_trigger_1 = {
+	OR = {
+		is_in_region = nubia_region
+		#is_in_region = lower_nubia_region # Invictus only
+		is_in_region = upper_egypt_region
+		is_in_region = lower_egypt_region
+		is_in_region = punt_region
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_nubia_region_trigger_2 = {
+	OR = {
+		z_limes_nubia_region_trigger_1 = yes
+		is_in_region = cyrenaica_region
+		is_in_region = palestine_region
+		is_in_region = arabia_region
+		is_in_region = arabia_felix_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_nubia_region_trigger_3 = {
+	OR = {
+		z_limes_nubia_region_trigger_2 = yes
+		is_in_region = syria_region
+		#is_in_region = fezzan_region # Invictus only
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region numidia_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_numidia_region_trigger_1 = {
+	OR = {
+		is_in_region = numidia_region
+		is_in_region = mauretainia_region
+		is_in_region = africa_region
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_numidia_region_trigger_2 = {
+	OR = {
+		z_limes_numidia_region_trigger_1 = yes
+		#is_in_region = atlas_region # Invictus only
+		is_in_region = baetica_region
+		is_in_region = contestania_region
+		#is_in_region = fezzan_region # Invictus only
+		is_in_region = cyrenaica_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_numidia_region_trigger_3 = {
+	OR = {
+		z_limes_numidia_region_trigger_2 = yes
+		is_in_region = magna_graecia_region
+		is_in_region = lower_egypt_region
+		is_in_region = lusitania_region
+		is_in_region = tarraconensis_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region palestine_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_palestine_region_trigger_1 = {
+	OR = {
+		is_in_region = palestine_region
+		is_in_region = syria_region
+		is_in_region = arabia_region
+		is_in_region = lower_egypt_region
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_palestine_region_trigger_2 = {
+	OR = {
+		z_limes_palestine_region_trigger_1 = yes
+		is_in_region = cilicia_region
+		is_in_region = upper_egypt_region
+		is_in_region = assyria_region
+		is_in_region = mesopotamia_region
+		is_in_region = arabia_felix_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_palestine_region_trigger_3 = {
+	OR = {
+		z_limes_palestine_region_trigger_2 = yes
+		is_in_region = gerrha_region # Vanilla only
+		#is_in_region = lower_nubia_region # Invictus only
+		is_in_region = nubia_region
+		is_in_region = cyrenaica_region
+		is_in_region = galatia_region
+		is_in_region = asia_region
+		is_in_region = cappadocia_region
+		is_in_region = punt_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region pannonia_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_pannonia_region_trigger_1 = {
+	OR = {
+		is_in_region = pannonia_region
+		is_in_region = dacia_region
+		is_in_region = illyria_region
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_pannonia_region_trigger_2 = {
+	OR = {
+		z_limes_pannonia_region_trigger_1 = yes
+		is_in_region = moesia_region
+		#is_in_region = moesia_s_region # Invictus only
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_pannonia_region_trigger_3 = {
+	OR = {
+		z_limes_pannonia_region_trigger_2 = yes
+		is_in_region = vistulia_region
+		is_in_region = bohemia_area
+		is_in_region = rhaetia_region
+		is_in_region = cisalpine_gaul_region
+		is_in_region = greece_region
+		is_in_region = macedonia_region
+		is_in_region = thrace_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region parthia_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_parthia_region_trigger_1 = {
+	OR = {
+		is_in_region = parthia_region
+		is_in_region = media_region
+		is_in_region = ariana_region
+		is_in_region = bactriana_region
+		is_in_area = dahaea_area
+		is_in_area = scythia_ad_pontem_area
+		is_in_area = scythia_ultima_area
+		is_in_area = scythia_prima_area
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_parthia_region_trigger_2 = {
+	OR = {
+		z_limes_parthia_region_trigger_1 = yes
+		is_in_region = assyria_region
+		is_in_region = mesopotamia_region
+		is_in_region = persis_region
+		is_in_region = gedrosia_region # Vanilla only
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_parthia_region_trigger_3 = {
+	OR = {
+		z_limes_parthia_region_trigger_2 = yes
+		#is_in_region = sakia_region # Invictus only
+		is_in_region = sarmatia_asiatica_region # Vanilla only
+		is_in_region = sogdiana_region
+		is_in_region = armenia_region
+		is_in_region = syria_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region persis_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_persis_region_trigger_1 = {
+	OR = {
+		is_in_region = persis_region
+		is_in_region = media_region
+		is_in_region = mesopotamia_region
+		is_in_region = assyria_region
+		is_in_region = ariana_region
+		is_in_region = gedrosia_region # Vanilla only
+		# meshan_area
+		this = p:940
+		this = p:941
+		this = p:942
+		this = p:969
+		this = p:971
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_persis_region_trigger_2 = {
+	OR = {
+		z_limes_persis_region_trigger_1 = yes
+		is_in_region = parthia_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_persis_region_trigger_3 = {
+	OR = {
+		z_limes_persis_region_trigger_2 = yes
+		is_in_region = thrace_region
+		is_in_region = bithynia_region
+		is_in_region = asia_region
+		is_in_region = cilicia_region
+		is_in_region = galatia_region
+		is_in_region = cappadocia_pontica_region
+		is_in_region = cappadocia_region
+		is_in_region = colchis_region
+		is_in_region = armenia_region
+		is_in_region = albania_region
+		is_in_region = syria_region
+		is_in_region = palestine_region
+		is_in_region = lower_egypt_region
+		is_in_region = bactriana_region
+		is_in_region = maru_region
+		is_in_region = gandhara_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region pracya_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_pracya_region_trigger_1 = {
+	OR = {
+		is_in_region = pracya_region
+		is_in_region = madhyadesa_region
+		is_in_region = vindhyaprstha_region
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_pracya_region_trigger_2 = {
+	OR = {
+		z_limes_pracya_region_trigger_1 = yes
+		#is_in_region = burma_region # Invictus only
+		is_in_region = dravida_region
+		is_in_region = avanti_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_pracya_region_trigger_3 = {
+	OR = {
+		z_limes_pracya_region_trigger_2 = yes
+		is_in_region = gandhara_region
+		is_in_area = arachosia_area
+		is_in_area = bamyan_area
+		is_in_area = sattagydia_area
+		is_in_region = maru_region
+		is_in_area = patalene_area
+		is_in_area = parecania_area
+		is_in_region = aparanta_region
+		is_in_region = karnata_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region punt_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_punt_region_trigger_1 = {
+	OR = {
+		is_in_region = punt_region
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_punt_region_trigger_2 = {
+	OR = {
+		z_limes_punt_region_trigger_1 = yes
+		is_in_region = nubia_region
+		is_in_region = upper_egypt_region
+		is_in_region = lower_egypt_region
+		#is_in_region = lower_nubia_region # Invictus only
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_punt_region_trigger_3 = {
+	OR = {
+		z_limes_punt_region_trigger_2 = yes
+		is_in_region = cyrenaica_region
+		is_in_region = palestine_region
+		is_in_region = arabia_felix_region
+		is_in_region = arabia_region
+		is_in_region = gerrha_region # Vanilla only
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region rhaetia_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_rhaetia_region_trigger_1 = {
+	OR = {
+		is_in_region = rhaetia_region
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_rhaetia_region_trigger_2 = {
+	OR = {
+		z_limes_rhaetia_region_trigger_1 = yes
+		is_in_region = cisalpine_gaul_region
+		is_in_region = transalpine_gaul_region
+		is_in_region = central_gaul_region
+		is_in_region = bohemia_area
+		is_in_region = germania_superior_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_rhaetia_region_trigger_3 = {
+	OR = {
+		z_limes_rhaetia_region_trigger_2 = yes
+		is_in_region = central_italy_region
+		is_in_region = illyria_region
+		is_in_region = pannonia_region
+		is_in_region = germania_region
+		is_in_region = belgica_region
+		is_in_region = armorica_region
+		is_in_region = aquitaine_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region sakia_region // Invictus only (= Vanilla sarmatia_asiatica_region)
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_sakia_region_trigger_1 = {
+	OR = {
+		#is_in_region = sakia_region # Invictus only
+		#is_in_region = central_asian_steppes_region # Invictus only
+		is_in_region = sarmatia_asiatica_region
+		is_in_region = albania_region
+		is_in_region = parthia_region
+		is_in_region = bactriana_region
+		is_in_region = sogdiana_region
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_sakia_region_trigger_2 = {
+	OR = {
+		z_limes_sakia_region_trigger_1 = yes
+		is_in_region = scythia_region
+		is_in_region = taurica_region
+		is_in_region = colchis_region
+		is_in_region = armenia_region
+		is_in_region = media_region
+		is_in_region = ariana_region
+		is_in_region = persis_region
+		#is_in_region = borysthenia_region # Invictus only
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_sakia_region_trigger_3 = {
+	OR = {
+		z_limes_sakia_region_trigger_2 = yes
+		is_in_region = dacia_region
+		is_in_region = vistulia_region
+		is_in_region = moesia_region
+		is_in_region = thrace_region
+		is_in_region = bithynia_region
+		is_in_region = cappadocia_pontica_region
+		is_in_region = assyria_region
+		is_in_region = mesopotamia_region
+		is_in_region = venedia_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region sarmatia_asiatica_region // Vanilla only (= Invictus sakia_region)
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_sarmatia_asiatica_region_trigger_1 = {
+	OR = {
+		# Vanilla only
+		is_in_region = sarmatia_asiatica_region
+		is_in_region = sarmatia_europea_region
+		is_in_region = transcaucasia_region
+		is_in_region = albania_region
+		is_in_region = parthia_region
+		is_in_region = bactriana_region
+		is_in_region = sogdiana_region
+		# Invictus only
+		#is_in_region = sarmatia_asiatica_region
+		#is_in_region = sakia_region
+		#is_in_region = central_asian_steppes_region
+		#is_in_region = scythia_region
+		#is_in_region = borysthenia_region
+		#is_in_region = taurica_region
+		#is_in_region = albania_region
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_sarmatia_asiatica_region_trigger_2 = {
+	OR = {
+		z_limes_sarmatia_asiatica_region_trigger_1 = yes
+		# Vanilla only
+		is_in_region = scythia_region
+		is_in_region = taurica_region
+		is_in_region = colchis_region
+		is_in_region = armenia_region
+		is_in_region = media_region
+		is_in_region = ariana_region
+		is_in_region = persis_region
+		# Invictus only
+		#is_in_region = media_region
+		#is_in_region = dacia_region
+		#is_in_region = moesia_region
+		#is_in_region = vistulia_region
+		#is_in_region = colchis_region
+		#is_in_region = armenia_region
+		#is_in_region = venedia_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_sarmatia_asiatica_region_trigger_3 = {
+	OR = {
+		z_limes_sarmatia_asiatica_region_trigger_2 = yes
+		# Vanilla only
+		is_in_region = dacia_region
+		is_in_region = vistulia_region
+		is_in_region = moesia_region
+		is_in_region = thrace_region
+		is_in_region = bithynia_region
+		is_in_region = cappadocia_pontica_region
+		is_in_region = assyria_region
+		is_in_region = mesopotamia_region
+		is_in_region = venedia_region
+		# Invictus only
+		#is_in_region = thrace_region
+		#is_in_region = bithynia_region
+		#is_in_region = cappadocia_pontica_region
+		#is_in_region = assyria_region
+		#is_in_region = mesopotamia_region
+		#is_in_region = parthia_region
+		#is_in_region = persis_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region sarmatia_europea_region // Vanilla only (= Invictus sarmatia_asiatica_region)
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_sarmatia_europea_region_trigger_1 = {
+	OR = {
+		is_in_region = sarmatia_europea_region
+		is_in_region = scythia_region
+		is_in_region = taurica_region
+		is_in_region = sarmatia_asiatica_region
+		is_in_region = transcaucasia_region # Vanilla only
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_sarmatia_europea_region_trigger_2 = {
+	OR = {
+		z_limes_sarmatia_europea_region_trigger_1 = yes
+		is_in_region = vistulia_region
+		is_in_region = dacia_region
+		is_in_region = moesia_region
+		is_in_region = thrace_region
+		is_in_region = colchis_region
+		is_in_region = albania_region
+		is_in_region = parthia_region
+		is_in_region = sogdiana_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_sarmatia_europea_region_trigger_3 = {
+	OR = {
+		z_limes_sarmatia_europea_region_trigger_2 = yes
+		is_in_region = macedonia_region
+		is_in_region = armenia_region
+		is_in_region = assyria_region
+		is_in_region = mesopotamia_region
+		is_in_region = media_region
+		is_in_region = venedia_region
+		is_in_region = germania_region
+		is_in_region = bohemia_area
+		is_in_region = pannonia_region
+		is_in_region = bactriana_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region scandinavia_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_scandinavia_region_trigger_1 = {
+	OR = {
+		is_in_region = scandinavia_region
+		is_in_region = germania_region
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_scandinavia_region_trigger_2 = {
+	OR = {
+		z_limes_scandinavia_region_trigger_1 = yes
+		is_in_region = venedia_region
+		is_in_region = belgica_region
+		is_in_region = germania_superior_region
+		is_in_region = bohemia_area
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_scandinavia_region_trigger_3 = {
+	OR = {
+		z_limes_scandinavia_region_trigger_2 = yes
+		is_in_region = caledonia_region
+		is_in_region = britain_region
+		is_in_region = vistulia_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region sogdiana_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_sogdiana_region_trigger_1 = {
+	OR = {
+		is_in_region = sogdiana_region
+		is_in_region = bactriana_region
+		is_in_region = sarmatia_asiatica_region # Vanilla only
+		#is_in_region = sakia_region # Invictus only
+		is_in_region = parthia_region
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_sogdiana_region_trigger_2 = {
+	OR = {
+		z_limes_sogdiana_region_trigger_1 = yes
+		is_in_region = himalayan_region
+		is_in_region = ariana_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_sogdiana_region_trigger_3 = {
+	OR = {
+		z_limes_sogdiana_region_trigger_2 = yes
+		is_in_region = gandhara_region
+		is_in_region = media_region
+		is_in_region = gedrosia_region # Vanilla only
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region scythia_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_scythia_region_trigger_1 = {
+	OR = {
+		is_in_region = scythia_region
+		is_in_region = vistulia_region
+		#is_in_region = borysthenia_region # Invictus only
+		is_in_region = taurica_region
+		is_in_region = sarmatia_europea_region # Vanilla only
+		#is_in_region = sarmatia_asiatica_region # Invictus only
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_scythia_region_trigger_2 = {
+	OR = {
+		z_limes_scythia_region_trigger_1 = yes
+		is_in_region = transcaucasia_region # Vanilla only
+		is_in_region = albania_region
+		is_in_region = venedia_region
+		is_in_region = colchis_region
+		#is_in_region = hyperborea_region # Invictus only
+		#is_in_region = central_asian_steppes_region # Invictus only
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_scythia_region_trigger_3 = {
+	OR = {
+		z_limes_scythia_region_trigger_2 = yes
+		is_in_region = sarmatia_asiatica_region # Vanilla only
+		#is_in_region = sakia_region # Invictus only
+		is_in_region = germania_region
+		is_in_region = pannonia_region
+		is_in_region = bohemia_area
+		is_in_region = illyria_region
+		is_in_region = macedonia_region
+		is_in_region = dacia_region
+		is_in_region = moesia_region
+		#is_in_region = moesia_s_region # Invictus only
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region syria_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_syria_region_trigger_1 = {
+	OR = {
+		is_in_region = syria_region
+		is_in_region = cilicia_region
+		is_in_region = asia_region
+		is_in_region = palestine_region
+		is_in_region = assyria_region
+		trigger_if = { # Bonus regions for imperialist scum
+			limit = { root = { primary_culture = macedonian } }
+			OR = {
+				is_in_region = greece_region
+				is_in_region = galatia_region
+				is_in_region = lower_egypt_region
+				is_in_region = mesopotamia_region
+			}
+		}
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_syria_region_trigger_2 = {
+	OR = {
+		z_limes_syria_region_trigger_1 = yes
+		is_in_region = greece_region
+		is_in_region = galatia_region
+		is_in_region = lower_egypt_region
+		is_in_region = mesopotamia_region
+		is_in_region = thrace_region
+		is_in_region = macedonia_region
+		is_in_region = cyrenaica_region
+		is_in_region = bithynia_region
+		is_in_region = cappadocia_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_syria_region_trigger_3 = {
+	OR = {
+		z_limes_syria_region_trigger_2 = yes
+		is_in_region = cappadocia_pontica_region
+		is_in_region = armenia_region
+		is_in_region = media_region
+		is_in_region = persis_region
+		is_in_region = gerrha_region # Vanilla only
+		#is_in_region = arabia_felix_region # Invictus only
+		is_in_region = upper_egypt_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region tarraconensis_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_tarraconensis_region_trigger_1 = {
+	OR = {
+		is_in_region = tarraconensis_region
+		is_in_region = contestania_region
+		is_in_area = narbonensis_centralis_area
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_tarraconensis_region_trigger_2 = {
+	OR = {
+		z_limes_tarraconensis_region_trigger_1 = yes
+		is_in_region = baetica_region
+		is_in_region = lusitania_region
+		is_in_region = aquitaine_region
+		is_in_region = transalpine_gaul_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_tarraconensis_region_trigger_3 = {
+	OR = {
+		z_limes_tarraconensis_region_trigger_2 = yes
+		is_in_region = mauretainia_region
+		is_in_region = numidia_region
+		is_in_region = africa_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region taurica_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_taurica_region_trigger_1 = {
+	OR = {
+		is_in_region = taurica_region
+		trigger_if = {
+			limit = { root = { country_culture_group = hellenic } }
+			OR = {
+				is_in_region = bithynia_region
+				is_in_region = cappadocia_pontica_region
+				is_in_region = thrace_region
+				is_in_region = colchis_region
+				is_in_area = olbia_area
+				is_in_area = clepia_area
+				is_in_area = scythia_area
+				is_in_area = moesia_orientalis_area
+			}
+		}
+		trigger_else = {
+			OR = {
+				is_in_region = sarmatia_europea_region # Vanilla only
+				#is_in_region = sarmatia_asiatica_region # Invictus only
+				is_in_region = transcaucasia_region # Vanilla only
+				is_in_region = scythia_region
+				is_in_region = colchis_region
+				is_in_area = scythia_area
+				is_in_area = moesia_orientalis_area
+			}
+		}
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_taurica_region_trigger_2 = {
+	OR = {
+		z_limes_taurica_region_trigger_1 = yes
+		trigger_if = {
+			limit = { root = { country_culture_group = hellenic } }
+			OR = {
+				is_in_region = scythia_region
+				is_in_region = macedonia_region
+				is_in_region = asia_region
+				is_in_region = armenia_region
+				is_in_region = transcaucasia_region # Vanilla only
+			}
+		}
+		trigger_else = {
+			OR = {
+				#is_in_region = borysthenia_region # Invictus only
+				is_in_region = vistulia_region
+				is_in_region = dacia_region
+				is_in_region = cappadocia_pontica_region
+				is_in_region = albania_region
+				is_in_region = transcaucasia_region # Vanilla only
+				#is_in_region = central_asian_steppes_region # Invictus only
+			}
+		}
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_taurica_region_trigger_3 = {
+	OR = {
+		z_limes_taurica_region_trigger_2 = yes
+		trigger_if = {
+			limit = { root = { country_culture_group = hellenic } }
+			OR = {
+				#is_in_region = central_asian_steppes_region # Invictus only
+				is_in_region = sarmatia_europea_region # Vanilla
+				is_in_region = albania_region
+				is_in_region = dacia_region
+				is_in_region = moesia_region
+				#is_in_region = moesia_s_region # Invictus only
+				is_in_region = galatia_region
+				is_in_region = cappadocia_region
+			}
+		}
+		trigger_else = {
+			OR = {
+				is_in_region = venedia_region
+				is_in_region = germania_region
+				is_in_region = bohemia_area
+				is_in_region = pannonia_region
+				is_in_region = moesia_region
+				#is_in_region = moesia_s_region # Invictus only
+				is_in_region = thrace_region
+				is_in_region = macedonia_region
+				is_in_region = bithynia_region
+				is_in_region = asia_region
+				is_in_region = sarmatia_asiatica_region # Vanilla only
+				#is_in_region = sakia_region # Invictus only
+			}
+		}
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region thrace_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_thrace_region_trigger_1 = {
+	OR = {
+		is_in_region = thrace_region
+		is_in_region = moesia_region
+		is_in_region = macedonia_region
+		is_in_region = greece_region
+		is_in_region = bithynia_region
+		is_in_region = asia_region
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_thrace_region_trigger_2 = {
+	OR = {
+		z_limes_thrace_region_trigger_1 = yes
+		is_in_region = illyria_region
+		#is_in_region = moesia_s_region # Invictus only
+		is_in_region = dacia_region
+		is_in_region = cyrenaica_region
+		is_in_region = lower_egypt_region
+		is_in_region = palestine_region
+		is_in_region = syria_region
+		is_in_region = taurica_region
+		is_in_region = cilicia_region
+		is_in_region = cappadocia_pontica_region
+		is_in_region = cappadocia_region
+		is_in_region = galatia_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_thrace_region_trigger_3 = {
+	OR = {
+		z_limes_thrace_region_trigger_2 = yes
+		is_in_region = pannonia_region
+		is_in_region = cisalpine_gaul_region
+		is_in_region = central_italy_region
+		is_in_region = magna_graecia_region
+		is_in_region = africa_region
+		is_in_region = upper_egypt_region
+		is_in_region = scythia_region
+		is_in_region = armenia_region
+		is_in_region = assyria_region
+		is_in_region = mesopotamia_region
+		is_in_region = media_region
+		is_in_region = persis_region
+		is_in_region = colchis_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region tibet_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_tibet_region_trigger_1 = {
+	OR = {
+		is_in_region = tibet_region
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_tibet_region_trigger_2 = {
+	OR = {
+		z_limes_tibet_region_trigger_1 = yes
+		is_in_region = himalayan_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_tibet_region_trigger_3 = {
+	OR = {
+		z_limes_tibet_region_trigger_2 = yes
+		is_in_region = gandhara_region
+		#is_in_region = burma_region # Invictus only
+		is_in_region = pracya_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region transalpine_gaul_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_transalpine_gaul_region_trigger_1 = {
+	OR = {
+		is_in_region = transalpine_gaul_region
+		is_in_region = tarraconensis_region
+		is_in_region = armorica_region
+		is_in_region = central_gaul_region
+		is_in_region = aquitaine_region
+		is_in_region = cisalpine_gaul_region
+		is_in_area = tigurinia_area
+		is_in_area = alpes_graiae_area
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_transalpine_gaul_region_trigger_2 = {
+	OR = {
+		z_limes_transalpine_gaul_region_trigger_1 = yes
+		is_in_region = contestania_region
+		is_in_region = belgica_region
+		is_in_region = central_italy_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_transalpine_gaul_region_trigger_3 = {
+	OR = {
+		z_limes_transalpine_gaul_region_trigger_2 = yes
+		is_in_region = magna_graecia_region
+		is_in_region = rhaetia_region
+		is_in_region = germania_superior_region
+		is_in_region = lusitania_region
+		is_in_region = baetica_region
+		is_in_region = gallaecia_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region transcaucasia_region // Vanilla only
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_transcaucasia_region_trigger_1 = {
+	OR = {
+		is_in_region = transcaucasia_region # Vanilla only
+		is_in_region = taurica_region
+		is_in_region = sarmatia_europea_region
+		is_in_region = colchis_region
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_transcaucasia_region_trigger_2 = {
+	OR = {
+		z_limes_transcaucasia_region_trigger_1 = yes
+		is_in_region = scythia_region
+		is_in_region = armenia_region
+		is_in_region = sarmatia_asiatica_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_transcaucasia_region_trigger_3 = {
+	OR = {
+		z_limes_transcaucasia_region_trigger_2 = yes
+		is_in_region = dacia_region
+		is_in_region = moesia_region
+		is_in_region = thrace_region
+		is_in_region = bithynia_region
+		is_in_region = cappadocia_pontica_region
+		is_in_region = assyria_region
+		is_in_region = media_region
+		is_in_region = parthia_region
+		is_in_region = sogdiana_region
+		is_in_region = venedia_region
+		is_in_region = bactriana_region
+		
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region upper_egypt_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_upper_egypt_region_trigger_1 = {
+	OR = {
+		is_in_region = upper_egypt_region
+		is_in_region = lower_egypt_region
+		is_in_region = cyrenaica_region
+		is_in_region = palestine_region
+		#is_in_region = lower_nubia_region # Invictus only
+		is_in_region = nubia_region
+		is_in_area = aswan_area
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_upper_egypt_region_trigger_2 = {
+	OR = {
+		z_limes_upper_egypt_region_trigger_1 = yes
+		is_in_region = assyria_region
+		is_in_region = mesopotamia_region
+		is_in_region = arabia_region
+		is_in_region = punt_region
+		is_in_region = asia_region
+		is_in_region = cilicia_region
+		is_in_region = syria_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_upper_egypt_region_trigger_3 = {
+	OR = {
+		z_limes_upper_egypt_region_trigger_2 = yes
+		is_in_region = arabia_felix_region
+		is_in_region = gerrha_region # Vanilla only
+		is_in_region = persis_region
+		is_in_region = bithynia_region
+		is_in_region = galatia_region
+		is_in_region = cappadocia_region
+		is_in_region = thrace_region
+		is_in_region = greece_region
+		is_in_region = macedonia_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region venedia_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_venedia_region_trigger_1 = {
+	OR = {
+		is_in_region = venedia_region
+		is_in_region = germania_region
+		is_in_region = bohemia_area
+		is_in_region = vistulia_region
+		#is_in_region = borysthenia_region # Invictus only
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_venedia_region_trigger_2 = {
+	OR = {
+		z_limes_venedia_region_trigger_1 = yes
+		is_in_region = scandinavia_region
+		is_in_region = scythia_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_venedia_region_trigger_3 = {
+	OR = {
+		z_limes_venedia_region_trigger_2 = yes
+		is_in_region = germania_superior_region
+		is_in_region = rhaetia_region
+		is_in_region = pannonia_region
+		is_in_region = moesia_region
+		#is_in_region = moesia_s_region # Invictus only
+		is_in_region = thrace_region
+		is_in_region = dacia_region
+		
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region vindhyaprstha_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_vindhyaprstha_region_trigger_1 = {
+	OR = {
+		is_in_region = vindhyaprstha_region
+		is_in_region = pracya_region
+		is_in_region = aparanta_region
+		is_in_region = dravida_region
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_vindhyaprstha_region_trigger_2 = {
+	OR = {
+		z_limes_vindhyaprstha_region_trigger_1 = yes
+		is_in_region = madhyadesa_region
+		is_in_region = avanti_region
+		is_in_region = karnata_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_vindhyaprstha_region_trigger_3 = {
+	OR = {
+		z_limes_vindhyaprstha_region_trigger_2 = yes
+		is_in_region = gandhara_region
+		is_in_region = maru_region
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Capital is_in_region vistulia_region
+# --------------------------------------------------------------------------------
+
+# Stage 1: Initial (main) authorized area
+# --------------------------------------------------
+z_limes_vistulia_region_trigger_1 = {
+	OR = {
+		is_in_region = vistulia_region
+		is_in_region = scythia_region
+		#is_in_region = borysthenia_region # Invictus only
+		is_in_region = venedia_region
+	}
+}
+
+# Stage 2: Expanded authorized area
+# --------------------------------------------------
+z_limes_vistulia_region_trigger_2 = {
+	OR = {
+		z_limes_vistulia_region_trigger_1 = yes
+		is_in_region = germania_region
+		is_in_region = bohemia_area
+		is_in_region = taurica_region
+		is_in_region = dacia_region
+	}
+}
+
+# Stage 3: Max expansion area
+# --------------------------------------------------
+z_limes_vistulia_region_trigger_3 = {
+	OR = {
+		z_limes_vistulia_region_trigger_2 = yes
+		is_in_region = germania_superior_region
+		is_in_region = rhaetia_region
+		is_in_region = illyria_region
+		is_in_region = moesia_region
+		#is_in_region = moesia_s_region # Invictus only
+		is_in_region = thrace_region
+	}
+}

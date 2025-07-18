@@ -1,0 +1,661 @@
+﻿namespace = z_notifications_setup
+
+#-----------------------------------------------------------------------------------------
+#
+#	Open setup window, based on scope:target, choose whether to setup country or character notifications, or close
+#
+#-----------------------------------------------------------------------------------------
+z_notifications_setup.1 = {
+	type = country_event
+	title = "z_notifications_setup.1.t"
+	desc = "z_notifications_setup.1.desc"
+	picture = scribe_tools
+	left_portrait = scope:target
+	right_portrait = scope:target
+	
+	trigger = {
+		# Triggered by character_interaction
+	}
+	
+	option = { # Set country notifications
+		name = "z_notifications_setup.1.a"
+		custom_tooltip = "z_notifications_setup.1.a.tt"
+		ai_chance = { factor = 0 }
+		trigger_event = { id = z_notifications_setup.2 }
+	}
+	
+	option = { # Set character notifications
+		name = "z_notifications_setup.1.b"
+		custom_tooltip = "z_notifications_setup.1.b.tt"
+		ai_chance = { factor = 0 }
+		trigger_event = { id = z_notifications_setup.3 }
+	}
+	
+	option = { # Close
+		name = "z_notifications_setup.1.c"
+		custom_tooltip = "z_notifications_setup.1.c.tt"
+		ai_chance = { factor = 100 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+#
+#	Set country notifications
+#
+#-----------------------------------------------------------------------------------------
+z_notifications_setup.2 = {
+	type = country_event
+	title = "z_notifications_setup.2.t"
+	desc = "z_notifications_setup.2.desc"
+	picture = scribe_tools
+	left_portrait = scope:target.employer.current_ruler
+	right_portrait = scope:target.employer.current_ruler
+	
+	trigger = {
+		# Triggered by self or z_notifications_setup.1
+	}
+	
+	immediate = {
+		# None
+	}
+	
+	#-----------------------------------------------------------------------------------------------------------------------------
+	
+	option = { # ENABLE government notifications for this country
+		name = "z_notifications_setup.2.b.on"
+		custom_tooltip = "z_notifications_setup.2.b.on.tt"
+		trigger = {
+			# Doesn't have government notifications enabled for this country
+			scope:target.employer = {
+				NOT = { has_variable = z_notifications_country_government }
+			}
+		}
+		scope:target.employer = { z_notifications_enable_country = { PARAM = government } }
+		trigger_event = { id = z_notifications_setup.2 } # Reboot this event
+	}
+	
+	option = { # DISABLE government notifications for this country
+		name = "z_notifications_setup.2.b.off"
+		custom_tooltip = "z_notifications_setup.2.b.off.tt"
+		trigger = {
+			# Has government notifications enabled for this country
+			scope:target.employer = {
+				has_variable = z_notifications_country_government
+			}
+		}
+		scope:target.employer = { z_notifications_disable_country = { PARAM = government } }
+		trigger_event = { id = z_notifications_setup.2 } # Reboot this event
+	}
+	
+	#-----------------------------------------------------------------------------------------------------------------------------
+	
+	option = { # ENABLE war notifications for this country
+		name = "z_notifications_setup.2.c.on"
+		custom_tooltip = "z_notifications_setup.2.c.on.tt"
+		trigger = {
+			# Doesn't have war notifications enabled for this country
+			scope:target.employer = {
+				NOT = { has_variable = z_notifications_country_war }
+			}
+		}
+		scope:target.employer = { z_notifications_enable_country = { PARAM = war } }
+		trigger_event = { id = z_notifications_setup.2 } # Reboot this event
+	}
+	
+	option = { # DISABLE war notifications for this country
+		name = "z_notifications_setup.2.c.off"
+		custom_tooltip = "z_notifications_setup.2.c.off.tt"
+		trigger = {
+			# Has war notifications enabled for this country
+			scope:target.employer = {
+				has_variable = z_notifications_country_war
+			}
+		}
+		scope:target.employer = { z_notifications_disable_country = { PARAM = war } }
+		trigger_event = { id = z_notifications_setup.2 } # Reboot this event
+	}
+	
+	#-----------------------------------------------------------------------------------------------------------------------------
+	
+	option = { # ENABLE all notifications for this country
+		name = "z_notifications_setup.2.a.on"
+		custom_tooltip = "z_notifications_setup.2.a.on.tt"
+		trigger = {
+			# Doesn't have all notifications enabled for this country
+			scope:target.employer = {
+				NAND = {
+					has_variable = z_notifications_country_government
+					has_variable = z_notifications_country_war
+				}
+			}
+		}
+		scope:target.employer = { z_notifications_enable_country_all = yes }
+		trigger_event = { id = z_notifications_setup.2 } # Reboot this event
+	}
+	
+	option = { # DISABLE all notifications for this country
+		name = "z_notifications_setup.2.a.off"
+		custom_tooltip = "z_notifications_setup.2.a.off.tt"
+		trigger = {
+			# Has all notifications enabled for this country
+			scope:target.employer = {
+				has_variable = z_notifications_country_government
+				has_variable = z_notifications_country_war
+			}
+		}
+		scope:target.employer = { z_notifications_disable_country_all = yes }
+		trigger_event = { id = z_notifications_setup.2 } # Reboot this event
+	}
+	
+	#-----------------------------------------------------------------------------------------------------------------------------
+	
+	option = { # COPY parameters to other countries
+		name = "z_notifications_setup.2.copy"
+		custom_tooltip = "z_notifications_setup.2.copy.tt"
+		trigger_event = { id = z_notifications_setup.4 } # Choose copy parameters
+	}
+	
+	#-----------------------------------------------------------------------------------------------------------------------------
+	
+	option = { # Close
+		name = "z_notifications_setup_close"
+		custom_tooltip = "z_notifications_setup_close.tt"
+		#trigger_event = { id = z_notifications_setup.1 } # Back to the start
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+#
+#	Set character notifications
+#
+#-----------------------------------------------------------------------------------------
+z_notifications_setup.3 = {
+	type = country_event
+	title = "z_notifications_setup.3.t"
+	desc = "z_notifications_setup.3.desc"
+	picture = scribe_tools
+	left_portrait = scope:target
+	right_portrait = scope:target
+	
+	trigger = {
+		# Triggered by self or z_notifications_setup.1
+	}
+	
+	immediate = {
+		# None
+	}
+	
+	#-----------------------------------------------------------------------------------------------------------------------------
+	
+	option = { # ENABLE office notifications for this character
+		name = "z_notifications_setup.3.c.on"
+		custom_tooltip = "z_notifications_setup.3.c.on.tt"
+		trigger = {
+			# Doesn't have office notifications enabled for this character
+			scope:target = {
+				NOT = { has_variable = z_notifications_character_office }
+			}
+		}
+		scope:target = { z_notifications_enable_character = { PARAM = office } }
+		trigger_event = { id = z_notifications_setup.3 } # Reboot this event
+	}
+	
+	option = { # DISABLE office notifications for this character
+		name = "z_notifications_setup.3.c.off"
+		custom_tooltip = "z_notifications_setup.3.c.off.tt"
+		trigger = {
+			# Has office notifications enabled for this character
+			scope:target = {
+				has_variable = z_notifications_character_office
+			}
+		}
+		scope:target = { z_notifications_disable_character = { PARAM = office } }
+		trigger_event = { id = z_notifications_setup.3 } # Reboot this event
+	}
+	
+	#-----------------------------------------------------------------------------------------------------------------------------
+	
+	option = { # ENABLE life notifications for this character
+		name = "z_notifications_setup.3.d.on"
+		custom_tooltip = "z_notifications_setup.3.d.on.tt"
+		trigger = {
+			# Doesn't have life notifications enabled for this character
+			scope:target = {
+				NOT = { has_variable = z_notifications_character_life }
+			}
+		}
+		scope:target = { z_notifications_enable_character = { PARAM = life } }
+		trigger_event = { id = z_notifications_setup.3 } # Reboot this event
+	}
+	
+	option = { # DISABLE life notifications for this character
+		name = "z_notifications_setup.3.d.off"
+		custom_tooltip = "z_notifications_setup.3.d.off.tt"
+		trigger = {
+			# Has life notifications enabled for this character
+			scope:target = {
+				has_variable = z_notifications_character_life
+			}
+		}
+		scope:target = { z_notifications_disable_character = { PARAM = life } }
+		trigger_event = { id = z_notifications_setup.3 } # Reboot this event
+	}
+	
+	#-----------------------------------------------------------------------------------------------------------------------------
+	
+	option = { # ENABLE death notifications for this character
+		name = "z_notifications_setup.3.b.on"
+		custom_tooltip = "z_notifications_setup.3.b.on.tt"
+		trigger = {
+			# Doesn't have death notifications enabled for this character
+			scope:target = {
+				NOT = { has_variable = z_notifications_character_death }
+			}
+		}
+		scope:target = { z_notifications_enable_character = { PARAM = death } }
+		trigger_event = { id = z_notifications_setup.3 } # Reboot this event
+	}
+	
+	option = { # DISABLE death notifications for this character
+		name = "z_notifications_setup.3.b.off"
+		custom_tooltip = "z_notifications_setup.3.b.off.tt"
+		trigger = {
+			# Has death notifications enabled for this character
+			scope:target = {
+				has_variable = z_notifications_character_death
+			}
+		}
+		scope:target = { z_notifications_disable_character = { PARAM = death } }
+		trigger_event = { id = z_notifications_setup.3 } # Reboot this event
+	}
+	
+	#-----------------------------------------------------------------------------------------------------------------------------
+	
+	option = { # ENABLE all notifications for this character
+		name = "z_notifications_setup.3.a.on"
+		custom_tooltip = "z_notifications_setup.3.a.on.tt"
+		trigger = {
+			# Doesn't have all notifications enabled for this character
+			scope:target = {
+				NAND = {
+					has_variable = z_notifications_character_office
+					has_variable = z_notifications_character_life
+					has_variable = z_notifications_character_death
+				}
+			}
+		}
+		scope:target = { z_notifications_enable_character_all = yes }
+		trigger_event = { id = z_notifications_setup.3 } # Reboot this event
+	}
+	
+	option = { # DISABLE all notifications for this character
+		name = "z_notifications_setup.3.a.off"
+		custom_tooltip = "z_notifications_setup.3.a.off.tt"
+		trigger = {
+			# Has all notifications enabled for this character
+			scope:target = {
+				has_variable = z_notifications_character_office
+				has_variable = z_notifications_character_life
+				has_variable = z_notifications_character_death
+			}
+		}
+		scope:target = { z_notifications_disable_character_all = yes }
+		trigger_event = { id = z_notifications_setup.3 } # Reboot this event
+	}
+	
+	#-----------------------------------------------------------------------------------------------------------------------------
+	
+	option = { # COPY parameters to other characters
+		name = "z_notifications_setup.3.copy"
+		custom_tooltip = "z_notifications_setup.3.copy.tt"
+		trigger_event = { id = z_notifications_setup.5 } # Choose copy parameters
+	}
+	
+	#-----------------------------------------------------------------------------------------------------------------------------
+	
+	option = { # Close
+		name = "z_notifications_setup_close"
+		custom_tooltip = "z_notifications_setup_close.tt"
+		#trigger_event = { id = z_notifications_setup.1 } # Back to the start
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+#
+#	Choose copy parameters for country notifications
+#
+#-----------------------------------------------------------------------------------------
+z_notifications_setup.4 = {
+	type = country_event
+	title = "z_notifications_setup.4.t"
+	desc = "z_notifications_setup.4.desc"
+	picture = scribe_tools
+	left_portrait = scope:target.employer.current_ruler
+	right_portrait = scope:target.employer.current_ruler
+	
+	trigger = {
+		# Triggered by self or z_notifications_setup.2
+	}
+	
+	immediate = {
+		# None
+	}
+	
+	#-----------------------------------------------------------------------------------------------------------------------------
+	
+	option = { # COPY to all OUR neighboring countries
+		name = "z_notifications_setup.4.a"
+		custom_tooltip = "z_notifications_setup.4.a.tt"
+		trigger = {
+			z_notifications_country_neighbors > 0
+		}
+		every_neighbour_country = {
+			limit = {
+				NOT = { this = root }
+			}
+			z_notifications_copy_country_copy = yes
+		}
+		trigger_event = { id = z_notifications_setup.2 } # Back to the previous menu
+	}
+	
+	#-----------------------------------------------------------------------------------------------------------------------------
+	
+	option = { # COPY to all TARGET neighboring countries
+		name = "z_notifications_setup.4.b"
+		custom_tooltip = "z_notifications_setup.4.b.tt"
+		trigger = {
+			z_notifications_country_neighbors_target > 0
+		}
+		scope:target.employer = {
+			every_neighbour_country = {
+				limit = {
+					NOT = { this = root }
+				}
+				z_notifications_copy_country_copy = yes
+			}
+		}
+		trigger_event = { id = z_notifications_setup.2 } # Back to the previous menu
+	}
+	
+	#-----------------------------------------------------------------------------------------------------------------------------
+	
+	option = { # COPY to all countries of OUR culture
+		name = "z_notifications_setup.4.d"
+		custom_tooltip = "z_notifications_setup.4.d.tt"
+		trigger = {
+			z_notifications_country_culture > 0
+		}
+		every_country = {
+			limit = {
+				NOT = { this = root }
+				this.culture = root.culture
+			}
+			z_notifications_copy_country_copy = yes
+		}
+		trigger_event = { id = z_notifications_setup.2 } # Back to the previous menu
+	}
+	
+	#-----------------------------------------------------------------------------------------------------------------------------
+	
+	option = { # COPY to all countries of OUR culture GROUP
+		name = "z_notifications_setup.4.f"
+		custom_tooltip = "z_notifications_setup.4.f.tt"
+		trigger = {
+			z_notifications_country_culture_group > 0
+		}
+		every_country = {
+			limit = {
+				NOT = { this = root }
+				this.culture.culture_group = root.culture.culture_group
+			}
+			z_notifications_copy_country_copy = yes
+		}
+		trigger_event = { id = z_notifications_setup.2 } # Back to the previous menu
+	}
+	
+	#-----------------------------------------------------------------------------------------------------------------------------
+	
+	option = { # COPY to all countries of TARGET culture
+		name = "z_notifications_setup.4.e"
+		custom_tooltip = "z_notifications_setup.4.e.tt"
+		trigger = {
+			z_notifications_country_culture_target > 0
+			NOT = {
+				root.culture = scope:target.employer.culture
+			}
+		}
+		every_country = {
+			limit = {
+				NOT = { this = root }
+				this.culture = scope:target.employer.culture
+			}
+			z_notifications_copy_country_copy = yes
+		}
+		trigger_event = { id = z_notifications_setup.2 } # Back to the previous menu
+	}
+	
+	#-----------------------------------------------------------------------------------------------------------------------------
+	
+	option = { # COPY to all countries of TARGET culture GROUP
+		name = "z_notifications_setup.4.g"
+		custom_tooltip = "z_notifications_setup.4.g.tt"
+		trigger = {
+			z_notifications_country_culture_group_target > 0
+			NOT = {
+				root.culture.culture_group = scope:target.employer.culture.culture_group
+			}
+		}
+		every_country = {
+			limit = {
+				NOT = { this = root }
+				this.culture.culture_group = scope:target.employer.culture.culture_group
+			}
+			z_notifications_copy_country_copy = yes
+		}
+		trigger_event = { id = z_notifications_setup.2 } # Back to the previous menu
+	}
+	
+	#-----------------------------------------------------------------------------------------------------------------------------
+	
+	option = { # COPY to ALL countries
+		name = "z_notifications_setup.4.c"
+		custom_tooltip = "z_notifications_setup.4.c.tt"
+		every_country = {
+			limit = {
+				NOT = { this = root }
+			}
+			z_notifications_copy_country_copy = yes
+		}
+		trigger_event = { id = z_notifications_setup.2 } # Back to the previous menu
+	}
+	
+	#-----------------------------------------------------------------------------------------------------------------------------
+	
+	option = { # Back
+		name = "z_notifications_setup_back"
+		custom_tooltip = "z_notifications_setup_back.tt"
+		trigger_event = { id = z_notifications_setup.2 } # Back to the previous menu
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+#
+#	Choose copy parameters for character notifications
+#
+#-----------------------------------------------------------------------------------------
+z_notifications_setup.5 = {
+	type = country_event
+	title = "z_notifications_setup.5.t"
+	desc = "z_notifications_setup.5.desc"
+	picture = scribe_tools
+	left_portrait = scope:target
+	right_portrait = current_ruler
+	
+	trigger = {
+		# Triggered by self or z_notifications_setup.3
+	}
+	
+	immediate = {
+		# None
+	}
+	
+	#-----------------------------------------------------------------------------------------------------------------------------
+	
+	option = { # COPY to all TARGET children
+		name = "z_notifications_setup.5.d"
+		custom_tooltip = "z_notifications_setup.5.d.tt"
+		trigger = {
+			z_notifications_character_children_target > 0
+		}
+		scope:target = {
+			every_child = {
+				limit = {
+					is_alive = yes
+					NOT = { this = root.current_ruler }
+				}
+				z_notifications_copy_character_copy = yes
+			}
+		}
+		trigger_event = { id = z_notifications_setup.3 } # Back to the previous menu
+	}
+	
+	#-----------------------------------------------------------------------------------------------------------------------------
+	
+	option = { # COPY to all TARGET family members
+		name = "z_notifications_setup.5.b"
+		custom_tooltip = "z_notifications_setup.5.b.tt"
+		trigger = {
+			z_notifications_character_family_target > 0
+		}
+		every_country = {
+			every_character = {
+				limit = {
+					is_alive = yes
+					has_same_family = scope:target
+					NOT = { this = root.current_ruler }
+					NOT = { this = scope:target }
+				}
+				z_notifications_copy_character_copy = yes
+			}
+		}
+		trigger_event = { id = z_notifications_setup.3 } # Back to the previous menu
+	}
+	
+	#-----------------------------------------------------------------------------------------------------------------------------
+	
+	option = { # COPY to all TARGET neighboring heads of state
+		name = "z_notifications_setup.5.c"
+		custom_tooltip = "z_notifications_setup.5.c.tt"
+		trigger = {
+			z_notifications_country_neighbors_target > 0
+			NOT = {
+				scope:target.employer = root
+			}
+		}
+		scope:target.employer = {
+			every_neighbour_country = {
+				limit = {
+					NOT = { this = root }
+				}
+				current_ruler = {
+					z_notifications_copy_character_copy = yes
+				}
+			}
+		}
+		trigger_event = { id = z_notifications_setup.3 } # Back to the previous menu
+	}
+	
+	#-----------------------------------------------------------------------------------------------------------------------------
+	
+	option = { # COPY to all TARGET culture heads of state
+		name = "z_notifications_setup.5.f"
+		custom_tooltip = "z_notifications_setup.5.f.tt"
+		trigger = {
+			z_notifications_country_culture_target > 0
+			NOT = {
+				scope:target.employer = root
+			}
+		}
+		every_country = {
+			limit = {
+				NOT = { this = root }
+				current_ruler = {
+					this.culture = scope:target.culture
+				}
+			}
+			current_ruler = {
+				z_notifications_copy_character_copy = yes
+			}
+		}
+		trigger_event = { id = z_notifications_setup.3 } # Back to the previous menu
+	}
+	
+	#-----------------------------------------------------------------------------------------------------------------------------
+	
+	option = { # COPY to all OUR children
+		name = "z_notifications_setup.5.e"
+		custom_tooltip = "z_notifications_setup.5.e.tt"
+		trigger = {
+			z_notifications_character_children > 0
+		}
+		current_ruler = {
+			every_child = {
+				limit = {
+					is_alive = yes
+					NOT = { this = scope:target }
+				}
+				z_notifications_copy_character_copy = yes
+			}
+		}
+		trigger_event = { id = z_notifications_setup.3 } # Back to the previous menu
+	}
+	
+	#-----------------------------------------------------------------------------------------------------------------------------
+	
+	option = { # COPY to all OUR neighboring heads of state
+		name = "z_notifications_setup.5.a"
+		custom_tooltip = "z_notifications_setup.5.a.tt"
+		trigger = {
+			z_notifications_country_neighbors > 0
+		}
+		every_neighbour_country = {
+			limit = {
+				NOT = { this = root }
+			}
+			current_ruler = {
+				z_notifications_copy_character_copy = yes
+			}
+		}
+		trigger_event = { id = z_notifications_setup.3 } # Back to the previous menu
+	}
+	
+	#-----------------------------------------------------------------------------------------------------------------------------
+	
+	option = { # COPY to all OUR culture heads of state
+		name = "z_notifications_setup.5.g"
+		custom_tooltip = "z_notifications_setup.5.g.tt"
+		trigger = {
+			z_notifications_character_culture > 0
+		}
+		every_country = {
+			limit = {
+				NOT = { this = root }
+				current_ruler = {
+					this.culture = root.current_ruler.culture
+				}
+			}
+			current_ruler = {
+				z_notifications_copy_character_copy = yes
+			}
+		}
+		trigger_event = { id = z_notifications_setup.3 } # Back to the previous menu
+	}
+	
+	#-----------------------------------------------------------------------------------------------------------------------------
+	
+	option = { # Back
+		name = "z_notifications_setup_back"
+		custom_tooltip = "z_notifications_setup_back.tt"
+		trigger_event = { id = z_notifications_setup.3 } # Back to the previous menu
+	}
+}

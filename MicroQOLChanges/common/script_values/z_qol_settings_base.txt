@@ -1,0 +1,25 @@
+﻿# USER INTERFACE							# EFFECT WHEN ENABLED (0 = disabled, 1 = enabled)
+# ----------------							# --------------------------------------------
+
+z_qol_breakthrough_notification = 1			# Show tech breakthroughs as paused events instead of small notifications
+
+# AUTO REPLACEMENT OF GOVERNORS				# EFFECT WHEN ENABLED (0 = disabled, 1 = enabled)
+# ----------------							# --------------------------------------------
+
+z_qol_governor = 1							# Suggest a new governor after one dies in office (if set to 0, this feature is disabled entirely)
+z_qol_governor_scorned_first = 1			# Suggest someone from a scorned family if applicable
+z_qol_governor_full_auto = 0				# Automatically accept all governor suggestions and get a small notification (default off)
+
+# MISC AUTO FEATURES						# EFFECT WHEN ENABLED (0 = disabled, 1 = enabled)
+# ----------------							# --------------------------------------------
+
+z_qol_auto_trade = 1						# Automatically set autotrade in non-capital provinces
+z_qol_auto_harsh_treatment = 1				# Automatically set the governor policy to harsh treatment in disloyal provinces
+z_qol_auto_influence = 1					# Automatically set the ruler to farm influence if he's unoccupied and has enough popularity
+
+# MISC "CHEATS"								# EFFECT WHEN ENABLED (0 = disabled, 1 = enabled)
+# ----------------							# --------------------------------------------
+
+z_qol_reset_tyranny = 1						# Track Tyranny separately for each political party (Republics only), recalculate it when a different party takes the power
+z_qol_easy_veto_penalty = 1					# Reduce the approval penalty when vetoing a party agenda (-50 in Vanilla, insane)
+z_qol_pirates = 0							# Root out pirates without anti-piracy laws, unless you have low stability (republics) or legitimacy (monarchies) (default off since Invictus 1.9)

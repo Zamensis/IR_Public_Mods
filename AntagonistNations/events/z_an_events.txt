@@ -1,0 +1,304 @@
+﻿namespace = antag_nations
+
+#########################################################################################################################################
+#########################################################################################################
+antag_nations.1 = {																				#########   ANTAG NATIONS SETTINGS
+	type = country_event																		#########
+	hidden = no																					#########################################
+	title = "antag_nations.1.t"
+	desc = "antag_nations.1.desc"
+	picture = scribe_tools
+	
+	trigger = {
+		trigger_if = {
+			limit = {
+				any_country = {
+					is_ai = no
+				}
+			}
+			is_ai = no
+		}
+		NOT = {
+			has_global_variable = antag_nations_chosen
+		}
+	}
+	
+	immediate = {
+		every_country = {
+			limit = {
+				is_antagonist = yes
+			}
+			set_antagonist = no
+		}
+		set_global_variable = {
+				name = antag_nations_chosen
+				value = 1
+		}
+		set_global_variable = {
+				name = antag_nations_random
+				value = 0
+		}
+		set_global_variable = {
+				name = antag_nations_random_base
+				value = 0
+		}
+		set_global_variable = {
+				name = antag_nations_historical
+				value = 0
+		}
+		set_global_variable = {
+				name = antag_nations_random_historical
+				value = 0
+		}
+		set_global_variable = {
+				name = antag_nations_none
+				value = 0
+		}
+		z_save_historical_antag_nations = yes
+	}
+	
+	option = {
+		name = "antag_nations.1.a"
+		hidden_effect = {
+			change_global_variable = {
+				name = antag_nations_historical
+				add = 1
+			}
+		}
+		custom_tooltip = antag_nations.1.at
+		ai_chance = { factor = 0 }
+	}
+	
+	option = {
+		name = "antag_nations.1.b"
+		hidden_effect = {
+			change_global_variable = {
+				name = antag_nations_random
+				add = 1
+			}
+			change_global_variable = {
+				name = antag_nations_random_base
+				add = 10
+			}
+		}
+		custom_tooltip = antag_nations.1.bt
+		ai_chance = { factor = 0 }
+	}
+	
+	option = {
+		name = "antag_nations.1.c"
+		hidden_effect = {
+			change_global_variable = {
+				name = antag_nations_random
+				add = 1
+			}
+			change_global_variable = {
+				name = antag_nations_random_base
+				add = 20
+			}			
+		}
+		custom_tooltip = antag_nations.1.ct
+		ai_chance = { factor = 0 }
+	}
+	
+	option = {
+		name = "antag_nations.1.d"
+		hidden_effect = {
+			change_global_variable = {
+				name = antag_nations_random
+				add = 1
+			}		
+			change_global_variable = {
+				name = antag_nations_random_base
+				add = 30
+			}
+		}
+		custom_tooltip = antag_nations.1.dt
+		ai_chance = { factor = 100 }
+	}
+	
+	option = {
+		name = "antag_nations.1.f"
+		hidden_effect = {
+			change_global_variable = {
+				name = antag_nations_random_historical
+				add = 1
+			}
+			change_global_variable = {
+				name = antag_nations_random_base
+				add = 15
+			}
+		}
+		custom_tooltip = antag_nations.1.ft
+		ai_chance = { factor = 0 }
+	}
+	
+	option = {
+		name = "antag_nations.1.z"
+		hidden_effect = {
+			change_global_variable = {
+				name = antag_nations_random
+				add = 1
+			}		
+			change_global_variable = {
+				name = antag_nations_random_base
+				add = 99999
+			}
+		}
+		custom_tooltip = antag_nations.1.zt
+		ai_chance = { factor = 0 }
+	}
+	
+	option = {
+		name = "antag_nations.1.e"
+		hidden_effect = {
+			change_global_variable = {
+				name = antag_nations_none
+				add = 1
+			}		
+		}
+		custom_tooltip = antag_nations.1.et
+		ai_chance = { factor = 0 }
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+antag_nations.2 = {																				#########   REMOVE ANTAG NATION
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		is_antagonist = yes
+		OR = {
+			is_ai = no
+			AND = {
+				is_subject = yes
+				NOT = {
+					is_subject_type = subject_league_city_state
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		hidden_effect = {
+			set_antagonist = no
+		}
+	}
+	
+	option = {
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+antag_nations.3 = {																				#########   HISTORICAL ANTAG NATION
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+	
+		global_var:antag_nations_chosen = 1
+		global_var:antag_nations_historical = 1
+		global_var:antag_nations_random_historical = 0
+		global_var:antag_nations_random = 0
+		global_var:antag_nations_none = 0
+		
+		is_ai = yes
+		OR = {
+			is_subject = no
+			is_subject_type = subject_league_city_state
+		}
+		
+		NOT = {
+			is_antagonist = yes
+		}
+		
+		is_historical_antag_nation = yes
+	}
+	
+	immediate = {
+		hidden_effect = {
+			set_antagonist = yes
+		}
+	}
+	
+	option = {
+	}
+}
+
+#########################################################################################################################################
+#########################################################################################################
+antag_nations.4 = {																				#########   RANDOM ANTAG NATION
+	type = country_event																		#########
+	hidden = yes																				#########################################
+	
+	trigger = {
+		
+		global_var:antag_nations_chosen = 1
+		global_var:antag_nations_historical = 0
+		OR = {
+			global_var:antag_nations_random = 1
+			global_var:antag_nations_random_historical = 1
+		}
+		global_var:antag_nations_none = 0
+	
+		global_var:antag_nations_random_base > z_num_of_antag_nations
+		
+		any_country = {
+			NOT = {
+				is_antagonist = yes
+			}
+			is_ai = yes
+			OR = {
+				is_subject = no
+				is_subject_type = subject_league_city_state
+			}
+			trigger_if = {
+				limit = {
+					global_var:antag_nations_random = 0
+					global_var:antag_nations_random_historical = 1
+				}
+				is_historical_challenger_antag_nation = yes
+			}
+		}
+		
+	}
+	
+	immediate = {
+		hidden_effect = {
+			random_country = {
+				limit = {
+					NOT = {
+						is_antagonist = yes
+					}
+					is_ai = yes
+					OR = {
+						is_subject = no
+						is_subject_type = subject_league_city_state
+					}
+					trigger_if = {
+						limit = {
+							global_var:antag_nations_random = 0
+							global_var:antag_nations_random_historical = 1
+						}
+						is_historical_challenger_antag_nation = yes
+					}
+				}
+				weight = {
+					modifier = {
+						factor = 2
+						num_of_cities < 250
+						num_of_cities >= 10
+					}
+					modifier = {
+						factor = 0.5
+						num_of_cities < 5
+					}
+				}
+				set_antagonist = yes
+			}
+		}
+	}
+}

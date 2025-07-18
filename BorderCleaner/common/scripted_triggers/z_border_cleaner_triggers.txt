@@ -1,0 +1,93 @@
+﻿################################################################################################# DIFFERENT SETTINGS WHETHER MANUAL OR AUTO
+#################################################################################################
+z_border_cleaner_manual_auto_1 = {
+	trigger_if = {
+		limit = {
+			NOT = {
+				has_global_variable = z_border_cleaner_manual
+			}
+		}
+		NOT = {
+			this.$TYPE$ = root.capital_scope.$TYPE$
+		}
+	}
+}
+
+z_border_cleaner_manual_auto_2 = {
+	trigger_if = {
+		limit = {
+			NOT = {
+				has_global_variable = z_border_cleaner_manual
+			}
+		}
+		num_of_cities >= z_border_cleaner_auto_size_threshold
+		NOT = {
+			war_with = root
+			is_subject_of = root
+			this.capital_scope.$TYPE$ = prev.prev.prev.$TYPE$
+		}
+	}
+	trigger_else = {
+		num_of_cities >= z_border_cleaner_manual_size_threshold
+	}
+}	
+
+#################################################################################################
+#################################################################################################
+z_border_cleaner_area_trigger = {
+	is_ai = yes
+	any_owned_province = {
+		z_border_cleaner_manual_auto_1 = {
+			TYPE = area
+		}
+		any_neighbor_province = {
+			has_owner = yes
+			NOT = {
+				this.owner = root
+			}
+			this.owner = {
+				is_ai = yes
+				z_border_cleaner_manual_auto_2 = {
+					TYPE = area
+				}
+			}
+		}
+	}
+}
+
+#################################################################################################
+#################################################################################################
+z_border_cleaner_region_trigger = {
+	is_ai = yes
+	any_owned_province = {
+		z_border_cleaner_manual_auto_1 = {
+			TYPE = region
+		}
+		any_neighbor_province = {
+			has_owner = yes
+			NOT = {
+				this.owner = root
+			}
+			this.owner = {
+				is_ai = yes
+				z_border_cleaner_manual_auto_2 = {
+					TYPE = region
+				}
+			}
+		}
+	}
+}
+
+#################################################################################################
+#################################################################################################
+z_border_cleaner_op_uninhabited_enclave = {
+	is_sea = no
+	is_inhabitable = yes
+	has_owner = no
+	NOT = {
+		any_neighbor_province = {
+			is_inhabitable = yes
+			has_owner = no
+		}
+	}
+}

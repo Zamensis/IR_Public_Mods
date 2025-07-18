@@ -1,0 +1,111 @@
+﻿#################################################################################################	Impiety value
+#################################################################################################
+z_impiety = {
+	value = 0
+	if = {
+		limit = {
+			OR = {
+				has_country_modifier = z_impiety_1
+				has_country_modifier = z_impiety_tribal_1
+				has_country_modifier = z_impiety_republic_1
+			}
+		}
+		add = 1
+	}
+	else_if = {
+		limit = {
+			OR = {
+				has_country_modifier = z_impiety_2
+				has_country_modifier = z_impiety_tribal_2
+				has_country_modifier = z_impiety_republic_2
+			}
+		}
+		add = 2
+	}
+	else_if = {
+		limit = {
+			OR = {
+				has_country_modifier = z_impiety_3
+				has_country_modifier = z_impiety_tribal_3
+				has_country_modifier = z_impiety_republic_3
+			}
+		}
+		add = 3
+	}
+	else_if = {
+		limit = {
+			OR = {
+				has_country_modifier = z_impiety_4
+				has_country_modifier = z_impiety_tribal_4
+				has_country_modifier = z_impiety_republic_4
+			}
+		}
+		add = 4
+	}
+	else_if = {
+		limit = {
+			OR = {
+				has_country_modifier = z_impiety_5
+				has_country_modifier = z_impiety_tribal_5
+				has_country_modifier = z_impiety_republic_5
+			}
+		}
+		add = 5
+	}
+	else_if = {
+		limit = {
+			OR = {
+				has_country_modifier = z_impiety_6
+				has_country_modifier = z_impiety_tribal_6
+				has_country_modifier = z_impiety_republic_6
+			}
+		}
+		add = 6
+	}
+	else_if = {
+		limit = {
+			OR = {
+				has_country_modifier = z_impiety_7
+				has_country_modifier = z_impiety_tribal_7
+				has_country_modifier = z_impiety_republic_7
+			}
+		}
+		add = 7
+	}
+	else_if = {
+		limit = {
+			OR = {
+				has_country_modifier = z_impiety_8
+				has_country_modifier = z_impiety_tribal_8
+				has_country_modifier = z_impiety_republic_8
+			}
+		}
+		add = 8
+	}
+	else_if = {
+		limit = {
+			OR = {
+				has_country_modifier = z_impiety_9
+				has_country_modifier = z_impiety_tribal_9
+				has_country_modifier = z_impiety_republic_9
+			}
+		}
+		add = 9
+	}
+	else_if = {
+		limit = {
+			OR = {
+				has_country_modifier = z_impiety_10
+				has_country_modifier = z_impiety_tribal_10
+				has_country_modifier = z_impiety_republic_10
+			}
+		}
+		add = 10
+	}
+}
+
+#################################################################################################	Display Impiety for tooltip
+#################################################################################################
+z_display_impiety = {
+	value = var:z_add_impiety
+}

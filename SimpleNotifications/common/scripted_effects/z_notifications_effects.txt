@@ -1,0 +1,197 @@
+﻿#-----------------------------------------------------------------------------------------
+#
+#	Open settings window / Assumes "target" (a target character) and "actor" (the player country) already exist)
+#
+#-----------------------------------------------------------------------------------------
+
+z_notifications_settings = {
+	scope:target = { save_scope_as = z_notifications_character }
+	scope:target.employer = { save_scope_as = z_notifications_country }
+	if = {
+		limit = {
+			scope:target.employer = scope:actor
+		}
+		scope:actor = {
+			trigger_event = { id = z_notifications_setup.3 }
+		}
+	}
+	else = {
+		scope:actor = {
+			trigger_event = { id = z_notifications_setup.1 }
+		}
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+#
+#	Country
+#
+#-----------------------------------------------------------------------------------------
+
+z_notifications_enable_country_all = {
+	z_notifications_enable_country = { PARAM = government }
+	z_notifications_enable_country = { PARAM = war }
+}
+
+z_notifications_disable_country_all = {
+	z_notifications_disable_country = { PARAM = government }
+	z_notifications_disable_country = { PARAM = war }
+}
+
+z_notifications_copy_country_copy = {
+	z_notifications_copy_country = { PARAM = government }
+	z_notifications_copy_country = { PARAM = war }
+}
+
+#-----------------------------------------------------------------------------------------
+#
+#	Character
+#
+#-----------------------------------------------------------------------------------------
+
+z_notifications_enable_character_all = {
+	z_notifications_enable_character = { PARAM = death }
+	z_notifications_enable_character = { PARAM = office }
+	z_notifications_enable_character = { PARAM = life }
+}
+
+z_notifications_disable_character_all = {
+	z_notifications_disable_character = { PARAM = death }
+	z_notifications_disable_character = { PARAM = office }
+	z_notifications_disable_character = { PARAM = life }
+}
+
+z_notifications_copy_character_copy = {
+	z_notifications_copy_character = { PARAM = death }
+	z_notifications_copy_character = { PARAM = office }
+	z_notifications_copy_character = { PARAM = life }
+}
+
+#-----------------------------------------------------------------------------------------
+#
+#	Common functions
+#
+#-----------------------------------------------------------------------------------------
+
+z_notifications_enable_country = {
+	set_variable = {
+		name = z_notifications_country_$PARAM$
+		value = 1
+	}
+}
+
+z_notifications_disable_country = {
+	if = {
+		limit = {
+			has_variable = z_notifications_country_$PARAM$
+		}
+		remove_variable = z_notifications_country_$PARAM$
+	}
+}
+
+z_notifications_copy_country = {
+	if = {
+		limit = {
+			scope:target.employer = {
+				has_variable = z_notifications_country_$PARAM$
+			}
+		}
+		set_variable = {
+			name = z_notifications_country_$PARAM$
+			value = 1
+		}
+	}
+	else_if = {
+		limit = {
+			has_variable = z_notifications_country_$PARAM$
+		}
+		remove_variable = z_notifications_country_$PARAM$
+	}
+}
+
+# -------------------------------
+
+z_notifications_enable_character = {
+	set_variable = {
+		name = z_notifications_character_$PARAM$
+		value = 1
+	}
+	if = {
+		limit = {
+			is_married = yes
+		}
+		set_variable = {
+			name = z_notifications_character_married
+			value = 1
+		}
+	}
+	else = {
+		set_variable = {
+			name = z_notifications_character_married
+			value = 0
+		}
+	}
+}
+
+z_notifications_disable_character = {
+	if = {
+		limit = {
+			has_variable = z_notifications_character_$PARAM$
+		}
+		remove_variable = z_notifications_character_$PARAM$
+	}
+	if = {
+		limit = {
+			has_variable = z_notifications_character_married
+		}
+		remove_variable = z_notifications_character_married
+	}
+}
+
+z_notifications_copy_character = {
+	if = {
+		limit = {
+			scope:target = {
+				has_variable = z_notifications_character_$PARAM$
+			}
+		}
+		set_variable = {
+			name = z_notifications_character_$PARAM$
+			value = 1
+		}
+	}
+	else_if = {
+		limit = {
+			has_variable = z_notifications_character_$PARAM$
+		}
+		remove_variable = z_notifications_character_$PARAM$
+	}
+	if = {
+		limit = {
+			scope:target = {
+				has_variable = z_notifications_character_life
+			}
+		}
+		if = {
+			limit = {
+				is_married = yes
+			}
+			set_variable = {
+				name = z_notifications_character_married
+				value = 1
+			}
+		}
+		else = {
+			set_variable = {
+				name = z_notifications_character_married
+				value = 0
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			has_variable = z_notifications_character_married
+		}
+		remove_variable = z_notifications_character_married
+	}
+}

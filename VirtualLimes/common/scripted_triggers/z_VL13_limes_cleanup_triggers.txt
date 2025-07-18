@@ -1,0 +1,27 @@
+﻿# --------------------------------------------------------------------------------
+# Can this country force-annex?
+# --------------------------------------------------------------------------------
+z_limes_annex_trigger = {
+	is_ai = yes
+}
+
+# --------------------------------------------------------------------------------
+# Can this country be force-annexed?
+# --------------------------------------------------------------------------------
+z_limes_be_annexed_trigger = {
+	is_ai = yes
+	has_civil_war = no
+	is_subject = yes
+	is_subject_of = root
+	OR = {
+		z_limes_is_mm_trigger = yes
+		trigger_if = {
+			limit = { tag = ROM }
+			is_subject_type = feudatory
+		}
+	}
+	OR = {
+		any_neighbour_country = { this = root }
+		#has_coasts = yes
+	}
+}

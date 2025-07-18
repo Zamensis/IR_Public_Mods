@@ -1,0 +1,23 @@
+﻿# --------------------------------------------------------------------------------
+# Limes level comparison
+# --------------------------------------------------------------------------------
+z_limes_level_td = {
+	value = var:z_limes_level_t1 # Owned provinces in a set expansion area
+	divide = var:z_limes_level_t0 # Total inhabitable provinces in a set expansion area
+}
+
+# --------------------------------------------------------------------------------
+# Population
+# --------------------------------------------------------------------------------
+z_limes_total_population = {
+	value = 0
+	every_owned_province = { add = total_population }
+}
+
+# --------------------------------------------------------------------------------
+# Population density
+# --------------------------------------------------------------------------------
+z_limes_pop_density = {
+	value = z_limes_total_population
+	divide = num_of_cities
+}

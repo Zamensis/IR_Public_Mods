@@ -48,7 +48,14 @@ z_antag_on_game_initialized = {
 z_antag_yearly_country_pulse = {
 	effect = {
 		if  {
-			limit = { owns = p:1 } # Fire only once per year
+			limit = {
+				owns = p:1 # Fire only once per year
+				OR = {
+					has_global_variable = z_antag_settings_historical
+					has_global_variable = z_antag_settings_random
+					has_global_variable = z_antag_settings_random_historical
+				}
+			}
 			z_antag_update_antagonists_effect = yes
 		}
 	}

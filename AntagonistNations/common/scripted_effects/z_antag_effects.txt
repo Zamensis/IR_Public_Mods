@@ -1,0 +1,133 @@
+﻿#-----------------------------------------------------------------------------------------
+# Clear all Antagonists
+#-----------------------------------------------------------------------------------------
+z_antag_clear_antagonists_effect = {
+	hidden_effect = {
+		every_country = {
+			limit = { is_antagonist = yes }
+			set_antagonist = no
+		}
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# Update Antagonists
+#-----------------------------------------------------------------------------------------
+z_antag_update_antagonists_effect = {
+	while = {
+		limit = {
+			any_country = {
+				is_antagonist = yes
+				OR = {
+					global_var:z_antag_settings_random = 0
+					z_antag_can_be_antagonist = no
+				}
+			}
+		}
+		random_country = {
+			limit = {
+				is_antagonist = yes
+				OR = {
+					global_var:z_antag_settings_random = 0
+					z_antag_can_be_antagonist = no
+				}
+			}
+			set_antagonist = no
+		}
+	}
+	if = {
+		limit = { has_global_variable = z_antag_settings_historical }
+		z_antag_update_antagonists_historical_effect = yes
+	}
+	else_if = {
+		limit = {
+			has_global_variable = z_antag_settings_random
+			global_var:z_antag_settings_random > 0
+		}
+		z_antag_update_antagonists_random_effect = yes
+	}
+	else_if = {
+		limit = { has_global_variable = z_antag_settings_random_historical }
+		z_antag_update_antagonists_random_historical_effect = yes
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# Update Historical Antagonists
+#-----------------------------------------------------------------------------------------
+z_antag_update_antagonists_historical_effect = {
+	while = {
+		limit = {
+			any_country = {
+				z_antag_historical_trigger = yes
+				z_antag_can_be_antagonist = yes
+				is_antagonist = no
+			}
+		}
+		random_country = {
+			limit = {
+				z_antag_historical_trigger = yes
+				z_antag_can_be_antagonist = yes
+				is_antagonist = no
+			}
+			set_antagonist = yes
+		}
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# Update Random Antagonists
+#-----------------------------------------------------------------------------------------
+z_antag_update_antagonists_random_effect = {
+	while = {
+		limit = {
+			global_var:z_antag_settings_random > z_antag_nb_antagonists
+			any_country = {
+				z_antag_can_be_antagonist = yes
+				is_antagonist = no
+			}
+		}
+		random_country = {
+			limit = {
+				z_antag_can_be_antagonist = yes
+				is_antagonist = no
+			}
+			weight = {
+				modifier = {
+					factor = 10
+					num_of_cities < 150
+					num_of_cities >= 10
+				}
+				modifier = {
+					factor = 0.75
+					is_tribal = yes
+				}
+			}
+			set_antagonist = yes
+		}
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# Update Random Historical Antagonists
+#-----------------------------------------------------------------------------------------
+z_antag_update_antagonists_random_historical_effect = {
+	while = {
+		limit = {
+			global_var:z_antag_settings_random_historical > z_antag_nb_antagonists
+			any_country = {
+				z_antag_random_historical_trigger = yes
+				z_antag_can_be_antagonist = yes
+				is_antagonist = no
+			}
+		}
+		random_country = {
+			limit = {
+				z_antag_random_historical_trigger = yes
+				z_antag_can_be_antagonist = yes
+				is_antagonist = no
+			}
+			set_antagonist = yes
+		}
+	}
+}

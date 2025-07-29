@@ -1,0 +1,55 @@
+﻿#-----------------------------------------------------------------------------------------
+# Vanilla on_actions
+#-----------------------------------------------------------------------------------------
+on_game_initialized = {
+	on_actions = {
+		z_antag_on_game_initialized
+	}
+}
+
+yearly_country_pulse = {
+	on_actions = {
+		z_antag_yearly_country_pulse
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# Antagonist Nations on_actions
+#-----------------------------------------------------------------------------------------
+z_antag_on_game_initialized = {
+	effect = {
+		if = {
+			limit = {
+				NOR = {
+					has_global_variable = z_antag_settings_historical
+					has_global_variable = z_antag_settings_random
+					has_global_variable = z_antag_settings_random_historical
+					trigger_if = {
+						limit = { has_global_variable = z_antag_settings_random }
+						global_var:z_antag_settings_random = -1
+					}
+				}
+				# If player exists, let player choose the settings, otherwise leave it to Rome
+				trigger_if = {
+					limit = {
+						any_country = { is_ai = no }
+					}
+					is_ai = no
+				}
+				trigger_else = {
+					owns = p:1
+				}
+			}
+			trigger_event = { id = z_antag.1 } # Settings window
+		}
+	}
+}
+
+z_antag_yearly_country_pulse = {
+	effect = {
+		if  {
+			limit = { owns = p:1 } # Fire only once per year
+			z_antag_update_antagonists_effect = yes
+		}
+	}
+}

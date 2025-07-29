@@ -1,0 +1,91 @@
+﻿#-----------------------------------------------------------------------------------------
+# Random Antagonists
+#-----------------------------------------------------------------------------------------
+z_antag_can_be_antagonist = {
+	has_land = yes
+	num_of_cities >= 5
+	is_subject = no
+	is_ai = yes
+}
+
+#-----------------------------------------------------------------------------------------
+# Historical Antagonists
+#-----------------------------------------------------------------------------------------
+z_antag_historical_trigger = {
+	z_antag_can_be_antagonist = yes
+	OR = {
+		tag = ROM # Rome
+		tag = SEL # Seleukids
+		tag = MAC # Antipatrids
+		tag = ARM # Armenia
+		tag = CAR # Carthage
+		tag = CHL # Chola
+		tag = EPI # Epirus (Pyrrhus)
+		tag = PTU # Mithridatic Kingdom (after it forms)
+		AND = {
+			tag = EGY # Egypt
+			country_culture_group = hellenic
+		}
+		AND = {
+			tag = PAR # Parthia
+			NOT = { country_culture_group = hellenic }
+		}
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# Random Historical Antagonists
+#-----------------------------------------------------------------------------------------
+z_antag_random_historical_trigger = {
+	OR = {
+		z_antag_historical_trigger = yes
+		
+		# Western Barbaricum (more here to counterbalance Eastern dominance in previous list)
+		tag = AVN # Arvernia (Vercingetorix)
+		tag = BRI # Brigantes (undomitable)
+		tag = CRS # Cheruscia (Arminius)
+		tag = EBS # Eburonia (Brabant FTW)
+		tag = LGB # Langobardia (Lombardy)
+		tag = SWE # Suionia (literally SWE)
+		tag = VNL # Venellia :) (badass Atlantic Celts)
+		tag = VSC # Vasconia
+		
+		# Eastern Barbaricum
+		tag = BOA # Boihaemia
+		tag = GTE # Getia
+		tag = LBN # Libernia (Liburnia)
+		tag = SCD # Scordiscia (badass Balkan Celts)
+		tag = SCY # Scythia
+		tag = VND # Venedia
+		
+		# Western Mediterranean + Africa
+		tag = ETR # Etruria (hit or miss)
+		tag = MAS # Massilia
+		tag = MAU # Mauretania
+		tag = MSS # Massaesylia (Syphax)
+		tag = SAM # Samnium (hit or miss)
+		tag = SYR # Syracusae
+		tag = TAT # Tartessia
+		
+		# Eastern Mediterranean + Persia/Aria (aka the Hellenistic realms)
+		tag = ATH # Athens
+		tag = BAC # Bactria
+		tag = CAP # Cappadocia
+		tag = CYR # Cyrenaica
+		tag = JUD # Judea
+		tag = PER # Persis
+		tag = SPA # Sparta
+		tag = TRE # Thrace/Lysimachids
+		
+		# Arabia
+		tag = AXM # Axum
+		tag = KSH # Kush
+		tag = MAK # Maka
+		tag = SHB # Saba
+		
+		# India
+		tag = CHR # Chera
+		tag = PND # Pandya
+		tag = ZHZ # Zhangzhung		
+	}
+}

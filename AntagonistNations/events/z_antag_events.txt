@@ -1,0 +1,134 @@
+﻿namespace = z_antag
+
+#-----------------------------------------------------------------------------------------
+# Antagonist Nations settings
+# NOTE: Antagonists will be defined on Jan 1st because rolling a dice on_game_initialized seems to always give the same result
+#-----------------------------------------------------------------------------------------
+z_antag.1 = {
+	type = country_event
+	title = "z_antag.1.t"
+	desc = "z_antag.1.desc"
+	
+	picture = scribe_tools	
+	left_portrait = c:ROM.current_ruler
+	
+	# Default (Vanilla) settings = Do nothing
+	option = {
+		name = "z_antag.1.a" 
+		custom_tooltip = "z_antag.1.at"
+		ai_chance = { factor = 10 }
+		set_global_variable = {
+			name = z_antag_settings_random # Also serves as a flag here
+			value = -1
+		}
+		show_as_tooltip = {
+			every_country = {
+				limit = {
+					is_antagonist = yes
+				}
+				set_antagonist = yes
+			}
+		}
+	}
+	
+	# Historical Antagonists = A selection of the 10 strongest nations
+	option = {
+		name = "z_antag.1.b"
+		custom_tooltip = "z_antag.1.bt"
+		ai_chance = { factor = 10 }
+		z_antag_clear_antagonists_effect = yes
+		set_global_variable = {
+			name = z_antag_settings_historical
+			value = 1
+		}
+		show_as_tooltip = {
+			every_country = {
+				limit = {
+					z_antag_historical_trigger = yes
+				}
+				set_antagonist = yes
+			}
+		}
+		custom_tooltip = "z_antag.1.bt2"
+	}
+	
+	# 10 Random Antagonists
+	option = {
+		name = "z_antag.1.c"
+		custom_tooltip = "z_antag.1.ct"
+		ai_chance = { factor = 10 }
+		z_antag_clear_antagonists_effect = yes
+		set_global_variable = {
+			name = z_antag_settings_random
+			value = 10
+		}
+	}
+	
+	# 20 Random Antagonists
+	option = {
+		name = "z_antag.1.d"
+		custom_tooltip = "z_antag.1.dt"
+		ai_chance = { factor = 10 }
+		z_antag_clear_antagonists_effect = yes
+		set_global_variable = {
+			name = z_antag_settings_random
+			value = 20
+		}
+	}
+	
+	# 30 Random Antagonists
+	option = {
+		name = "z_antag.1.e"
+		custom_tooltip = "z_antag.1.et"
+		ai_chance = { factor = 10 }
+		z_antag_clear_antagonists_effect = yes
+		set_global_variable = {
+			name = z_antag_settings_random
+			value = 30
+		}
+	}
+	
+	# 15 Random Historical Antagonists = A selection of 15 nations among the strongest historically
+	option = {
+		name = "z_antag.1.f"
+		custom_tooltip = "z_antag.1.ft"
+		ai_chance = { factor = 10 }
+		z_antag_clear_antagonists_effect = yes
+		set_global_variable = {
+			name = z_antag_settings_random_historical
+			value = 15
+		}
+	}
+	
+	# Everyone Antagonist (because someone requested it)
+	option = {
+		name = "z_antag.1.x"
+		custom_tooltip = "z_antag.1.xt"
+		ai_chance = { factor = 0 }
+		z_antag_clear_antagonists_effect = yes
+		set_global_variable = {
+			name = z_antag_settings_random
+			value = 99999 # Kieron would like this
+		}
+	}
+	
+	# No Antagonist
+	option = {
+		name = "z_antag.1.z"
+		custom_tooltip = "z_antag.1.zt"
+		ai_chance = { factor = 0 }
+		z_antag_clear_antagonists_effect = yes
+		set_global_variable = {
+			name = z_antag_settings_random
+			value = 0
+		}
+		show_as_tooltip = {
+			every_country = {
+				limit = {
+					is_antagonist = yes
+				}
+				set_antagonist = no
+			}
+		}
+	}
+}

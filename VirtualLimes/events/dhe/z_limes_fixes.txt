@@ -151,12 +151,12 @@ diadochi_flavor.100 = {#NS
 		# End of from VL
 		add_manpower = 20 # from Invictus
 		scope:origin = {
-			scope:sel_rul = {
-				death = {
-					death_reason = death_battle
-					killer = scope:target.current_ruler
-				}
-			}
+			#scope:sel_rul = {
+			#	death = {
+			#		death_reason = death_battle
+			#		killer = scope:target.current_ruler
+			#	}
+			#}
 			if = {
 				limit = {
 					is_ai = yes

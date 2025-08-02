@@ -15,11 +15,9 @@ z_dynastic_countries_has_dynastic_ruler = {
 		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = cornelii } }
 		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = claudii } }
 		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = fabii } }
-		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = Antigonid }
-			NOT = { tag = MAC } }
+		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = Antigonid } }
 		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = Aleuadid } }
-		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = Lagid }
-			NOT = { tag = EGY } }
+		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = Lagid } }
 		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = Magid } }
 		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = Alkimachid } }
 		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = Agiad } }
@@ -36,11 +34,9 @@ z_dynastic_countries_has_dynastic_ruler = {
 		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = Vulturreno } }
 		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = Spurinas } }
 		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = Aeetid } }
-		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = Antipatrid }
-			NOT = { tag = MAC } }
+		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = Antipatrid } }
 		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = Elimiotid } }
-		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = Agathoklid }
-			NOT = { tag = SYR } }
+		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = Agathoklid } }
 		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = Barqid } }
 		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = Bodonid } }
 		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = Hannonid } }
@@ -56,8 +52,7 @@ z_dynastic_countries_has_dynastic_ruler = {
 		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = Amyntid } }
 		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = Kujid } }
 		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = Mithridatid } }
-		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = Aiakid }
-			NOT = { tag = EPI } }
+		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = Aiakid } }
 		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = Megaklid } }
 		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = Achaimenid } }
 		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = Hipparchid } }

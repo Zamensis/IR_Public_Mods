@@ -1,8 +1,234 @@
-﻿#################################################################################################	Dynastic Country Names
-#################################################################################################
-yearly_country_pulse = {
-	events = {
-		z_dynastic_countries.1 # Main event
-		z_dynastic_countries.3 # If applicable, remove dynastic name in favor of regional name
+﻿#-----------------------------------------------------------------------------------------
+# Vanilla on_actions
+#-----------------------------------------------------------------------------------------
+on_game_initialized = {
+	on_actions = {
+		z_dynastic_countries_on_action
 	}
 }
+
+yearly_country_pulse = {
+	on_actions = {
+		z_dynastic_countries_on_action
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# Game start
+#-----------------------------------------------------------------------------------------
+z_dynastic_countries_on_action = {
+	effect = {
+		#-------------------------------------------------
+		# GET A DYNASTIC NAME
+		#-------------------------------------------------
+		if = {
+			#-------------------------------------------------
+			# CONDITIONS
+			#-------------------------------------------------
+			limit = {
+				#-------------------------------------------------
+				# Must NOT have a cooldown set
+				#-------------------------------------------------
+				NOT = { has_variable = z_dynastic_countries_cooldown }
+				#-------------------------------------------------
+				# If player, must NOT have a dynastic name from start
+				#-------------------------------------------------
+				NOR = {
+					AND = {
+						is_ai = no
+						tag = SEL
+						exists = fam:Seleukid
+						exists = current_ruler.family
+						current_ruler.family = fam:Seleukid
+						NOT = { has_variable = z_dynastic_countries_flag }
+					}
+					AND = {
+						is_ai = no
+						tag = PRY
+						exists = fam:Antigonid
+						exists = current_ruler.family
+						current_ruler.family = fam:Antigonid
+						NOT = { has_variable = z_dynastic_countries_flag }
+					}
+					# Invictus only:
+					AND = {
+						is_ai = no
+						has_global_variable = has_changed_name_flag # Diadochi name game rule flag
+						tag = MAC
+						exists = fam:Antipatrid
+						exists = current_ruler.family
+						current_ruler.family = fam:Antipatrid
+						NOT = { has_variable = z_dynastic_countries_flag }
+					}
+				}
+				#-------------------------------------------------
+				# If Thrace, regardless of player or not, must NOT have a dynastic name from start (Invictus only)
+				#-------------------------------------------------
+				NOT = {					
+					AND = {
+						has_global_variable = has_changed_name_flag # Invictus Diadochi name game rule flag
+						tag = TRE
+						exists = fam:Alkimachid
+						exists = current_ruler.family
+						current_ruler.family = fam:Alkimachid
+						NOT = { has_variable = z_dynastic_countries_flag }
+					}
+				}
+				#-------------------------------------------------
+				# MUST be an independent monarchy
+				#-------------------------------------------------				
+				is_monarchy = yes
+				is_subject = no
+				#-------------------------------------------------
+				# Must NOT be uneligible (Rome, Judea, etc.)
+				#-------------------------------------------------
+				z_dynastic_countries_uneligible = no
+				#-------------------------------------------------
+				# If in a civil war, MUST be the revoltee
+				#-------------------------------------------------
+				trigger_if = {
+					limit = { has_civil_war = yes }
+					z_dynastic_countries_is_revolt = yes
+				}
+				#-------------------------------------------------
+				# MUST be of the following culture groups or tags
+				#-------------------------------------------------
+				OR = {
+					country_culture_group = hellenic
+					country_culture_group = illyrian_group
+					country_culture_group = latin
+					country_culture_group = west_levantine
+					country_culture_group = east_levantine
+					country_culture_group = south_levantine
+					country_culture_group = persia
+					country_culture_group = anatolian
+					# Parthia and friends
+					this = c:PAR
+					this = c:PRN
+					this = c:ZNT
+					this = c:PSS
+					this = c:SCA
+				}
+				#-------------------------------------------------
+				# MUST have a ruler from a predefined dynastic trigger
+				#-------------------------------------------------
+				z_dynastic_countries_has_dynastic_ruler = yes
+				#-------------------------------------------------
+				# If has never been given a dynastic name OR is the loyalist in a civil war, MUST have at least 150 territories
+				#-------------------------------------------------
+				trigger_if = {
+					limit = {
+						NOR = {
+							AND = {
+								has_civil_war = yes
+								z_dynastic_countries_is_revolt = yes
+							}
+							has_variable = z_dynastic_countries_flag
+							tag = MAC
+							tag = TRE
+						}
+					}
+					num_of_cities >= 150
+				}
+				trigger_else_if = {
+					limit = {
+						NOR = {
+							AND = {
+								has_civil_war = yes
+								z_dynastic_countries_is_revolt = yes
+							}
+							has_variable = z_dynastic_countries_flag
+						}
+						OR = {
+							tag = MAC
+							tag = TRE
+						}
+					}
+					num_of_cities >= 20
+				}
+			}		
+			#-------------------------------------------------
+			# CHANGE NAME
+			#-------------------------------------------------
+			# Scenario 1: Give dynastic country name (first time, visible)
+			if = {
+				limit = {
+					NOT = {
+						has_variable = z_dynastic_countries_flag
+					}
+				}
+				trigger_event = { id = z_dynastic_countries.2 } # Let the player/AI choose
+			}
+			# Scenario 2: Change dynastic name (hidden)
+			else_if = {
+				limit = {
+					#is_ai = yes
+					has_variable = z_dynastic_countries_flag
+					exists = current_ruler.family
+				}
+				z_dynastic_countries_rename_country = yes
+			}
+			# Scenario 3: Rename from K (hidden)
+			else_if = {
+				limit = {
+					has_variable = z_dynastic_countries_flag_k
+					z_dynastic_countries_is_empire = yes
+				}
+				z_dynastic_countries_rename_country = yes
+			}
+			# Scenario 4: Rename from E (hidden)
+			else_if = {
+				limit = {
+					has_variable = z_dynastic_countries_flag_e
+					z_dynastic_countries_is_empire = no
+				}
+				z_dynastic_countries_rename_country = yes
+			}
+			# Scenario 5: Rename from R (hidden)
+			else_if = {
+				limit = {
+					has_variable = z_dynastic_countries_flag_r
+					z_dynastic_countries_is_revolt = no
+				}
+				z_dynastic_countries_rename_country = yes
+			}
+		}
+		#-------------------------------------------------
+		# REMOVE A DYNASTIC NAME - FALLBACK TO A REGIONAL NAME
+		#-------------------------------------------------
+		if = {
+			#-------------------------------------------------
+			# CONDITIONS
+			#-------------------------------------------------
+			limit = {
+				#-------------------------------------------------
+				# MUST have a dynastic name
+				#-------------------------------------------------
+				has_variable = z_dynastic_countries_flag
+				#-------------------------------------------------
+				# MUST have its capital in a predefined regional trigger
+				#-------------------------------------------------
+				z_dynastic_countries_regional_name_trigger = yes
+				#-------------------------------------------------
+				# MUST have a valid reason to lose its dynastic name
+				#-------------------------------------------------
+				OR = {
+					is_monarchy = no
+					z_dynastic_countries_uneligible = yes
+					NOT = {
+						exists = current_ruler.family
+					}
+					z_dynastic_countries_has_dynastic_ruler = no
+				}
+			}
+		}
+		#-------------------------------------------------
+		# REMOVE HARMLESS ERROR IN THE LOG (Vanilla only)
+		#-------------------------------------------------
+		if = {
+			limit = { always = no }
+			set_global_variable = has_changed_name_flag
+		}
+	}
+}
+

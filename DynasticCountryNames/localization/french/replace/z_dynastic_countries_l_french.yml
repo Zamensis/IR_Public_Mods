@@ -10,6 +10,15 @@
  z_dynastic_countries.3.t:0 "Chute d'une dynastie"
  z_dynastic_countries.3.desc:0 "Need loc!"
  z_dynastic_countries.3.a:0 "By Jove!"
+ # SPECIAL CASES ---------------------------------------------------------------------------------------------------------
+ Alkimachid_TRE_DCN_E:0 "Empire lysimachide"
+ Alkimachid_TRE_DCN_K:0 "Royaume lysimachide"
+ Alkimachid_TRE_DCN_R:0 "Rébellion lysimachide"
+ Alkimachid_TRE_DCN_A:0 "lysimachide"
+ Lagid_EGY_DCN_E:0 "Empire ptolémaïque"
+ Lagid_EGY_DCN_K:0 "Royaume ptolémaïque"
+ Lagid_EGY_DCN_R:0 "Rébellion ptolémaïque"
+ Lagid_EGY_DCN_A:0 "ptolémaïque"
  # DYNASTIES ---------------------------------------------------------------------------------------------------------
  Cornelii_DCN_E:0 "Empire cornélien"
  Cornelii_DCN_K:0 "Royaume cornélien"

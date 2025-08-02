@@ -1,16 +1,12 @@
 ﻿#-----------------------------------------------------------------------------------------
-#
-#	New families must be added here manually.
-#	Too lazy? Don't worry, not doing it won't crash the game.
-#	Listing only the families from the relevant cultures should cover 99% scenarios.
-#	Also update the other list in scripted effects.
-#
+# New families must be added here manually.
+# Too lazy? Don't worry, not doing it won't crash the game.
+# Listing only the families from the relevant cultures should cover 99% scenarios.
+# Don't forget to also update the other list in scripted effects.
 #-----------------------------------------------------------------------------------------
-
 z_dynastic_countries_has_dynastic_ruler = {
 	exists = current_ruler
 	OR = {
-	
 		# FROM SETUP/MAIN ---------------------------------------------------------------------------------------------------------
 		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = cornelii } }
 		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = claudii } }
@@ -86,7 +82,6 @@ z_dynastic_countries_has_dynastic_ruler = {
 		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = Sibyrtid } }
 		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = Ger_ashtartid } }
 		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = El_azarid } }
-		
 		# FROM SETUP/CHARACTERS ---------------------------------------------------------------------------------------------------------
 		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = Spitamenid } }
 		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = Osicanid } }
@@ -144,7 +139,6 @@ z_dynastic_countries_has_dynastic_ruler = {
 		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = Dionysid } }
 		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = Nikomedid } }
 		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = Cuparius } }
-		
 		# FROM HELLENIC CULTURE GROUP ---------------------------------------------------------------------------------------------------------
 		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = Alketid } }
 		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = Apollonid } }
@@ -270,7 +264,6 @@ z_dynastic_countries_has_dynastic_ruler = {
 		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = Zeuxid } }
 		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = Pheraeid } }
 		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = Lacharides } }
-		
 		# FROM LATIN CULTURE GROUP (A SELECTION) ---------------------------------------------------------------------------------------------------------
 		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = Acilii } }
 		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = Aelii } }
@@ -324,7 +317,6 @@ z_dynastic_countries_has_dynastic_ruler = {
 		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = Vesuvii } }
 		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = Viridii } }
 		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = Volumnii } }
-		
 		# FROM 'EASTERN' CULTURE GROUPS ---------------------------------------------------------------------------------------------------------
 		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = Aramids } }
 		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = Arids } }
@@ -454,16 +446,12 @@ z_dynastic_countries_has_dynastic_ruler = {
 		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = Eugarid } }
 		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = Ummashid } }
 		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = Mashhid } }
-
 	}
 }
 
 #-----------------------------------------------------------------------------------------
-#
-#	Check if the ruler is from this particular family
-#
+# Check if the ruler is from this particular family
 #-----------------------------------------------------------------------------------------
-
 z_dynastic_countries_dynasty_check = {
 	exists = fam:$DYNASTY_NAME$
 	exists = current_ruler.family
@@ -471,11 +459,8 @@ z_dynastic_countries_dynasty_check = {
 }
 
 #-----------------------------------------------------------------------------------------
-#
-#	Should it be called "Empire"?
-#
+# Should it be called "Empire"?
 #-----------------------------------------------------------------------------------------
-
 z_dynastic_countries_is_empire = {
 	OR = {
 		government = imperium
@@ -485,11 +470,8 @@ z_dynastic_countries_is_empire = {
 }
 
 #-----------------------------------------------------------------------------------------
-#
-#	Is root a revolt country?
-#
+# Is root a revolt country?
 #-----------------------------------------------------------------------------------------
-
 z_dynastic_countries_is_revolt = {
 	has_civil_war = yes
 	any_current_war = {
@@ -506,11 +488,8 @@ z_dynastic_countries_is_revolt = {
 }
 
 #-----------------------------------------------------------------------------------------
-#
-#	Is this country exempted from having a dynastic country name?
-#
+# Is this country always excluded from having a dynastic country name?
 #-----------------------------------------------------------------------------------------
-
 z_dynastic_countries_uneligible = {
 	OR = {
 		AND = {
@@ -519,7 +498,6 @@ z_dynastic_countries_uneligible = {
 		}
 		tag = ROM
 		tag = CAR
-		tag = MAC
 		tag = JUD
 		tag = PAR
 		# is_tier_1_formable_trigger = yes - Sike, it excludes more than just formables	
@@ -529,11 +507,8 @@ z_dynastic_countries_uneligible = {
 }
 
 #-----------------------------------------------------------------------------------------
-#
-#	Is this country eligible for having a regional name (if dynastic name no longer valid)
-#
+# Is this country eligible for having a regional name (if dynastic name no longer valid)
 #-----------------------------------------------------------------------------------------
-
 z_dynastic_countries_regional_name_trigger = {
 	capital_scope = {
 		OR = {
@@ -563,7 +538,6 @@ z_dynastic_countries_regional_name_trigger = {
 			#is_in_region = lower_egypt_region
 			#is_in_Region = macedonia_region
 			#is_in_region = thrace_region
-			# Additional
 			is_in_region = armenia_region
 			is_in_region = bactriana_region
 			is_in_region = sogdiana_region

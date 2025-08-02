@@ -1,16 +1,19 @@
 ﻿#-----------------------------------------------------------------------------------------
-#
-#	New families must be added here manually.
-#	Too lazy? Don't worry, not doing it won't crash the game.
-#	Listing only the families from the relevant cultures should cover 99% scenarios.
-#	Also update the other list in scripted triggers.
-#
+# New families must be added here manually.
+# Too lazy? Don't worry, not doing it won't crash the game.
+# Listing only the families from the relevant cultures should cover 99% scenarios.
+# Don't forget to also update the other list in scripted triggers.
 #-----------------------------------------------------------------------------------------
-
 z_dynastic_countries_rename_country = {
-
+	# SPECIAL CASES ---------------------------------------------------------------------------------------------------------
+	if = { limit = { exists = fam:Alkimachid tag = TRE
+	current_ruler.family = fam:Alkimachid }
+	z_dynastic_countries_rename_this_country = { DYNASTY_NAME = Alkimachid_TRE } }
+	else_if = { limit = { exists = fam:Lagid tag = EGY
+	current_ruler.family = fam:Lagid }
+	z_dynastic_countries_rename_this_country = { DYNASTY_NAME = Lagid_EGY } }
 	# FROM SETUP/MAIN ---------------------------------------------------------------------------------------------------------
-	if = { limit = { exists = fam:Cornelii
+	else_if = { limit = { exists = fam:Cornelii
 	current_ruler.family = fam:Cornelii }
 	z_dynastic_countries_rename_this_country = { DYNASTY_NAME = Cornelii } }
 	else_if = { limit = { exists = fam:Claudii
@@ -235,7 +238,6 @@ z_dynastic_countries_rename_country = {
 	else_if = { limit = { exists = fam:El_azarid
 	current_ruler.family = fam:El_azarid }
 	z_dynastic_countries_rename_this_country = { DYNASTY_NAME = El_azarid } }
-	
 	# FROM SETUP/CHARACTERS ---------------------------------------------------------------------------------------------------------
 	else_if = { limit = { exists = fam:Spitamenid
 	current_ruler.family = fam:Spitamenid }
@@ -405,7 +407,6 @@ z_dynastic_countries_rename_country = {
 	else_if = { limit = { exists = fam:Cuparius
 	current_ruler.family = fam:Cuparius }
 	z_dynastic_countries_rename_this_country = { DYNASTY_NAME = Cuparius } }
-	
 	# FROM HELLENIC CULTURE GROUP ---------------------------------------------------------------------------------------------------------
 	else_if = { limit = { exists = fam:Alketid
 	current_ruler.family = fam:Alketid }
@@ -779,7 +780,6 @@ z_dynastic_countries_rename_country = {
 	else_if = { limit = { exists = fam:Lacharides
 	current_ruler.family = fam:Lacharides }
 	z_dynastic_countries_rename_this_country = { DYNASTY_NAME = Lacharides } }
-	
 	# FROM LATIN CULTURE GROUP (A SELECTION) ---------------------------------------------------------------------------------------------------------
 	else_if = { limit = { exists = fam:Acilii
 	current_ruler.family = fam:Acilii }
@@ -937,7 +937,6 @@ z_dynastic_countries_rename_country = {
 	else_if = { limit = { exists = fam:Volumnii
 	current_ruler.family = fam:Volumnii }
 	z_dynastic_countries_rename_this_country = { DYNASTY_NAME = Volumnii } }
-	
 	# FROM 'EASTERN' CULTURE GROUPS ---------------------------------------------------------------------------------------------------------
 	else_if = { limit = { exists = fam:Aramids
 	current_ruler.family = fam:Aramids }
@@ -1323,15 +1322,11 @@ z_dynastic_countries_rename_country = {
 	else_if = { limit = { exists = fam:Mashhid
 	current_ruler.family = fam:Mashhid }
 	z_dynastic_countries_rename_this_country = { DYNASTY_NAME = Mashhid } }
-
 }
 
 #-----------------------------------------------------------------------------------------
-#
-#	After the right family has been identified, actually change the country name.
-#
+# After the right family has been identified, actually change the country name.
 #-----------------------------------------------------------------------------------------
-
 z_dynastic_countries_rename_this_country = {
 	set_variable = {
 		name = z_dynastic_countries_flag
@@ -1369,12 +1364,9 @@ z_dynastic_countries_rename_this_country = {
 }
 
 #-----------------------------------------------------------------------------------------
-#
-#	If dynastic name no longer valid, fall back to regional country name.
-#	Also used by vanilla event rename_country.1
-#
+# If dynastic name no longer valid, fall back to regional country name.
+# Also used by vanilla event rename_country.1
 #-----------------------------------------------------------------------------------------
-
 z_dynastic_countries_regional_name_effect = {
 	if = {
 		limit = { capital_scope = { is_in_region = mesopotamia_region } }
@@ -1476,7 +1468,6 @@ z_dynastic_countries_regional_name_effect = {
 	#	limit = { capital_scope = { is_in_region = thrace_region } }
 	#	z_dynastic_countries_regional_rename_effect = { REGION = thrace_region }
 	#}
-	# ADDITIONAL
 	else_if = {
 		limit = { capital_scope = { is_in_region = armenia_region } }
 		z_dynastic_countries_regional_rename_effect = { REGION = armenia_region }
@@ -1495,6 +1486,9 @@ z_dynastic_countries_regional_name_effect = {
 	}
 }
 
+#-----------------------------------------------------------------------------------------
+# After the right region has been identified, actually change the country name.
+#-----------------------------------------------------------------------------------------
 z_dynastic_countries_regional_rename_effect = {
 	if = {
 		limit = {

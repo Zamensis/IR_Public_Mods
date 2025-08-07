@@ -6,11 +6,11 @@
  z_notifications_character: "Character notifications"
  z_notifications_choose_option:0 ""
  z_notifications_setup_close:0 "#E Confirm#! these settings"
- z_notifications_setup_close.tt:0 "Save these settings and close the window"
+ z_notifications_setup_close.tt:0 "Save these settings and close this window"
  z_notifications_setup_back:0 "#E Back#!"
  z_notifications_setup_back.tt:0 "Return to the previous window"
- z_notifications_country_government:0 "#Y New ruler\nNew cultural integration\nNew subject annexation#!"
- z_notifications_country_war:0 "#Y Start of a new war\nLoss of the capital city\nNew military annexation#!"
+ z_notifications_country_government:0 "#Y New ruler\nNew cultural integration\nSubject annexation#!"
+ z_notifications_country_war:0 "#Y Start of a new war\nFall of the capital\nMilitary annexation#!"
  z_notifications_character_death:0 "#Y Death#!"
  z_notifications_character_life:0 "#Y Majority\nMarriage\nNew child born\nDivorce/widowhood#!"
  z_notifications_character_office:0 "#Y Accession to power\nNew office\nOffice lost\nCapture of an enemy capital\nImprisonment\nExile#!"
@@ -18,7 +18,7 @@
  z_notifications_character_all:0 "$z_notifications_character_office$\n$z_notifications_character_life$\n$z_notifications_character_death$"
  # EVENTS ----------------------------------------------------------------------------------------------------------------------------------------------------
  z_notifications_setup.1.t:0 "$z_notifications_setup$"
- z_notifications_setup.1.desc:0 "We can opt to receive #E notifications#! for this country or this character."
+ z_notifications_setup.1.desc:0 "We can receive #E notifications#! for this country or this character."
  z_notifications_setup.1.a:0 "@[z_notifications_country.GetFlag]! [z_notifications_country.GetName]"
  z_notifications_setup.1.a.tt:0 "Notification settings for @[z_notifications_country.GetFlag]! [z_notifications_country.GetName]"
  z_notifications_setup.1.b:0 "@[z_notifications_country.GetFlag]! [z_notifications_character.GetName]"
@@ -26,7 +26,7 @@
  z_notifications_setup.1.c:0 "#E Close#!"
  z_notifications_setup.1.c.tt:0 "Close this window"
  # --------------------------------------------------------------------------------------------------------------------------------------------------
- z_notifications_setup.2.t:0 "Settings for @[z_notifications_country.GetFlag]! [z_notifications_country.GetName]"
+ z_notifications_setup.2.t:0 "Notifications for @[z_notifications_country.GetFlag]! [z_notifications_country.GetName]"
  z_notifications_setup.2.desc:0 "Current notification settings for @[z_notifications_country.GetFlag]! [z_notifications_country.GetName]:"
  # ------------
  z_notifications_setup.2.a.on:0 "#E Enable all#! notifications"
@@ -47,7 +47,7 @@
  z_notifications_setup.2.copy:0 "@z_notifications_copy! #E Export#! these settings"
  z_notifications_setup.2.copy.tt:0 "#G Export#! these settings to a group of countries"
  # --------------------------------------------------------------------------------------------------------------------------------------------------
- z_notifications_setup.3.t:0 "Settings for @[z_notifications_country.GetFlag]! [z_notifications_character.GetFirstName]"
+ z_notifications_setup.3.t:0 "Notifications for @[z_notifications_country.GetFlag]! [z_notifications_character.GetFirstName]"
  z_notifications_setup.3.desc:0 "Current notification settings for @[z_notifications_country.GetFlag]! [z_notifications_character.GetName]:"
  # ------------
  z_notifications_setup.3.a.on:0 "#E Enable all#! notifications"

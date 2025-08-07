@@ -2,38 +2,38 @@
  # COMMON ----------------------------------------------------------------------------------------------------------------------------------------------------
  z_notifications_settings:0 "@z_notifications_icon! Notifications @z_notifications_icon!"
  # EVENTS ----------------------------------------------------------------------------------------------------------------------------------------------------
- z_notifications.201.t:0 "@z_notifications_death! @[z_notifications_country.GetFlag]! [z_notifications_character.GetName]"
+ z_notifications.201.t:0 "@z_notifications_death! @[z_notifications_country.GetFlag]! Death of [z_notifications_character.GetPraenomen]"
  z_notifications.201.desc:0 "@[z_notifications_country.GetFlag]! [z_notifications_country.GetName] informs us that @[z_notifications_country.GetFlag]! [z_notifications_character.GetName] has passed and asks us to have a prayer for the dead."
  z_notifications.201.a:0 "Sad."
  # ------------
- z_notifications.202.t:0 "@z_notifications_office_gained! @[z_notifications_country.GetFlag]! [z_notifications_character.GetName]"
+ z_notifications.202.t:0 "@z_notifications_office_gained! @[z_notifications_country.GetFlag]! [z_notifications_character.GetPraenomen]: Office gained"
  z_notifications.202.desc:0 "@[z_notifications_country.GetFlag]! [z_notifications_character.GetName] has been given new responsibilities within the @[z_notifications_country.GetFlag]! [z_notifications_country.GetName] government."
  z_notifications.202.a:0 "Interesting."
  # ------------
- z_notifications.203.t:0 "@z_notifications_office_lost! @[z_notifications_country.GetFlag]! [z_notifications_character.GetName]"
+ z_notifications.203.t:0 "@z_notifications_office_lost! @[z_notifications_country.GetFlag]! [z_notifications_character.GetPraenomen]: Office lost"
  z_notifications.203.desc:0 "@[z_notifications_country.GetFlag]! [z_notifications_character.GetName] has been removed from [z_notifications_character.GetHerHis] position in the @[z_notifications_country.GetFlag]! [z_notifications_country.GetName] government."
  z_notifications.203.a:0 "Interesting."
  # ------------
- z_notifications.204.t:0 "@z_notifications_baby! @[z_notifications_country.GetFlag]! [z_notifications_character.GetName]"
+ z_notifications.204.t:0 "@z_notifications_baby! @[z_notifications_country.GetFlag]! [z_notifications_character.GetPraenomen]: Child born"
  z_notifications.204.desc:0 "We have received word that @[z_notifications_country.GetFlag]! [z_notifications_character.GetName] has welcomed a new life into the world — a child named [z_notifications_child.GetFirstName]."
  z_notifications.204.a:0 "Noted."
  # ------------
- z_notifications.205.t:0 "@z_notifications_coming_of_age! @[z_notifications_country.GetFlag]! [z_notifications_character.GetName]"
+ z_notifications.205.t:0 "@z_notifications_coming_of_age! @[z_notifications_country.GetFlag]! [z_notifications_character.GetPraenomen]: Majority"
  z_notifications.205.desc:0 "@[z_notifications_country.GetFlag]! [z_notifications_character.GetName] has come of age and can now marry, attracting the attention of many noble houses from @[z_notifications_country.GetFlag]! [z_notifications_country.GetName]."
  z_notifications.205.a:0 "Noted."
  # ------------
- z_notifications.206.t:0 "@z_notifications_prison! @[z_notifications_country.GetFlag]! [z_notifications_character.GetName]"
+ z_notifications.206.t:0 "@z_notifications_prison! @[z_notifications_country.GetFlag]! [z_notifications_character.GetPraenomen] imprisoned"
  z_notifications.206.desc:0 "We've just learned that @[z_notifications_country.GetFlag]! [z_notifications_character.GetName] now awaits [z_notifications_character.GetHerHis] fate in a dark dungeon of @[z_notifications_country.GetFlag]! [z_notifications_country.GetName]."
  z_notifications.206.a:0 "Cruel."
  # ------------
- z_notifications.207.t:0 "@z_notifications_exile! @[z_notifications_country.GetFlag]! [z_notifications_character.GetName]"
+ z_notifications.207.t:0 "@z_notifications_exile! @[z_notifications_country.GetFlag]! [z_notifications_character.GetPraenomen]: Exile"
  z_notifications.207.desc:0 "We have received word that @[z_notifications_country.GetFlag]! [z_notifications_character.GetName] has departed from @[old_country.GetFlag]! [old_country.GetName] and journeyed to @[z_notifications_country.GetFlag]! [z_notifications_country.GetName]. What fate awaits [z_notifications_character.GetHerHim] there?"
  z_notifications.207.a:0 "Noted."
  # ------------
- z_notifications.208.t:0 "@z_notifications_marriage! @[z_notifications_country.GetFlag]! [z_notifications_character.GetName]"
+ z_notifications.208.t:0 "@z_notifications_marriage! @[z_notifications_country.GetFlag]! [z_notifications_character.GetPraenomen]: Marriage"
  z_notifications.208.desc:0 "@[z_notifications_country.GetFlag]! [z_notifications_country.GetName] has the honor of informing us of the wedding of @[z_notifications_country.GetFlag]! [z_notifications_character.GetName] and @[z_notifications_country.GetFlag]! [z_notifications_spouse.GetName]. May this alliance bear fruit."
  z_notifications.208.a:0 "Noted."
  # ------------
- z_notifications.209.t:0 "@z_notifications_marriage! @[z_notifications_country.GetFlag]! [z_notifications_character.GetName]"
+ z_notifications.209.t:0 "@z_notifications_marriage! @[z_notifications_country.GetFlag]! [z_notifications_character.GetPraenomen]: Widowhood"
  z_notifications.209.desc:0 "According to recent information, @[z_notifications_country.GetFlag]! [z_notifications_character.GetName] is no longer married. Will a new marriage take place?"
  z_notifications.209.a:0 "Interesting."

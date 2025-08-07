@@ -1,11 +1,8 @@
 ﻿namespace = z_notifications
 
 #-----------------------------------------------------------------------------------------
-#
-#	Ruler change
-#
+# Ruler change
 #-----------------------------------------------------------------------------------------
-
 z_notifications.2 = {
 	type = minor_country_event
 	title = "z_notifications.2.t"
@@ -19,13 +16,10 @@ z_notifications.2 = {
 }
 
 #-----------------------------------------------------------------------------------------
-#
-#	New war started
-#
+# New war started
 #-----------------------------------------------------------------------------------------
 
 # Observed country is attacker -----------------------------------------------------------------------------------------
-
 z_notifications.3 = {
 	type = minor_country_event
 	title = "z_notifications.3.t"
@@ -39,7 +33,6 @@ z_notifications.3 = {
 }
 
 # Observed country is defender -----------------------------------------------------------------------------------------
-
 z_notifications.4 = {
 	type = minor_country_event
 	title = "z_notifications.4.t"
@@ -53,7 +46,6 @@ z_notifications.4 = {
 }
 
 # Observed country is allied to attacker -----------------------------------------------------------------------------------------
-
 z_notifications.5 = {
 	type = minor_country_event
 	title = "z_notifications.5.t"
@@ -67,7 +59,6 @@ z_notifications.5 = {
 }
 
 # Observed country is allied to defender -----------------------------------------------------------------------------------------
-
 z_notifications.6 = {
 	type = minor_country_event
 	title = "z_notifications.6.t"
@@ -81,7 +72,6 @@ z_notifications.6 = {
 }
 
 # Debug event -----------------------------------------------------------------------------------------
-
 z_notifications.7 = {
 	type = minor_country_event
 	title = "z_notifications.7.t"
@@ -95,11 +85,8 @@ z_notifications.7 = {
 }
 
 #-----------------------------------------------------------------------------------------
-#
-#	War ended
-#
+# War ended
 #-----------------------------------------------------------------------------------------
-
 # Apparently, on_ending_war doesn't record details of participants (even those that survive) ----------------
 # For now the best I can offer is notify the player when a war has ended. Which war and how, the player has to find out by themselves.
 # ? See if using on_winning_war and on_losing_war is worth it.
@@ -117,11 +104,8 @@ z_notifications.8 = {
 }
 
 #-----------------------------------------------------------------------------------------
-#
-#	Capital fallen
-#
+# Capital fallen
 #-----------------------------------------------------------------------------------------
-
 z_notifications.401 = {
 	type = minor_country_event
 	title = "z_notifications.401.t"
@@ -135,11 +119,8 @@ z_notifications.401 = {
 }
 
 #-----------------------------------------------------------------------------------------
-#
-#	Culture integrated
-#
+# Culture integrated
 #-----------------------------------------------------------------------------------------
-
 z_notifications.402 = {
 	type = minor_country_event
 	title = "z_notifications.402.t"
@@ -153,11 +134,8 @@ z_notifications.402 = {
 }
 
 #-----------------------------------------------------------------------------------------
-#
-#	Military annexion
-#
+# Military annexion
 #-----------------------------------------------------------------------------------------
-
 z_notifications.403 = {
 	type = minor_country_event
 	title = "z_notifications.403.t"
@@ -171,11 +149,8 @@ z_notifications.403 = {
 }
 
 #-----------------------------------------------------------------------------------------
-#
-#	Diplo annexion
-#
+# Diplo annexion
 #-----------------------------------------------------------------------------------------
-
 z_notifications.404 = {
 	type = minor_country_event
 	title = "z_notifications.404.t"
@@ -189,11 +164,8 @@ z_notifications.404 = {
 }
 
 #-----------------------------------------------------------------------------------------
-#
-#	GW completed
-#
+# GW completed
 #-----------------------------------------------------------------------------------------
-
 z_notifications.405 = {
 	type = minor_country_event
 	title = "z_notifications.405.t"
@@ -207,11 +179,8 @@ z_notifications.405 = {
 }
 
 #-----------------------------------------------------------------------------------------
-#
-#	Capital liberated
-#
+# Capital liberated
 #-----------------------------------------------------------------------------------------
-
 z_notifications.406 = {
 	type = minor_country_event
 	title = "z_notifications.406.t"

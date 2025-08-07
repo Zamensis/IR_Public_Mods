@@ -1,9 +1,7 @@
 ﻿namespace = z_notifications_setup
 
 #-----------------------------------------------------------------------------------------
-#
-#	Open setup window, based on scope:target, choose whether to setup country or character notifications, or close
-#
+# Open setup window. Based on scope:target, choose whether to setup country or character notifications, or close without changes
 #-----------------------------------------------------------------------------------------
 z_notifications_setup.1 = {
 	type = country_event
@@ -12,6 +10,7 @@ z_notifications_setup.1 = {
 	picture = scribe_tools
 	left_portrait = scope:target
 	right_portrait = scope:target
+	goto_location = scope:target.employer.capital_scope
 	
 	trigger = {
 		# Triggered by character_interaction
@@ -39,9 +38,7 @@ z_notifications_setup.1 = {
 }
 
 #-----------------------------------------------------------------------------------------
-#
-#	Set country notifications
-#
+# Set country notifications
 #-----------------------------------------------------------------------------------------
 z_notifications_setup.2 = {
 	type = country_event
@@ -50,6 +47,7 @@ z_notifications_setup.2 = {
 	picture = scribe_tools
 	left_portrait = scope:target.employer.current_ruler
 	right_portrait = scope:target.employer.current_ruler
+	goto_location = scope:target.employer.capital_scope
 	
 	trigger = {
 		# Triggered by self or z_notifications_setup.1
@@ -165,9 +163,7 @@ z_notifications_setup.2 = {
 }
 
 #-----------------------------------------------------------------------------------------
-#
-#	Set character notifications
-#
+# Set character notifications
 #-----------------------------------------------------------------------------------------
 z_notifications_setup.3 = {
 	type = country_event
@@ -176,6 +172,7 @@ z_notifications_setup.3 = {
 	picture = scribe_tools
 	left_portrait = scope:target
 	right_portrait = scope:target
+	goto_location = scope:target.employer.capital_scope
 	
 	trigger = {
 		# Triggered by self or z_notifications_setup.1
@@ -292,11 +289,13 @@ z_notifications_setup.3 = {
 		name = "z_notifications_setup.3.a.off"
 		custom_tooltip = "z_notifications_setup.3.a.off.tt"
 		trigger = {
-			# Has all notifications enabled for this character
+			# Has notifications enabled for this character
 			scope:target = {
-				has_variable = z_notifications_character_office
-				has_variable = z_notifications_character_life
-				has_variable = z_notifications_character_death
+				OR = {
+					has_variable = z_notifications_character_office
+					has_variable = z_notifications_character_life
+					has_variable = z_notifications_character_death
+				}
 			}
 		}
 		scope:target = { z_notifications_disable_character_all = yes }
@@ -321,9 +320,7 @@ z_notifications_setup.3 = {
 }
 
 #-----------------------------------------------------------------------------------------
-#
-#	Choose copy parameters for country notifications
-#
+# Choose copy parameters for country notifications
 #-----------------------------------------------------------------------------------------
 z_notifications_setup.4 = {
 	type = country_event
@@ -332,6 +329,7 @@ z_notifications_setup.4 = {
 	picture = scribe_tools
 	left_portrait = scope:target.employer.current_ruler
 	right_portrait = scope:target.employer.current_ruler
+	goto_location = scope:target.employer.capital_scope
 	
 	trigger = {
 		# Triggered by self or z_notifications_setup.2
@@ -479,9 +477,7 @@ z_notifications_setup.4 = {
 }
 
 #-----------------------------------------------------------------------------------------
-#
-#	Choose copy parameters for character notifications
-#
+# Choose copy parameters for character notifications
 #-----------------------------------------------------------------------------------------
 z_notifications_setup.5 = {
 	type = country_event
@@ -490,6 +486,7 @@ z_notifications_setup.5 = {
 	picture = scribe_tools
 	left_portrait = scope:target
 	right_portrait = current_ruler
+	goto_location = scope:target.employer.capital_scope
 	
 	trigger = {
 		# Triggered by self or z_notifications_setup.3

@@ -1,55 +1,57 @@
 ﻿l_french:
  # EVENTS ----------------------------------------------------------------------------------------------------------------------------------------------------
- z_notifications.2.t:0 "@z_notifications_government! @[z_notifications_country.GetFlag]! [z_notifications_country.GetRuler.GetName]"
+ z_notifications.2.t:0 "@z_notifications_government! @[z_notifications_country.GetFlag]! [z_notifications_country.GetName] : Nouveau dirigeant"
  z_notifications.2.desc:0 "Des nouvelles nous parviennent de @[z_notifications_country.GetFlag]! [z_notifications_country.GetName]. @[z_notifications_country.GetFlag]! [new_ruler.GetName] gouverne maintenant ce pays de plein droit, succédant ainsi à @[z_notifications_country.GetFlag]! [former_ruler.GetName]."
  z_notifications.2.a:0 "Compris."
  # ------------
- z_notifications.3.t:0 "@z_notifications_war! @[z_notifications_country.GetFlag]! [z_notifications_country.GetName]"
- z_notifications.3.desc:0 "Un nouveau conflit fait rage suite à l'attaque de\n@[z_notifications_war_attacker.GetFlag]! [z_notifications_war_attacker.GetName] contre @[z_notifications_war_defender.GetFlag]! [z_notifications_war_defender.GetName].\n\n$z_notifications_war_numbers$\n\n[z_notifications_war_attacker.GetRuler.GetName] écrira-t-il l'histoire avec une nouvelle conquête pour @[z_notifications_country.GetFlag]! [z_notifications_country.GetName] ?"
+ z_notifications.3.t:0 "@z_notifications_war! @[z_notifications_country.GetFlag]! [z_notifications_country.GetName] : Guerre déclarée"
+ z_notifications.3.desc:0 "@[z_notifications_war_attacker.GetFlag]! [z_notifications_war_attacker.GetName] a déclaré la guerre à @[z_notifications_war_defender.GetFlag]! [z_notifications_war_defender.GetName].$z_notifications_war_numbers$\n\nUne nouvelle conquête en vue pour [z_notifications_war_attacker.GetRuler.GetName] ?"
  z_notifications.3.a:0 "L'avenir nous le dira."
  # ------------
- z_notifications.4.t:0 "@z_notifications_war! @[z_notifications_country.GetFlag]! [z_notifications_country.GetName]"
- z_notifications.4.desc:0 "Un nouveau conflit fait rage suite à l'attaque de\n@[z_notifications_war_attacker.GetFlag]! [z_notifications_war_attacker.GetName] contre @[z_notifications_war_defender.GetFlag]! [z_notifications_war_defender.GetName].\n\n$z_notifications_war_numbers$\n\n@[z_notifications_war_defender.GetFlag]! [z_notifications_war_defender.GetRuler.GetName] peut-il tenir tête aux forces de @[z_notifications_war_attacker.GetFlag]! [z_notifications_war_attacker.GetRuler.GetName] ?"
+ z_notifications.4.t:0 "@z_notifications_war! @[z_notifications_country.GetFlag]! [z_notifications_country.GetName] : Guerre déclarée"
+ z_notifications.4.desc:0 "@[z_notifications_war_attacker.GetFlag]! [z_notifications_war_attacker.GetName] a déclaré la guerre à @[z_notifications_war_defender.GetFlag]! [z_notifications_war_defender.GetName].$z_notifications_war_numbers$\n\nUne nouvelle conquête en vue pour [z_notifications_war_attacker.GetRuler.GetName] ?"
  z_notifications.4.a:0 "L'avenir nous le dira."
  # ------------
- z_notifications.5.t:0 "@z_notifications_alliance! @[z_notifications_country.GetFlag]! [z_notifications_country.GetName]"
- z_notifications.5.desc:0 "@[z_notifications_country.GetFlag]! [z_notifications_country.GetName] joint ses forces à celles de @[z_notifications_war_attacker.GetFlag]! [z_notifications_war_attacker.GetName] dans son offensive contre @[z_notifications_war_defender.GetFlag]! [z_notifications_war_defender.GetName].\n\n$z_notifications_war_numbers$\n\nQu'espère @[z_notifications_country.GetFlag]! [z_notifications_country.GetName] tirer de ce conflit ?"
+ z_notifications.5.t:0 "@z_notifications_alliance! @[z_notifications_country.GetFlag]! [z_notifications_country.GetName] : Guerre déclarée"
+ z_notifications.5.desc:0 "@[z_notifications_country.GetFlag]! [z_notifications_country.GetName] joint ses forces à celles de @[z_notifications_war_attacker.GetFlag]! [z_notifications_war_attacker.GetName] dans son offensive contre @[z_notifications_war_defender.GetFlag]! [z_notifications_war_defender.GetName].$z_notifications_war_numbers$\n\nQu'espère @[z_notifications_country.GetFlag]! [z_notifications_country.GetName] tirer de ce conflit ?"
  z_notifications.5.a:0 "L'avenir nous le dira."
  # ------------
- z_notifications.6.t:0 "@z_notifications_defense! @[z_notifications_country.GetFlag]! [z_notifications_country.GetName]"
- z_notifications.6.desc:0 "@[z_notifications_country.GetFlag]! [z_notifications_country.GetName] participe aux côtés de @[z_notifications_war_defender.GetFlag]! [z_notifications_war_defender.GetName] à la guerre défensive contre @[z_notifications_war_attacker.GetFlag]! [z_notifications_war_attacker.GetName].\n\n$z_notifications_war_numbers$\n\nQuel rôle espère jouer @[z_notifications_country.GetFlag]! [z_notifications_country.GetName] dans ce conflit ?"
+ z_notifications.6.t:0 "@z_notifications_defense! @[z_notifications_country.GetFlag]! [z_notifications_country.GetName] : Guerre déclarée"
+ z_notifications.6.desc:0 "@[z_notifications_country.GetFlag]! [z_notifications_country.GetName] participe aux côtés de @[z_notifications_war_defender.GetFlag]! [z_notifications_war_defender.GetName] à la guerre défensive contre @[z_notifications_war_attacker.GetFlag]! [z_notifications_war_attacker.GetName].$z_notifications_war_numbers$\n\nQuel rôle espère jouer @[z_notifications_country.GetFlag]! [z_notifications_country.GetName] dans ce conflit ?"
  z_notifications.6.a:0 "L'avenir nous le dira."
  # ------------
- z_notifications.7.t:0 "@z_notifications_war! @[z_notifications_country.GetFlag]! [z_notifications_country.GetName]"
+ z_notifications.7.t:0 "@z_notifications_war! @[z_notifications_country.GetFlag]! [z_notifications_country.GetName] : Guerre [ERROR]"
  z_notifications.7.desc:0 "[z_notifications_country.GetName] seems to be in a new war, but something went wrong in the notification process. Report this error as z_notifications.7."
  z_notifications.7.a:0 "Damn."
  # ------------
- z_notifications.8.t:0 "@z_notifications_peace! @[z_notifications_country.GetFlag]! [z_notifications_country.GetName]"
+ z_notifications.8.t:0 "@z_notifications_peace! @[z_notifications_country.GetFlag]! [z_notifications_country.GetName] : Paix conclue"
  z_notifications.8.desc:0 "@[z_notifications_country.GetFlag]! [z_notifications_country.GetName] a conclu la paix avec un ennemi."
  z_notifications.8.a:0 "Compris."
  # ------------
- z_notifications_war_numbers:0 "La faction @[z_notifications_war_attacker.GetFlag]! [z_notifications_war_attacker.GetAdjective] regroupe #E [SCOPE.ScriptValue('z_notifications_war_attacker_allies')|0]#! pays pour un total de #E [SCOPE.ScriptValue('z_notifications_war_attacker_size')|0]#! territoires et #E [SCOPE.ScriptValue('z_notifications_war_attacker_fpop')|0]#! pops intégrées.\nLa faction @[z_notifications_war_defender.GetFlag]! [z_notifications_war_defender.GetAdjective] regroupe #E [SCOPE.ScriptValue('z_notifications_war_defender_allies')|0]#! pays pour un total de #E [SCOPE.ScriptValue('z_notifications_war_defender_size')|0]#! territoires et #E [SCOPE.ScriptValue('z_notifications_war_defender_fpop')|0]#! pops intégrées."
+ #z_notifications_war_numbers:0 "\n\nLa faction @[z_notifications_war_attacker.GetFlag]! [z_notifications_war_attacker.GetAdjective] regroupe #E [SCOPE.ScriptValue('z_notifications_war_attacker_allies')|0]#! pays pour un total de #E [SCOPE.ScriptValue('z_notifications_war_attacker_size')|0]#! territoires et #E [SCOPE.ScriptValue('z_notifications_war_attacker_fpop')|0]#! pops intégrées.\nLa faction @[z_notifications_war_defender.GetFlag]! [z_notifications_war_defender.GetAdjective] regroupe #E [SCOPE.ScriptValue('z_notifications_war_defender_allies')|0]#! pays pour un total de #E [SCOPE.ScriptValue('z_notifications_war_defender_size')|0]#! territoires et #E [SCOPE.ScriptValue('z_notifications_war_defender_fpop')|0]#! pops intégrées."
+ z_notifications_war_numbers:0 ""
  # ------------
- z_notifications.401.t:0 "@z_notifications_fort! @[z_notifications_country.GetFlag]! [z_notifications_capital.GetName]"
- z_notifications.401.desc:0 "[z_notifications_capital.GetName], la capitale de @[z_notifications_country.GetFlag]! [z_notifications_country.GetName], est tombée aux mains de @[z_notifications_conqueror.GetFlag]! [z_notifications_character.GetName] de @[z_notifications_conqueror.GetFlag]! [z_notifications_conqueror.GetName]. Qu'adviendra-t-il des [SCOPE.ScriptValue('z_notifications_war_capital_fallen')|0]#! pops qui habitent la cité ?"
+ z_notifications.401.t:0 "@z_notifications_fort! @[z_notifications_country.GetFlag]! Chute de [z_notifications_capital.GetName]"
+ z_notifications.401.desc:0 "[z_notifications_capital.GetName], la capitale de @[z_notifications_country.GetFlag]! [z_notifications_country.GetName], est tombée aux mains de @[z_notifications_conqueror.GetFlag]! [z_notifications_character.GetName] de @[z_notifications_conqueror.GetFlag]! [z_notifications_conqueror.GetName]."
  z_notifications.401.a:0 "Vae victis."
  # ------------
- z_notifications.402.t:0 "@z_notifications_culture! @[z_notifications_country.GetFlag]! [z_notifications_country.GetName]"
+ z_notifications.402.t:0 "@z_notifications_culture! @[z_notifications_country.GetFlag]! [z_notifications_country.GetName] : Culture intégrée"
  z_notifications.402.desc:0 "@[z_notifications_country.GetFlag]! [z_notifications_country.GetName] a intégré la culture [target_culture.GetName]. Cette manoeuvre politique permet à @[z_notifications_country.GetFlag]! [z_notifications_character.GetName] d'apaiser les tensions sociales dans son pays tout en grossissant les rangs de l'armée [z_notifications_country.GetAdjective]."
  z_notifications.402.a:0 "Grand bien leur fasse."
  # ------------
- z_notifications.403.t:0 "@z_notifications_military! @[z_notifications_country.GetFlag]! [z_notifications_country.GetName]"
+ z_notifications.403.t:0 "@z_notifications_military! @[z_notifications_country.GetFlag]! [z_notifications_country.GetName] : Annexion"
  z_notifications.403.desc:0 "Nous apprenons à l'instant que @[z_notifications_country.GetFlag]! [z_notifications_country.GetName] a été annexé par @[actor.GetFlag]! [actor.GetName] au terme d'une guerre qui opposait ces deux pays."
  z_notifications.403.a:0 "Qui peut arrêter @[actor.GetFlag]! [actor.GetName] ?"
  # ------------
- z_notifications.404.t:0 "@z_notifications_diploannex! @[z_notifications_country.GetFlag]! [z_notifications_country.GetName]"
+ z_notifications.404.t:0 "@z_notifications_diploannex! @[z_notifications_country.GetFlag]! [z_notifications_country.GetName] : Annexion"
  z_notifications.404.desc:0 "Nous apprenons à l'instant que @[actor.GetFlag]! [actor.GetName] a établi un contrôle direct sur les territoires de son vassal @[z_notifications_country.GetFlag]! [z_notifications_country.GetName]."
  z_notifications.404.a:0 "L'Histoire est en marche."
  # ------------
- z_notifications.405.t:0 "@z_notifications_copy! @[z_notifications_country.GetFlag]! [z_notifications_country.GetName]"
+ z_notifications.405.t:0 "@z_notifications_copy! @[z_notifications_country.GetFlag]! [z_notifications_country.GetName] : Merveille"
  z_notifications.405.desc:0 "Nous savions depuis quelque temps que @[z_notifications_country.GetFlag]! [z_notifications_country.GetName] oeuvrait à la construction d'un énorme monument. Nous venons d'apprendre que l'inauguration officielle avait eu lieu à [province.GetName]."
  z_notifications.405.a:0 "Impressionnant."
  # ------------
- z_notifications.406.t:0 "@z_notifications_fort! @[z_notifications_country.GetFlag]! [z_notifications_capital.GetName]"
- z_notifications.406.desc:0 "[z_notifications_capital.GetName], la capitale de @[z_notifications_country.GetFlag]! [z_notifications_country.GetName], a été libérée par les troupes de @[z_notifications_conqueror.GetFlag]! [z_notifications_character.GetName] de @[z_notifications_conqueror.GetFlag]! [z_notifications_conqueror.GetName]. Les [SCOPE.ScriptValue('z_notifications_war_capital_fallen')|0]#! pops de la cité acclament le libérateur."
+ z_notifications.406.t:0 "@z_notifications_fort! @[z_notifications_country.GetFlag]! Libération de [z_notifications_capital.GetName]"
+ #z_notifications.406.desc:0 "[z_notifications_capital.GetName], la capitale de @[z_notifications_country.GetFlag]! [z_notifications_country.GetName], a été libérée par les troupes de @[z_notifications_conqueror.GetFlag]! [z_notifications_character.GetName] de @[z_notifications_conqueror.GetFlag]! [z_notifications_conqueror.GetName]. Les [SCOPE.ScriptValue('z_notifications_war_capital_fallen')|0]#! pops de la cité acclament le libérateur."
+ z_notifications.406.desc:0 "[z_notifications_capital.GetName], la capitale de @[z_notifications_country.GetFlag]! [z_notifications_country.GetName], a été libérée par les troupes de @[z_notifications_conqueror.GetFlag]! [z_notifications_character.GetName] de @[z_notifications_conqueror.GetFlag]! [z_notifications_conqueror.GetName]."
  z_notifications.406.a:0 "Impressionnant."

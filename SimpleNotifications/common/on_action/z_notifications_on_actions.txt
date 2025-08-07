@@ -1,7 +1,5 @@
 ﻿#-----------------------------------------------------------------------------------------
-#
-#	Vanilla on_actions
-#
+# Vanilla on_actions
 #-----------------------------------------------------------------------------------------
 
 on_game_initialized = {
@@ -114,18 +112,13 @@ on_culture_integration_100 = {
 }
 
 #-----------------------------------------------------------------------------------------
-#
-#	Automatic settings
-#
+# Automatic settings
 #-----------------------------------------------------------------------------------------
-
 z_notifications_auto = {
 	effect = {
 		if = {
 			limit = {
-				any_neighbour_country = {
-					is_ai = no
-				}
+				any_neighbour_country = { is_ai = no }
 			}
 			z_notifications_enable_country = { PARAM = government }
 			z_notifications_enable_country = { PARAM = war }
@@ -134,11 +127,8 @@ z_notifications_auto = {
 }
 
 #-----------------------------------------------------------------------------------------
-#
-#	Ruler change
-#
+# Ruler change
 #-----------------------------------------------------------------------------------------
-
 z_notifications_on_ruler_change = {
 	effect = {
 		save_scope_as = z_notifications_country
@@ -160,21 +150,14 @@ z_notifications_on_ruler_change = {
 }
 
 #-----------------------------------------------------------------------------------------
-#
-#	Monthly country pulse (War started, ruler notif check, marriages)
-#
+# Monthly country pulse (War started, ruler notif check, marriages)
 #-----------------------------------------------------------------------------------------
-
 z_notifications_monthly_country_pulse = {
 	effect = {
 		# ---------- Monthly check to disable notifications in case a watched character becomes the player's ruler
 		if = {
-			limit = {
-				is_ai = no
-			}
-			current_ruler = {
-				z_notifications_disable_character_all = yes
-			}
+			limit = { is_ai = no }
+			current_ruler = { z_notifications_disable_character_all = yes }
 		}
 		# ---------- Marriages
 		if = {
@@ -221,9 +204,7 @@ z_notifications_monthly_country_pulse = {
 						var:z_notifications_character_married = 0
 					}
 					save_scope_as = z_notifications_character
-					spouse = {
-						save_scope_as = z_notifications_spouse
-					}
+					spouse = { save_scope_as = z_notifications_spouse }
 					set_variable = {
 						name = z_notifications_character_married
 						value = 1
@@ -337,9 +318,7 @@ z_notifications_monthly_country_pulse = {
 }
 
 #-----------------------------------------------------------------------------------------
-#
-#	War ended
-#
+# War ended
 #-----------------------------------------------------------------------------------------
 
 z_notifications_on_ending_war = {
@@ -367,9 +346,7 @@ z_notifications_on_ending_war = {
 }
 
 #-----------------------------------------------------------------------------------------
-#
-#	Country military annexed
-#
+# Country military annexed
 #-----------------------------------------------------------------------------------------
 
 z_notifications_on_military_annex = {
@@ -392,9 +369,7 @@ z_notifications_on_military_annex = {
 }
 
 #-----------------------------------------------------------------------------------------
-#
-#	Country diplo annexed
-#
+# Country diplo annexed
 #-----------------------------------------------------------------------------------------
 
 z_notifications_on_diplomatic_annex = {
@@ -417,9 +392,7 @@ z_notifications_on_diplomatic_annex = {
 }
 
 #-----------------------------------------------------------------------------------------
-#
-#	GW completed
-#
+# GW completed
 #-----------------------------------------------------------------------------------------
 
 z_notifications_on_great_work_completed = {
@@ -439,9 +412,7 @@ z_notifications_on_great_work_completed = {
 }
 
 #-----------------------------------------------------------------------------------------
-#
-#	Character is born (= character has child)
-#
+# Character is born (= character has child)
 #-----------------------------------------------------------------------------------------
 
 z_notifications_on_being_born = {
@@ -480,9 +451,7 @@ z_notifications_on_being_born = {
 }
 
 #-----------------------------------------------------------------------------------------
-#
-#	Character comes of age
-#
+# Character comes of age
 #-----------------------------------------------------------------------------------------
 
 z_notifications_on_becoming_adult = {
@@ -502,9 +471,7 @@ z_notifications_on_becoming_adult = {
 }
 
 #-----------------------------------------------------------------------------------------
-#
-#	Character is being imprisoned
-#
+# Character is being imprisoned
 #-----------------------------------------------------------------------------------------
 
 z_notifications_on_being_imprisoned = {
@@ -524,9 +491,7 @@ z_notifications_on_being_imprisoned = {
 }
 
 #-----------------------------------------------------------------------------------------
-#
-#	Character changes country
-#
+# Character changes country
 #-----------------------------------------------------------------------------------------
 
 z_notifications_on_move_country = {
@@ -546,9 +511,7 @@ z_notifications_on_move_country = {
 }
 
 #-----------------------------------------------------------------------------------------
-#
-#	Character dies
-#
+# Character dies
 #-----------------------------------------------------------------------------------------
 
 z_notifications_on_character_death = {
@@ -568,9 +531,7 @@ z_notifications_on_character_death = {
 }
 
 #-----------------------------------------------------------------------------------------
-#
-#	Siege won (= city lost) scope = conquering commander
-#
+# Siege won (= city lost) scope = conquering commander
 #-----------------------------------------------------------------------------------------
 
 z_notifications_on_siege_won = {
@@ -619,9 +580,7 @@ z_notifications_on_siege_won = {
 }
 
 #-----------------------------------------------------------------------------------------
-#
-#	Office gained
-#
+# Office gained
 #-----------------------------------------------------------------------------------------
 
 z_notifications_on_office_gained = {
@@ -641,9 +600,7 @@ z_notifications_on_office_gained = {
 }
 
 #-----------------------------------------------------------------------------------------
-#
-#	Office lost
-#
+# Office lost
 #-----------------------------------------------------------------------------------------
 
 z_notifications_on_office_lost = {
@@ -664,9 +621,7 @@ z_notifications_on_office_lost = {
 }
 
 #-----------------------------------------------------------------------------------------
-#
-#	Culture integrated
-#
+# Culture integrated
 #-----------------------------------------------------------------------------------------
 
 z_notifications_on_culture_integration_100 = {

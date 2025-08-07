@@ -1,9 +1,6 @@
 ﻿#-----------------------------------------------------------------------------------------
-#
-#	Open setup window, based on scope:target, choose whether to setup country or character notifications, or cancel
-#
+# Open setup window. Based on scope:target, choose whether to setup country or character notifications, or close without changes
 #-----------------------------------------------------------------------------------------
-
 z_notifications_setup = {
 
 	on_other_nation = no 
@@ -25,9 +22,6 @@ z_notifications_setup = {
 	allowed_trigger = {
 		custom_tooltip = {
 			text = "z_notifications_setup_allowed"
-			#hidden:scope:target = {
-			#	NOT = { employer = scope:actor }
-			#}
 		}
 	}
 	
@@ -36,12 +30,5 @@ z_notifications_setup = {
 		z_notifications_settings = yes
 	}
 	
-	ai_will_do = {
-		modifier = {
-			add = 0
-			trigger = {
-				always = no
-			}
-		}
-	}
+	ai_will_do = { factor = 0 }
 }

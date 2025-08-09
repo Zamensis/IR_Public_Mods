@@ -1,0 +1,16 @@
+﻿z_airm_age_difference = {
+	value = 0
+	if = {
+		limit = { age > scope:target.age }
+		add = age
+		subtract = scope:target.age
+	}
+	else_if = {
+		limit = { age < scope:target.age }
+		add = scope:target.age
+		subtract = age
+	}
+	else = {
+		# Stays zero
+	}
+}

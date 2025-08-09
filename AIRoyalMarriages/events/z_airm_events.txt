@@ -1,0 +1,74 @@
+﻿namespace = z_airm
+
+#-----------------------------------------------------------------------------------------
+# AI proposes a betrothal
+#-----------------------------------------------------------------------------------------
+z_airm.1 = {
+	type = country_event
+	title = "z_airm.1.t"
+	desc = "z_airm.1.desc"
+	goto_location = scope:actor.capital_scope
+	
+	picture = council_country
+	
+	left_portrait = root.current_ruler
+	left_portrait = scope:target
+	right_portrait = scope:actor.current_ruler
+	right_portrait = scope:recipient
+	
+	immediate = {
+		# Same as royal_marriage.2
+		save_scope_as = receiver_country
+	}
+	
+	option = { # Awww lovely!
+		name = z_airm.1.a
+		scope:target = {
+			if = {
+				limit = { has_variable = betrothed_flag } # Should never be the case, though
+				var:betrothed_flag = { remove_variable = betrothed_flag }
+				remove_variable = betrothed_flag
+			}
+			set_variable = {
+				name = betrothed_flag
+				value = scope:recipient
+				days = 2000 # Vanilla says 1500 but then the betrothal can time out before the day has come
+			}
+		}
+		scope:recipient = {
+			if = {
+				limit = { has_ambition = scheme_seek_a_spouse }
+				set_ambition = ambition_content_in_life
+			}
+			if = {
+				limit = { has_variable = betrothed_flag } # Should never be the case, though
+				var:betrothed_flag = { remove_variable = betrothed_flag }
+				remove_variable = betrothed_flag
+			}
+			set_variable = {
+				name = betrothed_flag
+				value = scope:target
+				days = 2000 # Vanilla says 1500 but then the betrothal can time out before the day has come
+			}
+		}
+		scope:recipient.employer = {
+			add_opinion = {
+				modifier = opinion_royal_marriage_ci # Vanilla opinion
+				target = scope:receiver_country
+			}
+		}
+		custom_tooltip = z_airm.1.at
+		ai_chance = { factor = 100 } # AI should never get this event because only the player can be proposed by an AI
+	}
+	
+	option = { # What? Hell no!
+		name = z_airm.1.b
+		scope:recipient.employer = {
+			add_opinion = {
+				modifier = opinion_refused_royal_marriage_ci # Vanilla opinion
+				target = root
+			}
+		}
+		ai_chance = { factor = 0 } # AI should never get this event because only the player can be proposed by an AI
+	}
+}

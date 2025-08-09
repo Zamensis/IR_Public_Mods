@@ -1,0 +1,121 @@
+﻿#-----------------------------------------------------------------------------------------
+# Can this AI country propose a royal marriage to Player?
+#-----------------------------------------------------------------------------------------
+z_airm_ai_can_propose_to_player_trigger = {
+	save_temporary_scope_as = actor
+	root = {
+		#-----------------------------------------------------------------------------------------
+		# Can Player country be proposed a RM by AI country?
+		#-----------------------------------------------------------------------------------------
+		# ---------------------- Is Player country eligible for RM?
+		NOT = { has_variable = marriage_proposal_ongoing }
+		is_monarchy = yes
+		NOR = {
+			this = scope:actor
+			tag = REB
+			tag = BAR
+			tag = PIR
+			has_variable = z_airm_cooldown
+		}
+		# ---------------------- Would Player country even consider a RM with AI country?
+		NOR = {
+			war_with = scope:actor
+			has_truce_with = scope:actor
+			scope:actor = { has_truce_with = root }
+		}
+		OR = {
+			AND = {
+				in_diplomatic_range = scope:actor
+				root.culture.culture_group = scope:actor.culture.culture_group
+			}
+			any_neighbour_country = { this = scope:actor }
+		}
+		trigger_if = {
+			limit = { scope:actor.num_of_cities > root.num_of_cities }
+			scope:actor = {
+				opinion = {
+					target = root
+					value >= 25
+				}
+			}
+		}
+		trigger_else = {
+			scope:actor = {
+				opinion = {
+					target = root
+					value >= -10
+				}
+			}
+		}
+		# ---------------------- Does Player country have a valid candidate for RM?
+		any_character = { z_airm_weddable_character_player_trigger = yes }
+	}
+	#-----------------------------------------------------------------------------------------
+	# Can AI country propose a RM to Player country?
+	#-----------------------------------------------------------------------------------------
+	# ---------------------- Is AI country eligible for RM?
+	is_ai = yes
+	#NOT = { has_variable = marriage_proposal_ongoing }
+	is_monarchy = yes
+	NOR = {
+		tag = REB
+		tag = BAR
+		tag = PIR
+		has_variable = z_airm_cooldown
+	}
+	# ---------------------- Does AI country have a valid candidate for RM?
+	any_character = { z_airm_weddable_character_ai_trigger = yes }
+}
+
+#-----------------------------------------------------------------------------------------
+# Is this player character valid for royal marriage proposal?
+#-----------------------------------------------------------------------------------------
+z_airm_weddable_character_player_trigger = {
+	prisoner_valid_for_country_events_trigger = yes
+	is_mercenary = no
+	OR = {
+		is_ruler = yes
+		from_ruler_family = yes
+	}
+	is_male = yes
+	is_married = no #can_marry = yes
+	age >= 10
+	age <= 50
+	NOT = { has_variable = betrothed_flag }
+}
+
+#-----------------------------------------------------------------------------------------
+# Is this AI character valid for royal marriage proposal?
+#-----------------------------------------------------------------------------------------
+z_airm_weddable_character_ai_trigger = {
+	prisoner_valid_for_country_events_trigger = yes
+	is_mercenary = no
+	OR = {
+		from_ruler_family = yes
+		has_bloodline_trigger = yes
+	}
+	is_female = yes
+	is_married = no #can_marry = yes
+	age >= 10
+	age <= 30
+	NOT = { has_variable = betrothed_flag }
+}
+
+#-----------------------------------------------------------------------------------------
+# Fix Vanilla trigger (remove a condition)
+#-----------------------------------------------------------------------------------------
+betrothed_trigger = {
+	is_alive = yes
+	prisoner = no
+	# Remove this Vanilla condition, for it may break betrothals, which is not nice :(
+	#OR = {
+	#	is_ruler = yes
+	#	is_close_relative = employer.current_ruler
+	#}
+	NOR = {
+		employer = c:MER
+		employer = c:REB
+		employer = c:PIR
+	}
+	has_variable = betrothed_flag
+}

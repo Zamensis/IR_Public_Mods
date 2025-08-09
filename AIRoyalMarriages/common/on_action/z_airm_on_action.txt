@@ -1,0 +1,104 @@
+﻿#-----------------------------------------------------------------------------------------
+# Vanilla on_actions
+#-----------------------------------------------------------------------------------------
+monthly_country_pulse = {
+	on_actions = {
+		z_airm_monthly
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# AI Royal Marriage Monthly Pulse
+#-----------------------------------------------------------------------------------------
+z_airm_monthly = {
+	effect = {
+		if = {
+			limit = {
+				is_ai = no
+				any_country = { z_airm_ai_can_propose_to_player_trigger = yes }
+			}
+		}
+		#random_list = {
+		#	90 = {}
+		#	10 = {
+				random_country = {
+					limit = { z_airm_ai_can_propose_to_player_trigger = yes }
+					weight = {
+						modifier = {
+							factor = 2
+							culture = root.culture
+						}
+						modifier = {
+							factor = 1.5
+							culture.culture_group = root.culture.culture_group
+						}
+						modifier = {
+							factor = 1.5
+							any_neighbour_country = { this = root }
+						}
+						modifier = {
+							factor = 1.1
+							current_ruler = { has_bloodline_trigger = yes }
+						}
+						modifier = {
+							factor = 2.5
+							any_character = {
+								z_airm_weddable_character_ai_trigger = yes
+								has_bloodline_trigger = yes
+							}
+						}
+						modifier = {
+							factor = 1.25
+							alliance_with = root
+						}
+						modifier = {
+							factor = 1.1
+							opinion = {
+								target = root
+								value >= 10
+							}
+						}
+						modifier = {
+							factor = 1.1
+							opinion = {
+								target = root
+								value >= 20
+							}
+						}
+						modifier = {
+							factor = 1.1
+							opinion = {
+								target = root
+								value >= 30
+							}
+						}
+						modifier = {
+							factor = 1.1
+							opinion = {
+								target = root
+								value >= 40
+							}
+						}
+						modifier = {
+							factor = 1.2
+							opinion = {
+								target = root
+								value >= 50
+							}
+						}
+						modifier = {
+							factor = 0.5
+							is_subject = yes
+						}
+						modifier = {
+							factor = 0.5
+							is_subject = yes
+							NOT = { is_subject_of = root }
+						}
+					}
+					z_airm_ai_proposes_to_player_effect = yes
+				}
+			#}
+		#}
+	}
+}

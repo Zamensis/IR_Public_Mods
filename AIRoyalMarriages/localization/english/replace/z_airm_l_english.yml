@@ -1,0 +1,8 @@
+﻿l_english:
+ z_airm:0 "Royal Betrothal"
+ z_airm.1.t:0 "$z_airm$: Proposal from [actor.GetName]"
+ z_airm.1.desc:0 "We have received envoys from [actor.GetName], whose ruler, [actor.GetRulerTitle] [actor.GetRuler.GetName], wishes to forge a royal marriage between the ruling families of [actor.GetRuler.GetHerHis] country and our own.\n\n[actor.GetRuler.GetSheHe|U] offers the hand of [recipient.GetPraenomen] to our [target.GetName]. [recipient.GetPraenomen] and [target.GetPraenomen] will have to wait until they are both of adult age, however."
+ z_airm.1.a:0 "A fine proposal."
+ z_airm.1.at:0 "[recipient.GetPraenomen] and [target.GetPraenomen] will marry when both are over the age of #Y 16#!."
+ z_airm.1.b:0 "[recipient.GetPraenomen]? No..."
+ z_airm_betrothed_flag:0 "[target.GetPraenomen] is NOT already betrothed"

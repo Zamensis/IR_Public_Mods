@@ -1,0 +1,7 @@
+﻿l_french:
+ z_airm:0 "Fiançailles royales"
+ z_airm.1.t:0 "$z_airm$ : proposition de [actor.GetName]"
+ z_airm.1.desc:0 "Nous avons reçu des envoyés de [actor.GetName], dont le [actor.GetRulerTitle] [actor.GetRuler.GetName] souhaite forger une alliance matrimoniale entre les familles royales de nos deux pays.\n\n[actor.GetRuler.GetSheHe|U] offre donc la main de [recipient.GetPraenomen] à notre [target.GetName]. [target.GetPraenomen] et [recipient.GetPraenomen] devront cependant attendre d'avoir atteint l'âge adulte."
+ z_airm.1.a:0 "L'accord paraît intéressant."
+ z_airm.1.at:0 "[recipient.GetPraenomen] et [target.GetPraenomen] se marieront quand ils deviendront adultes."
+ z_airm.1.b:0 "[recipient.GetPraenomen] ? Pas question !"

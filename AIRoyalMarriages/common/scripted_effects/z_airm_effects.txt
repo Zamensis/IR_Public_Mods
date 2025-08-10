@@ -1,172 +1,274 @@
 ﻿#-----------------------------------------------------------------------------------------
-# AI proposes a royal marriage to Player
+# Send a RM proposal
 #-----------------------------------------------------------------------------------------
-z_airm_ai_proposes_to_player_effect = {
-	# ---------------------- Save AI country
-	save_scope_as = actor
-	# ---------------------- Save Player character
-	root = {
+z_airm_send_proposal_effect = {
+	#-----------------------------------------------------------------------------------------
+	# 1. Select a random country to be the sender of a RM proposal (i.e. save actor scope)
+	#-----------------------------------------------------------------------------------------
+	random_country = {
+		limit = {
+			z_airm_country_can_send_proposals_trigger = yes # Is this country eligible to send RM proposals?
+			save_temporary_scope_as = actor
+			root = { z_airm_country_can_receive_proposals_from_sender_trigger = yes } # Is this country eligible to receive RM proposals from sender country?
+			any_character = { z_airm_character_is_weddable_sender_trigger = yes } # Is this character from sender country eligible for a RM?
+		}
+		weight = {
+			modifier = {
+				factor = 2
+				culture = root.culture
+			}
+			modifier = {
+				factor = 1.5
+				culture.culture_group = root.culture.culture_group
+			}
+			modifier = {
+				factor = 1.5
+				any_neighbour_country = { this = root }
+			}
+			modifier = {
+				factor = 1.1
+				current_ruler = { has_bloodline_trigger = yes }
+			}
+			modifier = {
+				factor = 2.5
+				any_character = {
+					z_airm_character_is_weddable_sender_trigger = yes
+					has_bloodline_trigger = yes
+				}
+			}
+			modifier = {
+				factor = 1.25
+				alliance_with = root
+			}
+			modifier = {
+				factor = 1.1
+				opinion = {
+					target = root
+					value >= 10
+				}
+			}
+			modifier = {
+				factor = 1.1
+				opinion = {
+					target = root
+					value >= 20
+				}
+			}
+			modifier = {
+				factor = 1.1
+				opinion = {
+					target = root
+					value >= 30
+				}
+			}
+			modifier = {
+				factor = 1.1
+				opinion = {
+					target = root
+					value >= 40
+				}
+			}
+			modifier = {
+				factor = 1.2
+				opinion = {
+					target = root
+					value >= 50
+				}
+			}
+			modifier = {
+				factor = 0.25
+				is_subject = yes
+			}
+			modifier = {
+				factor = 0.5
+				is_subject = yes
+				NOT = { is_subject_of = root }
+			}
+		}
+		save_scope_as = actor
+		#-----------------------------------------------------------------------------------------
+		# 2. Select a random character to be the receiver of a RM proposal (i.e. save target scope)
+		#-----------------------------------------------------------------------------------------
+		root = {
+			random_character = {
+				limit = { z_airm_character_is_weddable_receiver_trigger = yes }
+				weight = {
+					modifier = {
+						factor = 1.25
+						OR = {
+							AND = {
+								exists = this.father
+								this.father = { is_alive = yes }
+								this.father = root.current_ruler
+							}
+							AND = {
+								exists = this.mother
+								this.mother = { is_alive = yes }
+								this.mother = root.current_ruler
+							}
+						}
+					}
+					modifier = {
+						factor = 10
+						is_ruler = yes
+					}
+					modifier = {
+						factor = 3
+						is_primary_heir = yes
+					}
+					modifier = {
+						factor = 1.25
+						age <= 16
+					}
+					modifier = {
+						factor = 1.25
+						age <= 20
+					}
+					modifier = {
+						factor = 1.25
+						age <= 35
+					}
+				}
+				save_scope_as = target
+			}
+		}
+		#-----------------------------------------------------------------------------------------
+		# 3. Select a random character to be the sender of a RM proposal (i.e. save recipient scope)
+		#-----------------------------------------------------------------------------------------
 		random_character = {
-			limit = { z_airm_weddable_character_player_trigger = yes }
+			limit = { z_airm_character_is_weddable_sender_trigger = yes }
 			weight = {
+				modifier = {
+					factor = 1.25
+					has_bloodline_trigger = yes
+				}
+				modifier = {
+					factor = 5
+					scope:target = { has_bloodline_trigger = yes }
+					has_bloodline_trigger = yes
+				}
 				modifier = {
 					factor = 1.25
 					OR = {
 						AND = {
 							exists = this.father
 							this.father = { is_alive = yes }
-							this.father = root.current_ruler
+							this.father = scope:actor.current_ruler
 						}
 						AND = {
 							exists = this.mother
 							this.mother = { is_alive = yes }
-							this.mother = root.current_ruler
+							this.mother = scope:actor.current_ruler
 						}
 					}
 				}
 				modifier = {
-					factor = 10
-					is_ruler = yes
-				}
-				modifier = {
-					factor = 3
-					is_primary_heir = yes
-				}
-				modifier = {
-					factor = 1.25
-					age <= 16
-				}
-				modifier = {
-					factor = 1.25
+					factor = 2
 					age <= 20
 				}
 				modifier = {
-					factor = 1.25
-					age <= 35
+					factor = 2
+					z_airm_age_difference <= 5
+				}
+				modifier = {
+					factor = 1.5
+					z_airm_age_difference > 5
+					z_airm_age_difference <= 10
+				}
+				modifier = {
+					factor = 1
+					z_airm_age_difference > 10
+					z_airm_age_difference <= 15
+				}
+				modifier = {
+					factor = 0.75
+					z_airm_age_difference > 15
 				}
 			}
-			save_scope_as = target
+			save_scope_as = recipient
 		}
-	}
-	# ---------------------- Save AI character
-	random_character = {
-		limit = { z_airm_weddable_character_ai_trigger = yes }
-		weight = {
-			modifier = {
-				factor = 1.25
-				has_bloodline_trigger = yes
+		#-----------------------------------------------------------------------------------------
+		# 4. If all scopes have been found, send the proposal
+		#-----------------------------------------------------------------------------------------
+		if = {
+			limit = {
+				exists = root # Receiver country
+				exists = scope:actor # Sender country
+				exists = scope:target # Receiver character
+				exists = scope:recipient # Sender character
 			}
-			modifier = {
-				factor = 5
-				scope:target = { has_bloodline_trigger = yes }
-				has_bloodline_trigger = yes
-			}
-			modifier = {
-				factor = 1.25
-				OR = {
-					AND = {
-						exists = this.father
-						this.father = { is_alive = yes }
-						this.father = scope:actor.current_ruler
-					}
-					AND = {
-						exists = this.mother
-						this.mother = { is_alive = yes }
-						this.mother = scope:actor.current_ruler
-					}
-				}
-			}
-			modifier = {
-				factor = 2
-				age <= 20
-			}
-			modifier = {
-				factor = 2
-				z_airm_age_difference <= 5
-			}
-			modifier = {
-				factor = 1.5
-				z_airm_age_difference > 5
-				z_airm_age_difference <= 10
-			}
-			modifier = {
-				factor = 1
-				z_airm_age_difference > 10
-				z_airm_age_difference <= 15
-			}
-			modifier = {
-				factor = 0.75
-				z_airm_age_difference > 15
-			}
-		}
-		save_scope_as = recipient
-	}
-	# ---------------------- Send proposal
-	if = {
-		limit = { exists = scope:recipient }
-		# ---------------------- Set cooldown
-		hidden_effect = {
-			root = {
+			#-----------------------------------------------------------------------------------------
+			# 4.1 Set cooldown
+			#-----------------------------------------------------------------------------------------
+			root = { # Receiver cooldown
 				set_variable = {
 					name = z_airm_cooldown
 					days = 90
 				}
 			}
-			scope:actor = {
+			scope:actor = { # Sender cooldown
 				set_variable = {
 					name = z_airm_cooldown
 					days = 3650
 				}
 			}
-		}
-		# ---------------------- Emulate effect from character interaction
-		scope:recipient = {
-			if = {
-				limit = { has_variable = betrothed_flag } # Should never be the case, though
-				var:betrothed_flag = { remove_variable = betrothed_flag }
-			}
-			if = {
-				limit = { has_ambition = scheme_seek_a_spouse }
-				set_ambition = ambition_content_in_life
-			}
-		}
-		if = {
-			limit = {
-				scope:target = { is_adult = yes }
-				scope:recipient = { is_adult = yes }
-			}
-			scope:target = {
+			#-----------------------------------------------------------------------------------------
+			# 4.2 Emulate effect from character interaction: remove betrothed_flag (should never be necessary but that's how it is in Vanilla)
+			#-----------------------------------------------------------------------------------------
+			scope:recipient = {
 				if = {
-					limit = { has_variable = betrothed_flag } # Should never be the case, though
+					limit = { has_variable = betrothed_flag }
 					var:betrothed_flag = { remove_variable = betrothed_flag }
-					remove_variable = betrothed_flag
 				}
 				if = {
 					limit = { has_ambition = scheme_seek_a_spouse }
 					set_ambition = ambition_content_in_life
 				}
 			}
-			hidden_effect = {
-				root = {
-					set_variable = {
-						name = marriage_proposal_ongoing
-						days = 60
+			#-----------------------------------------------------------------------------------------
+			# 4.3 Emulate effect from character interaction: if both candidates are adults, send proposal for immediate RM
+			#-----------------------------------------------------------------------------------------
+			if = {
+				limit = {
+					scope:target = { is_adult = yes }
+					scope:recipient = { is_adult = yes }
+				}
+				scope:target = {
+					if = {
+						limit = { has_variable = betrothed_flag }
+						var:betrothed_flag = { remove_variable = betrothed_flag }
+						remove_variable = betrothed_flag
+					}
+					if = {
+						limit = { has_ambition = scheme_seek_a_spouse }
+						set_ambition = ambition_content_in_life
 					}
 				}
-				scope:actor = {
-					set_variable = {
-						name = marriage_proposal_ongoing
-						days = 60
+				hidden_effect = {
+					root = {
+						set_variable = {
+							name = marriage_proposal_ongoing
+							days = 60
+						}
 					}
-				}
-				root = {
-					trigger_event = { id = royal_marriage.2 } # Immediate marriage proposal
+					scope:actor = {
+						set_variable = {
+							name = marriage_proposal_ongoing
+							days = 60
+						}
+					}
+					root = {
+						trigger_event = { id = royal_marriage.2 } # Vanilla event
+					}
 				}
 			}
-		}
-		else = {
-			root = {
-				trigger_event = { id = z_airm.1 } # Betrothal proposal
+			#-----------------------------------------------------------------------------------------
+			# 4.4 Emulate effect from character interaction: else, send proposal for delayed RM
+			#-----------------------------------------------------------------------------------------
+			else = {
+				root = {
+					trigger_event = { id = z_airm.1 } # AIRM Betrothal event
+				}
 			}
 		}
 	}

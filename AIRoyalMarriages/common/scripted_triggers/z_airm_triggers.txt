@@ -1,90 +1,86 @@
 ﻿#-----------------------------------------------------------------------------------------
-# Can this AI country propose a royal marriage to Player?
+# Is this country eligible to receive RM proposals?
 #-----------------------------------------------------------------------------------------
-z_airm_ai_can_propose_to_player_trigger = {
-	save_temporary_scope_as = actor
-	root = {
-		#-----------------------------------------------------------------------------------------
-		# Can Player country be proposed a RM by AI country?
-		#-----------------------------------------------------------------------------------------
-		# ---------------------- Is Player country eligible for RM?
-		NOT = { has_variable = marriage_proposal_ongoing }
-		is_monarchy = yes
-		NOR = {
-			this = scope:actor
-			tag = REB
-			tag = BAR
-			tag = PIR
-			has_variable = z_airm_cooldown
-		}
-		# ---------------------- Would Player country even consider a RM with AI country?
-		NOR = {
-			war_with = scope:actor
-			has_truce_with = scope:actor
-			scope:actor = { has_truce_with = root }
-		}
-		OR = {
-			in_diplomatic_range = scope:actor
-			root.culture.culture_group = scope:actor.culture.culture_group
-		}
-		trigger_if = {
-			limit = { scope:actor.num_of_cities > root.num_of_cities }
-			scope:actor = {
-				opinion = {
-					target = root
-					value >= 25
-				}
-			}
-		}
-		trigger_else = {
-			scope:actor = {
-				opinion = {
-					target = root
-					value >= -10
-				}
-			}
-		}
-		# ---------------------- Does Player country have a valid candidate for RM?
-		any_character = { z_airm_weddable_character_player_trigger = yes }
-	}
-	#-----------------------------------------------------------------------------------------
-	# Can AI country propose a RM to Player country?
-	#-----------------------------------------------------------------------------------------
-	# ---------------------- Is AI country eligible for RM?
-	is_ai = yes
-	#NOT = { has_variable = marriage_proposal_ongoing }
+z_airm_country_can_receive_proposals_trigger = {
+	NOT = { has_variable = marriage_proposal_ongoing }
 	is_monarchy = yes
 	NOR = {
+		this = scope:actor
 		tag = REB
 		tag = BAR
 		tag = PIR
 		has_variable = z_airm_cooldown
 	}
-	# ---------------------- Does AI country have a valid candidate for RM?
-	any_character = { z_airm_weddable_character_ai_trigger = yes }
+	any_character = { z_airm_character_is_weddable_receiver_trigger = yes } # Is this character from receiver country eligible for a RM?
 }
 
 #-----------------------------------------------------------------------------------------
-# Is this player character valid for royal marriage proposal?
+# Is this country eligible to send RM proposals?
 #-----------------------------------------------------------------------------------------
-z_airm_weddable_character_player_trigger = {
-	prisoner_valid_for_country_events_trigger = yes
-	is_mercenary = no
-	OR = {
-		is_ruler = yes
-		from_ruler_family = yes
+z_airm_country_can_send_proposals_trigger = {
+	#NOT = { has_variable = marriage_proposal_ongoing }
+	is_ai = yes
+	is_monarchy = yes
+	NOR = {
+		this = root
+		tag = REB
+		tag = BAR
+		tag = PIR
+		has_variable = z_airm_cooldown
 	}
-	is_male = yes
-	is_married = no #can_marry = yes
-	age >= 10
-	age <= 50
-	NOT = { has_variable = betrothed_flag }
+	trigger_if = {
+		limit = {
+			root = { is_ai = no }
+		}
+		NOT = { has_variable = z_airm_player_refused_this_country }
+	}
 }
 
 #-----------------------------------------------------------------------------------------
-# Is this AI character valid for royal marriage proposal?
+# Is this country eligible to receive RM proposals from sender country?
 #-----------------------------------------------------------------------------------------
-z_airm_weddable_character_ai_trigger = {
+z_airm_country_can_receive_proposals_from_sender_trigger = {
+	NOR = {
+		war_with = scope:actor
+		has_truce_with = scope:actor
+		scope:actor = { has_truce_with = root }
+	}
+	OR = {
+		in_diplomatic_range = scope:actor
+		root.culture.culture_group = scope:actor.culture.culture_group
+	}
+	trigger_if = {
+		limit = { scope:actor.num_of_cities > root.num_of_cities }
+		scope:actor = {
+			opinion = {
+				target = root
+				value >= 25
+			}
+		}
+	}
+	trigger_else = {
+		scope:actor = {
+			opinion = {
+				target = root
+				value >= -10
+			}
+		}
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# Is this character from sender country eligible for a RM?
+#-----------------------------------------------------------------------------------------
+z_airm_character_is_weddable_sender_trigger = {
+	trigger_if = {
+		limit = {
+			root = { is_ai = no }
+		}
+		NOT = { has_variable = z_airm_player_refused_this_bride }
+	}
+	trigger_else = {
+		has_variable = z_airm_player_refused_this_bride
+	}
 	prisoner_valid_for_country_events_trigger = yes
 	is_mercenary = no
 	OR = {
@@ -95,6 +91,23 @@ z_airm_weddable_character_ai_trigger = {
 	is_married = no #can_marry = yes
 	age >= 10
 	age <= 30
+	NOT = { has_variable = betrothed_flag }
+}
+
+#-----------------------------------------------------------------------------------------
+# Is this character from receiver country eligible for a RM?
+#-----------------------------------------------------------------------------------------
+z_airm_character_is_weddable_receiver_trigger = {
+	prisoner_valid_for_country_events_trigger = yes
+	is_mercenary = no
+	OR = {
+		is_ruler = yes
+		from_ruler_family = yes
+	}
+	is_male = yes
+	is_married = no #can_marry = yes
+	age >= 10
+	age <= 50
 	NOT = { has_variable = betrothed_flag }
 }
 

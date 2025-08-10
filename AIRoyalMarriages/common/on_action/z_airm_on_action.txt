@@ -13,10 +13,7 @@ monthly_country_pulse = {
 z_airm_monthly = {
 	effect = {
 		if = {
-			limit = {
-				is_ai = no
-				any_country = { z_airm_ai_can_propose_to_player_trigger = yes }
-			}
+			limit = { is_ai = no }
 		}
 		#random_list = {
 		#	90 = {}

@@ -24,11 +24,8 @@ z_airm_ai_can_propose_to_player_trigger = {
 			scope:actor = { has_truce_with = root }
 		}
 		OR = {
-			AND = {
-				in_diplomatic_range = scope:actor
-				root.culture.culture_group = scope:actor.culture.culture_group
-			}
-			any_neighbour_country = { this = scope:actor }
+			in_diplomatic_range = scope:actor
+			root.culture.culture_group = scope:actor.culture.culture_group
 		}
 		trigger_if = {
 			limit = { scope:actor.num_of_cities > root.num_of_cities }

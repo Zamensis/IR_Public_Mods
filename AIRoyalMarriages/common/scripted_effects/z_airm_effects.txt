@@ -122,7 +122,7 @@ z_airm_ai_proposes_to_player_effect = {
 		# ---------------------- Emulate effect from character interaction
 		scope:recipient = {
 			if = {
-				limit = { has_variable = betrothed_flag }
+				limit = { has_variable = betrothed_flag } # Should never be the case, though
 				var:betrothed_flag = { remove_variable = betrothed_flag }
 			}
 			if = {
@@ -137,7 +137,7 @@ z_airm_ai_proposes_to_player_effect = {
 			}
 			scope:target = {
 				if = {
-					limit = { has_variable = betrothed_flag }
+					limit = { has_variable = betrothed_flag } # Should never be the case, though
 					var:betrothed_flag = { remove_variable = betrothed_flag }
 					remove_variable = betrothed_flag
 				}

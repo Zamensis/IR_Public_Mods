@@ -90,7 +90,7 @@ z_airm_character_is_weddable_sender_trigger = {
 	is_female = yes
 	is_married = no #can_marry = yes
 	age >= 10
-	age <= 30
+	age <= 35
 	NOT = { has_variable = betrothed_flag }
 }
 

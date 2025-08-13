@@ -53,6 +53,7 @@ z_qol_tyranny_decay_effect = {
 	if = {
 		limit = {
 			NOT = { $target_not$ = { party_type = optimates_party } }
+			has_variable = z_qol_tyranny_opti
 			var:z_qol_tyranny_opti > 0
 		}
 		change_variable = {
@@ -63,6 +64,7 @@ z_qol_tyranny_decay_effect = {
 	else_if = {
 		limit = {
 			NOT = { $target_not$ = { party_type = boni_party } }
+			has_variable = z_qol_tyranny_boni
 			var:z_qol_tyranny_boni > 0
 		}
 		change_variable = {
@@ -73,6 +75,7 @@ z_qol_tyranny_decay_effect = {
 	else_if = {
 		limit = {
 			NOT = { $target_not$ = { party_type = populares_party } }
+			has_variable = z_qol_tyranny_popu
 			var:z_qol_tyranny_popu > 0
 		}
 		change_variable = {
@@ -83,6 +86,7 @@ z_qol_tyranny_decay_effect = {
 	else_if = {
 		limit = {
 			NOT = { $target_not$ = { party_type = oligarchic_party } }
+			has_variable = z_qol_tyranny_olig
 			var:z_qol_tyranny_olig > 0
 		}
 		change_variable = {
@@ -93,6 +97,7 @@ z_qol_tyranny_decay_effect = {
 	else_if = {
 		limit = {
 			NOT = { $target_not$ = { party_type = democratic_party } }
+			has_variable = z_qol_tyranny_demo
 			var:z_qol_tyranny_demo > 0
 		}
 		change_variable = {
@@ -103,6 +108,7 @@ z_qol_tyranny_decay_effect = {
 	else_if = {
 		limit = {
 			NOT = { $target_not$ = { party_type = traditionalist_party } }
+			has_variable = z_qol_tyranny_trad
 			var:z_qol_tyranny_trad > 0
 		}
 		change_variable = {

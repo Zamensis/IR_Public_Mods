@@ -426,9 +426,6 @@ z_limes_common.100 = {																			#########   YEARLY CHECK
 				limit = {
 					NOT = {
 						has_country_modifier = z_limes_normal_ai
-						has_country_modifier = easy_ai
-						has_country_modifier = hard_ai
-						has_country_modifier = very_hard_ai
 					}
 				}
 				add_country_modifier = {

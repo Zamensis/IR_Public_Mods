@@ -31,5 +31,5 @@
  z_limes_levy_size_4_desc:0 "Part of the Virtual Limes mod. You shouldn't be reading this. This modifier manages the levy modifier bonus based on this country's total population."
  z_limes_levy_size_5:0 "Marche militaire"
  z_limes_levy_size_5_desc:0 "Part of the Virtual Limes mod. You shouldn't be reading this. This modifier manages the levy modifier bonus based on this country's total population."
- z_limes_normal_ai:0 "Difficulté normale"
+ z_limes_normal_ai:0 "Virtual Limes"
  z_limes_normal_ai_desc:0 "Part of the Virtual Limes mod. Same threshold as Hard AI for less useless civil wars."

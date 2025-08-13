@@ -14,8 +14,7 @@ z_antag.1 = {
 	
 	# Default (Vanilla) settings = Do nothing
 	option = {
-		name = "z_antag.1.a" 
-		custom_tooltip = "z_antag.1.at"
+		name = "z_antag.1.a"
 		ai_chance = { factor = 10 }
 		set_global_variable = {
 			name = z_antag_settings_random # Also serves as a flag here

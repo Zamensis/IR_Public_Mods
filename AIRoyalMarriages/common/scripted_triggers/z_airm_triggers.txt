@@ -4,8 +4,12 @@
 z_airm_country_can_receive_proposals_trigger = {
 	NOT = { has_variable = marriage_proposal_ongoing }
 	is_monarchy = yes
+	has_land = yes
 	NOR = {
-		this = scope:actor
+		trigger_if = {
+			limit = { exists = scope:actor }
+			this = scope:actor
+		}
 		tag = REB
 		tag = BAR
 		tag = PIR
@@ -21,6 +25,7 @@ z_airm_country_can_send_proposals_trigger = {
 	#NOT = { has_variable = marriage_proposal_ongoing }
 	is_ai = yes
 	is_monarchy = yes
+	has_land = yes
 	NOR = {
 		this = root
 		tag = REB

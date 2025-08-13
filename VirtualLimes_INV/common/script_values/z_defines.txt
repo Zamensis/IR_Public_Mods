@@ -28,7 +28,7 @@ z_limes_rules_capital = 1					# City-based countries restore their historical ca
 z_limes_rules_clean_deals = 1				# When some regions like the Nile Delta are shared between two large AI empires, and one side owns more than 70% of it, it wins it all
 z_limes_rules_spare_carthage = 0			# AI Rome won't annex AI Carthage (the city) if it still has a strong presence in Africa and Numidia (default: 0)
 z_limes_rules_punic_league = 1				# Rename AI Carthage as "Punic League" if the capital is lost, until it is recovered
-z_limes_rules_cw_fewer = 1					# Increase CW threshold for AIs (Normal difficulty only), reducing the number of civil wars potentially ruining the map
+z_limes_rules_cw_fewer = 1					# Increase CW threshold for AIs, reducing the number of civil wars potentially ruining the map
 z_limes_rules_cw_faster = 1					# Wrap up AI civil wars when one side owns most of the territory, reducing the risk of civil wars ruining the map
 z_limes_rules_nosplit = 1					# Large AI empires can spawn new countries when they are split into very distant parts (not super effective but it adds up to the rest)
 

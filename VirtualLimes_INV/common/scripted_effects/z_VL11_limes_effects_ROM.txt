@@ -82,7 +82,45 @@ z_limes_main_effect_ROM_b = {
 			order_by = total_population
 			save_scope_as = z_limes_mm_capital
 		}
-		z_limes_make_mm_effect = { ZONE = area }
+		# Check if an MM already exists in this region, past x territories owned by root
+		if = {
+			limit = {
+				root = { num_of_cities >= 500 }
+				scope:z_limes_mm_capital.region = {
+					any_region_province = {
+						has_owner = yes
+						owner = {
+							is_subject_of = root
+							z_limes_is_mm_trigger = yes
+						}
+					}
+				}
+			}
+			scope:z_limes_mm_capital.region = {
+				random_region_province = {
+					limit = {
+						has_owner = yes
+						owner = {
+							is_subject_of = root
+							z_limes_is_mm_trigger = yes
+						}
+					}
+					owner = { save_scope_as = z_limes_old_mm }
+				}
+			}
+			scope:z_limes_mm_capital.region = {
+				every_region_province = {
+					limit = {
+						owner = root
+						z_limes_ROM_$REGION$ = yes
+					}
+					set_owned_by = scope:z_limes_old_mm
+				}
+			}
+		}
+		else = {
+			z_limes_make_mm_effect = { ZONE = area }
+		}
 	}
 	while = {
 		limit = {

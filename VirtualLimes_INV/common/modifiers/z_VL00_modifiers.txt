@@ -94,6 +94,7 @@ z_limes_naval_superpower = {
 
 z_limes_land_superpower = {
 	war_exhaustion = -0.075
+	war_score_cost = -0.3
 }
 
 #-----------------------------------------------------------------------------------------

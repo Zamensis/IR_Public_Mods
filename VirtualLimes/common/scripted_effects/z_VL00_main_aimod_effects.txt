@@ -210,8 +210,12 @@ z_limes_aimod_effect = {
 		if = {
 			limit = {
 				z_limes_rules_buff_ROM = 1
-				num_of_cities >= 1000
+				num_of_cities >= 500
 				var:z_limes_lucky_factor >= 10
+				NOR = {
+					has_country_modifier = z_limes_land_superpower
+					has_country_modifier = z_limes_naval_superpower
+				}
 			}
 			add_country_modifier = { name = z_limes_land_superpower }
 			add_country_modifier = { name = z_limes_naval_superpower }
@@ -221,7 +225,7 @@ z_limes_aimod_effect = {
 			limit = {
 				OR = {
 					NOT = { z_limes_rules_buff_ROM = 1 }
-					num_of_cities < 1000
+					num_of_cities < 500
 					var:z_limes_lucky_factor < 10
 				}
 			}

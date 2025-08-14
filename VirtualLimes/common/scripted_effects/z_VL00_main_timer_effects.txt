@@ -83,11 +83,11 @@ z_limes_setup_timer_effect = {
 		}
 		set_global_variable = {
 			name = z_limes_timer_speed
-			value = { 90 110 }
+			value = { 80 130 }
 		}
 		set_global_variable = {
 			name = z_limes_timer_offset
-			value = { 90 110 }
+			value = { 80 130 }
 		}
 	}
 }

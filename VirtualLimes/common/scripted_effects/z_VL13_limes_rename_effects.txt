@@ -15,14 +15,23 @@ z_limes_rename_mm_effect = {
 		z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = region WHICH = cisalpine_gaul_region }
 		z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = region WHICH = transalpine_gaul_region }
 		z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = region WHICH = illyria_region }
+		z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = region WHICH = moesia_region }
+		#z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = region WHICH = moesia_s_region } # Invictus only
+		if = { limit = { NOT = { any_country = { tag = DAC } } }
+			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = region WHICH = dacia_region }
+		}
 		# North-Africa
 		z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = region WHICH = africa_region }
-		z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = region WHICH = numidia_region }
+		if = { limit = { NOT = { any_country = { tag = NUM } } }
+			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = region WHICH = numidia_region }
+		}
 		z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = region WHICH = mauretainia_region }
 		# Spain
 		z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = region WHICH = baetica_region }
 		z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = region WHICH = contestania_region }
-		z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = region WHICH = lusitania_region }
+		if = { limit = { NOT = { any_country = { tag = LST } } }
+			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = region WHICH = lusitania_region }
+		}
 		z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = region WHICH = gallaecia_region }
 		z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = region WHICH = tarraconensis_region }
 		# East
@@ -235,12 +244,16 @@ z_limes_rename_mm_effect = {
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = area WHICH = parnia_area } }
 		if = { limit = { always = yes }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = area WHICH = paytankert_area } }
+		if = { limit = { NOT = { any_country = { tag = QTB } } }
+			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = area WHICH = qataba_area } }
 		if = { limit = { always = yes }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = area WHICH = sarmatia_hyrcania_area } }
 		if = { limit = { always = yes }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = area WHICH = savia_orientalis_area } }
 		if = { limit = { always = yes }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = area WHICH = scythia_trans_montem_area } }
+		if = { limit = { NOT = { any_country = { tag = SHB } } }
+			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = area WHICH = sheba_area } }
 		if = { limit = { NOT = { any_country = { tag = SOG } } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = area WHICH = sogdiana_area } }
 		if = { limit = { always = yes }
@@ -249,6 +262,16 @@ z_limes_rename_mm_effect = {
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = area WHICH = tarentum_area } }
 		if = { limit = { always = yes }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = area WHICH = transoxus_area } }
+		if = { limit = { always = yes }
+			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = area WHICH = central_omana_area } }
+		if = { limit = { always = yes }
+			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = area WHICH = omana_area } }
+		if = { limit = { always = yes }
+			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = area WHICH = east_omana_area } }
+		if = { limit = { NOT = { any_country = { tag = NBT } } }
+			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = area WHICH = arabia_petrea_area } }
+		if = { limit = { NOT = { any_country = { tag = ARS } } }
+			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = area WHICH = arachosia_area } }
 	}
 }
 

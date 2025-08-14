@@ -57,15 +57,20 @@ z_limes_annex_effect_ROM = {
 # Help AI Rome annex its many MMs
 # --------------------------------------------------------------------------------
 z_limes_annex_effect_ROM_b = {
-	random_subject = {
-		limit = {
-			z_limes_be_annexed_trigger = yes
-			any_owned_province = { z_limes_ROM_$REGION$ = yes }
-			OR = {
-				has_coasts = yes
-				any_neighbour_country = { this = root }
+	random_list = {
+		75 = {}
+		25 = {
+			random_subject = {
+				limit = {
+					z_limes_be_annexed_trigger = yes
+					any_owned_province = { z_limes_ROM_$REGION$ = yes }
+					OR = {
+						has_coasts = yes
+						any_neighbour_country = { this = root }
+					}
+				}
+				every_owned_province = { set_owned_by = root }
 			}
 		}
-		every_owned_province = { set_owned_by = root }
 	}
 }

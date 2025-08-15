@@ -83,9 +83,19 @@ z_airm_character_is_weddable_sender_trigger = {
 		}
 		NOT = { has_variable = z_airm_player_refused_this_bride }
 	}
-	trigger_else = {
-		has_variable = z_airm_player_refused_this_bride
-	}
+	#trigger_else_if = { # Commented out because seems unfair. Test later if need to be reinstated (if player gets too few proposals)
+	#	limit = {
+	#		any_country = {
+	#			is_ai = no
+	#			z_airm_country_can_receive_proposals_trigger = yes
+	#			OR = {
+	#				in_diplomatic_range = scope:actor
+	#				culture.culture_group = scope:actor.culture.culture_group
+	#			}
+	#		}
+	#		has_variable = z_airm_player_refused_this_bride
+	#	}
+	#}
 	prisoner_valid_for_country_events_trigger = yes
 	is_mercenary = no
 	OR = {

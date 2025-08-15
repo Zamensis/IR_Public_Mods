@@ -208,7 +208,7 @@ z_airm_send_proposal_effect = {
 					root = { # Receiver cooldown
 						set_variable = {
 							name = z_airm_cooldown
-							days = 90
+							days = 345
 						}
 					}
 					scope:actor = { # Sender cooldown

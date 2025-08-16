@@ -5,14 +5,23 @@ z_limes_nointegrate_effect_25 = {
 	if = {
 		limit = {
 			z_limes_rules_nointegrate = 1
-			z_limes_year <= 100
 			is_ai = yes
-			primary_culture = macedonian
-			capital_scope = {
-				NOR = {
-					is_in_region = greece_region
-					is_in_region = macedonia_region
-					is_in_region = thrace_region
+			OR = {
+				AND = {
+					z_limes_year <= 100
+					primary_culture = macedonian
+					capital_scope = {
+						NOR = {
+							is_in_region = greece_region
+							is_in_region = macedonia_region
+							is_in_region = thrace_region
+						}
+					}
+				}
+				AND = {
+					z_limes_year <= 150
+					tag = ROM
+					has_country_modifier = z_limes_weak_ai
 				}
 			}
 		}
@@ -26,19 +35,32 @@ z_limes_nointegrate_effect_100 = {
 	if = {
 		limit = {
 			z_limes_rules_nointegrate = 1
-			z_limes_year <= 100
 			is_ai = yes
-			primary_culture = macedonian
-			capital_scope = {
-				NOR = {
-					is_in_region = greece_region
-					is_in_region = macedonia_region
-					is_in_region = thrace_region
+			OR = {
+				AND = {
+					z_limes_year <= 100
+					primary_culture = macedonian
+					capital_scope = {
+						NOR = {
+							is_in_region = greece_region
+							is_in_region = macedonia_region
+							is_in_region = thrace_region
+						}
+					}
+					any_country_culture = {
+						is_integrated = yes
+						NOT = { this = root.country_culture }
+					}
 				}
-			}
-			any_country_culture = {
-				is_integrated = yes
-				NOT = { this = root.country_culture }
+				AND = {
+					z_limes_year <= 150
+					tag = ROM
+					has_country_modifier = z_limes_weak_ai
+					any_country_culture = {
+						is_integrated = yes
+						NOT = { this = root.country_culture }
+					}
+				}				
 			}
 		}
 		random_country_culture = {

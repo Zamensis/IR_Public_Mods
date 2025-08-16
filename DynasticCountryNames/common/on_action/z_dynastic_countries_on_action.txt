@@ -53,6 +53,16 @@ z_dynastic_countries_on_action = {
 					# Invictus only:
 					AND = {
 						is_ai = no
+						has_global_variable = is_playing_invictus
+						tag = EGY
+						exists = fam:Lagid
+						exists = current_ruler.family
+						current_ruler.family = fam:Lagid
+						NOT = { has_variable = z_dynastic_countries_flag }
+					}
+					AND = {
+						is_ai = no
+						has_global_variable = is_playing_invictus
 						has_global_variable = has_changed_name_flag # Diadochi name game rule flag
 						tag = MAC
 						exists = fam:Antipatrid

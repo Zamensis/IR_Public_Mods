@@ -262,8 +262,8 @@ z_limes_rename_mm_effect = {
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = area WHICH = tarentum_area } }
 		if = { limit = { always = yes }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = area WHICH = transoxus_area } }
-		if = { limit = { always = yes }
-			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = area WHICH = central_omana_area } }
+		#if = { limit = { always = yes } # Invictus only
+		#	z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = area WHICH = central_omana_area } }
 		if = { limit = { always = yes }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = area WHICH = omana_area } }
 		if = { limit = { always = yes }

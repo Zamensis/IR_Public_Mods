@@ -51,6 +51,7 @@ z_has_limes_always = {
 		tag = PRN # Parthia
 		tag = ZNT # Parthia
 		country_culture_group = scythia # Nomads
+		tag = TRE # Thrace (bordergores easily)
 	}
 }
 

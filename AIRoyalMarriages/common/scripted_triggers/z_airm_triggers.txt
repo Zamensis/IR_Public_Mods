@@ -6,10 +6,6 @@ z_airm_country_can_receive_proposals_trigger = {
 	is_monarchy = yes
 	has_land = yes
 	NOR = {
-		trigger_if = {
-			limit = { exists = scope:actor }
-			this = scope:actor
-		}
 		tag = REB
 		tag = BAR
 		tag = PIR
@@ -33,26 +29,28 @@ z_airm_country_can_send_proposals_trigger = {
 		tag = PIR
 		has_variable = z_airm_cooldown
 	}
-	trigger_if = {
-		limit = {
-			root = { is_ai = no }
-		}
-		NOT = { has_variable = z_airm_player_refused_this_country }
-	}
 }
 
 #-----------------------------------------------------------------------------------------
 # Is this country eligible to receive RM proposals from sender country?
 #-----------------------------------------------------------------------------------------
 z_airm_country_can_receive_proposals_from_sender_trigger = {
+	trigger_if = {
+		limit = { is_ai = no }
+		scope:actor = {
+			NOT = { has_variable = z_airm_player_refused_this_country }
+		}
+	}
 	NOR = {
 		war_with = scope:actor
 		has_truce_with = scope:actor
 		scope:actor = { has_truce_with = root }
 	}
+	exists = root.culture.culture_group
+	exists = scope:actor.culture.culture_group
 	OR = {
-		in_diplomatic_range = scope:actor
 		root.culture.culture_group = scope:actor.culture.culture_group
+		in_diplomatic_range = scope:actor
 	}
 	trigger_if = {
 		limit = { scope:actor.num_of_cities > root.num_of_cities }
@@ -83,19 +81,6 @@ z_airm_character_is_weddable_sender_trigger = {
 		}
 		NOT = { has_variable = z_airm_player_refused_this_bride }
 	}
-	#trigger_else_if = { # Commented out because seems unfair. Test later if need to be reinstated (if player gets too few proposals)
-	#	limit = {
-	#		any_country = {
-	#			is_ai = no
-	#			z_airm_country_can_receive_proposals_trigger = yes
-	#			OR = {
-	#				in_diplomatic_range = scope:actor
-	#				culture.culture_group = scope:actor.culture.culture_group
-	#			}
-	#		}
-	#		has_variable = z_airm_player_refused_this_bride
-	#	}
-	#}
 	prisoner_valid_for_country_events_trigger = yes
 	is_mercenary = no
 	OR = {

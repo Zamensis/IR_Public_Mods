@@ -36,6 +36,13 @@ z_airm.1 = {
 			}
 			save_scope_as = alt_target
 		}
+		# Specificic 'this receiver for this sender' cooldown
+		scope:recipient.employer = { # recipient.employer = actor
+			set_variable = {
+				name = z_airm_player_refused_this_country
+				days = 1825 # 5 years
+			}
+		}
 	}
 	
 	option = { # Accept
@@ -68,7 +75,7 @@ z_airm.1 = {
 				days = 2000 # Vanilla says 1500 but then the betrothal can time out before the day has come
 			}
 		}
-		scope:recipient.employer = {
+		scope:recipient.employer = { # recipient.employer = actor
 			add_opinion = {
 				modifier = opinion_royal_marriage_ci # Vanilla opinion
 				target = scope:receiver_country
@@ -109,7 +116,7 @@ z_airm.1 = {
 				days = 2000 # Vanilla says 1500 but then the betrothal can time out before the day has come
 			}
 		}
-		scope:recipient.employer = {
+		scope:recipient.employer = { # recipient.employer = actor
 			add_opinion = {
 				modifier = opinion_royal_marriage_ci # Vanilla opinion
 				target = scope:receiver_country
@@ -157,7 +164,8 @@ z_airm.1 = {
 				target = root
 			}
 		}
-		scope:recipient.employer = {
+		# Increase specific 'this receiver for this sender' cooldown
+		scope:recipient.employer = { # recipient.employer = actor
 			set_variable = {
 				name = z_airm_player_refused_this_country
 				days = 27375 # 75 years

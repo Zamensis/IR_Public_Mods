@@ -3,140 +3,143 @@
 #-----------------------------------------------------------------------------------------
 z_airm_send_proposal_effect = {
 	#-----------------------------------------------------------------------------------------
-	# 1. Select a random country to be the sender of a RM proposal (i.e. save actor scope)
+	# 1. Select a random character to be the target of a RM proposal (i.e. save target scope)
 	#-----------------------------------------------------------------------------------------
-	random_country = {
-		limit = {
-			z_airm_country_can_send_proposals_trigger = yes # Is this country eligible to send RM proposals?
-			save_temporary_scope_as = actor
-			root = { z_airm_country_can_receive_proposals_from_sender_trigger = yes } # Is this country eligible to receive RM proposals from sender country?
-			any_character = { z_airm_character_is_weddable_sender_trigger = yes } # Is this character from sender country eligible for a RM?
-			exists = root.culture.culture_group
-		}
+	random_character = {
+		limit = { z_airm_character_is_weddable_receiver_trigger = yes }
 		weight = {
 			modifier = {
-				factor = 2
-				culture = root.culture
-			}
-			modifier = {
-				factor = 1.5
-				culture.culture_group = root.culture.culture_group
-			}
-			modifier = {
-				factor = 1.5
-				any_neighbour_country = { this = root }
-			}
-			modifier = {
-				factor = 1.1
-				current_ruler = { has_bloodline_trigger = yes }
-			}
-			modifier = {
-				factor = 2.5
-				any_character = {
-					z_airm_character_is_weddable_sender_trigger = yes
-					has_bloodline_trigger = yes
+				factor = 1.25
+				OR = {
+					AND = {
+						exists = this.father
+						this.father = { is_alive = yes }
+						this.father = root.current_ruler
+					}
+					AND = {
+						exists = this.mother
+						this.mother = { is_alive = yes }
+						this.mother = root.current_ruler
+					}
 				}
+			}
+			modifier = {
+				factor = 10
+				employer = {
+					is_ai = no
+				}
+			}
+			modifier = {
+				factor = 10
+				is_ruler = yes
+			}
+			modifier = {
+				factor = 3
+				is_primary_heir = yes
 			}
 			modifier = {
 				factor = 1.25
-				alliance_with = root
+				age <= 16
 			}
 			modifier = {
-				factor = 1.1
-				opinion = {
-					target = root
-					value >= 10
-				}
+				factor = 1.25
+				age <= 20
 			}
 			modifier = {
-				factor = 1.1
-				opinion = {
-					target = root
-					value >= 20
-				}
-			}
-			modifier = {
-				factor = 1.1
-				opinion = {
-					target = root
-					value >= 30
-				}
-			}
-			modifier = {
-				factor = 1.1
-				opinion = {
-					target = root
-					value >= 40
-				}
-			}
-			modifier = {
-				factor = 1.2
-				opinion = {
-					target = root
-					value >= 50
-				}
-			}
-			modifier = {
-				factor = 0.25
-				is_subject = yes
-			}
-			modifier = {
-				factor = 0.5
-				is_subject = yes
-				NOT = { is_subject_of = root }
+				factor = 1.25
+				age <= 35
 			}
 		}
-		save_scope_as = actor
-		if = {
-			limit = { exists = scope:actor }
-			#-----------------------------------------------------------------------------------------
-			# 2. Select a random character to be the receiver of a RM proposal (i.e. save target scope)
-			#-----------------------------------------------------------------------------------------
-			root = {
-				random_character = {
-					limit = { z_airm_character_is_weddable_receiver_trigger = yes }
-					weight = {
-						modifier = {
-							factor = 1.25
-							OR = {
-								AND = {
-									exists = this.father
-									this.father = { is_alive = yes }
-									this.father = root.current_ruler
-								}
-								AND = {
-									exists = this.mother
-									this.mother = { is_alive = yes }
-									this.mother = root.current_ruler
-								}
-							}
-						}
-						modifier = {
-							factor = 10
-							is_ruler = yes
-						}
-						modifier = {
-							factor = 3
-							is_primary_heir = yes
-						}
-						modifier = {
-							factor = 1.25
-							age <= 16
-						}
-						modifier = {
-							factor = 1.25
-							age <= 20
-						}
-						modifier = {
-							factor = 1.25
-							age <= 35
-						}
+		save_scope_as = target
+	}
+	if = {
+		limit = { exists = scope:target }
+		#-----------------------------------------------------------------------------------------
+		# 2. Select a random country to be the sender of a RM proposal (i.e. save actor scope)
+		#-----------------------------------------------------------------------------------------
+		random_country = {
+			limit = {
+				z_airm_country_can_send_proposals_trigger = yes # Is this country eligible to send RM proposals?
+				save_temporary_scope_as = actor
+				root = { z_airm_country_can_receive_proposals_from_sender_trigger = yes } # Is this country eligible to receive RM proposals from sender country?
+				any_character = { z_airm_character_is_weddable_sender_trigger = yes } # Is this character from sender country eligible for a RM?
+			}
+			weight = {
+				modifier = {
+					factor = 2
+					culture = root.culture
+				}
+				modifier = {
+					factor = 1.5
+					culture.culture_group = root.culture.culture_group
+				}
+				modifier = {
+					factor = 1.5
+					any_neighbour_country = { this = root }
+				}
+				modifier = {
+					factor = 1.1
+					current_ruler = { has_bloodline_trigger = yes }
+				}
+				modifier = {
+					factor = 2.5
+					any_character = {
+						z_airm_character_is_weddable_sender_trigger = yes
+						has_bloodline_trigger = yes
 					}
-					save_scope_as = target
+				}
+				modifier = {
+					factor = 1.25
+					alliance_with = root
+				}
+				modifier = {
+					factor = 1.1
+					opinion = {
+						target = root
+						value >= 10
+					}
+				}
+				modifier = {
+					factor = 1.1
+					opinion = {
+						target = root
+						value >= 20
+					}
+				}
+				modifier = {
+					factor = 1.1
+					opinion = {
+						target = root
+						value >= 30
+					}
+				}
+				modifier = {
+					factor = 1.1
+					opinion = {
+						target = root
+						value >= 40
+					}
+				}
+				modifier = {
+					factor = 1.2
+					opinion = {
+						target = root
+						value >= 50
+					}
+				}
+				modifier = {
+					factor = 0.25
+					is_subject = yes
+				}
+				modifier = {
+					factor = 0.5
+					is_subject = yes
+					NOT = { is_subject_of = root }
 				}
 			}
+			save_scope_as = actor
 			if = {
-				limit = { exists = scope:target }
+				limit = { exists = scope:actor }
 				#-----------------------------------------------------------------------------------------
 				# 3. Select a random character to be the sender of a RM proposal (i.e. save recipient scope)
 				#-----------------------------------------------------------------------------------------
@@ -198,23 +201,29 @@ z_airm_send_proposal_effect = {
 				if = {
 					limit = {
 						exists = root # Receiver country
-						exists = scope:actor # Sender country
 						exists = scope:target # Receiver character
+						exists = scope:actor # Sender country
 						exists = scope:recipient # Sender character
+						root = {
+							NOR = {
+								has_variable = z_airm_cooldown
+								has_variable = marriage_proposal_ongoing
+							}
+						}
 					}
 					#-----------------------------------------------------------------------------------------
 					# 4.1 Set cooldown
 					#-----------------------------------------------------------------------------------------
-					root = { # Receiver cooldown
+					root = { # Cooldown before receiving more proposals
 						set_variable = {
 							name = z_airm_cooldown
-							days = 345
+							days = 180
 						}
 					}
-					scope:actor = { # Sender cooldown
+					scope:actor = { # Cooldown before sending more proposals
 						set_variable = {
 							name = z_airm_cooldown
-							days = 3650
+							days = 720
 						}
 					}
 					#-----------------------------------------------------------------------------------------
@@ -271,8 +280,22 @@ z_airm_send_proposal_effect = {
 					# 4.4 Emulate effect from character interaction: else, send proposal for delayed RM
 					#-----------------------------------------------------------------------------------------
 					else = {
-						root = {
-							trigger_event = { id = z_airm.1 } # AIRM Betrothal event
+						hidden_effect = {
+							root = {
+								set_variable = {
+									name = marriage_proposal_ongoing
+									days = 60
+								}
+							}
+							scope:actor = {
+								set_variable = {
+									name = marriage_proposal_ongoing
+									days = 60
+								}
+							}
+							root = {
+								trigger_event = { id = z_airm.1 } # AIRM Betrothal event
+							}
 						}
 					}
 				}

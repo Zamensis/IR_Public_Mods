@@ -146,11 +146,19 @@ z_limes_main_effect_default_b = {
 			save_scope_as = z_limes_mm_capital
 		}
 		if = {
-			limit = { num_of_cities < 200 }
-			z_limes_make_mm_effect = { ZONE = area }
+			limit = {
+				OR = {
+					num_of_cities >= 200
+					AND = {
+						num_of_cities >= 100
+						z_limes_year >= 200
+					}
+				}
+			}
+			z_limes_make_mm_effect = { ZONE = region }
 		}
 		else = {
-			z_limes_make_mm_effect = { ZONE = region }
+			z_limes_make_mm_effect = { ZONE = area }
 		}
 	}
 }

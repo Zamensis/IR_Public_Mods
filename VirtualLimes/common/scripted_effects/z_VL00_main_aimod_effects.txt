@@ -8,7 +8,7 @@ z_limes_aimod_effect = {
 	if = {
 		limit = {
 			z_limes_rules_cw_fewer = 1
-			is_ai = yes
+			z_limes_can_cheat = yes
 			has_variable = z_limes_lucky_factor
 			var:z_limes_lucky_factor > 5
 			NOT = {
@@ -19,9 +19,9 @@ z_limes_aimod_effect = {
 	}
 	else_if = {
 		limit = {
-			NOR = {
+			NAND = {
 				z_limes_rules_cw_fewer = 1
-				is_ai = yes
+				z_limes_can_cheat = yes
 				has_variable = z_limes_lucky_factor
 				var:z_limes_lucky_factor > 5
 			}
@@ -182,8 +182,74 @@ z_limes_aimod_effect = {
 				}
 			}
 			if = {
-				limit = { var:z_limes_lucky_factor < 10 }
+				limit = { var:z_limes_lucky_factor <= 17.5 }
 				add_country_modifier = { name = z_limes_weak_ai }
+				# If weak, chance to be weaken even more
+				if = {
+					limit = {
+						NOT = { has_variable = z_limes_pops_killed }
+					}
+					set_variable = z_limes_pops_killed
+					set_antagonist = no
+					random = {
+						chance = 33
+						every_owned_province = {
+							every_pops_in_province = {
+								random = {
+									chance = 50
+									kill_pop = yes
+								}
+							}
+						}
+						# Chance to weaken all of Italy if no player around (so that Italy sometimes isn't the dominant power)
+						random = {
+							chance = 50
+							if = {
+								limit = {
+									NOT = {
+										any_country = {
+											is_ai = no
+											capital_scope = {
+												OR = {
+													is_in_region = cisalpine_gaul_region
+													is_in_region = central_italy_region
+													is_in_region = magna_graecia_region
+												}
+											}
+										}
+									}
+								}
+								every_country = {
+									limit = {
+										is_ai = yes # Just to make sure
+										NOR = {
+											tag = ROM
+											has_variable = z_limes_pops_killed
+										}
+										capital_scope = {
+											OR = {
+												is_in_region = central_italy_region
+												is_in_region = magna_graecia_region
+											}
+										}
+									}
+									set_variable = z_limes_pops_killed
+									random = {
+										chance = 80
+										every_owned_province = {
+											every_pops_in_province = {
+												random = {
+													chance = 50
+													kill_pop = yes
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
 			}
 			else = {
 				add_country_modifier = { name = z_limes_strong_ai }

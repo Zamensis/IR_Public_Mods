@@ -76,6 +76,7 @@ z_dynastic_countries_on_action = {
 				#-------------------------------------------------
 				NOT = {					
 					AND = {
+						has_global_variable = is_playing_invictus
 						has_global_variable = has_changed_name_flag # Invictus Diadochi name game rule flag
 						tag = TRE
 						exists = fam:Alkimachid
@@ -135,6 +136,7 @@ z_dynastic_countries_on_action = {
 							}
 							has_variable = z_dynastic_countries_flag
 							tag = MAC
+							tag = EGY
 							tag = TRE
 						}
 					}
@@ -151,12 +153,13 @@ z_dynastic_countries_on_action = {
 						}
 						OR = {
 							tag = MAC
+							tag = EGY
 							tag = TRE
 						}
 					}
 					num_of_cities >= 20
 				}
-			}		
+			}
 			#-------------------------------------------------
 			# CHANGE NAME
 			#-------------------------------------------------
@@ -238,6 +241,7 @@ z_dynastic_countries_on_action = {
 		if = {
 			limit = { always = no }
 			set_global_variable = has_changed_name_flag
+			set_global_variable = is_playing_invictus
 		}
 	}
 }

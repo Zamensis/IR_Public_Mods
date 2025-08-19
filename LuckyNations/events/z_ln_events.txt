@@ -81,7 +81,7 @@ lucky_nations.1 = {																				#########   LUCKY NATIONS SETTINGS
 			}
 		}
 		custom_tooltip = lucky_nations.1.bt
-		ai_chance = { factor = 0 }
+		ai_chance = { factor = 10 }
 	}
 	
 	option = {
@@ -97,7 +97,7 @@ lucky_nations.1 = {																				#########   LUCKY NATIONS SETTINGS
 			}			
 		}
 		custom_tooltip = lucky_nations.1.ct
-		ai_chance = { factor = 0 }
+		ai_chance = { factor = 10 }
 	}
 	
 	option = {
@@ -113,7 +113,7 @@ lucky_nations.1 = {																				#########   LUCKY NATIONS SETTINGS
 			}
 		}
 		custom_tooltip = lucky_nations.1.dt
-		ai_chance = { factor = 100 }
+		ai_chance = { factor = 10 }
 	}
 	
 	option = {
@@ -129,7 +129,7 @@ lucky_nations.1 = {																				#########   LUCKY NATIONS SETTINGS
 			}
 		}
 		custom_tooltip = lucky_nations.1.ft
-		ai_chance = { factor = 0 }
+		ai_chance = { factor = 10 }
 	}
 	
 	option = {

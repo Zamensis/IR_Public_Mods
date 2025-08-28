@@ -1,0 +1,38 @@
+﻿#-----------------------------------------------------------------------------------------
+# Vanilla on_actions
+#-----------------------------------------------------------------------------------------
+on_game_initialized = {
+	on_actions = {
+		z_rgt_on_game_initialized
+	}
+}
+
+yearly_country_pulse = {
+	on_actions = {
+		z_rgt_on_game_initialized # In case player enables this mod mid-game
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# Random Government Types on_actions
+#-----------------------------------------------------------------------------------------
+z_rgt_on_game_initialized = {
+	effect = {
+		if = {
+			limit = {
+				NOT = { has_global_variable = z_rgt_set }
+				# If player exists, let player choose the settings, otherwise leave it to Rome
+				trigger_if = {
+					limit = {
+						any_country = { is_ai = no }
+					}
+					is_ai = no
+				}
+				trigger_else = {
+					owns = p:1
+				}
+			}
+			trigger_event = { id = z_rgt.1 } # Settings window
+		}
+	}
+}

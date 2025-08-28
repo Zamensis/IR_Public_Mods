@@ -1,0 +1,36 @@
+﻿#-----------------------------------------------------------------------------------------
+# Set random government types
+#-----------------------------------------------------------------------------------------
+z_rgt_set_monarchy_effect = {
+	random_list = {
+		60 = { change_government = despotic_monarchy }
+		10 = { change_government = aristocratic_monarchy }
+		10 = { change_government = stratocratic_monarchy }
+		10 = { change_government = theocratic_monarchy }
+		10 = { change_government = plutocratic_monarchy }
+	}
+}
+
+z_rgt_set_republic_effect = {
+	random_list = {
+		10 = { change_government = aristocratic_republic }
+		10 = { change_government = theocratic_republic }
+		10 = { change_government = oligarchic_republic }
+		10 = { change_government = democratic_republic }
+		10 = { change_government = plutocratic_republic }
+	}
+}
+
+z_rgt_set_tribal_effect = {
+	if = {
+		limit = { num_of_cities < 30 }
+		change_government = tribal_chiefdom
+	}
+	else_if = {
+		limit = { num_of_cities < 50 }
+		change_government = tribal_kingdom
+	}
+	else = {
+		change_government = tribal_federation
+	}
+}

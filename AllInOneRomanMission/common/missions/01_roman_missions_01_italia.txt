@@ -89,8 +89,8 @@
 			days = 3650 # Half cooldown for this one
 		}
     }
-
-    on_completion = {
+	
+	on_completion = {
     	complete_mission_effect = yes
     }
 	
@@ -778,6 +778,14 @@
 						add_claim = root
 					}
 				}
+			}
+			set_variable = finished_roman_1_italia
+			if = {
+				limit = {
+					NOT = { religion = roman_pantheon }
+					NOT = { has_global_variable = roman_conversion_has_happened }
+				}
+				trigger_event = hellenic_flavor.1
 			}
 		}
 

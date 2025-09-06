@@ -5,3 +5,18 @@
  roman_1_italia_DESCRIPTION:0 "Depuis la fondation de Rome par Romulus, il y a plusieurs siècles de cela, notre fière cité a combattu ses voisins italiques, cherchant à contrôler les côtes et les villes du Latium et de Campanie. Nos récentes victoires sur les Étrusques et les Samnites ont prouvé notre supériorité, et il est évident qu'il appartient à Rome d'unir les peuples derrière elle et de les mener vers leur glorieux destin. Par la suite, les îles qui s'étendent au large de la péninsule italienne constituent un objectif naturel pour étendre l'influence de Rome et priver les colons puniques et grecs des richesses de ces terres sauvages. Les tribus italiques et gauloises du nord tiennent la plaine fertile du Padus et nous empêchent d'accéder aux terres du nord. Nous devrons balayer ces misérables tribus et nous emparer des riches terres de la Gaule cisalpine."
  roman_1_italia_CRITERIA_DESCRIPTION:0 "Conquérir ou soumettre les nations de Méditerranée et atteindre les frontières naturelles de l'Empire romain"
  roman_1_italia_REWARD_DESCRIPTION:0 "Pourtour méditerranéen et frontières naturelles de l'Empire romain"
+ # Conversion event
+ hellenic_flavor.1.t:0 "Influence grecque"
+ hellenic_flavor.1.desc:0 "Mon [ROOT.GetCountry.GetRulerTitle], le nombre de fidèles de la foi #E hellénique#! augmente chaque jour, car nombre de nos compatriotes abandonnent nos traditions religieuses #E italiques#! pour suivre les voies de dieux étrangers. Il semble que les nombreux Grecs vivant dans nos frontières aient une influence disproportionnée sur nos modes de culte.\n\nDevons-nous faire de ce mouvement vers l’hellénisme un acte officiel de l’État ? Les arguments en faveur du syncrétisme sont nombreux et convaincants, [ROOT.GetCountry.GetRuler.GetName] — qu’en dites-vous ? Les différences entre nos pratiques religieuses sont superficielles, au mieux..."
+ hellenic_flavor_1.a:0 "Le temps est venu d’adopter les voies helléniques."
+ hellenic_flavor_1.at:0 "#E #G (Historique)#!#"
+ hellenic_flavor_1.b:0 "Jamais nous n’abandonnerons notre foi traditionnelle !"
+ hellenic_flavor_1.bt:0 "#E #R (A-historique)#!#"
+ roman_religion_conversion_tooltip:0 "Chaque personnage #G Loyal#! de religion #R italique#! se convertira à la foi #Y hellénique#!."
+ roman_religion_provinces_conversion_tooltip:0 "Un grand nombre de populations #R italiques#! se convertiront à la foi #Y hellénique#!.\nDavantage de conversions auront lieu dans les provinces limitrophes de terres #Y helléniques#!."
+ roman_conversion_modifier:0 "Conversion récente"
+ roman_greek_kingdom_unlocked:0 "Nous débloquerons les traditions militaires du #Y Royaume grec#!."
+ # Conversion decision
+ convert_from_italic_to_hellenic:0 "Embrasser la religion hellénique"
+ convert_from_italic_to_hellenic_desc:0 "Nous avons décidé qu'il est dans notre meilleur intérêt de nous convertir en masse à la foi hellénique."
+ italic_to_hellenic_coversion_tt:0 "Nous avons #Y 2#! divinités de la foi [GetReligion('roman_pantheon').GetName|Y] dans notre panthéon."

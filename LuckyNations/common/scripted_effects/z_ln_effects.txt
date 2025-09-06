@@ -9,7 +9,18 @@ z_save_historical_lucky_nations = {
 	c:EPI = { save_scope_as = z_ln_hist_6 }
 	c:MAC = { save_scope_as = z_ln_hist_7 }
 	c:MSY = { save_scope_as = z_ln_hist_8 }
-	c:KIO = { save_scope_as = z_ln_hist_9 }
+	if = {
+		limit = {
+			OR = {
+				has_global_variable = is_playing_invictus
+				exists = c:MIT
+			}
+		}
+		c:MIT = { save_scope_as = z_ln_hist_9 }
+	}
+	else = {
+		c:KIO = { save_scope_as = z_ln_hist_9 }
+	}
 	c:SEL = { save_scope_as = z_ln_hist_10 }
 }
 

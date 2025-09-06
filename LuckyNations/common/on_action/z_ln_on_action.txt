@@ -2,6 +2,13 @@
 	events = {
 		lucky_nations.1
 	}
+	effect = {
+		# Remove error from log
+		if = {
+			limit = { always = no }
+			set_global_variable = is_playing_invictus
+		}
+	}
 }
 
 monthly_country_pulse = {

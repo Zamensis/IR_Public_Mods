@@ -1,27 +1,30 @@
 ﻿#-----------------------------------------------------------------------------------------
 # Vanilla on_actions
 #-----------------------------------------------------------------------------------------
-on_game_initialized = {
+on_game_initialized = { # Choose a setting
 	on_actions = {
-		z_rgt_on_game_initialized
+		z_rgt_event
 	}
 }
 
-yearly_country_pulse = {
+yearly_country_pulse = { # Effect only applies on Jan 1st because randomization always gives the same result if fired right at the start of the game
 	on_actions = {
-		z_rgt_on_game_initialized # In case player enables this mod mid-game
+		z_rgt_set
 	}
 }
 
 #-----------------------------------------------------------------------------------------
 # Random Government Types on_actions
 #-----------------------------------------------------------------------------------------
-z_rgt_on_game_initialized = {
+z_rgt_event = { # Choose a setting
 	effect = {
 		if = {
 			limit = {
-				NOT = { has_global_variable = z_rgt_set }
-				# If player exists, let player choose the settings, otherwise leave it to Rome
+				NOR = { # If multiplayer, only one player gets to choose
+					has_global_variable = z_rgt_set_all
+					has_global_variable = z_rgt_set_ai
+					has_global_variable = z_rgt_set_none
+				}
 				trigger_if = {
 					limit = {
 						any_country = { is_ai = no }
@@ -32,7 +35,34 @@ z_rgt_on_game_initialized = {
 					owns = p:1
 				}
 			}
-			trigger_event = { id = z_rgt.1 } # Settings window
+			trigger_event = { id = z_rgt.1 }
+		}
+	}
+}
+
+z_rgt_set = { # Effect only applies on Jan 1st because randomization always gives the same result if fired right at the start of the game
+	effect = {
+		if = {
+			limit = {
+				NOR = {
+					has_global_variable = z_rgt_set_done
+					has_global_variable = z_rgt_set_none
+				}
+				OR = {
+					has_global_variable = z_rgt_set_all
+					has_global_variable = z_rgt_set_ai
+				}
+			}
+			set_global_variable = z_rgt_set_done
+			z_rgt_set_effect = yes
+			if = {
+				limit = { has_global_variable = z_rgt_set_all }
+				remove_global_variable = z_rgt_set_all
+			}
+			else_if = {
+				limit = { has_global_variable = z_rgt_set_ai }
+				remove_global_variable = z_rgt_set_ai
+			}
 		}
 	}
 }

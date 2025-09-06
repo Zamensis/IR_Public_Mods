@@ -1,6 +1,6 @@
 version="1.0"
 tags={
-	"Gameplay"
+	"Silly"
 	"Ironman Compatible"
 }
 name="Random Government Types"

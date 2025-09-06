@@ -1,6 +1,30 @@
 ﻿#-----------------------------------------------------------------------------------------
 # Set random government types
 #-----------------------------------------------------------------------------------------
+z_rgt_set_effect = {
+	every_country = {
+		limit = {
+			trigger_if = {
+				limit = {
+					has_global_variable = z_rgt_set_ai
+				}
+				is_ai = yes
+			}
+			has_land = yes
+			NOR = {
+				tag = REB
+				tag = BAR
+				tag = PIR
+			}
+		}
+		random_list = {
+			10 = { z_rgt_set_monarchy_effect = yes }
+			10 = { z_rgt_set_republic_effect = yes }
+			10 = { z_rgt_set_tribal_effect = yes }
+		}
+	}
+}
+
 z_rgt_set_monarchy_effect = {
 	random_list = {
 		60 = { change_government = despotic_monarchy }

@@ -1,7 +1,7 @@
 ﻿namespace = z_rgt
 
 #-----------------------------------------------------------------------------------------
-# Random Government Types settings
+# Random Government Types info window
 #-----------------------------------------------------------------------------------------
 z_rgt.1 = {
 	type = country_event
@@ -11,278 +11,29 @@ z_rgt.1 = {
 	picture = council_country	
 	left_portrait = current_ruler
 	
-	immediate = {
-		set_global_variable = z_rgt_set
-	}
+	trigger = { is_ai = no }
 	
 	# Default (Vanilla) settings = Do nothing
 	option = {
 		name = "z_rgt.1.a"
 		custom_tooltip = "z_rgt.1.at"
 		ai_chance = { factor = 0 }
+		set_global_variable = z_rgt_set_none
 	}
 	
-	# All random - AI only
+	# All random, including player
 	option = {
 		name = "z_rgt.1.b"
 		custom_tooltip = "z_rgt.1.bt"
-		ai_chance = { factor = 0 }
-		# Example in tooltip
-		show_as_tooltip = {
-			random_country = {
-				limit = {
-					is_ai = yes
-					has_land = yes
-					NOR = {
-						tag = REB
-						tag = BAR
-						tag = PIR
-					}
-				}
-				random_list = {
-					10 = { z_rgt_set_monarchy_effect = yes }
-					10 = { z_rgt_set_republic_effect = yes }
-					10 = { z_rgt_set_tribal_effect = yes }
-				}
-			}
-		}
-		# Actual effect
-		hidden_effect = {
-			every_country = {
-				limit = {
-					is_ai = yes
-					has_land = yes
-					NOR = {
-						tag = REB
-						tag = BAR
-						tag = PIR
-					}
-				}
-				random_list = {
-					10 = { z_rgt_set_monarchy_effect = yes }
-					10 = { z_rgt_set_republic_effect = yes }
-					10 = { z_rgt_set_tribal_effect = yes }
-				}
-			}
-		}
+		ai_chance = { factor = 100 }
+		set_global_variable = z_rgt_set_all
 	}
 	
-	# All random - Player included
+	# All random, excluding player
 	option = {
 		name = "z_rgt.1.c"
 		custom_tooltip = "z_rgt.1.ct"
-		ai_chance = { factor = 100 }
-		# Example in tooltip
-		show_as_tooltip = {
-			random_list = {
-				10 = { z_rgt_set_monarchy_effect = yes }
-				10 = { z_rgt_set_republic_effect = yes }
-				10 = { z_rgt_set_tribal_effect = yes }
-			}
-		}
-		# Actual effect
-		hidden_effect = {
-			every_country = {
-				limit = {
-					has_land = yes
-					NOR = {
-						tag = REB
-						tag = BAR
-						tag = PIR
-					}
-				}
-				random_list = {
-					10 = { z_rgt_set_monarchy_effect = yes }
-					10 = { z_rgt_set_republic_effect = yes }
-					10 = { z_rgt_set_tribal_effect = yes }
-				}
-			}
-		}
-	}
-	
-	# All monarchies - AI only
-	option = {
-		name = "z_rgt.1.d"
-		custom_tooltip = "z_rgt.1.dt"
 		ai_chance = { factor = 0 }
-		# Example in tooltip
-		show_as_tooltip = {
-			random_country = {
-				limit = {
-					is_ai = yes
-					has_land = yes
-					NOR = {
-						tag = REB
-						tag = BAR
-						tag = PIR
-					}
-				}
-				z_rgt_set_monarchy_effect = yes
-			}
-		}
-		# Actual effect
-		hidden_effect = {
-			every_country = {
-				limit = {
-					is_ai = yes
-					has_land = yes
-					NOR = {
-						tag = REB
-						tag = BAR
-						tag = PIR
-					}
-				}
-				z_rgt_set_monarchy_effect = yes
-			}
-		}
-	}
-	
-	# All monarchies - Player included
-	option = {
-		name = "z_rgt.1.e"
-		custom_tooltip = "z_rgt.1.et"
-		ai_chance = { factor = 0 }
-		# Example in tooltip
-		show_as_tooltip = {
-			z_rgt_set_monarchy_effect = yes
-		}
-		# Actual effect
-		hidden_effect = {
-			every_country = {
-				limit = {
-					has_land = yes
-					NOR = {
-						tag = REB
-						tag = BAR
-						tag = PIR
-					}
-				}
-				z_rgt_set_monarchy_effect = yes
-			}
-		}
-	}
-	
-	# All republics - AI only
-	option = {
-		name = "z_rgt.1.f"
-		custom_tooltip = "z_rgt.1.ft"
-		ai_chance = { factor = 0 }
-		# Example in tooltip
-		show_as_tooltip = {
-			random_country = {
-				limit = {
-					is_ai = yes
-					has_land = yes
-					NOR = {
-						tag = REB
-						tag = BAR
-						tag = PIR
-					}
-				}
-				z_rgt_set_republic_effect = yes
-			}
-		}
-		# Actual effect
-		hidden_effect = {
-			every_country = {
-				limit = {
-					is_ai = yes
-					has_land = yes
-					NOR = {
-						tag = REB
-						tag = BAR
-						tag = PIR
-					}
-				}
-				z_rgt_set_republic_effect = yes
-			}
-		}
-	}
-	
-	# All republics - Player included
-	option = {
-		name = "z_rgt.1.g"
-		custom_tooltip = "z_rgt.1.gt"
-		ai_chance = { factor = 0 }
-		# Example in tooltip
-		show_as_tooltip = {
-			z_rgt_set_republic_effect = yes
-		}
-		# Actual effect
-		hidden_effect = {
-			every_country = {
-				limit = {
-					has_land = yes
-					NOR = {
-						tag = REB
-						tag = BAR
-						tag = PIR
-					}
-				}
-				z_rgt_set_republic_effect = yes
-			}
-		}
-	}
-	
-	# All tribals - AI only
-	option = {
-		name = "z_rgt.1.h"
-		custom_tooltip = "z_rgt.1.ht"
-		ai_chance = { factor = 0 }
-		# Example in tooltip
-		show_as_tooltip = {
-			random_country = {
-				limit = {
-					is_ai = yes
-					has_land = yes
-					NOR = {
-						tag = REB
-						tag = BAR
-						tag = PIR
-					}
-				}
-				z_rgt_set_tribal_effect = yes
-			}
-		}
-		# Actual effect
-		hidden_effect = {
-			every_country = {
-				limit = {
-					is_ai = yes
-					has_land = yes
-					NOR = {
-						tag = REB
-						tag = BAR
-						tag = PIR
-					}
-				}
-				z_rgt_set_tribal_effect = yes
-			}
-		}
-	}
-	
-	# All tribals - Player included
-	option = {
-		name = "z_rgt.1.i"
-		custom_tooltip = "z_rgt.1.it"
-		ai_chance = { factor = 0 }
-		# Example in tooltip
-		show_as_tooltip = {
-			z_rgt_set_tribal_effect = yes
-		}
-		# Actual effect
-		hidden_effect = {
-			every_country = {
-				limit = {
-					has_land = yes
-					NOR = {
-						tag = REB
-						tag = BAR
-						tag = PIR
-					}
-				}
-				z_rgt_set_tribal_effect = yes
-			}
-		}
+		set_global_variable = z_rgt_set_ai
 	}
 }

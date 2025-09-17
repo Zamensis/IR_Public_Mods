@@ -275,6 +275,7 @@ z_limes_aimod_effect = {
 		# Give Superpower modifier
 		if = {
 			limit = {
+				is_ai = yes
 				z_limes_rules_buff_ROM = 1
 				num_of_cities >= 500
 				var:z_limes_lucky_factor >= 10
@@ -290,6 +291,7 @@ z_limes_aimod_effect = {
 		if = {
 			limit = {
 				OR = {
+					is_ai = no
 					NOT = { z_limes_rules_buff_ROM = 1 }
 					num_of_cities < 500
 					var:z_limes_lucky_factor < 10

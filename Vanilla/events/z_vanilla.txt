@@ -1,0 +1,58 @@
+﻿namespace = z_vanilla
+
+#-----------------------------------------------------------------------------------------
+# Add Vanilla tradegood to a random owned province
+#-----------------------------------------------------------------------------------------
+z_vanilla.1 = {
+	type = country_event
+	title = "z_vanilla.1.t"
+	desc = "z_vanilla.1.desc"
+	picture = celtic_religious_festival
+	
+	trigger = {
+		# Triggered on_game_initialized
+	}
+	
+	immediate = {
+		random_owned_province = { save_scope_as = z_vanilla_province_1 }
+		if = {
+			limit = { num_of_cities > 1 }
+			random_owned_province = {
+				limit = {
+					NOT = { this = scope:z_vanilla_province_1 }
+				}
+				save_scope_as = z_vanilla_province_2
+			}
+		}
+	}
+	
+	option = {
+		name = "z_vanilla.1.a"
+		custom_tooltip = "z_vanilla.1.at1"
+		scope:z_vanilla_province_1 = {
+			set_trade_goods = z_vanilla_tradegood
+		}
+		custom_tooltip = "z_vanilla.1.at2"
+		ai_chance = { factor = 100 }
+	}
+	
+	option = {
+		name = "z_vanilla.1.b"
+		custom_tooltip = "z_vanilla.1.at1"
+		trigger = {
+			exists = scope:z_vanilla_province_2
+		}
+		scope:z_vanilla_province_2 = {
+			set_trade_goods = z_vanilla_tradegood
+		}
+		custom_tooltip = "z_vanilla.1.bt2"
+		ai_chance = { factor = 0 }
+	}
+	
+	option = {
+		name = "z_vanilla.1.c"
+		custom_tooltip = "z_vanilla.1.ct1"
+		custom_tooltip = "z_vanilla.1.ct2"
+		ai_chance = { factor = 0 }
+	}
+}

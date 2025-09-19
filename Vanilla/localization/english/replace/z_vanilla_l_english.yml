@@ -1,0 +1,14 @@
+﻿l_english:
+ z_vanilla_tradegood:0 "Vanilla"
+ z_vanilla_tradegoodDESC:0 "Sweet, fragrant, and completely useless in warfare."
+ # ---------------
+ z_vanilla.1.t:0 "Vanilla"
+ z_vanilla.1.desc:0 "Traders arrive with a new and exotic treasure, #E Vanilla#!, claiming it will turn our provinces into a wonderland of unimaginable wealth. They say it will change everything: a new era of strategy, smarter armies, grand battles, completely rebalanced world economy, ... A #E total conversion#! of everything we know. A real #E game-changer#!. We were pleasantly surprised when it didn't explode in our face.\n\nIn reality, it's just a little bean that smells nice, quietly sitting in our warehouses and doing nothing dramatic at all. It doesn't even crash the economy every time we look at it.\n\nWhat's not to love about it?"
+ z_vanilla.1.a:0 "Begin production in [z_vanilla_province_1.GetName]"
+ z_vanilla.1.b:0 "Begin production in [z_vanilla_province_2.GetName]"
+ z_vanilla.1.at1:0 "Whoa!"
+ z_vanilla.1.at2:0 "This is #G insane#!."
+ z_vanilla.1.bt2:0 "This is #G mind-blowing#!."
+ z_vanilla.1.c:0 "I want my money back."
+ z_vanilla.1.ct1:0 "Boo! This is #R lame#!."
+ z_vanilla.1.ct2:0 "#Y #E Vanilla#!#! won't be produced anywhere in the world."

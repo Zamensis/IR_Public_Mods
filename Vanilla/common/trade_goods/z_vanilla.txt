@@ -1,0 +1,14 @@
+﻿z_vanilla_tradegood = {
+	category = 4
+	
+	gold = 0.4
+	
+	province = {
+		local_freemen_happyness = happiness_small_svalue
+	}
+	country = {
+		global_freemen_output = output_small_svalue
+	}
+	
+	color = { 0.85 0.8 0.8 }
+}

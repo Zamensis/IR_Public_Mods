@@ -9,8 +9,10 @@ z_vanilla.1 = {
 	desc = "z_vanilla.1.desc"
 	picture = celtic_religious_festival
 	
+	fire_only_once = yes
+	
 	trigger = {
-		# Triggered on_game_initialized
+		# Triggered on yearly_country_pulse
 	}
 	
 	immediate = {
@@ -33,6 +35,10 @@ z_vanilla.1 = {
 			set_trade_goods = z_vanilla_tradegood
 		}
 		custom_tooltip = "z_vanilla.1.at2"
+		trigger_event = {
+			id = z_vanilla.2
+			days = 1825
+		}
 		ai_chance = { factor = 100 }
 	}
 	
@@ -46,6 +52,10 @@ z_vanilla.1 = {
 			set_trade_goods = z_vanilla_tradegood
 		}
 		custom_tooltip = "z_vanilla.1.bt2"
+		trigger_event = {
+			id = z_vanilla.2
+			days = 1825
+		}
 		ai_chance = { factor = 0 }
 	}
 	
@@ -54,5 +64,320 @@ z_vanilla.1 = {
 		custom_tooltip = "z_vanilla.1.ct1"
 		custom_tooltip = "z_vanilla.1.ct2"
 		ai_chance = { factor = 0 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# Add Vanilla tradegood to another random owned province (source POV)
+#-----------------------------------------------------------------------------------------
+z_vanilla.2 = {
+	type = country_event
+	title = "z_vanilla.2.t"
+	desc = "z_vanilla.2.desc"
+	picture = celtic_religious_festival
+	
+	trigger = {
+		# Triggered by z_vanilla.1
+		any_country = {
+			any_neighbour_country = {
+				this = root
+			}
+		}
+	}
+	
+	immediate = {
+		save_scope_as = z_vanilla_country_source
+		random_neighbour_country = {
+			save_scope_as = z_vanilla_country_target_1
+			random_owned_province = {
+				save_scope_as = z_vanilla_province_1
+			}
+		}
+		random_neighbour_country = {
+			limit = {
+				NOT = { this = scope:z_vanilla_country_target_1 }
+			}
+			save_scope_as = z_vanilla_country_target_2
+			random_owned_province = {
+				save_scope_as = z_vanilla_province_2
+			}
+		}
+		random_neighbour_country = {
+			limit = {
+				NOT = { this = scope:z_vanilla_country_target_1 }
+				NOT = { this = scope:z_vanilla_country_target_2 }
+			}
+			save_scope_as = z_vanilla_country_target_3
+			random_owned_province = {
+				save_scope_as = z_vanilla_province_3
+			}
+		}
+		random_neighbour_country = {
+			limit = {
+				NOT = { this = scope:z_vanilla_country_target_1 }
+				NOT = { this = scope:z_vanilla_country_target_2 }
+				NOT = { this = scope:z_vanilla_country_target_3 }
+			}
+			save_scope_as = z_vanilla_country_target_4
+			random_owned_province = {
+				save_scope_as = z_vanilla_province_4
+			}
+		}
+	}
+	
+	option = { # Spread the Vanilla experience
+		name = "z_vanilla.2.a"
+		custom_tooltip = "z_vanilla.2.at1"
+		show_as_tooltip = {
+			if = {
+				limit = { exists = scope:z_vanilla_country_target_1 }
+				scope:z_vanilla_country_target_1 = {
+					scope:z_vanilla_province_1 = {
+						set_trade_goods = z_vanilla_tradegood
+					}
+				}
+			}
+			if = {
+				limit = { exists = scope:z_vanilla_country_target_2 }
+				scope:z_vanilla_country_target_2 = {
+					scope:z_vanilla_province_2 = {
+						set_trade_goods = z_vanilla_tradegood
+					}
+				}
+			}
+			if = {
+				limit = { exists = scope:z_vanilla_country_target_3 }
+				scope:z_vanilla_country_target_3 = {
+					scope:z_vanilla_province_3 = {
+						set_trade_goods = z_vanilla_tradegood
+					}
+				}
+			}
+			if = {
+				limit = { exists = scope:z_vanilla_country_target_4 }
+				scope:z_vanilla_country_target_4 = {
+					scope:z_vanilla_province_4 = {
+						set_trade_goods = z_vanilla_tradegood
+					}
+				}
+			}
+		}
+		if = {
+			limit = { exists = scope:z_vanilla_country_target_1 }
+			scope:z_vanilla_country_target_1 = {
+				trigger_event = { id = z_vanilla.3 }
+			}
+		}
+		if = {
+			limit = { exists = scope:z_vanilla_country_target_2 }
+			scope:z_vanilla_country_target_2 = {
+				trigger_event = { id = z_vanilla.3 }
+			}
+		}
+		if = {
+			limit = { exists = scope:z_vanilla_country_target_3 }
+			scope:z_vanilla_country_target_3 = {
+				trigger_event = { id = z_vanilla.3 }
+			}
+		}
+		if = {
+			limit = { exists = scope:z_vanilla_country_target_4 }
+			scope:z_vanilla_country_target_4 = {
+				trigger_event = { id = z_vanilla.3 }
+			}
+		}
+		trigger_event = {
+			id = z_vanilla.4
+			days = 1825
+		}
+		custom_tooltip = "z_vanilla.2.at2"
+		ai_chance = { factor = 100 }
+	}
+	
+	option = { # Don't bother
+		name = "z_vanilla.2.b"
+		custom_tooltip = "z_vanilla.2.bt1"
+		custom_tooltip = "z_vanilla.2.bt2"
+		ai_chance = { factor = 0 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# Add Vanilla tradegood to another random owned province (target POV)
+#-----------------------------------------------------------------------------------------
+z_vanilla.3 = {
+	type = country_event
+	title = "z_vanilla.3.t"
+	desc = "z_vanilla.3.desc"
+	picture = celtic_religious_festival
+	
+	trigger = {
+		# Triggered by z_vanilla.2
+	}
+	
+	immediate = {
+	}
+	
+	option = { # Huh OK
+		name = "z_vanilla.3.a"
+		if = {
+			limit = {
+				owns = scope:z_vanilla_province_1
+			}
+			scope:z_vanilla_province_1 = {
+				set_trade_goods = z_vanilla_tradegood
+			}
+		}
+		else_if = {
+			limit = {
+				owns = scope:z_vanilla_province_2
+			}
+			scope:z_vanilla_province_2 = {
+				set_trade_goods = z_vanilla_tradegood
+			}
+		}
+		else_if = {
+			limit = {
+				owns = scope:z_vanilla_province_3
+			}
+			scope:z_vanilla_province_3 = {
+				set_trade_goods = z_vanilla_tradegood
+			}
+		}
+		else_if = {
+			limit = {
+				owns = scope:z_vanilla_province_4
+			}
+			scope:z_vanilla_province_4 = {
+				set_trade_goods = z_vanilla_tradegood
+			}
+		}
+		ai_chance = { factor = 100 }
+	}
+	
+	option = { # Whatever you're smoking, I want some
+		name = "z_vanilla.3.b"
+		custom_tooltip = "z_vanilla.3.bt1"
+		if = {
+			limit = {
+				owns = scope:z_vanilla_province_1
+			}
+			scope:z_vanilla_province_1 = {
+				set_trade_goods = hemp
+			}
+		}
+		else_if = {
+			limit = {
+				owns = scope:z_vanilla_province_2
+			}
+			scope:z_vanilla_province_2 = {
+				set_trade_goods = hemp
+			}
+		}
+		else_if = {
+			limit = {
+				owns = scope:z_vanilla_province_3
+			}
+			scope:z_vanilla_province_3 = {
+				set_trade_goods = hemp
+			}
+		}
+		else_if = {
+			limit = {
+				owns = scope:z_vanilla_province_4
+			}
+			scope:z_vanilla_province_4 = {
+				set_trade_goods = hemp
+			}
+		}
+		custom_tooltip = "z_vanilla.3.bt2"
+		ai_chance = { factor = 10 }
+	}
+	
+	option = { # Wtf is this
+		name = "z_vanilla.3.c"
+		custom_tooltip = "z_vanilla.3.ct1"
+		ai_chance = { factor = 0 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# A moment of self-reflection (sike, that's a pleonasm)
+#-----------------------------------------------------------------------------------------
+z_vanilla.4 = {
+	type = country_event
+	title = "z_vanilla.4.t"
+	desc = "z_vanilla.4.desc"
+	picture = celtic_religious_festival
+	
+	trigger = {
+		# Triggered by z_vanilla.2
+	
+	option = { # Continue
+		name = "z_vanilla.4.a"
+		custom_tooltip = "z_vanilla.4.at1"
+		trigger_event = {
+			id = z_vanilla.5
+			days = 1825
+		}
+	}
+	
+	option = { # Huh, okay...
+		name = "z_vanilla.4.b"
+		custom_tooltip = "z_vanilla.4.bt1"
+		random_owned_province = {
+			limit = { trade_good = z_vanilla_tradegood }
+			set_trade_goods = hemp
+		}
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# A moment of self-reflection (again)
+#-----------------------------------------------------------------------------------------
+z_vanilla.5 = {
+	type = country_event
+	title = "z_vanilla.5.t"
+	desc = "z_vanilla.5.desc"
+	picture = celtic_religious_festival
+	
+	trigger = {
+		# Triggered by z_vanilla.4
+	
+	option = { # Huh, okay...
+		name = "z_vanilla.5.a"
+		custom_tooltip = "z_vanilla.5.at1"
+	}
+	
+	option = { # Continue
+		name = "z_vanilla.5.b"
+		custom_tooltip = "z_vanilla.5.bt1"
+		trigger_event = {
+			id = z_vanilla.5
+			days = 1825
+		}
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# A moment of self-reflection (again)
+#-----------------------------------------------------------------------------------------
+z_vanilla.6 = {
+	type = country_event
+	title = "z_vanilla.6.t"
+	desc = "z_vanilla.6.desc"
+	picture = celtic_religious_festival
+	
+	trigger = {
+		# Triggered by z_vanilla.5
+	
+	option = { # Huh, okay...
+		name = "z_vanilla.6.a"
+		custom_tooltip = "z_vanilla.6.at1"
+	}
+	
+	option = { # Continue
+		name = "z_vanilla.6.b"
+		custom_tooltip = "z_vanilla.6.bt1"
 	}
 }

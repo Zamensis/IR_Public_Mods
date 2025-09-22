@@ -1,0 +1,11 @@
+﻿l_spanish:
+ z_airm:0 "Compromiso matrimonial real"
+ z_airm.1.t:0 "$z_airm$ : propuesta de [actor.GetName]"
+ z_airm.1.desc:0 "Hemos recibido a los enviados de [actor.GetName], cuyo [actor.GetRulerTitle] [actor.GetRuler.GetName] desea forjar una alianza matrimonial entre las familias reales de nuestros dos países.\n\n[actor.GetRuler.GetSheHe|U] ofrece, por lo tanto, la mano de [recipient.GetPraenomen] a nuestro [target.GetName]. Sin embargo, [target.GetPraenomen] y [recipient.GetPraenomen] deberán esperar hasta alcanzar la mayoría de edad."
+ z_airm.1.a:0 "Estamos de acuerdo."
+ z_airm.1.at:0 "[target.GetPraenomen] y [recipient.GetPraenomen] se casarán cuando ambos sean adultos."
+ z_airm.1.b:0 "#E [alt_target.GetPraenomen]#! tampoco está mal."
+ z_airm.1.bt:0 "[alt_target.GetPraenomen] y [recipient.GetPraenomen] se casarán cuando ambos sean adultos."
+ z_airm.1.c:0 "[recipient.GetPraenomen] ? Eso está fuera de discusión !"
+ z_airm.1.d:0 "Nunca casaremos a nuestros descendientes con los de [actor.GetName]."
+ z_airm.1.dt:0 "[actor.GetName] no nos propondrá más compromisos reales hasta dentro de al menos #Y 75#! años."

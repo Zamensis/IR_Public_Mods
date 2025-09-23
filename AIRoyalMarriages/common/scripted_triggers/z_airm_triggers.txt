@@ -48,10 +48,11 @@ z_airm_country_can_receive_proposals_from_sender_trigger = {
 	}
 	exists = root.culture.culture_group
 	exists = scope:actor.culture.culture_group
-	OR = {
-		root.culture.culture_group = scope:actor.culture.culture_group
-		in_diplomatic_range = scope:actor
-	}
+	in_diplomatic_range = scope:actor # Someone convinced me of it
+	#OR = {
+	#	root.culture.culture_group = scope:actor.culture.culture_group
+	#	in_diplomatic_range = scope:actor
+	#}
 	trigger_if = {
 		limit = { scope:actor.num_of_cities > root.num_of_cities }
 		scope:actor = {

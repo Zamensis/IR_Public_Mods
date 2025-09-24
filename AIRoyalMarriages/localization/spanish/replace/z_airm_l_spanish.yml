@@ -9,3 +9,5 @@
  z_airm.1.c:0 "[recipient.GetPraenomen] ? Eso está fuera de discusión !"
  z_airm.1.d:0 "Nunca casaremos a nuestros descendientes con los de [actor.GetName]."
  z_airm.1.dt:0 "[actor.GetName] no nos propondrá más compromisos reales hasta dentro de al menos #Y 75#! años."
+ z_airm_betrothed_flag:0 "[target.GetPraenomen] is NOT already betrothed"
+ z_opinion_refused_royal_marriage_ci:0 "$opinion_refused_royal_marriage_ci$"

@@ -134,7 +134,7 @@ z_airm.1 = {
 					root = { is_ai = no }
 				}
 				add_opinion = {
-					modifier = opinion_refused_royal_marriage_ci # Vanilla opinion
+					modifier = z_opinion_refused_royal_marriage_ci # Vanilla opinion
 					target = root
 				}
 			}

@@ -490,8 +490,8 @@ z_limes_set_religion_effect = {
 			this.owner = { set_country_religion = burmese_religion }
 		}
 		else_if = {
-			limit = { dominant_province_religion = circassian_religion }					
-			this.owner = { set_country_religion = circassian_religion }
+			limit = { dominant_province_religion = circassian_pantheon }					
+			this.owner = { set_country_religion = circassian_pantheon }
 		}
 		else_if = {
 			limit = { dominant_province_religion = chinese_religions }					

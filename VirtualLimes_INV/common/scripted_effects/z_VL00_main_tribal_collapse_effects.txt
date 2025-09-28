@@ -1,0 +1,67 @@
+﻿# --------------------------------------------------------------------------------
+# Tribal collapse effects - Collapse big tribal empires
+# --------------------------------------------------------------------------------
+z_limes_tribal_collapse_effect = {
+	if = {
+		limit = {
+			z_limes_rules_tribal_collapse = 1
+			is_ai = yes
+			is_tribal = yes
+			num_of_cities >= 120
+			z_limes_year >= 100
+			has_variable = z_limes_lucky_factor
+			var:z_limes_lucky_factor < 80
+		}
+		if = {
+			limit = {
+				current_ruler = {
+					martial <= 5
+				}
+			}
+			random = {
+				chance = 50
+				while = {
+					count = 20
+					limit = {
+						any_owned_province = {
+							NOT = { this.region = root.capital_scope.region }
+						}
+					}
+					ordered_owned_province = {
+						limit = {
+							NOT = { this.region = root.capital_scope.region }
+						}
+						order_by = total_population
+						save_scope_as = z_limes_mm_capital
+						random_list = {
+							50 = {
+								z_limes_make_mm_effect = { ZONE = area }
+							}
+							50 = {
+								z_limes_make_mm_effect = { ZONE = region }
+							}
+						}
+					}
+				}
+				if = {
+					limit = {
+						any_country = {
+							is_subject = yes
+							is_subject_of = root
+							z_limes_is_mm_trigger = yes
+						}
+					}
+					every_subject = {
+						limit = {
+							z_limes_is_mm_trigger = yes
+						}
+						save_scope_as = z_limes_release_this
+						overlord = {
+							release_subject = scope:z_limes_release_this
+						}
+					}
+				}
+			}
+		}
+	}
+}

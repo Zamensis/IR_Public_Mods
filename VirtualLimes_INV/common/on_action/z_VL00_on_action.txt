@@ -36,6 +36,12 @@ yearly_country_pulse = {
 	}
 }
 
+on_reign_ending_successor = {
+	on_actions = {
+		z_VL_on_reign_ending_successor			# Tribal collapse effects - Collapse big tribal empires
+	}
+}
+
 on_culture_integration_25 = {
 	on_actions = {
 		z_VL_nointegrate_25						# No integrate effects - Prevent the Diadochi from integrating their native pops before a certain threshold
@@ -77,6 +83,15 @@ z_VL_routine = {
 			# Hide harmless errors in the log
 			z_limes_fix_effect = yes
 		}
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# Tribal collapse # Will stack with Invictus and BetterBlobs, idc
+#-----------------------------------------------------------------------------------------
+z_VL_on_reign_ending_successor = {
+	effect = {
+		z_limes_tribal_collapse_effect = yes
 	}
 }
 

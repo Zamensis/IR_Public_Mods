@@ -85,11 +85,11 @@ z_limes_save_capital_effect = {
 			}
 			set_variable = {
 				name = z_limes_capital_city
-				value = c:MAC.capital_scope # Pella hehehehe
+				value = c:MAC.capital_scope # Pella
 			}
 			set_variable = {
 				name = z_limes_capital_area
-				value = c:MAC.capital_scope.area
+				value = c:MAC.capital_scope.area # Pella area
 			}
 		}
 		else = {

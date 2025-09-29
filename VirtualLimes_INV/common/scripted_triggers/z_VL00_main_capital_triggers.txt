@@ -6,7 +6,7 @@ z_limes_capital_trigger = {
 		# All OPMs on game initiliazed
 		AND = {
 			current_date = 450.10.1
-			num_of_cities = 1
+			num_of_cities <= 5
 		}
 		# All these tags (some of which are OPMs)
 		tag = ROM # Rome

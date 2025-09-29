@@ -9,58 +9,79 @@ z_limes_tribal_collapse_effect = {
 			is_tribal = yes
 			num_of_cities >= 120
 			z_limes_year >= 100
+			z_limes_year < 300
 			has_variable = z_limes_lucky_factor
 			var:z_limes_lucky_factor < 80
-		}
-		if = {
-			limit = {
-				current_ruler = {
-					martial <= 5
+			trigger_if = {
+				limit = {
+					war = yes
+				}
+				NOT = {
+					any_countries_at_war_with = {
+						is_ai = no
+					}
 				}
 			}
-			random = {
-				chance = 50
-				while = {
-					count = 20
-					limit = {
-						any_owned_province = {
-							NOT = { this.region = root.capital_scope.region }
-						}
-					}
-					ordered_owned_province = {
-						limit = {
-							NOT = { this.region = root.capital_scope.region }
-						}
-						order_by = total_population
-						save_scope_as = z_limes_mm_capital
-						random_list = {
-							50 = {
-								z_limes_make_mm_effect = { ZONE = area }
-							}
-							50 = {
-								z_limes_make_mm_effect = { ZONE = region }
-							}
-						}
-					}
+		}
+		random = {
+			chance = {
+				value = 100
+				divide = {
+					value = current_ruler.martial
+					min = 1
+					max = 15
 				}
 				if = {
 					limit = {
-						any_country = {
-							is_subject = yes
-							is_subject_of = root
-							z_limes_is_mm_trigger = yes
+						capital_scope = {
+							OR = {
+								is_in_region = borysthenia_region
+								is_in_region = central_asian_steppes_region
+								is_in_region = hyperborea_region
+								is_in_region = parthia_region
+								is_in_region = sakia_region
+								is_in_region = sarmatia_asiatica_region
+								is_in_region = scythia_region
+							}
 						}
 					}
-					every_subject = {
-						limit = {
-							z_limes_is_mm_trigger = yes
+					multiply = 0.5
+				}
+				else_if = {
+					limit = {
+						capital_scope = {
+							OR = {
+								is_in_region = britain_region
+								is_in_region = caledonia_region
+							}
 						}
-						save_scope_as = z_limes_release_this
-						overlord = {
-							release_subject = scope:z_limes_release_this
-						}
+					}
+					multiply = 2
+				}
+			}
+			while = {
+				count = 20
+				limit = {
+					any_owned_province = {
+						NOT = { this.region = root.capital_scope.region }
 					}
 				}
+				ordered_owned_province = {
+					limit = {
+						NOT = { this.region = root.capital_scope.region }
+					}
+					order_by = total_population
+					save_scope_as = z_limes_mm_capital
+				}
+				random_list = {
+					75 = {
+						z_limes_make_mm_effect = { ZONE = area }
+					}
+					25 = {
+						z_limes_make_mm_effect = { ZONE = region }
+					}
+				}
+				release_subject = scope:z_limes_mm_capital.owner
 			}
 		}
 	}

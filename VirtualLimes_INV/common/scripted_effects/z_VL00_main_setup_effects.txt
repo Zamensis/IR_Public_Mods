@@ -4,22 +4,12 @@
 z_limes_setup_vflag_effect = {
 	if = {
 		limit = {
-			OR = {
-				NOT = { has_global_variable = z_limes_flag }
-				NOT = { global_var:z_limes_flag = 3.00 }
-			}
+			NOT = { has_global_variable = z_limes_flag }
 		}
 		set_global_variable = {
 			name = z_limes_flag
 			value = 3.00
 		}
-		#if = {
-		#	limit = { current_date > 450.10.1 }
-		#	every_country = {
-		#		limit = { is_ai = no }
-		#		trigger_event = { id = z_limes_setup_vflag.1 }
-		#	}
-		#}
 	}
 }
 
@@ -30,7 +20,7 @@ z_limes_setup_lucky_effect = {
 	if = {
 		limit = {
 			OR = {
-				current_date < 451.1.2 # Random values generated on game initialized will always be the same, so they must be re-generated ASAP after initialization
+				current_date <= 451.1.1 # Random values generated on game initialized will always be the same, so they must be re-generated ASAP after initialization
 				NOT = { has_variable = z_limes_lucky_factor } # For countries not present on game initialized
 			}
 		}

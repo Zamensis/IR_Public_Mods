@@ -23,6 +23,7 @@ z_limes_namable_tribe_trigger = {
 			NOT = { this = $OWNER$ }
 			has_land = yes
 			culture = $OWNER$.culture
+			num_of_cities > $OWNER$.num_of_cities
 		}
 	}
 }

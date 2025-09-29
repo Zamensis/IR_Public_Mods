@@ -79,7 +79,7 @@ z_limes_setup_timer_effect = {
 	}
 	if = {
 		limit = {
-			current_date < 451.1.2 # Random values generated on game initialized will always be the same, so they must be re-generated ASAP after initialization
+			current_date <= 451.1.1 # Random values generated on game initialized will always be the same, so they must be re-generated ASAP after initialization
 		}
 		set_global_variable = {
 			name = z_limes_timer_speed

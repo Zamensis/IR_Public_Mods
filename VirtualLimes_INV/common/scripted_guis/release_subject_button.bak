@@ -45,13 +45,11 @@
 		trigger_if = {
 			limit = {
 				num_active_relations >= max_diplomatic_relations
-				NOT = {
-					root = {
-						invention = loosened_tributaries_inv
-					}
-				}
 			}
-			num_active_relations < max_diplomatic_relations
+			OR = {
+				num_active_relations < max_diplomatic_relations
+				root = { invention = loosened_tributaries_inv }
+			}
 		}
     }
     effect = {
@@ -63,11 +61,8 @@
 		scope:target_state = {
 			if = {
 				limit = {
-					root = {
-						invention = loosened_tributaries_inv
-					}
+					root = { invention = loosened_tributaries_inv }
 				}
-				# Alternative tooltip for VL
 				if = {
 					limit = { z_limes_rules_player_mm = 1 }
 					if = {
@@ -78,7 +73,6 @@
 						custom_tooltip = "make_into_marche_tt"
 					}
 				}
-				# Default tooltip
 				else = {
 					custom_tooltip = "make_into_tributary_state_tt"
 				}
@@ -138,13 +132,23 @@
 					root = {
 						if = {
 							limit = {
-								root = {
-									invention = loosened_tributaries_inv
+								root = { invention = loosened_tributaries_inv }
+							}
+							if = {
+								limit = { z_limes_rules_player_mm = 1 }
+								trigger_event = { id = z_limes_release_subject.1 }
+							}
+							else = {
+								make_subject = {
+									target = scope:sbgnq1.owner
+									type = tributary
 								}
 							}
-							make_subject = {
-								target = scope:sbgnq1.owner
-								type = tributary
+							root = {
+								every_owned_province = {
+									limit = { area = scope:sbgnq1.area }
+									set_owned_by = scope:sbgnq2
+								}
 							}
 						}
 						else = {
@@ -152,36 +156,32 @@
 								target = scope:sbgnq1.owner
 								type = client_state
 							}
+							root = {
+								every_owned_province = {
+									limit = { area = scope:sbgnq1.area }
+									set_owned_by = scope:sbgnq2
+								}
+							}
 						}
 					}
 				}
 			}
-			root = {
-				every_owned_province = {
-					limit = {
-						area = scope:sbgnq1.area
-					}
-					set_owned_by = scope:sbgnq2
-				}
-			}
+			# Moved up in the effect chain
+			#root = {
+			#	every_owned_province = {
+			#		limit = { area = scope:sbgnq1.area }
+			#		set_owned_by = scope:sbgnq2
+			#	}
+			#}
 		}
-		hidden_effect = {
-			if = {
-				limit = {
-					root = { invention = loosened_tributaries_inv }
-				}
-				# VL feature activated: event to choose between tributary (-5 AE, doesn't join wars) or MM (join wars)
-				if = {
-					limit = { z_limes_rules_player_mm = 1 }
-					root = {
-						trigger_event = { id = z_limes_release_subject.1 }
-					}
-				}
-				# VL not activated: apply -5 AE here
-				else = {
-					add_aggressive_expansion = -5
-				}
-			}
-		}
+		# Effect moved to event
+		#root = {
+		#	if = {
+		#		limit = {
+		#			root = { invention = loosened_tributaries_inv }
+		#		}
+		#		add_aggressive_expansion = -5
+		#	}
+		#}
     }
 }

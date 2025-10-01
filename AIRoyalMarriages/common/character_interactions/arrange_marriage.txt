@@ -30,10 +30,11 @@
 	
 	allowed_trigger = {
 		scope:target = {
+			#can_marry = yes
+			# -------------- Start of AI Royal Marriages
 			is_married = no
 			is_adult = yes
 			prisoner = no
-			# -------------- Start of AI Royal Marriages
 			custom_tooltip = {
 				text = "z_airm_betrothed_flag"
 				NOT = { has_variable = betrothed_flag }

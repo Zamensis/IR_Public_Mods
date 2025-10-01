@@ -1,0 +1,4 @@
+﻿z_opinion_refused_royal_marriage_ci = {
+	value = -10
+	yearly_decay = 1
+}

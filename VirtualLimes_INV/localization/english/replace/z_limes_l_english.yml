@@ -81,7 +81,7 @@
  make_into_marche_tt:0 "Make #Y [SCOPE.sState('target_state').GetState.GetShortName]#! into a #Y Tributary#! or a #Y Military Marche#!."
  make_into_marche_tt_ROM:0 "Make #Y [SCOPE.sState('target_state').GetState.GetShortName]#! into a #Y Tributary#! or a #Y Friend & Ally#!."
  loosened_tributaries_inv:0 "Military Marches"
- tributaries_instead_inv_tt:0 "#Y Releasing Subjects#! from our own land outside of peace deals will now longer create a #Y Client State#!. Instead, we will be able to choose whether to create a #Y Tributary#!, thus reducing #Y Aggressive Expansion#! by #Y 5.0#!, or create a #Y Military Marche#! (or a #Y Friend & Ally#! in the case of Rome) that will join us in our wars."
+ tributaries_instead_inv_tt:0 "#Y Releasing Subjects#! from our own land outside of peace deals will no longer create a #Y Client State#!. Instead, we will be able to choose whether to create a #Y Tributary#!, thus reducing #Y Aggressive Expansion#! by #G 5.0#!, or create a #Y Military Marche#! (or a #Y Friend & Ally#! in the case of Rome) that will join us in our wars."
  # RELEASE EVENT -----------------------------------------------------------------------------------------------------------------------------------------------
  z_limes_release_subject.1.t:0 "A new Military Marche?"
  z_limes_release_subject.1.desc:0 "By relinquishing direct rule over these lands, we must choose by what bonds we shall now be united.\n\nA tributary status would silence the foreign powers that call us oppressors, yet keep this subject neutral in our future struggles. A martial pact, on the other hand, would bind them to our wars as companions-in-arms, but such a decision might alarm our neighbors as to our warlike intentions."

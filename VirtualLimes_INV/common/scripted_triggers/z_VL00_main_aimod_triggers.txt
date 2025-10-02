@@ -4,7 +4,7 @@
 z_limes_can_cheat = {
 	is_ai = yes
 	OR = {
-		NOT { z_limes_rules_player_protection = 1 }
+		NOT = { z_limes_rules_player_protection = 1 }
 		AND = {
 			trigger_if = {
 				limit = { tag = ROM }

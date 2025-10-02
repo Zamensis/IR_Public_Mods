@@ -1322,7 +1322,7 @@ z_dynastic_countries_rename_country = {
 	else_if = { limit = { exists = fam:Mashhid
 	current_ruler.family = fam:Mashhid }
 	z_dynastic_countries_rename_this_country = { DYNASTY_NAME = Mashhid } }
-	# FROM MISSIONS ---------------------------------------------------------------------------------------------------------
+	# FROM MISSIONS/EVENTS ---------------------------------------------------------------------------------------------------------
 	else_if = { limit = { exists = fam:Orhaid
 	current_ruler.family = fam:Orhaid }
 	z_dynastic_countries_rename_this_country = { DYNASTY_NAME = Orhaid } }

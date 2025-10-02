@@ -446,7 +446,7 @@ z_dynastic_countries_has_dynastic_ruler = {
 		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = Eugarid } }
 		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = Ummashid } }
 		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = Mashhid } }
-		# FROM MISSIONS ---------------------------------------------------------------------------------------------------------
+		# FROM MISSIONS/EVENTS ---------------------------------------------------------------------------------------------------------
 		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = Orhaid } }
 		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = Hyspaosinid } }
 		AND = { z_dynastic_countries_dynasty_check = { DYNASTY_NAME = Suren } }

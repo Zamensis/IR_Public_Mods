@@ -7,6 +7,7 @@ z_limes_tribal_collapse_effect = {
 			z_limes_rules_tribal_collapse = 1
 			is_ai = yes
 			is_tribal = yes
+			is_subject = no
 			num_of_cities >= 120
 			z_limes_year >= 100
 			z_limes_year < 300

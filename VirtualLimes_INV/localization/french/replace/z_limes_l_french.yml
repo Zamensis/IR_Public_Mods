@@ -5,6 +5,7 @@
  z_limes_setup_vflag.1.t:0 "@z_limes_setup_vflag! Virtual Limes mis à jour"
  z_limes_setup_vflag.1.desc:0 "Salut !\n\nJuste un petit coucou pour te faire savoir que Virtual Limes a été mis à jour et que cette sauvegarde devrait rester compatible.\n\nVa donc voir la description sur le Workshop si tu veux plus d'infos. :)\n\n-- Zamensis"
  # MM -----------------------------------------------------------------------------------------------------------------------------------------------
+ z_limes_mm:0 "Marche militaire"
  AM_z_limes_mm:0 "#T $LIST$#!\nMarche militaire de $LIST$"
  LEAD_z_limes_mm:0 "#T $LIST$#!\nMarche militaire"
  OFFER_z_limes_mm_TOOLTIP_HEADER:0 "Exiger le statut de Marche militaire de $NAME$"
@@ -13,7 +14,6 @@
  CANCEL_z_limes_mm_FLAVOR:0 "Libérer cette #E Marche militaire#! va lui permettre de retrouver son indépendance. Elle ne devra plus nous livrer d'effectifs."
  BREAK_z_limes_mm_TOOLTIP_HEADER:0 "Prendre notre indépendance de $NAME$"
  BREAK_z_limes_mm_FLAVOR:0 "Prendre notre indépendance de notre suzerain va nous faire retrouver notre indépendance et nous n'aurons plus à lui fournir d'effectifs, mais nous ne bénéficierons plus de sa protection. Par ailleurs, il disposera d'un casus belli intemporel sur notre territoire."
- z_limes_mm:0 "Marche militaire"
  CANCEL_z_limes_mmTITLE:0 "Libérer la Marche militaire"
  BREAK_z_limes_mmTITLE:0 "Prendre notre indépendance"
  CANCEL_z_limes_mm_DESC:0 "Libérer la Marche militaire."
@@ -23,6 +23,7 @@
  CANCEL_z_limes_mm_NEWDESC:0 "Souhaitez-vous libérer la Marche militaire de [COUNTRY.GetName]?"
  BREAK_z_limes_mm_NEWDESC:0 "Souhaitez-vous mettre fin au lien de dépendance envers [COUNTRY.GetName]?\nCela va dégrader nos relations avec lui et il disposera d'un casus belli intemporel sur notre territoire."
  # MM_ROM -----------------------------------------------------------------------------------------------------------------------------------------------
+ z_limes_mm_ROM:0 "Ami et allié"
  AM_z_limes_mm_ROM:0 "#T $LIST$#!\nAmi et allié de $LIST$"
  LEAD_z_limes_mm_ROM:0 "#T $LIST$#!\nAmi et allié"
  OFFER_z_limes_mm_ROM_TOOLTIP_HEADER:0 "Exiger le statut d'Ami et allié de $NAME$"
@@ -31,7 +32,6 @@
  CANCEL_z_limes_mm_ROM_FLAVOR:0 "Libérer cet #E Ami et allié#! va lui permettre de retrouver son indépendance. Elle ne devra plus nous livrer d'effectifs."
  BREAK_z_limes_mm_ROM_TOOLTIP_HEADER:0 "Prendre notre indépendance de $NAME$"
  BREAK_z_limes_mm_ROM_FLAVOR:0 "Prendre notre indépendance de notre suzerain va nous faire retrouver notre indépendance et nous n'aurons plus à lui fournir d'effectifs, mais nous ne bénéficierons plus de sa protection. Par ailleurs, il disposera d'un casus belli intemporel sur notre territoire."
- z_limes_mm_ROM:0 "Ami et allié"
  CANCEL_z_limes_mm_ROMTITLE:0 "Libérer l'Ami et allié"
  BREAK_z_limes_mm_ROMTITLE:0 "Prendre notre indépendance"
  CANCEL_z_limes_mm_ROM_DESC:0 "Libérer l'Ami et allié."

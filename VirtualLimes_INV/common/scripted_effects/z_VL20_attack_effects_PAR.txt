@@ -3,14 +3,14 @@
 # On monthly pulse (+ random offset): z_limes_attack_effect: any country with z_has_limes_PAR:
 # --------------------------------------------------------------------------------
 z_limes_attack_effect_PAR = {
-	# Normal attack effect
+	# Normal attack effect: make AI PAR attack whichever AI is in PAR's historical regions
 	if = {
 		limit = {
 			z_limes_year >= 60
 			num_of_cities >= 50
 			z_limes_rules_attack_PAR = 1
 			NOR = {
-				z_limes_year >= 160
+				z_limes_year >= 200
 				capital_scope = { is_in_region = media_region }
 				capital_scope = { is_in_region = mesopotamia_region }
 				capital_scope = { is_in_region = persis_region }
@@ -21,66 +21,92 @@ z_limes_attack_effect_PAR = {
 		else_if = { limit = { z_limes_attack_trigger_default = { REGION = persis_region } } z_limes_attack_effect_b = { REGION = persis_region } }
 		else_if = { limit = { z_limes_attack_trigger_default = { REGION = ariana_region } } z_limes_attack_effect_b = { REGION = ariana_region } }
 		else_if = { limit = { z_limes_attack_trigger_default = { REGION = mesopotamia_region } } z_limes_attack_effect_b = { REGION = mesopotamia_region } }
-	}
-	# Buff/debuff effects
-	if = {
-		limit = { z_limes_rules_buff_PAR = 1 }
+		# Help AI PAR in their war, if enemy is AI SEL
 		if = {
 			limit = {
+				# Make sure z_limes_attack_effect_b has fired
+				exists = scope:z_limes_attacker_country
+				exists = scope:z_limes_defender_country
+				# Make sure AI PAR is at war with AI SEL
 				war = yes
-				any_current_war = {
-					any_war_participant = {
-						tag = SEL
-						war_with = root
+				any_countries_at_war_with = {
+					this = scope:z_limes_defender_country
+					tag = SEL
+					z_limes_can_cheat = yes # Can AI SEL cheat?
+				}
+				z_limes_can_cheat = yes # Can AI PAR cheat?
+			}
+			# Give AI PAR free provinces from AI SEL at the start of the war
+			scope:z_limes_defender_country = {
+				while = {
+					count = 2
+					random_owned_province = {
+						limit = {
+							NOT = { this.area = scope:z_limes_defender_country.capital_scope.area }
+							any_neighbor_province = { owner = root }
+						}
+						area = {
+							every_area_province = {
+								limit = {
+									owner = scope:z_limes_defender_country
+								}
+								set_owned_by = root
+							}
+						}
 					}
 				}
-				z_limes_can_cheat = yes
-				# Implied by z_has_limes_PAR:
-				#is_ai = yes
-				#has_civil_war = no
 			}
-			while = {
-				limit = { stability <= 50 }
-				add_stability = 5
-			}
-			while = {
-				limit = { manpower <= 10 }
-				add_manpower = 0.5
-			}
-			while = {
-				limit = { has_war_exhaustion > 0 }
-				add_war_exhaustion = -5
-			}
-			while = {
-				limit = { treasury <= 100 }
-				add_treasury = 2.5
-			}
+			# Remove AI BAC from war, if present
 			if = {
 				limit = {
-					z_limes_can_cheat = yes
-					NOT = { has_country_modifier = country_improvement_mercenary_patron }
-				}
-				add_country_modifier = {
-					name = country_improvement_mercenary_patron
-					duration = 90
-				}
-			}
-			if = {
-				limit = {
-					z_limes_can_cheat = yes
-					z_limes_rules_nerf_SEL = 1
-					any_country = {
-						tag = SEL
+					any_countries_at_war_with = {
+						tag = BAC
 						is_ai = yes
+						is_subject = yes
+						is_subject_of = c:SEL
 						z_limes_can_cheat = yes
 					}
 				}
-				random_country = {
+				every_current_war = {
 					limit = {
-						tag = SEL
-						is_ai = yes
-						z_limes_can_cheat = yes
+						any_war_participant = { this = c:BAC }
 					}
+					remove_from_war = c:BAC
+				}
+			}
+			# Buff AI PAR
+			if = {
+				limit = { z_limes_rules_buff_PAR = 1 }
+				while = {
+					limit = { stability <= 50 }
+					add_stability = 5
+				}
+				while = {
+					limit = { manpower <= 10 }
+					add_manpower = 0.5
+				}
+				while = {
+					limit = { has_war_exhaustion > 0 }
+					add_war_exhaustion = -5
+				}
+				while = {
+					limit = { treasury <= 500 }
+					add_treasury = 2.5
+				}
+				if = {
+					limit = {
+						NOT = { has_country_modifier = country_improvement_mercenary_patron }
+					}
+					add_country_modifier = {
+						name = country_improvement_mercenary_patron
+						duration = 90
+					}
+				}
+			}
+			# Nerf AI SEL
+			if = {
+				limit = { z_limes_rules_nerf_SEL = 1 }
+				scope:z_limes_defender_country = {
 					while = {
 						limit = { stability >= 50 }
 						add_stability = -5
@@ -88,10 +114,6 @@ z_limes_attack_effect_PAR = {
 					while = {
 						limit = { manpower >= 3 }
 						add_manpower = -0.5
-					}
-					while = {
-						limit = { has_war_exhaustion < 4 }
-						add_war_exhaustion = 0.5
 					}
 					while = {
 						limit = { treasury >= 100 }

@@ -10,9 +10,14 @@ z_limes_tribal_collapse_effect = {
 			is_subject = no
 			num_of_cities >= 120
 			z_limes_year >= 100
-			z_limes_year < 300
+			z_limes_year < 325
 			has_variable = z_limes_lucky_factor
-			var:z_limes_lucky_factor < 80
+			var:z_limes_lucky_factor > 20
+			NOT = {
+				any_neighbour_country = {
+					is_ai = no
+				}
+			}
 			trigger_if = {
 				limit = {
 					war = yes

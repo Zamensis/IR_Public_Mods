@@ -21,8 +21,8 @@ z_limes_mm = {
 	
 	subject_modifier = {
 		loyalty_to_overlord = -20
-		max_mercenary_stacks = -50
 		global_monthly_state_loyalty = 0.05
+		max_mercenary_stacks = -50
 	}
 	
 	allow = { always = no }
@@ -52,10 +52,10 @@ z_limes_mm_ROM = {
 	}
 	
 	subject_modifier = {
-		levy_size_multiplier = -0.05
 		loyalty_to_overlord = -10
-		max_mercenary_stacks = -50
 		global_monthly_state_loyalty = 0.05
+		levy_size_multiplier = -0.05
+		max_mercenary_stacks = -50
 	}
 	
 	allow = { always = no }
@@ -81,13 +81,13 @@ z_limes_mm_p = {
 	only_trade_with_overlord=  no
 	
 	overlord_modifier = {
-		global_commerce_modifier = 0.02
+		#global_commerce_modifier = 0.005
 	}
 	
 	subject_modifier = {
 		loyalty_to_overlord = -20
-		max_mercenary_stacks = -50
 		global_monthly_state_loyalty = 0.05
+		max_mercenary_stacks = -50
 	}
 	
 	allow = { always = no }
@@ -113,14 +113,14 @@ z_limes_mm_p_ROM = {
 	only_trade_with_overlord = no
 	
 	overlord_modifier = {
-		global_commerce_modifier = 0.005
+		#global_commerce_modifier = 0.005
 	}
 	
 	subject_modifier = {
-		levy_size_multiplier = -0.05
 		loyalty_to_overlord = -10
-		max_mercenary_stacks = -50
 		global_monthly_state_loyalty = 0.05
+		levy_size_multiplier = -0.05
+		max_mercenary_stacks = -50
 	}
 	
 	allow = { always = no }

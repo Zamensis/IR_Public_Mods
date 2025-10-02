@@ -1,0 +1,64 @@
+﻿namespace = z_limes_release_subject
+
+#-----------------------------------------------------------------------------------------
+# Release subject, decide whether to make them MMs (mod feature) or lose 5 AE (Vanilla feature)
+#-----------------------------------------------------------------------------------------
+z_limes_release_subject.1 = {
+	type = country_event
+	title = "z_limes_release_subject.1.t"
+	desc = "z_limes_release_subject.1.desc"
+	
+	picture = council_country
+	left_portrait = current_ruler
+	right_portrait = scope:sbgnq3
+	
+	# Make it a MM
+	option = {
+		trigger = {
+			NOT = { tag = ROM }
+		}
+		name = "z_limes_release_subject.1.a"
+		add_aggressive_expansion = 1
+		hidden_effect = {
+			z_limes_set_government_effect = { OVERLORD = root SUBJECT = scope:sbgnq2 }
+			release_subject = scope:sbgnq2
+		}
+		make_subject = {
+			target = scope:sbgnq2
+			type = z_limes_mm_p
+		}
+		custom_tooltip = "z_limes_release_subject.1.a.tt"
+		ai_chance = { factor = 0 }
+	}
+	
+	# Make it a FAA
+	option = {
+		trigger = { tag = ROM }
+		name = "z_limes_release_subject.1.b"
+		add_aggressive_expansion = 1
+		hidden_effect = {
+			z_limes_set_government_effect = { OVERLORD = root SUBJECT = scope:sbgnq2 }
+			release_subject = scope:sbgnq2
+		}
+		make_subject = {
+			target = scope:sbgnq2
+			type = z_limes_mm_p_ROM
+		}
+		custom_tooltip = "z_limes_release_subject.1.b.tt"
+		ai_chance = { factor = 0 }
+	}
+	
+	# Keep it a tributary, lose 5 AE
+	option = {
+		name = "z_limes_release_subject.1.c"
+		add_aggressive_expansion = -5
+		show_as_tooltip = {
+			make_subject = {
+				target = scope:sbgnq2
+				type = tributary
+			}
+		}
+		custom_tooltip = "z_limes_release_subject.1.c.tt"
+		ai_chance = { factor = 100 }
+	}
+}

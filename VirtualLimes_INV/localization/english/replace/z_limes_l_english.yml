@@ -27,7 +27,7 @@
  AM_z_limes_mm_ROM:0 "#T $LIST$#!\nFriend & Ally of $LIST$"
  LEAD_z_limes_mm_ROM:0 "#T $LIST$#!\nFriend & Ally"
  OFFER_z_limes_mm_ROM_TOOLTIP_HEADER:0 "Demand Friend & Ally status from $NAME$"
- OFFER_z_limes_mm_ROM_FLAVOR:0 A #E Friend & Ally#! is a subject who gives a portion of their monthly manpower income to their overlord in exchange for their protection. Marches do not use a diplomatic slot and they are automatically called to their overlord's wars."
+ OFFER_z_limes_mm_ROM_FLAVOR:0 "A #E Friend & Ally#! is a subject who gives a portion of their monthly manpower income to their overlord in exchange for their protection. Marches do not use a diplomatic slot and they are automatically called to their overlord's wars."
  CANCEL_z_limes_mm_ROM_TOOLTIP_HEADER:0 "Cancel Friend & Ally status of $NAME$"
  CANCEL_z_limes_mm_ROM_FLAVOR:0 "Canceling our relationship with our #E Friend & Ally#! will make them independent and stop their manpower transfers to us."
  BREAK_z_limes_mm_ROM_TOOLTIP_HEADER:0 "Break Friend & Ally status with $NAME$"

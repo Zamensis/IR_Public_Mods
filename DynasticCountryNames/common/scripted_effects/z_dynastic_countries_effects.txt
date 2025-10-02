@@ -1322,6 +1322,25 @@ z_dynastic_countries_rename_country = {
 	else_if = { limit = { exists = fam:Mashhid
 	current_ruler.family = fam:Mashhid }
 	z_dynastic_countries_rename_this_country = { DYNASTY_NAME = Mashhid } }
+	# FROM MISSIONS ---------------------------------------------------------------------------------------------------------
+	else_if = { limit = { exists = fam:Orhaid
+	current_ruler.family = fam:Orhaid }
+	z_dynastic_countries_rename_this_country = { DYNASTY_NAME = Orhaid } }
+	else_if = { limit = { exists = fam:Hyspaosinid
+	current_ruler.family = fam:Hyspaosinid }
+	z_dynastic_countries_rename_this_country = { DYNASTY_NAME = Hyspaosinid } }
+	else_if = { limit = { exists = fam:Suren
+	current_ruler.family = fam:Suren }
+	z_dynastic_countries_rename_this_country = { DYNASTY_NAME = Suren } }
+	else_if = { limit = { exists = fam:Karen
+	current_ruler.family = fam:Karen }
+	z_dynastic_countries_rename_this_country = { DYNASTY_NAME = Karen } }
+	else_if = { limit = { exists = fam:Mihran
+	current_ruler.family = fam:Mihran }
+	z_dynastic_countries_rename_this_country = { DYNASTY_NAME = Mihran } }
+	else_if = { limit = { exists = fam:Arsacid
+	current_ruler.family = fam:Arsacid }
+	z_dynastic_countries_rename_this_country = { DYNASTY_NAME = Arsacid } }
 }
 
 #-----------------------------------------------------------------------------------------

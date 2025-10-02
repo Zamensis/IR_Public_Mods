@@ -10,7 +10,6 @@ z_limes_aimod_effect = {
 			z_limes_rules_cw_fewer = 1
 			z_limes_can_cheat = yes
 			has_variable = z_limes_lucky_factor
-			var:z_limes_lucky_factor > 5
 			NOT = {
 				has_country_modifier = z_limes_normal_ai
 			}
@@ -23,7 +22,6 @@ z_limes_aimod_effect = {
 				z_limes_rules_cw_fewer = 1
 				z_limes_can_cheat = yes
 				has_variable = z_limes_lucky_factor
-				var:z_limes_lucky_factor > 5
 			}
 			has_country_modifier = z_limes_normal_ai
 		}

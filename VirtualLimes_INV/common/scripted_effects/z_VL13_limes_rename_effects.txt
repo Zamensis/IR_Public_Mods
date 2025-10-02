@@ -17,30 +17,30 @@ z_limes_rename_mm_effect = {
 		z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = region WHICH = illyria_region }
 		z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = region WHICH = moesia_region }
 		z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = region WHICH = moesia_s_region } # Invictus only
-		if = { limit = { NOT = { any_country = { tag = DAC } } }
+		if = { limit = { NOT = { exists = c:DAC } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = region WHICH = dacia_region }
 		}
 		# North-Africa
 		z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = region WHICH = africa_region }
-		if = { limit = { NOT = { any_country = { tag = NUM } } }
+		if = { limit = { NOT = { exists = c:NUM } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = region WHICH = numidia_region }
 		}
 		z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = region WHICH = mauretainia_region }
 		# Spain
 		z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = region WHICH = baetica_region }
 		z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = region WHICH = contestania_region }
-		if = { limit = { NOT = { any_country = { tag = LST } } }
+		if = { limit = { NOT = { exists = c:LST } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = region WHICH = lusitania_region }
 		}
 		z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = region WHICH = gallaecia_region }
 		z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = region WHICH = tarraconensis_region }
 		# East
-		if = { limit = { NOT = { any_country = { tag = BAC } } }
+		if = { limit = { NOT = { exists = c:BAC } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = region WHICH = bactriana_region }
 		}
 		if = { limit = { NOR = {
-				any_country = { tag = PAR }
-				any_country = { tag = PTH }
+				exists = c:PAR
+				exists = c:PTH
 			} }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = region WHICH = parthia_region }
 		}
@@ -52,119 +52,119 @@ z_limes_rename_mm_effect = {
 		if = { limit = { num_of_cities >= 30 }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = phrygian } }
 		# Bactrian
-		if = { limit = { NOT = { any_country = { tag = SOG } } }
+		if = { limit = { NOT = { exists = c:SOG } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = sogdian } }
 		# Baltic
-		if = { limit = { NOT = { any_country = { tag = AES } } }
+		if = { limit = { NOT = { exists = c:AES } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = aestian } }
-		if = { limit = { NOT = { any_country = { tag = BDI } } } # Invictus only
+		if = { limit = { NOT = { exists = c:BDI } } # Invictus only
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = budinian } }
 		if = { limit = { always = yes } # Invictus only
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = chernolian } }
-		if = { limit = { NOT = { any_country = { tag = MLN } } } # Invictus only
+		if = { limit = { NOT = { exists = c:MLN } } # Invictus only
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = melanchlaenian } }
-		if = { limit = { NOT = { any_country = { tag = NEU } } } # Invictus only
+		if = { limit = { NOT = { exists = c:NEU } } # Invictus only
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = neuric } }
 		if = { limit = { always = yes } # Invictus only
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = sporic } }
 		# Caucasian
-		if = { limit = { NOT = { any_country = { tag = ALB } } }
+		if = { limit = { NOT = { exists = c:ALB } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = albanian } }
-		if = { limit = { NOT = { any_country = { tag = IBR } } }
+		if = { limit = { NOT = { exists = c:IBR } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = ibero } }
-		if = { limit = { NOT = { any_country = { tag = LGA } } }
+		if = { limit = { NOT = { exists = c:LGA } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = legian } }
-		if = { limit = { NOT = { any_country = { tag = MAE } } }
+		if = { limit = { NOT = { exists = c:MAE } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = maeotian } }
 		# Dacia_group
-		if = { limit = { NOT = { any_country = { tag = BIE } } }
+		if = { limit = { NOT = { exists = c:BIE } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = biephi } }
-		if = { limit = { NOT = { any_country = { tag = BUD } } }
+		if = { limit = { NOT = { exists = c:BUD } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = buridavensi } }
-		if = { limit = { NOT = { any_country = { tag = CAC } } }
+		if = { limit = { NOT = { exists = c:CAC } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = caucoensi } }
-		if = { limit = { NOT = { any_country = { tag = HRP } } }
+		if = { limit = { NOT = { exists = c:HRP } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = costoboci } }
-		if = { limit = { NOT = { any_country = { tag = GTE } } }
+		if = { limit = { NOT = { exists = c:GTE } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = getian } }
 		if = { limit = { always = yes }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = harpii } }
-		if = { limit = { NOT = { any_country = { tag = MYD } } }
+		if = { limit = { NOT = { exists = c:MYD } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = mariandynian } }
-		if = { limit = { NOT = { any_country = { tag = MOE } } }
+		if = { limit = { NOT = { exists = c:MOE } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = moesi } }
-		if = { limit = { NOT = { any_country = { tag = ODR } } }
+		if = { limit = { NOT = { exists = c:ODR } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = odrysi } }
-		if = { limit = { NOT = { any_country = { tag = RAT } } }
+		if = { limit = { NOT = { exists = c:RAT } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = ratacensi } }
-		if = { limit = { NOT = { any_country = { tag = TBL } } }
+		if = { limit = { NOT = { exists = c:TBL } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = triballoi } }
 		# Gallic
-		if = { limit = { NOT = { any_country = { tag = ASX } } }
+		if = { limit = { NOT = { exists = c:ASX } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = aremorican } }
-		if = { limit = { NOT = { any_country = { tag = AVN } } }
+		if = { limit = { NOT = { exists = c:AVN } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = arverni } }
-		if = { limit = { NOT = { any_country = { tag = CMI } } }
+		if = { limit = { NOT = { exists = c:CMI } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = aulercian } }
-		if = { limit = { NOT = { any_country = { tag = BGT } } }
+		if = { limit = { NOT = { exists = c:BGT } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = biturigan } }
-		if = { limit = { NOT = { any_country = { tag = CRN } } }
+		if = { limit = { NOT = { exists = c:CRN } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = carnuti } }
-		if = { limit = { NOT = { any_country = { tag = AED } } }
+		if = { limit = { NOT = { exists = c:AED } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = haedui } }
 		if = { limit = { always = yes }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = helvetian } }
-		if = { limit = { NOT = { any_country = { tag = LMV } } }
+		if = { limit = { NOT = { exists = c:LMV } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = lemovician } }
-		if = { limit = { NOT = { any_country = { tag = LPO } } }
+		if = { limit = { NOT = { exists = c:LPO } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = lepontic } }
-		if = { limit = { NOT = { any_country = { tag = PCS } } }
+		if = { limit = { NOT = { exists = c:PCS } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = pictonian } }
-		if = { limit = { NOT = { any_country = { tag = SLV } } }
+		if = { limit = { NOT = { exists = c:SLV } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = salluvian } }
-		if = { limit = { NOT = { any_country = { tag = SNT } } }
+		if = { limit = { NOT = { exists = c:SNT } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = santonian } }
-		if = { limit = { NOT = { any_country = { tag = VIN } } }
+		if = { limit = { NOT = { exists = c:VIN } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = vindelician } }
 		if = { limit = { always = yes }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = volcae } }
 		# Germanic
-		if = { limit = { NOT = { any_country = { tag = ANG } } }
+		if = { limit = { NOT = { exists = c:ANG } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = anglian } }
-		if = { limit = { NOT = { any_country = { tag = BST } } }
+		if = { limit = { NOT = { exists = c:BST } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = bastarnae } }
-		if = { limit = { NOT = { any_country = { tag = CMB } } }
+		if = { limit = { NOT = { exists = c:CMB } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = cimbrian } }
-		if = { limit = { NOT = { any_country = { tag = SXS } } }
+		if = { limit = { NOT = { exists = c:SXS } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = frisian } }
 		if = { limit = { always = yes }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = gothonic } }
 		if = { limit = { always = yes }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = gutones } }
-		if = { limit = { NOT = { any_country = { tag = HEV } } }
+		if = { limit = { NOT = { exists = c:HEV } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = helveconian } }
 		if = { limit = { always = yes }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = herulian } }
-		if = { limit = { NOT = { any_country = { tag = LVA } } }
+		if = { limit = { NOT = { exists = c:LVA } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = lemovian } }
 		if = { limit = { always = yes }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = raumarician } }
-		if = { limit = { NOT = { any_country = { tag = REU } } }
+		if = { limit = { NOT = { exists = c:REU } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = reudingian } }
-		if = { limit = { NOT = { any_country = { tag = RGG } } }
+		if = { limit = { NOT = { exists = c:RGG } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = rugian } }
-		if = { limit = { NOT = { any_country = { tag = XXS } } }
+		if = { limit = { NOT = { exists = c:XXS } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = saxonian } }
-		if = { limit = { NOT = { any_country = { tag = SBN } } }
+		if = { limit = { NOT = { exists = c:SBN } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = suebian } }
-		if = { limit = { NOT = { any_country = { tag = SWE } } }
+		if = { limit = { NOT = { exists = c:SWE } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = suiones } }
-		if = { limit = { NOT = { any_country = { tag = TIT } } }
+		if = { limit = { NOT = { exists = c:TIT } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = teutonian } }
 		if = { limit = { always = yes }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = vandal } }
 		# Illyrian_group
-		if = { limit = { NOT = { any_country = { tag = MSP } } }
+		if = { limit = { NOT = { exists = c:MSP } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = messapian } }
 		# Latin
 		if = { limit = { always = yes }
@@ -195,36 +195,36 @@ z_limes_rename_mm_effect = {
 		if = { limit = { always = yes }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = uxian } }
 		# Scythia
-		if = { limit = { NOT = { any_country = { tag = AGA } } }
+		if = { limit = { NOT = { exists = c:AGA } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = agathyrsian } }
-		if = { limit = { NOT = { any_country = { tag = DHE } } }
+		if = { limit = { NOT = { exists = c:DHE } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = derbiccan } }
-		if = { limit = { NOT = { any_country = { tag = KRZ } } }
+		if = { limit = { NOT = { exists = c:KRZ } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = kharesmian }  }
-		if = { limit = { NOT = { any_country = { tag = SCA } } }
+		if = { limit = { NOT = { exists = c:SCA } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = sakan } }
-		if = { limit = { NOT = { any_country = { tag = SRM } } }
+		if = { limit = { NOT = { exists = c:SRM } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = sarmatian } }
-		if = { limit = { NOT = { any_country = { tag = SCY } } }
+		if = { limit = { NOT = { exists = c:SCY } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = scythian } }
-		if = { limit = { NOT = { any_country = { tag = SND } } }
+		if = { limit = { NOT = { exists = c:SND } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = sindi } }
-		if = { limit = { NOT = { any_country = { tag = SCE } } }
+		if = { limit = { NOT = { exists = c:SCE } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = siraci } }
-		if = { limit = { NOT = { any_country = { tag = SA3 } } }
+		if = { limit = { NOT = { exists = c:SA3 } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = thyssagetaen } }
 		# Tibetan
-		if = { limit = { NOT = { any_country = { tag = SMP } } }
+		if = { limit = { NOT = { exists = c:SMP } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = tribe WHICH = sumpa } }
 		# PROVINCIAL NAMES
 		# -------------------
 		if = { limit = { always = yes }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = area WHICH = aemilla_area } }
-		if = { limit = { NOT = { any_country = { tag = ARS } } }
+		if = { limit = { NOT = { exists = c:ARS } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = area WHICH = arachosia_area } }
 		if = { limit = { always = yes }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = area WHICH = ardashir_area } }
-		if = { limit = { NOT = { any_country = { tag = BAC } } }
+		if = { limit = { NOT = { exists = c:BAC } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = area WHICH = bactria_area } }
 		if = { limit = { always = yes }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = area WHICH = candara_area } }
@@ -232,19 +232,19 @@ z_limes_rename_mm_effect = {
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = area WHICH = corsica_area } }
 		if = { limit = { always = yes } # Invictus only
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = area WHICH = eastern_aral_area } }
-		if = { limit = { NOT = { any_country = { tag = GED } } }
+		if = { limit = { NOT = { exists = c:GED } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = area WHICH = gedrosia_area } }
 		if = { limit = { always = yes }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = area WHICH = harmozeia_area } }
-		if = { limit = { NOT = { any_country = { tag = KRZ } } }
+		if = { limit = { NOT = { exists = c:KRZ } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = area WHICH = kharesmia_area } }
 		if = { limit = { always = yes }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = area WHICH = kharesmia_superior } }
-		if = { limit = { NOT = { any_country = { tag = PRN } } }
+		if = { limit = { NOT = { exists = c:PRN } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = area WHICH = parnia_area } }
 		if = { limit = { always = yes }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = area WHICH = paytankert_area } }
-		if = { limit = { NOT = { any_country = { tag = QTB } } }
+		if = { limit = { NOT = { exists = c:QTB } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = area WHICH = qataba_area } }
 		if = { limit = { always = yes }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = area WHICH = sarmatia_hyrcania_area } }
@@ -252,9 +252,9 @@ z_limes_rename_mm_effect = {
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = area WHICH = savia_orientalis_area } }
 		if = { limit = { always = yes }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = area WHICH = scythia_trans_montem_area } }
-		if = { limit = { NOT = { any_country = { tag = SHB } } }
+		if = { limit = { NOT = { exists = c:SHB } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = area WHICH = sheba_area } }
-		if = { limit = { NOT = { any_country = { tag = SOG } } }
+		if = { limit = { NOT = { exists = c:SOG } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = area WHICH = sogdiana_area } }
 		if = { limit = { always = yes }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = area WHICH = susiana_area } }
@@ -268,9 +268,9 @@ z_limes_rename_mm_effect = {
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = area WHICH = omana_area } }
 		if = { limit = { always = yes }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = area WHICH = east_omana_area } }
-		if = { limit = { NOT = { any_country = { tag = NBT } } }
+		if = { limit = { NOT = { exists = c:NBT } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = area WHICH = arabia_petrea_area } }
-		if = { limit = { NOT = { any_country = { tag = ARS } } }
+		if = { limit = { NOT = { exists = c:ARS } }
 			z_limes_rename_mm_effect_b = { OWNER = scope:z_namable WHAT = area WHICH = arachosia_area } }
 	}
 }

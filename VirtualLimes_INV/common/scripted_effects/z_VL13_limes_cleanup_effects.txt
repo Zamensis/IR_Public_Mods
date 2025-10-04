@@ -161,3 +161,119 @@ z_limes_annex_effect = {
 		}
 	}
 }
+
+# --------------------------------------------------------------------------------
+# Subject subject - Clean up subjects of subjects on the map (annex or release, depending on the context)
+# --------------------------------------------------------------------------------
+z_limes_subject_subject_effect = {
+	random = {
+		chance = 10
+		if = {
+			limit = {
+				z_limes_rules_subject_subject = 1
+				is_ai = yes
+				is_subject = yes
+				exists = overlord
+				overlord = {
+					is_ai = yes
+					is_subject = yes
+				}
+			}
+			# If SS is small -> annex
+			if = {
+				limit = {
+					num_of_cities < 5
+				}
+				# If overlord's is a neighbour -> annex by overlord
+				if = {
+					limit = {
+						any_neighbour_country = { this = root.overlord }
+					}
+					overlord = { save_scope_as = z_subject_annexer }
+				}
+				# If overlord's overlord is a neighbour -> annex by overlord's overlord
+				else_if = {
+					limit = {
+						exists = overlord.overlord
+						any_neighbour_country = { this = root.overlord.overlord }
+					}
+					overlord.overlord = { save_scope_as = z_subject_annexer }
+				}
+				# If neither is a neighbour -> annex by overlord's overlord
+				else_if = {
+					limit = {
+						exists = overlord.overlord
+					}
+					overlord.overlord = { save_scope_as = z_subject_annexer }
+				}
+			}
+			# If SS isn't small
+			else = {
+				# If overlord's overlord is a neighbour -> transfer to overlord's overlord
+				if = {
+					limit = {
+						exists = overlord.overlord
+						any_neighbour_country = { this = root.overlord.overlord }
+					}
+					overlord.overlord = { save_scope_as = z_new_overlord }
+				}
+				# Else -> release subject
+			}
+			# Resolution: annex
+			if = {
+				limit = {
+					exists = scope:z_subject_annexer
+				}
+				every_owned_province = {
+					set_owned_by = scope:z_subject_annexer
+				}
+			}
+			# Resolution: transfer
+			else_if = {
+				limit = {
+					exists = scope:z_new_overlord
+				}
+				switch = {
+					trigger = is_subject_type
+					client_state = { overlord = { release_subject = root } scope:z_new_overlord = { make_subject = { target = root type = client_state } } }
+					feudatory = { overlord = { release_subject = root } scope:z_new_overlord = { make_subject = { target = root type = feudatory } } }
+					satrapy = { overlord = { release_subject = root } scope:z_new_overlord = { make_subject = { target = root type = satrapy } } }
+				}
+				# Fall back - Tributary or vassal tribe
+				if = {
+					limit = {
+						NOT = { scope:z_new_overlord = overlord }
+					}
+					overlord = { release_subject = root }
+					if = {
+						limit = {
+							scope:z_new_overlord = { is_tribal = yes }
+						}
+						scope:z_new_overlord = {
+							make_subject = {
+								target = root
+								type = vassal_tribe
+							}
+						}
+					}
+					else = {
+						scope:z_new_overlord = {
+							make_subject = {
+								target = root
+								type = tributary
+							}
+						}
+					}
+				}
+			}
+			# Resolution: release
+			else = {
+				overlord = { release_subject = root }
+			}
+			# Re-run release effect on overlord (in case new context makes it possible)
+			overlord = {
+				z_limes_release_effect = yes
+			}
+		}
+	}
+}

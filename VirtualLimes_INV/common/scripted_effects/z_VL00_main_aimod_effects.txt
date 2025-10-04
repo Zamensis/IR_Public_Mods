@@ -180,7 +180,7 @@ z_limes_aimod_effect = {
 				}
 			}
 			if = {
-				limit = { var:z_limes_lucky_factor <= 17.5 }
+				limit = { var:z_limes_lucky_factor <= 10 }
 				add_country_modifier = { name = z_limes_weak_ai }
 				# If weak, chance to be weaken even more
 				if = {
@@ -190,7 +190,7 @@ z_limes_aimod_effect = {
 					set_variable = z_limes_pops_killed
 					set_antagonist = no
 					random = {
-						chance = 33
+						chance = 50
 						every_owned_province = {
 							every_pops_in_province = {
 								random = {

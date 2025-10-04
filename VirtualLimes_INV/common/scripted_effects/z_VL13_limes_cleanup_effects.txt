@@ -9,7 +9,7 @@ z_limes_release_effect = {
 				is_ai = yes
 				has_civil_war = no
 				is_subject = yes
-				z_limes_is_mm_trigger = yes
+				#z_limes_is_mm_trigger = yes
 				overlord = { z_has_limes = yes }
 				NOR = {
 					any_neighbour_country = { this = overlord }
@@ -22,7 +22,7 @@ z_limes_release_effect = {
 			limit = {
 				is_ai = yes
 				is_subject = yes
-				z_limes_is_mm_trigger = yes
+				#z_limes_is_mm_trigger = yes
 				overlord = { z_has_limes = yes }
 				num_of_cities >= overlord.num_of_cities
 			}

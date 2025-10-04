@@ -2,55 +2,55 @@
 # Help AI Rome annex its many MMs - By order of priority
 # --------------------------------------------------------------------------------
 z_limes_annex_effect_ROM = {
-	if = { limit = { z_limes_annex_trigger_ROM = { REGION = core } } z_limes_annex_effect_ROM_b = { REGION = core } }									# 0
-	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = italy } } z_limes_annex_effect_ROM_b = { REGION = italy } }							# 5
-	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = gaul_a } } z_limes_annex_effect_ROM_b = { REGION = gaul_a } }							# 40
-	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = cisalpine_gaul_a } } z_limes_annex_effect_ROM_b = { REGION = cisalpine_gaul_a } }		# 55
-	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = iberia_a } } z_limes_annex_effect_ROM_b = { REGION = iberia_a } }						# 55
-	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = illyria_a } } z_limes_annex_effect_ROM_b = { REGION = illyria_a } }					# 60
-	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = iberia_d } } z_limes_annex_effect_ROM_b = { REGION = iberia_d } }						# 65
-	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = cisalpine_gaul_b } } z_limes_annex_effect_ROM_b = { REGION = cisalpine_gaul_b } }		# 85
-	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = gaul_b } } z_limes_annex_effect_ROM_b = { REGION = gaul_b } }							# 90
-	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = iberia_b } } z_limes_annex_effect_ROM_b = { REGION = iberia_b } }						# 100
-	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = iberia_c } } z_limes_annex_effect_ROM_b = { REGION = iberia_c } }						# 130
-	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = iberia_e } } z_limes_annex_effect_ROM_b = { REGION = iberia_e } }						# 130
-	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = illyria_b } } z_limes_annex_effect_ROM_b = { REGION = illyria_b } }					# 140
-	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = greece_a } } z_limes_annex_effect_ROM_b = { REGION = greece_a } }						# 150
-	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = macedonia } } z_limes_annex_effect_ROM_b = { REGION = macedonia } }					# 150
-	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = africa_a } } z_limes_annex_effect_ROM_b = { REGION = africa_a } }						# 150
-	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = africa_b } } z_limes_annex_effect_ROM_b = { REGION = africa_b } }						# 150
-	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = iberia_f } } z_limes_annex_effect_ROM_b = { REGION = iberia_f } }						# 170
-	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = greece_b } } z_limes_annex_effect_ROM_b = { REGION = greece_b } }						# 170
-	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = asia_a } } z_limes_annex_effect_ROM_b = { REGION = asia_a } }							# 170
-	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = gaul_c } } z_limes_annex_effect_ROM_b = { REGION = gaul_c } }							# 180
-	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = africa_g } } z_limes_annex_effect_ROM_b = { REGION = africa_g } }						# 200
-	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = asia_b } } z_limes_annex_effect_ROM_b = { REGION = asia_b } }							# 225
-	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = asia_c } } z_limes_annex_effect_ROM_b = { REGION = asia_c } }							# 235
-	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = asia_d } } z_limes_annex_effect_ROM_b = { REGION = asia_d } }							# 235
-	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = gaul_d } } z_limes_annex_effect_ROM_b = { REGION = gaul_d } }							# 240
-	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = levant_a } } z_limes_annex_effect_ROM_b = { REGION = levant_a } }						# 240
-	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = gaul_e } } z_limes_annex_effect_ROM_b = { REGION = gaul_e } }							# 245
-	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = gaul_f } } z_limes_annex_effect_ROM_b = { REGION = gaul_f } }							# 250
-	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = moesia } } z_limes_annex_effect_ROM_b = { REGION = moesia } }							# 270
-	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = levant_d } } z_limes_annex_effect_ROM_b = { REGION = levant_d } }						# 270
-	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = levant_e } } z_limes_annex_effect_ROM_b = { REGION = levant_e } }						# 270
-	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = iberia_g } } z_limes_annex_effect_ROM_b = { REGION = iberia_g } }						# 280
-	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = rhaetia } } z_limes_annex_effect_ROM_b = { REGION = rhaetia } }						# 280
-	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = pannonia } } z_limes_annex_effect_ROM_b = { REGION = pannonia } }						# 310
-	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = levant_c } } z_limes_annex_effect_ROM_b = { REGION = levant_c } }						# 310
-	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = asia_e } } z_limes_annex_effect_ROM_b = { REGION = asia_e } }							# 320
-	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = pontus_a } } z_limes_annex_effect_ROM_b = { REGION = pontus_a } }						# 320
-	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = thrace } } z_limes_annex_effect_ROM_b = { REGION = thrace } }							# 345
-	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = africa_c } } z_limes_annex_effect_ROM_b = { REGION = africa_c } }						# 345
-	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = africa_d } } z_limes_annex_effect_ROM_b = { REGION = africa_d } }						# 345
-	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = africa_e } } z_limes_annex_effect_ROM_b = { REGION = africa_e } }						# 345
-	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = africa_f } } z_limes_annex_effect_ROM_b = { REGION = africa_f } }						# 345
-	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = britain } } z_limes_annex_effect_ROM_b = { REGION = britain } }						# 345
-	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = agridecumates } } z_limes_annex_effect_ROM_b = { REGION = agridecumates } }			# 350
-	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = pontus_b } } z_limes_annex_effect_ROM_b = { REGION = pontus_b } }						# 350
-	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = pontus_c } } z_limes_annex_effect_ROM_b = { REGION = pontus_c } }						# 350
-	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = dacia } } z_limes_annex_effect_ROM_b = { REGION = dacia } }							# 375
-	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = levant_b } } z_limes_annex_effect_ROM_b = { REGION = levant_b } }						# 400
+	if = { limit = { z_limes_annex_trigger_ROM = { REGION = core } } z_limes_annex_effect_ROM_b = { REGION = core } }									# Year 0
+	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = italy } } z_limes_annex_effect_ROM_b = { REGION = italy } }							# Year 5
+	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = gaul_a } } z_limes_annex_effect_ROM_b = { REGION = gaul_a } }							# Year 40
+	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = cisalpine_gaul_a } } z_limes_annex_effect_ROM_b = { REGION = cisalpine_gaul_a } }		# Year 55
+	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = iberia_a } } z_limes_annex_effect_ROM_b = { REGION = iberia_a } }						# Year 55
+	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = illyria_a } } z_limes_annex_effect_ROM_b = { REGION = illyria_a } }					# Year 60
+	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = iberia_d } } z_limes_annex_effect_ROM_b = { REGION = iberia_d } }						# Year 65
+	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = cisalpine_gaul_b } } z_limes_annex_effect_ROM_b = { REGION = cisalpine_gaul_b } }		# Year 85
+	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = gaul_b } } z_limes_annex_effect_ROM_b = { REGION = gaul_b } }							# Year 90
+	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = iberia_b } } z_limes_annex_effect_ROM_b = { REGION = iberia_b } }						# Year 100
+	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = iberia_c } } z_limes_annex_effect_ROM_b = { REGION = iberia_c } }						# Year 130
+	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = iberia_e } } z_limes_annex_effect_ROM_b = { REGION = iberia_e } }						# Year 130
+	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = illyria_b } } z_limes_annex_effect_ROM_b = { REGION = illyria_b } }					# Year 140
+	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = greece_a } } z_limes_annex_effect_ROM_b = { REGION = greece_a } }						# Year 150
+	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = macedonia } } z_limes_annex_effect_ROM_b = { REGION = macedonia } }					# Year 150
+	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = africa_a } } z_limes_annex_effect_ROM_b = { REGION = africa_a } }						# Year 150
+	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = africa_b } } z_limes_annex_effect_ROM_b = { REGION = africa_b } }						# Year 150
+	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = iberia_f } } z_limes_annex_effect_ROM_b = { REGION = iberia_f } }						# Year 170
+	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = greece_b } } z_limes_annex_effect_ROM_b = { REGION = greece_b } }						# Year 170
+	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = asia_a } } z_limes_annex_effect_ROM_b = { REGION = asia_a } }							# Year 170
+	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = gaul_c } } z_limes_annex_effect_ROM_b = { REGION = gaul_c } }							# Year 180
+	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = africa_g } } z_limes_annex_effect_ROM_b = { REGION = africa_g } }						# Year 200
+	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = asia_b } } z_limes_annex_effect_ROM_b = { REGION = asia_b } }							# Year 225
+	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = asia_c } } z_limes_annex_effect_ROM_b = { REGION = asia_c } }							# Year 235
+	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = asia_d } } z_limes_annex_effect_ROM_b = { REGION = asia_d } }							# Year 235
+	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = gaul_d } } z_limes_annex_effect_ROM_b = { REGION = gaul_d } }							# Year 240
+	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = levant_a } } z_limes_annex_effect_ROM_b = { REGION = levant_a } }						# Year 240
+	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = gaul_e } } z_limes_annex_effect_ROM_b = { REGION = gaul_e } }							# Year 245
+	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = gaul_f } } z_limes_annex_effect_ROM_b = { REGION = gaul_f } }							# Year 250
+	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = moesia } } z_limes_annex_effect_ROM_b = { REGION = moesia } }							# Year 270
+	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = levant_d } } z_limes_annex_effect_ROM_b = { REGION = levant_d } }						# Year 270
+	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = levant_e } } z_limes_annex_effect_ROM_b = { REGION = levant_e } }						# Year 270
+	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = iberia_g } } z_limes_annex_effect_ROM_b = { REGION = iberia_g } }						# Year 280
+	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = rhaetia } } z_limes_annex_effect_ROM_b = { REGION = rhaetia } }						# Year 280
+	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = pannonia } } z_limes_annex_effect_ROM_b = { REGION = pannonia } }						# Year 310
+	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = levant_c } } z_limes_annex_effect_ROM_b = { REGION = levant_c } }						# Year 310
+	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = asia_e } } z_limes_annex_effect_ROM_b = { REGION = asia_e } }							# Year 320
+	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = pontus_a } } z_limes_annex_effect_ROM_b = { REGION = pontus_a } }						# Year 320
+	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = thrace } } z_limes_annex_effect_ROM_b = { REGION = thrace } }							# Year 345
+	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = africa_c } } z_limes_annex_effect_ROM_b = { REGION = africa_c } }						# Year 345
+	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = africa_d } } z_limes_annex_effect_ROM_b = { REGION = africa_d } }						# Year 345
+	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = africa_e } } z_limes_annex_effect_ROM_b = { REGION = africa_e } }						# Year 345
+	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = africa_f } } z_limes_annex_effect_ROM_b = { REGION = africa_f } }						# Year 345
+	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = britain } } z_limes_annex_effect_ROM_b = { REGION = britain } }						# Year 345
+	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = agridecumates } } z_limes_annex_effect_ROM_b = { REGION = agridecumates } }			# Year 350
+	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = pontus_b } } z_limes_annex_effect_ROM_b = { REGION = pontus_b } }						# Year 350
+	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = pontus_c } } z_limes_annex_effect_ROM_b = { REGION = pontus_c } }						# Year 350
+	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = dacia } } z_limes_annex_effect_ROM_b = { REGION = dacia } }							# Year 375
+	else_if = { limit = { z_limes_annex_trigger_ROM = { REGION = levant_b } } z_limes_annex_effect_ROM_b = { REGION = levant_b } }						# Year 400
 }
 
 # --------------------------------------------------------------------------------

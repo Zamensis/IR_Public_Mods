@@ -13,22 +13,19 @@ z_limes_be_annexed_trigger = {
 	has_civil_war = no
 	is_subject = yes
 	is_subject_of = root
+	any_neighbour_country = { this = root }
 	OR = {
 		z_limes_is_mm_trigger = yes
-		trigger_if = {
-			limit = {
-				root = c:ROM
-				z_limes_year >= 150
-			}
+		AND = {
+			root = c:ROM
+			z_limes_year >= 150
 			OR = {
+				num_of_cities >= 75
+				has_coasts = yes
 				capital_scope = { is_in_region = central_italy_region }
 				capital_scope = { is_in_region = magna_graecia_region }
 				capital_scope = { is_in_region = cisalpine_gaul_region }
 			}
 		}
-	}
-	OR = {
-		any_neighbour_country = { this = root }
-		#has_coasts = yes
 	}
 }

@@ -758,6 +758,7 @@
 			}
 			if = {
 				limit = { is_ai = yes }
+				# From roman_2_provincia
 				region:magna_graecia_region = {
 					every_region_province = { add_claim = ROOT }
 				}
@@ -792,6 +793,24 @@
 		requires = { roman_1_italia_roman_hegemony }
 		duration = 180 # 0.5 years
 		monthly_on_action = roman_2_provincia_case_for_expansion_monthly_pulse
+		allow = {
+			region:central_italy_region = {
+				any_region_province = {
+					count >= 50
+					owned_or_subject_owned = root
+				}
+			}
+			OR = {
+				NOT = { owns = 3515 }
+				NOT = { owns = 3481 }
+				NOT = { owns = 3504 }
+				NOT = { owns = 94 }
+				NOT = { owns = 80 }
+				NOT = { owns = 84 }
+			}
+			is_subject = no
+			has_civil_war = no
+		}
 		on_start = {
 			set_variable = {
 				name = ongoing_mission_pulse_flag
@@ -1375,27 +1394,6 @@
                     }
                 }
             }
-			if = {
-				limit = {
-					exists = c:CAR
-					c:CAR = {
-						has_land = yes
-						any_owned_province = {
-							OR = {
-								is_in_area = east_sicily_area
-								is_in_area = west_sicily_area
-							}
-						}
-					}
-				}
-				c:ROM = {
-					add_manpower = 15
-					declare_war_with_wargoal = {
-						war_goal = imperial_conquest_wargoal
-						target = c:CAR
-					}
-				}
-			}
 			c:ROM = {
 				trigger_event = {
 					id = roman_conquest.12

@@ -51,6 +51,12 @@
 		is_married = no
 		prisoner = no
 		is_mercenary = no
+		# -------------- Start of AI Royal Marriages
+		custom_tooltip = {
+			text = "z_airm_betrothed_flag"
+			NOT = { has_variable = betrothed_flag }
+		}
+		# -------------- End of AI Royal Marriages
 		NOT = { is_same_gender = scope:target }
 		trigger_if = {
 			limit = {

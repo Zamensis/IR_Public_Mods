@@ -157,6 +157,7 @@ z_limes_annex_effect = {
 			else_if = {
 				limit = { var:z_limes_level = 3 }
 				z_limes_annex_effect_default = { LEVEL = 2 }
+				z_limes_annex_effect_default = { LEVEL = 3 }
 			}
 		}
 	}

@@ -107,6 +107,9 @@ z_limes_annex_effect_default_b = {
 				any_neighbour_country = { this = root }
 			}
 		}
-		every_owned_province = { set_owned_by = root }
+		every_owned_province = {
+			limit = { z_limes_$CAPITAL$_trigger_$LEVEL$ = yes }
+			set_owned_by = root
+		}
 	}
 }

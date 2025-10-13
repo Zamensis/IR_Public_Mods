@@ -16,6 +16,7 @@ z_apc_culture_A_country_population = {
 			if = {
 				limit = {
 					this.country_culture = scope:z_apc_culture_A
+					NOT = { pop_type = slaves }
 				}
 				add = 1
 			}
@@ -33,6 +34,7 @@ z_apc_culture_A_capital_region_population = {
 			if = {
 				limit = {
 					this.country_culture = scope:z_apc_culture_A
+					NOT = { pop_type = slaves }
 				}
 				add = 1
 			}
@@ -50,6 +52,7 @@ z_apc_culture_A_capital_area_population = {
 			if = {
 				limit = {
 					this.country_culture = scope:z_apc_culture_A
+					NOT = { pop_type = slaves }
 				}
 				add = 1
 			}
@@ -64,6 +67,7 @@ z_apc_culture_A_capital_city_population = {
 			if = {
 				limit = {
 					this.country_culture = scope:z_apc_culture_A
+					NOT = { pop_type = slaves }
 				}
 				add = 1
 			}
@@ -78,6 +82,7 @@ z_apc_culture_B_country_population = {
 			if = {
 				limit = {
 					this.country_culture = scope:z_apc_culture_B
+					NOT = { pop_type = slaves }
 				}
 				add = 1
 			}
@@ -95,6 +100,7 @@ z_apc_culture_B_capital_region_population = {
 			if = {
 				limit = {
 					this.country_culture = scope:z_apc_culture_B
+					NOT = { pop_type = slaves }
 				}
 				add = 1
 			}
@@ -112,6 +118,7 @@ z_apc_culture_B_capital_area_population = {
 			if = {
 				limit = {
 					this.country_culture = scope:z_apc_culture_B
+					NOT = { pop_type = slaves }
 				}
 				add = 1
 			}
@@ -126,6 +133,7 @@ z_apc_culture_B_capital_city_population = {
 			if = {
 				limit = {
 					this.country_culture = scope:z_apc_culture_B
+					NOT = { pop_type = slaves }
 				}
 				add = 1
 			}

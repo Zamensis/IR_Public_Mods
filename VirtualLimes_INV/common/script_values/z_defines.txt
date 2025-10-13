@@ -7,8 +7,10 @@ z_limes_rules_annex = 1						# The AI can diplo-annex its Marches for free as it
 z_limes_rules_release = 1					# The AI releases Marches if they don't have a common border, unless they are coastal
 z_limes_rules_absorb = 1					# The AI can vassalize small enclaved, non-coastal AIs for free
 z_limes_rules_rename = 1					# In some cases, when applicable, Marche names are based on area, region or main culture
+z_limes_rules_subject_subject = 1			# Clean up AI subjects of AI subjects on the map (annex or release, depending on the context)
 z_limes_rules_player_mm = 1					# The player releases Marches instead of Tributaries after researching the "Tributary Concessions" invention
-z_limes_rules_tribal_collapse = 1			# Large tribal empires have a chance of collapsing on ruler succession, if the new successor is weak
+z_limes_rules_tribal_restoration = 1		# Large AI tribal empires have a chance of becoming tribal again if they have switched to another type of government
+z_limes_rules_tribal_collapse = 1			# Large AI tribal empires have a chance of collapsing on ruler succession, if the new successor is weak
 
 # HISTORICAL TWEAKS							# EFFECT WHEN ENABLED (0 = disabled, 1 = enabled)
 # ----------------							# --------------------------------------------

@@ -1,5 +1,5 @@
 ﻿# --------------------------------------------------------------------------------
-# Tribal collapse effects - Collapse big tribal empires
+# Tribal collapse - Large AI tribal empires have a chance of collapsing on ruler succession, if the new successor is weak
 # --------------------------------------------------------------------------------
 z_limes_tribal_collapse_effect = {
 	if = {
@@ -10,7 +10,7 @@ z_limes_tribal_collapse_effect = {
 			is_subject = no
 			num_of_cities >= 120
 			z_limes_year >= 100
-			z_limes_year < 325
+			z_limes_year < 600
 			has_variable = z_limes_lucky_factor
 			var:z_limes_lucky_factor > 10
 			NOT = {
@@ -91,6 +91,59 @@ z_limes_tribal_collapse_effect = {
 				}
 				release_subject = scope:z_limes_mm_capital.owner
 			}
+		}
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Tribal restoration - Large AI tribal empires have a chance of becoming tribal again if they have switched to another type of government
+# --------------------------------------------------------------------------------
+z_limes_tribal_restoration_effect = {
+	if = {
+		limit = {
+			is_tribal = yes
+			NOT = { has_variable = z_limes_was_tribal_once }
+			# Lucky factor
+			has_variable = z_limes_lucky_factor
+			var:z_limes_lucky_factor > 10
+			# Protect Parthia and friends
+			z_has_limes_PAR = no
+		}
+		set_variable = z_limes_was_tribal_once
+	}
+	if = {
+		limit = {
+			z_limes_rules_tribal_restoration = 1
+			is_ai = yes
+			is_tribal = no
+			has_variable = z_limes_was_tribal_once
+			num_of_cities >= 120
+			z_limes_year >= 150
+			war = no
+			# Tribal culture groups
+			OR = {
+				country_culture_group = baltic
+				country_culture_group = belgae_group
+				country_culture_group = britannic
+				country_culture_group = celt_iberia
+				country_culture_group = celto_pannonian_group
+				country_culture_group = gaelic
+				country_culture_group = gallic
+				country_culture_group = germanic
+				country_culture_group = iberia
+				country_culture_group = illyrian_group
+				country_culture_group = scythia
+				country_culture_group = scythian_east
+			}
+		}
+		if = {
+			limit = {
+				num_of_cities < 200
+			}
+			change_government = tribal_kingdom
+		}
+		else = {
+			change_government = tribal_federation
 		}
 	}
 }

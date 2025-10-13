@@ -125,7 +125,7 @@ z_dynastic_countries_on_action = {
 				#-------------------------------------------------
 				z_dynastic_countries_has_dynastic_ruler = yes
 				#-------------------------------------------------
-				# If has never been given a dynastic name OR is the loyalist in a civil war, MUST have at least 150 territories
+				# If has never been given a dynastic name OR is the loyalist in a civil war, MUST have at least 100 territories
 				#-------------------------------------------------
 				trigger_if = {
 					limit = {
@@ -140,7 +140,7 @@ z_dynastic_countries_on_action = {
 							tag = TRE
 						}
 					}
-					num_of_cities >= 150
+					num_of_cities >= 100
 				}
 				trigger_else_if = {
 					limit = {

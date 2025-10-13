@@ -185,42 +185,46 @@ z_apc_update_cultural_majority_effect = {
 					any_country_culture = { z_apc_has_any_cultural_majority_modifier_trigger = yes }
 				}
 			}
-			# SCENARIO 1: Do nothing
+			# SCENARIO 0: Do nothing
 		}
 		# ...but a Cultural Majority already exists
 		else = {
-			# SCENARIO 2: Remove Cultural Majority modifier from the old Cultural Majority
+			# SCENARIO 1: Remove Cultural Majority modifier from the old Cultural Majority
+			# Event
 			random_country_culture = {
 				limit = { z_apc_has_any_cultural_majority_modifier_trigger = yes }
 				save_scope_as = z_apc_old_cultural_majority
 			}
-			# Event
-			scope:z_apc_old_cultural_majority = {
-				z_apc_remove_all_cultural_majority_modifiers_effect = yes
+			random_country_culture = {
+				limit = { this = root.country_culture }
+				save_scope_as = z_apc_ruling_minority
 			}
+			trigger_event = z_apc_common.1
 		}
 	}
 	# A Cultural Majority was found...
 	else = {
-		# ...and no Cultural Majority already exists...
+		# ...and no Cultural Majority already exists
 		if = {
 			limit = {
 				NOT = {
 					any_country_culture = { z_apc_has_any_cultural_majority_modifier_trigger = yes }
 				}
 			}
-			# SCENARIO 3: Add Cultural Majority modifier to the new Cultural Majority
+			# SCENARIO 2: Add Cultural Majority modifier to the new Cultural Majority
 			# Event
-			scope:z_apc_found_cultural_majority = {
-				z_apc_add_cultural_majority_modifier_effect = yes
+			random_country_culture = {
+				limit = { this = root.country_culture }
+				save_scope_as = z_apc_ruling_minority
 			}
+			trigger_event = z_apc_common.2
 		}
 		# ...and it's already a Cultural Majority
 		else_if = {
 			limit = {
 				scope:z_apc_found_cultural_majority = { z_apc_has_any_cultural_majority_modifier_trigger = yes }
 			}
-			# SCENARIO 4: Update Cultural Majority modifier, if necessary (no event)
+			# SCENARIO 3: Update Cultural Majority modifier, if necessary (no event)
 			# Event
 			scope:z_apc_found_cultural_majority = {
 				z_apc_remove_all_cultural_majority_modifiers_effect = yes
@@ -229,18 +233,17 @@ z_apc_update_cultural_majority_effect = {
 		}
 		# ...but there's already another Cultural Majority
 		else = {
-			# SCENARIO 5: Add Cultural Majority modifier to the new Cultural Majority + Remove Cultural Majority modifier from the old Cultural Majority
+			# SCENARIO 4: Add Cultural Majority modifier to the new Cultural Majority + Remove Cultural Majority modifier from the old Cultural Majority
+			# Event
 			random_country_culture = {
 				limit = { z_apc_has_any_cultural_majority_modifier_trigger = yes }
 				save_scope_as = z_apc_old_cultural_majority
 			}
-			# Event
-			scope:z_apc_old_cultural_majority = {
-				z_apc_remove_all_cultural_majority_modifiers_effect = yes
+			random_country_culture = {
+				limit = { this = root.country_culture }
+				save_scope_as = z_apc_ruling_minority
 			}
-			scope:z_apc_found_cultural_majority = {
-				z_apc_add_cultural_majority_modifier_effect = yes
-			}
+			trigger_event = z_apc_common.4
 		}
 	}
 }
@@ -249,6 +252,7 @@ z_apc_update_cultural_majority_effect = {
 # Add Cultural Majority modifier
 #-----------------------------------------------------------------------------------------
 z_apc_add_cultural_majority_modifier_effect = {
+	z_apc_remove_all_cultural_majority_modifiers_effect = yes
 	if = {
 		limit = {
 			exists = scope:z_apc_found_cultural_majority_in_country

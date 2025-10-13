@@ -1,0 +1,228 @@
+﻿namespace = z_apc_common
+
+#-----------------------------------------------------------------------------------------
+# Cultural Majority update, scenario 1:
+# No Cultural Majority was found but a Cultural Majority already exists
+#-----------------------------------------------------------------------------------------
+z_apc_common.1 = {
+	type = country_event
+	title = "z_apc_common.1.t"
+	desc = "z_apc_common.1.desc"
+	
+	picture = shrine_city	
+	left_portrait = root.current_ruler
+	
+	trigger = {
+		# Triggered by effect: z_apc_update_cultural_majority_effect
+		NOT = { has_variable = z_apc_had_recent_cultural_majority_change }
+	}
+		
+	immediate = {
+		set_variable = {
+			name = z_apc_had_recent_cultural_majority_change
+			days = 3650 # 10 years
+		}
+	}
+		
+	option = { # OK
+		name = "z_apc_common.1.a"
+		scope:z_apc_old_cultural_majority = {
+			z_apc_remove_all_cultural_majority_modifiers_effect = yes
+			if = {
+				limit = {
+					NOT = { has_country_culture_modifier = z_apc_old_cultural_majority_modifier }
+				}
+				add_country_culture_modifier = {
+					name = z_apc_old_cultural_majority_modifier
+					duration = 7300 # 20 years
+				}
+			}
+		}
+		if = {
+			limit = {
+				scope:z_apc_ruling_minority = { has_country_culture_modifier = z_apc_ruling_minority_modifier }
+			}
+			scope:z_apc_ruling_minority = { remove_country_culture_modifier = z_apc_ruling_minority_modifier }
+		}
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# Cultural Majority update, scenario 2:
+# A Cultural Majority was found and no Cultural Majority already exists
+#-----------------------------------------------------------------------------------------
+z_apc_common.2 = {
+	type = country_event
+	title = "z_apc_common.2.t"
+	desc = {
+		triggered_desc = {
+			trigger = {
+				primary_culture = macedonian
+				NOT = {
+					capital_scope = {
+						is_in_region = macedonia_region
+					}
+				}
+				is_monarchy = yes
+			}
+			desc = z_apc_common.2.desc.diadochi
+		}
+		triggered_desc = {
+			trigger = {
+				NAND = {
+					primary_culture = macedonian
+					NOT = {
+						capital_scope = { is_in_region = macedonia_region }
+					}
+				}
+				is_monarchy = yes
+			}
+			desc = z_apc_common.2.desc.monarchy
+		}
+		triggered_desc = {
+			trigger = {
+				NAND = {
+					primary_culture = macedonian
+					NOT = {
+						capital_scope = { is_in_region = macedonia_region }
+					}
+				}
+				is_republic = yes
+			}
+			desc = z_apc_common.2.desc.republic
+		}
+		triggered_desc = {
+			trigger = {
+				NAND = {
+					primary_culture = macedonian
+					NOT = {
+						capital_scope = { is_in_region = macedonia_region }
+					}
+				}
+				is_tribal = yes
+			}
+			desc = z_apc_common.2.desc.tribal
+		}
+	}
+	
+	picture = shrine_city	
+	left_portrait = root.current_ruler
+	
+	trigger = {
+		# Triggered by effect: z_apc_update_cultural_majority_effect
+		NOT = { has_variable = z_apc_had_recent_cultural_majority_change }
+	}
+		
+	immediate = {
+		set_variable = {
+			name = z_apc_had_recent_cultural_majority_change
+			days = 3650 # 10 years
+		}
+	}
+		
+	option = { # OK
+		name = "z_apc_common.2.a"
+		scope:z_apc_found_cultural_majority = {
+			if = {
+				limit = { has_country_culture_modifier = z_apc_old_cultural_majority_modifier }
+				remove_country_culture_modifier = z_apc_old_cultural_majority_modifier
+			}
+			z_apc_add_cultural_majority_modifier_effect = yes
+		}
+		if = {
+			limit = {
+				scope:z_apc_ruling_minority = {
+					NOT = { has_country_culture_modifier = z_apc_ruling_minority_modifier }
+				}
+			}
+			scope:z_apc_ruling_minority = {
+				add_country_culture_modifier = {
+					name = z_apc_ruling_minority_modifier
+					duration = -1
+				}
+			}
+		}
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# Cultural Majority update, scenario 3:
+# A Cultural Majority was found and it's already a Cultural Majority
+# No event needed, managed in z_apc_update_cultural_majority_effect
+#-----------------------------------------------------------------------------------------
+#z_apc_common.3 = {
+#	type = country_event
+#	title = "z_apc_common.3.t"
+#	desc = "z_apc_common.3.desc"
+#	
+#	picture = shrine_city	
+#	left_portrait = root.current_ruler
+#
+#	trigger = {
+#		# Triggered by effect: z_apc_update_cultural_majority_effect
+#	}
+#		
+#	immediate = {
+#	}
+		
+#	option = { # OK
+#		name = "z_apc_common.3.a"
+#	}
+#}
+
+#-----------------------------------------------------------------------------------------
+# Cultural Majority update, scenario 4:
+# A Cultural Majority was found but there's already another Cultural Majority
+#-----------------------------------------------------------------------------------------
+z_apc_common.4 = {
+	type = country_event
+	title = "z_apc_common.4.t"
+	desc = "z_apc_common.4.desc"
+	
+	picture = shrine_city	
+	left_portrait = root.current_ruler
+	
+	trigger = {
+		# Triggered by effect: z_apc_update_cultural_majority_effect
+		NOT = { has_variable = z_apc_had_recent_cultural_majority_change }
+	}
+		
+	immediate = {
+		set_variable = {
+			name = z_apc_had_recent_cultural_majority_change
+			days = 1825 # 5 years
+		}
+	}
+		
+	option = { # OK
+		name = "z_apc_common.4.a"
+		scope:z_apc_old_cultural_majority = {
+			z_apc_remove_all_cultural_majority_modifiers_effect = yes
+			if = {
+				limit = {
+					NOT = { has_country_culture_modifier = z_apc_old_cultural_majority_modifier }
+				}
+				add_country_culture_modifier = {
+					name = z_apc_old_cultural_majority_modifier
+					duration = 7300 # 20 years
+				}
+			}
+		}
+		scope:z_apc_found_cultural_majority = {
+			z_apc_add_cultural_majority_modifier_effect = yes
+		}
+		if = {
+			limit = {
+				scope:z_apc_ruling_minority = {
+					NOT = { has_country_culture_modifier = z_apc_ruling_minority_modifier }
+				}
+			}
+			scope:z_apc_ruling_minority = {
+				add_country_culture_modifier = {
+					name = z_apc_ruling_minority_modifier
+					duration = -1
+				}
+			}
+		}
+	}
+}

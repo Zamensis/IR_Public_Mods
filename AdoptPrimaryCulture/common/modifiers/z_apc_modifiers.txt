@@ -1,22 +1,26 @@
 ﻿#-----------------------------------------------------------------------------------------
 # Cultural Majority modifiers
 #-----------------------------------------------------------------------------------------
-z_apc_cultural_majority_modifier = {
-	culture_happiness_modifier = -0.025
+z_apc_ruling_minority_modifier = {
+	culture_happiness_modifier = 0.05
 }
 
 z_apc_cultural_majority_in_country_modifier = {
-	culture_happiness_modifier = -0.025
+	culture_happiness_modifier = -0.05
 }
 
 z_apc_cultural_majority_in_capital_region_modifier = {
-	culture_happiness_modifier = -0.025
+	culture_happiness_modifier = -0.05
 }
 
 z_apc_cultural_majority_in_capital_area_modifier = {
-	culture_happiness_modifier = -0.025
+	culture_happiness_modifier = -0.05
 }
 
 z_apc_cultural_majority_in_capital_city_modifier = {
-	culture_happiness_modifier = -0.025
+	culture_happiness_modifier = -0.05
+}
+
+z_apc_old_cultural_majority_modifier = {
+	culture_happiness_modifier = -0.075
 }

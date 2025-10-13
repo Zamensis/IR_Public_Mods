@@ -1,0 +1,32 @@
+﻿l_english:
+ # EVENTS -----------------------------------------------------------------------------------------------------------------------------------------------
+ z_apc_common.1.t:0 "The silenced Majority"
+ z_apc_common.1.desc:0 "\n\nThe [z_apc_found_cultural_majority.GetName] people is no longer a cultural majority ruled by a [z_apc_ruling_minority.GetName] minority."
+ z_apc_common.1.a:0 "OK"
+ # -----------
+ z_apc_common.2.t:0 "The unsilent Majority"
+ z_apc_common.2.desc.diadochi:0 "Diadochi backstory\n\nThe [z_apc_found_cultural_majority.GetName] people is a cultural majority ruled by a [z_apc_ruling_minority.GetName] minority."
+ z_apc_common.2.desc.monarchy:0 "Monarchy backstory\n\nThe [z_apc_found_cultural_majority.GetName] people is a cultural majority ruled by a [z_apc_ruling_minority.GetName] minority."
+ z_apc_common.2.desc.republic:0 "Republic backstory\n\nThe [z_apc_found_cultural_majority.GetName] people is a cultural majority ruled by a [z_apc_ruling_minority.GetName] minority."
+ z_apc_common.2.desc.tribe:0 "Tribal backstory\n\nThe [z_apc_found_cultural_majority.GetName] people is a cultural majority ruled by a [z_apc_ruling_minority.GetName] minority."
+ z_apc_common.2.a:0 "OK"
+ # -----------
+ z_apc_common.3.t:0 "The silent Majority"
+ z_apc_common.3.desc:0 "\n\nThe [z_apc_found_cultural_majority.GetName] people has replaced the [z_apc_old_cultural_majority.GetName] as the cultural majority ruled by a [z_apc_ruling_minority.GetName] minority."
+ z_apc_common.3.a:0 "OK"
+ # -----------
+ # MODIFIERS -----------------------------------------------------------------------------------------------------------------------------------------------
+ z_apc_cultural_majority_modifier:0 "Cultural Majority"
+ z_apc_cultural_majority_modifier_explanation:0 "To be considered a #E Cultural Majority#!, a non-primary culture must represent at least #Y 50%#! of the non-slave population in our #Y country#!, #Y capital region#!, #Y capital province#! or #Y capital#!."
+ z_apc_cultural_majority_in_country_modifier:0 "$z_apc_cultural_majority_modifier$"
+ desc_z_apc_cultural_majority_in_country_modifier:0 "This culture represents a majority in our #Y country#!. Ruled by a foreign minority, it considers itself denied of its rightful political representation.\n\n$z_apc_cultural_majority_modifier_explanation$"
+ z_apc_cultural_majority_in_capital_region_modifier:0 "$z_apc_cultural_majority_modifier$"
+ desc_z_apc_cultural_majority_in_capital_region_modifier:0 "This culture represents a majority in our #Y capital region#!. Ruled by a foreign minority, it considers itself denied of its rightful political representation.\n\n$z_apc_cultural_majority_modifier_explanation$"
+ z_apc_cultural_majority_in_capital_area_modifier:0 "$z_apc_cultural_majority_modifier$"
+ desc_z_apc_cultural_majority_in_capital_area_modifier:0 "This culture represents a majority in our #Y capital province#!. Ruled by a foreign minority, it considers itself denied of its rightful political representation.\n\n$z_apc_cultural_majority_modifier_explanation$"
+ z_apc_cultural_majority_in_capital_city_modifier:0 "$z_apc_cultural_majority_modifier$"
+ desc_z_apc_cultural_majority_in_capital_city_modifier:0 "This culture represents a majority in our #Y capital#!. Ruled by a foreign minority, it considers itself denied of its rightful political representation.\n\n$z_apc_cultural_majority_modifier_explanation$"
+ z_apc_old_cultural_majority_modifier:0 "Former Cultural Majority"
+ desc_z_apc_old_cultural_majority_modifier:0 "This culture once represented a majority in our country. Even though it is now a minority, it still considers itself denied of its rightful political representation, and oppressed by an illegitimate, foreign population.\n\n$z_apc_cultural_majority_modifier_explanation$"
+ z_apc_ruling_minority_modifier:0 "Ruling Minority"
+ desc_z_apc_ruling_minority_modifier:0 "This culture represents only a minority in the country, ruling over a foreign, culturally united majority."

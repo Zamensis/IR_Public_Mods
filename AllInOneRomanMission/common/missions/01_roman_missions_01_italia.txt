@@ -71,8 +71,8 @@
 	}
 
     on_start = {
-    	start_mission_ai_effect = yes
-    	save_scope_as = me_rome_scope
+    	start_mission_ai_effect = yes # From roman_1_italia
+    	save_scope_as = me_rome_scope # From roman_1_italia
     	c:EGY = { save_scope_as = egypt_country }
     	c:MAC = { save_scope_as = macedon_country }
     	c:TRE = { save_scope_as = thrace_country }
@@ -115,8 +115,7 @@
 			# DUMMIES
 			if = {
 				limit = {
-					is_ai = yes
-					is_ai = no
+					always = no
 				}
 				set_variable = { name = latin_citizenship_done }
 				set_variable = { name = rm_1_latin_congress_cooldown }
@@ -259,7 +258,7 @@
 				text = roman_1_italia_unseat_umbrians_tooltip_1
 				c:UMB = { has_land = no }
 			}
-			owns = 103
+			owns_or_subject_owns = 103
 			owns = 123
 		}
 		highlight = {
@@ -315,8 +314,8 @@
 				c:SAM = { has_land = no }
 			}
 			owns = 32
-			owns = 1718
-			owns = 41
+			owns_or_subject_owns = 1718
+			owns_or_subject_owns = 41
 		}
 		highlight = {
 			scope:province = {
@@ -525,13 +524,13 @@
 	}
 	
 	roman_1_italia_adriatic_adventures = {
-		requires = { roman_1_italia_beat_bruttians }
+		requires = { roman_1_italia_unseat_umbrians }
 		
-		#potential = {
-		#	c:ANO = {
-		#		has_land = yes
-		#	}
-		#}
+		potential = {
+			c:ANO = {
+				has_land = yes
+			}
+		}
 		
 		allow = {
 			custom_tooltip = {
@@ -596,7 +595,7 @@
 				text = roman_1_italia_beat_bruttians_tooltip_1
 				c:BRT = { has_land = no }
 			}
-			owns = 79
+			owns_or_subject_owns = 79
 			calc_true_if = {
 				amount >= 2
 				owns_or_subject_owns = 52
@@ -718,7 +717,12 @@
 	
 	roman_1_italia_roman_hegemony = {
 		requires = { roman_1_italia_italian_colonia }
+		#prevented_by = { roman_1_italia_latin_citizenship }
 		duration = 180
+
+		allow = {
+			has_civil_war = no
+		}
 
 		bypass = {
 			has_variable = latin_citizenship_done
@@ -754,35 +758,27 @@
 			}
 			if = {
 				limit = { is_ai = yes }
+				# From roman_2_provincia
 				region:magna_graecia_region = {
 					every_region_province = { add_claim = ROOT }
 				}
-			}
-			if = {
-				limit = { is_ai = yes }
 				region:cisalpine_gaul_region = {
 					every_region_province = { add_claim = ROOT }
 				}
 				area:alpes_maritimae_area = {
-					every_area_province = {
-						add_claim = root
-					}
+					every_area_province = { add_claim = ROOT }
 				}
 				area:narbonensis_occidentalis_area = {
-					every_area_province = {
-						add_claim = root
-					}
+					every_area_province = { add_claim = ROOT }
 				}
 				area:narbonensis_centralis_area = {
-					every_area_province = {
-						add_claim = root
-					}
+					every_area_province = { add_claim = ROOT }
 				}
 			}
 			set_variable = finished_roman_1_italia
 			if = {
 				limit = {
-					NOT = { religion = roman_pantheon }
+					NOT = { religion = roman_pantheon } # So that it doesn't fire in Vanilla
 					NOT = { has_global_variable = roman_conversion_has_happened }
 				}
 				trigger_event = hellenic_flavor.1
@@ -797,6 +793,24 @@
 		requires = { roman_1_italia_roman_hegemony }
 		duration = 180 # 0.5 years
 		monthly_on_action = roman_2_provincia_case_for_expansion_monthly_pulse
+		allow = {
+			region:central_italy_region = {
+				any_region_province = {
+					count >= 50
+					owned_or_subject_owned = root
+				}
+			}
+			OR = {
+				NOT = { owns = 3515 }
+				NOT = { owns = 3481 }
+				NOT = { owns = 3504 }
+				NOT = { owns = 94 }
+				NOT = { owns = 80 }
+				NOT = { owns = 84 }
+			}
+			is_subject = no
+			has_civil_war = no
+		}
 		on_start = {
 			set_variable = {
 				name = ongoing_mission_pulse_flag
@@ -1380,27 +1394,6 @@
                     }
                 }
             }
-			if = {
-				limit = {
-					exists = c:CAR
-					c:CAR = {
-						has_land = yes
-						any_owned_province = {
-							OR = {
-								is_in_area = east_sicily_area
-								is_in_area = west_sicily_area
-							}
-						}
-					}
-				}
-				c:ROM = {
-					add_manpower = 15
-					declare_war_with_wargoal = {
-						war_goal = imperial_conquest_wargoal
-						target = c:CAR
-					}
-				}
-			}
 			c:ROM = {
 				trigger_event = {
 					id = roman_conquest.12

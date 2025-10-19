@@ -1,4 +1,5 @@
-﻿roman_conversion_modifier = {
+﻿# From Invictus for Vanilla compatibility
+roman_conversion_modifier = {
 	global_pop_conversion_speed_modifier = 0.25
 	change_pantheon_cost_modifier = -1
 	stability_monthly_change = -0.03

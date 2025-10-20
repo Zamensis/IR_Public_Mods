@@ -236,3 +236,24 @@ z_apc_culture_B_country_population_cache = { value = var:z_apc_culture_B_country
 z_apc_culture_B_capital_region_population_cache = { value = var:z_apc_culture_B_capital_region_population_cache }
 z_apc_culture_B_capital_area_population_cache = { value = var:z_apc_culture_B_capital_area_population_cache }
 z_apc_culture_B_capital_city_population_cache = { value = var:z_apc_culture_B_capital_city_population_cache }
+
+#-----------------------------------------------------------------------------------------
+# Cultural Transition (current score)
+#-----------------------------------------------------------------------------------------
+z_apc_mission_ctp_current_svalue = {
+	value = 0
+	if = {
+		limit = { has_variable = z_apc_mission_ctp_current }
+		add = var:z_apc_mission_ctp_current
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# Cultural Transition (max possible score)
+#-----------------------------------------------------------------------------------------
+z_apc_mission_ctp_max_svalue = {
+	value = 0 # Base
+	add = 3 # From z_apc_mission_integrate_npc_citizens
+	add = 2 # From z_apc_mission_npc_exclusiveness
+	add = 2 # From z_apc_mission_integrate_npc_nobles
+}

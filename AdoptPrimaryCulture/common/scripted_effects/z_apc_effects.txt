@@ -5,19 +5,15 @@ z_apc_find_cultural_majority_effect = {
 	# Before anything, make sure the primary culture isn't considered a Cultural Majority
 	if = {
 		limit = {
-			root.country_culture = {
-				has_country_culture_modifier = z_apc_cultural_majority_modifier
-			}
+			root.country_culture = { z_apc_has_any_cultural_majority_modifier_trigger = yes }
 		}
-		root.country_culture = {
-			remove_country_culture_modifier = z_apc_cultural_majority_modifier
-		}
+		root.country_culture = { z_apc_remove_all_cultural_majority_modifiers_effect = yes }
 	}
 	# Then, check whether a Cultural Majority exists
 	if = {
 		limit = {
 			# Only possible if the APC mission is not ongoing or has never been completed
-			# ...
+			NOT = { has_variable = z_apc_mission_ongoing }
 			# Only possible if there's any culture other than the primary one
 			any_country_culture = {
 				NOT = { this = root.country_culture }
@@ -211,7 +207,7 @@ z_apc_update_cultural_majority_effect = {
 					any_country_culture = { z_apc_has_any_cultural_majority_modifier_trigger = yes }
 				}
 			}
-			# SCENARIO 2: Add Cultural Majority modifier to the new Cultural Majority
+			# SCENARIO 2: Add Cultural Majority modifier to the new Cultural Majority (also game start scenario)
 			# Event
 			random_country_culture = {
 				limit = { this = root.country_culture }
@@ -252,7 +248,6 @@ z_apc_update_cultural_majority_effect = {
 # Add Cultural Majority modifier
 #-----------------------------------------------------------------------------------------
 z_apc_add_cultural_majority_modifier_effect = {
-	z_apc_remove_all_cultural_majority_modifiers_effect = yes
 	if = {
 		limit = {
 			exists = scope:z_apc_found_cultural_majority_in_country
@@ -315,4 +310,48 @@ z_apc_remove_all_cultural_majority_modifiers_effect = {
 		limit = { has_country_culture_modifier = z_apc_cultural_majority_in_capital_city_modifier }
 		remove_country_culture_modifier = z_apc_cultural_majority_in_capital_city_modifier
 	}
+}
+
+#-----------------------------------------------------------------------------------------
+# Clear mission variables (on abort or completion)
+#-----------------------------------------------------------------------------------------
+z_apc_mission_clear_variables_effect = {
+	if = {
+		limit = { has_variable = z_apc_mission_ongoing }
+		remove_variable = z_apc_mission_ongoing
+	}
+	if = {
+		limit = { has_variable = z_apc_mission_ctp_current }
+		remove_variable = z_apc_mission_ctp_current
+	}
+	if = {
+		limit = { has_variable = z_apc_mission_already_integrated_citizens }
+		remove_variable = z_apc_mission_already_integrated_citizens
+	}
+	if = {
+		limit = { has_variable = z_apc_mission_already_integrated_nobles }
+		remove_variable = z_apc_mission_already_integrated_nobles
+	}
+	if = {
+		limit = { has_variable = z_apc_mission_assimilation_flag }
+		remove_variable = z_apc_mission_assimilation_flag
+	}
+	if = {
+		limit = { has_variable = z_apc_mission_replacement_flag }
+		remove_variable = z_apc_mission_replacement_flag
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# Add 1 Cultural Transition point
+#-----------------------------------------------------------------------------------------
+z_apc_mission_add_ctp_effect = {
+	if = {
+		limit = { has_variable = z_apc_mission_ctp_current }
+		change_variable = {
+			name = z_apc_mission_ctp_current
+			add = $VALUE$
+		}
+	}
+	custom_tooltip = z_apc_mission_add_$VALUE$_ctp_effect_tt
 }

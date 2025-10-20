@@ -22,10 +22,6 @@ z_apc_common.1 = {
 			name = z_apc_had_recent_cultural_majority_change
 			days = 3650 # 10 years
 		}
-	}
-		
-	option = { # OK
-		name = "z_apc_common.1.a"
 		scope:z_apc_old_cultural_majority = {
 			z_apc_remove_all_cultural_majority_modifiers_effect = yes
 			if = {
@@ -45,11 +41,15 @@ z_apc_common.1 = {
 			scope:z_apc_ruling_minority = { remove_country_culture_modifier = z_apc_ruling_minority_modifier }
 		}
 	}
+		
+	option = { # OK
+		name = "z_apc_common.1.a"
+	}
 }
 
 #-----------------------------------------------------------------------------------------
 # Cultural Majority update, scenario 2:
-# A Cultural Majority was found and no Cultural Majority already exists
+# A Cultural Majority was found and no Cultural Majority already exists (also game start scenario)
 #-----------------------------------------------------------------------------------------
 z_apc_common.2 = {
 	type = country_event
@@ -105,7 +105,7 @@ z_apc_common.2 = {
 		}
 	}
 	
-	picture = shrine_city	
+	picture = z_apc_cultural_majority_pic	
 	left_portrait = root.current_ruler
 	
 	trigger = {
@@ -118,10 +118,12 @@ z_apc_common.2 = {
 			name = z_apc_had_recent_cultural_majority_change
 			days = 3650 # 10 years
 		}
-	}
-		
-	option = { # OK
-		name = "z_apc_common.2.a"
+		scope:z_apc_ruling_minority = {
+			add_country_culture_modifier = {
+				name = z_apc_ruling_minority_modifier
+				duration = -1
+			}
+		}
 		scope:z_apc_found_cultural_majority = {
 			if = {
 				limit = { has_country_culture_modifier = z_apc_old_cultural_majority_modifier }
@@ -129,19 +131,11 @@ z_apc_common.2 = {
 			}
 			z_apc_add_cultural_majority_modifier_effect = yes
 		}
-		if = {
-			limit = {
-				scope:z_apc_ruling_minority = {
-					NOT = { has_country_culture_modifier = z_apc_ruling_minority_modifier }
-				}
-			}
-			scope:z_apc_ruling_minority = {
-				add_country_culture_modifier = {
-					name = z_apc_ruling_minority_modifier
-					duration = -1
-				}
-			}
-		}
+	}
+		
+	option = { # OK
+		name = "z_apc_common.2.a"
+		custom_tooltip = z_apc_common_mission_unlocked
 	}
 }
 
@@ -179,7 +173,7 @@ z_apc_common.4 = {
 	title = "z_apc_common.4.t"
 	desc = "z_apc_common.4.desc"
 	
-	picture = shrine_city	
+	picture = z_apc_cultural_majority_pic	
 	left_portrait = root.current_ruler
 	
 	trigger = {
@@ -192,10 +186,6 @@ z_apc_common.4 = {
 			name = z_apc_had_recent_cultural_majority_change
 			days = 1825 # 5 years
 		}
-	}
-		
-	option = { # OK
-		name = "z_apc_common.4.a"
 		scope:z_apc_old_cultural_majority = {
 			z_apc_remove_all_cultural_majority_modifiers_effect = yes
 			if = {
@@ -224,5 +214,9 @@ z_apc_common.4 = {
 				}
 			}
 		}
+	}
+		
+	option = { # OK
+		name = "z_apc_common.4.a"
 	}
 }

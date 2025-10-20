@@ -3605,7 +3605,7 @@ z_limes_upper_egypt_region_trigger_3 = {
 }
 
 # --------------------------------------------------------------------------------
-# Capital is_in_region venedia_region
+# Capital is_in_region venedia_region (last update: 20/10/25)
 # --------------------------------------------------------------------------------
 
 # Stage 1: Initial (main) authorized area
@@ -3613,10 +3613,42 @@ z_limes_upper_egypt_region_trigger_3 = {
 z_limes_venedia_region_trigger_1 = {
 	OR = {
 		is_in_region = venedia_region
-		is_in_region = germania_region
-		is_in_region = bohemia_area
+		AND = {
+			is_in_region = germania_region
+			# Western Germania
+			NOT = { is_in_area = frisia_area }
+			NOT = { is_in_area = chasuaria_area }
+			NOT = { is_in_area = sicambria_area }
+			NOT = { is_in_area = bructeria_area }
+		}
 		is_in_region = vistulia_region
-		is_in_region = borysthenia_region # Invictus only
+		AND = {
+			is_in_region = borysthenia_region # Invictus only
+			# Trans-Dniepr
+			NOT = { is_in_area = budinia_area }
+			NOT = { is_in_area = gelonia_area }
+			NOT = { is_in_area = seym_area }
+			NOT = { is_in_area = yukhnovo_area }
+			NOT = { is_in_area = desna_area }
+			NOT = { is_in_area = bityug_area }
+			NOT = { is_in_area = borysthenia_ultima_area }
+			NOT = { this = p:7299 }
+			NOT = { this = p:8419 }
+			NOT = { this = p:8421 }
+			NOT = { this = p:8422 }
+			NOT = { this = p:8424 }
+			NOT = { this = p:8425 }
+			NOT = { this = p:8428 }
+			NOT = { this = p:8450 }
+			NOT = { this = p:8451 }
+		}
+		# Baltics (hyperborea_region)
+		is_in_area = ilmandu_superior_area
+		is_in_area = ilmandu_inferior_area
+		this = p:9397
+		# Silesia (bohemia_area)
+		is_in_area = viadria_area
+		is_in_area = marsignia_area
 	}
 }
 
@@ -3626,7 +3658,29 @@ z_limes_venedia_region_trigger_2 = {
 	OR = {
 		z_limes_venedia_region_trigger_1 = yes
 		is_in_region = scandinavia_region
-		is_in_region = scythia_region
+		AND = {
+			is_in_region = scythia_region
+			# Trans-Dniepr
+			NOT = { is_in_area = transborysthenia_area }
+			NOT = { this = p:4530 }
+			NOT = { this = p:4531 }
+			NOT = { this = p:4532 }
+			NOT = { this = p:7190 }
+		}
+		AND = {
+			is_in_region = bohemia_area
+			# Celamantia
+			NOT = { this = p:3919 }
+			NOT = { this = p:3920 }
+			NOT = { this = p:3927 }
+		}
+		# Western Germania (germania_region)
+		is_in_area = frisia_area
+		is_in_area = chasuaria_area
+		is_in_area = sicambria_area
+		# Western Germania (bructeria_area)
+		this = p:3827
+		this = p:3828
 	}
 }
 
@@ -3635,14 +3689,47 @@ z_limes_venedia_region_trigger_2 = {
 z_limes_venedia_region_trigger_3 = {
 	OR = {
 		z_limes_venedia_region_trigger_2 = yes
-		is_in_region = germania_superior_region
+		AND = {
+			is_in_region = germania_superior_region
+			# Eastern Gaul
+			NOT = { is_in_area = mediomatricia_area }
+			NOT = { is_in_area = leucia_area }
+		}
 		is_in_region = rhaetia_region
 		is_in_region = pannonia_region
 		is_in_region = moesia_region
 		is_in_region = moesia_s_region # Invictus only
 		is_in_region = thrace_region
 		is_in_region = dacia_region
-		
+		# Trans-Dniepr (scythia_region)
+		is_in_area = transborysthenia_area
+		this = p:4530
+		this = p:4531
+		this = p:4532
+		this = p:7190
+		# Trans-Dniepr (borysthenia_region)
+		is_in_area = budinia_area
+		is_in_area = gelonia_area
+		is_in_area = seym_area
+		is_in_area = yukhnovo_area
+		is_in_area = desna_area
+		is_in_area = bityug_area
+		is_in_area = borysthenia_ultima_area
+		this = p:7299
+		this = p:8419
+		this = p:8421
+		this = p:8422
+		this = p:8424
+		this = p:8425
+		this = p:8428
+		this = p:8450
+		this = p:8451
+		# Celamantia (celamantia_area, bohemia_area)
+		this = p:3919
+		this = p:3920
+		this = p:3927
+		# Western Germania (germania_region)
+		is_in_area = bructeria_area
 	}
 }
 

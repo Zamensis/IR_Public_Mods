@@ -1,0 +1,33 @@
+﻿#-----------------------------------------------------------------------------------------
+# Vanilla on_actions
+#-----------------------------------------------------------------------------------------
+on_game_initialized = {	
+	on_actions = {
+		z_apc_update_cultural_majority									# Update Cultural Majority
+	}
+}
+
+yearly_country_pulse = {	
+	on_actions = {	
+		z_apc_update_cultural_majority									# Update Cultural Majority
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# Update Cultural Majority
+#-----------------------------------------------------------------------------------------
+z_apc_update_cultural_majority = {
+	effect = {
+		if = {
+			limit = {
+				NOR = {
+					tag = BAR
+					tag = PIR
+					tag = REB
+					tag = MER
+				}
+			}
+			z_apc_find_cultural_majority_effect = yes					# Find a Cultural Majority, then update Cultural Majority or remove invalid Cultural Majority
+		}
+	}
+}

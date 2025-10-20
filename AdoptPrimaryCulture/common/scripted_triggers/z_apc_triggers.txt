@@ -1,0 +1,11 @@
+﻿#-----------------------------------------------------------------------------------------
+# Does this country culture have any Cultural Majority modifier?
+#-----------------------------------------------------------------------------------------
+z_apc_has_any_cultural_majority_modifier_trigger = {
+	OR = {
+		has_country_culture_modifier = z_apc_cultural_majority_in_country_modifier
+		has_country_culture_modifier = z_apc_cultural_majority_in_capital_region_modifier
+		has_country_culture_modifier = z_apc_cultural_majority_in_capital_area_modifier
+		has_country_culture_modifier = z_apc_cultural_majority_in_capital_city_modifier
+	}
+}

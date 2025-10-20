@@ -1,0 +1,318 @@
+﻿#-----------------------------------------------------------------------------------------
+# Find a Cultural Majority, then update Cultural Majority or remove invalid Cultural Majority
+#-----------------------------------------------------------------------------------------
+z_apc_find_cultural_majority_effect = {
+	# Before anything, make sure the primary culture isn't considered a Cultural Majority
+	if = {
+		limit = {
+			root.country_culture = {
+				has_country_culture_modifier = z_apc_cultural_majority_modifier
+			}
+		}
+		root.country_culture = {
+			remove_country_culture_modifier = z_apc_cultural_majority_modifier
+		}
+	}
+	# Then, check whether a Cultural Majority exists
+	if = {
+		limit = {
+			# Only possible if the APC mission is not ongoing or has never been completed
+			# ...
+			# Only possible if there's any culture other than the primary one
+			any_country_culture = {
+				NOT = { this = root.country_culture }
+			}
+		}
+		# ---------------------------------------------------------------------------------------------------------------
+		# Try to find a Cultural Majority in the entire COUNTRY
+		if = {
+			limit = { num_of_cities > 1 } # Only valid is capital_scope isn't the only owned territory
+			z_apc_find_cultural_majority_in_zone_effect = { ZONE = country }
+		}
+		# If no Cultural Majority was found in the COUNTRY, try to find one in the capital REGION
+		if = {
+			limit = {
+				NOT = {
+					exists = scope:z_apc_found_cultural_majority_in_country
+				}
+			}
+			if = {
+				limit = { num_of_cities > 1 } # Only valid is capital_scope isn't the only owned territory
+				z_apc_find_cultural_majority_in_zone_effect = { ZONE = capital_region }
+			}
+		}
+		# If no Cultural Majority was found in the capital REGION, try to find one in the capital AREA
+		if = {
+			limit = {
+				NOR = {
+					exists = scope:z_apc_found_cultural_majority_in_country
+					exists = scope:z_apc_found_cultural_majority_in_capital_region
+				}
+			}
+			if = {
+				limit = { num_of_cities > 1 } # Only valid is capital_scope isn't the only owned territory
+				z_apc_find_cultural_majority_in_zone_effect = { ZONE = capital_area }
+			}
+		}
+		# If no Cultural Majority was found in the capital AREA, try to find one in the capital CITY
+		if = {
+			limit = {
+				NOR = {
+					exists = scope:z_apc_found_cultural_majority_in_country
+					exists = scope:z_apc_found_cultural_majority_in_capital_region
+					exists = scope:z_apc_found_cultural_majority_in_capital_area
+				}
+			}
+			z_apc_find_cultural_majority_in_zone_effect = { ZONE = capital_city }
+		}
+		# ---------------------------------------------------------------------------------------------------------------
+		z_apc_update_cultural_majority_effect = yes # Fire events based on scenario
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# Find the culture that has the most pops in the designated ZONE, then check if it's a Cultural Majority
+#-----------------------------------------------------------------------------------------
+z_apc_find_cultural_majority_in_zone_effect = {
+	# Make a list of all cultures that need to be compared
+	every_country_culture = {
+		limit = {
+			NOT = { this = root.country_culture }
+		}
+		add_to_list = z_apc_comparison_cultures_list
+	}
+	# Pick one at random to be the first culture to be compared
+	random_country_culture = {
+		limit = {
+			is_in_list = z_apc_comparison_cultures_list
+		}
+		# ...save it as culture_A, which is assumed to have the most pops in the designated ZONE
+		save_scope_as = z_apc_culture_A
+		# ...remove it from the list of cultures to be compared...
+		remove_from_list = z_apc_comparison_cultures_list
+		# ...and store population in cache
+		root = {
+			set_variable = {
+				name = z_apc_culture_A_$ZONE$_population_cache
+				value = z_apc_culture_A_$ZONE$_population
+			}
+		}
+	}
+	# Among all the cultures in the list, find the one that has the most pops in the designated ZONE
+	while = {
+		# Run loop as long as there are cultures to be compared
+		limit = {
+			any_country_culture = {
+				is_in_list = z_apc_comparison_cultures_list
+			}
+		}
+		# Pick one at random...
+		random_country_culture = {											
+			limit = {
+				is_in_list = z_apc_comparison_cultures_list
+			}
+			# ...save it as culture_B...
+			save_scope_as = z_apc_culture_B
+			# ...remove it from the list of cultures to be compared...
+			remove_from_list = z_apc_comparison_cultures_list
+			# ...and store population in cache
+			root = {
+				set_variable = {
+					name = z_apc_culture_B_$ZONE$_population_cache
+					value = z_apc_culture_B_$ZONE$_population
+				}
+			}
+			# Now compare culture_A and culture_B in the designated ZONE
+			if = {
+				limit = {
+					root = { z_apc_culture_A_$ZONE$_population_cache < z_apc_culture_B_$ZONE$_population_cache }
+				}
+				# If culture_B > culture_A in the designated ZONE, update cache for culture_A...
+				root = {
+					set_variable = {
+						name = z_apc_culture_A_$ZONE$_population_cache
+						value = var:z_apc_culture_B_$ZONE$_population_cache
+					}
+				}
+				# ...then culture_B becomes the new culture_A
+				scope:z_apc_culture_B = {
+					save_scope_as = z_apc_culture_A
+				}
+			}
+			# Clear cache for culture_B
+			root = { remove_variable = z_apc_culture_B_$ZONE$_population_cache }
+		}
+	}
+	# At this point, culture_A is the one that has the most pops in the designated ZONE
+	# So the next step is to check whether culture_A is a Cultural Majority (i.e. if it's above the set threshold for the designated ZONE)
+	set_variable = {
+		name = z_apc_total_population_in_$ZONE$_cache
+		value = z_apc_total_population_in_$ZONE$
+	}
+	if = {
+		limit = {
+			z_apc_culture_pc_$ZONE$ > z_apc_cultural_majority_threshold_$ZONE$
+		}
+		scope:z_apc_culture_A = {
+			save_scope_as = z_apc_found_cultural_majority
+			save_scope_as = z_apc_found_cultural_majority_in_$ZONE$
+		}
+	}
+	# Clear list
+	every_in_list = {
+		list = z_apc_comparison_cultures_list
+		remove_from_list = z_apc_comparison_cultures_list
+	}
+	# Clear cache for culture_A
+	remove_variable = z_apc_culture_A_$ZONE$_population_cache
+	# Clear cache for ZONE
+	remove_variable = z_apc_total_population_in_$ZONE$_cache
+}
+
+#-----------------------------------------------------------------------------------------
+# Update Cultural Majority modifier based on all possible scenarios
+#-----------------------------------------------------------------------------------------
+z_apc_update_cultural_majority_effect = {
+	# No Cultural Majority was found...
+	if = {
+		limit = {
+			NOT = { exists = scope:z_apc_found_cultural_majority }
+		}
+		# ...and no Cultural Majority already exists
+		if = {
+			limit = {
+				NOT = {
+					any_country_culture = { z_apc_has_any_cultural_majority_modifier_trigger = yes }
+				}
+			}
+			# SCENARIO 0: Do nothing
+		}
+		# ...but a Cultural Majority already exists
+		else = {
+			# SCENARIO 1: Remove Cultural Majority modifier from the old Cultural Majority
+			# Event
+			random_country_culture = {
+				limit = { z_apc_has_any_cultural_majority_modifier_trigger = yes }
+				save_scope_as = z_apc_old_cultural_majority
+			}
+			random_country_culture = {
+				limit = { this = root.country_culture }
+				save_scope_as = z_apc_ruling_minority
+			}
+			trigger_event = z_apc_common.1
+		}
+	}
+	# A Cultural Majority was found...
+	else = {
+		# ...and no Cultural Majority already exists
+		if = {
+			limit = {
+				NOT = {
+					any_country_culture = { z_apc_has_any_cultural_majority_modifier_trigger = yes }
+				}
+			}
+			# SCENARIO 2: Add Cultural Majority modifier to the new Cultural Majority
+			# Event
+			random_country_culture = {
+				limit = { this = root.country_culture }
+				save_scope_as = z_apc_ruling_minority
+			}
+			trigger_event = z_apc_common.2
+		}
+		# ...and it's already a Cultural Majority
+		else_if = {
+			limit = {
+				scope:z_apc_found_cultural_majority = { z_apc_has_any_cultural_majority_modifier_trigger = yes }
+			}
+			# SCENARIO 3: Update Cultural Majority modifier, if necessary (no event)
+			# Event
+			scope:z_apc_found_cultural_majority = {
+				z_apc_remove_all_cultural_majority_modifiers_effect = yes
+				z_apc_add_cultural_majority_modifier_effect = yes
+			}
+		}
+		# ...but there's already another Cultural Majority
+		else = {
+			# SCENARIO 4: Add Cultural Majority modifier to the new Cultural Majority + Remove Cultural Majority modifier from the old Cultural Majority
+			# Event
+			random_country_culture = {
+				limit = { z_apc_has_any_cultural_majority_modifier_trigger = yes }
+				save_scope_as = z_apc_old_cultural_majority
+			}
+			random_country_culture = {
+				limit = { this = root.country_culture }
+				save_scope_as = z_apc_ruling_minority
+			}
+			trigger_event = z_apc_common.4
+		}
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# Add Cultural Majority modifier
+#-----------------------------------------------------------------------------------------
+z_apc_add_cultural_majority_modifier_effect = {
+	z_apc_remove_all_cultural_majority_modifiers_effect = yes
+	if = {
+		limit = {
+			exists = scope:z_apc_found_cultural_majority_in_country
+			this = scope:z_apc_found_cultural_majority_in_country
+		}
+		add_country_culture_modifier = {
+			name = z_apc_cultural_majority_in_country_modifier
+			duration = -1
+		}
+	}
+	else_if = {
+		limit = {
+			exists = scope:z_apc_found_cultural_majority_in_capital_region
+			this = scope:z_apc_found_cultural_majority_in_capital_region
+		}
+		add_country_culture_modifier = {
+			name = z_apc_cultural_majority_in_capital_region_modifier
+			duration = -1
+		}
+	}
+	else_if = {
+		limit = {
+			exists = scope:z_apc_found_cultural_majority_in_capital_area
+			this = scope:z_apc_found_cultural_majority_in_capital_area
+		}
+		add_country_culture_modifier = {
+			name = z_apc_cultural_majority_in_capital_area_modifier
+			duration = -1
+		}
+	}
+	else_if = {
+		limit = {
+			exists = scope:z_apc_found_cultural_majority_in_capital_city
+			this = scope:z_apc_found_cultural_majority_in_capital_city
+		}
+		add_country_culture_modifier = {
+			name = z_apc_cultural_majority_in_capital_city_modifier
+			duration = -1
+		}
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# Remove all Cultural Majority modifiers
+#-----------------------------------------------------------------------------------------
+z_apc_remove_all_cultural_majority_modifiers_effect = {
+	if = {
+		limit = { has_country_culture_modifier = z_apc_cultural_majority_in_country_modifier }
+		remove_country_culture_modifier = z_apc_cultural_majority_in_country_modifier
+	}
+	if = {
+		limit = { has_country_culture_modifier = z_apc_cultural_majority_in_capital_region_modifier }
+		remove_country_culture_modifier = z_apc_cultural_majority_in_capital_region_modifier
+	}
+	if = {
+		limit = { has_country_culture_modifier = z_apc_cultural_majority_in_capital_area_modifier }
+		remove_country_culture_modifier = z_apc_cultural_majority_in_capital_area_modifier
+	}
+	if = {
+		limit = { has_country_culture_modifier = z_apc_cultural_majority_in_capital_city_modifier }
+		remove_country_culture_modifier = z_apc_cultural_majority_in_capital_city_modifier
+	}
+}

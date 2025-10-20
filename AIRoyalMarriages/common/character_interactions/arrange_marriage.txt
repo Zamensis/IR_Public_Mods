@@ -37,7 +37,10 @@
 			prisoner = no
 			custom_tooltip = {
 				text = "z_airm_betrothed_flag"
-				NOT = { has_variable = betrothed_flag }
+				OR = {
+					NOT = { has_variable = betrothed_flag }
+					var:betrothed_flag = { is_alive = no }
+				}
 			}
 			# -------------- End of AI Royal Marriages
 		}
@@ -54,7 +57,10 @@
 		# -------------- Start of AI Royal Marriages
 		custom_tooltip = {
 			text = "z_airm_betrothed_flag"
-			NOT = { has_variable = betrothed_flag }
+			OR = {
+				NOT = { has_variable = betrothed_flag }
+				var:betrothed_flag = { is_alive = no }
+			}
 		}
 		# -------------- End of AI Royal Marriages
 		NOT = { is_same_gender = scope:target }

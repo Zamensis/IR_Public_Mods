@@ -39,6 +39,15 @@
 			prisoner = no
 			is_mercenary = no
 			age >= 10
+			# -------------- Start of AI Royal Marriages
+			custom_tooltip = {
+				text = "z_airm_betrothed_flag"
+				OR = {
+					NOT = { has_variable = betrothed_flag }
+					var:betrothed_flag = { is_alive = no }
+				}
+			}
+			# -------------- End of AI Royal Marriages
 			NOT = {
 				has_character_modifier = disloyal_successor_cmod
 			}
@@ -67,6 +76,22 @@
 							is_female = yes
 							is_married = no
 							prisoner = no
+							# -------------- Start of AI Royal Marriages
+							trigger_if = {
+								limit = {
+									employer = {
+										is_ai = yes
+									}
+								}
+								custom_tooltip = {
+									text = "z_airm_betrothed_flag"
+									OR = {
+										NOT = { has_variable = betrothed_flag }
+										var:betrothed_flag = { is_alive = no }
+									}
+								}
+							}
+							# -------------- End of AI Royal Marriages
 						}
 						any_character = {
 							from_ruler_family = yes
@@ -75,6 +100,22 @@
 							prisoner = no
 							is_mercenary = no
 							age >= 12
+							# -------------- Start of AI Royal Marriages
+							trigger_if = {
+								limit = {
+									employer = {
+										is_ai = yes
+									}
+								}
+								custom_tooltip = {
+									text = "z_airm_betrothed_flag"
+									OR = {
+										NOT = { has_variable = betrothed_flag }
+										var:betrothed_flag = { is_alive = no }
+									}
+								}
+							}
+							# -------------- End of AI Royal Marriages
 						}
 					}
 				}
@@ -89,6 +130,22 @@
 							is_male = yes
 							is_married = no
 							prisoner = no
+							# -------------- Start of AI Royal Marriages
+							trigger_if = {
+								limit = {
+									employer = {
+										is_ai = yes
+									}
+								}
+								custom_tooltip = {
+									text = "z_airm_betrothed_flag"
+									OR = {
+										NOT = { has_variable = betrothed_flag }
+										var:betrothed_flag = { is_alive = no }
+									}
+								}
+							}
+							# -------------- End of AI Royal Marriages
 						}
 						any_character = {
 							from_ruler_family = yes
@@ -97,6 +154,22 @@
 							prisoner = no
 							is_mercenary = no
 							age >= 12
+							# -------------- Start of AI Royal Marriages
+							trigger_if = {
+								limit = {
+									employer = {
+										is_ai = yes
+									}
+								}
+								custom_tooltip = {
+									text = "z_airm_betrothed_flag"
+									OR = {
+										NOT = { has_variable = betrothed_flag }
+										var:betrothed_flag = { is_alive = no }
+									}
+								}
+							}
+							# -------------- End of AI Royal Marriages
 						}
 					}
 				}
@@ -135,6 +208,22 @@
 		prisoner = no
 		is_mercenary = no
 		age >= 12
+		# -------------- Start of AI Royal Marriages
+		trigger_if = {
+			limit = {
+				employer = {
+					is_ai = yes
+				}
+			}
+			custom_tooltip = {
+				text = "z_airm_betrothed_flag"
+				OR = {
+					NOT = { has_variable = betrothed_flag }
+					var:betrothed_flag = { is_alive = no }
+				}
+			}
+		}
+		# -------------- End of AI Royal Marriages
 		NOT = { is_same_gender = scope:target }
 		NOT = { has_variable = betrothed_flag }
 	}

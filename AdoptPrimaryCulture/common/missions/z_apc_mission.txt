@@ -210,4 +210,28 @@ z_apc_mission = {
 		
 		final = yes
 	}
+	
+	# A New Rule (final task)
+	#---------------------------------------------------
+	z_apc_mission_final = {
+	
+		requires = { z_apc_mission_npc_exception z_apc_mission_integrate_nobles }
+
+		potential = {}
+
+		bypass = {}
+
+		allow = {}
+
+		on_completion = {
+			show_as_tooltip = {
+				set_primary_culture = scope:z_apc_new_primary_culture
+			}
+			trigger_event = z_apc_mission.999
+		}
+
+		icon = task_diplomatic
+		
+		final = yes
+	}
 }

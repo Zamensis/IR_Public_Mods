@@ -48,3 +48,28 @@ z_apc_mission.2 = {
 		custom_tooltip = z_apc_mission.2.b.tt
 	}
 }
+
+#-----------------------------------------------------------------------------------------
+# A New Rule (final task)
+#-----------------------------------------------------------------------------------------
+z_apc_mission.999 = {
+	type = country_event
+	title = "z_apc_mission.999.t"
+	desc = "z_apc_mission.999.desc"
+	
+	picture = z_apc_cultural_majority_pic	
+	left_portrait = root.current_ruler
+	
+	trigger = {
+		# Triggered on starting mission: z_apc_mission_final
+	}
+		
+	option = { # Let's go!
+		name = "z_apc_mission.999.a"
+		custom_tooltip = z_apc_mission.999.a.tt
+		set_primary_culture_cleanup_effect = {
+			NEW_PRIMARY_CULTURE = scope:z_apc_new_cultural_majority
+			MAKE_OLD_CULTURE_INTEGRATED = yes
+		}
+	}
+}

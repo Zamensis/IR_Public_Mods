@@ -3683,7 +3683,7 @@ z_limes_vindhyaprstha_region_trigger_3 = {
 }
 
 # --------------------------------------------------------------------------------
-# Capital is_in_region vistulia_region
+# Capital is_in_region vistulia_region (last update: 20/10/25)
 # --------------------------------------------------------------------------------
 
 # Stage 1: Initial (main) authorized area
@@ -3695,6 +3695,10 @@ z_limes_vistulia_region_trigger_1 = {
 			is_in_region = scythia_region
 			# Trans-Dniepr
 			NOT = { is_in_area = transborysthenia_area }
+			NOT = { this = p:4530 }
+			NOT = { this = p:4531 }
+			NOT = { this = p:4532 }
+			NOT = { this = p:7190 }
 		}
 		AND = {
 			is_in_region = borysthenia_region # Invictus only
@@ -3716,14 +3720,7 @@ z_limes_vistulia_region_trigger_1 = {
 			NOT = { this = p:8450 }
 			NOT = { this = p:8451 }
 		}
-		AND = {
-			is_in_region = venedia_region
-			# Trans-Dniepr
-			NOT = { this = p:4530 }
-			NOT = { this = p:4531 }
-			NOT = { this = p:4532 }
-			NOT = { this = p:7190 }
-		}
+		is_in_region = venedia_region
 		# Silesia (bohemia_area)
 		is_in_area = viadria_area
 		is_in_area = marsignia_area
@@ -3765,6 +3762,10 @@ z_limes_vistulia_region_trigger_2 = {
 		is_in_area = helvetia_orientalis_area
 		# Trans-Dniepr (scythia_region)
 		is_in_area = transborysthenia_area
+		this = p:4530
+		this = p:4531
+		this = p:4532
+		this = p:7190
 		# Trans-Dniepr (borysthenia_region)
 		is_in_area = budinia_area
 		is_in_area = gelonia_area
@@ -3782,11 +3783,6 @@ z_limes_vistulia_region_trigger_2 = {
 		this = p:8428
 		this = p:8450
 		this = p:8451
-		# Trans-Dniepr (venedia_region)
-		this = p:4530
-		this = p:4531
-		this = p:4532
-		this = p:7190
 	}
 }
 
@@ -3795,7 +3791,14 @@ z_limes_vistulia_region_trigger_2 = {
 z_limes_vistulia_region_trigger_3 = {
 	OR = {
 		z_limes_vistulia_region_trigger_2 = yes
-		is_in_region = germania_superior_region
+		AND = {
+			is_in_region = germania_superior_region
+			NOT = {
+				# Eastern Gaul (germania_superior_region)
+				is_in_area = mediomatricia_area
+				is_in_area = leucia_area
+			}
+		}
 		is_in_region = rhaetia_region
 		is_in_region = illyria_region
 		is_in_region = moesia_region
@@ -3826,10 +3829,9 @@ z_limes_vistulia_region_trigger_3 = {
 			NOT = { this = p:5909 }
 			NOT = { this = p:5910 }
 		}
-	}
-	NOT = {
-		# Eastern Gaul (germania_superior_region)
-		is_in_area = mediomatricia_area
-		is_in_area = leucia_area
+		# Baltics (hyperborea_region)
+		is_in_area = ilmandu_superior_area
+		is_in_area = ilmandu_inferior_area
+		this = p:9397
 	}
 }

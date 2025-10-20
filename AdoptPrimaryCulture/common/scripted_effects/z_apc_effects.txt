@@ -1,4 +1,102 @@
 ﻿#-----------------------------------------------------------------------------------------
+# Alternative set_primary_culture_cleanup_effect
+# Long explanations lest I forget everything
+#-----------------------------------------------------------------------------------------
+z_apc_set_primary_culture_cleanup_effect = {
+	# Most of the mod uses a *country_culture* scope, but in this particular case, we need a *culture* scope.
+	# AFAIK, only pops hold both types. So let's identify our target *culture* by finding a pop that has the matching *country_culture*.
+	random_owned_province = {
+		limit = {
+			any_pops_in_province = {
+				# In theory, we could scope to our mission-saved *country_culture* scope like this:
+				# this.country_culture = scope:z_apc_new_cultural_majority
+				# But we want to be able to use this effect outside of the mission, for example for testing it.
+				# Since the target *culture* is the only *country_culture* having an APC modifier:
+				this.country_culture = { z_apc_has_any_cultural_majority_modifier_trigger = yes }
+				# And just to make sure:
+				NOT = { this.country_culture = root.country_culture }
+			}
+		}
+		random_pops_in_province = {
+			limit = {
+				this.country_culture = { z_apc_has_any_cultural_majority_modifier_trigger = yes }
+				NOT = { this.country_culture = root.country_culture }
+			}
+			# Ladies and gentlemen, we got him. Let's save his culture type.
+			this.culture = { save_scope_as = z_apc_change_to_this_culture }
+		}
+	}
+	# Using that scope, we can change the primary culture using the Vanilla/Invictus effect that cleans up everything as needed
+	set_primary_culture_cleanup_effect = {
+		NEW_PRIMARY_CULTURE = scope:z_apc_change_to_this_culture
+		MAKE_OLD_CULTURE_INTEGRATED = $MAKE_OLD_CULTURE_INTEGRATED$
+	}
+	# But we're not done yet, oh no.
+	# The problem, when doing this, is that the game fails to recalculate the correct amount of noble cultures, thus applying an incorrect malus to the new primary culture.
+	# From testing, the only way I've found to force a recalculation is to change the country rank.
+	# That means temporarily changing the number of owned provinces.
+	# (I've also tried to remove/readd every pop from the previous primary culture, but that didn't fix it.)
+	# 
+	# 3. Fix wrong number of noble cultures count
+	#		Option 1: Reduce the number of provinces until reaching a lower rank
+	#			Problem: cannot apply to OPMs
+	#			Problem: removes non-permanent province modifiers
+	#			Problem: might remove cultural rights if there are no longer pops of those cultures during the transition
+	#		Option 2: Increase the number of provinces until reaching a higher rank
+	#			Problem: cannot apply to great powers
+	#			Problem: needs enough provinces to feed to the country
+	#			Warning: must not destroy foreign countries and must not feed from non-AI countries
+	#		My current solution:
+	#			Use option 2 except for great powers (we assume there will always be enough provinces to feed in 99.9% of the cases)
+	#			Use option 1 for great powers
+	#			Avoid removing/feeding provinces that have a high amount of pops, since they are more likely to have province modifiers
+	#		Alright, let's do it:
+	switch = {
+		trigger = rank
+		# Ideally, for mods that change the rank thresholds, the numbers here should be adjusted, else the fix might not work (no crash, just no fix)
+		# TARGET = number of provinces the country must drop below in order to change rank
+		# migrant_horde = from 0 to 0 -> No reset possible
+		migrant_horde = { z_apc_reset_rank_effect = { TARGET = 0 } } # This rank = from 0 to 0
+		city_power = { z_apc_reset_rank_effect = { TARGET = 1 } } # This rank = from 1 to 1
+		local_power = { z_apc_reset_rank_effect = { TARGET = 25 } } # This rank = from 2 to 24
+		regional_power = { z_apc_reset_rank_effect = { TARGET = 100 } } # This rank = from 25 to 99
+		major_power = { z_apc_reset_rank_effect = { TARGET = 100 } } # This rank = from 100 to 499
+		great_power = { z_apc_reset_rank_effect = { TARGET = 500 } } # This rank = from 500
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# Fix wrong number of noble cultures count
+#-----------------------------------------------------------------------------------------
+z_apc_reset_rank_effect = {
+	
+}
+	
+	
+	
+	
+	
+	# Unfortunately, no fix for OPMs because it relies on resetting the country rank
+	# Need to find a better way :(
+	# hidden_effect = {
+		# random_owned_province = {
+			# limit = {
+				# NOT = { this = root.capital_scope }
+			# }
+			# create_country = { save_scope_as = z_apc_noble_cultures_count_bugfix }
+		# }
+		# every_owned_province = {
+			# limit = {
+				# NOT = { this = root.capital_scope }
+			# }
+			# set_owned_by = scope:z_apc_noble_cultures_count_bugfix
+		# }
+		# scope:z_apc_noble_cultures_count_bugfix = {
+			# every_owned_province = { set_owned_by = root }
+		# }
+	# }
+
+#-----------------------------------------------------------------------------------------
 # Find a Cultural Majority, then update Cultural Majority or remove invalid Cultural Majority
 #-----------------------------------------------------------------------------------------
 z_apc_find_cultural_majority_effect = {

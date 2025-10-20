@@ -225,7 +225,9 @@ z_apc_mission = {
 
 		on_completion = {
 			show_as_tooltip = {
-				set_primary_culture = scope:z_apc_new_primary_culture
+				z_apc_set_primary_culture_cleanup_effect = {
+					MAKE_OLD_CULTURE_INTEGRATED = yes
+				}
 			}
 			trigger_event = z_apc_mission.999
 		}

@@ -62,7 +62,7 @@ z_apc_mission = {
 			}
 			set_variable = z_apc_mission_already_integrated_citizens
 			hidden_effect = {
-				z_apc_mission_add_ctp_effect = { VALUE = 3 } # Since this will bypass z_apc_mission_integrate_npc_citizens
+				z_apc_mission_add_ctp_effect = { VALUE = 3 } # Since this will bypass z_apc_mission_integrate_citizens
 			}
 		}
 		if = {
@@ -71,7 +71,7 @@ z_apc_mission = {
 			}
 			set_variable = z_apc_mission_already_integrated_nobles
 			hidden_effect = {
-				z_apc_mission_add_ctp_effect = { VALUE = 2 } # Since this will bypass z_apc_mission_integrate_npc_nobles
+				z_apc_mission_add_ctp_effect = { VALUE = 2 } # Since this will bypass z_apc_mission_integrate_nobles
 			}
 		}
     }
@@ -124,7 +124,7 @@ z_apc_mission = {
 	
 	# [NPC] Integration
 	#---------------------------------------------------
-	z_apc_mission_integrate_npc_citizens = {
+	z_apc_mission_integrate_citizens = {
 	
 		requires = { z_apc_mission_the_npc_question }
 
@@ -144,7 +144,7 @@ z_apc_mission = {
 					scope:z_apc_new_primary_culture = { has_pop_type_right = nobles }
 				}
 				set_variable = z_apc_mission_already_integrated_nobles
-				z_apc_mission_add_ctp_effect = { VALUE = 5 } # Since this will bypass z_apc_mission_integrate_npc_nobles
+				z_apc_mission_add_ctp_effect = { VALUE = 5 } # Since this will bypass z_apc_mission_integrate_nobles
 			}
 			else = {
 				z_apc_mission_add_ctp_effect = { VALUE = 3 }
@@ -154,11 +154,11 @@ z_apc_mission = {
 		icon = task_political
 	}
 	
-	# [NPC] Exclusiveness
+	# The [NPC] Exception
 	#---------------------------------------------------
-	z_apc_mission_npc_exclusiveness = {
+	z_apc_mission_npc_exception = {
 	
-		requires = { z_apc_mission_integrate_npc_citizens }
+		requires = { z_apc_mission_integrate_citizens }
 
 		potential = {}
 
@@ -166,7 +166,7 @@ z_apc_mission = {
 
 		allow = {
 			custom_tooltip = {
-				text = z_apc_mission_npc_exclusiveness_allow_tt
+				text = z_apc_mission_npc_exception_allow_tt
 				NOT = {
 					any_country_culture = {
 						is_integrated = yes
@@ -188,9 +188,9 @@ z_apc_mission = {
 	
 	# [NPC] Privileges
 	#---------------------------------------------------
-	z_apc_mission_integrate_npc_nobles = {
+	z_apc_mission_integrate_nobles = {
 	
-		requires = { z_apc_mission_npc_exclusiveness }
+		requires = { z_apc_mission_integrate_citizens }
 
 		potential = {}
 

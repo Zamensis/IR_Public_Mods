@@ -253,7 +253,7 @@ z_apc_mission_ctp_current_svalue = {
 #-----------------------------------------------------------------------------------------
 z_apc_mission_ctp_max_svalue = {
 	value = 0 # Base
-	add = 3 # From z_apc_mission_integrate_npc_citizens
-	add = 2 # From z_apc_mission_npc_exclusiveness
-	add = 2 # From z_apc_mission_integrate_npc_nobles
+	add = 3 # From z_apc_mission_integrate_citizens
+	add = 2 # From z_apc_mission_npc_exception
+	add = 2 # From z_apc_mission_integrate_nobles
 }

@@ -1,20 +1,4 @@
 ﻿l_english:
- # EVENTS -----------------------------------------------------------------------------------------------------------------------------------------------
- z_apc_common.1.t:0 "The silenced Majority"
- z_apc_common.1.desc:0 "\n\nThe [z_apc_found_cultural_majority.GetName] people is no longer a cultural majority ruled by a [z_apc_ruling_minority.GetName] minority."
- z_apc_common.1.a:0 "OK"
- # -----------
- z_apc_common.2.t:0 "The unsilent Majority"
- z_apc_common.2.desc.diadochi:0 "Diadochi backstory\n\nThe [z_apc_found_cultural_majority.GetName] people is a cultural majority ruled by a [z_apc_ruling_minority.GetName] minority."
- z_apc_common.2.desc.monarchy:0 "Monarchy backstory\n\nThe [z_apc_found_cultural_majority.GetName] people is a cultural majority ruled by a [z_apc_ruling_minority.GetName] minority."
- z_apc_common.2.desc.republic:0 "Republic backstory\n\nThe [z_apc_found_cultural_majority.GetName] people is a cultural majority ruled by a [z_apc_ruling_minority.GetName] minority."
- z_apc_common.2.desc.tribe:0 "Tribal backstory\n\nThe [z_apc_found_cultural_majority.GetName] people is a cultural majority ruled by a [z_apc_ruling_minority.GetName] minority."
- z_apc_common.2.a:0 "OK"
- # -----------
- z_apc_common.3.t:0 "The silent Majority"
- z_apc_common.3.desc:0 "\n\nThe [z_apc_found_cultural_majority.GetName] people has replaced the [z_apc_old_cultural_majority.GetName] as the cultural majority ruled by a [z_apc_ruling_minority.GetName] minority."
- z_apc_common.3.a:0 "OK"
- # -----------
  # MODIFIERS -----------------------------------------------------------------------------------------------------------------------------------------------
  z_apc_cultural_majority_modifier:0 "Cultural Majority"
  z_apc_cultural_majority_modifier_explanation:0 "To be considered a #E Cultural Majority#!, a non-primary culture must represent at least #Y 50%#! of the non-slave population in our #Y country#!, #Y capital region#!, #Y capital province#! or #Y capital#!."
@@ -30,3 +14,57 @@
  desc_z_apc_old_cultural_majority_modifier:0 "This culture once represented a majority in our country. Even though it is now a minority, it still considers itself denied of its rightful political representation, and oppressed by an illegitimate, foreign population.\n\n$z_apc_cultural_majority_modifier_explanation$"
  z_apc_ruling_minority_modifier:0 "Ruling Minority"
  desc_z_apc_ruling_minority_modifier:0 "This culture represents only a minority in the country, ruling over a foreign, culturally united majority."
+ # EVENTS -----------------------------------------------------------------------------------------------------------------------------------------------
+ z_apc_common.1.t:0 "The Silenced Majority"
+ z_apc_common.1.desc:0 "The [z_apc_found_cultural_majority.GetName] people is no longer a cultural majority ruled by a [z_apc_ruling_minority.GetName] minority."
+ z_apc_common.1.a:0 "OK"
+ # -----------
+ z_apc_common.2.t:0 "The Unsilent Majority"
+ z_apc_common.2.desc.diadochi:0 "Diadochi backstory\n\nThe [z_apc_found_cultural_majority.GetName] people is a cultural majority ruled by a [z_apc_ruling_minority.GetName] minority."
+ z_apc_common.2.desc.monarchy:0 "Monarchy backstory\n\nThe [z_apc_found_cultural_majority.GetName] people is a cultural majority ruled by a [z_apc_ruling_minority.GetName] minority."
+ z_apc_common.2.desc.republic:0 "Republic backstory\n\nThe [z_apc_found_cultural_majority.GetName] people is a cultural majority ruled by a [z_apc_ruling_minority.GetName] minority."
+ z_apc_common.2.desc.tribal:0 "Tribal backstory\n\nThe [z_apc_found_cultural_majority.GetName] people is a cultural majority ruled by a [z_apc_ruling_minority.GetName] minority."
+ z_apc_common.2.a:0 "OK"
+ z_apc_common_mission_unlocked:0 "The Mission #Y $z_apc_mission$#! will be available after #Y 1#! day."
+ # -----------
+ z_apc_common.4.t:0 "The Silent Majority"
+ z_apc_common.4.desc:0 "The [z_apc_found_cultural_majority.GetName] people has replaced the [z_apc_old_cultural_majority.GetName] as the cultural majority ruled by a [z_apc_ruling_minority.GetName] minority."
+ z_apc_common.4.a:0 "OK"
+ # MISSION -----------------------------------------------------------------------------------------------------------------------------------------------
+ z_apc_mission:0 "The [z_apc_found_cultural_majority.GetName] Rule"
+ z_apc_mission_DESCRIPTION:0 "z_apc_mission_DESCRIPTION"
+ z_apc_mission_CRITERIA_DESCRIPTION:0 "z_apc_mission_CRITERIA_DESCRIPTION"
+ z_apc_mission_BUTTON_TOOLTIP:0 "z_apc_mission_BUTTON_TOOLTIP"
+ z_apc_mission_cooldown_tt:0 "You will #R NOT#! be able to restart this mission until at least #R 100#! years have passed.."
+ # -----------
+ z_apc_mission_ctp_desc_tt:0 "#TF A high #E Cultural Transition Score#! will reduce the severity of the consequences when changing our #E Primary Culture#! and the risk of a #E Cultural Conflict#!.#!"
+ z_apc_mission_ctp_current_tt:0 "(Currently: #Y #E [SCOPE.ScriptValue('z_apc_mission_ctp_current_svalue')|0]#!#!/[SCOPE.ScriptValue('z_apc_mission_ctp_max_svalue')|0])"
+ z_apc_mission_add_1_ctp_effect_tt:0 "Gain #E #G 1#! Cultural Transition Point#! $z_apc_mission_ctp_current_tt$.\n$z_apc_mission_ctp_desc_tt$"
+ z_apc_mission_add_2_ctp_effect_tt:0 "Gain #E #G 2#! Cultural Transition Points#! $z_apc_mission_ctp_current_tt$.\n$z_apc_mission_ctp_desc_tt$"
+ z_apc_mission_add_3_ctp_effect_tt:0 "Gain #E #G 3#! Cultural Transition Points#! $z_apc_mission_ctp_current_tt$.\n$z_apc_mission_ctp_desc_tt$"
+ z_apc_mission_add_4_ctp_effect_tt:0 "Gain #E #G 4#! Cultural Transition Points#! $z_apc_mission_ctp_current_tt$.\n$z_apc_mission_ctp_desc_tt$"
+ z_apc_mission_add_5_ctp_effect_tt:0 "Gain #E #G 5#! Cultural Transition Points#! $z_apc_mission_ctp_current_tt$.\n$z_apc_mission_ctp_desc_tt$"
+ # -----------
+ z_apc_mission_the_npc_question:0 "The [z_apc_new_primary_culture.GetName] Question"
+ z_apc_mission_the_npc_question_on_completion_tt:0 "We will be able to #Y choose a strategy#! for the establishment of a new [z_apc_new_primary_culture.GetName] rule in [z_apc_country.GetName]."
+ # -----------
+ z_apc_mission_integrate_citizens:0 "[z_apc_new_primary_culture.GetName] Integration"
+ # -----------
+ z_apc_mission_npc_exception:0 "The [z_apc_new_primary_culture.GetName] Exception"
+ z_apc_mission_npc_exception_allow_tt:0 "No cultures other than [z_apc_old_primary_culture.GetName] and [z_apc_new_primary_culture.GetName] are integrated."
+ # -----------
+ z_apc_mission_integrate_nobles:0 "[z_apc_new_primary_culture.GetName] Privileges"
+ # -----------
+ z_apc_mission_final:0 "The [z_apc_new_primary_culture.GetName] Renaissance"
+ # MISSION EVENTS -----------------------------------------------------------------------------------------------------------------------------------------------
+ z_apc_mission.1.t:0 "$z_apc_mission_the_npc_question$"
+ z_apc_mission.1.desc:0 "Placeholder"
+ z_apc_mission.1.a:0 "Placeholder"
+ z_apc_mission.1.a.tt:0 "Placeholder"
+ # -----------
+ z_apc_mission.2.t:0 "$z_apc_mission_the_npc_question$"
+ z_apc_mission.2.desc:0 "We must choose a strategy for the establishment of a new [z_apc_found_cultural_majority.GetName] rule in [z_apc_country.GetName]."
+ z_apc_mission.2.a:0 "The [z_apc_old_primary_culture.GetName] nobility should follow the [z_apc_new_primary_culture.GetName] customs."
+ z_apc_mission.2.a.tt:0 "As we complete more tasks, the [z_apc_new_primary_culture.GetName] population will be #G pleased#! while the [z_apc_old_primary_culture.GetName] elite will be #R upset#!."
+ z_apc_mission.2.b:0 "The [z_apc_old_primary_culture.GetName] minority must give way to the [z_apc_new_primary_culture.GetName] elite."
+ z_apc_mission.2.b.tt:0 "As we complete more tasks, the [z_apc_new_primary_culture.GetName] population will be #G very pleased#! but the [z_apc_old_primary_culture.GetName] elite will be #R very upset#!."

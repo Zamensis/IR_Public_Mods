@@ -1,0 +1,90 @@
+﻿#-----------------------------------------------------------------------------------------
+# Event pic based on current Cultural Majority - Should only be used for mission events
+#-----------------------------------------------------------------------------------------
+z_apc_cultural_majority_pic = {
+	theme = Hubbub
+	picture = {
+		trigger = {
+			OR = {
+				z_apc_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = east_levantine }
+			}
+		}
+		texture = "gfx/interface/event_window/Event_local_life.dds"
+	}
+	picture = {
+		trigger = {
+			OR = {
+				z_apc_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = aryan }
+				z_apc_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = indian }
+				z_apc_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = pracyan }
+				z_apc_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = tibetan }
+			}
+		}
+		texture = "gfx/interface/event_window/Event_local_life.dds"
+	}
+	picture = {
+		trigger = {
+			OR = {
+				z_apc_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = baltic }
+				z_apc_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = belgae_group }
+				z_apc_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = britannic }
+				z_apc_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = celt_iberia }
+				z_apc_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = gallic }
+				z_apc_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = germanic }
+				z_apc_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = iberia }
+			}
+		}
+		texture = "gfx/interface/event_window/Event_gallic_village_scene.dds"
+	}
+	picture = {
+		trigger = {
+			always = yes
+		}
+		texture = "gfx/interface/event_window/Event_religious_festival.dds"
+	}
+}
+
+z_apc_ruling_minority_pic = {
+	theme = Hubbub
+	picture = {
+		trigger = {
+			country_culture_group = east_levantine
+		}
+		texture = "gfx/interface/event_window/Event_local_life.dds"
+	}
+	picture = {
+		trigger = {
+			OR = {
+				country_culture_group = aryan
+				country_culture_group = indian
+				country_culture_group = pracyan
+				country_culture_group = tibetan
+			}
+		}
+		texture = "gfx/interface/event_window/Event_local_life.dds"
+	}
+	picture = {
+		trigger = {
+			OR = {
+				country_culture_group = germanic
+				country_culture_group = gallic
+				country_culture_group = baltic
+				country_culture_group = belgae_group
+				country_culture_group = britannic
+				country_culture_group = celt_iberia
+				country_culture_group = iberia
+				country_culture_group = britannic
+				country_culture_group = britannic
+				country_culture_group = britannic
+				country_culture_group = britannic
+			}
+		}
+		texture = "gfx/interface/event_window/Event_gallic_village_scene.dds"
+	}
+	picture = {
+		trigger = {
+			always = yes
+		}
+		texture = "gfx/interface/event_window/Event_religious_festival.dds"
+	}
+}

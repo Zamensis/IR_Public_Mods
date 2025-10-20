@@ -1828,7 +1828,7 @@ z_limes_himalayan_region_trigger_3 = {
 }
 
 # --------------------------------------------------------------------------------
-# Capital is_in_region hyperborea_region // Invictus only
+# Capital is_in_region hyperborea_region // Invictus only (last update: 20/10/25)
 # --------------------------------------------------------------------------------
 
 # Stage 1: Initial (main) authorized area
@@ -1837,9 +1837,23 @@ z_limes_hyperborea_region_trigger_1 = {
 	OR = {
 		is_in_region = hyperborea_region # Invictus only
 		is_in_region = central_asian_steppes_region # Invictus only
-		is_in_region = sarmatia_asiatica_region # Invictus only
+		AND = {
+			is_in_region = sarmatia_asiatica_region # Invictus only
+			# Circassia
+			NOT = { is_in_area = hyrcania_superior_area }
+			NOT = { this = p:5899 }
+			NOT = { this = p:5900 }
+		}
 		is_in_region = borysthenia_region # Invictus only
-		is_in_region = venedia_region
+		AND = {
+			is_in_region = venedia_region
+			# Poland
+			NOT = { is_in_area = rugia_area }
+			NOT = { is_in_area = helveconia_area }
+			NOT = { is_in_area = elysia_area }
+		}
+		# Trans-Dniepr (scythia_region)
+		is_in_area = transborysthenia_area
 	}
 }
 
@@ -1851,8 +1865,22 @@ z_limes_hyperborea_region_trigger_2 = {
 		is_in_region = vistulia_region
 		is_in_region = scythia_region
 		is_in_region = taurica_region
-		is_in_region = albania_region
 		is_in_region = sakia_region # Invictus only
+		# Circassia (sarmatia_asiatica_region)
+		is_in_area = hyrcania_superior_area
+		this = p:5899
+		this = p:5900
+		# Circassia (albania_region)
+		is_in_area = sarmatia_hyrcania_area
+		is_in_area = scythia_trans_montem_area
+		this = p:7603
+		# Circassia (colchis_region)
+		this = p:4567
+		this = p:4568
+		# Poland (venedia_region)
+		is_in_area = rugia_area
+		is_in_area = helveconia_area
+		is_in_area = elysia_area
 	}
 }
 
@@ -1863,13 +1891,55 @@ z_limes_hyperborea_region_trigger_3 = {
 		z_limes_hyperborea_region_trigger_2 = yes
 		is_in_region = germania_region
 		is_in_region = bohemia_area
-		is_in_region = pannonia_region
+		AND = {
+			is_in_region = pannonia_region
+			# Eastern Alps / Trans-Danubia
+			NOT = { is_in_area = noricum_mediterranum_area }
+			NOT = { is_in_area = savia_occidentalis_area }
+			NOT = { is_in_area = pannonia_secunda_area }
+		}
 		is_in_region = dacia_region
-		is_in_region = moesia_region
-		is_in_region = colchis_region
-		is_in_region = parthia_region
-		is_in_region = bactriana_region
+		AND = {
+			is_in_region = moesia_region
+			# South Moesia
+			NOT = { is_in_area = dacia_mediterranea_area }
+		}
+		AND = {
+			is_in_region = colchis_region
+			# tayk_area
+			NOT = { this = p:1727 }
+			NOT = { this = p:1752 }
+			NOT = { this = p:1753 }
+			NOT = { this = p:1757 }
+			NOT = { this = p:1758 }
+			# gugark_area
+			NOT = { this = p:1586 }
+			NOT = { this = p:1587 }
+		}
+		AND = {
+			is_in_region = bactriana_region
+			# Paropamisadae
+			NOT = { is_in_area = bamyan_area }
+			NOT = { is_in_area = sattagydia_area }
+		}
 		is_in_region = sogdiana_region
+		AND = {
+			is_in_region = albania_region
+			# South Albania
+			NOT = { is_in_area = artshak_area }
+			NOT = { is_in_area = arran_area }
+			NOT = { is_in_area = paytankert_area }
+		}
+		# Eastern Alps (rhaetia_region)
+		is_in_area = lauriacum_area
+		# Northern Parthia (parthia_region)
+		is_in_area = parnia_area
+		is_in_area = derbicca_area
+		# Western Tarim (himalayan_region)
+		this = p:6720
+		this = p:6773
+		this = p:6774
+		this = p:6775
 	}
 }
 

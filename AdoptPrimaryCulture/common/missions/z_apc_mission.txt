@@ -1,0 +1,213 @@
+﻿#-----------------------------------------------------------------------------------------
+# APC mission tree for changing primary culture
+#-----------------------------------------------------------------------------------------
+z_apc_mission = {
+	icon = athens_2
+	header = mission_image_apc
+	
+	repeatable = no
+
+    chance = {
+		factor = 5
+	}
+	
+	potential = {
+		has_civil_war = no
+		NOT = { has_variable = z_apc_mission_ongoing }
+		NOT = { has_variable = z_apc_mission_cooldown }
+		any_country_culture = {
+			NOT = { this = root.country_culture }
+			z_apc_has_any_cultural_majority_modifier_trigger = yes
+		}
+	}
+	
+	on_potential = {
+		root.country_culture = { save_scope_as = z_apc_old_primary_culture }
+    	random_country_culture = {
+			limit = {
+				NOT = { this = root.country_culture }
+				z_apc_has_any_cultural_majority_modifier_trigger = yes
+			}
+			save_scope_as = z_apc_found_cultural_majority # For mission title in selection screen
+			save_scope_as = z_apc_new_primary_culture # For the rest of the mission
+		}
+	}
+	
+	abort = {
+		# Vanilla
+		ai_mission_back_out_trigger = yes
+	}
+
+    on_start = {
+		# Vanilla
+    	start_mission_ai_effect = yes
+		# APC
+		save_scope_as = z_apc_country
+		root.country_culture = { save_scope_as = z_apc_old_primary_culture }
+    	random_country_culture = {
+			limit = {
+				NOT = { this = root.country_culture }
+				z_apc_has_any_cultural_majority_modifier_trigger = yes
+			}
+			save_scope_as = z_apc_new_primary_culture
+		}
+		set_variable = z_apc_mission_ongoing
+		set_variable = {
+			name = z_apc_mission_ctp_current
+			value = 0
+		}
+		if = {
+			limit = {
+				scope:z_apc_new_primary_culture = { is_integrated = yes }
+			}
+			set_variable = z_apc_mission_already_integrated_citizens
+			hidden_effect = {
+				z_apc_mission_add_ctp_effect = { VALUE = 3 } # Since this will bypass z_apc_mission_integrate_npc_citizens
+			}
+		}
+		if = {
+			limit = {
+				scope:z_apc_new_primary_culture = { has_pop_type_right = nobles }
+			}
+			set_variable = z_apc_mission_already_integrated_nobles
+			hidden_effect = {
+				z_apc_mission_add_ctp_effect = { VALUE = 2 } # Since this will bypass z_apc_mission_integrate_npc_nobles
+			}
+		}
+    }
+
+    on_abort = {
+		# APC
+    	custom_tooltip = z_apc_mission_cooldown_tt
+		set_variable = {
+			name = z_apc_mission_cooldown
+			days = 36500
+		}
+		z_apc_mission_clear_variables_effect = yes
+    }
+
+    on_completion = {
+		# Vanilla
+    	complete_mission_effect = yes
+		# APC
+		z_apc_mission_clear_variables_effect = yes
+    }
+	
+	# The [NPC] Question (starting task)
+	#---------------------------------------------------
+	z_apc_mission_the_npc_question = {
+		duration = 365 # 1 year
+		monthly_on_action = z_apc_mission_the_npc_question_monthly_pulse # Events should give CT points
+
+		potential = {}
+
+		bypass = {}
+		
+		on_start = {
+			trigger_event = z_apc_mission.1
+			set_variable = {
+				name = ongoing_mission_pulse_flag
+				days = 365
+			}
+		}
+
+		allow = {
+		}
+
+		on_completion = {
+			custom_tooltip = z_apc_mission_the_npc_question_on_completion_tt
+			trigger_event = z_apc_mission.2
+		}
+
+		icon = task_diplomatic
+	}
+	
+	# [NPC] Integration
+	#---------------------------------------------------
+	z_apc_mission_integrate_npc_citizens = {
+	
+		requires = { z_apc_mission_the_npc_question }
+
+		potential = {}
+
+		bypass = {
+			has_variable = z_apc_mission_already_integrated_citizens
+		}
+
+		allow = {
+			scope:z_apc_new_primary_culture = { is_integrated = yes }
+		}
+
+		on_completion = {
+			if = {
+				limit = {
+					scope:z_apc_new_primary_culture = { has_pop_type_right = nobles }
+				}
+				set_variable = z_apc_mission_already_integrated_nobles
+				z_apc_mission_add_ctp_effect = { VALUE = 5 } # Since this will bypass z_apc_mission_integrate_npc_nobles
+			}
+			else = {
+				z_apc_mission_add_ctp_effect = { VALUE = 3 }
+			}
+		}
+
+		icon = task_political
+	}
+	
+	# [NPC] Exclusiveness
+	#---------------------------------------------------
+	z_apc_mission_npc_exclusiveness = {
+	
+		requires = { z_apc_mission_integrate_npc_citizens }
+
+		potential = {}
+
+		bypass = {}
+
+		allow = {
+			custom_tooltip = {
+				text = z_apc_mission_npc_exclusiveness_allow_tt
+				NOT = {
+					any_country_culture = {
+						is_integrated = yes
+						NOR = {
+							this = scope:z_apc_old_primary_culture
+							this = scope:z_apc_new_primary_culture
+						}
+					}
+				}
+			}
+		}
+
+		on_completion = {
+			z_apc_mission_add_ctp_effect = { VALUE = 2 }
+		}
+
+		icon = task_diplomatic
+	}
+	
+	# [NPC] Privileges
+	#---------------------------------------------------
+	z_apc_mission_integrate_npc_nobles = {
+	
+		requires = { z_apc_mission_npc_exclusiveness }
+
+		potential = {}
+
+		bypass = {
+			has_variable = z_apc_mission_already_integrated_nobles
+		}
+
+		allow = {
+			scope:z_apc_new_primary_culture = { has_pop_type_right = nobles }
+		}
+
+		on_completion = {
+			z_apc_mission_add_ctp_effect = { VALUE = 2 }
+		}
+
+		icon = task_economical
+		
+		final = yes
+	}
+}

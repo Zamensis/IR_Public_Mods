@@ -9,3 +9,73 @@ z_apc_has_any_cultural_majority_modifier_trigger = {
 		has_country_culture_modifier = z_apc_cultural_majority_in_capital_city_modifier
 	}
 }
+
+#-----------------------------------------------------------------------------------------
+# Dirty trick to find the current Cultural Majority's culture group
+# (Since I didn't find a direct way to scope from country_culture to culture_group
+# It's set up this way in order to minimize the number of calculations (hopefully)
+#-----------------------------------------------------------------------------------------
+z_apc_cultural_majority_is_culture_group_trigger = {
+	# 1. Is there a Cultural Majority in this country?
+	trigger_if = {
+		limit = {
+			NOT = { exists = scope:z_apc_cultural_majority }
+		}
+		any_country_culture = {
+			z_apc_has_any_cultural_majority_modifier_trigger = yes
+			save_temporary_scope_as = z_apc_cultural_majority
+		}
+	}
+	exists = scope:z_apc_cultural_majority
+	# 2. Find a pop from the Cultural Majority
+	trigger_if = {
+		limit = {
+			NOT = { exists = scope:z_apc_cultural_majority_pop }
+		}
+		OR = {
+			# Try capital first, there's good chance it returns true
+			capital_scope = {
+				any_pops_in_province = {
+					this.country_culture = scope:z_apc_cultural_majority
+					save_temporary_scope_as = z_apc_cultural_majority_pop
+				}
+			}
+			# Try capital area, except the capital
+			capital_scope.state = {
+				any_state_province = {
+					NOT = { this = root.capital_scope }
+					any_pops_in_province = {
+						this.country_culture = scope:z_apc_cultural_majority
+						save_temporary_scope_as = z_apc_cultural_majority_pop
+					}
+				}
+			}
+			# Try capital region, except the capital area
+			capital_scope.region = {
+				any_region_province = {
+					has_owner = yes
+					owner = root
+					NOT = { this.state = root.capital_scope.state }
+					any_pops_in_province = {
+						this.country_culture = scope:z_apc_cultural_majority
+						save_temporary_scope_as = z_apc_cultural_majority_pop
+					}
+				}
+			}
+			# Try country, except the capital region
+			any_owned_province = {
+				NOT = { this.region = root.capital_scope.region }
+				any_pops_in_province = {
+					this.country_culture = scope:z_apc_cultural_majority
+					save_temporary_scope_as = z_apc_cultural_majority_pop
+				}
+			}
+		}
+	}
+	exists = scope:z_apc_cultural_majority_pop
+	# 3. Check pop culture group
+	scope:z_apc_cultural_majority_pop = {
+		this.country_culture = scope:z_apc_cultural_majority
+		pop_culture_group = $CULTURE_GROUP$
+	}
+}

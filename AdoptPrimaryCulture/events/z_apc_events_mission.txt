@@ -1,0 +1,50 @@
+﻿namespace = z_apc_mission
+
+#-----------------------------------------------------------------------------------------
+# The [NPC] Question - On start
+#-----------------------------------------------------------------------------------------
+z_apc_mission.1 = {
+	type = country_event
+	title = "z_apc_mission.1.t"
+	desc = "z_apc_mission.1.desc"
+	
+	picture = z_apc_cultural_majority_pic	
+	left_portrait = root.current_ruler
+	
+	trigger = {
+		# Triggered on starting mission: z_apc_mission_the_npc_question
+	}
+		
+	option = { # Let's go!
+		name = "z_apc_mission.1.a"
+		custom_tooltip = z_apc_mission.1.a.tt
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# The [NPC] Question - On completion
+#-----------------------------------------------------------------------------------------
+z_apc_mission.2 = {
+	type = country_event
+	title = "z_apc_mission.2.t"
+	desc = "z_apc_mission.2.desc"
+	
+	picture = z_apc_cultural_majority_pic	
+	left_portrait = root.current_ruler
+	
+	trigger = {
+		# Triggered on completing mission: z_apc_mission_the_npc_question
+	}
+		
+	option = { # Assimilate
+		name = "z_apc_mission.2.a"
+		set_variable = z_apc_mission_assimilation_flag
+		custom_tooltip = z_apc_mission.2.a.tt
+	}
+		
+	option = { # Replace
+		name = "z_apc_mission.2.b"
+		set_variable = z_apc_mission_replacement_flag
+		custom_tooltip = z_apc_mission.2.b.tt
+	}
+}

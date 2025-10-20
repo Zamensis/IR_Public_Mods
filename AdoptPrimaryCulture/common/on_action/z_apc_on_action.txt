@@ -31,3 +31,20 @@ z_apc_update_cultural_majority = {
 		}
 	}
 }
+
+#-----------------------------------------------------------------------------------------
+# Mission pulses
+#-----------------------------------------------------------------------------------------
+z_apc_mission_the_npc_question_monthly_pulse = {
+	random_events = {
+		#10 = me_roman_1_roman_italia.2
+		#10 = me_roman_1_roman_italia.3
+		#15 = me_roman_1_roman_italia.4
+		#10 = me_roman_1_roman_italia.5
+		#10 = me_roman_1_roman_italia.6
+		#15 = me_roman_1_roman_italia.7
+		#15 = me_roman_1_roman_italia.8
+		#10 = me_roman_1_roman_italia.9
+		#2 = me_roman_1_roman_italia.11
+	}
+}

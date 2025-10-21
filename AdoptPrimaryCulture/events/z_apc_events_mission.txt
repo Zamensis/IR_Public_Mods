@@ -67,8 +67,8 @@ z_apc_mission.999 = {
 	option = { # Let's go!
 		name = "z_apc_mission.999.a"
 		custom_tooltip = z_apc_mission.999.a.tt
-		z_apc_set_primary_culture_cleanup_effect = {
-			MAKE_OLD_CULTURE_INTEGRATED = yes
-		}
+		# z_apc_set_primary_culture_cleanup_effect = {
+			# MAKE_OLD_CULTURE_INTEGRATED = yes
+		# }
 	}
 }

@@ -225,8 +225,8 @@ z_apc_mission = {
 
 		on_completion = {
 			show_as_tooltip = {
-				z_apc_set_primary_culture_cleanup_effect = {
-					MAKE_OLD_CULTURE_INTEGRATED = yes
+				z_apc_set_primary_culture_effect = {
+					MAKE_OLD_CULTURE_INTEGRATED = no
 				}
 			}
 			trigger_event = z_apc_mission.999

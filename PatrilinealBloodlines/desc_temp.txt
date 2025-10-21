@@ -1,0 +1,68 @@
+﻿pass_down_bloodline_effect = {
+	every_character = {
+		# Pass down bloodline from father
+		if = {
+			limit = {
+				NOT = { has_trait = $BLOODLINE$ }
+				exists = father
+				father = { has_trait = $BLOODLINE$ }
+			}
+			force_add_trait = $BLOODLINE$
+		}
+		if = {
+			limit = {
+				NOT = { has_trait = $BLOODLINE$ }
+				exists = mother
+				mother = { has_trait = $BLOODLINE$ }
+				OR = {
+					gender_equality = yes
+					current_date < 451.1.1
+					mother = {
+						OR = {
+							NOT = { exists = father }
+							AND = {
+								exists = father
+								father = { has_trait = $BLOODLINE$ }
+							}
+							is_ruler = yes
+						}
+					}
+				}
+			}
+			force_add_trait = $BLOODLINE$
+		}
+	}
+}
+
+pass_down_bloodline_character_effect = {
+	if = {
+		limit = {
+			NOT = { has_trait = $BLOODLINE$ }
+			exists = father
+			father = { has_trait = $BLOODLINE$ }
+		}
+		force_add_trait = $BLOODLINE$
+	}
+	if = {
+		limit = {
+			NOT = {  has_trait = $BLOODLINE$ }
+			exists = mother
+			mother = { has_trait = $BLOODLINE$ }
+			OR = {
+				gender_equality = yes
+				current_date < 451.1.1
+				mother = {
+					OR = {
+						NOT = { exists = father }
+						AND = {
+							exists = father
+							father = { has_trait = $BLOODLINE$ }
+						}
+						is_ruler = yes
+					}
+				}
+			}
+		}
+		force_add_trait = $BLOODLINE$
+	}
+}

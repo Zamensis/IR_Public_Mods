@@ -45,8 +45,8 @@ z_apc_set_primary_culture_cleanup_effect = {
 	#	2) Increase the number of provinces until reaching a higher rank, then remove them:
 	#		Problem: cannot apply to great powers.
 	#		Problem: needs enough foreign provinces to add to the country.
-	#		Warning: need to be careful not to destroy other countries, and not to take provinces from other players.
 	#		Problem: diplo relations might get impacted.
+	#		Warning: need to be careful not to destroy other countries, and not to take provinces from other players.
 	#		Warning: the cons of the first option apply to the countries we take provinces from. But who cares?
 	#	Conclusion:
 	#		Use option 2 except for great powers (we'll assume there are enough provinces to feed in 99.9% of the cases).

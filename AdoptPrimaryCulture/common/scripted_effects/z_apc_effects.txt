@@ -4,14 +4,14 @@
 #-----------------------------------------------------------------------------------------
 z_apc_set_primary_culture_cleanup_effect = {
 	# Most of the mod uses a *country_culture* scope, but in this particular case, we need a *culture* scope.
-	# AFAIK, only pops hold both types. So let's identify our target *culture* by finding a pop that has the matching *country_culture*.
+	# We identify our target *culture* by finding a pop that has the matching *country_culture*.
 	random_owned_province = {
 		limit = {
 			any_pops_in_province = {
 				# In theory, we could scope to our mission-saved *country_culture* scope like this:
 				# this.country_culture = scope:z_apc_new_cultural_majority
 				# But we want to be able to use this effect outside of the mission, for example for testing it.
-				# Since the target *culture* is the only *country_culture* having an APC modifier:
+				# Since the target *culture* is the only *country_culture* having an APC modifier, we can find it like this:
 				this.country_culture = { z_apc_has_any_cultural_majority_modifier_trigger = yes }
 				# And just to make sure:
 				NOT = { this.country_culture = root.country_culture }
@@ -22,11 +22,11 @@ z_apc_set_primary_culture_cleanup_effect = {
 				this.country_culture = { z_apc_has_any_cultural_majority_modifier_trigger = yes }
 				NOT = { this.country_culture = root.country_culture }
 			}
-			# Ladies and gentlemen, we got him. Let's save his culture type.
+			# Ladies and gentlemen, we got him. Now let's save his *culture* type.
 			this.culture = { save_scope_as = z_apc_change_to_this_culture }
 		}
 	}
-	# Using that scope, we can change the primary culture using the Vanilla/Invictus effect that cleans up everything as needed
+	# Using that scope, we can now change culture using the Vanilla/Invictus effect that cleans up everything as needed
 	set_primary_culture_cleanup_effect = {
 		NEW_PRIMARY_CULTURE = scope:z_apc_change_to_this_culture
 		MAKE_OLD_CULTURE_INTEGRATED = $MAKE_OLD_CULTURE_INTEGRATED$
@@ -34,46 +34,53 @@ z_apc_set_primary_culture_cleanup_effect = {
 	# But we're not done yet, oh no.
 	# The problem, when doing this, is that the game fails to recalculate the correct amount of noble cultures, thus applying an incorrect malus to the new primary culture.
 	# From testing, the only way I've found to force a recalculation is to change the country rank.
-	# That means temporarily changing the number of owned provinces.
-	# (I've also tried to remove/readd every pop from the previous primary culture, but that didn't fix it.)
-	# 
-	# 3. Fix wrong number of noble cultures count
-	#		Option 1: Reduce the number of provinces until reaching a lower rank
-	#			Problem: cannot apply to OPMs
-	#			Problem: removes non-permanent province modifiers
-	#			Problem: might remove cultural rights if there are no longer pops of those cultures during the transition
-	#		Option 2: Increase the number of provinces until reaching a higher rank
-	#			Problem: cannot apply to great powers
-	#			Problem: needs enough provinces to feed to the country
-	#			Warning: must not destroy foreign countries and must not feed from non-AI countries
-	#		My current solution:
-	#			Use option 2 except for great powers (we assume there will always be enough provinces to feed in 99.9% of the cases)
-	#			Use option 1 for great powers
-	#			Avoid removing/feeding provinces that have a high amount of pops, since they are more likely to have province modifiers
-	#		Alright, let's do it:
+	# (I've already tried to remove/readd every pop of the previous primary culture, but that didn't fix it.)
+	# To change the country rank, we need to change the number of owned provinces. Therefore, two options:
+	#	1) Reduce the number of provinces until reaching a lower rank, then add them again:
+	#		Problem: cannot apply to OPMs.
+	#		Problem: removes non-permanent province modifiers.
+	#		Problem: cultural rights might get removed if all pops of a certain culture are lost during the transition.
+	#		Problem: trade deals might get cancelled.
+	#		Problem: diplo relations might get impacted.
+	#	2) Increase the number of provinces until reaching a higher rank, then remove them:
+	#		Problem: cannot apply to great powers.
+	#		Problem: needs enough foreign provinces to add to the country.
+	#		Warning: need to be careful not to destroy other countries, and not to take provinces from other players.
+	#		Problem: diplo relations might get impacted.
+	#		Warning: the cons of the first option apply to the countries we take provinces from. But who cares?
+	#	Conclusion:
+	#		Use option 2 except for great powers (we'll assume there are enough provinces to feed in 99.9% of the cases).
+	#		Use option 1 for great powers.
+	#		Avoid using capital provinces or provinces that have a high amount of pops, since they are more likely to have province modifiers.
+	#		When going down, avoid using provinces that are the last one with pops of their culture.
+	#		This whole process might get relatively calculation-intensive but it's a one-time-per-playthrough action.
+	# Alright, let's do it:
 	switch = {
 		trigger = rank
-		# Ideally, for mods that change the rank thresholds, the numbers here should be adjusted, else the fix might not work (no crash, just no fix)
-		# TARGET = number of provinces the country must drop below in order to change rank
-		# migrant_horde = from 0 to 0 -> No reset possible
-		migrant_horde = { z_apc_reset_rank_effect = { TARGET = 0 } } # This rank = from 0 to 0
-		city_power = { z_apc_reset_rank_effect = { TARGET = 1 } } # This rank = from 1 to 1
-		local_power = { z_apc_reset_rank_effect = { TARGET = 25 } } # This rank = from 2 to 24
-		regional_power = { z_apc_reset_rank_effect = { TARGET = 100 } } # This rank = from 25 to 99
-		major_power = { z_apc_reset_rank_effect = { TARGET = 100 } } # This rank = from 100 to 499
-		great_power = { z_apc_reset_rank_effect = { TARGET = 500 } } # This rank = from 500
+		# For mods that change the rank thresholds, the numbers here should be adjusted, else the fix might not work (no crash, just no fix)
+		# TARGET = number of provinces the country must have in order to change rank
+		migrant_horde = {} # [0] provinces -> non applicable
+		city_power = { z_apc_reset_rank_up_effect = { TARGET = 2 } } # [1] provinces -> go UP
+		local_power = { z_apc_reset_rank_up_effect = { TARGET = 25 } } # [2-24] provinces -> go UP
+		regional_power = { z_apc_reset_rank_up_effect = { TARGET = 100 } } # [25-99] provinces -> go UP
+		major_power = { z_apc_reset_rank_up_effect = { TARGET = 500 } } # [100-499] provinces -> go UP
+		great_power = { z_apc_reset_rank_down_effect = { TARGET = 499 } } # [500-...] provinces -> go DOWN
 	}
 }
 
 #-----------------------------------------------------------------------------------------
-# Fix wrong number of noble cultures count
+# Fix wrong number of noble cultures count by increasing the number of owned provinces
 #-----------------------------------------------------------------------------------------
-z_apc_reset_rank_effect = {
+z_apc_reset_rank_up_effect = {
 	
 }
 	
+#-----------------------------------------------------------------------------------------
+# Fix wrong number of noble cultures count by decreasing the number of owned provinces
+#-----------------------------------------------------------------------------------------	
+z_apc_reset_rank_down_effect = {
 	
-	
+}
 	
 	
 	# Unfortunately, no fix for OPMs because it relies on resetting the country rank

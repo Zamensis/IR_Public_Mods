@@ -35,13 +35,13 @@ z_apc_mission.2 = {
 	trigger = {
 		# Triggered on completing mission: z_apc_mission_the_npc_question
 	}
-		
+	
 	option = { # Assimilate
 		name = "z_apc_mission.2.a"
 		set_variable = z_apc_mission_assimilation_flag
 		custom_tooltip = z_apc_mission.2.a.tt
 	}
-		
+	
 	option = { # Replace
 		name = "z_apc_mission.2.b"
 		set_variable = z_apc_mission_replacement_flag
@@ -63,7 +63,7 @@ z_apc_mission.999 = {
 	trigger = {
 		# Triggered on starting mission: z_apc_mission_final
 	}
-		
+	
 	option = { # Let's go!
 		name = "z_apc_mission.999.a"
 		custom_tooltip = z_apc_mission.999.a.tt

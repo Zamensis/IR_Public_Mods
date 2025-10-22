@@ -220,3 +220,135 @@ z_apc_common.4 = {
 		name = "z_apc_common.4.a"
 	}
 }
+
+#-----------------------------------------------------------------------------------------
+# A New Rule (final task)
+#-----------------------------------------------------------------------------------------
+z_apc_common.998 = {
+	type = country_event
+	hidden = yes
+	
+	trigger = {
+		# Triggered on starting mission: z_apc_common_final
+	}
+	
+	immediate = {
+		if = {
+			limit = {
+				has_variable = z_apc_old_primary_pop_culture # Old culture
+				has_variable = z_apc_old_primary_culture # Old country culture
+				has_variable = z_apc_new_primary_pop_culture # New culture
+				has_variable = z_apc_new_primary_culture # New country culture
+				has_variable = z_apc_temporary_pop_culture # Temporary culture
+				has_variable = z_apc_temporary_culture # Temporary culture
+				has_variable = z_apc_set_primary_culture # Old culture intregration flag
+			}
+			every_owned_province = {
+				every_pops_in_province = {
+					limit = {
+						pop_culture = root.var:z_apc_old_primary_pop_culture
+					}
+					set_pop_culture = root.var:z_apc_temporary_pop_culture
+				}
+			}
+		}
+		root.country_culture = {
+			save_scope_as = z_apc_temporary_culture_2
+		}
+		while = {
+			limit = {
+				any_country_culture = {
+					this = scope:z_apc_temporary_culture_2
+				}
+			}
+			random_country = {
+				limit = {
+					is_ai = yes
+					war = no
+					num_of_cities > 1
+				}
+				random_country_culture = { save_scope_as = z_apc_temporary_culture_2 }
+				save_scope_as = z_apc_temporary_province_original_owner
+			}
+		}
+		scope:z_apc_temporary_province_original_owner = {
+			random_owned_province = {
+				limit = {
+					NOT = {
+						this = prev.capital_scope
+					}
+				}
+				set_owned_by = root
+				set_owned_by = prev
+			}
+		}
+		# trigger_event = {
+			# id = z_apc_common.999
+			# days = 1
+		# }
+		if = {
+			limit = {
+				has_variable = z_apc_old_primary_pop_culture # Old culture
+				has_variable = z_apc_old_primary_culture # Old country culture
+				has_variable = z_apc_new_primary_pop_culture # New culture
+				has_variable = z_apc_new_primary_culture # New country culture
+				has_variable = z_apc_temporary_pop_culture # Temporary culture
+				has_variable = z_apc_temporary_culture # Temporary culture
+				has_variable = z_apc_set_primary_culture # Old culture intregration flag
+			}
+			every_owned_province = {
+				every_pops_in_province = {
+					limit = {
+						pop_culture = root.var:z_apc_temporary_pop_culture
+					}
+					set_pop_culture = root.var:z_apc_old_primary_pop_culture
+				}
+			}
+		}
+		root.country_culture = {
+			save_scope_as = z_apc_temporary_culture_2
+		}
+		while = {
+			limit = {
+				any_country_culture = {
+					this = scope:z_apc_temporary_culture_2
+				}
+			}
+			random_country = {
+				limit = {
+					is_ai = yes
+					war = no
+					num_of_cities > 1
+				}
+				random_country_culture = { save_scope_as = z_apc_temporary_culture_2 }
+				save_scope_as = z_apc_temporary_province_original_owner
+			}
+		}
+		scope:z_apc_temporary_province_original_owner = {
+			random_owned_province = {
+				limit = {
+					NOT = {
+						this = prev.capital_scope
+					}
+				}
+				set_owned_by = root
+				set_owned_by = prev
+			}
+		}
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# A New Rule (final task)
+#-----------------------------------------------------------------------------------------
+z_apc_common.999 = {
+	type = country_event
+	hidden = yes
+	
+	trigger = {
+		# Triggered on starting mission: z_apc_common_final
+	}
+	
+	immediate = {
+	}
+}

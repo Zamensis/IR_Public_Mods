@@ -122,80 +122,115 @@ z_apc_set_primary_culture_effect = {
 		}
 		# If so, we can change culture using the Vanilla/Invictus effect that cleans up everything as needed
 		set_primary_culture_cleanup_effect = {
-			NEW_PRIMARY_CULTURE = var:z_apc_new_primary_pop_culture # New culture
-			MAKE_OLD_CULTURE_INTEGRATED = no # We'll change it later based on var:z_apc_set_primary_culture
+			NEW_PRIMARY_CULTURE = root.var:z_apc_new_primary_pop_culture # New culture
+			MAKE_OLD_CULTURE_INTEGRATED = yes # We'll change it later based on var:z_apc_set_primary_culture
 		}
 		# Unfortunately, we're not done yet.
 		# The problem, when changing the primary culture, is that the game fails to recalculate the correct amount of noble cultures, resulting in a malus to the new primary culture.
 		# Therefore, we need to force a recalculation. To do that, we'll convert all pops from the old primary culture to another one, then we'll convert them back.
 		# However, the pop count will only update after the next monthly tick, so we set up a flag for this and wait.
-		set_variable = z_apc_country_needs_new_primary_culture_cleanup_1
+		#trigger_event = z_apc_common.998
+		if = {
+			limit = {
+				has_variable = z_apc_old_primary_pop_culture # Old culture
+				has_variable = z_apc_old_primary_culture # Old country culture
+				has_variable = z_apc_new_primary_pop_culture # New culture
+				has_variable = z_apc_new_primary_culture # New country culture
+				has_variable = z_apc_temporary_pop_culture # Temporary culture
+				has_variable = z_apc_temporary_culture # Temporary culture
+				has_variable = z_apc_set_primary_culture # Old culture intregration flag
+			}
+			every_owned_province = {
+				every_pops_in_province = {
+					limit = {
+						pop_culture = root.var:z_apc_old_primary_pop_culture
+					}
+					set_pop_culture = root.var:z_apc_temporary_pop_culture
+				}
+			}
+		}
+		root.country_culture = {
+			save_scope_as = z_apc_temporary_culture_2
+		}
+		while = {
+			limit = {
+				any_country_culture = {
+					this = scope:z_apc_temporary_culture_2
+				}
+			}
+			random_country = {
+				limit = {
+					is_ai = yes
+					war = no
+					num_of_cities > 1
+				}
+				random_country_culture = { save_scope_as = z_apc_temporary_culture_2 }
+				save_scope_as = z_apc_temporary_province_original_owner
+			}
+		}
+		scope:z_apc_temporary_province_original_owner = {
+			random_owned_province = {
+				limit = {
+					NOT = {
+						this = prev.capital_scope
+					}
+				}
+				set_owned_by = root
+				set_owned_by = prev
+			}
+		}
+		if = {
+			limit = {
+				has_variable = z_apc_old_primary_pop_culture # Old culture
+				has_variable = z_apc_old_primary_culture # Old country culture
+				has_variable = z_apc_new_primary_pop_culture # New culture
+				has_variable = z_apc_new_primary_culture # New country culture
+				has_variable = z_apc_temporary_pop_culture # Temporary culture
+				has_variable = z_apc_temporary_culture # Temporary culture
+				has_variable = z_apc_set_primary_culture # Old culture intregration flag
+			}
+			every_owned_province = {
+				every_pops_in_province = {
+					limit = {
+						pop_culture = root.var:z_apc_temporary_pop_culture
+					}
+					set_pop_culture = root.var:z_apc_old_primary_pop_culture
+				}
+			}
+		}
+		root.country_culture = {
+			save_scope_as = z_apc_temporary_culture_2
+		}
+		while = {
+			limit = {
+				any_country_culture = {
+					this = scope:z_apc_temporary_culture_2
+				}
+			}
+			random_country = {
+				limit = {
+					is_ai = yes
+					war = no
+					num_of_cities > 1
+				}
+				random_country_culture = { save_scope_as = z_apc_temporary_culture_2 }
+				save_scope_as = z_apc_temporary_province_original_owner
+			}
+		}
+		scope:z_apc_temporary_province_original_owner = {
+			random_owned_province = {
+				limit = {
+					NOT = {
+						this = prev.capital_scope
+					}
+				}
+				set_owned_by = root
+				set_owned_by = prev
+			}
+		}
 	}
 	else = {
 		# Abort
-	}
-}
-
-#-----------------------------------------------------------------------------------------
-# Force noble cultures count recalculation
-# Long explanations lest I forget everything
-#-----------------------------------------------------------------------------------------
-z_apc_new_primary_culture_cleanup_1_effect = {
-	# This is triggered on a monthly tick, if the country has the z_apc_country_needs_nobles_count_fix flag.
-	# Before we continue, we check that all our variables are still set. Just to make sure.
-	if = {
-		limit = {
-			has_variable = z_apc_old_primary_pop_culture # Old culture
-			has_variable = z_apc_old_primary_culture # Old country culture
-			has_variable = z_apc_new_primary_pop_culture # New culture
-			has_variable = z_apc_new_primary_culture # New country culture
-			has_variable = z_apc_temporary_pop_culture # Temporary culture
-			has_variable = z_apc_temporary_culture # Temporary culture
-			has_variable = z_apc_set_primary_culture # Old culture intregration flag
-		}
-		every_owned_province = {
-			every_pops_in_province = {
-				limit = {
-					pop_culture = root.var:z_apc_old_primary_pop_culture
-				}
-				set_pop_culture = root.var:z_apc_temporary_pop_culture
-			}
-		}
-		remove_variable = z_apc_country_needs_new_primary_culture_cleanup_1
-		set_variable = z_apc_country_needs_new_primary_culture_cleanup_2
-	}
-}
-
-z_apc_new_primary_culture_cleanup_2_effect = {
-	# This is triggered on a monthly tick, if the country has the z_apc_country_needs_nobles_count_fix flag.
-	# Before we continue, we check that all our variables are still set. Just to make sure.
-	if = {
-		limit = {
-			has_variable = z_apc_old_primary_pop_culture # Old culture
-			has_variable = z_apc_old_primary_culture # Old country culture
-			has_variable = z_apc_new_primary_pop_culture # New culture
-			has_variable = z_apc_new_primary_culture # New country culture
-			has_variable = z_apc_temporary_pop_culture # Temporary culture
-			has_variable = z_apc_temporary_culture # Temporary culture
-			has_variable = z_apc_set_primary_culture # Old culture intregration flag
-		}
-		every_owned_province = {
-			every_pops_in_province = {
-				limit = {
-					pop_culture = root.var:z_apc_temporary_pop_culture
-				}
-				set_pop_culture = root.var:z_apc_old_primary_pop_culture
-			}
-		}
-		remove_variable = z_apc_country_needs_new_primary_culture_cleanup_2
-		# Finally, we clean up the variables
-		# remove_variable = z_apc_old_primary_pop_culture # Old culture
-		# remove_variable = z_apc_old_primary_culture # Old country culture
-		# remove_variable = z_apc_new_primary_pop_culture # New culture
-		# remove_variable = z_apc_new_primary_culture # New country culture
-		# remove_variable = z_apc_temporary_pop_culture # Temporary culture
-		# remove_variable = z_apc_temporary_culture # Temporary culture
-		# remove_variable = z_apc_set_primary_culture # Old culture intregration flag
 	}
 }
 
@@ -209,6 +244,22 @@ z_apc_find_cultural_majority_effect = {
 			root.country_culture = { z_apc_has_any_cultural_majority_modifier_trigger = yes }
 		}
 		root.country_culture = { z_apc_remove_all_cultural_majority_modifiers_effect = yes }
+	}
+	# ...and make sure the old primary culture isn't considered a Ruling Minority
+	if = {
+		limit = {
+			any_country_culture = {
+				NOT = { this = root.country_culture }
+				has_country_culture_modifier = z_apc_ruling_minority
+			}
+		}
+		every_country_culture = {
+			limit = {
+				NOT = { this = root.country_culture }
+				has_country_culture_modifier = z_apc_ruling_minority
+			}
+			remove_country_culture_modifier = z_apc_ruling_minority
+		}
 	}
 	# Then, check whether a Cultural Majority exists
 	if = {

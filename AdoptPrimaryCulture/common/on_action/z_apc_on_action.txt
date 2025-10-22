@@ -13,19 +13,6 @@ yearly_country_pulse = {
 	}
 }
 
-monthly_country_pulse = {
-	on_actions = {
-		delay = { days = 27 }
-		z_apc_new_primary_culture_cleanup_1								# Force noble cultures count recalculation by temporarily converting all pops from the old primary culture, a few days before monthly tick
-	}
-}
-
-monthly_country_pulse = {
-	on_actions = {
-		z_apc_new_primary_culture_cleanup_2								# Restore all these pops to the old primary culture
-	}
-}
-
 #-----------------------------------------------------------------------------------------
 # Update Cultural Majority
 #-----------------------------------------------------------------------------------------
@@ -41,30 +28,6 @@ z_apc_update_cultural_majority = {
 				}
 			}
 			z_apc_find_cultural_majority_effect = yes					# Find a Cultural Majority, then update Cultural Majority or remove invalid Cultural Majority
-		}
-	}
-}
-
-#-----------------------------------------------------------------------------------------
-# Force noble cultures count recalculation by temporarily converting all pops from the old primary culture, a few days before monthly tick
-#-----------------------------------------------------------------------------------------
-z_apc_new_primary_culture_cleanup_1 = {
-	effect = {
-		if = {
-			limit = { has_variable = z_apc_country_needs_new_primary_culture_cleanup_1 }
-			z_apc_new_primary_culture_cleanup_1_effect = yes
-		}
-	}
-}
-
-#-----------------------------------------------------------------------------------------
-# Restore all these pops to the old primary culture
-#-----------------------------------------------------------------------------------------
-z_apc_new_primary_culture_cleanup_2 = {
-	effect = {
-		if = {
-			limit = { has_variable = z_apc_country_needs_new_primary_culture_cleanup_2 }
-			z_apc_new_primary_culture_cleanup_2_effect = yes
 		}
 	}
 }

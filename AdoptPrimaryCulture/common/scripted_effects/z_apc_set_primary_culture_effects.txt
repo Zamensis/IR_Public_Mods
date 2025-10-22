@@ -112,9 +112,12 @@ z_apc_set_primary_culture_effect = {
 	# STEP 1
 	# We change culture using the Vanilla/Invictus effect that cleans up everything as needed.
 	#-----------------------------------------------------------------------------------------
-	set_primary_culture_cleanup_effect = {
-		NEW_PRIMARY_CULTURE = root.var:z_apc_new_primary_pop_culture # New culture
-		MAKE_OLD_CULTURE_INTEGRATED = yes # Regardless, our fix will force the old culture back to the "freemen" type, so we'll reintegrate it manually if needed.
+	if = {
+		limit = { has_variable = z_apc_new_primary_pop_culture } # Fix false positive in error log
+		set_primary_culture_cleanup_effect = {
+			NEW_PRIMARY_CULTURE = root.var:z_apc_new_primary_pop_culture # New culture
+			MAKE_OLD_CULTURE_INTEGRATED = yes # Regardless, our fix will force the old culture back to the "freemen" type, so we'll reintegrate it manually if needed.
+		}
 	}
 	#-----------------------------------------------------------------------------------------
 	# At this point, the new primary culture has been set, but the number of integrated/noble cultures hasn't been properly updated, leaving a permanent malus on the new primary culture.
@@ -261,15 +264,15 @@ z_apc_set_primary_culture_effect = {
 			limit = {
 				any_country_culture = {
 					NOT = { this = root.country_culture }
-					has_country_culture_modifier = z_apc_ruling_minority
+					has_country_culture_modifier = z_apc_ruling_minority_modifier
 				}
 			}
 			every_country_culture = {
 				limit = {
 					NOT = { this = root.country_culture }
-					has_country_culture_modifier = z_apc_ruling_minority
+					has_country_culture_modifier = z_apc_ruling_minority_modifier
 				}
-				remove_country_culture_modifier = z_apc_ruling_minority
+				remove_country_culture_modifier = z_apc_ruling_minority_modifier
 			}
 		}
 		#-----------------------------------------------------------------------------------------

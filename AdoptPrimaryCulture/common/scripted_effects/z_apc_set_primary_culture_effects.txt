@@ -233,15 +233,18 @@ z_apc_set_primary_culture_effect = {
 		# STEP 7
 		# If the old culture was set to be reintegrated, we do it now.
 		#-----------------------------------------------------------------------------------------
-		#
-		#
-		#
-		#
-		#
-		#
-		#
-		#
-		#
+		if = {
+			limit = {
+				has_variable = z_apc_reintegrate_old_primary_culture
+				var:z_apc_reintegrate_old_primary_culture = yes
+			}			
+			random_country_culture = {
+				limit = {
+					is_culture = root.var:z_apc_old_primary_pop_culture
+				}
+				root = { integrate_country_culture = prev }
+			}
+		}
 		#-----------------------------------------------------------------------------------------
 		# At this point, the culture table has been properly updated and the old primary culture is back in the country.
 		# In other words, the job is done!

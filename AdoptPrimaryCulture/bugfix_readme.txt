@@ -11,20 +11,20 @@ After much efforts, I was able to fix it in one game-tick so the player barely n
 
 Here's how it works, in English. For more technical details, read the workflow and comments in "z_apc_set_primary_culture_effect".
 
-	0) Immediately after using "set_primary_culture" or "set_primary_culture_cleanup_effect"...
+	0) Save the necessary scopes for the old primary culture, the new one, and a temporary one that isn't already present in the country (so it can be easily scoped to).
+
+	1) Use the "set_primary_culture" or "set_primary_culture_cleanup_effect" as usual.
 	
-	1) Convert all pops from the original primary culture to another culture, that isn't already present in the country (so they can be easily scoped to in step 4).
+	2) Store the MAKE_OLD_CULTURE_INTEGRATED parameter in a separate variable (because the fix will force the old culture back to the "freemen" type, so it will have to be reintegrated manually if necessary).
 	
-	2) Give the country a random province in the world with pops of yet another culture that isn't already present in the country. Make sure the original owner is neither a player (that would annoy him), an OPM (that would destroy him) or at war (that could affect the outcome). Maybe choose a province with very few pops as to minimize the risk of erasing a non-permanent province modifier. This change of ownership seems to force an update of the country cultures list.
+	3) Convert all pops from the original primary culture to the temporary one.
 	
-	3) Immediately give that province back to its original owner.
+	4) Give the country a random province in the world with pops of yet another culture that isn't already present in the country. This change of ownership forces an update of the country cultures list. Then immediately give that province back to its original owner.
 	
-	4) Convert all the formerly primary pops back to the old primary culture.
+	5) Convert all the formerly primary pops (currently in the temporary culture) back to the old primary culture.
 	
-	5) Do the province trick again, to force another update of the country cultures.
+	6) Do the province trick again, to force another update of the country cultures.
 	
-	6) The correct number of integrated/noble cultures will be calculated on the next monthly tick. The job is done! Well, almost...
-	
-	7) The old primary culture is considered freemen, regardless of the player decision to keep it integrated or not. So if the intent was to keep them integrated, it needs to be done manually.
+	7) The correct number of integrated/noble cultures will be calculated on the next monthly tick. The job is almost done! The old primary culture is considered freemen, regardless of the player decision to keep it integrated or not. So if the intent was to keep them integrated, it needs to be done manually.
 	
 That is all.

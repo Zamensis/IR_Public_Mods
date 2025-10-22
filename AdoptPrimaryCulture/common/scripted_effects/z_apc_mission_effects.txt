@@ -1,0 +1,13 @@
+﻿#-----------------------------------------------------------------------------------------
+# Add 1 Cultural Transition point
+#-----------------------------------------------------------------------------------------
+z_apc_mission_add_ctp_effect = {
+	if = {
+		limit = { has_variable = z_apc_mission_ctp_current }
+		change_variable = {
+			name = z_apc_mission_ctp_current
+			add = $VALUE$
+		}
+	}
+	custom_tooltip = z_apc_mission_add_$VALUE$_ctp_effect_tt
+}

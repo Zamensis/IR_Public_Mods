@@ -1,0 +1,297 @@
+﻿#-----------------------------------------------------------------------------------------
+# Alternative set_primary_culture_cleanup_effect
+#-----------------------------------------------------------------------------------------
+# In the base game and Invictus, the change of primary culture causes a bug where the number of integrated/noble cultures isn't properly updated, leaving a permanent malus on the new primary culture.
+# The fix consists in converting all the pops of the old primary culture to another culture, in order to remove it completely from the culture table, and then back again.
+#-----------------------------------------------------------------------------------------
+z_apc_set_primary_culture_effect = {
+	#-----------------------------------------------------------------------------------------
+	# STEP 0
+	# First of all, we need to save a number of *culture* and *country_culture* scopes.
+	# We use persistent variables instead of saved_scopes so that we can use this effect independently.
+	#-----------------------------------------------------------------------------------------
+	# Let's start with our current primary culture, the one we're about to demote.
+	# We can find our scopes by finding a random pop of this culture.
+	random_owned_province = {
+		limit = {
+			any_pops_in_province = { this.country_culture = root.country_culture }
+		}
+		random_pops_in_province = {
+			limit = { this.country_culture = root.country_culture }
+			this.culture = {
+				root = {
+					set_variable = {
+						name = z_apc_old_primary_pop_culture # Old culture
+						value = prev
+					}
+				}
+			}
+			this.country_culture = {
+				root = {
+					set_variable = {
+						name = z_apc_old_primary_culture # Old country culture
+						value = prev
+					}
+				}
+			}
+		}
+	}
+	# We do the same for the new primary culture, the one we're about to promote.
+	# We can find our scopes by finding a random pop of this culture.
+	random_owned_province = {
+		limit = {
+			any_pops_in_province = {
+				this.country_culture = { z_apc_has_any_cultural_majority_modifier_trigger = yes }
+				NOT = { this.country_culture = root.country_culture } # Just to make sure
+			}
+		}
+		random_pops_in_province = {
+			limit = {
+				this.country_culture = { z_apc_has_any_cultural_majority_modifier_trigger = yes }
+				NOT = { this.country_culture = root.country_culture }
+			}
+			this.culture = {
+				root = {
+					set_variable = {
+						name = z_apc_new_primary_pop_culture # New culture
+						value = prev
+					}
+				}
+			}
+			this.country_culture = {
+				root = {
+					set_variable = {
+						name = z_apc_new_primary_culture # New country culture
+						value = prev
+					}
+				}
+			}
+		}
+	}
+	# We do the same for a third culture that doesn't currently exist in root.
+	# This culture will be used as the temporary replacement for the old primary culture.
+	set_variable = {
+		name = z_apc_temporary_culture # Temporary culture
+		value = var:z_apc_old_primary_culture # Initial value, to be replaced by the following loop
+	}
+	while = {
+		# We keep searching until we find a culture that breaks this condition:
+		limit = {
+			any_country_culture = { this = root.var:z_apc_temporary_culture }
+		}
+		# Pick a random country culture in a random country, save its scopes and run the loop again.
+		random_country = {
+			random_country_culture = { save_scope_as = z_apc_temporary_culture }
+			random_owned_province = {
+				limit = {
+					any_pops_in_province = { this.country_culture = scope:z_apc_temporary_culture }
+				}
+				random_pops_in_province = {
+					limit = { this.country_culture = scope:z_apc_temporary_culture }
+					this.culture = {
+						root = {
+							set_variable = {
+								name = z_apc_temporary_pop_culture # Temporary culture
+								value = prev
+							}
+						}
+					}
+					this.country_culture = {
+						root = {
+							set_variable = {
+								name = z_apc_temporary_culture # Temporary country culture
+								value = prev
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	#-----------------------------------------------------------------------------------------
+	# STEP 1
+	# We change culture using the Vanilla/Invictus effect that cleans up everything as needed.
+	#-----------------------------------------------------------------------------------------
+	set_primary_culture_cleanup_effect = {
+		NEW_PRIMARY_CULTURE = root.var:z_apc_new_primary_pop_culture # New culture
+		MAKE_OLD_CULTURE_INTEGRATED = yes # Regardless, our fix will force the old culture back to the "freemen" type, so we'll reintegrate it manually if needed.
+	}
+	#-----------------------------------------------------------------------------------------
+	# At this point, the new primary culture has been set, but the number of integrated/noble cultures hasn't been properly updated, leaving a permanent malus on the new primary culture.
+	# This is where we'll need to apply our fix, using our previously saved variables.
+	# So let's make sure they all exist first. In the extremely rare case they don't, the fix won't be applied and the bug will remain.
+	#-----------------------------------------------------------------------------------------
+	if = {
+		limit = {
+			has_variable = z_apc_old_primary_pop_culture # Old culture
+			has_variable = z_apc_old_primary_culture # Old country culture
+			has_variable = z_apc_new_primary_pop_culture # New culture
+			has_variable = z_apc_new_primary_culture # New country culture
+			has_variable = z_apc_temporary_pop_culture # Temporary culture
+			has_variable = z_apc_temporary_culture # Temporary culture
+		}
+		#-----------------------------------------------------------------------------------------
+		# STEP 2
+		# We're about the remove the old culture entirely from the culture table, but that will force it back to the "freemen" type.
+		# Therefore, we need to store the MAKE_OLD_CULTURE_INTEGRATED parameter in a separate variable.
+		#-----------------------------------------------------------------------------------------
+		set_variable = {
+			name = z_apc_reintegrate_old_primary_culture # Old culture reintregration flag
+			value = $MAKE_OLD_CULTURE_INTEGRATED$
+		}
+		#-----------------------------------------------------------------------------------------
+		# STEP 3
+		# Remove the old primary culture entirely from the culture table by converting its pops to the temporary culture
+		#-----------------------------------------------------------------------------------------
+		every_owned_province = {
+			every_pops_in_province = {
+				limit = { pop_culture = root.var:z_apc_old_primary_pop_culture }
+				set_pop_culture = root.var:z_apc_temporary_pop_culture
+			}
+		}
+		#-----------------------------------------------------------------------------------------
+		# STEP 4
+		# By default, the game only updates the culture table monthly.
+		# However, we can't wait because that would make the whole process apparent and very confusing to the player.
+		# We can force an immediate update of the culture table when there's a change of province ownership.
+		#-----------------------------------------------------------------------------------------
+		# First, we identify a country we can borrow a province from.
+		root.country_culture = { save_scope_as = z_apc_temporary_culture_2 }
+		while = {
+			# We keep searching until we find a culture that breaks this condition:
+			limit = {
+				any_country_culture = { this = scope:z_apc_temporary_culture_2 }
+			}
+			# Pick a random country culture in a random country, save its scope and run the loop again.
+			random_country = {
+				limit = {
+					is_ai = yes # No human player, that would annoy him
+					war = no # No country at war, that would skew the outcome
+					num_of_cities > 1 # No OPM, that would destroy it
+				}
+				random_country_culture = { save_scope_as = z_apc_temporary_culture_2 }
+				save_scope_as = z_apc_temporary_province_original_owner
+			}
+		}
+		# Once we've found it, we simulate a change of province ownership to force an update of the culture table.
+		scope:z_apc_temporary_province_original_owner = {
+			random_owned_province = {
+				limit = {
+					NOT = { this = prev.capital_scope }
+				}
+				set_owned_by = root # Lend it to root
+				set_owned_by = prev # Give it back to the original owner
+			}
+		}
+		# At this point, the culture table has been properly updated and the old primary culture isn't present in the country, thus fixing the integrated/noble cultures count.
+		#-----------------------------------------------------------------------------------------
+		# STEP 5
+		# Convert the pops in the temporary culture back to the old primary culture.
+		#-----------------------------------------------------------------------------------------
+		every_owned_province = {
+			every_pops_in_province = {
+				limit = { pop_culture = root.var:z_apc_temporary_pop_culture }
+				set_pop_culture = root.var:z_apc_old_primary_pop_culture
+			}
+		}
+		#-----------------------------------------------------------------------------------------
+		# STEP 6
+		# Do the province trick again to force an immediate update of the culture table without having to wait for the next monthly tick.
+		#-----------------------------------------------------------------------------------------
+		# First, we identify a country we can borrow a province from.
+		root.country_culture = { save_scope_as = z_apc_temporary_culture_2 }
+		while = {
+			# We keep searching until we find a culture that breaks this condition:
+			limit = {
+				any_country_culture = { this = scope:z_apc_temporary_culture_2 }
+			}
+			# Pick a random country culture in a random country, save its scope and run the loop again.
+			random_country = {
+				limit = {
+					is_ai = yes # No human player, that would annoy him
+					war = no # No country at war, that would skew the outcome
+					num_of_cities > 1 # No OPM, that would destroy it
+				}
+				random_country_culture = { save_scope_as = z_apc_temporary_culture_2 }
+				save_scope_as = z_apc_temporary_province_original_owner
+			}
+		}
+		# Once we've found it, we simulate a change of province ownership to force an update of the culture table.
+		scope:z_apc_temporary_province_original_owner = {
+			random_owned_province = {
+				limit = {
+					NOT = { this = prev.capital_scope }
+				}
+				set_owned_by = root # Lend it to root
+				set_owned_by = prev # Give it back to the original owner
+			}
+		}
+		#-----------------------------------------------------------------------------------------
+		# STEP 7
+		# If the old culture was set to be reintegrated, we do it now.
+		#-----------------------------------------------------------------------------------------
+		#
+		#
+		#
+		#
+		#
+		#
+		#
+		#
+		#
+		#-----------------------------------------------------------------------------------------
+		# At this point, the culture table has been properly updated and the old primary culture is back in the country.
+		# In other words, the job is done!
+		# All of this was accomplished in just one game tick, so the whole process is not visible to the player, otherwise that would be very confusing.
+		# The malus caused by the number of integrated/noble cultures will be cleared at the next monthly tick (instead of never).
+		# We only need to do some clean up.
+		#-----------------------------------------------------------------------------------------
+		# Make sure the new primary culture isn't considered a Cultural Majority anymore
+		#-----------------------------------------------------------------------------------------
+		if = {
+			limit = {
+				var:z_apc_new_primary_culture = { z_apc_has_any_cultural_majority_modifier_trigger = yes }
+			}
+			var:z_apc_new_primary_culture = { z_apc_remove_all_cultural_majority_modifiers_effect = yes }
+		}
+		#-----------------------------------------------------------------------------------------
+		# Make sure the old primary culture isn't considered a Ruling Minority anymore
+		#-----------------------------------------------------------------------------------------
+		if = {
+			limit = {
+				any_country_culture = {
+					NOT = { this = root.country_culture }
+					has_country_culture_modifier = z_apc_ruling_minority
+				}
+			}
+			every_country_culture = {
+				limit = {
+					NOT = { this = root.country_culture }
+					has_country_culture_modifier = z_apc_ruling_minority
+				}
+				remove_country_culture_modifier = z_apc_ruling_minority
+			}
+		}
+		#-----------------------------------------------------------------------------------------
+		# Clean up all the variables that were set in this whole process
+		#-----------------------------------------------------------------------------------------
+		remove_variable = z_apc_old_primary_pop_culture # Old culture
+		remove_variable = z_apc_old_primary_culture # Old country culture
+		remove_variable = z_apc_new_primary_pop_culture # New culture
+		remove_variable = z_apc_new_primary_culture # New country culture
+		remove_variable = z_apc_temporary_pop_culture # Temporary culture
+		remove_variable = z_apc_temporary_culture # Temporary culture
+		remove_variable = z_apc_reintegrate_old_primary_culture # Old culture reintregration flag
+		#-----------------------------------------------------------------------------------------
+		# Now everything should be like at game start. No Cultural Majority, no Ruling Minority.
+		# Set the Cultural Majority cooldown.
+		#-----------------------------------------------------------------------------------------
+		set_variable = {
+			name = z_apc_had_recent_cultural_majority_change
+			days = 3650 # 10 years
+		}
+	}
+	else = {
+		# Abort
+	}
+}

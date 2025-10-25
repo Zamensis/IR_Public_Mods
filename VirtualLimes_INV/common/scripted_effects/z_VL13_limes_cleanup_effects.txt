@@ -12,7 +12,7 @@ z_limes_release_effect = {
 				#z_limes_is_mm_trigger = yes
 				overlord = { z_has_limes = yes }
 				NOR = {
-					any_neighbour_country = { this = overlord }
+					any_neighbour_country = { this = root.overlord }
 					has_coasts = yes
 				}
 			}

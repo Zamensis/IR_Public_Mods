@@ -56,7 +56,7 @@ z_airm.1 = {
 			set_variable = {
 				name = betrothed_flag
 				value = scope:recipient
-				days = 2000 # Vanilla says 1500 but then the betrothal can time out before the day has come
+				days = 2500 # Vanilla says 1500 but then the betrothal can time out before the day has come
 			}
 		}
 		scope:recipient = {
@@ -72,7 +72,7 @@ z_airm.1 = {
 			set_variable = {
 				name = betrothed_flag
 				value = scope:target
-				days = 2000 # Vanilla says 1500 but then the betrothal can time out before the day has come
+				days = 2500 # Vanilla says 1500 but then the betrothal can time out before the day has come
 			}
 		}
 		scope:recipient.employer = { # recipient.employer = actor
@@ -97,7 +97,7 @@ z_airm.1 = {
 			set_variable = {
 				name = betrothed_flag
 				value = scope:recipient
-				days = 2000 # Vanilla says 1500 but then the betrothal can time out before the day has come
+				days = 2500 # Vanilla says 1500 but then the betrothal can time out before the day has come
 			}
 		}
 		scope:recipient = {
@@ -113,7 +113,7 @@ z_airm.1 = {
 			set_variable = {
 				name = betrothed_flag
 				value = scope:alt_target
-				days = 2000 # Vanilla says 1500 but then the betrothal can time out before the day has come
+				days = 2500 # Vanilla says 1500 but then the betrothal can time out before the day has come
 			}
 		}
 		scope:recipient.employer = { # recipient.employer = actor

@@ -24,7 +24,10 @@ z_limes_release_effect = {
 				is_subject = yes
 				#z_limes_is_mm_trigger = yes
 				overlord = { z_has_limes = yes }
-				num_of_cities >= overlord.num_of_cities
+				OR = {
+					num_of_cities >= overlord.num_of_cities
+					country_population >= overlord.country_population
+				}
 			}
 			overlord = { release_subject = root }
 		}

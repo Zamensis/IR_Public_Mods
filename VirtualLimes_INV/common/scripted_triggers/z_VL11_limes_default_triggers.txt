@@ -3915,7 +3915,7 @@ z_limes_vistulia_region_trigger_2 = {
 		}
 		# Eastern Alps (rhaetia_region)
 		is_in_area = lauriacum_area
-		is_in_area = alpes_raetiae_area
+		is_in_area = alpes_raetiae_orientalis
 		is_in_area = helvetia_orientalis_area
 		# Trans-Dniepr (scythia_region)
 		is_in_area = transborysthenia_area

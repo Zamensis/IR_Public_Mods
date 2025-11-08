@@ -1,0 +1,44 @@
+﻿roman_12_illyria_pannonia = {
+	icon = rome_1
+	header = mission_image_rome
+
+	repeatable = no
+	
+	chance = {
+		factor = 0
+	}
+
+	potential = {
+		always = no
+	}
+
+	abort = {
+	}
+
+	on_start = {
+    }
+	
+	on_abort = {
+    }
+
+    on_completion = {
+    }
+	
+	roman_12_mission_task_1_x = { #Discuss Anti Pirate Laws
+		icon = task_political
+		
+		allow = {
+		}
+
+		highlight = {
+		}
+		
+		on_start = {
+		}
+		
+		on_completion = {
+		}
+		
+		final = yes
+	}
+}

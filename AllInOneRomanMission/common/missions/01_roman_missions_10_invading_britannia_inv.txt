@@ -1,0 +1,44 @@
+﻿roman_10_invading_britannia = {
+	icon = rome_1
+	header = mission_image_rome
+
+	repeatable = no
+	
+	chance = {
+		factor = 0
+	}
+
+	potential = {
+		always = no
+	}
+
+	abort = {
+	}
+
+	on_start = {
+    }
+	
+	on_abort = {
+    }
+
+    on_completion = {
+    }
+	
+	roman_10_secure_aremorica_x = {
+		icon = task_conquest
+		allow = {
+		}
+
+		highlight = {
+		}
+		
+		on_completion = {
+		}
+		
+		bypass = {
+
+		}
+		
+		final = yes
+	}
+}

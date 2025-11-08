@@ -1,0 +1,40 @@
+﻿roman_11_rhaetia_vindelicia = {
+	icon = rome_1
+	header = mission_image_rome
+
+	repeatable = no
+	
+	chance = {
+		factor = 0
+	}
+
+	potential = {
+		always = no
+	}
+
+	abort = {
+	}
+
+	on_start = {
+    }
+	
+	on_abort = {
+    }
+
+    on_completion = {
+    }
+	
+	roman_11_mission_task_1_x = { #Alps Graiae
+		icon = task_conquest
+		allow = {
+		}
+
+		highlight = {
+		}
+		
+		on_completion = {
+		}
+		
+		final = yes
+	}
+}

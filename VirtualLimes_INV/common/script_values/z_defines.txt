@@ -19,6 +19,7 @@ z_limes_rules_buff_PAR = 1					# Buff AI Parthia when fighting AI Seleucid, help
 z_limes_rules_nerf_SEL = 1					# Nerf AI Seleucid when fighting AI Parthia, helping their historical defeat
 z_limes_rules_nerf_EGY_SEL = 1				# Nerf AI Egypt and Seleucid when not ruled by Ptolemy I or Seleukos I or one of their children, helping the historical decline of their dynasties
 z_limes_rules_decline = 1					# Nerf AI Successor empires when ruled by a weak character, helping their historical decline
+z_limes_rules_mauryan_decline = 1			# Give AI Maurya an even more crippling heritage to facilitate the historical collapse
 z_limes_rules_player_protection = 1			# The previous buffs and debuffs only apply when NO player is nearby (if set to 0, they apply regardless of the presence of a player nearby)
 z_limes_rules_attack_ROM = 1				# AI Rome can be prompted to attack AI-controlled targets to achieve a more historical outcome
 z_limes_rules_attack_PAR = 1				# AI Parthia can be prompted to attack AI-controlled targets to achieve a more historical outcome

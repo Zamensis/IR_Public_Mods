@@ -118,10 +118,10 @@ z_limes_civil_war_blob_effect = {
 				scope:z_limes_civil_war_loser.num_of_cities >= 10
 				trigger_if = {
 					limit = { num_of_cities >= 500 }
-					z_limes_civil_war_winner_owns >= 0.85 # Winner owns x% of the total territory
+					z_limes_civil_war_winner_owns >= 0.9 # Winner owns x% of the total territory
 				}
 				trigger_else = {
-					z_limes_civil_war_winner_owns >= 0.75 # Winner owns x% of the total territory
+					z_limes_civil_war_winner_owns >= 0.8 # Winner owns x% of the total territory
 				}
 			}
 			while = {

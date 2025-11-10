@@ -13,21 +13,7 @@ z_limes_tribal_collapse_effect = {
 			z_limes_year < 600
 			has_variable = z_limes_lucky_factor
 			var:z_limes_lucky_factor > 10
-			NOT = {
-				any_neighbour_country = {
-					is_ai = no
-				}
-			}
-			trigger_if = {
-				limit = {
-					war = yes
-				}
-				NOT = {
-					any_countries_at_war_with = {
-						is_ai = no
-					}
-				}
-			}
+			z_limes_can_cheat = yes
 		}
 		random = {
 			chance = {
@@ -106,6 +92,7 @@ z_limes_tribal_restoration_effect = {
 			# Lucky factor
 			has_variable = z_limes_lucky_factor
 			var:z_limes_lucky_factor > 10
+			current_ruler.martial <= 5
 			# Protect Parthia and friends
 			z_has_limes_PAR = no
 		}
@@ -120,6 +107,7 @@ z_limes_tribal_restoration_effect = {
 			num_of_cities >= 120
 			z_limes_year >= 150
 			war = no
+			z_limes_can_cheat = yes
 			# Tribal culture groups
 			OR = {
 				country_culture_group = baltic

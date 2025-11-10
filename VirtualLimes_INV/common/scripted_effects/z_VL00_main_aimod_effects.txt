@@ -413,4 +413,43 @@ z_limes_aimod_effect = {
 			}
 		}
 	}
+	# --------------------------------------------------------------------------------
+	# MRY modifiers
+	# --------------------------------------------------------------------------------
+	if = {
+		limit = {
+			is_ai = yes
+			tag = MRY
+			OR = {
+				has_global_variable = maurya_collapse_happened
+				has_variable = had_mauryan_decline
+			}
+		}
+		# Give AI MRY a more crippling heritage to facilitate their historical collapse
+		if = {
+			limit = {
+				z_limes_rules_mauryan_decline = 1
+				z_limes_can_cheat = yes
+				heritage = mauryan_abandoned_heritage
+			}
+			set_country_heritage = z_limes_mauryan_abandoned_heritage
+		}
+		# Remove heritage
+		if = {
+			limit = {
+				OR = {
+					NOT = { z_limes_rules_mauryan_decline = 1 }
+					z_limes_can_cheat = no
+				}
+				heritage = z_limes_mauryan_abandoned_heritage
+			}
+			set_country_heritage = mauryan_abandoned_heritage
+		}
+	}
+	# Remove harmless error if Invictus (not) present
+	if = {
+		limit = { always = no }
+		set_variable = had_mauryan_decline
+		set_global_variable = maurya_collapse_happened
+	}
 }

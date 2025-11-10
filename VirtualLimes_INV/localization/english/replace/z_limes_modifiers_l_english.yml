@@ -34,6 +34,9 @@
  z_limes_naval_superpower_desc:0 "Part of the Virtual Limes mod. You shouldn't be reading this. This modifier gives Rome various bonuses to help it better manage the logistics of its large empire."
  z_limes_nerf_EGY_SEL:0 "Weakened Nation"
  z_limes_nerf_EGY_SEL_desc:0 "Part of the Virtual Limes mod. You shouldn't be reading this. This modifier gives Egypt various maluses after the death of Ptolemy I and as long as it isn't in the vicinity of the player."
+ # HERITAGE -----------------------------------------------------------------------------------------------------------------------------------------------
+ z_limes_mauryan_abandoned_heritage:0 "$mauryan_abandoned_heritage$"
+ z_limes_mauryan_abandoned_heritage_desc:0 "$mauryan_abandoned_heritage_desc$\n#TF This heritage was modified by Virtual Limes.#!"
  # LEGACY -----------------------------------------------------------------------------------------------------------------------------------------------
  z_strong_ai:0 "$z_limes_strong_ai$"
  z_lame_ai:0 "$z_limes_weak_ai$"

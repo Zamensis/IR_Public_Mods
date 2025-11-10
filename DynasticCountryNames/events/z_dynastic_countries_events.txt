@@ -40,7 +40,10 @@ z_dynastic_countries.2 = {
 	option = {
 		name = "z_dynastic_countries.2.b"
 		ai_chance = { factor = 0 }
-		remove_variable = z_dynastic_countries_cooldown # Clear current cooldown
+		if = {
+			limit = { has_variable = z_dynastic_countries_cooldown }
+			remove_variable = z_dynastic_countries_cooldown # Clear current cooldown
+		}
 		set_variable = {
 			name = z_dynastic_countries_cooldown
 			days = 9125 # 25 years
@@ -52,7 +55,10 @@ z_dynastic_countries.2 = {
 	option = {
 		name = "z_dynastic_countries.2.c"
 		ai_chance = { factor = 0 }
-		remove_variable = z_dynastic_countries_cooldown # Clear current cooldown
+		if = {
+			limit = { has_variable = z_dynastic_countries_cooldown }
+			remove_variable = z_dynastic_countries_cooldown # Clear current cooldown
+		}
 		set_variable = {
 			name = z_dynastic_countries_cooldown # Forever
 		}

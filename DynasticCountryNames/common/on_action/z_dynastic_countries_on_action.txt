@@ -31,6 +31,10 @@ z_dynastic_countries_on_action = {
 				#-------------------------------------------------
 				NOT = { has_variable = z_dynastic_countries_cooldown }
 				#-------------------------------------------------
+				# Must NOT have a cultural name (should never be the case, but just to be sure)
+				#-------------------------------------------------
+				NOT = { has_variable = z_limes_CCN_flag }
+				#-------------------------------------------------
 				# If player, must NOT have a dynastic name from start
 				#-------------------------------------------------
 				NOR = {
@@ -242,6 +246,7 @@ z_dynastic_countries_on_action = {
 			limit = { always = no }
 			set_global_variable = has_changed_name_flag
 			set_global_variable = is_playing_invictus
+			set_variable = z_limes_CCN_flag
 		}
 	}
 }

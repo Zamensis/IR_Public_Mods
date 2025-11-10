@@ -18,7 +18,7 @@
  BREAK_z_limes_mmTITLE:0 "Prendre notre indépendance"
  CANCEL_z_limes_mm_DESC:0 "Libérer la Marche militaire."
  BREAK_z_limes_mm_DESC:0 "Mettre fin à notre statut de Marche militaire."
- CANCEL_z_limes_mm_NOT_IN_TRUCE:0 "@trigger_no! Il n'est pas possible de libérer une #E Marche militaire#! si une trêve est en cours. Celle-ci n'expirera que le $WHEN|Y$.
+ CANCEL_z_limes_mm_NOT_IN_TRUCE:0 "@trigger_no! Il n'est pas possible de libérer une #E Marche militaire#! si une trêve est en cours. Celle-ci n'expirera que le $WHEN|Y$."
  BREAK_z_limes_mm_NOT_IN_TRUCE:0 "$CANCEL_z_limes_mm_NOT_IN_TRUCE$"
  CANCEL_z_limes_mm_NEWDESC:0 "Souhaitez-vous libérer la Marche militaire de [COUNTRY.GetName]?"
  BREAK_z_limes_mm_NEWDESC:0 "Souhaitez-vous mettre fin au lien de dépendance envers [COUNTRY.GetName]?\nCela va dégrader nos relations avec lui et il disposera d'un casus belli intemporel sur notre territoire."

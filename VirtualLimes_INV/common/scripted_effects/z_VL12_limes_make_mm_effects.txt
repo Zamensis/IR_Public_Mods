@@ -2,7 +2,7 @@
 # Make a new MM (root = future overlord, scope:z_limes_mm_capital = future MM capital)
 # --------------------------------------------------------------------------------
 z_limes_make_mm_effect = {
-	# Check if an MM already exists in this area/zone
+	# Check if an MM already exists in this $ZONE$
 	if = {
 		limit = {
 			scope:z_limes_mm_capital.$ZONE$ = {

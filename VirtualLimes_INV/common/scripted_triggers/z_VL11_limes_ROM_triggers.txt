@@ -1,5 +1,5 @@
 ﻿#---------------------------------------------------------------------------------
-# Can AI PAR set its capital in this region?
+# Can AI ROM annex a subject in this $REGION$?
 #---------------------------------------------------------------------------------
 z_limes_annex_trigger_ROM = {
 	z_limes_year >= 20

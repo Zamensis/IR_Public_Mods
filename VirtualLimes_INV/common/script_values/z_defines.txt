@@ -51,7 +51,7 @@ z_limes_defines_l3_density = 10				# ...or the 3rd Expansion Zone can be unlocke
 #----------------							# --------------------------------------------
 z_limes_defines_min_size = 35				# AI countries must own at least this many provinces before they can release Military Marches
 z_limes_defines_min_mm_size = 1				# Minimum Military Marche size
-z_limes_defines_min_mm_size_tribal = 3		# Same but for Migratory Tribes
+z_limes_defines_min_mm_size_tribal = 3		# Same but for Migratory Tribes (higher value to prevent unwanted MM creation during migration)
 
 # MISC										# DESCRIPTION
 #----------------							# --------------------------------------------

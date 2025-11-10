@@ -5,6 +5,7 @@ on_game_initialized = {
 	on_actions = {
 		z_VL_routine							# Main routine - Initialize or update common VL settings (modifiers, level, etc.)
 		z_VL_limes								# Main VL function - Create MMs along natural/historical boundaries
+		z_VL_CCN								# CCN - Cultural Country Names for empires
 	}
 }
 
@@ -29,6 +30,7 @@ yearly_country_pulse = {
 		z_VL_yearly_country_pulse
 		z_VL_routine							# Main routine - Initialize or update common VL settings (modifiers, level, etc.)
 		z_VL_nointegrate_100					# No integrate effects - Prevent the Diadochi from integrating their native pops before a certain threshold
+		z_VL_CCN								# CCN - Cultural Country Names for empires
 		
 		delay = { days = { 15 350 } }
 		z_VL_limes_cleanup						# Cleanup effects - Release, merge, absorb, rename, annex
@@ -174,5 +176,14 @@ z_VL_civil_war = {
 		z_limes_civil_war_clear_effect = yes # Clear war participants
 		z_limes_civil_war_save_effect = yes # Save war participants
 		z_limes_civil_war_blob_effect = yes # Precipitate the end of AI-only civil wars
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# CCN - Cultural Country Names for empires
+#-----------------------------------------------------------------------------------------
+z_VL_CCN = {
+	effect = {
+		z_limes_CCN_effect = yes # CCN - Cultural Country Names for empires
 	}
 }

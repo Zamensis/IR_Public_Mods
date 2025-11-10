@@ -1,0 +1,434 @@
+﻿# --------------------------------------------------------------------------------
+# Base CCN effect
+# --------------------------------------------------------------------------------
+z_limes_CCN_effect = {
+	if = {
+		limit = {
+			trigger_if = {
+				limit = { is_ai = no }
+				z_limes_year > 10
+			}
+			NOT = { has_variable = z_dynastic_countries_cooldown }
+			NOT = { has_variable = z_limes_CCN_cooldown }
+			trigger_if = {
+				limit = { is_ai = yes }
+				z_limes_rules_CCN = 1
+			}
+			is_republic = no
+			is_subject = no
+			has_civil_war = no
+			z_limes_CCN_has_uneligible_culture_trigger = no
+			z_limes_CCN_has_eligible_culture_trigger = yes
+		}
+		# Scenario 1: Give cultural name (first time, visible)
+		if = {
+			limit = {
+				NOT = { has_variable = z_dynastic_countries_flag }
+				NOT = { has_variable = z_limes_CCN_flag }
+				# K name triggers only for monarchies
+				trigger_if = {
+					limit = { is_monarchy = yes }
+					num_of_cities >= z_limes_defines_CCN_K
+				}
+				# E name triggers for any monarchy or tribe with >= 500 provinces
+				trigger_else = {
+					num_of_cities >= z_limes_defines_CCN_E
+				}
+			}
+			trigger_event = { # Let the player/AI choose
+				id = z_limes_CCN.1
+				days = { 1 360 }
+			}
+		}
+		# Scenario 2: Rename from K (hidden)
+		else_if = {
+			limit = {
+				has_variable = z_limes_CCN_flag_k
+				num_of_cities >= z_limes_defines_CCN_E
+			}
+			z_dynastic_countries_rename_country = yes
+		}
+	}
+	# Remove harmless errors from log
+	if = {
+		limit = { always = no }
+		set_variable = z_dynastic_countries_cooldown
+		set_variable = z_dynastic_countries_flag
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# New cultures must be added here manually.
+# Too lazy? Don't worry, not doing it won't crash the game.
+# Don't forget to also update the other list in scripted triggers.
+#-----------------------------------------------------------------------------------------
+z_limes_CCN_rename_country_effect = {
+	switch = {
+		trigger = primary_culture
+		# aksumite_group
+		puntic = { z_limes_CCN_rename_this_country_effect = { CULTURE = puntic } }
+		aksumite = { z_limes_CCN_rename_this_country_effect = { CULTURE = aksumite } }
+		blemmyan = { z_limes_CCN_rename_this_country_effect = { CULTURE = blemmyan } }
+		blemmye = { z_limes_CCN_rename_this_country_effect = { CULTURE = blemmye } }
+		daamoti = { z_limes_CCN_rename_this_country_effect = { CULTURE = daamoti } }
+		ona = { z_limes_CCN_rename_this_country_effect = { CULTURE = ona } }
+		athagaun = { z_limes_CCN_rename_this_country_effect = { CULTURE = athagaun } }
+		avalitian = { z_limes_CCN_rename_this_country_effect = { CULTURE = avalitian } }
+		berberian = { z_limes_CCN_rename_this_country_effect = { CULTURE = berberian } }
+		erythraean = { z_limes_CCN_rename_this_country_effect = { CULTURE = erythraean } }
+		# aryan
+		vidharban = { z_limes_CCN_rename_this_country_effect = { CULTURE = vidharban } }
+		mulaka = { z_limes_CCN_rename_this_country_effect = { CULTURE = mulaka } }
+		saurashtran = { z_limes_CCN_rename_this_country_effect = { CULTURE = saurashtran } }
+		kaccha = { z_limes_CCN_rename_this_country_effect = { CULTURE = kaccha } }
+		lankan = { z_limes_CCN_rename_this_country_effect = { CULTURE = lankan } }
+		maharashtran = { z_limes_CCN_rename_this_country_effect = { CULTURE = maharashtran } }
+		rathikan = { z_limes_CCN_rename_this_country_effect = { CULTURE = rathikan } }
+		gandhari = { z_limes_CCN_rename_this_country_effect = { CULTURE = gandhari } }
+		sivi = { z_limes_CCN_rename_this_country_effect = { CULTURE = sivi } }
+		shauraseni = { z_limes_CCN_rename_this_country_effect = { CULTURE = shauraseni } }
+		kosala = { z_limes_CCN_rename_this_country_effect = { CULTURE = kosala } }
+		kuru = { z_limes_CCN_rename_this_country_effect = { CULTURE = kuru } }
+		avanti = { z_limes_CCN_rename_this_country_effect = { CULTURE = avanti } }
+		matsya = { z_limes_CCN_rename_this_country_effect = { CULTURE = matsya } }
+		cedi = { z_limes_CCN_rename_this_country_effect = { CULTURE = cedi } }
+		dhivehi = { z_limes_CCN_rename_this_country_effect = { CULTURE = dhivehi } }
+		sindhi = { z_limes_CCN_rename_this_country_effect = { CULTURE = sindhi } }
+		dardic = { z_limes_CCN_rename_this_country_effect = { CULTURE = dardic } }
+		purus = { z_limes_CCN_rename_this_country_effect = { CULTURE = purus } }
+		mitanni = { z_limes_CCN_rename_this_country_effect = { CULTURE = mitanni } }
+		# bactrian
+		bactrian = { z_limes_CCN_rename_this_country_effect = { CULTURE = bactrian } }
+		margian = { z_limes_CCN_rename_this_country_effect = { CULTURE = margian } }
+		sogdian = { z_limes_CCN_rename_this_country_effect = { CULTURE = sogdian } }
+		shule = { z_limes_CCN_rename_this_country_effect = { CULTURE = shule } }
+		phryni = { z_limes_CCN_rename_this_country_effect = { CULTURE = phryni } }
+		tayuan = { z_limes_CCN_rename_this_country_effect = { CULTURE = tayuan } }
+		wusun = { z_limes_CCN_rename_this_country_effect = { CULTURE = wusun } }
+		saka = { z_limes_CCN_rename_this_country_effect = { CULTURE = saka } }
+		yuezhi = { z_limes_CCN_rename_this_country_effect = { CULTURE = yuezhi } }
+		tocharian = { z_limes_CCN_rename_this_country_effect = { CULTURE = tocharian } }
+		# baltic
+		aestian = { z_limes_CCN_rename_this_country_effect = { CULTURE = aestian } }
+		sporic = { z_limes_CCN_rename_this_country_effect = { CULTURE = sporic } }
+		neuric = { z_limes_CCN_rename_this_country_effect = { CULTURE = neuric } }
+		budinian = { z_limes_CCN_rename_this_country_effect = { CULTURE = budinian } }
+		chernolian = { z_limes_CCN_rename_this_country_effect = { CULTURE = chernolian } }
+		melanchlaenian = { z_limes_CCN_rename_this_country_effect = { CULTURE = melanchlaenian } }
+		# belgae_group
+		belgae = { z_limes_CCN_rename_this_country_effect = { CULTURE = belgae } }
+		aduatacian = { z_limes_CCN_rename_this_country_effect = { CULTURE = aduatacian } }
+		eburonian = { z_limes_CCN_rename_this_country_effect = { CULTURE = eburonian } }
+		nervian = { z_limes_CCN_rename_this_country_effect = { CULTURE = nervian } }
+		morinian = { z_limes_CCN_rename_this_country_effect = { CULTURE = morinian } }
+		veliocassian = { z_limes_CCN_rename_this_country_effect = { CULTURE = veliocassian } }
+		bellovacian = { z_limes_CCN_rename_this_country_effect = { CULTURE = bellovacian } }
+		# britannic
+		britannic = { z_limes_CCN_rename_this_country_effect = { CULTURE = britannic } }
+		caledonian = { z_limes_CCN_rename_this_country_effect = { CULTURE = caledonian } }
+		iceni = { z_limes_CCN_rename_this_country_effect = { CULTURE = iceni } }
+		trinovantian = { z_limes_CCN_rename_this_country_effect = { CULTURE = trinovantian } }
+		cantian = { z_limes_CCN_rename_this_country_effect = { CULTURE = cantian } }
+		durotrigan = { z_limes_CCN_rename_this_country_effect = { CULTURE = durotrigan } }
+		dumnonian = { z_limes_CCN_rename_this_country_effect = { CULTURE = dumnonian } }
+		dobunnian = { z_limes_CCN_rename_this_country_effect = { CULTURE = dobunnian } }
+		demetian = { z_limes_CCN_rename_this_country_effect = { CULTURE = demetian } }
+		ordovitian = { z_limes_CCN_rename_this_country_effect = { CULTURE = ordovitian } }
+		coritani = { z_limes_CCN_rename_this_country_effect = { CULTURE = coritani } }
+		cornovian = { z_limes_CCN_rename_this_country_effect = { CULTURE = cornovian } }
+		brigantic = { z_limes_CCN_rename_this_country_effect = { CULTURE = brigantic } }
+		votadinian = { z_limes_CCN_rename_this_country_effect = { CULTURE = votadinian } }
+		damnonian = { z_limes_CCN_rename_this_country_effect = { CULTURE = damnonian } }
+		taexalian = { z_limes_CCN_rename_this_country_effect = { CULTURE = taexalian } }
+		parisian = { z_limes_CCN_rename_this_country_effect = { CULTURE = parisian } }
+		monapian = { z_limes_CCN_rename_this_country_effect = { CULTURE = monapian } }
+		ivernian = { z_limes_CCN_rename_this_country_effect = { CULTURE = ivernian } }
+		voluntian = { z_limes_CCN_rename_this_country_effect = { CULTURE = voluntian } }
+		# caucasian
+		albanian = { z_limes_CCN_rename_this_country_effect = { CULTURE = albanian } }
+		caspian = { z_limes_CCN_rename_this_country_effect = { CULTURE = caspian } }
+		ibero = { z_limes_CCN_rename_this_country_effect = { CULTURE = ibero } }
+		sindi = { z_limes_CCN_rename_this_country_effect = { CULTURE = sindi } }
+		maeotian = { z_limes_CCN_rename_this_country_effect = { CULTURE = maeotian } }
+		colchian = { z_limes_CCN_rename_this_country_effect = { CULTURE = colchian } }
+		abasgoi = { z_limes_CCN_rename_this_country_effect = { CULTURE = abasgoi } }
+		suani = { z_limes_CCN_rename_this_country_effect = { CULTURE = suani } }
+		lazi = { z_limes_CCN_rename_this_country_effect = { CULTURE = lazi } }
+		sasperian = { z_limes_CCN_rename_this_country_effect = { CULTURE = sasperian } }
+		legian = { z_limes_CCN_rename_this_country_effect = { CULTURE = legian } }
+		gelaean = { z_limes_CCN_rename_this_country_effect = { CULTURE = gelaean } }
+		# celt_iberia
+		caristian = { z_limes_CCN_rename_this_country_effect = { CULTURE = caristian } }
+		celtician = { z_limes_CCN_rename_this_country_effect = { CULTURE = celtician } }
+		lusitanian = { z_limes_CCN_rename_this_country_effect = { CULTURE = lusitanian } }
+		vettonian = { z_limes_CCN_rename_this_country_effect = { CULTURE = vettonian } }
+		carpetanian = { z_limes_CCN_rename_this_country_effect = { CULTURE = carpetanian } }
+		celtiberian = { z_limes_CCN_rename_this_country_effect = { CULTURE = celtiberian } }
+		lobetanian = { z_limes_CCN_rename_this_country_effect = { CULTURE = lobetanian } }
+		sedetanian = { z_limes_CCN_rename_this_country_effect = { CULTURE = sedetanian } }
+		vaccaeian = { z_limes_CCN_rename_this_country_effect = { CULTURE = vaccaeian } }
+		asturian = { z_limes_CCN_rename_this_country_effect = { CULTURE = asturian } }
+		callaecian = { z_limes_CCN_rename_this_country_effect = { CULTURE = callaecian } }
+		vardulian = { z_limes_CCN_rename_this_country_effect = { CULTURE = vardulian } }
+		cantabrian = { z_limes_CCN_rename_this_country_effect = { CULTURE = cantabrian } }
+		couneian = { z_limes_CCN_rename_this_country_effect = { CULTURE = couneian } }
+		oppidanian = { z_limes_CCN_rename_this_country_effect = { CULTURE = oppidanian } }
+		autrigonian = { z_limes_CCN_rename_this_country_effect = { CULTURE = autrigonian } }
+		elesycian = { z_limes_CCN_rename_this_country_effect = { CULTURE = elesycian } }
+		# celto_pannonian_group
+		galatian = { z_limes_CCN_rename_this_country_effect = { CULTURE = galatian } }
+		tylian = { z_limes_CCN_rename_this_country_effect = { CULTURE = tylian } }
+		# chinese
+		qin = { z_limes_CCN_rename_this_country_effect = { CULTURE = qin } }
+		# dacia_group
+		dacian = { z_limes_CCN_rename_this_country_effect = { CULTURE = dacian } }
+		getian = { z_limes_CCN_rename_this_country_effect = { CULTURE = getian } }
+		harpii = { z_limes_CCN_rename_this_country_effect = { CULTURE = harpii } }
+		costoboci = { z_limes_CCN_rename_this_country_effect = { CULTURE = costoboci } }
+		buridavensi = { z_limes_CCN_rename_this_country_effect = { CULTURE = buridavensi } }
+		caucoensi = { z_limes_CCN_rename_this_country_effect = { CULTURE = caucoensi } }
+		ratacensi = { z_limes_CCN_rename_this_country_effect = { CULTURE = ratacensi } }
+		biephi = { z_limes_CCN_rename_this_country_effect = { CULTURE = biephi } }
+		# gaelic
+		hibernian = { z_limes_CCN_rename_this_country_effect = { CULTURE = hibernian } }
+		manavian = { z_limes_CCN_rename_this_country_effect = { CULTURE = manavian } }
+		# gallic
+		aremorican = { z_limes_CCN_rename_this_country_effect = { CULTURE = aremorican } }
+		lepontic = { z_limes_CCN_rename_this_country_effect = { CULTURE = lepontic } }
+		vindelician = { z_limes_CCN_rename_this_country_effect = { CULTURE = vindelician } }
+		helvetian = { z_limes_CCN_rename_this_country_effect = { CULTURE = helvetian } }
+		biturigan = { z_limes_CCN_rename_this_country_effect = { CULTURE = biturigan } }
+		volcae = { z_limes_CCN_rename_this_country_effect = { CULTURE = volcae } }
+		salluvian = { z_limes_CCN_rename_this_country_effect = { CULTURE = salluvian } }
+		haedui = { z_limes_CCN_rename_this_country_effect = { CULTURE = haedui } }
+		carnuti = { z_limes_CCN_rename_this_country_effect = { CULTURE = carnuti } }
+		santonian = { z_limes_CCN_rename_this_country_effect = { CULTURE = santonian } }
+		lemovician = { z_limes_CCN_rename_this_country_effect = { CULTURE = lemovician } }
+		pictonian = { z_limes_CCN_rename_this_country_effect = { CULTURE = pictonian } }
+		aulercian = { z_limes_CCN_rename_this_country_effect = { CULTURE = aulercian } }
+		arverni = { z_limes_CCN_rename_this_country_effect = { CULTURE = arverni } }
+		celtic_pannonian = { z_limes_CCN_rename_this_country_effect = { CULTURE = celtic_pannonian } }
+		letobician = { z_limes_CCN_rename_this_country_effect = { CULTURE = letobician } }
+		carnian = { z_limes_CCN_rename_this_country_effect = { CULTURE = carnian } }
+		noric = { z_limes_CCN_rename_this_country_effect = { CULTURE = noric } }
+		boian = { z_limes_CCN_rename_this_country_effect = { CULTURE = boian } }
+		eravisci = { z_limes_CCN_rename_this_country_effect = { CULTURE = eravisci } }
+		cotinian = { z_limes_CCN_rename_this_country_effect = { CULTURE = cotinian } }
+		treverian = { z_limes_CCN_rename_this_country_effect = { CULTURE = treverian } }
+		sennonian = { z_limes_CCN_rename_this_country_effect = { CULTURE = sennonian } }
+		ubian = { z_limes_CCN_rename_this_country_effect = { CULTURE = ubian } }
+		allobrogian = { z_limes_CCN_rename_this_country_effect = { CULTURE = allobrogian } }
+		teurian = { z_limes_CCN_rename_this_country_effect = { CULTURE = teurian } }
+		# germanic
+		saxonian = { z_limes_CCN_rename_this_country_effect = { CULTURE = saxonian } }
+		anglian = { z_limes_CCN_rename_this_country_effect = { CULTURE = anglian } }
+		reudingian = { z_limes_CCN_rename_this_country_effect = { CULTURE = reudingian } }
+		teutonian = { z_limes_CCN_rename_this_country_effect = { CULTURE = teutonian } }
+		cimbrian = { z_limes_CCN_rename_this_country_effect = { CULTURE = cimbrian } }
+		herulian = { z_limes_CCN_rename_this_country_effect = { CULTURE = herulian } }
+		rugian = { z_limes_CCN_rename_this_country_effect = { CULTURE = rugian } }
+		helveconian = { z_limes_CCN_rename_this_country_effect = { CULTURE = helveconian } }
+		bastarnae = { z_limes_CCN_rename_this_country_effect = { CULTURE = bastarnae } }
+		gutones = { z_limes_CCN_rename_this_country_effect = { CULTURE = gutones } }
+		suiones = { z_limes_CCN_rename_this_country_effect = { CULTURE = suiones } }
+		vandal = { z_limes_CCN_rename_this_country_effect = { CULTURE = vandal } }
+		raumarician = { z_limes_CCN_rename_this_country_effect = { CULTURE = raumarician } }
+		irminonic = { z_limes_CCN_rename_this_country_effect = { CULTURE = irminonic } }
+		istvaeonic = { z_limes_CCN_rename_this_country_effect = { CULTURE = istvaeonic } }
+		ingvaeonic = { z_limes_CCN_rename_this_country_effect = { CULTURE = ingvaeonic } }
+		suebian = { z_limes_CCN_rename_this_country_effect = { CULTURE = suebian } }
+		lemovian = { z_limes_CCN_rename_this_country_effect = { CULTURE = lemovian } }
+		gothonic = { z_limes_CCN_rename_this_country_effect = { CULTURE = gothonic } }
+		frisian = { z_limes_CCN_rename_this_country_effect = { CULTURE = frisian } }
+		scandian = { z_limes_CCN_rename_this_country_effect = { CULTURE = scandian } }
+		indo_germanic = { z_limes_CCN_rename_this_country_effect = { CULTURE = indo_germanic } }
+		# iberia
+		oretanian = { z_limes_CCN_rename_this_country_effect = { CULTURE = oretanian } }
+		contestanian = { z_limes_CCN_rename_this_country_effect = { CULTURE = contestanian } }
+		bastetanian = { z_limes_CCN_rename_this_country_effect = { CULTURE = bastetanian } }
+		ilercavonian = { z_limes_CCN_rename_this_country_effect = { CULTURE = ilercavonian } }
+		edetanian = { z_limes_CCN_rename_this_country_effect = { CULTURE = edetanian } }
+		lacetanian = { z_limes_CCN_rename_this_country_effect = { CULTURE = lacetanian } }
+		indiketian = { z_limes_CCN_rename_this_country_effect = { CULTURE = indiketian } }
+		ausetanian = { z_limes_CCN_rename_this_country_effect = { CULTURE = ausetanian } }
+		turdetanian = { z_limes_CCN_rename_this_country_effect = { CULTURE = turdetanian } }
+		turdulian = { z_limes_CCN_rename_this_country_effect = { CULTURE = turdulian } }
+		ilergetian = { z_limes_CCN_rename_this_country_effect = { CULTURE = ilergetian } }
+		vasconian = { z_limes_CCN_rename_this_country_effect = { CULTURE = vasconian } }
+		aquitani = { z_limes_CCN_rename_this_country_effect = { CULTURE = aquitani } }
+		# indian
+		kannadan = { z_limes_CCN_rename_this_country_effect = { CULTURE = kannadan } }
+		kuntalan = { z_limes_CCN_rename_this_country_effect = { CULTURE = kuntalan } }
+		alupan = { z_limes_CCN_rename_this_country_effect = { CULTURE = alupan } }
+		tamil = { z_limes_CCN_rename_this_country_effect = { CULTURE = tamil } }
+		cholan = { z_limes_CCN_rename_this_country_effect = { CULTURE = cholan } }
+		cheran = { z_limes_CCN_rename_this_country_effect = { CULTURE = cheran } }
+		pandyan = { z_limes_CCN_rename_this_country_effect = { CULTURE = pandyan } }
+		telugu = { z_limes_CCN_rename_this_country_effect = { CULTURE = telugu } }
+		andhran = { z_limes_CCN_rename_this_country_effect = { CULTURE = andhran } }
+		assaka = { z_limes_CCN_rename_this_country_effect = { CULTURE = assaka } }
+		# latin
+		venetic = { z_limes_CCN_rename_this_country_effect = { CULTURE = venetic } }
+		ligurian = { z_limes_CCN_rename_this_country_effect = { CULTURE = ligurian } }
+		etruscan = { z_limes_CCN_rename_this_country_effect = { CULTURE = etruscan } }
+		rhaetian = { z_limes_CCN_rename_this_country_effect = { CULTURE = rhaetian } }
+		umbrian = { z_limes_CCN_rename_this_country_effect = { CULTURE = umbrian } }
+		samnite = { z_limes_CCN_rename_this_country_effect = { CULTURE = samnite } }
+		siculian = { z_limes_CCN_rename_this_country_effect = { CULTURE = siculian } }
+		bruttian = { z_limes_CCN_rename_this_country_effect = { CULTURE = bruttian } }
+		lucanian = { z_limes_CCN_rename_this_country_effect = { CULTURE = lucanian } }
+		histrian = { z_limes_CCN_rename_this_country_effect = { CULTURE = histrian } }
+		# meroitic_group
+		meroitic = { z_limes_CCN_rename_this_country_effect = { CULTURE = meroitic } }
+		lower_nubian = { z_limes_CCN_rename_this_country_effect = { CULTURE = lower_nubian } }
+		napatan = { z_limes_CCN_rename_this_country_effect = { CULTURE = napatan } }
+		# north_african
+		egyptian = { z_limes_CCN_rename_this_country_effect = { CULTURE = egyptian } }
+		upper_egyptian = { z_limes_CCN_rename_this_country_effect = { CULTURE = upper_egyptian } }
+		middle_egyptian = { z_limes_CCN_rename_this_country_effect = { CULTURE = middle_egyptian } }
+		oasis_egyptian = { z_limes_CCN_rename_this_country_effect = { CULTURE = oasis_egyptian } }
+		# numidian
+		numidian = { z_limes_CCN_rename_this_country_effect = { CULTURE = numidian } }
+		gaetulian = { z_limes_CCN_rename_this_country_effect = { CULTURE = gaetulian } }
+		melanogaetulian = { z_limes_CCN_rename_this_country_effect = { CULTURE = melanogaetulian } }
+		socossian = { z_limes_CCN_rename_this_country_effect = { CULTURE = socossian } }
+		massaesylian = { z_limes_CCN_rename_this_country_effect = { CULTURE = massaesylian } }
+		massylian = { z_limes_CCN_rename_this_country_effect = { CULTURE = massylian } }
+		autolalean = { z_limes_CCN_rename_this_country_effect = { CULTURE = autolalean } }
+		lixitoi = { z_limes_CCN_rename_this_country_effect = { CULTURE = lixitoi } }
+		perorsian = { z_limes_CCN_rename_this_country_effect = { CULTURE = perorsian } }
+		canarian = { z_limes_CCN_rename_this_country_effect = { CULTURE = canarian } }
+		nectiberean = { z_limes_CCN_rename_this_country_effect = { CULTURE = nectiberean } }
+		daphnitaean = { z_limes_CCN_rename_this_country_effect = { CULTURE = daphnitaean } }
+		capariensian = { z_limes_CCN_rename_this_country_effect = { CULTURE = capariensian } }
+		abannaean = { z_limes_CCN_rename_this_country_effect = { CULTURE = abannaean } }
+		cetianian = { z_limes_CCN_rename_this_country_effect = { CULTURE = cetianian } }
+		# persia
+		elamite = { z_limes_CCN_rename_this_country_effect = { CULTURE = elamite } }
+		utian = { z_limes_CCN_rename_this_country_effect = { CULTURE = utian } }
+		pasargadi = { z_limes_CCN_rename_this_country_effect = { CULTURE = pasargadi } }
+		sagartian = { z_limes_CCN_rename_this_country_effect = { CULTURE = sagartian } }
+		uxian = { z_limes_CCN_rename_this_country_effect = { CULTURE = uxian } }
+		amardian = { z_limes_CCN_rename_this_country_effect = { CULTURE = amardian } }
+		sarangian = { z_limes_CCN_rename_this_country_effect = { CULTURE = sarangian } }
+		pactyan = { z_limes_CCN_rename_this_country_effect = { CULTURE = pactyan } }
+		cossian = { z_limes_CCN_rename_this_country_effect = { CULTURE = cossian } }
+		cadusian = { z_limes_CCN_rename_this_country_effect = { CULTURE = cadusian } }
+		parthian = { z_limes_CCN_rename_this_country_effect = { CULTURE = parthian } }
+		parecanian = { z_limes_CCN_rename_this_country_effect = { CULTURE = parecanian } }
+		carmanian = { z_limes_CCN_rename_this_country_effect = { CULTURE = carmanian } }
+		median = { z_limes_CCN_rename_this_country_effect = { CULTURE = median } }
+		gedrosian = { z_limes_CCN_rename_this_country_effect = { CULTURE = gedrosian } }
+		hyrcanian = { z_limes_CCN_rename_this_country_effect = { CULTURE = hyrcanian } }
+		sattagydian = { z_limes_CCN_rename_this_country_effect = { CULTURE = sattagydian } }
+		# pracyan
+		kalingan = { z_limes_CCN_rename_this_country_effect = { CULTURE = kalingan } }
+		savara = { z_limes_CCN_rename_this_country_effect = { CULTURE = savara } }
+		kamarupi = { z_limes_CCN_rename_this_country_effect = { CULTURE = kamarupi } }
+		bangli = { z_limes_CCN_rename_this_country_effect = { CULTURE = bangli } }
+		pandra = { z_limes_CCN_rename_this_country_effect = { CULTURE = pandra } }
+		vanga = { z_limes_CCN_rename_this_country_effect = { CULTURE = vanga } }
+		atavi = { z_limes_CCN_rename_this_country_effect = { CULTURE = atavi } }
+		magadhi = { z_limes_CCN_rename_this_country_effect = { CULTURE = magadhi } }
+		kasi = { z_limes_CCN_rename_this_country_effect = { CULTURE = kasi } }
+		vrji = { z_limes_CCN_rename_this_country_effect = { CULTURE = vrji } }
+		malla = { z_limes_CCN_rename_this_country_effect = { CULTURE = malla } }
+		himalayan = { z_limes_CCN_rename_this_country_effect = { CULTURE = himalayan } }
+		# proto_european
+		nuragic = { z_limes_CCN_rename_this_country_effect = { CULTURE = nuragic } }
+		corsian = { z_limes_CCN_rename_this_country_effect = { CULTURE = corsian } }
+		talaiotic = { z_limes_CCN_rename_this_country_effect = { CULTURE = talaiotic } }
+		# scythia
+		kharesmian = { z_limes_CCN_rename_this_country_effect = { CULTURE = kharesmian } }
+		sakan = { z_limes_CCN_rename_this_country_effect = { CULTURE = sakan } }
+		khotanese = { z_limes_CCN_rename_this_country_effect = { CULTURE = khotanese } }
+		derbiccan = { z_limes_CCN_rename_this_country_effect = { CULTURE = derbiccan } }
+		alani = { z_limes_CCN_rename_this_country_effect = { CULTURE = alani } }
+		jurcan = { z_limes_CCN_rename_this_country_effect = { CULTURE = jurcan } }
+		massagetaean = { z_limes_CCN_rename_this_country_effect = { CULTURE = massagetaean } }
+		# tibetan
+		zhangzhung = { z_limes_CCN_rename_this_country_effect = { CULTURE = zhangzhung } }
+		sumpa = { z_limes_CCN_rename_this_country_effect = { CULTURE = sumpa } }
+		yarlung = { z_limes_CCN_rename_this_country_effect = { CULTURE = yarlung } }
+		tsang = { z_limes_CCN_rename_this_country_effect = { CULTURE = tsang } }
+		pyu = { z_limes_CCN_rename_this_country_effect = { CULTURE = pyu } }
+		# fezzani
+		nasamonian = { z_limes_CCN_rename_this_country_effect = { CULTURE = nasamonian } }
+		macaean = { z_limes_CCN_rename_this_country_effect = { CULTURE = macaean } }
+		psyllic = { z_limes_CCN_rename_this_country_effect = { CULTURE = psyllic } }
+		garamantic = { z_limes_CCN_rename_this_country_effect = { CULTURE = garamantic } }
+		libyan = { z_limes_CCN_rename_this_country_effect = { CULTURE = libyan } }
+		berber = { z_limes_CCN_rename_this_country_effect = { CULTURE = berber } }
+		phazani = { z_limes_CCN_rename_this_country_effect = { CULTURE = phazani } }
+		lotophagoi = { z_limes_CCN_rename_this_country_effect = { CULTURE = lotophagoi } }
+		gyzantian = { z_limes_CCN_rename_this_country_effect = { CULTURE = gyzantian } }
+		# finnic_group
+		mordvin = { z_limes_CCN_rename_this_country_effect = { CULTURE = mordvin } }
+		androphagian = { z_limes_CCN_rename_this_country_effect = { CULTURE = androphagian } }
+		volgaic = { z_limes_CCN_rename_this_country_effect = { CULTURE = volgaic } }
+		fennic = { z_limes_CCN_rename_this_country_effect = { CULTURE = fennic } }
+		# nilotic_group
+		moyan = { z_limes_CCN_rename_this_country_effect = { CULTURE = moyan } }
+		alutan = { z_limes_CCN_rename_this_country_effect = { CULTURE = alutan } }
+		boran = { z_limes_CCN_rename_this_country_effect = { CULTURE = boran } }
+		nubian = { z_limes_CCN_rename_this_country_effect = { CULTURE = nubian } }
+		adabulian = { z_limes_CCN_rename_this_country_effect = { CULTURE = adabulian } }
+		rhizophagian = { z_limes_CCN_rename_this_country_effect = { CULTURE = rhizophagian } }
+		kumuzan = { z_limes_CCN_rename_this_country_effect = { CULTURE = kumuzan } }
+		# pu
+		pubu = { z_limes_CCN_rename_this_country_effect = { CULTURE = pubu } }
+		mon = { z_limes_CCN_rename_this_country_effect = { CULTURE = mon } }
+		shan = { z_limes_CCN_rename_this_country_effect = { CULTURE = shan } }
+		jaintia = { z_limes_CCN_rename_this_country_effect = { CULTURE = jaintia } }
+		rhakine = { z_limes_CCN_rename_this_country_effect = { CULTURE = rhakine } }
+		# scythian_east
+		scythian = { z_limes_CCN_rename_this_country_effect = { CULTURE = scythian } }
+		sarmatian = { z_limes_CCN_rename_this_country_effect = { CULTURE = sarmatian } }
+		siraci = { z_limes_CCN_rename_this_country_effect = { CULTURE = siraci } }
+		thyssagetaen = { z_limes_CCN_rename_this_country_effect = { CULTURE = thyssagetaen } }
+		agathyrsian = { z_limes_CCN_rename_this_country_effect = { CULTURE = agathyrsian } }
+		gelonian = { z_limes_CCN_rename_this_country_effect = { CULTURE = gelonian } }
+		cimmerian = { z_limes_CCN_rename_this_country_effect = { CULTURE = cimmerian } }
+		# south_arabian
+		hadhrami = { z_limes_CCN_rename_this_country_effect = { CULTURE = hadhrami } }
+		qatabanian = { z_limes_CCN_rename_this_country_effect = { CULTURE = qatabanian } }
+		sheban = { z_limes_CCN_rename_this_country_effect = { CULTURE = sheban } }
+		minaean = { z_limes_CCN_rename_this_country_effect = { CULTURE = minaean } }
+		himjar = { z_limes_CCN_rename_this_country_effect = { CULTURE = himjar } }
+		samad = { z_limes_CCN_rename_this_country_effect = { CULTURE = samad } }
+		adite = { z_limes_CCN_rename_this_country_effect = { CULTURE = adite } }
+		kindite = { z_limes_CCN_rename_this_country_effect = { CULTURE = kindite } }
+		# thrace_group
+		triballoi = { z_limes_CCN_rename_this_country_effect = { CULTURE = triballoi } }
+		moesi = { z_limes_CCN_rename_this_country_effect = { CULTURE = moesi } }
+		odrysi = { z_limes_CCN_rename_this_country_effect = { CULTURE = odrysi } }
+		bithynian = { z_limes_CCN_rename_this_country_effect = { CULTURE = bithynian } }
+		mariandynian = { z_limes_CCN_rename_this_country_effect = { CULTURE = mariandynian } }
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# After the right family has been identified, actually change the country name.
+#-----------------------------------------------------------------------------------------
+z_limes_CCN_rename_this_country_effect = {
+	if = {
+		limit = {
+			num_of_cities < z_limes_defines_CCN_E
+		}
+		change_country_name = $CULTURE$_CCN_K
+		set_variable = z_limes_CCN_flag_k
+		if = {
+			limit = { has_variable = z_limes_CCN_flag_e }
+			remove_variable = z_limes_CCN_flag_e
+		}
+	}
+	else = {
+		change_country_name = $CULTURE$_CCN_E
+		set_variable = z_limes_CCN_flag_e
+		if = {
+			limit = { has_variable = z_limes_CCN_flag_k }
+			remove_variable = z_limes_CCN_flag_k
+		}
+	}
+	hidden_effect = { change_country_adjective = $CULTURE$_CCN_A }
+}

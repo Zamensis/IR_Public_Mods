@@ -1,0 +1,374 @@
+﻿#-----------------------------------------------------------------------------------------
+# Is this country always excluded from having a cultural country name? (as to not conflict with Dynastic Countries mod)
+#-----------------------------------------------------------------------------------------
+z_limes_CCN_has_uneligible_culture_trigger = {
+	OR = {
+		tag = BAR
+		tag = PIR
+		tag = REB
+		tag = MER
+		tag = MRY
+		country_culture_group = hellenic
+		country_culture_group = illyrian_group
+		primary_culture = roman
+		country_culture_group = west_levantine
+		country_culture_group = east_levantine
+		country_culture_group = south_levantine
+		country_culture_group = persia
+		country_culture_group = anatolian
+		# Parthia and friends
+		this = c:PAR
+		this = c:PRN
+		this = c:ZNT
+		this = c:PSS
+		this = c:SCA
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# Is this country allowed to have cultural country name?
+# Don't forget to also update the other list in scripted effects.
+#-----------------------------------------------------------------------------------------
+z_limes_CCN_has_eligible_culture_trigger = {
+	OR = {
+		# aksumite_group
+		primary_culture = puntic
+		primary_culture = aksumite
+		primary_culture = blemmyan
+		primary_culture = blemmye
+		primary_culture = daamoti
+		primary_culture = ona
+		primary_culture = athagaun
+		primary_culture = avalitian
+		primary_culture = berberian
+		primary_culture = erythraean
+		# aryan
+		primary_culture = vidharban
+		primary_culture = mulaka
+		primary_culture = saurashtran
+		primary_culture = kaccha
+		primary_culture = lankan
+		primary_culture = maharashtran
+		primary_culture = rathikan
+		primary_culture = gandhari
+		primary_culture = sivi
+		primary_culture = shauraseni
+		primary_culture = kosala
+		primary_culture = kuru
+		primary_culture = avanti
+		primary_culture = matsya
+		primary_culture = cedi
+		primary_culture = dhivehi
+		primary_culture = sindhi
+		primary_culture = dardic
+		primary_culture = purus
+		primary_culture = mitanni
+		# bactrian
+		primary_culture = bactrian
+		primary_culture = margian
+		primary_culture = sogdian
+		primary_culture = shule
+		primary_culture = phryni
+		primary_culture = tayuan
+		primary_culture = wusun
+		primary_culture = saka
+		primary_culture = yuezhi
+		primary_culture = tocharian
+		# baltic
+		primary_culture = aestian
+		primary_culture = sporic
+		primary_culture = neuric
+		primary_culture = budinian
+		primary_culture = chernolian
+		primary_culture = melanchlaenian
+		# belgea_group
+		primary_culture = belgae
+		primary_culture = aduatacian
+		primary_culture = eburonian
+		primary_culture = nervian
+		primary_culture = morinian
+		primary_culture = veliocassian
+		primary_culture = bellovacian
+		# britannic
+		primary_culture = britannic
+		primary_culture = caledonian
+		primary_culture = iceni
+		primary_culture = trinovantian
+		primary_culture = cantian
+		primary_culture = durotrigan
+		primary_culture = dumnonian
+		primary_culture = dobunnian
+		primary_culture = demetian
+		primary_culture = ordovitian
+		primary_culture = coritani
+		primary_culture = cornovian
+		primary_culture = brigantic
+		primary_culture = votadinian
+		primary_culture = damnonian
+		primary_culture = taexalian
+		primary_culture = parisian
+		primary_culture = monapian
+		primary_culture = ivernian
+		primary_culture = voluntian
+		# caucasian
+		primary_culture = albanian
+		primary_culture = caspian
+		primary_culture = ibero
+		primary_culture = sindi
+		primary_culture = maeotian
+		primary_culture = colchian
+		primary_culture = abasgoi
+		primary_culture = suani
+		primary_culture = lazi
+		primary_culture = sasperian
+		primary_culture = legian
+		primary_culture = gelaean
+		# celt_iberia
+		primary_culture = caristian
+		primary_culture = celtician
+		primary_culture = lusitanian
+		primary_culture = vettonian
+		primary_culture = carpetanian
+		primary_culture = celtiberian
+		primary_culture = lobetanian
+		primary_culture = sedetanian
+		primary_culture = vaccaeian
+		primary_culture = asturian
+		primary_culture = callaecian
+		primary_culture = vardulian
+		primary_culture = cantabrian
+		primary_culture = couneian
+		primary_culture = oppidanian
+		primary_culture = autrigonian
+		primary_culture = elesycian
+		# celto_pannonian_group
+		primary_culture = galatian
+		primary_culture = tylian
+		# chinese
+		primary_culture = qin
+		# dacia_group
+		primary_culture = dacian
+		primary_culture = getian
+		primary_culture = harpii
+		primary_culture = costoboci
+		primary_culture = buridavensi
+		primary_culture = caucoensi
+		primary_culture = ratacensi
+		primary_culture = biephi
+		# gaelic
+		primary_culture = hibernian
+		primary_culture = manavian
+		# gallic
+		primary_culture = aremorican
+		primary_culture = lepontic
+		primary_culture = vindelician
+		primary_culture = helvetian
+		primary_culture = biturigan
+		primary_culture = volcae
+		primary_culture = salluvian
+		primary_culture = haedui
+		primary_culture = carnuti
+		primary_culture = santonian
+		primary_culture = lemovician
+		primary_culture = pictonian
+		primary_culture = aulercian
+		primary_culture = arverni
+		primary_culture = celtic_pannonian
+		primary_culture = letobician
+		primary_culture = carnian
+		primary_culture = noric
+		primary_culture = boian
+		primary_culture = eravisci
+		primary_culture = cotinian
+		primary_culture = treverian
+		primary_culture = sennonian
+		primary_culture = ubian
+		primary_culture = allobrogian
+		primary_culture = teurian
+		# germanic
+		primary_culture = saxonian
+		primary_culture = anglian
+		primary_culture = reudingian
+		primary_culture = teutonian
+		primary_culture = cimbrian
+		primary_culture = herulian
+		primary_culture = rugian
+		primary_culture = helveconian
+		primary_culture = bastarnae
+		primary_culture = gutones
+		primary_culture = suiones
+		primary_culture = vandal
+		primary_culture = raumarician
+		primary_culture = irminonic
+		primary_culture = istvaeonic
+		primary_culture = ingvaeonic
+		primary_culture = suebian
+		primary_culture = lemovian
+		primary_culture = gothonic
+		primary_culture = frisian
+		primary_culture = scandian
+		primary_culture = indo_germanic
+		# iberia
+		primary_culture = oretanian
+		primary_culture = contestanian
+		primary_culture = bastetanian
+		primary_culture = ilercavonian
+		primary_culture = edetanian
+		primary_culture = lacetanian
+		primary_culture = indiketian
+		primary_culture = ausetanian
+		primary_culture = turdetanian
+		primary_culture = turdulian
+		primary_culture = ilergetian
+		primary_culture = vasconian
+		primary_culture = aquitani
+		# indian
+		primary_culture = kannadan
+		primary_culture = kuntalan
+		primary_culture = alupan
+		primary_culture = tamil
+		primary_culture = cholan
+		primary_culture = cheran
+		primary_culture = pandyan
+		primary_culture = telugu
+		primary_culture = andhran
+		primary_culture = assaka
+		# latin
+		primary_culture = venetic
+		primary_culture = ligurian
+		primary_culture = etruscan
+		primary_culture = rhaetian
+		primary_culture = umbrian
+		primary_culture = samnite
+		primary_culture = siculian
+		primary_culture = bruttian
+		primary_culture = lucanian
+		primary_culture = histrian
+		# meroitic_group
+		primary_culture = meroitic
+		primary_culture = lower_nubian
+		primary_culture = napatan
+		# north_african
+		primary_culture = egyptian
+		primary_culture = upper_egyptian
+		primary_culture = middle_egyptian
+		primary_culture = oasis_egyptian
+		# numidian
+		primary_culture = numidian
+		primary_culture = gaetulian
+		primary_culture = melanogaetulian
+		primary_culture = socossian
+		primary_culture = massaesylian
+		primary_culture = massylian
+		primary_culture = autolalean
+		primary_culture = lixitoi
+		primary_culture = perorsian
+		primary_culture = canarian
+		primary_culture = nectiberean
+		primary_culture = daphnitaean
+		primary_culture = capariensian
+		primary_culture = abannaean
+		primary_culture = cetianian
+		# persia
+		#primary_culture = elamite
+		#primary_culture = utian
+		#primary_culture = pasargadi
+		#primary_culture = sagartian
+		#primary_culture = uxian
+		#primary_culture = amardian
+		#primary_culture = sarangian
+		#primary_culture = pactyan
+		#primary_culture = cossian
+		#primary_culture = cadusian
+		#primary_culture = parthian
+		#primary_culture = parecanian
+		#primary_culture = carmanian
+		#primary_culture = median
+		#primary_culture = gedrosian
+		#primary_culture = hyrcanian
+		#primary_culture = sattagydian
+		# pracyan
+		primary_culture = kalingan
+		primary_culture = savara
+		primary_culture = kamarupi
+		primary_culture = bangli
+		primary_culture = pandra
+		primary_culture = vanga
+		primary_culture = atavi
+		primary_culture = magadhi
+		primary_culture = kasi
+		primary_culture = vrji
+		primary_culture = malla
+		primary_culture = himalayan
+		# proto_european
+		primary_culture = nuragic
+		primary_culture = corsian
+		primary_culture = talaiotic
+		# scythia
+		primary_culture = kharesmian
+		primary_culture = sakan
+		primary_culture = khotanese
+		primary_culture = derbiccan
+		primary_culture = alani
+		primary_culture = jurcan
+		primary_culture = massagetaean
+		# tibetan
+		primary_culture = zhangzhung
+		primary_culture = sumpa
+		primary_culture = yarlung
+		primary_culture = tsang
+		primary_culture = pyu
+		# fezzani
+		primary_culture = nasamonian
+		primary_culture = macaean
+		primary_culture = psyllic
+		primary_culture = garamantic
+		primary_culture = libyan
+		primary_culture = berber
+		primary_culture = phazani
+		primary_culture = lotophagoi
+		primary_culture = gyzantian
+		# finnic_group
+		primary_culture = mordvin
+		primary_culture = androphagian
+		primary_culture = volgaic
+		primary_culture = fennic
+		# nilotic_group
+		primary_culture = moyan
+		primary_culture = alutan
+		primary_culture = boran
+		primary_culture = nubian
+		primary_culture = adabulian
+		primary_culture = rhizophagian
+		primary_culture = kumuzan
+		# pu
+		primary_culture = pubu
+		primary_culture = mon
+		primary_culture = shan
+		primary_culture = jaintia
+		primary_culture = rhakine
+		# scythian_east
+		primary_culture = scythian
+		primary_culture = sarmatian
+		primary_culture = siraci
+		primary_culture = thyssagetaen
+		primary_culture = agathyrsian
+		primary_culture = gelonian
+		primary_culture = cimmerian
+		# south_arabian
+		primary_culture = hadhrami
+		primary_culture = qatabanian
+		primary_culture = sheban
+		primary_culture = minaean
+		primary_culture = himjar
+		primary_culture = samad
+		primary_culture = adite
+		primary_culture = kindite
+		# thrace_group
+		primary_culture = triballoi
+		primary_culture = moesi
+		primary_culture = odrysi
+		primary_culture = bithynian
+		primary_culture = mariandynian
+	}
+}

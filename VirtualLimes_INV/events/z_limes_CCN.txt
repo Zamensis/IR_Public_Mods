@@ -1,0 +1,45 @@
+﻿namespace = z_limes_CCN
+
+#-----------------------------------------------------------------------------------------
+# Set a cultural country name
+#-----------------------------------------------------------------------------------------
+z_limes_CCN.1 = {
+	type = country_event
+	title = "z_limes_CCN.1.t"
+	desc = "z_limes_CCN.1.desc"
+	
+	picture = council_country
+	left_portrait = current_ruler
+	right_portrait = primary_heir
+	
+	# Triggered by on_action
+	trigger = {
+		# NO country of the same culture must have that cultural name already
+		NOT = {
+			any_country = {
+				this.culture = root.culture
+				has_variable = z_limes_CCN_flag
+			}
+		}
+	}
+	
+	immediate = { save_scope_as = z_limes_CCN }
+	
+	# Yes, give the country a cultural name - AI will always choose this option
+	option = {
+		name = "z_limes_CCN.1.a"
+		ai_chance = { factor = 100 }
+		set_variable = z_limes_CCN_flag
+		z_limes_CCN_rename_country_effect = yes
+	}
+	
+	# No, never ask again
+	option = {
+		name = "z_limes_CCN.1.b"
+		ai_chance = { factor = 0 }
+		set_variable = {
+			name = z_limes_CCN_cooldown # Forever
+		}
+		custom_tooltip = "z_limes_CCN.1.bt"
+	}
+}

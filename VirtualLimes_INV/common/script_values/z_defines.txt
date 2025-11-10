@@ -10,7 +10,8 @@ z_limes_rules_rename = 1					# In some cases, when applicable, Marche names are 
 z_limes_rules_subject_subject = 1			# Clean up AI subjects of AI subjects on the map (annex or release, depending on the context)
 z_limes_rules_player_mm = 1					# The player releases Marches instead of Tributaries after researching the "Tributary Concessions" invention
 z_limes_rules_tribal_restoration = 1		# Large AI tribal empires have a chance of becoming tribal again if they have switched to another type of government
-z_limes_rules_tribal_collapse = 1			# Large AI tribal empires have a chance of collapsing on ruler succession, if the new successor is weak
+z_limes_rules_tribal_collapse = 1			# Large AI tribal empires have a chance of collapsing on ruler succession, if the new ruler is weak
+z_limes_rules_CCN = 1						# Rename large AI countries into "[culture name] Empire" (set thresholds in MISC part below)
 
 # HISTORICAL TWEAKS							# EFFECT WHEN ENABLED (0 = disabled, 1 = enabled)
 # ----------------							# --------------------------------------------
@@ -56,3 +57,5 @@ z_limes_defines_min_mm_size_tribal = 3		# Same but for Migratory Tribes
 #----------------							# --------------------------------------------
 z_limes_defines_start_year = 450			# Starting year, change this if the mod uses a different starting year
 z_limes_defines_clean_deals_threshold = 125	# How many territories must two AI empires own each, for the "clean deals" game rule to apply?
+z_limes_defines_CCN_K = 150					# How many territories must a monarchy own to have the option to get renamed "[culture name] Kingdom"?
+z_limes_defines_CCN_E = 400					# How many territories must a non-republic own to have the option to get renamed "[culture name] Empire"?

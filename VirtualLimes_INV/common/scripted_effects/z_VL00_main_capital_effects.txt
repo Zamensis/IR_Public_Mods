@@ -146,6 +146,7 @@ z_limes_restore_capital_effect = {
 	if = {
 		limit = {
 			z_has_limes_PAR = yes
+			NOT = { has_variable = z_limes_capital_cooldown }
 		}
 		z_limes_restore_capital_effect_PAR = yes
 	}

@@ -2802,6 +2802,11 @@ z_limes_persis_region_trigger_2 = {
 	OR = {
 		z_limes_persis_region_trigger_1 = yes
 		is_in_region = parthia_region
+		# PAR exception
+		AND = {
+			root = { primary_culture = parthian }
+			is_in_region = sakia_region # Invictus only
+		}
 	}
 }
 

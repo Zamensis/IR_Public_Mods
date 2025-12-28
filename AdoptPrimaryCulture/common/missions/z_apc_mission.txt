@@ -12,6 +12,7 @@ z_apc_mission = {
 	}
 	
 	potential = {
+		is_ai = no
 		has_civil_war = no
 		NOT = { has_variable = z_apc_mission_ongoing }
 		NOT = { has_variable = z_apc_mission_cooldown }
@@ -42,7 +43,7 @@ z_apc_mission = {
 		# Vanilla
     	start_mission_ai_effect = yes
 		# APC
-		save_scope_as = z_apc_country
+		root = { save_scope_as = z_apc_country }
 		root.country_culture = { save_scope_as = z_apc_old_primary_culture }
     	random_country_culture = {
 			limit = {
@@ -50,6 +51,21 @@ z_apc_mission = {
 				z_apc_has_any_cultural_majority_modifier_trigger = yes
 			}
 			save_scope_as = z_apc_new_primary_culture
+		}
+		random_owned_province = {
+			limit = {
+				any_pops_in_province = {
+					this.country_culture = scope:z_apc_new_primary_culture
+				}
+			}
+			random_pops_in_province = {
+				limit = {
+					this.country_culture = scope:z_apc_new_primary_culture
+				}
+				this.culture = {
+					save_scope_as = z_apc_new_primary_pop_culture
+				}
+			}
 		}
 		set_variable = z_apc_mission_ongoing
 		set_variable = {
@@ -87,6 +103,10 @@ z_apc_mission = {
     }
 
     on_completion = {
+		show_as_tooltip = {
+			set_primary_culture = scope:z_apc_new_primary_culture
+		}
+		trigger_event = z_apc_mission.999
 		# Vanilla
     	complete_mission_effect = yes
 		# APC
@@ -126,9 +146,11 @@ z_apc_mission = {
 	#---------------------------------------------------
 	z_apc_mission_integrate_citizens = {
 	
-		requires = { z_apc_mission_the_npc_question }
+		#requires = { z_apc_mission_the_npc_question }
 
-		potential = {}
+		potential = {
+			exists = scope:z_apc_new_primary_culture
+		}
 
 		bypass = {
 			has_variable = z_apc_mission_already_integrated_citizens
@@ -158,7 +180,7 @@ z_apc_mission = {
 	#---------------------------------------------------
 	z_apc_mission_npc_exception = {
 	
-		requires = { z_apc_mission_integrate_citizens }
+		requires = { z_apc_mission_integrate_nobles }
 
 		potential = {}
 
@@ -192,7 +214,9 @@ z_apc_mission = {
 	
 		requires = { z_apc_mission_integrate_citizens }
 
-		potential = {}
+		potential = {
+			exists = scope:z_apc_new_primary_culture
+		}
 
 		bypass = {
 			has_variable = z_apc_mission_already_integrated_nobles
@@ -207,29 +231,149 @@ z_apc_mission = {
 		}
 
 		icon = task_economical
-		
-		final = yes
+	}
+	
+	# [NPC] Governors
+	#---------------------------------------------------
+	z_apc_mission_npc_governors = {
+	
+		requires = { z_apc_mission_the_npc_question }
+
+		potential = {}
+
+		bypass = {
+			any_governorships = { count <= 1 } # Bypass if only governorship is the capital region
+		}
+
+		allow = {
+			custom_tooltip = {
+				text = z_apc_mission_npc_governors_allow_tt
+				any_character = {
+					count > z_apc_mission_npc_governors_threshold_svalue # value = 25% of max governors amount
+					is_ruler = no
+					is_governor = yes
+					has_culture = scope:z_apc_new_primary_pop_culture
+				}
+			}
+		}
+
+		on_completion = {
+			z_apc_mission_add_ctp_effect = { VALUE = 2 }
+			set_variable = z_apc_mission_npc_governors_completed
+			trigger_event = z_apc_mission.3 # A [NPC] Ruler - Triggers only if all three "government" missions are completed
+		}
+
+		icon = task_political
+	}
+	
+	# [NPC] Government
+	#---------------------------------------------------
+	z_apc_mission_npc_government = {
+	
+		requires = { z_apc_mission_the_npc_question }
+
+		potential = {}
+
+		bypass = {
+		}
+
+		allow = {
+			custom_tooltip = {
+				text = z_apc_mission_npc_government_allow_tt
+				any_character = {
+					count > 4
+					is_ruler = no
+					has_any_office = yes
+					has_culture = scope:z_apc_new_primary_pop_culture
+				}
+			}
+		}
+
+		on_completion = {
+			z_apc_mission_add_ctp_effect = { VALUE = 3 }
+			set_variable = z_apc_mission_npc_government_completed
+			trigger_event = z_apc_mission.3 # A [NPC] Ruler - Triggers only if all three "government" missions are completed
+		}
+
+		icon = task_political
+	}
+	
+	# [NPC] General Staff
+	#---------------------------------------------------
+	z_apc_mission_npc_army = {
+	
+		requires = { z_apc_mission_the_npc_question z_apc_mission_the_npc_question }
+
+		potential = {}
+
+		bypass = {
+			NOT = {
+				any_governorships = { has_legion_trigger = yes }
+			}
+		}
+
+		allow = {
+			custom_tooltip = {
+				text = z_apc_mission_npc_army_allow_tt
+				any_character = {
+					count > z_apc_mission_npc_army_threshold_svalue # value = 50% of max legion commander amount
+					is_ruler = no
+					is_governor = no
+					has_culture = scope:z_apc_new_primary_pop_culture
+				}
+			}
+		}
+
+		on_completion = {
+			z_apc_mission_add_ctp_effect = { VALUE = 2 }
+			set_variable = z_apc_mission_npc_army_completed
+			trigger_event = z_apc_mission.3 # A [NPC] Ruler - Triggers only if all three "government" missions are completed
+		}
+
+		icon = task_political
+	}
+	
+	# A [NPC] Leader
+	#---------------------------------------------------
+	z_apc_mission_npc_ruler = {
+	
+		requires = { z_apc_mission_npc_army z_apc_mission_the_npc_question }
+
+		potential = {}
+
+		bypass = {
+		}
+
+		allow = {
+			current_ruler = { has_culture = scope:z_apc_new_primary_pop_culture }
+		}
+
+		on_completion = {
+			z_apc_mission_add_ctp_effect = { VALUE = 3 }
+		}
+
+		icon = task_political
 	}
 	
 	# A New Rule (final task)
 	#---------------------------------------------------
 	z_apc_mission_final = {
 	
-		requires = { z_apc_mission_npc_exception z_apc_mission_integrate_nobles }
+		requires = { z_apc_mission_integrate_nobles }
 
 		potential = {}
 
 		bypass = {}
 
-		allow = {}
+		allow = {
+			custom_tooltip = {
+				text = z_apc_mission_requires_10_ctp
+				has_variable = z_apc_mission_ctp_current
+				var:z_apc_mission_ctp_current >= 10
+			}
+		}
 
 		on_completion = {
-			show_as_tooltip = {
-				z_apc_set_primary_culture_effect = {
-					MAKE_OLD_CULTURE_INTEGRATED = no
-				}
-			}
-			trigger_event = z_apc_mission.999
 		}
 
 		icon = task_diplomatic

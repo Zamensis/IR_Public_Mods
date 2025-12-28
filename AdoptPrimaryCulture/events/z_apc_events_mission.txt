@@ -50,6 +50,47 @@ z_apc_mission.2 = {
 }
 
 #-----------------------------------------------------------------------------------------
+# The [NPC] Leader - On completion of all three "government" missions
+#-----------------------------------------------------------------------------------------
+z_apc_mission.3 = {
+	type = country_event
+	title = "z_apc_mission.3.t"
+	desc = "z_apc_mission.3.desc"
+	
+	picture = z_apc_cultural_majority_pic	
+	left_portrait = root.current_ruler
+	
+	trigger = {
+		has_variable = z_apc_mission_npc_governors_completed
+		has_variable = z_apc_mission_npc_government_completed
+		has_variable = z_apc_mission_npc_army_completed
+		NOT = {
+			current_ruler = { has_culture = scope:z_apc_new_primary_pop_culture }
+		}
+	}
+	
+	option = { # Assimilate
+		name = "z_apc_mission.3.a"
+		current_ruler = { set_culture = scope:z_apc_new_primary_pop_culture }
+	}
+	
+	after = {
+		if = {
+			limit = { has_variable = z_apc_mission_npc_governors_completed }
+			remove_variable = z_apc_mission_npc_governors_completed
+		}
+		if = {
+			limit = { has_variable = z_apc_mission_npc_government_completed }
+			remove_variable = z_apc_mission_npc_government_completed
+		}
+		if = {
+			limit = { has_variable = z_apc_mission_npc_army_completed }
+			remove_variable = z_apc_mission_npc_army_completed
+		}
+	}
+}
+
+#-----------------------------------------------------------------------------------------
 # A New Rule (final task)
 #-----------------------------------------------------------------------------------------
 z_apc_mission.999 = {
@@ -61,14 +102,22 @@ z_apc_mission.999 = {
 	left_portrait = root.current_ruler
 	
 	trigger = {
-		# Triggered on starting mission: z_apc_mission_final
+		# Triggered on completing mission tree
 	}
 	
-	option = { # Let's go!
+	option = { # Let's go! Keep the old culture integrated
 		name = "z_apc_mission.999.a"
 		custom_tooltip = z_apc_mission.999.a.tt
-		# z_apc_set_primary_culture_cleanup_effect = {
-			# MAKE_OLD_CULTURE_INTEGRATED = yes
-		# }
+		z_apc_set_primary_culture_effect = {
+			MAKE_OLD_CULTURE_INTEGRATED = yes
+		}
+	}
+	
+	option = { # Let's go! Demote the old culture
+		name = "z_apc_mission.999.b"
+		custom_tooltip = z_apc_mission.999.b.tt
+		z_apc_set_primary_culture_effect = {
+			MAKE_OLD_CULTURE_INTEGRATED = no
+		}
 	}
 }

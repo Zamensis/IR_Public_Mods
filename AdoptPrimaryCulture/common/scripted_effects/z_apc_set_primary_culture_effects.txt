@@ -122,7 +122,7 @@ z_apc_set_primary_culture_effect = {
 	#-----------------------------------------------------------------------------------------
 	# At this point, the new primary culture has been set, but the number of integrated/noble cultures hasn't been properly updated, leaving a permanent malus on the new primary culture.
 	# This is where we'll need to apply our fix, using our previously saved variables.
-	# So let's make sure they all exist first. In the extremely rare case they don't, the fix won't be applied and the bug will remain.
+	# So let's make sure they all exist first. In the (theoretically impossible) case they don't, the fix won't be applied and the bug will remain.
 	#-----------------------------------------------------------------------------------------
 	if = {
 		limit = {
@@ -250,7 +250,7 @@ z_apc_set_primary_culture_effect = {
 		# In other words, the job is done!
 		# All of this was accomplished in just one game tick, so the whole process is not visible to the player, otherwise that would be very confusing.
 		# The malus caused by the number of integrated/noble cultures will be cleared at the next monthly tick (instead of never).
-		# We only need to do some clean up.
+		# Now we only need to do some clean up.
 		#-----------------------------------------------------------------------------------------
 		# Make sure the new primary culture isn't considered a Cultural Majority anymore
 		#-----------------------------------------------------------------------------------------

@@ -33,7 +33,7 @@
  # MISSION -----------------------------------------------------------------------------------------------------------------------------------------------
  z_apc_mission:0 "The [z_apc_found_cultural_majority.GetName] Rule"
  z_apc_mission_DESCRIPTION:0 "z_apc_mission_DESCRIPTION"
- z_apc_mission_CRITERIA_DESCRIPTION:0 "z_apc_mission_CRITERIA_DESCRIPTION"
+ z_apc_mission_CRITERIA_DESCRIPTION:0 "Give a new cultural impulse to our realm by adopting the [z_apc_found_cultural_majority.GetName] ways and customs and making the [z_apc_found_cultural_majority.GetName] elite the primary component of our government."
  z_apc_mission_BUTTON_TOOLTIP:0 "z_apc_mission_BUTTON_TOOLTIP"
  z_apc_mission_cooldown_tt:0 "You will #R NOT#! be able to restart this mission until at least #R 100#! years have passed.."
  # -----------
@@ -44,6 +44,7 @@
  z_apc_mission_add_3_ctp_effect_tt:0 "Gain #E #G 3#! Cultural Transition Points#! $z_apc_mission_ctp_current_tt$.\n$z_apc_mission_ctp_desc_tt$"
  z_apc_mission_add_4_ctp_effect_tt:0 "Gain #E #G 4#! Cultural Transition Points#! $z_apc_mission_ctp_current_tt$.\n$z_apc_mission_ctp_desc_tt$"
  z_apc_mission_add_5_ctp_effect_tt:0 "Gain #E #G 5#! Cultural Transition Points#! $z_apc_mission_ctp_current_tt$.\n$z_apc_mission_ctp_desc_tt$"
+ z_apc_mission_requires_10_ctp:0 "Has at least #E #Y 10#! Cultural Transition Points#! $z_apc_mission_ctp_current_tt$."
  # -----------
  z_apc_mission_the_npc_question:0 "The [z_apc_new_primary_culture.GetName] Question"
  z_apc_mission_the_npc_question_on_completion_tt:0 "We will be able to #Y choose a strategy#! for the establishment of a new [z_apc_new_primary_culture.GetName] rule in [z_apc_country.GetName]."
@@ -54,6 +55,17 @@
  z_apc_mission_npc_exception_allow_tt:0 "No cultures other than [z_apc_old_primary_culture.GetName] and [z_apc_new_primary_culture.GetName] are integrated."
  # -----------
  z_apc_mission_integrate_nobles:0 "[z_apc_new_primary_culture.GetName] Privileges"
+ # -----------
+ z_apc_mission_npc_governors:0 "[z_apc_new_primary_culture.GetName] Governors"
+ z_apc_mission_npc_governors_allow_tt:0 "More than #E #Y [SCOPE.ScriptValue('z_apc_mission_npc_governors_threshold_svalue')|0]#!#! #E Governors#! are [z_apc_new_primary_pop_culture.GetName]."
+ # -----------
+ z_apc_mission_npc_government:0 "The [z_apc_new_primary_culture.GetName] State"
+ z_apc_mission_npc_government_allow_tt:0 "More than #E #Y 5#!#! #E Offices#! are held by [z_apc_new_primary_pop_culture.GetName] characters."
+ # -----------
+ z_apc_mission_npc_army:0 "The New General Staff"
+ z_apc_mission_npc_army_allow_tt:0 "More than #E #Y [SCOPE.ScriptValue('z_apc_mission_npc_army_threshold_svalue')|0]#!#! of our #E Legion Commanders#! are [z_apc_new_primary_pop_culture.GetName]."
+ # -----------
+ z_apc_mission_npc_ruler:0 "The [z_apc_new_primary_culture.GetName] [z_apc_country.GetRuler.GetTitle]"
  # -----------
  z_apc_mission_final:0 "The [z_apc_new_primary_culture.GetName] Renaissance"
  # MISSION EVENTS -----------------------------------------------------------------------------------------------------------------------------------------------

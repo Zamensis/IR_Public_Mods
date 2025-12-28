@@ -256,4 +256,31 @@ z_apc_mission_ctp_max_svalue = {
 	add = 3 # From z_apc_mission_integrate_citizens
 	add = 2 # From z_apc_mission_npc_exception
 	add = 2 # From z_apc_mission_integrate_nobles
+	add = 3 # From z_apc_mission_npc_government
+	add = 2 # From z_apc_mission_npc_governors
+	add = 2 # From z_apc_mission_npc_army
+	add = 3 # From z_apc_mission_npc_ruler
+}
+
+#-----------------------------------------------------------------------------------------
+# Number of governors required to unlock mission
+#-----------------------------------------------------------------------------------------
+z_apc_mission_npc_governors_threshold_svalue = {
+	value = 0
+	every_governorships = { add = 1 }
+	subtract = 1 # Minus the capital region
+	divide = 4
+	min = 1
+	ceiling = yes
+}
+
+#-----------------------------------------------------------------------------------------
+# Number of legion commanders required to unlock mission
+#-----------------------------------------------------------------------------------------
+z_apc_mission_npc_army_threshold_svalue = {
+	value = 0
+	every_legion = { add = 4 } # 4 Commanders per Legion
+	divide = 2
+	min = 1
+	round = ceiling
 }

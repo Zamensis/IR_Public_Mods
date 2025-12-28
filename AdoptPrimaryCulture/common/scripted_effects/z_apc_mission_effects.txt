@@ -11,3 +11,45 @@ z_apc_mission_add_ctp_effect = {
 	}
 	custom_tooltip = z_apc_mission_add_$VALUE$_ctp_effect_tt
 }
+
+#-----------------------------------------------------------------------------------------
+# Clear mission variables (on mission abort or mission completion)
+#-----------------------------------------------------------------------------------------
+z_apc_mission_clear_variables_effect = {
+	if = {
+		limit = { has_variable = z_apc_mission_ongoing }
+		remove_variable = z_apc_mission_ongoing
+	}
+	if = {
+		limit = { has_variable = z_apc_mission_ctp_current }
+		remove_variable = z_apc_mission_ctp_current
+	}
+	if = {
+		limit = { has_variable = z_apc_mission_already_integrated_citizens }
+		remove_variable = z_apc_mission_already_integrated_citizens
+	}
+	if = {
+		limit = { has_variable = z_apc_mission_already_integrated_nobles }
+		remove_variable = z_apc_mission_already_integrated_nobles
+	}
+	if = {
+		limit = { has_variable = z_apc_mission_assimilation_flag }
+		remove_variable = z_apc_mission_assimilation_flag
+	}
+	if = {
+		limit = { has_variable = z_apc_mission_replacement_flag }
+		remove_variable = z_apc_mission_replacement_flag
+	}
+	if = {
+		limit = { has_variable = z_apc_mission_npc_governors_completed }
+		remove_variable = z_apc_mission_npc_governors_completed
+	}
+	if = {
+		limit = { has_variable = z_apc_mission_npc_government_completed }
+		remove_variable = z_apc_mission_npc_government_completed
+	}
+	if = {
+		limit = { has_variable = z_apc_mission_npc_army_completed }
+		remove_variable = z_apc_mission_npc_army_completed
+	}
+}

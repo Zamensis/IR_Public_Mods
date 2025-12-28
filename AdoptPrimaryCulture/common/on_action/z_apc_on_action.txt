@@ -3,6 +3,7 @@
 #-----------------------------------------------------------------------------------------
 on_game_initialized = {
 	on_actions = {
+		z_apc_demote_integrated_cultures								# Demote the Diadochi's integrated cultures at game start
 		z_apc_update_cultural_majority									# Update Cultural Majority
 	}
 }
@@ -10,6 +11,28 @@ on_game_initialized = {
 yearly_country_pulse = {
 	on_actions = {
 		z_apc_update_cultural_majority									# Update Cultural Majority
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# Demote the Diadochi's integrated cultures at game start (more historical as military integration would happen later)
+#-----------------------------------------------------------------------------------------
+z_apc_demote_integrated_cultures = {
+	effect = {
+		if = {
+			limit = { primary_culture = macedonian }
+			every_country_culture = {
+				limit = {
+					is_integrated = yes
+					NOT = { this = root.country_culture }
+				}
+				set_country_culture_right = freemen
+				if = {
+					limit = { has_country_culture_modifier = integration_status_removed }
+					remove_country_culture_modifier = integration_status_removed
+				}
+			}
+		}
 	}
 }
 

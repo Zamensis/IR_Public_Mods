@@ -31,6 +31,19 @@ z_apc_demote_integrated_cultures = {
 					limit = { has_country_culture_modifier = integration_status_removed }
 					remove_country_culture_modifier = integration_status_removed
 				}
+				if = {
+					limit = {
+						NOT = { has_country_culture_modifier = inheritance_right }
+					}
+					add_country_culture_modifier = {
+						name = inheritance_right
+						duration = -1
+					}
+				}
+				if = {
+					limit = { has_country_culture_modifier = rights_increased }
+					remove_country_culture_modifier = rights_increased
+				}
 			}
 		}
 	}
@@ -60,14 +73,11 @@ z_apc_update_cultural_majority = {
 #-----------------------------------------------------------------------------------------
 z_apc_mission_the_npc_question_monthly_pulse = {
 	random_events = {
-		#10 = me_roman_1_roman_italia.2
-		#10 = me_roman_1_roman_italia.3
-		#15 = me_roman_1_roman_italia.4
-		#10 = me_roman_1_roman_italia.5
-		#10 = me_roman_1_roman_italia.6
-		#15 = me_roman_1_roman_italia.7
-		#15 = me_roman_1_roman_italia.8
-		#10 = me_roman_1_roman_italia.9
-		#2 = me_roman_1_roman_italia.11
+		10 = z_apc_mission.3
+		#10 = z_apc_mission.4
+		#10 = z_apc_mission.5
+		#10 = z_apc_mission.6
+		#10 = z_apc_mission.7
+		#10 = z_apc_mission.8
 	}
 }

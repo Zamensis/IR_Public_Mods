@@ -1,0 +1,11 @@
+﻿#-----------------------------------------------------------------------------------------
+# Is this character eligible to become a [NPC] Pretender?
+#-----------------------------------------------------------------------------------------
+z_apc_is_eligible_npc_pretender = {
+	is_alive = yes
+	is_ruler = no
+	is_adult = yes
+	prisoner = no
+	is_mercenary = no
+	NOT = { has_character_modifier = foreign_citizen }
+}

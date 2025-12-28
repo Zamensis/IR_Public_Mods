@@ -279,6 +279,45 @@ z_apc_set_primary_culture_effect = {
 			}
 		}
 		#-----------------------------------------------------------------------------------------
+		# Cleanup mission modifiers
+		#-----------------------------------------------------------------------------------------
+		if = {
+			limit = {
+				any_country_culture = { has_country_culture_modifier = z_apc_national_pride_small_modifier }
+			}
+			every_country_culture = {
+				limit = { has_country_culture_modifier = z_apc_national_pride_small_modifier }
+				remove_country_culture_modifier = z_apc_national_pride_small_modifier
+			}
+		}
+		if = {
+			limit = {
+				any_country_culture = { has_country_culture_modifier = z_apc_national_shame_small_modifier }
+			}
+			every_country_culture = {
+				limit = { has_country_culture_modifier = z_apc_national_shame_small_modifier }
+				remove_country_culture_modifier = z_apc_national_shame_small_modifier
+			}
+		}
+		if = {
+			limit = {
+				any_country_culture = { has_country_culture_modifier = z_apc_national_pride_big_modifier }
+			}
+			every_country_culture = {
+				limit = { has_country_culture_modifier = z_apc_national_pride_big_modifier }
+				remove_country_culture_modifier = z_apc_national_pride_big_modifier
+			}
+		}
+		if = {
+			limit = {
+				any_country_culture = { has_country_culture_modifier = z_apc_national_shame_big_modifier }
+			}
+			every_country_culture = {
+				limit = { has_country_culture_modifier = z_apc_national_shame_big_modifier }
+				remove_country_culture_modifier = z_apc_national_shame_big_modifier
+			}
+		}
+		#-----------------------------------------------------------------------------------------
 		# Clean up all the variables that were set in this whole process
 		#-----------------------------------------------------------------------------------------
 		remove_variable = z_apc_old_primary_pop_culture # Old culture

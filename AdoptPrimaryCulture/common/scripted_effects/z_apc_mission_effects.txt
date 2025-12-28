@@ -53,3 +53,7 @@ z_apc_mission_clear_variables_effect = {
 		remove_variable = z_apc_mission_npc_army_completed
 	}
 }
+
+#-----------------------------------------------------------------------------------------
+# Generate a new [NPC] commander
+#-----------------------------------------------------------------------------------------

@@ -50,28 +50,141 @@ z_apc_mission.2 = {
 }
 
 #-----------------------------------------------------------------------------------------
-# The [NPC] Leader - On completion of all three "government" missions
+# The [NPC] Question - While running - XXX
 #-----------------------------------------------------------------------------------------
 z_apc_mission.3 = {
 	type = country_event
 	title = "z_apc_mission.3.t"
 	desc = "z_apc_mission.3.desc"
+	fire_only_once = yes
 	
 	picture = z_apc_cultural_majority_pic	
 	left_portrait = root.current_ruler
 	
 	trigger = {
+		# Triggered while mission in running: z_apc_mission_the_npc_question
+	}
+	
+	immediate = {
+	}
+	
+	option = { #
+		name = "z_apc_mission.3.a"
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# The [NPC] Leader - On completion of all three "government" missions
+#-----------------------------------------------------------------------------------------
+z_apc_mission.9 = {
+	type = country_event
+	title = "z_apc_mission.9.t"
+	desc = "z_apc_mission.9.desc"
+	fire_only_once = yes
+	
+	picture = z_apc_cultural_majority_pic	
+	left_portrait = root.current_ruler
+	right_portrait = scope:z_apc_npc_pretender
+	
+	trigger = {
 		has_variable = z_apc_mission_npc_governors_completed
 		has_variable = z_apc_mission_npc_government_completed
 		has_variable = z_apc_mission_npc_army_completed
-		NOT = {
-			current_ruler = { has_culture = scope:z_apc_new_primary_pop_culture }
+	}
+	
+	immediate = {
+		every_character = {
+			limit = {
+				is_alive = yes
+				z_apc_is_eligible_npc_pretender = yes
+				has_culture = scope:z_apc_new_primary_pop_culture
+				NOT = { has_character_modifier = z_apc_npc_pretender }
+				OR = {
+					is_governor = yes
+					has_any_office = yes
+					root = {
+						any_legion = {
+							any_legion_commander = { this = prev.prev.prev }
+						}
+					}
+				}
+			}
+			add_character_modifier = {
+				name = z_apc_npc_pretender
+				duration = -1
+			}
+		}
+		ordered_character = {
+			limit = {
+				is_alive = yes
+				has_character_modifier = z_apc_npc_pretender
+				has_culture = scope:z_apc_new_primary_pop_culture
+				z_apc_is_eligible_npc_pretender = yes
+			}
+			order_by = martial
+			save_scope_as = z_apc_npc_pretender
+		}
+	}
+	
+	option = { # Don't assimilate, make a speech
+		name = "z_apc_mission.9.a"
+		scope:z_apc_old_primary_culture = {
+			add_country_culture_modifier = {
+				name = z_apc_national_shame_small_modifier
+				duration = 3650
+			}
+		}
+		scope:z_apc_new_primary_culture = {
+			add_country_culture_modifier = {
+				name = z_apc_national_pride_small_modifier
+				duration = 3650
+			}
 		}
 	}
 	
 	option = { # Assimilate
-		name = "z_apc_mission.3.a"
+		name = "z_apc_mission.9.b"
+		trigger = {
+			current_ruler = {
+				NOT = { culture = scope:z_apc_new_primary_pop_culture }
+			}
+		}
 		current_ruler = { set_culture = scope:z_apc_new_primary_pop_culture }
+		scope:z_apc_old_primary_culture = {
+			add_country_culture_modifier = {
+				name = z_apc_national_shame_big_modifier
+				duration = 3650
+			}
+		}
+		scope:z_apc_new_primary_culture = {
+			add_country_culture_modifier = {
+				name = z_apc_national_pride_big_modifier
+				duration = 3650
+			}
+		}
+	}
+	
+	option = { # Replace
+		name = "z_apc_mission.9.c"
+		trigger = {
+			has_variable = z_apc_mission_replacement_flag
+			current_ruler = {
+				NOT = { culture = scope:z_apc_new_primary_pop_culture }
+			}
+		}
+		set_as_ruler = scope:z_apc_npc_pretender
+		scope:z_apc_old_primary_culture = {
+			add_country_culture_modifier = {
+				name = z_apc_national_shame_big_modifier
+				duration = 3650
+			}
+		}
+		scope:z_apc_new_primary_culture = {
+			add_country_culture_modifier = {
+				name = z_apc_national_pride_big_modifier
+				duration = 3650
+			}
+		}
 	}
 	
 	after = {
@@ -87,6 +200,159 @@ z_apc_mission.3 = {
 			limit = { has_variable = z_apc_mission_npc_army_completed }
 			remove_variable = z_apc_mission_npc_army_completed
 		}
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# The [NPC] Governors - On completing z_apc_mission_npc_governors
+#-----------------------------------------------------------------------------------------
+z_apc_mission.10 = {
+	type = country_event
+	title = "z_apc_mission.10.t"
+	desc = "z_apc_mission.10.desc"
+	fire_only_once = yes
+	
+	picture = z_apc_cultural_majority_pic	
+	left_portrait = root.current_ruler
+	right_portrait = scope:z_apc_npc_pretender
+	
+	trigger = {
+		# Triggered after completing: z_apc_mission_npc_governors
+	}
+	
+	immediate = {
+		random_character = {
+			limit = {
+				is_governor = yes
+				z_apc_is_eligible_npc_pretender = yes
+				has_culture = scope:z_apc_new_primary_pop_culture
+				NOT = { has_character_modifier = z_apc_npc_pretender }
+			}
+			save_scope_as = z_apc_npc_pretender
+		}
+	}
+	
+	option = { # Great!
+		name = "z_apc_mission.10.a"
+		z_apc_mission_add_ctp_effect = { VALUE = 2 }
+		every_character = {
+			limit = {
+				is_governor = yes
+				z_apc_is_eligible_npc_pretender = yes
+				has_culture = scope:z_apc_new_primary_pop_culture
+				NOT = { has_character_modifier = z_apc_npc_pretender }
+			}
+			add_character_modifier = {
+				name = z_apc_npc_pretender
+				duration = -1
+			}
+		}
+		custom_tooltip = "z_apc_mission.10.a.tt" # Explain the character interaction?
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# The [NPC] Government - On completing z_apc_mission_npc_government
+#-----------------------------------------------------------------------------------------
+z_apc_mission.11 = {
+	type = country_event
+	title = "z_apc_mission.11.t"
+	desc = "z_apc_mission.11.desc"
+	fire_only_once = yes
+	
+	picture = z_apc_cultural_majority_pic	
+	left_portrait = root.current_ruler
+	right_portrait = scope:z_apc_npc_pretender
+	
+	trigger = {
+		# Triggered after completing: z_apc_mission_npc_government
+	}
+	
+	immediate = {
+		random_character = {
+			limit = {
+				has_any_office = yes
+				z_apc_is_eligible_npc_pretender = yes
+				has_culture = scope:z_apc_new_primary_pop_culture
+				NOT = { has_character_modifier = z_apc_npc_pretender }
+			}
+			save_scope_as = z_apc_npc_pretender
+		}
+	}
+	
+	option = { # Great!
+		name = "z_apc_mission.11.a"
+		z_apc_mission_add_ctp_effect = { VALUE = 3 }
+		every_character = {
+			limit = {
+				has_any_office = yes
+				z_apc_is_eligible_npc_pretender = yes
+				has_culture = scope:z_apc_new_primary_pop_culture
+				NOT = { has_character_modifier = z_apc_npc_pretender }
+			}
+			add_character_modifier = {
+				name = z_apc_npc_pretender
+				duration = -1
+			}
+		}
+		custom_tooltip = "z_apc_mission.11.a.tt" # Explain the character interaction?
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# The [NPC] Army - On completing z_apc_mission_npc_army
+#-----------------------------------------------------------------------------------------
+z_apc_mission.12 = {
+	type = country_event
+	title = "z_apc_mission.12.t"
+	desc = "z_apc_mission.12.desc"
+	fire_only_once = yes
+	
+	picture = z_apc_cultural_majority_pic	
+	left_portrait = root.current_ruler
+	right_portrait = scope:z_apc_npc_pretender
+	
+	trigger = {
+		# Triggered after completing: z_apc_mission_npc_army
+	}
+	
+	immediate = {
+		random_legion = {
+			limit = {
+				any_legion_commander = {
+					z_apc_is_eligible_npc_pretender = yes
+					has_culture = scope:z_apc_new_primary_pop_culture
+					NOT = { has_character_modifier = z_apc_npc_pretender }
+				}
+			}
+			random_legion_commander = {
+				limit = {
+					z_apc_is_eligible_npc_pretender = yes
+					has_culture = scope:z_apc_new_primary_pop_culture
+					NOT = { has_character_modifier = z_apc_npc_pretender }
+				}
+				save_scope_as = z_apc_npc_pretender
+			}
+		}
+	}
+	
+	option = { # Great!
+		name = "z_apc_mission.12.a"
+		z_apc_mission_add_ctp_effect = { VALUE = 2 }
+		every_legion = {
+			every_legion_commander = {
+				limit = {
+					z_apc_is_eligible_npc_pretender = yes
+					has_culture = scope:z_apc_new_primary_pop_culture
+					NOT = { has_character_modifier = z_apc_npc_pretender }
+				}
+				add_character_modifier = {
+					name = z_apc_npc_pretender
+					duration = -1
+				}
+			}
+		}
+		custom_tooltip = "z_apc_mission.12.a.tt" # Explain the character interaction?
 	}
 }
 

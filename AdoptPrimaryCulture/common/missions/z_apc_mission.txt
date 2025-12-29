@@ -67,6 +67,14 @@ z_apc_mission = {
 				}
 			}
 		}
+		ordered_owned_province = {
+			limit = {
+				NOT = { this = root.capital_scope }
+				dominant_province_culture = scope:z_apc_new_primary_pop_culture
+			}
+			order_by = total_population
+			save_scope_as = z_apc_npc_capital
+		}
 		set_variable = z_apc_mission_ongoing
 		set_variable = {
 			name = z_apc_mission_ctp_current
@@ -146,7 +154,7 @@ z_apc_mission = {
 	#---------------------------------------------------
 	z_apc_mission_integrate_citizens = {
 	
-		#requires = { z_apc_mission_the_npc_question }
+		requires = { z_apc_mission_the_npc_question }
 
 		potential = {
 			exists = scope:z_apc_new_primary_culture
@@ -166,11 +174,16 @@ z_apc_mission = {
 					scope:z_apc_new_primary_culture = { has_pop_type_right = nobles }
 				}
 				set_variable = z_apc_mission_already_integrated_nobles
-				z_apc_mission_add_ctp_effect = { VALUE = 5 } # Since this will bypass z_apc_mission_integrate_nobles
+				show_as_tooltip = {
+					z_apc_mission_add_ctp_effect = { VALUE = 5 } # Since this will bypass z_apc_mission_integrate_nobles
+				}
 			}
 			else = {
-				z_apc_mission_add_ctp_effect = { VALUE = 3 }
+				show_as_tooltip = {
+					z_apc_mission_add_ctp_effect = { VALUE = 3 }
+				}
 			}
+			trigger_event = { id = z_apc_mission.15 } # Reward event
 		}
 
 		icon = task_political
@@ -202,7 +215,10 @@ z_apc_mission = {
 		}
 
 		on_completion = {
-			z_apc_mission_add_ctp_effect = { VALUE = 2 }
+			show_as_tooltip = {
+				z_apc_mission_add_ctp_effect = { VALUE = 2 }
+			}
+			trigger_event = { id = z_apc_mission.17 } # Reward event
 		}
 
 		icon = task_diplomatic
@@ -227,7 +243,10 @@ z_apc_mission = {
 		}
 
 		on_completion = {
-			z_apc_mission_add_ctp_effect = { VALUE = 2 }
+			show_as_tooltip = {
+				z_apc_mission_add_ctp_effect = { VALUE = 2 }
+			}
+			trigger_event = { id = z_apc_mission.16 } # Reward event
 		}
 
 		icon = task_economical
@@ -253,13 +272,13 @@ z_apc_mission = {
 		}
 
 		on_completion = {
+			custom_tooltip = z_apc_mission_npc_governors_loyalty_tt
 			show_as_tooltip = {
 				z_apc_mission_add_ctp_effect = { VALUE = 2 }
 			}
 			set_variable = z_apc_mission_npc_governors_completed
 			trigger_event = {
 				id = z_apc_mission.10 # The [NPC] Governors
-				days = { 5 50 }
 			}
 			trigger_event = {
 				id = z_apc_mission.9 # A [NPC] Ruler - Triggers only if all three "government" missions are completed
@@ -289,13 +308,13 @@ z_apc_mission = {
 		}
 
 		on_completion = {
+			custom_tooltip = z_apc_mission_npc_government_loyalty_tt
 			show_as_tooltip = {
 				z_apc_mission_add_ctp_effect = { VALUE = 3 }
 			}
 			set_variable = z_apc_mission_npc_government_completed
 			trigger_event = {
 				id = z_apc_mission.11 # The [NPC] Government
-				days = { 5 50 }
 			}
 			trigger_event = {
 				id = z_apc_mission.9 # A [NPC] Ruler - Triggers only if all three "government" missions are completed
@@ -328,13 +347,13 @@ z_apc_mission = {
 		}
 
 		on_completion = {
+			custom_tooltip = z_apc_mission_npc_army_loyalty_tt
 			show_as_tooltip = {
 				z_apc_mission_add_ctp_effect = { VALUE = 2 }
 			}
 			set_variable = z_apc_mission_npc_army_completed
 			trigger_event = {
 				id = z_apc_mission.12 # The [NPC] Army
-				days = { 5 50 }
 			}
 			trigger_event = {
 				id = z_apc_mission.9 # A [NPC] Ruler - Triggers only if all three "government" missions are completed
@@ -361,7 +380,72 @@ z_apc_mission = {
 		}
 
 		on_completion = {
-			z_apc_mission_add_ctp_effect = { VALUE = 3 }
+			show_as_tooltip = {
+				z_apc_mission_add_ctp_effect = { VALUE = 3 }
+			}
+			trigger_event = { id = z_apc_mission.18 } # Reward event
+		}
+
+		icon = task_political
+	}
+	
+	# The [NPC] City
+	#---------------------------------------------------
+	z_apc_mission_npc_city = {
+	
+		requires = { z_apc_mission_the_npc_question }
+
+		potential = {
+			exists = scope:z_apc_new_primary_culture
+			exists = scope:z_apc_npc_capital
+		}
+
+		bypass = {
+			OR = {
+				NOT = { exists = scope:z_apc_npc_capital }
+				NOT = { scope:z_apc_npc_capital.owner = root }
+			}
+		}
+
+		allow = {
+		}
+
+		on_completion = {
+			show_as_tooltip = {
+				z_apc_mission_add_ctp_effect = { VALUE = 2 }
+			}
+			trigger_event = { id = z_apc_mission.19 } # Reward event
+		}
+
+		icon = task_political
+	}
+	
+	# The [NPC] Capital
+	#---------------------------------------------------
+	z_apc_mission_npc_capital = {
+	
+		requires = { z_apc_mission_npc_city }
+
+		potential = {
+			exists = scope:z_apc_new_primary_culture
+			exists = scope:z_apc_npc_capital
+		}
+
+		bypass = {
+			OR = {
+				NOT = { exists = scope:z_apc_npc_capital }
+				NOT = { scope:z_apc_npc_capital.owner = root }
+			}
+		}
+
+		allow = {
+		}
+
+		on_completion = {
+			show_as_tooltip = {
+				z_apc_mission_add_ctp_effect = { VALUE = 3 }
+			}
+			trigger_event = { id = z_apc_mission.20 } # Reward event
 		}
 
 		icon = task_political
@@ -379,9 +463,9 @@ z_apc_mission = {
 
 		allow = {
 			custom_tooltip = {
-				text = z_apc_mission_requires_10_ctp
+				text = z_apc_mission_ctp_required_tt
 				has_variable = z_apc_mission_ctp_current
-				var:z_apc_mission_ctp_current >= 10
+				var:z_apc_mission_ctp_current >= z_apc_mission_ctp_min_svalue
 			}
 		}
 

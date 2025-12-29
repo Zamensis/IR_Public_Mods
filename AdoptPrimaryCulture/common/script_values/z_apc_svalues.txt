@@ -238,6 +238,11 @@ z_apc_culture_B_capital_area_population_cache = { value = var:z_apc_culture_B_ca
 z_apc_culture_B_capital_city_population_cache = { value = var:z_apc_culture_B_capital_city_population_cache }
 
 #-----------------------------------------------------------------------------------------
+# Cultural Transition (minimal score to finish the mission tree and proceed with cultural conversion)
+#-----------------------------------------------------------------------------------------
+z_apc_mission_ctp_min_svalue = { value = 20 }
+
+#-----------------------------------------------------------------------------------------
 # Cultural Transition (current score)
 #-----------------------------------------------------------------------------------------
 z_apc_mission_ctp_current_svalue = {
@@ -252,8 +257,8 @@ z_apc_mission_ctp_current_svalue = {
 # Cultural Transition (max possible score)
 #-----------------------------------------------------------------------------------------
 z_apc_mission_ctp_max_svalue = {
-	value = 0 # Base
-	# From mission tasks (total: 17)
+	value = 0 # Base (total: 28)
+	# From mission tasks (total: 22)
 	add = 3 # From z_apc_mission_integrate_citizens
 	add = 2 # From z_apc_mission_npc_exception
 	add = 2 # From z_apc_mission_integrate_nobles
@@ -261,12 +266,21 @@ z_apc_mission_ctp_max_svalue = {
 	add = 2 # From z_apc_mission_npc_governors
 	add = 2 # From z_apc_mission_npc_army
 	add = 3 # From z_apc_mission_npc_ruler
-	# From events
+	add = 2 # From z_apc_mission_npc_city
+	add = 3 # From z_apc_mission_npc_capital
+	# From events (total: 6)
+	add = 1 # From z_apc_mission.3
+	add = 1 # From z_apc_mission.4
+	add = 1 # From z_apc_mission.5
+	add = 1 # From z_apc_mission.6
+	add = 1 # From z_apc_mission.7
+	add = 1 # From z_apc_mission.8	
 }
 
 #-----------------------------------------------------------------------------------------
-# Number of governors required to unlock mission
+# Mission task - Governors
 #-----------------------------------------------------------------------------------------
+# Number of governors required to complete mission
 z_apc_mission_npc_governors_threshold_svalue = {
 	value = 0
 	every_governorships = { add = 1 }
@@ -276,6 +290,7 @@ z_apc_mission_npc_governors_threshold_svalue = {
 	ceiling = yes
 }
 
+# Current number of governors matching the requirement
 z_apc_mission_npc_governors_current_svalue = {
 	value = 0
 	every_character = {
@@ -289,6 +304,7 @@ z_apc_mission_npc_governors_current_svalue = {
 	}
 }
 
+# Actual number required
 z_apc_mission_npc_governors_goal_svalue = {
 	value = 0
 	add = z_apc_mission_npc_governors_threshold_svalue
@@ -296,12 +312,14 @@ z_apc_mission_npc_governors_goal_svalue = {
 }
 
 #-----------------------------------------------------------------------------------------
-# Number of office holders required to unlock mission
+# Mission task - Office holders
 #-----------------------------------------------------------------------------------------
+# Number of office holders required to complete mission
 z_apc_mission_npc_government_threshold_svalue = {
 	value = 4
 }
 
+# Current number of office holders matching the requirement
 z_apc_mission_npc_government_current_svalue = {
 	value = 0
 	every_character = {
@@ -315,6 +333,7 @@ z_apc_mission_npc_government_current_svalue = {
 	}
 }
 
+# Actual number required
 z_apc_mission_npc_government_goal_svalue = {
 	value = 0
 	add = z_apc_mission_npc_government_threshold_svalue
@@ -322,8 +341,9 @@ z_apc_mission_npc_government_goal_svalue = {
 }
 
 #-----------------------------------------------------------------------------------------
-# Number of legion commanders required to unlock mission
+# Mission task - Legion commanders
 #-----------------------------------------------------------------------------------------
+# Number of legion commanders required to complete mission
 z_apc_mission_npc_army_threshold_svalue = {
 	value = 0
 	every_legion = { add = 4 } # 4 Commanders per Legion
@@ -332,6 +352,7 @@ z_apc_mission_npc_army_threshold_svalue = {
 	ceiling = yes
 }
 
+# Current number of legion commanders matching the requirement
 z_apc_mission_npc_army_current_svalue = {
 	value = 0
 	every_legion = {
@@ -344,8 +365,25 @@ z_apc_mission_npc_army_current_svalue = {
 	}
 }
 
+# Actual number required
 z_apc_mission_npc_army_goal_svalue = {
 	value = 0
 	add = z_apc_mission_npc_army_threshold_svalue
 	add = 1
+}
+
+#-----------------------------------------------------------------------------------------
+# Total number of events for converting and recruiting new characters - Calculated once after finishing the first mission task
+#-----------------------------------------------------------------------------------------
+z_apc_character_generation_amount = {
+	value = 0
+	# Match exactly the number required
+	add = z_apc_mission_npc_governors_goal_svalue
+	subtract = z_apc_mission_npc_governors_current_svalue
+	add = z_apc_mission_npc_government_goal_svalue
+	subtract = z_apc_mission_npc_government_current_svalue
+	add = z_apc_mission_npc_army_goal_svalue
+	subtract = z_apc_mission_npc_army_current_svalue
+	# Add some for free
+	add = 2
 }

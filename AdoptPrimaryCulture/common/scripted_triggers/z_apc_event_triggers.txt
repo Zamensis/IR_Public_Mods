@@ -1,11 +1,56 @@
 ﻿#-----------------------------------------------------------------------------------------
 # Is this character eligible to become a [NPC] Pretender?
 #-----------------------------------------------------------------------------------------
-z_apc_is_eligible_npc_pretender = {
+z_apc_is_eligible_npc_pretender_trigger = {
 	is_alive = yes
 	is_ruler = no
 	is_adult = yes
 	prisoner = no
 	is_mercenary = no
 	NOT = { has_character_modifier = foreign_citizen }
+}
+
+#-----------------------------------------------------------------------------------------
+# Would this character become a [NPC] Pretender?
+#-----------------------------------------------------------------------------------------
+z_apc_is_potential_npc_pretender_trigger = {
+	trigger_if = {
+		limit = {
+			OR = {
+				has_trait = zealous
+				has_trait = ambitious
+			}
+		}
+		always = yes
+	}
+	trigger_else_if = {
+		limit = { loyalty <= 60 }
+		always = yes
+	}
+	trigger_else = {
+		always = no
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# Would this character convert willingly to the new culture?
+#-----------------------------------------------------------------------------------------
+z_apc_is_potential_npc_pretender_trigger = {
+	trigger_if = {
+		limit = {
+			OR = {
+				has_trait = zealous
+				has_trait = narrowminded
+				has_trait = stubborn
+			}
+		}
+		always = no
+	}
+	trigger_else_if = {
+		limit = { loyalty > 70 }
+		always = yes
+	}
+	trigger_else = {
+		always = no
+	}
 }

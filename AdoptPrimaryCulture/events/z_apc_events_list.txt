@@ -1,0 +1,31 @@
+﻿
+# z_apc_mission.1					The [NPC] Question - On start
+# z_apc_mission.2					The [NPC] Question - On completion
+# z_apc_mission.3					The [NPC] Question - While running - XXX
+# z_apc_mission.4					The [NPC] Question - While running - XXX
+# z_apc_mission.5					The [NPC] Question - While running - XXX
+# z_apc_mission.6					The [NPC] Question - While running - XXX
+# z_apc_mission.7					The [NPC] Question - While running - XXX
+# z_apc_mission.8					The [NPC] Question - While running - XXX
+
+# z_apc_mission.9					The [NPC] Leader - On completion of all three "government" missions (after z_apc_mission.10, 11 and 12) - The ruler can convert or abdicate or do nothing
+# z_apc_mission.10					The [NPC] Governors - On completing z_apc_mission_npc_governors
+# z_apc_mission.11					The [NPC] Government - On completing z_apc_mission_npc_government
+# z_apc_mission.12					The [NPC] Army - On completing z_apc_mission_npc_army
+
+# z_apc_mission.13					New [NPC] character (following The [NPC] Question)
+# z_apc_mission.14					New [NPC] convertee (following The [NPC] Question)
+
+# z_apc_mission.15					[NPC] Integration (citizens)
+# z_apc_mission.16					[NPC] Privileges (nobles)
+# z_apc_mission.17					[NPC] Exception
+# z_apc_mission.18					A [NPC] Leader
+# z_apc_mission.19					The [NPC] City
+# z_apc_mission.20					The [NPC] Capital
+
+# z_apc_mission.999					A New Rule (final task)
+
+# z_apc_common.1					Cultural Majority update, scenario 1: No Cultural Majority was found but a Cultural Majority already exists
+# z_apc_common.2					Cultural Majority update, scenario 2: A Cultural Majority was found and no Cultural Majority already exists (also game start scenario)
+# z_apc_common.3					Cultural Majority update, scenario 3: A Cultural Majority was found and it's already a Cultural Majority (dummy event)
+# z_apc_common.4					Cultural Majority update, scenario 4: A Cultural Majority was found but there's already another Cultural Majority

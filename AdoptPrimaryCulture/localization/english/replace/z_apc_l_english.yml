@@ -15,7 +15,7 @@
  z_apc_ruling_minority_modifier:0 "Ruling Minority"
  desc_z_apc_ruling_minority_modifier:0 "This culture represents only a minority in the country, ruling over a foreign, culturally united majority."
  # EVENT MODIFIERS -----------------------------------------------------------------------------------------------------------------------------------------------
- z_apc_npc_pretender:0 "Native Pretender"
+ z_apc_npc_pretender:0 "Cultural Ambitions"
  desc_z_apc_npc_pretender:0 "This character is a powerful representative of the Cultural Majority and could have greater ambitions."
  z_apc_national_shame_small_modifier:0 "Public Shaming"
  desc_z_apc_national_shame_small_modifier:0 "This culture has been sidelined by the ruler of the country."
@@ -25,6 +25,12 @@
  desc_z_apc_national_pride_small_modifier:0 "This culture has been praised by the ruler of the country."
  z_apc_national_pride_big_modifier:0 "Great Public Appraisal"
  desc_z_apc_national_pride_big_modifier:0 "This culture has been adopted by the ruler of the country."
+ # LOYALTY MODIFIERS -----------------------------------------------------------------------------------------------------------------------------------------------
+ z_apc_loyalty_conversion_aborted:0 "Escaped Cultural Conversion"
+ z_apc_loyalty_voluntary_conversion:0 "Voluntary Cultural Conversion"
+ z_apc_loyalty_forced_conversion:0 "Forced Cultural Conversion"
+ z_apc_npc_official:0 "Cultural Favoritism in the Government"
+ z_apc_opc_official:0 "Cultural Favoritism in the Government"
  # EVENTS -----------------------------------------------------------------------------------------------------------------------------------------------
  z_apc_common.1.t:0 "The Silenced Majority"
  z_apc_common.1.desc:0 "The [z_apc_found_cultural_majority.GetName] people is no longer a cultural majority ruled by a [z_apc_ruling_minority.GetName] minority."
@@ -55,7 +61,7 @@
  z_apc_mission_add_3_ctp_effect_tt:0 "Gain #E #G 3#! Cultural Transition Points#! $z_apc_mission_ctp_current_tt$.\n$z_apc_mission_ctp_desc_tt$"
  z_apc_mission_add_4_ctp_effect_tt:0 "Gain #E #G 4#! Cultural Transition Points#! $z_apc_mission_ctp_current_tt$.\n$z_apc_mission_ctp_desc_tt$"
  z_apc_mission_add_5_ctp_effect_tt:0 "Gain #E #G 5#! Cultural Transition Points#! $z_apc_mission_ctp_current_tt$.\n$z_apc_mission_ctp_desc_tt$"
- z_apc_mission_requires_10_ctp:0 "Has at least #E #Y 10#! Cultural Transition Points#! $z_apc_mission_ctp_current_tt$."
+ z_apc_mission_ctp_required_tt:0 "Has at least #E #Y [SCOPE.ScriptValue('z_apc_mission_ctp_min_svalue')|0]#! Cultural Transition Points#! $z_apc_mission_ctp_current_tt$."
  # -----------
  z_apc_mission_the_npc_question:0 "The [z_apc_new_primary_culture.GetName] Question"
  z_apc_mission_the_npc_question_on_completion_tt:0 "We will be able to #Y choose a strategy#! for the establishment of a new [z_apc_new_primary_culture.GetName] rule in [z_apc_country.GetName]."
@@ -69,14 +75,21 @@
  # -----------
  z_apc_mission_npc_governors:0 "[z_apc_new_primary_culture.GetName] Governors"
  z_apc_mission_npc_governors_allow_tt:0 "At least #E #Y [SCOPE.ScriptValue('z_apc_mission_npc_governors_goal_svalue')|0]#!#! #E Governors#! are [z_apc_new_primary_pop_culture.GetName] (Currently: #E #R [SCOPE.ScriptValue('z_apc_mission_npc_governors_current_svalue')|0]#!#!)."
+ z_apc_mission_npc_governors_loyalty_tt:0 "Every [z_apc_new_primary_culture.GetName] #E Governor#! gains #E #G 5 Loyalty#!#!.\nEvery [z_apc_old_primary_culture.GetName] #E Governor#! loses #E #R 5 Loyalty#!#!."
  # -----------
  z_apc_mission_npc_government:0 "The [z_apc_new_primary_culture.GetName] State"
- z_apc_mission_npc_government_allow_tt:0 "At least #E #Y [SCOPE.ScriptValue('z_apc_mission_npc_government_goal_svalue')|0]#!#! #E Offices#! are held by [z_apc_new_primary_pop_culture.GetName] characters (Currently: #E #R [SCOPE.ScriptValue('z_apc_mission_npc_governors_current_svalue')|0]#!#!)."
+ z_apc_mission_npc_government_allow_tt:0 "At least #E #Y [SCOPE.ScriptValue('z_apc_mission_npc_government_goal_svalue')|0]#!#! #E Offices#! are held by [z_apc_new_primary_pop_culture.GetName] characters (Currently: #E #R [SCOPE.ScriptValue('z_apc_mission_npc_government_current_svalue')|0]#!#!)."
+ z_apc_mission_npc_government_loyalty_tt:0 "Every [z_apc_new_primary_culture.GetName] #E Office holder#! gains #E #G 5 Loyalty#!#!.\nEvery [z_apc_old_primary_culture.GetName] #E Office holder#! loses #E #R 5 Loyalty#!#!."
  # -----------
  z_apc_mission_npc_army:0 "The New General Staff"
  z_apc_mission_npc_army_allow_tt:0 "At least #E #Y [SCOPE.ScriptValue('z_apc_mission_npc_army_goal_svalue')|0]#!#! #E Legion Commanders#! are [z_apc_new_primary_pop_culture.GetName] (Currently: #E #R [SCOPE.ScriptValue('z_apc_mission_npc_army_current_svalue')|0]#!#!)."
+ z_apc_mission_npc_army_loyalty_tt:0 "Every [z_apc_new_primary_culture.GetName] #E Legion Commander#! gains #E #G 5 Loyalty#!#!.\nEvery [z_apc_old_primary_culture.GetName] #E Legion Commander#! loses #E #R 5 Loyalty#!#!."
  # -----------
  z_apc_mission_npc_ruler:0 "The [z_apc_new_primary_culture.GetName] [z_apc_country.GetRuler.GetTitleName]"
+ # -----------
+ z_apc_mission_npc_city:0 "The Fate of [z_apc_npc_capital.GetName]"
+ # -----------
+ z_apc_mission_npc_capital:0 "The [z_apc_new_primary_culture.GetName] Capital"
  # -----------
  z_apc_mission_final:0 "The [z_apc_new_primary_culture.GetName] Renaissance"
  # MISSION EVENTS -----------------------------------------------------------------------------------------------------------------------------------------------
@@ -92,11 +105,76 @@
  z_apc_mission.2.b:0 "The [z_apc_old_primary_culture.GetName] minority must give way to the [z_apc_new_primary_culture.GetName] elite."
  z_apc_mission.2.b.tt:0 "More [z_apc_new_primary_culture.GetName] characters will become available."
  # -----------
+ z_apc_mission.3.t:0 "$z_apc_mission_the_npc_question$"
+ z_apc_mission.3.desc:0 "Placeholder"
+ z_apc_mission.3.a:0 "Placeholder"
+ # -----------
+ z_apc_mission.4.t:0 "$z_apc_mission_the_npc_question$"
+ z_apc_mission.4.desc:0 "Placeholder"
+ z_apc_mission.4.a:0 "Placeholder"
+ # -----------
+ z_apc_mission.5.t:0 "$z_apc_mission_the_npc_question$"
+ z_apc_mission.5.desc:0 "Placeholder"
+ z_apc_mission.5.a:0 "Placeholder"
+ # -----------
+ z_apc_mission.6.t:0 "$z_apc_mission_the_npc_question$"
+ z_apc_mission.6.desc:0 "Placeholder"
+ z_apc_mission.6.a:0 "Placeholder"
+ # -----------
+ z_apc_mission.7.t:0 "$z_apc_mission_the_npc_question$"
+ z_apc_mission.7.desc:0 "Placeholder"
+ z_apc_mission.7.a:0 "Placeholder"
+ # -----------
+ z_apc_mission.8.t:0 "$z_apc_mission_the_npc_question$"
+ z_apc_mission.8.desc:0 "Placeholder"
+ z_apc_mission.8.a:0 "Placeholder"
+ # -----------
  z_apc_mission.9.t:0 "Adoption of the [z_apc_new_primary_culture.GetName] customs"
  z_apc_mission.9.desc:0 "Placeholder"
  z_apc_mission.9.a:0 "Deliver a speech to honor of the [z_apc_new_primary_culture.GetName] traditions"
- z_apc_mission.9.b:0 "Embrace the [z_apc_new_primary_culture.GetName] étiquette"
+ z_apc_mission.9.b:0 "Adopt the [z_apc_new_primary_culture.GetName] étiquette"
  z_apc_mission.9.c:0 "Give way to [z_apc_npc_pretender.GetName]"
+ # -----------
+ z_apc_mission.10.t:0 "$z_apc_mission_npc_governors$"
+ z_apc_mission.10.desc:0 "Placeholder"
+ z_apc_mission.10.a:0 "Placeholder"
+ # -----------
+ z_apc_mission.11.t:0 "$z_apc_mission_npc_government$"
+ z_apc_mission.11.desc:0 "Placeholder"
+ z_apc_mission.11.a:0 "Placeholder"
+ # -----------
+ z_apc_mission.12.t:0 "$z_apc_mission_npc_army$"
+ z_apc_mission.12.desc:0 "Placeholder"
+ z_apc_mission.12.a:0 "Placeholder"
+ # -----------
+ z_apc_mission.13.t:0 "[z_apc_new_npc_character.GetName]"
+ z_apc_mission.13.desc:0 "Placeholder"
+ z_apc_mission.13.a:0 "[z_apc_new_npc_character.GetPraenomen] can stay."
+ z_apc_mission.13.b:0 "We don't need [z_apc_new_npc_character.GetHerHim]."
+ z_apc_mission.13.b.tt:0 "[z_apc_new_npc_character.GetName] disappears."
+ # -----------
+ z_apc_mission.14.t:0 "[z_apc_new_npc_character.GetName]"
+ z_apc_mission.14.desc.loyal:0 "Placeholder (loyal character)"
+ z_apc_mission.14.desc.unloyal:0 "Placeholder (unloyal character)"
+ z_apc_mission.14.a.loyal:0 "Excellent, [z_apc_new_npc_character.GetPraenomen]."
+ z_apc_mission.14.a.unloyal:0 "It is really necessary, [z_apc_new_npc_character.GetPraenomen]."
+ z_apc_mission.14.b:0 "[z_apc_new_npc_character.GetPraenomen] will not be forced out of [z_apc_new_npc_character.GetHerHis] traditions."
+ # -----------
+ z_apc_mission.15.t:0 "$z_apc_mission_integrate_citizens$"
+ z_apc_mission.15.desc:0 "Placeholder"
+ z_apc_mission.15.a:0 "Placeholder"
+ # -----------
+ z_apc_mission.16.t:0 "$z_apc_mission_integrate_nobles$"
+ z_apc_mission.16.desc:0 "Placeholder"
+ z_apc_mission.16.a:0 "Placeholder"
+ # -----------
+ z_apc_mission.17.t:0 "$z_apc_mission_npc_exception$"
+ z_apc_mission.17.desc:0 "Placeholder"
+ z_apc_mission.17.a:0 "Placeholder"
+ # -----------
+ z_apc_mission.18.t:0 "$z_apc_mission_integrate_citizens$"
+ z_apc_mission.18.desc:0 "Placeholder"
+ z_apc_mission.18.a:0 "Placeholder"
  # -----------
  z_apc_mission.999.t:0 "$z_apc_mission_final$"
  z_apc_mission.999.desc:0 "Placeholder"

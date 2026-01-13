@@ -323,7 +323,6 @@ z_apc_mission.10 = {
 			}
 			add_loyalty = z_apc_opc_official
 		}
-		#custom_tooltip = "z_apc_mission.10.a.tt" # Explain the character interaction?
 	}
 }
 
@@ -386,7 +385,6 @@ z_apc_mission.11 = {
 			}
 			add_loyalty = z_apc_opc_official
 		}
-		#custom_tooltip = "z_apc_mission.11.a.tt" # Explain the character interaction?
 	}
 }
 
@@ -455,7 +453,6 @@ z_apc_mission.12 = {
 				add_loyalty = z_apc_opc_official
 			}
 		}
-		#custom_tooltip = "z_apc_mission.12.a.tt" # Explain the character interaction?
 	}
 }
 
@@ -735,7 +732,7 @@ z_apc_mission.14 = {
 					}
 					trigger_event = {
 						id = z_apc_mission.14
-						days = { 10 30 }
+						days = { 90 360 }
 					}
 				}
 				# If replacement was chosen
@@ -746,7 +743,7 @@ z_apc_mission.14 = {
 					}
 					trigger_event = {
 						id = z_apc_mission.14
-						days = { 10 30 }
+						days = { 360 720 }
 					}
 				}
 			}
@@ -984,7 +981,7 @@ z_apc_mission.20 = {
 }
 
 #-----------------------------------------------------------------------------------------
-# A New Rule (final task)
+# Complete mission and set new primary culture
 #-----------------------------------------------------------------------------------------
 z_apc_mission.999 = {
 	type = country_event

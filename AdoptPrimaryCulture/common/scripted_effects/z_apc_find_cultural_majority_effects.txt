@@ -9,12 +9,12 @@ z_apc_find_cultural_majority_effect = {
 		}
 		root.country_culture = { z_apc_remove_all_cultural_majority_modifiers_effect = yes }
 	}
-	# Then, check whether a Cultural Majority exists
+	# Then only, check whether a Cultural Majority exists
 	if = {
 		limit = {
-			# Only possible if the APC mission is not ongoing or has never been completed
+			# Do this only if the APC mission is not ongoing or has never been completed
 			NOT = { has_variable = z_apc_mission_ongoing }
-			# Only possible if there's any culture other than the primary one
+			# Do this only if there's any culture other than the primary one
 			any_country_culture = {
 				NOT = { this = root.country_culture }
 			}
@@ -22,12 +22,13 @@ z_apc_find_cultural_majority_effect = {
 		# ---------------------------------------------------------------------------------------------------------------
 		# Try to find a Cultural Majority in the entire COUNTRY
 		if = {
-			limit = { num_of_cities > 1 } # Only valid is capital_scope isn't the only owned territory
+			limit = { num_of_cities > 1 } # Try this only if capital_scope isn't the only owned territory
 			z_apc_find_cultural_majority_in_zone_effect = { ZONE = country }
 		}
-		# If no Cultural Majority was found in the COUNTRY, try to find one in the capital REGION
+		# Try to find one in the capital REGION
 		if = {
 			limit = {
+				# Try this only if no Cultural Majority was found in the upper levels
 				NOT = {
 					exists = scope:z_apc_found_cultural_majority_in_country
 				}
@@ -37,9 +38,10 @@ z_apc_find_cultural_majority_effect = {
 				z_apc_find_cultural_majority_in_zone_effect = { ZONE = capital_region }
 			}
 		}
-		# If no Cultural Majority was found in the capital REGION, try to find one in the capital AREA
+		# Try to find one in the capital AREA
 		if = {
 			limit = {
+				# Try this only if no Cultural Majority was found in the upper levels
 				NOR = {
 					exists = scope:z_apc_found_cultural_majority_in_country
 					exists = scope:z_apc_found_cultural_majority_in_capital_region
@@ -50,9 +52,10 @@ z_apc_find_cultural_majority_effect = {
 				z_apc_find_cultural_majority_in_zone_effect = { ZONE = capital_area }
 			}
 		}
-		# If no Cultural Majority was found in the capital AREA, try to find one in the capital CITY
+		# Try to find one in the capital CITY
 		if = {
 			limit = {
+				# Try this only if no Cultural Majority was found in the upper levels
 				NOR = {
 					exists = scope:z_apc_found_cultural_majority_in_country
 					exists = scope:z_apc_found_cultural_majority_in_capital_region
@@ -62,7 +65,7 @@ z_apc_find_cultural_majority_effect = {
 			z_apc_find_cultural_majority_in_zone_effect = { ZONE = capital_city }
 		}
 		# ---------------------------------------------------------------------------------------------------------------
-		z_apc_update_cultural_majority_effect = yes # Fire events based on scenario
+		z_apc_update_cultural_majority_effect = yes # Update/remove the Cultural Majority: fire an event based on the different possible scenarios
 	}
 }
 
@@ -70,7 +73,7 @@ z_apc_find_cultural_majority_effect = {
 # Find the culture that has the most pops in the designated ZONE, then check if it's a Cultural Majority
 #-----------------------------------------------------------------------------------------
 z_apc_find_cultural_majority_in_zone_effect = {
-	# Make a list of all cultures that need to be compared
+	# Make a list of all non-primary cultures that need to be compared
 	every_country_culture = {
 		limit = {
 			NOT = { this = root.country_culture }
@@ -79,14 +82,12 @@ z_apc_find_cultural_majority_in_zone_effect = {
 	}
 	# Pick one at random to be the first culture to be compared
 	random_country_culture = {
-		limit = {
-			is_in_list = z_apc_comparison_cultures_list
-		}
-		# ...save it as culture_A, which is assumed to have the most pops in the designated ZONE
+		limit = { is_in_list = z_apc_comparison_cultures_list }
+		# ...save it as culture_A, which is assumed to have the most pops in the designated ZONE until we find a larger one
 		save_scope_as = z_apc_culture_A
 		# ...remove it from the list of cultures to be compared...
 		remove_from_list = z_apc_comparison_cultures_list
-		# ...and store population in cache
+		# ...and store its total population in a cache
 		root = {
 			set_variable = {
 				name = z_apc_culture_A_$ZONE$_population_cache
@@ -96,22 +97,20 @@ z_apc_find_cultural_majority_in_zone_effect = {
 	}
 	# Among all the cultures in the list, find the one that has the most pops in the designated ZONE
 	while = {
-		# Run loop as long as there are cultures to be compared
+		# Loop as long as there are cultures to be compared (i.e. stop loop when there are no cultures to be compared left)
 		limit = {
-			any_country_culture = {
-				is_in_list = z_apc_comparison_cultures_list
-			}
+			any_country_culture = { is_in_list = z_apc_comparison_cultures_list }
 		}
 		# Pick one at random...
 		random_country_culture = {											
 			limit = {
 				is_in_list = z_apc_comparison_cultures_list
 			}
-			# ...save it as culture_B...
+			# ...save it as culture_B, which will be compared to culture_A...
 			save_scope_as = z_apc_culture_B
 			# ...remove it from the list of cultures to be compared...
 			remove_from_list = z_apc_comparison_cultures_list
-			# ...and store population in cache
+			# ...and store its total population in a cache
 			root = {
 				set_variable = {
 					name = z_apc_culture_B_$ZONE$_population_cache
@@ -120,17 +119,18 @@ z_apc_find_cultural_majority_in_zone_effect = {
 			}
 			# Now compare culture_A and culture_B in the designated ZONE
 			if = {
+				# If culture_B > culture_A in the designated ZONE...
 				limit = {
-					root = { z_apc_culture_A_$ZONE$_population_cache < z_apc_culture_B_$ZONE$_population_cache }
+					root = { z_apc_culture_B_$ZONE$_population_cache > z_apc_culture_A_$ZONE$_population_cache }
 				}
-				# If culture_B > culture_A in the designated ZONE, update cache for culture_A...
+				# ...update cache for culture_A with culture_B value...
 				root = {
 					set_variable = {
 						name = z_apc_culture_A_$ZONE$_population_cache
 						value = var:z_apc_culture_B_$ZONE$_population_cache
 					}
 				}
-				# ...then culture_B becomes the new culture_A
+				# ...update scope for culture_A with culture_B value
 				scope:z_apc_culture_B = {
 					save_scope_as = z_apc_culture_A
 				}
@@ -141,19 +141,23 @@ z_apc_find_cultural_majority_in_zone_effect = {
 	}
 	# At this point, culture_A is the one that has the most pops in the designated ZONE
 	# So the next step is to check whether culture_A is a Cultural Majority (i.e. if it's above the set threshold for the designated ZONE)
+	# First, store the total population of the ZONE in a cache...
 	set_variable = {
 		name = z_apc_total_population_in_$ZONE$_cache
 		value = z_apc_total_population_in_$ZONE$
 	}
+	# ...check if the threshold is met...
 	if = {
 		limit = {
 			z_apc_culture_pc_$ZONE$ > z_apc_cultural_majority_threshold_$ZONE$
 		}
+		# ...and if so, save scopes
 		scope:z_apc_culture_A = {
 			save_scope_as = z_apc_found_cultural_majority
 			save_scope_as = z_apc_found_cultural_majority_in_$ZONE$
 		}
 	}
+	# At this point, we may or may not have saved a Cultural Majority. Either way, list and caches can be cleared.
 	# Clear list
 	every_in_list = {
 		list = z_apc_comparison_cultures_list
@@ -161,12 +165,17 @@ z_apc_find_cultural_majority_in_zone_effect = {
 	}
 	# Clear cache for culture_A
 	remove_variable = z_apc_culture_A_$ZONE$_population_cache
-	# Clear cache for ZONE
+	# Clear cache for total population
 	remove_variable = z_apc_total_population_in_$ZONE$_cache
 }
 
 #-----------------------------------------------------------------------------------------
-# Update Cultural Majority modifier based on all possible scenarios
+# Update/remove the Cultural Majority: fire an event based on the different possible scenarios:
+# Scenario 0: No Cultural Majority was found and no Cultural Majority already exists -> Do nothing
+# Scenario 1: No Cultural Majority was found, but a Cultural Majority already exists -> Remove Cultural Majority modifier from the old Cultural Majority
+# Scenario 2: A Cultural Majority was found and no Cultural Majority already exists -> Add Cultural Majority modifier to the new Cultural Majority (also game start scenario)
+# Scenario 3: A Cultural Majority was found and is already a Cultural Majority -> Update Cultural Majority modifier, if necessary (no event)
+# Scenario 4: A Cultural Majority was found, but there's already another Cultural Majority -> Add Cultural Majority modifier to the new Cultural Majority + Remove Cultural Majority modifier from the old Cultural Majority
 #-----------------------------------------------------------------------------------------
 z_apc_update_cultural_majority_effect = {
 	# No Cultural Majority was found...
@@ -186,15 +195,6 @@ z_apc_update_cultural_majority_effect = {
 		# ...but a Cultural Majority already exists
 		else = {
 			# SCENARIO 1: Remove Cultural Majority modifier from the old Cultural Majority
-			# Event
-			random_country_culture = {
-				limit = { z_apc_has_any_cultural_majority_modifier_trigger = yes }
-				save_scope_as = z_apc_old_cultural_majority
-			}
-			random_country_culture = {
-				limit = { this = root.country_culture }
-				save_scope_as = z_apc_ruling_minority
-			}
 			trigger_event = z_apc_common.1
 		}
 	}
@@ -208,11 +208,6 @@ z_apc_update_cultural_majority_effect = {
 				}
 			}
 			# SCENARIO 2: Add Cultural Majority modifier to the new Cultural Majority (also game start scenario)
-			# Event
-			random_country_culture = {
-				limit = { this = root.country_culture }
-				save_scope_as = z_apc_ruling_minority
-			}
 			trigger_event = z_apc_common.2
 		}
 		# ...and it's already a Cultural Majority
@@ -221,7 +216,6 @@ z_apc_update_cultural_majority_effect = {
 				scope:z_apc_found_cultural_majority = { z_apc_has_any_cultural_majority_modifier_trigger = yes }
 			}
 			# SCENARIO 3: Update Cultural Majority modifier, if necessary (no event)
-			# Event
 			scope:z_apc_found_cultural_majority = {
 				z_apc_remove_all_cultural_majority_modifiers_effect = yes
 				z_apc_add_cultural_majority_modifier_effect = yes
@@ -230,15 +224,6 @@ z_apc_update_cultural_majority_effect = {
 		# ...but there's already another Cultural Majority
 		else = {
 			# SCENARIO 4: Add Cultural Majority modifier to the new Cultural Majority + Remove Cultural Majority modifier from the old Cultural Majority
-			# Event
-			random_country_culture = {
-				limit = { z_apc_has_any_cultural_majority_modifier_trigger = yes }
-				save_scope_as = z_apc_old_cultural_majority
-			}
-			random_country_culture = {
-				limit = { this = root.country_culture }
-				save_scope_as = z_apc_ruling_minority
-			}
 			trigger_event = z_apc_common.4
 		}
 	}

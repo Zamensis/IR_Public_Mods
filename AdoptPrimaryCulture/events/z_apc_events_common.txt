@@ -2,7 +2,7 @@
 
 #-----------------------------------------------------------------------------------------
 # Cultural Majority update, scenario 1:
-# No Cultural Majority was found but a Cultural Majority already exists
+# No Cultural Majority was found, but a Cultural Majority already exists -> Remove Cultural Majority modifier from the old Cultural Majority
 #-----------------------------------------------------------------------------------------
 z_apc_common.1 = {
 	type = country_event
@@ -14,16 +14,27 @@ z_apc_common.1 = {
 	
 	trigger = {
 		# Triggered by effect: z_apc_update_cultural_majority_effect
+		# Check cooldown
 		NOT = { has_variable = z_apc_had_recent_cultural_majority_change }
 	}
 		
 	immediate = {
-		set_variable = {
-			name = z_apc_had_recent_cultural_majority_change
-			days = 3650 # 10 years
+		# Old Ruling Minority
+		random_country_culture = {
+			limit = { this = root.country_culture }
+			save_scope_as = z_apc_old_ruling_minority
+			if = {
+				limit = { has_country_culture_modifier = z_apc_ruling_minority_modifier }
+				remove_country_culture_modifier = z_apc_ruling_minority_modifier
+			}
 		}
-		scope:z_apc_old_cultural_majority = {
+		# Old Cultural Majority
+		random_country_culture = {
+			limit = { z_apc_has_any_cultural_majority_modifier_trigger = yes }
+			save_scope_as = z_apc_old_cultural_majority
+			# Remove Cultural Majority modifier from the old Cultural Majority
 			z_apc_remove_all_cultural_majority_modifiers_effect = yes
+			# Add another modifier to show its status loss
 			if = {
 				limit = {
 					NOT = { has_country_culture_modifier = z_apc_old_cultural_majority_modifier }
@@ -34,11 +45,10 @@ z_apc_common.1 = {
 				}
 			}
 		}
-		if = {
-			limit = {
-				scope:z_apc_ruling_minority = { has_country_culture_modifier = z_apc_ruling_minority_modifier }
-			}
-			scope:z_apc_ruling_minority = { remove_country_culture_modifier = z_apc_ruling_minority_modifier }
+		# Set cooldown
+		set_variable = {
+			name = z_apc_had_recent_cultural_majority_change
+			days = 3650 # 10 years
 		}
 	}
 		
@@ -110,32 +120,52 @@ z_apc_common.2 = {
 	
 	trigger = {
 		# Triggered by effect: z_apc_update_cultural_majority_effect
+		# Check cooldown
 		NOT = { has_variable = z_apc_had_recent_cultural_majority_change }
 	}
 		
 	immediate = {
-		set_variable = {
-			name = z_apc_had_recent_cultural_majority_change
-			days = 3650 # 10 years
-		}
-		scope:z_apc_ruling_minority = {
-			add_country_culture_modifier = {
-				name = z_apc_ruling_minority_modifier
-				duration = -1
+		# New Ruling Minority
+		random_country_culture = {
+			limit = { this = root.country_culture }
+			save_scope_as = z_apc_ruling_minority
+			if = {
+				limit = {
+					NOT = { has_country_culture_modifier = z_apc_ruling_minority_modifier }
+				}
+				add_country_culture_modifier = {
+					name = z_apc_ruling_minority_modifier
+					duration = -1
+				}
 			}
 		}
+		# New Cultural Majority
 		scope:z_apc_found_cultural_majority = {
+			# Remove Old Cultural Majority, if applicable
 			if = {
 				limit = { has_country_culture_modifier = z_apc_old_cultural_majority_modifier }
 				remove_country_culture_modifier = z_apc_old_cultural_majority_modifier
 			}
+			# Add Cultural Majority modifier
 			z_apc_add_cultural_majority_modifier_effect = yes
+		}
+		# Set cooldown
+		set_variable = {
+			name = z_apc_had_recent_cultural_majority_change
+			days = 3650 # 10 years
 		}
 	}
 		
 	option = { # OK
 		name = "z_apc_common.2.a"
-		custom_tooltip = z_apc_common_mission_unlocked
+		# Inform the player that APC mission is available
+		if = {
+			limit = {
+				NOT = { has_variable = z_apc_mission_ongoing } # Just in case
+				NOT = { has_variable = z_apc_mission_cooldown } # Unless the mission cooldown is still running
+			}
+			custom_tooltip = z_apc_common_mission_unlocked
+		}
 	}
 }
 
@@ -178,16 +208,32 @@ z_apc_common.4 = {
 	
 	trigger = {
 		# Triggered by effect: z_apc_update_cultural_majority_effect
+		# Check cooldown
 		NOT = { has_variable = z_apc_had_recent_cultural_majority_change }
 	}
 		
 	immediate = {
-		set_variable = {
-			name = z_apc_had_recent_cultural_majority_change
-			days = 1825 # 5 years
+		# Ruling Minority
+		random_country_culture = {
+			limit = { this = root.country_culture }
+			save_scope_as = z_apc_ruling_minority
+			if = {
+				limit = {
+					NOT = { has_country_culture_modifier = z_apc_ruling_minority_modifier }
+				}
+				add_country_culture_modifier = {
+					name = z_apc_ruling_minority_modifier
+					duration = -1
+				}
+			}
 		}
-		scope:z_apc_old_cultural_majority = {
+		# Old Cultural Majority
+		random_country_culture = {
+			limit = { z_apc_has_any_cultural_majority_modifier_trigger = yes }
+			save_scope_as = z_apc_old_cultural_majority
+			# Remove Cultural Majority modifier from the old Cultural Majority
 			z_apc_remove_all_cultural_majority_modifiers_effect = yes
+			# Add another modifier to show its status loss
 			if = {
 				limit = {
 					NOT = { has_country_culture_modifier = z_apc_old_cultural_majority_modifier }
@@ -198,21 +244,20 @@ z_apc_common.4 = {
 				}
 			}
 		}
+		# New Cultural Majority
 		scope:z_apc_found_cultural_majority = {
+			# Remove Old Cultural Majority, if applicable
+			if = {
+				limit = { has_country_culture_modifier = z_apc_old_cultural_majority_modifier }
+				remove_country_culture_modifier = z_apc_old_cultural_majority_modifier
+			}
+			# Add Cultural Majority modifier
 			z_apc_add_cultural_majority_modifier_effect = yes
 		}
-		if = {
-			limit = {
-				scope:z_apc_ruling_minority = {
-					NOT = { has_country_culture_modifier = z_apc_ruling_minority_modifier }
-				}
-			}
-			scope:z_apc_ruling_minority = {
-				add_country_culture_modifier = {
-					name = z_apc_ruling_minority_modifier
-					duration = -1
-				}
-			}
+		# Set cooldown (lower than in the other scenarios)
+		set_variable = {
+			name = z_apc_had_recent_cultural_majority_change
+			days = 1825 # 5 years
 		}
 	}
 		

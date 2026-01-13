@@ -42,7 +42,7 @@ z_apc_mission = {
     on_start = {
 		# Vanilla
     	start_mission_ai_effect = yes
-		# APC
+		# APC - Save scopes
 		root = { save_scope_as = z_apc_country }
 		root.country_culture = { save_scope_as = z_apc_old_primary_culture }
     	random_country_culture = {
@@ -75,6 +75,7 @@ z_apc_mission = {
 			order_by = total_population
 			save_scope_as = z_apc_npc_capital
 		}
+		# APC - Set variables
 		set_variable = z_apc_mission_ongoing
 		set_variable = {
 			name = z_apc_mission_ctp_current
@@ -101,11 +102,11 @@ z_apc_mission = {
     }
 
     on_abort = {
-		# APC
+		# APC - Set cooldown and clear other variables
     	custom_tooltip = z_apc_mission_cooldown_tt
 		set_variable = {
 			name = z_apc_mission_cooldown
-			days = 36500
+			days = 36500 # 100 years
 		}
 		z_apc_mission_clear_variables_effect = yes
     }
@@ -114,10 +115,14 @@ z_apc_mission = {
 		show_as_tooltip = {
 			set_primary_culture = scope:z_apc_new_primary_culture
 		}
-		trigger_event = z_apc_mission.999
+		trigger_event = z_apc_mission.999 # Complete mission and set new primary culture
 		# Vanilla
     	complete_mission_effect = yes
-		# APC
+		# APC - Set cooldown and clear other variables
+		set_variable = {
+			name = z_apc_mission_cooldown
+			days = 36500 # 100 years
+		}
 		z_apc_mission_clear_variables_effect = yes
     }
 	

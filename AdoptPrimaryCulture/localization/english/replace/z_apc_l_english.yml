@@ -33,7 +33,7 @@
  z_apc_opc_official:0 "Cultural Favoritism in the Government"
  # EVENTS -----------------------------------------------------------------------------------------------------------------------------------------------
  z_apc_common.1.t:0 "The Silenced Majority"
- z_apc_common.1.desc:0 "The [z_apc_found_cultural_majority.GetName] people is no longer a cultural majority ruled by a [z_apc_ruling_minority.GetName] minority."
+ z_apc_common.1.desc:0 "The [z_apc_found_cultural_majority.GetName] people is no longer a cultural majority ruled by a [z_apc_old_ruling_minority.GetName] minority."
  z_apc_common.1.a:0 "OK"
  # -----------
  z_apc_common.2.t:0 "The Unsilent Majority"

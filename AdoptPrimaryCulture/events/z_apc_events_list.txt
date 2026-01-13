@@ -25,7 +25,7 @@
 
 # z_apc_mission.999					A New Rule (final task)
 
-# z_apc_common.1					Cultural Majority update, scenario 1: No Cultural Majority was found but a Cultural Majority already exists
-# z_apc_common.2					Cultural Majority update, scenario 2: A Cultural Majority was found and no Cultural Majority already exists (also game start scenario)
-# z_apc_common.3					Cultural Majority update, scenario 3: A Cultural Majority was found and it's already a Cultural Majority (dummy event)
-# z_apc_common.4					Cultural Majority update, scenario 4: A Cultural Majority was found but there's already another Cultural Majority
+# z_apc_common.1					CM update, scenario 1: No CM was found but a CM already exists -> Remove CM modifier from the old CM
+# z_apc_common.2					CM update, scenario 2: A CM was found and no CM already exists (also game start scenario) -> Add CM modifier to the new CM
+# z_apc_common.3					CM update, scenario 3: A CM was found and it's already a CM -> Update CM modifier, if necessary (no event)
+# z_apc_common.4					CM update, scenario 4: A CM was found but there's already another CM -> Add CM modifier to the new CM + Remove CM modifier from the old CM

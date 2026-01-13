@@ -59,7 +59,7 @@ z_apc_common.1 = {
 
 #-----------------------------------------------------------------------------------------
 # Cultural Majority update, scenario 2:
-# A Cultural Majority was found and no Cultural Majority already exists (also game start scenario)
+# A Cultural Majority was found and no Cultural Majority already exists (also game start scenario) -> Add Cultural Majority modifier to the new Cultural Majority
 #-----------------------------------------------------------------------------------------
 z_apc_common.2 = {
 	type = country_event
@@ -171,8 +171,7 @@ z_apc_common.2 = {
 
 #-----------------------------------------------------------------------------------------
 # Cultural Majority update, scenario 3:
-# A Cultural Majority was found and it's already a Cultural Majority
-# No event needed, managed in z_apc_update_cultural_majority_effect
+# A Cultural Majority was found and it's already a Cultural Majority -> Update Cultural Majority modifier, if necessary (no event)
 #-----------------------------------------------------------------------------------------
 #z_apc_common.3 = {
 #	type = country_event
@@ -196,7 +195,7 @@ z_apc_common.2 = {
 
 #-----------------------------------------------------------------------------------------
 # Cultural Majority update, scenario 4:
-# A Cultural Majority was found but there's already another Cultural Majority
+# A Cultural Majority was found but there's already another Cultural Majority -> Add Cultural Majority modifier to the new Cultural Majority + Remove Cultural Majority modifier from the old Cultural Majority
 #-----------------------------------------------------------------------------------------
 z_apc_common.4 = {
 	type = country_event

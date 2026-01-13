@@ -173,7 +173,7 @@ z_apc_find_cultural_majority_in_zone_effect = {
 # Update/remove the Cultural Majority: fire an event based on the different possible scenarios:
 # Scenario 0: No Cultural Majority was found and no Cultural Majority already exists -> Do nothing
 # Scenario 1: No Cultural Majority was found, but a Cultural Majority already exists -> Remove Cultural Majority modifier from the old Cultural Majority
-# Scenario 2: A Cultural Majority was found and no Cultural Majority already exists -> Add Cultural Majority modifier to the new Cultural Majority (also game start scenario)
+# Scenario 2: A Cultural Majority was found and no Cultural Majority already exists (also game start scenario) -> Add Cultural Majority modifier to the new Cultural Majority
 # Scenario 3: A Cultural Majority was found and is already a Cultural Majority -> Update Cultural Majority modifier, if necessary (no event)
 # Scenario 4: A Cultural Majority was found, but there's already another Cultural Majority -> Add Cultural Majority modifier to the new Cultural Majority + Remove Cultural Majority modifier from the old Cultural Majority
 #-----------------------------------------------------------------------------------------

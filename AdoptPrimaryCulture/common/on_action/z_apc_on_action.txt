@@ -26,11 +26,14 @@ z_apc_demote_integrated_cultures = {
 					is_integrated = yes
 					NOT = { this = root.country_culture }
 				}
+				# Demote culture
 				set_country_culture_right = freemen
+				# Remove demotion modifier
 				if = {
 					limit = { has_country_culture_modifier = integration_status_removed }
 					remove_country_culture_modifier = integration_status_removed
 				}
+				# Make up for it
 				if = {
 					limit = {
 						NOT = { has_country_culture_modifier = inheritance_right }
@@ -40,6 +43,7 @@ z_apc_demote_integrated_cultures = {
 						duration = -1
 					}
 				}
+				# Remove rights_increased modifier
 				if = {
 					limit = { has_country_culture_modifier = rights_increased }
 					remove_country_culture_modifier = rights_increased
@@ -63,7 +67,7 @@ z_apc_update_cultural_majority = {
 					tag = MER
 				}
 			}
-			z_apc_find_cultural_majority_effect = yes					# Find a Cultural Majority, then update Cultural Majority or remove invalid Cultural Majority
+			z_apc_find_cultural_majority_effect = yes					# Find a Cultural Majority, then update Cultural Majority status or remove invalid Cultural Majority status
 		}
 	}
 }
@@ -74,10 +78,10 @@ z_apc_update_cultural_majority = {
 z_apc_mission_the_npc_question_monthly_pulse = {
 	random_events = {
 		10 = z_apc_mission.3
-		#10 = z_apc_mission.4
-		#10 = z_apc_mission.5
-		#10 = z_apc_mission.6
-		#10 = z_apc_mission.7
-		#10 = z_apc_mission.8
+		10 = z_apc_mission.4
+		10 = z_apc_mission.5
+		10 = z_apc_mission.6
+		10 = z_apc_mission.7
+		10 = z_apc_mission.8
 	}
 }

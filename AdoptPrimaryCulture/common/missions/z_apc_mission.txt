@@ -368,7 +368,7 @@ z_apc_mission = {
 	#---------------------------------------------------
 	z_apc_mission_npc_ruler = {
 	
-		requires = { z_apc_mission_npc_government z_apc_mission_the_npc_question }
+		requires = { z_apc_mission_npc_governors z_apc_mission_npc_government z_apc_mission_npc_army z_apc_mission_integrate_nobles }
 
 		potential = {}
 

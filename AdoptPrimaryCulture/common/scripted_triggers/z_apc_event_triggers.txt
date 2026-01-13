@@ -35,7 +35,7 @@ z_apc_is_potential_npc_pretender_trigger = {
 #-----------------------------------------------------------------------------------------
 # Would this character convert willingly to the new culture?
 #-----------------------------------------------------------------------------------------
-z_apc_is_potential_npc_pretender_trigger = {
+z_apc_is_potential_npc_convertee_trigger = {
 	trigger_if = {
 		limit = {
 			OR = {

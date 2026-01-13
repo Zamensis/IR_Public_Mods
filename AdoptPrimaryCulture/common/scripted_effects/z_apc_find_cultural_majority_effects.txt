@@ -1,5 +1,5 @@
 ﻿#-----------------------------------------------------------------------------------------
-# Find a Cultural Majority, then update Cultural Majority or remove invalid Cultural Majority
+# Find a Cultural Majority, then update Cultural Majority status or remove invalid Cultural Majority status
 #-----------------------------------------------------------------------------------------
 z_apc_find_cultural_majority_effect = {
 	# Before anything, make sure the primary culture isn't considered a Cultural Majority

@@ -8,7 +8,7 @@
 # z_apc_mission.7					The [NPC] Question - While running - XXX
 # z_apc_mission.8					The [NPC] Question - While running - XXX
 
-# z_apc_mission.9					The [NPC] Leader - On completion of all three "government" missions (after z_apc_mission.10, 11 and 12) - The ruler can convert or abdicate or do nothing
+# z_apc_mission.9					The [NPC] Leader - On completion of all three "government" missions (after z_apc_mission.10, 11 and 12)
 # z_apc_mission.10					The [NPC] Governors - On completing z_apc_mission_npc_governors
 # z_apc_mission.11					The [NPC] Government - On completing z_apc_mission_npc_government
 # z_apc_mission.12					The [NPC] Army - On completing z_apc_mission_npc_army
@@ -19,7 +19,7 @@
 # z_apc_mission.15					[NPC] Integration (citizens)
 # z_apc_mission.16					[NPC] Privileges (nobles)
 # z_apc_mission.17					[NPC] Exception
-# z_apc_mission.18					A [NPC] Leader
+# z_apc_mission.18					A [NPC] Leader - The ruler can convert or abdicate or do nothing
 # z_apc_mission.19					The [NPC] City
 # z_apc_mission.20					The [NPC] Capital
 

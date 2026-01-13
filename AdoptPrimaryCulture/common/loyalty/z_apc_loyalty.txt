@@ -3,17 +3,17 @@
 #-----------------------------------------------------------------------------------------
 z_apc_loyalty_conversion_aborted = {
 	value = 5
-	yearly_decay = 5
+	yearly_decay = 1
 }
 
 z_apc_loyalty_voluntary_conversion = {
 	value = 5
-	yearly_decay = 5
+	yearly_decay = 1
 }
 
 z_apc_loyalty_forced_conversion = {
 	value = -10
-	yearly_decay = 5
+	yearly_decay = 2
 }
 
 #-----------------------------------------------------------------------------------------
@@ -21,10 +21,10 @@ z_apc_loyalty_forced_conversion = {
 #-----------------------------------------------------------------------------------------
 z_apc_npc_official = {
 	value = 5
-	yearly_decay = 5
+	yearly_decay = 1
 }
 
 z_apc_opc_official = {
 	value = -5
-	yearly_decay = 5
+	yearly_decay = 1
 }

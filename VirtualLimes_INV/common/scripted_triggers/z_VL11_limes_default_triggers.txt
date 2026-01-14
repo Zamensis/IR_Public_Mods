@@ -16,7 +16,6 @@ z_limes_africa_region_trigger_1 = {
 		is_in_area = sardinia_septentrionalis
 		is_in_area = sardinia_meridionalis
 		is_in_area = corsica_area
-		is_in_area = mastiania_area
 	}
 }
 
@@ -98,11 +97,11 @@ z_limes_aparanta_region_trigger_1 = {
 	OR = {
 		is_in_region = aparanta_region
 		is_in_region = maru_region
-		is_in_area = patalene_area
-		is_in_area = parecania_area
 		is_in_region = avanti_region
 		is_in_region = vindhyaprstha_region
 		is_in_region = karnata_region
+		is_in_area = patalene_area
+		is_in_area = parecania_area
 	}
 }
 
@@ -305,6 +304,9 @@ z_limes_ariana_region_trigger_3 = {
 		is_in_region = arabia_felix_region # Invictus only
 		#is_in_region = gerrha_region # Vanilla only
 		is_in_region = sogdiana_region
+		is_in_area = omana_area
+		is_in_area = central_omana_area
+		is_in_area = east_omana_area
 	}
 }
 
@@ -326,7 +328,10 @@ z_limes_armenia_region_trigger_2 = {
 	OR = {
 		z_limes_armenia_region_trigger_1 = yes
 		is_in_region = colchis_region
-		is_in_region = albania_region
+		AND = {
+			is_in_region = albania_region
+			NOT = { is_in_area = sarmatia_hyrcania_area }
+		}
 		is_in_region = cappadocia_pontica_region
 		is_in_region = cappadocia_region
 		is_in_region = cilicia_region
@@ -413,7 +418,13 @@ z_limes_asia_region_trigger_1 = {
 z_limes_asia_region_trigger_2 = {
 	OR = {
 		z_limes_asia_region_trigger_1 = yes
-		is_in_region = taurica_region
+		AND = {
+			is_in_region = taurica_region
+			NOT = { is_in_area = maeotia_minores_area }
+			NOT = { is_in_area = alania_area }
+			NOT = { is_in_area = tanaissa_area }
+			NOT = { is_in_area = sattara_area }
+		}
 		is_in_region = cappadocia_pontica_region
 		is_in_region = cappadocia_region
 		is_in_region = armenia_region
@@ -528,9 +539,9 @@ z_limes_avanti_region_trigger_1 = {
 		is_in_region = madhyadesa_region
 		is_in_region = gandhara_region
 		is_in_region = maru_region
+		is_in_region = aparanta_region
 		is_in_area = patalene_area
 		is_in_area = parecania_area
-		is_in_region = aparanta_region
 	}
 }
 
@@ -689,6 +700,7 @@ z_limes_bithynia_region_trigger_1 = {
 		is_in_region = galatia_region
 		is_in_region = cappadocia_pontica_region
 		is_in_region = cappadocia_region
+		is_in_region = cilicia_region
 	}
 }
 
@@ -697,7 +709,13 @@ z_limes_bithynia_region_trigger_1 = {
 z_limes_bithynia_region_trigger_2 = {
 	OR = {
 		z_limes_bithynia_region_trigger_1 = yes
-		is_in_region = taurica_region
+		AND = {
+			is_in_region = taurica_region
+			NOT = { is_in_area = maeotia_minores_area }
+			NOT = { is_in_area = alania_area }
+			NOT = { is_in_area = tanaissa_area }
+			NOT = { is_in_area = sattara_area }
+		}
 		is_in_region = colchis_region
 		is_in_region = armenia_region
 		is_in_region = assyria_region
@@ -720,7 +738,10 @@ z_limes_bithynia_region_trigger_3 = {
 		is_in_region = illyria_region
 		is_in_region = moesia_region
 		is_in_region = moesia_s_region # Invictus only
-		is_in_region = albania_region
+		AND = {
+			is_in_region = albania_region
+			NOT = { is_in_area = sarmatia_hyrcania_area }
+		}
 		is_in_region = media_region
 		is_in_region = upper_egypt_region
 	}
@@ -748,6 +769,7 @@ z_limes_bohemia_area_trigger_2 = {
 		is_in_region = venedia_region
 		is_in_region = vistulia_region
 		is_in_region = pannonia_region
+		is_in_region = rhaetia_region
 	}
 }
 
@@ -757,7 +779,6 @@ z_limes_bohemia_area_trigger_3 = {
 	OR = {
 		z_limes_bohemia_area_trigger_2 = yes
 		is_in_region = scandinavia_region
-		is_in_region = rhaetia_region
 		is_in_region = cisalpine_gaul_region
 		is_in_region = dacia_region
 	}
@@ -833,6 +854,7 @@ z_limes_britain_region_trigger_2 = {
 		is_in_area = cenomannia_area
 		is_in_area = veliocassia_area
 		is_in_area = morinia_area
+		is_in_area = ganuenta_area
 		#is_in_area = menapia_area # Vanilla only
 		is_in_area = frisia_area
 	}
@@ -986,8 +1008,17 @@ z_limes_cappadocia_pontica_region_trigger_2 = {
 	OR = {
 		z_limes_cappadocia_pontica_region_trigger_1 = yes
 		is_in_region = thrace_region
-		is_in_region = taurica_region
-		is_in_region = albania_region
+		AND = {
+			is_in_region = taurica_region
+			NOT = { is_in_area = maeotia_minores_area }
+			NOT = { is_in_area = alania_area }
+			NOT = { is_in_area = tanaissa_area }
+			NOT = { is_in_area = sattara_area }
+		}
+		AND = {
+			is_in_region = albania_region
+			NOT = { is_in_area = sarmatia_hyrcania_area }
+		}
 		is_in_region = media_region
 		is_in_region = mesopotamia_region
 		is_in_region = syria_region
@@ -1531,8 +1562,8 @@ z_limes_gallaecia_region_trigger_2 = {
 		is_in_region = lusitania_region
 		is_in_region = tarraconensis_region
 		is_in_region = aquitaine_region
-		is_in_area = vaccaeia_meridionalis_area
-		is_in_area = celtiberia_centralis_area
+		#is_in_area = vaccaeia_meridionalis_area # Vanilla only
+		#is_in_area = celtiberia_centralis_area # Vanilla only
 		is_in_area = carpetania_area
 	}
 }
@@ -1586,21 +1617,6 @@ z_limes_gandhara_region_trigger_3 = {
 		is_in_region = bactriana_region
 		is_in_region = ariana_region
 		#is_in_region = gedrosia_region # Vanilla only
-	}
-}
-
-# --------------------------------------------------------------------------------
-# Capital is_in_region gedrosia_region // Vanilla only
-# --------------------------------------------------------------------------------
-
-# Stage 1: Initial (main) authorized area
-# --------------------------------------------------
-z_limes_gedrosia_region_trigger_1 = {
-	OR = {
-		#is_in_region = gedrosia_region # Vanilla only
-		is_in_region = persis_region
-		is_in_region = ariana_region
-		is_in_region = maru_region
 	}
 }
 
@@ -1706,18 +1722,6 @@ z_limes_germania_superior_region_trigger_3 = {
 	}
 }
 
-# --------------------------------------------------------------------------------
-# Capital is_in_region gerrha_region // Vanilla only
-# --------------------------------------------------------------------------------
-
-# Stage 1: Initial (main) authorized area
-# --------------------------------------------------
-z_limes_gerrha_region_trigger_1 = {
-	OR = {
-		#is_in_region = gerrha_region # Vanilla only
-	}
-}
-
 # Stage 2: Expanded authorized area
 # --------------------------------------------------
 z_limes_gerrha_region_trigger_2 = {
@@ -1767,7 +1771,13 @@ z_limes_greece_region_trigger_2 = {
 		is_in_region = lower_egypt_region
 		is_in_region = palestine_region
 		is_in_region = syria_region
-		is_in_region = taurica_region
+		AND = {
+			is_in_region = taurica_region
+			NOT = { is_in_area = maeotia_minores_area }
+			NOT = { is_in_area = alania_area }
+			NOT = { is_in_area = tanaissa_area }
+			NOT = { is_in_area = sattara_area }
+		}
 		is_in_region = cappadocia_pontica_region
 		is_in_region = cappadocia_region
 		is_in_region = galatia_region
@@ -2177,12 +2187,17 @@ z_limes_macedonia_region_trigger_1 = {
 z_limes_macedonia_region_trigger_2 = {
 	OR = {
 		z_limes_macedonia_region_trigger_1 = yes
-		is_in_region = illyria_region
 		is_in_region = cyrenaica_region
 		is_in_region = lower_egypt_region
 		is_in_region = palestine_region
 		is_in_region = syria_region
-		is_in_region = taurica_region
+		AND = {
+			is_in_region = taurica_region
+			NOT = { is_in_area = maeotia_minores_area }
+			NOT = { is_in_area = alania_area }
+			NOT = { is_in_area = tanaissa_area }
+			NOT = { is_in_area = sattara_area }
+		}
 		is_in_region = cilicia_region
 		is_in_region = cappadocia_pontica_region
 		is_in_region = cappadocia_region
@@ -2302,12 +2317,12 @@ z_limes_magna_graecia_region_trigger_3 = {
 z_limes_maru_region_trigger_1 = {
 	OR = {
 		is_in_region = maru_region
-		is_in_area = patalene_area
-		is_in_area = parecania_area
+		#is_in_area = patalene_area # Vanilla only
+		#is_in_area = parecania_area # Vanilla only
 		is_in_region = gandhara_region
-		is_in_area = arachosia_area
-		is_in_area = bamyan_area
-		is_in_area = sattagydia_area
+		#is_in_area = arachosia_area # Vanilla only
+		#is_in_area = bamyan_area # Vanilla only
+		#is_in_area = sattagydia_area # Vanilla only
 		is_in_region = avanti_region
 		#is_in_region = gedrosia_region # Vanilla only
 		is_in_region = ariana_region # Invictus only
@@ -2385,14 +2400,9 @@ z_limes_media_region_trigger_1 = {
 		is_in_region = media_region
 		is_in_region = persis_region
 		is_in_region = parthia_region
-		trigger_if = {
-			limit = { root = { primary_culture = median } }
-			OR = {
-				is_in_area = paytankert_area
-				is_in_area = parskahayk_area
-				is_in_area = parsatunik_area
-			}
-		}
+		is_in_area = paytankert_area
+		is_in_area = parskahayk_area
+		is_in_area = parsatunik_area
 	}
 }
 
@@ -2437,7 +2447,6 @@ z_limes_mesopotamia_region_trigger_1 = {
 		is_in_region = mesopotamia_region
 		is_in_region = assyria_region
 		this = p:944
-		this = p:5399 # Invictus only
 		# Vanilla only
 		#this = p:940
 		#this = p:941
@@ -2480,7 +2489,7 @@ z_limes_mesopotamia_region_trigger_3 = {
 		is_in_region = ariana_region
 		#is_in_region = gedrosia_region # Vanilla only
 		#is_in_region = gerrha_region # Vanilla only
-		is_in_region = arabia_felix_region # Invictus only
+		is_in_region = arabia_region
 	}
 }
 
@@ -2628,7 +2637,6 @@ z_limes_numidia_region_trigger_2 = {
 		is_in_region = atlas_region # Invictus only
 		is_in_region = baetica_region
 		is_in_region = contestania_region
-		is_in_region = atlas_region
 		is_in_region = fezzan_region
 		is_in_region = cyrenaica_region
 	}
@@ -2701,6 +2709,7 @@ z_limes_pannonia_region_trigger_1 = {
 		is_in_region = pannonia_region
 		is_in_region = dacia_region
 		is_in_region = illyria_region
+		is_in_area = celamantia_area
 	}
 }
 
@@ -2787,12 +2796,6 @@ z_limes_persis_region_trigger_1 = {
 		is_in_region = assyria_region
 		is_in_region = ariana_region
 		#is_in_region = gedrosia_region # Vanilla only
-		# meshan_area
-		this = p:940
-		this = p:941
-		this = p:942
-		this = p:969
-		this = p:971
 	}
 }
 
@@ -3247,6 +3250,7 @@ z_limes_scythia_region_trigger_3 = {
 		is_in_region = bohemia_area
 		is_in_region = illyria_region
 		is_in_region = macedonia_region
+		is_in_region = thrace_region
 		is_in_region = dacia_region
 		is_in_region = moesia_region
 		is_in_region = moesia_s_region # Invictus only
@@ -3305,7 +3309,7 @@ z_limes_syria_region_trigger_3 = {
 		is_in_region = media_region
 		is_in_region = persis_region
 		#is_in_region = gerrha_region # Vanilla only
-		is_in_region = arabia_felix_region # Invictus only
+		is_in_region = arabia_region
 		is_in_region = upper_egypt_region
 	}
 }
@@ -3321,6 +3325,22 @@ z_limes_tarraconensis_region_trigger_1 = {
 		is_in_region = tarraconensis_region
 		is_in_region = contestania_region
 		is_in_area = narbonensis_centralis_area
+		is_in_area = aquitania_occidentalis_area
+		is_in_area = cantabria_area
+		# Eastern Gallaecia
+		is_in_area = vaccaeia_septentrionalis_area
+		is_in_area = vaccaeia_meridionalis_area
+		# Coastal Aquitaine
+		this = p:2243
+		this = p:2244
+		# Trans-Pyrenaeum West
+		this = p:2246
+		this = p:2248
+		this = p:2314
+		this = p:2318
+		# Trans-Pyrenaeum East
+		this = p:1079
+		this = p:2255
 	}
 }
 
@@ -3330,7 +3350,11 @@ z_limes_tarraconensis_region_trigger_2 = {
 	OR = {
 		z_limes_tarraconensis_region_trigger_1 = yes
 		is_in_region = baetica_region
-		is_in_region = lusitania_region
+		AND = {
+			is_in_region = lusitania_region
+			NOT = { is_in_area = oppidania_area }
+			NOT = { is_in_area = aebocosia_area }
+		}
 		is_in_region = aquitaine_region
 		is_in_region = transalpine_gaul_region
 	}
@@ -3344,6 +3368,9 @@ z_limes_tarraconensis_region_trigger_3 = {
 		is_in_region = mauretainia_region
 		is_in_region = numidia_region
 		is_in_region = africa_region
+		is_in_region = gallaecia_region
+		is_in_area = oppidania_area
+		is_in_area = aebocosia_area
 	}
 }
 
@@ -3378,6 +3405,8 @@ z_limes_taurica_region_trigger_1 = {
 				is_in_region = colchis_region
 				is_in_area = scythia_area
 				is_in_area = moesia_orientalis_area
+				is_in_area = sarmatia_hyrcania_area
+				is_in_area = scythia_trans_montem_area
 			}
 		}
 	}
@@ -3391,7 +3420,6 @@ z_limes_taurica_region_trigger_2 = {
 		trigger_if = {
 			limit = { root = { country_culture_group = hellenic } }
 			OR = {
-				is_in_region = scythia_region
 				is_in_region = macedonia_region
 				is_in_region = asia_region
 				is_in_region = armenia_region
@@ -3407,6 +3435,7 @@ z_limes_taurica_region_trigger_2 = {
 				is_in_region = albania_region
 				#is_in_region = transcaucasia_region # Vanilla only
 				is_in_region = central_asian_steppes_region # Invictus only
+				is_in_area = atara_area
 			}
 		}
 	}
@@ -3428,6 +3457,7 @@ z_limes_taurica_region_trigger_3 = {
 				is_in_region = moesia_s_region # Invictus only
 				is_in_region = galatia_region
 				is_in_region = cappadocia_region
+				is_in_region = scythia_region
 			}
 		}
 		trigger_else = {
@@ -3463,6 +3493,8 @@ z_limes_thrace_region_trigger_1 = {
 		is_in_region = greece_region
 		is_in_region = bithynia_region
 		is_in_region = asia_region
+		is_in_area = olbia_area
+		is_in_area = clepia_area
 	}
 }
 
@@ -3478,7 +3510,13 @@ z_limes_thrace_region_trigger_2 = {
 		is_in_region = lower_egypt_region
 		is_in_region = palestine_region
 		is_in_region = syria_region
-		is_in_region = taurica_region
+		AND = {
+			is_in_region = taurica_region
+			NOT = { is_in_area = maeotia_minores_area }
+			NOT = { is_in_area = alania_area }
+			NOT = { is_in_area = tanaissa_area }
+			NOT = { is_in_area = sattara_area }
+		}
 		is_in_region = cilicia_region
 		is_in_region = cappadocia_pontica_region
 		is_in_region = cappadocia_region
@@ -3497,7 +3535,6 @@ z_limes_thrace_region_trigger_3 = {
 		is_in_region = magna_graecia_region
 		is_in_region = africa_region
 		is_in_region = upper_egypt_region
-		is_in_region = scythia_region
 		is_in_region = armenia_region
 		is_in_region = assyria_region
 		is_in_region = mesopotamia_region
@@ -3524,7 +3561,13 @@ z_limes_tibet_region_trigger_1 = {
 z_limes_tibet_region_trigger_2 = {
 	OR = {
 		z_limes_tibet_region_trigger_1 = yes
-		is_in_region = himalayan_region
+		AND = {
+			is_in_region = himalayan_region
+			NOT = { is_in_area = tarim_area }
+			NOT = { is_in_area = north_tarim_area }
+			NOT = { is_in_area = south_tarim_area }
+			NOT = { is_in_area = pamir_area }
+		}
 	}
 }
 
@@ -3533,8 +3576,10 @@ z_limes_tibet_region_trigger_2 = {
 z_limes_tibet_region_trigger_3 = {
 	OR = {
 		z_limes_tibet_region_trigger_2 = yes
+		is_in_region = himalayan_region
 		is_in_region = gandhara_region
 		is_in_region = burma_region
+		is_in_region = madhyadesa_region
 		is_in_region = pracya_region
 	}
 }
@@ -3643,7 +3688,7 @@ z_limes_upper_egypt_region_trigger_1 = {
 		is_in_region = palestine_region
 		is_in_region = lower_nubia_region
 		is_in_region = nubia_region
-		is_in_area = aswan_area
+		#is_in_area = aswan_area # Vanilla only
 	}
 }
 
@@ -3820,6 +3865,8 @@ z_limes_vindhyaprstha_region_trigger_1 = {
 		is_in_region = pracya_region
 		is_in_region = aparanta_region
 		is_in_region = dravida_region
+		is_in_area = east_cedi_area
+		is_in_area = dahala_area
 	}
 }
 

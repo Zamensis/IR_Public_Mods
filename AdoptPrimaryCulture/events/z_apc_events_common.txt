@@ -167,6 +167,26 @@ z_apc_common.2 = {
 			custom_tooltip = z_apc_common_mission_unlocked
 		}
 	}
+		
+	option = { # Show me the list of all countries that currently have a CM
+		trigger = {
+			is_ai = no
+			current_date < 451.1.1
+		}
+		name = "z_apc_common.2.b"
+		# Inform the player that APC mission is available
+		if = {
+			limit = {
+				NOT = { has_variable = z_apc_mission_ongoing } # Just in case
+				NOT = { has_variable = z_apc_mission_cooldown } # Unless the mission cooldown is still running
+			}
+			custom_tooltip = z_apc_common_mission_unlocked
+		}
+		trigger_event = {
+			id = z_apc_common.999
+			days = 1
+		}
+	}
 }
 
 #-----------------------------------------------------------------------------------------
@@ -262,5 +282,61 @@ z_apc_common.4 = {
 		
 	option = { # OK
 		name = "z_apc_common.4.a"
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# Show the player a list of all countries that currently have a CM
+#-----------------------------------------------------------------------------------------
+z_apc_common.999 = {
+	type = country_event
+	title = "z_apc_common.999.t"
+	desc = "z_apc_common.999.desc"
+	
+	picture = z_apc_cultural_majority_pic	
+	left_portrait = root.current_ruler
+	
+	trigger = {
+		# Triggered by event: z_apc_common.2
+	}
+		
+	option = { # OK
+		name = "z_apc_common.999.a"
+		every_country = {
+			limit = {
+				any_country_culture = { has_country_culture_modifier = z_apc_cultural_majority_in_country_modifier }
+			}
+			custom_tooltip = z_apc_countries_list
+		}
+	}
+		
+	option = { # OK
+		name = "z_apc_common.999.b"
+		every_country = {
+			limit = {
+				any_country_culture = { has_country_culture_modifier = z_apc_cultural_majority_in_capital_region_modifier }
+			}
+			custom_tooltip = z_apc_countries_list
+		}
+	}
+		
+	option = { # OK
+		name = "z_apc_common.999.c"
+		every_country = {
+			limit = {
+				any_country_culture = { has_country_culture_modifier = z_apc_cultural_majority_in_capital_area_modifier }
+			}
+			custom_tooltip = z_apc_countries_list
+		}
+	}
+		
+	option = { # OK
+		name = "z_apc_common.999.d"
+		every_country = {
+			limit = {
+				any_country_culture = { has_country_culture_modifier = z_apc_cultural_majority_in_capital_city_modifier }
+			}
+			custom_tooltip = z_apc_countries_list
+		}
 	}
 }

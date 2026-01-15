@@ -1010,4 +1010,11 @@ z_apc_mission.999 = {
 			MAKE_OLD_CULTURE_INTEGRATED = no
 		}
 	}
+	
+	after = {
+		trigger_event = {
+			id = z_apc_aftermath.1
+			days = { 30 90 }
+		}
+	}
 }

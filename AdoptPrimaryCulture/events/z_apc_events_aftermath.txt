@@ -1,0 +1,39 @@
+﻿namespace = z_apc_aftermath
+
+#-----------------------------------------------------------------------------------------
+# Aftermath - Diplomatic relations with other countries
+#-----------------------------------------------------------------------------------------
+z_apc_aftermath.1 = {
+	type = country_event
+	title = "z_apc_aftermath.1.t"
+	desc = "z_apc_aftermath.1.desc"
+	
+	picture = z_apc_cultural_majority_pic	
+	left_portrait = root.current_ruler
+	
+	trigger = {
+		# Triggered by event z_apc_mission.999 # Complete mission and set new primary culture
+		any_country = {
+			OR = {
+				culture = scope:z_apc_old_primary_culture
+				culture = scope:z_apc_new_primary_culture
+			}
+		}
+	}
+		
+	option = { # OK
+		name = "z_apc_aftermath.1.a"
+		every_country = {
+			limit = {
+				culture = scope:z_apc_old_primary_culture
+			}
+			add_opinion = { target = root modifier = z_apc_removed_old_primary_culture }
+		}
+		every_country = {
+			limit = {
+				culture = scope:z_apc_new_primary_culture
+			}
+			add_opinion = { target = root modifier = z_apc_adopted_new_primary_culture }
+		}
+	}
+}

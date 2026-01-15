@@ -334,7 +334,7 @@ z_apc_mission = {
 	#---------------------------------------------------
 	z_apc_mission_npc_army = {
 	
-		requires = { z_apc_mission_the_npc_question z_apc_mission_the_npc_question }
+		requires = { z_apc_mission_the_npc_question }
 
 		potential = {}
 
@@ -403,12 +403,14 @@ z_apc_mission = {
 		potential = {
 			exists = scope:z_apc_new_primary_culture
 			exists = scope:z_apc_npc_capital
+			scope:z_apc_npc_capital = { owner = root }
 		}
 
 		bypass = {
 			OR = {
 				NOT = { exists = scope:z_apc_npc_capital }
 				NOT = { scope:z_apc_npc_capital.owner = root }
+				NOT = { scope:z_apc_npc_capital = { owner = root } }
 			}
 		}
 
@@ -434,12 +436,14 @@ z_apc_mission = {
 		potential = {
 			exists = scope:z_apc_new_primary_culture
 			exists = scope:z_apc_npc_capital
+			scope:z_apc_npc_capital = { owner = root }
 		}
 
 		bypass = {
 			OR = {
 				NOT = { exists = scope:z_apc_npc_capital }
 				NOT = { scope:z_apc_npc_capital.owner = root }
+				NOT = { scope:z_apc_npc_capital = { owner = root } }
 			}
 		}
 

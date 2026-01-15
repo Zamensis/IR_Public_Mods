@@ -31,28 +31,42 @@
  z_apc_loyalty_forced_conversion:0 "Forced Cultural Conversion"
  z_apc_npc_official:0 "Cultural Favoritism in the Government"
  z_apc_opc_official:0 "Cultural Favoritism in the Government"
+ # OPINION MODIFIERS -----------------------------------------------------------------------------------------------------------------------------------------------
+ z_apc_removed_old_primary_culture:0 "Betrayed our culture"
+ z_apc_adopted_new_primary_culture:0 "Adopted our culture"
  # EVENTS -----------------------------------------------------------------------------------------------------------------------------------------------
  z_apc_common.1.t:0 "The Silenced Majority"
- z_apc_common.1.desc:0 "The [z_apc_found_cultural_majority.GetName] people is no longer a cultural majority ruled by a [z_apc_old_ruling_minority.GetName] minority."
+ z_apc_common.1.desc:0 "The [z_apc_found_cultural_majority.GetName] people is no longer a cultural majority ruled by a [z_apc_old_ruling_minority.GetName] minority.\n\n$z_apc_cm_definition$"
  z_apc_common.1.a:0 "OK"
  # -----------
  z_apc_common.2.t:0 "The Unsilent Majority"
- z_apc_common.2.desc.diadochi:0 "Diadochi backstory\n\nThe [z_apc_found_cultural_majority.GetName] people is a cultural majority ruled by a [z_apc_ruling_minority.GetName] minority."
- z_apc_common.2.desc.monarchy:0 "Monarchy backstory\n\nThe [z_apc_found_cultural_majority.GetName] people is a cultural majority ruled by a [z_apc_ruling_minority.GetName] minority."
- z_apc_common.2.desc.republic:0 "Republic backstory\n\nThe [z_apc_found_cultural_majority.GetName] people is a cultural majority ruled by a [z_apc_ruling_minority.GetName] minority."
- z_apc_common.2.desc.tribal:0 "Tribal backstory\n\nThe [z_apc_found_cultural_majority.GetName] people is a cultural majority ruled by a [z_apc_ruling_minority.GetName] minority."
+ z_apc_common.2.desc.diadochi:0 "Diadochi backstory\n\nThe [z_apc_found_cultural_majority.GetName] people is a cultural majority ruled by a [z_apc_ruling_minority.GetName] minority.\n\n$z_apc_cm_definition$"
+ z_apc_common.2.desc.monarchy:0 "Monarchy backstory\n\nThe [z_apc_found_cultural_majority.GetName] people is a cultural majority ruled by a [z_apc_ruling_minority.GetName] minority.\n\n$z_apc_cm_definition$"
+ z_apc_common.2.desc.republic:0 "Republic backstory\n\nThe [z_apc_found_cultural_majority.GetName] people is a cultural majority ruled by a [z_apc_ruling_minority.GetName] minority.\n\n$z_apc_cm_definition$"
+ z_apc_common.2.desc.tribal:0 "Tribal backstory\n\nThe [z_apc_found_cultural_majority.GetName] people is a cultural majority ruled by a [z_apc_ruling_minority.GetName] minority.\n\n$z_apc_cm_definition$"
  z_apc_common.2.a:0 "OK"
- z_apc_common_mission_unlocked:0 "The Mission #Y $z_apc_mission$#! will be available after #Y 1 day#!."
+ z_apc_common.2.b:0 "Which other countries start with a disenfranchised #E Cultural Majority#!?"
+ z_apc_common_mission_unlocked:0 "The Mission #Y $z_apc_mission$#! will become available\nafter #Y 1 day#!."
  # -----------
  z_apc_common.4.t:0 "The Silent Majority"
- z_apc_common.4.desc:0 "The [z_apc_found_cultural_majority.GetName] people has replaced the [z_apc_old_cultural_majority.GetName] as the cultural majority ruled by a [z_apc_ruling_minority.GetName] minority."
+ z_apc_common.4.desc:0 "The [z_apc_found_cultural_majority.GetName] people has replaced the [z_apc_old_cultural_majority.GetName] as the cultural majority ruled by a [z_apc_ruling_minority.GetName] minority.\n\n$z_apc_cm_definition$"
  z_apc_common.4.a:0 "OK"
+ # -----------
+ z_apc_common.999.t:0 "$z_apc_common.2.t$"
+ z_apc_common.999.desc:0 "Hover over the button for a list of all countries that currently have a disenfranchised #E Cultural Majority#!.\n\n$z_apc_cm_definition$"
+ z_apc_common.999.a:0 "#E Cultural Majorities#! based in the #E entire country#!."
+ z_apc_common.999.b:0 "#E Cultural Majorities#! based in the #E capital region#!."
+ z_apc_common.999.c:0 "#E Cultural Majorities#! based in the #E capital province#!."
+ z_apc_common.999.d:0 "#E Cultural Majorities#! based in the #E capital territory#!."
+ z_apc_countries_list:0 "@[THIS.GetCountry.GetFlag]! [THIS.GetCountry.GetName] has a #E Cultural Majority#!."
+ # -----------
+ z_apc_cm_definition:0 "A #E Cultural Majority#! is a culture that represents #E at least 50%#! of the population in the entire country, or else in the capital region, or else in the capital province, or else in the capital territory."
  # MISSION -----------------------------------------------------------------------------------------------------------------------------------------------
- z_apc_mission:0 "A [z_apc_found_cultural_majority.GetName] Realm"
+ z_apc_mission:0 "A New [z_apc_found_cultural_majority.GetName] Realm"
  z_apc_mission_DESCRIPTION:0 "z_apc_mission_DESCRIPTION"
  z_apc_mission_CRITERIA_DESCRIPTION:0 "This mission will be considered complete when we have adopted the [z_apc_found_cultural_majority.GetName] culture and language, and the current [z_apc_old_primary_culture.GetName] regime has been replaced or converted."
  z_apc_mission_BUTTON_TOOLTIP:0 "z_apc_mission_BUTTON_TOOLTIP"
- z_apc_mission_cooldown_tt:0 "You will #R NOT#! be able to restart this mission until at least #R 100#! years have passed.."
+ z_apc_mission_cooldown_tt:0 "You will #R NOT#! be able to restart this mission until at least #R 100#! years have passed."
  # -----------
  z_apc_mission_ctp_desc_tt:0 "A high #E Cultural Transition Score#! will reduce the risk of a coup, an insurrection or otherwise bad consequences when changing our #E Primary Culture#!."
  z_apc_mission_ctp_current_tt:0 "(Currently: #Y #E [SCOPE.ScriptValue('z_apc_mission_ctp_current_svalue')|0]#!#!/[SCOPE.ScriptValue('z_apc_mission_ctp_max_svalue')|0])"
@@ -74,16 +88,16 @@
  z_apc_mission_integrate_nobles:0 "[z_apc_new_primary_culture.GetName] Privileges"
  # -----------
  z_apc_mission_npc_governors:0 "[z_apc_new_primary_culture.GetName] Governors"
- z_apc_mission_npc_governors_allow_tt:0 "At least #E #Y [SCOPE.ScriptValue('z_apc_mission_npc_governors_goal_svalue')|0]#!#! #E Governors#! are [z_apc_new_primary_pop_culture.GetName] (Currently: #E #R [SCOPE.ScriptValue('z_apc_mission_npc_governors_current_svalue')|0]#!#!)."
- z_apc_mission_npc_governors_loyalty_tt:0 "Every [z_apc_new_primary_culture.GetName] #E Governor#! gains #G 5#! Loyalty @loyalty_icon!.\nEvery [z_apc_old_primary_culture.GetName] #E Governor#! loses #R 5#! Loyalty @loyalty_icon!."
+ z_apc_mission_npc_governors_allow_tt:0 "At least #E #Y [SCOPE.ScriptValue('z_apc_mission_npc_governors_goal_svalue')|0]#!#! #E Governorships#! are held by [z_apc_new_primary_pop_culture.GetName] characters (Currently: #E #R [SCOPE.ScriptValue('z_apc_mission_npc_governors_current_svalue')|0]#!#!)."
+ z_apc_mission_npc_governors_loyalty_tt:0 "Every [z_apc_new_primary_culture.GetName] #E Governor#! gains #G 5#! Loyalty@loyalty_icon!.\nEvery [z_apc_old_primary_culture.GetName] #E Governor#! loses #R 5#! Loyalty@loyalty_icon!."
  # -----------
  z_apc_mission_npc_government:0 "[z_apc_new_primary_culture.GetName] Ministers"
  z_apc_mission_npc_government_allow_tt:0 "At least #E #Y [SCOPE.ScriptValue('z_apc_mission_npc_government_goal_svalue')|0]#!#! #E Offices#! are held by [z_apc_new_primary_pop_culture.GetName] characters (Currently: #E #R [SCOPE.ScriptValue('z_apc_mission_npc_government_current_svalue')|0]#!#!)."
- z_apc_mission_npc_government_loyalty_tt:0 "Every [z_apc_new_primary_culture.GetName] #E Office holder#! gains #G 5#! Loyalty @loyalty_icon!.\nEvery [z_apc_old_primary_culture.GetName] #E Office holder#! loses #R 5#! Loyalty @loyalty_icon!."
+ z_apc_mission_npc_government_loyalty_tt:0 "Every [z_apc_new_primary_culture.GetName] #E Office holder#! gains #G 5#! Loyalty@loyalty_icon!.\nEvery [z_apc_old_primary_culture.GetName] #E Office holder#! loses #R 5#! Loyalty@loyalty_icon!."
  # -----------
- z_apc_mission_npc_army:0 "[z_apc_new_primary_culture.GetName] Commanders"
- z_apc_mission_npc_army_allow_tt:0 "At least #E #Y [SCOPE.ScriptValue('z_apc_mission_npc_army_goal_svalue')|0]#!#! #E Legion Commanders#! are [z_apc_new_primary_pop_culture.GetName] (Currently: #E #R [SCOPE.ScriptValue('z_apc_mission_npc_army_current_svalue')|0]#!#!)."
- z_apc_mission_npc_army_loyalty_tt:0 "Every [z_apc_new_primary_culture.GetName] #E Legion Commander#! gains #G 5#! Loyalty @loyalty_icon!.\nEvery [z_apc_old_primary_culture.GetName] #E Legion Commander#! loses #R 5#! Loyalty @loyalty_icon!."
+ z_apc_mission_npc_army:0 "[z_apc_new_primary_culture.GetName] Generals"
+ z_apc_mission_npc_army_allow_tt:0 "At least #E #Y [SCOPE.ScriptValue('z_apc_mission_npc_army_goal_svalue')|0]#!#! #E Legion Commands#! are held by [z_apc_new_primary_pop_culture.GetName] characters (Currently: #E #R [SCOPE.ScriptValue('z_apc_mission_npc_army_current_svalue')|0]#!#!)."
+ z_apc_mission_npc_army_loyalty_tt:0 "Every [z_apc_new_primary_culture.GetName] #E Legion Commander#! gains #G 5#! Loyalty@loyalty_icon!.\nEvery [z_apc_old_primary_culture.GetName] #E Legion Commander#! loses #R 5#! Loyalty@loyalty_icon!."
  # -----------
  z_apc_mission_npc_ruler:0 "The [z_apc_new_primary_culture.GetName] [z_apc_country.GetRuler.GetTitleName]"
  # -----------
@@ -103,7 +117,7 @@
  z_apc_mission.2.a:0 "The [z_apc_old_primary_culture.GetName] nobility should follow the [z_apc_new_primary_culture.GetName] customs."
  z_apc_mission.2.a.tt:0 "More [z_apc_old_primary_culture.GetName] characters will try to adopt the [z_apc_new_primary_culture.GetName] customs."
  z_apc_mission.2.b:0 "The [z_apc_old_primary_culture.GetName] minority must give way to the [z_apc_new_primary_culture.GetName] elite."
- z_apc_mission.2.b.tt:0 "More [z_apc_new_primary_culture.GetName] characters will become available."
+ z_apc_mission.2.b.tt:0 "More [z_apc_new_primary_culture.GetName] characters will try to enter the circles of power."
  # -----------
  z_apc_mission.3.t:0 "$z_apc_mission_the_npc_question$"
  z_apc_mission.3.desc:0 "Placeholder"

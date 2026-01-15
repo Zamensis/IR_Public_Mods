@@ -65,14 +65,14 @@ z_apc_generate_npc_character = {
 	# Identify [NPC] religion
 	random_owned_province = {
 		limit = {
-			exists = scope:Z_apc_new_primary_pop_culture
+			exists = scope:z_apc_new_primary_pop_culture
 			any_pops_in_province = {
-				this.culture = scope:Z_apc_new_primary_pop_culture
+				this.culture = scope:z_apc_new_primary_pop_culture
 			}
 		}
 		random_pops_in_province = {
 			limit = {
-				this.culture = scope:Z_apc_new_primary_pop_culture
+				this.culture = scope:z_apc_new_primary_pop_culture
 			}
 			this.religion = { save_scope_as = z_apc_npc_religion }
 		}

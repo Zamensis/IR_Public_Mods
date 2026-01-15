@@ -3686,8 +3686,24 @@ z_limes_upper_egypt_region_trigger_1 = {
 		is_in_region = lower_egypt_region
 		is_in_region = cyrenaica_region
 		is_in_region = palestine_region
-		is_in_region = lower_nubia_region
-		is_in_region = nubia_region
+		# Main Lower Nubia
+		AND = {
+			is_in_region = lower_nubia_region
+			# Yellow Nile in Lower Nubia
+			NOT = {
+				is_in_area = meidob_area
+				is_in_area = melik_area
+				is_in_area = yellow_nile_area
+			}
+		}
+		# Main Upper Nubia
+		AND = {
+			is_in_region = nubia_region
+			# Yellow Nile in Upper Nubia
+			NOT = {
+				is_in_area = zankor_area
+			}
+		}
 		#is_in_area = aswan_area # Vanilla only
 	}
 }
@@ -3721,6 +3737,12 @@ z_limes_upper_egypt_region_trigger_3 = {
 		is_in_region = thrace_region
 		is_in_region = greece_region
 		is_in_region = macedonia_region
+		# Yellow Nile in Lower Nubia
+		is_in_area = meidob_area
+		is_in_area = melik_area
+		is_in_area = yellow_nile_area
+		# Yellow Nile in Upper Nubia
+		is_in_area = zankor_area
 	}
 }
 

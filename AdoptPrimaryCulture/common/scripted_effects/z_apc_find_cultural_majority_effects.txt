@@ -296,3 +296,94 @@ z_apc_remove_all_cultural_majority_modifiers_effect = {
 		remove_country_culture_modifier = z_apc_cultural_majority_in_capital_city_modifier
 	}
 }
+
+#-----------------------------------------------------------------------------------------
+# Set APC variables
+# We use persistent variables instead of saved scopes
+# Triggered by events z_apc_common.1-4
+#-----------------------------------------------------------------------------------------
+z_apc_set_variables_effect = {
+	# Current primary culture
+	random_owned_province = {
+		limit = {
+			any_pops_in_province = { this.country_culture = root.country_culture }
+		}
+		random_pops_in_province = {
+			limit = { this.country_culture = root.country_culture }
+			this.culture = {
+				root = {
+					set_variable = {
+						name = z_apc_old_primary_pop_culture # Old culture
+						value = prev
+					}
+				}
+			}
+			this.country_culture = {
+				root = {
+					set_variable = {
+						name = z_apc_old_primary_culture # Old country culture
+						value = prev
+					}
+				}
+			}
+		}
+	}
+	# Target primary culture
+	random_owned_province = {
+		limit = {
+			any_pops_in_province = {
+				this.country_culture = { z_apc_has_any_cultural_majority_modifier_trigger = yes }
+				NOT = { this.country_culture = root.country_culture } # Just to make sure
+			}
+		}
+		random_pops_in_province = {
+			limit = {
+				this.country_culture = { z_apc_has_any_cultural_majority_modifier_trigger = yes }
+				NOT = { this.country_culture = root.country_culture }
+			}
+			this.culture = {
+				root = {
+					set_variable = {
+						name = z_apc_new_primary_pop_culture # New culture
+						value = prev
+					}
+				}
+			}
+			this.country_culture = {
+				root = {
+					set_variable = {
+						name = z_apc_new_primary_culture # New country culture
+						value = prev
+					}
+				}
+			}
+		}
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# Clear APC variables
+# Triggered by events z_apc_common.1-4 and z_apc_set_primary_culture_effect
+#-----------------------------------------------------------------------------------------
+z_apc_clear_variables_effect = {
+	if = {
+		limit = { has_variable = z_apc_old_primary_pop_culture }
+		remove_variable = z_apc_old_primary_pop_culture
+	}
+	if = {
+		limit = { has_variable = z_apc_old_primary_culture }
+		remove_variable = z_apc_old_primary_culture
+	}
+	if = {
+		limit = { has_variable = z_apc_new_primary_pop_culture }
+		remove_variable = z_apc_new_primary_pop_culture
+	}
+	if = {
+		limit = { has_variable = z_apc_new_primary_culture }
+		remove_variable = z_apc_new_primary_culture
+	}
+	if = {
+		limit = { has_variable = z_apc_npc_capital }
+		remove_variable = z_apc_npc_capital
+	}
+}

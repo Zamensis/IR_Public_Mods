@@ -15,7 +15,7 @@ z_apc_mission_add_ctp_effect = {
 #-----------------------------------------------------------------------------------------
 # Clear mission variables (on mission abort or mission completion)
 #-----------------------------------------------------------------------------------------
-z_apc_mission_clear_variables_effect = {
+z_apc_clear_mission_variables_effect = {
 	if = {
 		limit = { has_variable = z_apc_mission_ongoing }
 		remove_variable = z_apc_mission_ongoing

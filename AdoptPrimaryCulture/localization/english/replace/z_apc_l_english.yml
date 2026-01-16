@@ -19,11 +19,11 @@
  desc_z_apc_npc_pretender:0 "This character is a powerful representative of the Cultural Majority and could have greater ambitions."
  z_apc_national_shame_small_modifier:0 "Public Disapproval"
  desc_z_apc_national_shame_small_modifier:0 "This culture has been sidelined by the ruler of the country."
- z_apc_national_shame_big_modifier:0 "Grave Public Shaming"
+ z_apc_national_shame_big_modifier:0 "Public Shaming"
  desc_z_apc_national_shame_big_modifier:0 "This culture has been betrayed by the ruler of the country."
  z_apc_national_pride_small_modifier:0 "Public Appraisal"
  desc_z_apc_national_pride_small_modifier:0 "This culture has been praised by the ruler of the country."
- z_apc_national_pride_big_modifier:0 "Great Public Appraisal"
+ z_apc_national_pride_big_modifier:0 "Public Appraisal"
  desc_z_apc_national_pride_big_modifier:0 "This culture has been adopted by the ruler of the country."
  # LOYALTY MODIFIERS -----------------------------------------------------------------------------------------------------------------------------------------------
  z_apc_loyalty_conversion_aborted:0 "Escaped Cultural Conversion"
@@ -32,8 +32,8 @@
  z_apc_npc_official:0 "Cultural Favoritism in the Government"
  z_apc_opc_official:0 "Cultural Favoritism in the Government"
  # OPINION MODIFIERS -----------------------------------------------------------------------------------------------------------------------------------------------
- z_apc_removed_old_primary_culture:0 "Betrayed our culture"
- z_apc_adopted_new_primary_culture:0 "Adopted our culture"
+ z_apc_removed_old_primary_culture:0 "Abandoned our Culture"
+ z_apc_adopted_new_primary_culture:0 "Adopted our Culture"
  # EVENTS -----------------------------------------------------------------------------------------------------------------------------------------------
  z_apc_common.1.t:0 "The Silenced Majority"
  z_apc_common.1.desc:0 "The [z_apc_found_cultural_majority.GetName] people is no longer a cultural majority ruled by a [z_apc_old_ruling_minority.GetName] minority.\n\n$z_apc_cm_definition$"
@@ -59,12 +59,13 @@
  z_apc_common.999.c:0 "#E Cultural Majorities#! based in the #E capital province#!."
  z_apc_common.999.d:0 "#E Cultural Majorities#! based in the #E capital territory#!."
  z_apc_countries_list:0 "@[THIS.GetCountry.GetFlag]! [THIS.GetCountry.GetName] has a #E Cultural Majority#!."
+ z_apc_countries_list_end:0 "#R Click to dismiss.#!"
  # -----------
  z_apc_cm_definition:0 "A #E Cultural Majority#! is a culture that represents #E at least 50%#! of the population in the entire country, or else in the capital region, or else in the capital province, or else in the capital territory."
  # MISSION -----------------------------------------------------------------------------------------------------------------------------------------------
  z_apc_mission:0 "A New [z_apc_found_cultural_majority.GetName] Realm"
  z_apc_mission_DESCRIPTION:0 "z_apc_mission_DESCRIPTION"
- z_apc_mission_CRITERIA_DESCRIPTION:0 "This mission will be considered complete when we have adopted the [z_apc_found_cultural_majority.GetName] culture and language, and the current [z_apc_old_primary_culture.GetName] regime has been replaced or converted."
+ z_apc_mission_CRITERIA_DESCRIPTION:0 "This mission will be considered complete when we have adopted the [z_apc_new_primary_culture.GetName] culture and language, and the current [z_apc_old_primary_culture.GetName] regime has been replaced or converted."
  z_apc_mission_BUTTON_TOOLTIP:0 "z_apc_mission_BUTTON_TOOLTIP"
  z_apc_mission_cooldown_tt:0 "You will #R NOT#! be able to restart this mission until at least #R 100#! years have passed."
  # -----------
@@ -113,7 +114,7 @@
  z_apc_mission.1.a.tt:0 "Placeholder"
  # -----------
  z_apc_mission.2.t:0 "$z_apc_mission_the_npc_question$"
- z_apc_mission.2.desc:0 "We must choose a strategy for the establishment of a new [z_apc_found_cultural_majority.GetName] rule in [z_apc_country.GetName]."
+ z_apc_mission.2.desc:0 "We must choose a strategy for the establishment of a new [z_apc_new_cultural_majority.GetName] rule in [z_apc_country.GetName]."
  z_apc_mission.2.a:0 "The [z_apc_old_primary_culture.GetName] nobility should follow the [z_apc_new_primary_culture.GetName] customs."
  z_apc_mission.2.a.tt:0 "More [z_apc_old_primary_culture.GetName] characters will try to adopt the [z_apc_new_primary_culture.GetName] customs."
  z_apc_mission.2.b:0 "The [z_apc_old_primary_culture.GetName] minority must give way to the [z_apc_new_primary_culture.GetName] elite."
@@ -145,7 +146,9 @@
  # -----------
  z_apc_mission.9.t:0 "The [z_apc_new_primary_culture.GetName] Government"
  z_apc_mission.9.desc:0 "Placeholder"
- z_apc_mission.9.a:0 "Placeholder"
+ z_apc_mission.9.a:0 "Adopt the [z_apc_new_primary_culture.GetName] étiquette."
+ z_apc_mission.9.b:0 "Give way to [z_apc_npc_pretender.GetName]."
+ z_apc_mission.9.c:0 "Deliver a speech to honor of the [z_apc_new_primary_culture.GetName] traditions."
  # -----------
  z_apc_mission.10.t:0 "$z_apc_mission_npc_governors$"
  z_apc_mission.10.desc:0 "Placeholder"
@@ -186,9 +189,7 @@
  # -----------
  z_apc_mission.18.t:0 "$z_apc_mission_npc_ruler$"
  z_apc_mission.18.desc:0 "Placeholder"
- z_apc_mission.18.a:0 "Adopt the [z_apc_new_primary_culture.GetName] étiquette"
- z_apc_mission.18.b:0 "Give way to [z_apc_npc_pretender.GetName]"
- z_apc_mission.18.c:0 "Deliver a speech to honor of the [z_apc_new_primary_culture.GetName] traditions"
+ z_apc_mission.18.a:0 "Placeholder"
  # -----------
  z_apc_mission.19.t:0 "$z_apc_mission_npc_city$"
  z_apc_mission.19.desc:0 "Placeholder"
@@ -204,3 +205,5 @@
  z_apc_mission.999.a.tt:0 "Placeholder"
  z_apc_mission.999.b:0 "Conquerors, we are conquered."
  z_apc_mission.999.b.tt:0 "Placeholder"
+ z_apc_mission.999.bad_opinion:0 "Every [z_apc_old_primary_culture.GetName] country loses #R 25#! opinion of [SCOPE.GetRootScope.GetCountry.GetName]"
+ z_apc_mission.999.good_opinion:0 "Every [z_apc_new_primary_culture.GetName] country gains #G 15#! opinion of [SCOPE.GetRootScope.GetCountry.GetName]"

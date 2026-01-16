@@ -235,32 +235,101 @@ z_apc_mission.9 = {
 	}
 	
 	immediate = {
-		every_character = {
-			limit = {
-				is_alive = yes
-				z_apc_is_eligible_npc_pretender_trigger = yes
-				z_apc_is_potential_npc_pretender_trigger = yes
-				has_culture = scope:z_apc_new_primary_pop_culture
-				NOT = { has_character_modifier = z_apc_npc_pretender }
-				OR = {
-					is_governor = yes
-					has_any_office = yes
-					root = {
-						any_legion = {
-							any_legion_commander = { this = prev.prev.prev }
+		hidden_effect = {
+			every_character = {
+				limit = {
+					is_alive = yes
+					z_apc_is_eligible_npc_pretender_trigger = yes
+					z_apc_is_potential_npc_pretender_trigger = yes
+					has_culture = scope:z_apc_new_primary_pop_culture
+					NOT = { has_character_modifier = z_apc_npc_pretender }
+					OR = {
+						is_governor = yes
+						has_any_office = yes
+						root = {
+							any_legion = {
+								any_legion_commander = { this = prev.prev.prev }
+							}
 						}
 					}
 				}
+				add_character_modifier = {
+					name = z_apc_npc_pretender
+					duration = -1
+				}
 			}
-			add_character_modifier = {
-				name = z_apc_npc_pretender
-				duration = -1
+		}
+		ordered_character = {
+			limit = {
+				is_alive = yes
+				has_character_modifier = z_apc_npc_pretender
+				has_culture = scope:z_apc_new_primary_pop_culture
+				z_apc_is_eligible_npc_pretender_trigger = yes
+			}
+			order_by = martial
+			save_scope_as = z_apc_npc_pretender
+		}
+	}
+	
+	option = { # Assimilate
+		name = "z_apc_mission.9.a"
+		trigger = {
+			current_ruler = {
+				NOT = { culture = scope:z_apc_new_primary_pop_culture }
+			}
+		}
+		current_ruler = { set_culture = scope:z_apc_new_primary_pop_culture }
+		scope:z_apc_old_primary_culture = {
+			add_country_culture_modifier = {
+				name = z_apc_national_shame_big_modifier
+				duration = 3650
+			}
+		}
+		scope:z_apc_new_primary_culture = {
+			add_country_culture_modifier = {
+				name = z_apc_national_pride_big_modifier
+				duration = 3650
 			}
 		}
 	}
 	
-	option = { # OK
-		name = "z_apc_mission.9.a"
+	option = { # Replace
+		name = "z_apc_mission.9.b"
+		trigger = {
+			exists = scope:z_apc_npc_pretender
+			current_ruler = {
+				NOT = { culture = scope:z_apc_new_primary_pop_culture }
+			}
+		}
+		set_as_ruler = scope:z_apc_npc_pretender
+		scope:z_apc_old_primary_culture = {
+			add_country_culture_modifier = {
+				name = z_apc_national_shame_big_modifier
+				duration = 3650
+			}
+		}
+		scope:z_apc_new_primary_culture = {
+			add_country_culture_modifier = {
+				name = z_apc_national_pride_big_modifier
+				duration = 3650
+			}
+		}
+	}
+	
+	option = { # Don't assimilate, make a speech
+		name = "z_apc_mission.9.c"
+		scope:z_apc_old_primary_culture = {
+			add_country_culture_modifier = {
+				name = z_apc_national_shame_small_modifier
+				duration = 3650
+			}
+		}
+		scope:z_apc_new_primary_culture = {
+			add_country_culture_modifier = {
+				name = z_apc_national_pride_small_modifier
+				duration = 3650
+			}
+		}
 	}
 }
 
@@ -848,80 +917,12 @@ z_apc_mission.18 = {
 	}
 	
 	immediate = {
-		ordered_character = {
-			limit = {
-				is_alive = yes
-				has_character_modifier = z_apc_npc_pretender
-				has_culture = scope:z_apc_new_primary_pop_culture
-				z_apc_is_eligible_npc_pretender_trigger = yes
-			}
-			order_by = martial
-			save_scope_as = z_apc_npc_pretender
-		}
 	}
 	
-	option = { # Assimilate
+	option = { # OK
 		name = "z_apc_mission.18.a"
-		trigger = {
-			current_ruler = {
-				NOT = { culture = scope:z_apc_new_primary_pop_culture }
-			}
-		}
-		current_ruler = { set_culture = scope:z_apc_new_primary_pop_culture }
-		scope:z_apc_old_primary_culture = {
-			add_country_culture_modifier = {
-				name = z_apc_national_shame_big_modifier
-				duration = 3650
-			}
-		}
-		scope:z_apc_new_primary_culture = {
-			add_country_culture_modifier = {
-				name = z_apc_national_pride_big_modifier
-				duration = 3650
-			}
-		}
 		z_apc_mission_add_ctp_effect = { VALUE = 3 }
-	}
-	
-	option = { # Replace
-		name = "z_apc_mission.18.b"
-		trigger = {
-			exists = scope:z_apc_npc_pretender
-			current_ruler = {
-				NOT = { culture = scope:z_apc_new_primary_pop_culture }
-			}
-		}
-		set_as_ruler = scope:z_apc_npc_pretender
-		scope:z_apc_old_primary_culture = {
-			add_country_culture_modifier = {
-				name = z_apc_national_shame_big_modifier
-				duration = 3650
-			}
-		}
-		scope:z_apc_new_primary_culture = {
-			add_country_culture_modifier = {
-				name = z_apc_national_pride_big_modifier
-				duration = 3650
-			}
-		}
-		z_apc_mission_add_ctp_effect = { VALUE = 3 }
-	}
-	
-	option = { # Don't assimilate, make a speech
-		name = "z_apc_mission.18.c"
-		scope:z_apc_old_primary_culture = {
-			add_country_culture_modifier = {
-				name = z_apc_national_shame_small_modifier
-				duration = 3650
-			}
-		}
-		scope:z_apc_new_primary_culture = {
-			add_country_culture_modifier = {
-				name = z_apc_national_pride_small_modifier
-				duration = 3650
-			}
-		}
-		z_apc_mission_add_ctp_effect = { VALUE = 3 }
+		# Have family members of the ruler convert if they aren't already the new culture
 	}
 }
 
@@ -993,28 +994,74 @@ z_apc_mission.999 = {
 	
 	trigger = {
 		# Triggered on completing mission tree
+		has_variable = z_apc_old_primary_culture
+		has_variable = z_apc_new_primary_culture
 	}
 	
 	option = { # Let's go! Keep the old culture integrated
 		name = "z_apc_mission.999.a"
 		custom_tooltip = z_apc_mission.999.a.tt
-		z_apc_set_primary_culture_effect = {
-			MAKE_OLD_CULTURE_INTEGRATED = yes
+		hidden_effect = {
+			z_apc_set_primary_culture_effect = {
+				MAKE_OLD_CULTURE_INTEGRATED = yes
+			}
+		}
+		show_as_tooltip = {
+			set_primary_culture = scope:z_apc_new_primary_pop_culture
+			scope:z_apc_old_primary_culture = {
+				set_country_culture_right = citizen
+			}
 		}
 	}
 	
 	option = { # Let's go! Demote the old culture
 		name = "z_apc_mission.999.b"
 		custom_tooltip = z_apc_mission.999.b.tt
-		z_apc_set_primary_culture_effect = {
-			MAKE_OLD_CULTURE_INTEGRATED = no
+		hidden_effect = {
+			z_apc_set_primary_culture_effect = {
+				MAKE_OLD_CULTURE_INTEGRATED = no
+			}
+		}
+		show_as_tooltip = {
+			set_primary_culture = scope:z_apc_new_primary_pop_culture
+			scope:z_apc_old_primary_culture = {
+				set_country_culture_right = freemen
+			}
 		}
 	}
 	
 	after = {
-		trigger_event = {
-			id = z_apc_aftermath.1
-			days = { 30 90 }
+		if = {
+			limit = {
+				any_country = {
+					primary_culture = root.var:z_apc_old_primary_pop_culture
+				}
+			}
+			#custom_tooltip = z_apc_mission.999.bad_opinion
+			#hidden_effect = {
+				every_country = {
+					limit = {
+						primary_culture = root.var:z_apc_old_primary_pop_culture
+					}
+					add_opinion = { target = root modifier = z_apc_removed_old_primary_culture }
+				}
+			#}
+		}
+		if = {
+			limit = {
+				any_country = {
+					primary_culture = root.var:z_apc_new_primary_pop_culture
+				}
+			}
+			#custom_tooltip = z_apc_mission.999.good_opinion
+			#hidden_effect = {
+				every_country = {
+					limit = {
+						primary_culture = root.var:z_apc_new_primary_pop_culture
+					}
+					add_opinion = { target = root modifier = z_apc_adopted_new_primary_culture }
+				}
+			#}
 		}
 	}
 }

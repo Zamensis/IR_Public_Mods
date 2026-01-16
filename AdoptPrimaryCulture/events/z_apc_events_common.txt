@@ -55,6 +55,10 @@ z_apc_common.1 = {
 	option = { # OK
 		name = "z_apc_common.1.a"
 	}
+	
+	after = {
+		z_apc_clear_variables_effect = yes
+	}
 }
 
 #-----------------------------------------------------------------------------------------
@@ -187,6 +191,11 @@ z_apc_common.2 = {
 			days = 1
 		}
 	}
+	
+	after = {
+		z_apc_clear_variables_effect = yes
+		z_apc_set_variables_effect = yes
+	}
 }
 
 #-----------------------------------------------------------------------------------------
@@ -283,6 +292,11 @@ z_apc_common.4 = {
 	option = { # OK
 		name = "z_apc_common.4.a"
 	}
+	
+	after = {
+		z_apc_clear_variables_effect = yes
+		z_apc_set_variables_effect = yes
+	}
 }
 
 #-----------------------------------------------------------------------------------------
@@ -308,6 +322,7 @@ z_apc_common.999 = {
 			}
 			custom_tooltip = z_apc_countries_list
 		}
+		custom_tooltip = z_apc_countries_list_end
 	}
 		
 	option = { # OK
@@ -318,6 +333,7 @@ z_apc_common.999 = {
 			}
 			custom_tooltip = z_apc_countries_list
 		}
+		custom_tooltip = z_apc_countries_list_end
 	}
 		
 	option = { # OK
@@ -328,6 +344,7 @@ z_apc_common.999 = {
 			}
 			custom_tooltip = z_apc_countries_list
 		}
+		custom_tooltip = z_apc_countries_list_end
 	}
 		
 	option = { # OK
@@ -338,5 +355,6 @@ z_apc_common.999 = {
 			}
 			custom_tooltip = z_apc_countries_list
 		}
+		custom_tooltip = z_apc_countries_list_end
 	}
 }

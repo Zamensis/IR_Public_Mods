@@ -7,69 +7,10 @@
 z_apc_set_primary_culture_effect = {
 	#-----------------------------------------------------------------------------------------
 	# STEP 0
-	# First of all, we need to save a number of *culture* and *country_culture* scopes.
-	# We use persistent variables instead of saved_scopes so that we can use this effect independently.
+	# First of all, we need to save some *culture* and *country_culture* variables.
 	#-----------------------------------------------------------------------------------------
-	# Let's start with our current primary culture, the one we're about to demote.
-	# We can find our scopes by finding a random pop of this culture.
-	random_owned_province = {
-		limit = {
-			any_pops_in_province = { this.country_culture = root.country_culture }
-		}
-		random_pops_in_province = {
-			limit = { this.country_culture = root.country_culture }
-			this.culture = {
-				root = {
-					set_variable = {
-						name = z_apc_old_primary_pop_culture # Old culture
-						value = prev
-					}
-				}
-			}
-			this.country_culture = {
-				root = {
-					set_variable = {
-						name = z_apc_old_primary_culture # Old country culture
-						value = prev
-					}
-				}
-			}
-		}
-	}
-	# We do the same for the new primary culture, the one we're about to promote.
-	# We can find our scopes by finding a random pop of this culture.
-	random_owned_province = {
-		limit = {
-			any_pops_in_province = {
-				this.country_culture = { z_apc_has_any_cultural_majority_modifier_trigger = yes }
-				NOT = { this.country_culture = root.country_culture } # Just to make sure
-			}
-		}
-		random_pops_in_province = {
-			limit = {
-				this.country_culture = { z_apc_has_any_cultural_majority_modifier_trigger = yes }
-				NOT = { this.country_culture = root.country_culture }
-			}
-			this.culture = {
-				root = {
-					set_variable = {
-						name = z_apc_new_primary_pop_culture # New culture
-						value = prev
-					}
-				}
-			}
-			this.country_culture = {
-				root = {
-					set_variable = {
-						name = z_apc_new_primary_culture # New country culture
-						value = prev
-					}
-				}
-			}
-		}
-	}
-	# We do the same for a third culture that doesn't currently exist in root.
-	# This culture will be used as the temporary replacement for the old primary culture.
+	# We already set old/new *culture* and *country_culture* variables via z_apc_find_cultural_majority_effect -> z_apc_update_cultural_majority_effect -> z_apc_common.1-4 -> z_apc_set_variables_effect
+	# But we need to do the same for a third culture that doesn't currently exist in root. This one will be used as the temporary replacement for the old primary culture.
 	set_variable = {
 		name = z_apc_temporary_culture # Temporary culture
 		value = var:z_apc_old_primary_culture # Initial value, to be replaced by the following loop
@@ -320,16 +261,14 @@ z_apc_set_primary_culture_effect = {
 		#-----------------------------------------------------------------------------------------
 		# Clean up all the variables that were set in this whole process
 		#-----------------------------------------------------------------------------------------
-		remove_variable = z_apc_old_primary_pop_culture # Old culture
-		remove_variable = z_apc_old_primary_culture # Old country culture
-		remove_variable = z_apc_new_primary_pop_culture # New culture
-		remove_variable = z_apc_new_primary_culture # New country culture
+		#z_apc_clear_variables = yes
 		remove_variable = z_apc_temporary_pop_culture # Temporary culture
 		remove_variable = z_apc_temporary_culture # Temporary culture
 		remove_variable = z_apc_reintegrate_old_primary_culture # Old culture reintregration flag
+		remove_variable = integrate_culture_yes_no # Vanilla variable
 		#-----------------------------------------------------------------------------------------
 		# Now everything should be like at game start. No Cultural Majority, no Ruling Minority.
-		# Set the Cultural Majority cooldown.
+		# Set the Cultural Majority cooldown so that no new Cultural Majority is set before some time has passed.
 		#-----------------------------------------------------------------------------------------
 		set_variable = {
 			name = z_apc_had_recent_cultural_majority_change

@@ -12,26 +12,32 @@ z_apc_mission = {
 	}
 	
 	potential = {
+		# At peace
 		is_ai = no
 		has_civil_war = no
+		# Mission not ongoing or badly terminated
 		NOT = { has_variable = z_apc_mission_ongoing }
+		# Mission not completed recently
 		NOT = { has_variable = z_apc_mission_cooldown }
+		# Target culture exists
 		any_country_culture = {
 			NOT = { this = root.country_culture }
 			z_apc_has_any_cultural_majority_modifier_trigger = yes
 		}
+		# Variables exist
+		has_variable = z_apc_old_primary_culture
+		has_variable = z_apc_old_primary_pop_culture
+		has_variable = z_apc_new_primary_culture
+		has_variable = z_apc_new_primary_pop_culture
 	}
 	
 	on_potential = {
-		root.country_culture = { save_scope_as = z_apc_old_primary_culture }
-    	random_country_culture = {
-			limit = {
-				NOT = { this = root.country_culture }
-				z_apc_has_any_cultural_majority_modifier_trigger = yes
-			}
-			save_scope_as = z_apc_found_cultural_majority # For mission title in selection screen
-			save_scope_as = z_apc_new_primary_culture # For the rest of the mission
-		}
+		# Save scopes for localization
+		var:z_apc_old_primary_culture = { save_scope_as = z_apc_old_primary_culture }
+		var:z_apc_old_primary_pop_culture = { save_scope_as = z_apc_old_primary_pop_culture }
+		var:z_apc_new_primary_culture = { save_scope_as = z_apc_new_primary_culture }
+		var:z_apc_new_primary_pop_culture = { save_scope_as = z_apc_new_primary_pop_culture }
+		var:z_apc_new_primary_culture = { save_scope_as = z_apc_found_cultural_majority }
 	}
 	
 	abort = {
@@ -42,31 +48,8 @@ z_apc_mission = {
     on_start = {
 		# Vanilla
     	start_mission_ai_effect = yes
-		# APC - Save scopes
+		# Save more scopes
 		root = { save_scope_as = z_apc_country }
-		root.country_culture = { save_scope_as = z_apc_old_primary_culture }
-    	random_country_culture = {
-			limit = {
-				NOT = { this = root.country_culture }
-				z_apc_has_any_cultural_majority_modifier_trigger = yes
-			}
-			save_scope_as = z_apc_new_primary_culture
-		}
-		random_owned_province = {
-			limit = {
-				any_pops_in_province = {
-					this.country_culture = scope:z_apc_new_primary_culture
-				}
-			}
-			random_pops_in_province = {
-				limit = {
-					this.country_culture = scope:z_apc_new_primary_culture
-				}
-				this.culture = {
-					save_scope_as = z_apc_new_primary_pop_culture
-				}
-			}
-		}
 		ordered_owned_province = {
 			limit = {
 				NOT = { this = root.capital_scope }
@@ -74,8 +57,14 @@ z_apc_mission = {
 			}
 			order_by = total_population
 			save_scope_as = z_apc_npc_capital
+			root = {
+				set_variable = {
+					name = z_apc_npc_capital
+					value = scope:z_apc_npc_capital
+				}
+			}
 		}
-		# APC - Set variables
+		# Save mission variables
 		set_variable = z_apc_mission_ongoing
 		set_variable = {
 			name = z_apc_mission_ctp_current
@@ -83,7 +72,7 @@ z_apc_mission = {
 		}
 		if = {
 			limit = {
-				scope:z_apc_new_primary_culture = { is_integrated = yes }
+				var:z_apc_new_primary_culture = { is_integrated = yes }
 			}
 			set_variable = z_apc_mission_already_integrated_citizens
 			hidden_effect = {
@@ -92,7 +81,7 @@ z_apc_mission = {
 		}
 		if = {
 			limit = {
-				scope:z_apc_new_primary_culture = { has_pop_type_right = nobles }
+				var:z_apc_new_primary_culture = { has_pop_type_right = nobles }
 			}
 			set_variable = z_apc_mission_already_integrated_nobles
 			hidden_effect = {
@@ -102,28 +91,32 @@ z_apc_mission = {
     }
 
     on_abort = {
-		# APC - Set cooldown and clear other variables
+		# Set cooldown
     	custom_tooltip = z_apc_mission_cooldown_tt
 		set_variable = {
 			name = z_apc_mission_cooldown
 			days = 36500 # 100 years
 		}
-		z_apc_mission_clear_variables_effect = yes
+		# Clear mission variables (not generic APC variables)
+		z_apc_clear_mission_variables_effect = yes
     }
 
     on_completion = {
+		# Show the reward
 		show_as_tooltip = {
-			set_primary_culture = scope:z_apc_new_primary_culture
+			set_primary_culture = var:z_apc_new_primary_culture
 		}
-		trigger_event = z_apc_mission.999 # Complete mission and set new primary culture
+		# Give the reward and launch aftermath event chain
+		trigger_event = z_apc_mission.999
 		# Vanilla
     	complete_mission_effect = yes
-		# APC - Set cooldown and clear other variables
+		# Set cooldown
 		set_variable = {
 			name = z_apc_mission_cooldown
 			days = 36500 # 100 years
 		}
-		z_apc_mission_clear_variables_effect = yes
+		# Clear mission variables (not generic APC variables)
+		z_apc_clear_mission_variables_effect = yes
     }
 	
 	# The [NPC] Question (starting task)
@@ -162,7 +155,7 @@ z_apc_mission = {
 		requires = { z_apc_mission_the_npc_question }
 
 		potential = {
-			exists = scope:z_apc_new_primary_culture
+			has_variable = z_apc_new_primary_culture
 		}
 
 		bypass = {
@@ -170,13 +163,13 @@ z_apc_mission = {
 		}
 
 		allow = {
-			scope:z_apc_new_primary_culture = { is_integrated = yes }
+			var:z_apc_new_primary_culture = { is_integrated = yes }
 		}
 
 		on_completion = {
 			if = {
 				limit = {
-					scope:z_apc_new_primary_culture = { has_pop_type_right = nobles }
+					var:z_apc_new_primary_culture = { has_pop_type_right = nobles }
 				}
 				set_variable = z_apc_mission_already_integrated_nobles
 				show_as_tooltip = {
@@ -211,8 +204,8 @@ z_apc_mission = {
 					any_country_culture = {
 						is_integrated = yes
 						NOR = {
-							this = scope:z_apc_old_primary_culture
-							this = scope:z_apc_new_primary_culture
+							this = root.var:z_apc_old_primary_culture
+							this = root.var:z_apc_new_primary_culture
 						}
 					}
 				}
@@ -236,7 +229,7 @@ z_apc_mission = {
 		requires = { z_apc_mission_integrate_citizens }
 
 		potential = {
-			exists = scope:z_apc_new_primary_culture
+			has_variable = z_apc_new_primary_culture
 		}
 
 		bypass = {
@@ -244,7 +237,7 @@ z_apc_mission = {
 		}
 
 		allow = {
-			scope:z_apc_new_primary_culture = { has_pop_type_right = nobles }
+			var:z_apc_new_primary_culture = { has_pop_type_right = nobles }
 		}
 
 		on_completion = {
@@ -375,13 +368,15 @@ z_apc_mission = {
 	
 		requires = { z_apc_mission_npc_governors z_apc_mission_npc_government z_apc_mission_npc_army z_apc_mission_integrate_nobles }
 
-		potential = {}
+		potential = {
+			has_variable = z_apc_new_primary_pop_culture
+		}
 
 		bypass = {
 		}
 
 		allow = {
-			current_ruler = { has_culture = scope:z_apc_new_primary_pop_culture }
+			current_ruler = { has_culture = root.var:z_apc_new_primary_pop_culture }
 		}
 
 		on_completion = {
@@ -401,16 +396,15 @@ z_apc_mission = {
 		requires = { z_apc_mission_the_npc_question }
 
 		potential = {
-			exists = scope:z_apc_new_primary_culture
-			exists = scope:z_apc_npc_capital
-			scope:z_apc_npc_capital = { owner = root }
+			has_variable = z_apc_new_primary_culture
+			has_variable = z_apc_npc_capital
+			var:z_apc_npc_capital = { owner = root }
 		}
 
 		bypass = {
 			OR = {
-				NOT = { exists = scope:z_apc_npc_capital }
-				NOT = { scope:z_apc_npc_capital.owner = root }
-				NOT = { scope:z_apc_npc_capital = { owner = root } }
+				NOT = { has_variable = z_apc_npc_capital }
+				NOT = { var:z_apc_npc_capital.owner = root }
 			}
 		}
 
@@ -434,16 +428,15 @@ z_apc_mission = {
 		requires = { z_apc_mission_npc_city }
 
 		potential = {
-			exists = scope:z_apc_new_primary_culture
-			exists = scope:z_apc_npc_capital
-			scope:z_apc_npc_capital = { owner = root }
+			has_variable = z_apc_new_primary_culture
+			has_variable = z_apc_npc_capital
+			var:z_apc_npc_capital = { owner = root }
 		}
 
 		bypass = {
 			OR = {
-				NOT = { exists = scope:z_apc_npc_capital }
-				NOT = { scope:z_apc_npc_capital.owner = root }
-				NOT = { scope:z_apc_npc_capital = { owner = root } }
+				NOT = { has_variable = z_apc_npc_capital }
+				NOT = { var:z_apc_npc_capital.owner = root }
 			}
 		}
 
@@ -466,7 +459,9 @@ z_apc_mission = {
 	
 		requires = { z_apc_mission_integrate_nobles }
 
-		potential = {}
+		potential = {
+			has_variable = z_apc_new_primary_pop_culture
+		}
 
 		bypass = {}
 
@@ -479,6 +474,9 @@ z_apc_mission = {
 		}
 
 		on_completion = {
+			show_as_tooltip = {
+				set_primary_culture = var:z_apc_new_primary_pop_culture
+			}
 		}
 
 		icon = task_diplomatic

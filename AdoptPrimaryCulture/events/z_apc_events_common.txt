@@ -9,7 +9,7 @@ z_apc_common.1 = {
 	title = "z_apc_common.1.t"
 	desc = "z_apc_common.1.desc"
 	
-	picture = shrine_city	
+	picture = z_apc_ruling_minority_pic	
 	left_portrait = root.current_ruler
 	
 	trigger = {
@@ -142,6 +142,14 @@ z_apc_common.2 = {
 					duration = -1
 				}
 			}
+			else = {
+				show_as_tooltip = {
+					add_country_culture_modifier = {
+						name = z_apc_ruling_minority_modifier
+						duration = -1
+					}
+				}
+			}
 		}
 		# New Cultural Majority
 		scope:z_apc_found_cultural_majority = {
@@ -162,14 +170,6 @@ z_apc_common.2 = {
 		
 	option = { # OK
 		name = "z_apc_common.2.a"
-		# Inform the player that APC mission is available
-		if = {
-			limit = {
-				NOT = { has_variable = z_apc_mission_ongoing } # Just in case
-				NOT = { has_variable = z_apc_mission_cooldown } # Unless the mission cooldown is still running
-			}
-			custom_tooltip = z_apc_common_mission_unlocked
-		}
 	}
 		
 	option = { # Show me the list of all countries that currently have a CM
@@ -178,18 +178,12 @@ z_apc_common.2 = {
 			current_date < 451.1.1
 		}
 		name = "z_apc_common.2.b"
-		# Inform the player that APC mission is available
-		if = {
-			limit = {
-				NOT = { has_variable = z_apc_mission_ongoing } # Just in case
-				NOT = { has_variable = z_apc_mission_cooldown } # Unless the mission cooldown is still running
-			}
-			custom_tooltip = z_apc_common_mission_unlocked
-		}
+		# Show the list
 		trigger_event = {
 			id = z_apc_common.999
 			days = 1
 		}
+		custom_tooltip = "z_apc_common.2.b.tt"
 	}
 	
 	after = {
@@ -254,6 +248,14 @@ z_apc_common.4 = {
 					duration = -1
 				}
 			}
+			else = {
+				show_as_tooltip = {
+					add_country_culture_modifier = {
+						name = z_apc_ruling_minority_modifier
+						duration = -1
+					}
+				}
+			}
 		}
 		# Old Cultural Majority
 		random_country_culture = {
@@ -307,7 +309,7 @@ z_apc_common.999 = {
 	title = "z_apc_common.999.t"
 	desc = "z_apc_common.999.desc"
 	
-	picture = z_apc_cultural_majority_pic	
+	picture = z_apc_ruling_minority_pic	
 	left_portrait = root.current_ruler
 	
 	trigger = {

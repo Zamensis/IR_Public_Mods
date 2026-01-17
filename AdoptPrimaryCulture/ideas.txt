@@ -1,0 +1,9 @@
+GENERAL
+- Use DF! values (after all is done)
+- Switch between event pics (also mission tree icons)
+
+EVENTS
+	GENERAL EVENTS
+	ADOPT, QUESTION EVENTS
+		- Trade 1 libs for 2 in opposing cities
+	QUELL, QUESTION EVENTS

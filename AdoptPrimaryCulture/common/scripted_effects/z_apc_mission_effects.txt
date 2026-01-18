@@ -1,18 +1,4 @@
 ﻿#-----------------------------------------------------------------------------------------
-# Add 1 Cultural Transition point
-#-----------------------------------------------------------------------------------------
-z_apc_mission_add_ctp_effect = {
-	if = {
-		limit = { has_variable = z_apc_mission_ctp_current }
-		change_variable = {
-			name = z_apc_mission_ctp_current
-			add = $VALUE$
-		}
-	}
-	custom_tooltip = z_apc_mission_add_$VALUE$_ctp_effect_tt
-}
-
-#-----------------------------------------------------------------------------------------
 # Clear mission variables (on mission abort or mission completion)
 #-----------------------------------------------------------------------------------------
 z_apc_clear_mission_variables_effect = {
@@ -21,8 +7,8 @@ z_apc_clear_mission_variables_effect = {
 		remove_variable = z_apc_mission_ongoing
 	}
 	if = {
-		limit = { has_variable = z_apc_mission_ctp_current }
-		remove_variable = z_apc_mission_ctp_current
+		limit = { has_variable = z_apc_completed_missions }
+		remove_variable = z_apc_completed_missions
 	}
 	if = {
 		limit = { has_variable = z_apc_mission_already_integrated_citizens }

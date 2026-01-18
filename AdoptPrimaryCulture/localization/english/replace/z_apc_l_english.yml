@@ -55,7 +55,7 @@
  z_apc_common.4.a:0 "Interesting."
  # -----------
  z_apc_common.999.t:0 "Ruling Minorities"
- z_apc_common.999.desc:0 "When a country like ourselves has a #E cultural majority#!, the primary culture is considered a #E ruling minority#!. A #E cultural majority#! is a non-primary culture which represents the majority of the population in a country, capital region, capital province or capital territory.\n\nBelow are the lists of all countries with a #E ruling minority#! (and so a #E cultural majority#!)."
+ z_apc_common.999.desc:0 "When a country like our own has a #E cultural majority#!, the primary culture is considered a #E ruling minority#!. A #E cultural majority#! is a non-primary culture which represents the majority of the population in a country, capital region, capital province or capital territory.\n\nBelow are the lists of all countries with a #E ruling minority#! (and so a #E cultural majority#!)."
  z_apc_common.999.a:0 "#E Ruling minorities#! with a different majority in the #E entire country#!."
  z_apc_common.999.b:0 "#E Ruling minorities#! with a different majority in the #E capital region#!."
  z_apc_common.999.c:0 "#E Ruling minorities#! with a different majority in the #E capital province#!."
@@ -69,14 +69,7 @@
  z_apc_mission_BUTTON_TOOLTIP:0 "z_apc_mission_BUTTON_TOOLTIP"
  z_apc_mission_cooldown_tt:0 "You will #R NOT#! be able to restart this mission until at least #R 100#! years have passed."
  # -----------
- z_apc_mission_ctp_desc_tt:0 "A high #E Cultural Transition Score#! will reduce the risk of a coup, an insurrection or otherwise bad consequences when changing our #E Primary Culture#!."
- z_apc_mission_ctp_current_tt:0 "(Currently: #Y #E [SCOPE.ScriptValue('z_apc_mission_ctp_current_svalue')|0]#!#!/[SCOPE.ScriptValue('z_apc_mission_ctp_max_svalue')|0])"
- z_apc_mission_add_1_ctp_effect_tt:0 "Gain #E #G 1#! Cultural Transition Point#! $z_apc_mission_ctp_current_tt$."
- z_apc_mission_add_2_ctp_effect_tt:0 "Gain #E #G 2#! Cultural Transition Points#! $z_apc_mission_ctp_current_tt$."
- z_apc_mission_add_3_ctp_effect_tt:0 "Gain #E #G 3#! Cultural Transition Points#! $z_apc_mission_ctp_current_tt$."
- z_apc_mission_add_4_ctp_effect_tt:0 "Gain #E #G 4#! Cultural Transition Points#! $z_apc_mission_ctp_current_tt$."
- z_apc_mission_add_5_ctp_effect_tt:0 "Gain #E #G 5#! Cultural Transition Points#! $z_apc_mission_ctp_current_tt$."
- z_apc_mission_ctp_required_tt:0 "Has at least #E #Y [SCOPE.ScriptValue('z_apc_mission_ctp_min_svalue')|0]#! Cultural Transition Points#! $z_apc_mission_ctp_current_tt$.\n\n$z_apc_mission_ctp_desc_tt$"
+ z_apc_completed_missions_required_tt:0 "At least #Y [SCOPE.ScriptValue('z_apc_completed_missions_requirement_svalue')|0]#! Mission Tasks have been completed."
  # -----------
  z_apc_mission_the_npc_question:0 "The [z_apc_new_primary_culture.GetName] Question"
  z_apc_mission_the_npc_question_on_completion_tt:0 "We will be able to #Y choose a strategy#! for the establishment of a new [z_apc_new_primary_culture.GetName] rule in [z_apc_country.GetName]."

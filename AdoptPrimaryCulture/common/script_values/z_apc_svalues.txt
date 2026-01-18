@@ -238,43 +238,18 @@ z_apc_culture_B_capital_area_population_cache = { value = var:z_apc_culture_B_ca
 z_apc_culture_B_capital_city_population_cache = { value = var:z_apc_culture_B_capital_city_population_cache }
 
 #-----------------------------------------------------------------------------------------
-# Cultural Transition (minimal score to finish the mission tree and proceed with cultural conversion)
+# Missions completed
 #-----------------------------------------------------------------------------------------
-z_apc_mission_ctp_min_svalue = { value = 20 }
+# Required
+z_apc_completed_missions_required_svalue = { value = 20 }
 
-#-----------------------------------------------------------------------------------------
-# Cultural Transition (current score)
-#-----------------------------------------------------------------------------------------
-z_apc_mission_ctp_current_svalue = {
+# Current
+z_apc_completed_missions_current_svalue = {
 	value = 0
 	if = {
-		limit = { has_variable = z_apc_mission_ctp_current }
-		add = var:z_apc_mission_ctp_current
+		limit = { has_variable = z_apc_completed_missions_current }
+		add = var:z_apc_completed_missions_current
 	}
-}
-
-#-----------------------------------------------------------------------------------------
-# Cultural Transition (max possible score)
-#-----------------------------------------------------------------------------------------
-z_apc_mission_ctp_max_svalue = {
-	value = 0 # Base (total: 28)
-	# From mission tasks (total: 22)
-	add = 3 # From z_apc_mission_integrate_citizens
-	add = 2 # From z_apc_mission_npc_exception
-	add = 2 # From z_apc_mission_integrate_nobles
-	add = 3 # From z_apc_mission_npc_government
-	add = 2 # From z_apc_mission_npc_governors
-	add = 2 # From z_apc_mission_npc_army
-	add = 3 # From z_apc_mission_npc_ruler
-	add = 2 # From z_apc_mission_npc_city
-	add = 3 # From z_apc_mission_npc_capital
-	# From events (total: 6)
-	add = 1 # From z_apc_mission.3
-	add = 1 # From z_apc_mission.4
-	add = 1 # From z_apc_mission.5
-	add = 1 # From z_apc_mission.6
-	add = 1 # From z_apc_mission.7
-	add = 1 # From z_apc_mission.8	
 }
 
 #-----------------------------------------------------------------------------------------

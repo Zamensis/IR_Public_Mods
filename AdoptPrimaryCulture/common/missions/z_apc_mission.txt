@@ -67,7 +67,7 @@ z_apc_mission = {
 		# Save mission variables
 		set_variable = z_apc_mission_ongoing
 		set_variable = {
-			name = z_apc_mission_ctp_current
+			name = z_apc_completed_missions_current
 			value = 0
 		}
 		if = {
@@ -75,8 +75,10 @@ z_apc_mission = {
 				var:z_apc_new_primary_culture = { is_integrated = yes }
 			}
 			set_variable = z_apc_mission_already_integrated_citizens
-			hidden_effect = {
-				z_apc_mission_add_ctp_effect = { VALUE = 3 } # Since this will bypass z_apc_mission_integrate_citizens
+			# Increment completed missions counter (because this will bypass z_apc_mission_integrate_citizens)
+			change_variable = {
+				name = z_apc_completed_missions_current
+				add = 1
 			}
 		}
 		if = {
@@ -84,8 +86,10 @@ z_apc_mission = {
 				var:z_apc_new_primary_culture = { has_pop_type_right = nobles }
 			}
 			set_variable = z_apc_mission_already_integrated_nobles
-			hidden_effect = {
-				z_apc_mission_add_ctp_effect = { VALUE = 2 } # Since this will bypass z_apc_mission_integrate_nobles
+			# Increment completed missions counter (because this will bypass z_apc_mission_integrate_nobles)
+			change_variable = {
+				name = z_apc_completed_missions_current
+				add = 1
 			}
 		}
     }
@@ -141,6 +145,11 @@ z_apc_mission = {
 		}
 
 		on_completion = {
+			# Increment completed missions counter
+			change_variable = {
+				name = z_apc_completed_missions_current
+				add = 1
+			}
 			custom_tooltip = z_apc_mission_the_npc_question_on_completion_tt
 			trigger_event = z_apc_mission.2
 		}
@@ -167,18 +176,20 @@ z_apc_mission = {
 		}
 
 		on_completion = {
+			# Increment completed missions counter
+			change_variable = {
+				name = z_apc_completed_missions_current
+				add = 1
+			}
 			if = {
 				limit = {
 					var:z_apc_new_primary_culture = { has_pop_type_right = nobles }
 				}
 				set_variable = z_apc_mission_already_integrated_nobles
-				show_as_tooltip = {
-					z_apc_mission_add_ctp_effect = { VALUE = 5 } # Since this will bypass z_apc_mission_integrate_nobles
-				}
-			}
-			else = {
-				show_as_tooltip = {
-					z_apc_mission_add_ctp_effect = { VALUE = 3 }
+				# Increment completed missions counter (because this will bypass z_apc_mission_integrate_nobles)
+				change_variable = {
+					name = z_apc_completed_missions_current
+					add = 1
 				}
 			}
 			trigger_event = { id = z_apc_mission.15 } # Reward event
@@ -213,8 +224,10 @@ z_apc_mission = {
 		}
 
 		on_completion = {
-			show_as_tooltip = {
-				z_apc_mission_add_ctp_effect = { VALUE = 2 }
+			# Increment completed missions counter
+			change_variable = {
+				name = z_apc_completed_missions_current
+				add = 1
 			}
 			trigger_event = { id = z_apc_mission.17 } # Reward event
 		}
@@ -241,8 +254,10 @@ z_apc_mission = {
 		}
 
 		on_completion = {
-			show_as_tooltip = {
-				z_apc_mission_add_ctp_effect = { VALUE = 2 }
+			# Increment completed missions counter
+			change_variable = {
+				name = z_apc_completed_missions_current
+				add = 1
 			}
 			trigger_event = { id = z_apc_mission.16 } # Reward event
 		}
@@ -270,10 +285,12 @@ z_apc_mission = {
 		}
 
 		on_completion = {
-			custom_tooltip = z_apc_mission_npc_governors_loyalty_tt
-			show_as_tooltip = {
-				z_apc_mission_add_ctp_effect = { VALUE = 2 }
+			# Increment completed missions counter
+			change_variable = {
+				name = z_apc_completed_missions_current
+				add = 1
 			}
+			custom_tooltip = z_apc_mission_npc_governors_loyalty_tt
 			set_variable = z_apc_mission_npc_governors_completed
 			trigger_event = {
 				id = z_apc_mission.10 # The [NPC] Governors
@@ -306,10 +323,12 @@ z_apc_mission = {
 		}
 
 		on_completion = {
-			custom_tooltip = z_apc_mission_npc_government_loyalty_tt
-			show_as_tooltip = {
-				z_apc_mission_add_ctp_effect = { VALUE = 3 }
+			# Increment completed missions counter
+			change_variable = {
+				name = z_apc_completed_missions_current
+				add = 1
 			}
+			custom_tooltip = z_apc_mission_npc_government_loyalty_tt
 			set_variable = z_apc_mission_npc_government_completed
 			trigger_event = {
 				id = z_apc_mission.11 # The [NPC] Government
@@ -345,10 +364,12 @@ z_apc_mission = {
 		}
 
 		on_completion = {
-			custom_tooltip = z_apc_mission_npc_army_loyalty_tt
-			show_as_tooltip = {
-				z_apc_mission_add_ctp_effect = { VALUE = 2 }
+			# Increment completed missions counter
+			change_variable = {
+				name = z_apc_completed_missions_current
+				add = 1
 			}
+			custom_tooltip = z_apc_mission_npc_army_loyalty_tt
 			set_variable = z_apc_mission_npc_army_completed
 			trigger_event = {
 				id = z_apc_mission.12 # The [NPC] Army
@@ -380,8 +401,10 @@ z_apc_mission = {
 		}
 
 		on_completion = {
-			show_as_tooltip = {
-				z_apc_mission_add_ctp_effect = { VALUE = 3 }
+			# Increment completed missions counter
+			change_variable = {
+				name = z_apc_completed_missions_current
+				add = 1
 			}
 			trigger_event = { id = z_apc_mission.18 } # Reward event
 		}
@@ -412,8 +435,10 @@ z_apc_mission = {
 		}
 
 		on_completion = {
-			show_as_tooltip = {
-				z_apc_mission_add_ctp_effect = { VALUE = 2 }
+			# Increment completed missions counter
+			change_variable = {
+				name = z_apc_completed_missions_current
+				add = 1
 			}
 			trigger_event = { id = z_apc_mission.19 } # Reward event
 		}
@@ -444,8 +469,10 @@ z_apc_mission = {
 		}
 
 		on_completion = {
-			show_as_tooltip = {
-				z_apc_mission_add_ctp_effect = { VALUE = 3 }
+			# Increment completed missions counter
+			change_variable = {
+				name = z_apc_completed_missions_current
+				add = 1
 			}
 			trigger_event = { id = z_apc_mission.20 } # Reward event
 		}
@@ -467,9 +494,9 @@ z_apc_mission = {
 
 		allow = {
 			custom_tooltip = {
-				text = z_apc_mission_ctp_required_tt
-				has_variable = z_apc_mission_ctp_current
-				var:z_apc_mission_ctp_current >= z_apc_mission_ctp_min_svalue
+				text = z_apc_completed_missions_required_tt
+				has_variable = z_apc_completed_missions_current
+				var:z_apc_completed_missions_current >= z_apc_completed_missions_required_svalue
 			}
 		}
 

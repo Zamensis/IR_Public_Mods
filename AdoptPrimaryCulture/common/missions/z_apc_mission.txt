@@ -7,7 +7,7 @@ z_apc_mission = {
 	
 	repeatable = no
 
-    chance = {
+	chance = {
 		factor = 5
 	}
 	
@@ -19,7 +19,7 @@ z_apc_mission = {
 		NOT = { has_variable = z_apc_mission_ongoing }
 		# Mission not completed recently
 		NOT = { has_variable = z_apc_mission_cooldown }
-		# Target culture exists
+		# [NPC] culture exists
 		any_country_culture = {
 			NOT = { this = root.country_culture }
 			z_apc_has_any_cultural_majority_modifier_trigger = yes
@@ -45,75 +45,69 @@ z_apc_mission = {
 		ai_mission_back_out_trigger = yes
 	}
 
-    on_start = {
+	on_start = {
 		# Vanilla
-    	start_mission_ai_effect = yes
-		# Save more scopes
-		root = { save_scope_as = z_apc_country }
-		ordered_owned_province = {
-			limit = {
-				NOT = { this = root.capital_scope }
-				dominant_province_culture = scope:z_apc_new_primary_pop_culture
-			}
-			order_by = total_population
-			save_scope_as = z_apc_npc_capital
-			root = {
-				set_variable = {
-					name = z_apc_npc_capital
-					value = scope:z_apc_npc_capital
-				}
-			}
-		}
-		# Save mission variables
+		start_mission_ai_effect = yes
+		# Set mission flag
 		set_variable = z_apc_mission_ongoing
+		# Initialize completed missions counter
 		set_variable = {
 			name = z_apc_completed_missions_current
 			value = 0
 		}
+		# Save country scope
+		root = { save_scope_as = z_apc_country }
+		# Save [NPC] city scope
 		if = {
 			limit = {
-				var:z_apc_new_primary_culture = { is_integrated = yes }
+				any_owned_province = {
+					NOT = { this = root.capital_scope }
+					dominant_province_culture = scope:z_apc_new_primary_pop_culture
+				}
 			}
-			set_variable = z_apc_mission_already_integrated_citizens
-			# Increment completed missions counter (because this will bypass z_apc_mission_integrate_citizens)
-			change_variable = {
-				name = z_apc_completed_missions_current
-				add = 1
-			}
+			ordered_owned_province = {
+				limit = {
+					NOT = { this = root.capital_scope }
+					dominant_province_culture = scope:z_apc_new_primary_pop_culture
+				}
+				order_by = total_population
+				save_scope_as = z_apc_npc_capital
+				root = {
+					set_variable = {
+						name = z_apc_npc_capital
+						value = scope:z_apc_npc_capital
+					}
+				}
+			}			
 		}
+		# If [NPC] scope wasn't found, add 2 completed missions to make up for the bypass
 		if = {
 			limit = {
-				var:z_apc_new_primary_culture = { has_pop_type_right = nobles }
+				NOT = { exists = scope:z_apc_npc_capital }
 			}
-			set_variable = z_apc_mission_already_integrated_nobles
-			# Increment completed missions counter (because this will bypass z_apc_mission_integrate_nobles)
 			change_variable = {
-				name = z_apc_completed_missions_current
-				add = 1
+				name = z_apc_npc_capital
+				add = 2
 			}
 		}
-    }
+	}
 
-    on_abort = {
+	on_abort = {
 		# Set cooldown
-    	custom_tooltip = z_apc_mission_cooldown_tt
+		custom_tooltip = z_apc_mission_cooldown_tt
 		set_variable = {
 			name = z_apc_mission_cooldown
 			days = 36500 # 100 years
 		}
 		# Clear mission variables (not generic APC variables)
 		z_apc_clear_mission_variables_effect = yes
-    }
+	}
 
-    on_completion = {
-		# Show the reward
-		show_as_tooltip = {
-			set_primary_culture = var:z_apc_new_primary_culture
-		}
+	on_completion = {
+		# Vanilla
+		complete_mission_effect = yes
 		# Give the reward and launch aftermath event chain
 		trigger_event = z_apc_mission.999
-		# Vanilla
-    	complete_mission_effect = yes
 		# Set cooldown
 		set_variable = {
 			name = z_apc_mission_cooldown
@@ -121,7 +115,7 @@ z_apc_mission = {
 		}
 		# Clear mission variables (not generic APC variables)
 		z_apc_clear_mission_variables_effect = yes
-    }
+	}
 	
 	# The [NPC] Question (starting task)
 	#---------------------------------------------------
@@ -168,7 +162,7 @@ z_apc_mission = {
 		}
 
 		bypass = {
-			has_variable = z_apc_mission_already_integrated_citizens
+			#has_variable = z_apc_mission_already_integrated_citizens
 		}
 
 		allow = {
@@ -186,11 +180,6 @@ z_apc_mission = {
 					var:z_apc_new_primary_culture = { has_pop_type_right = nobles }
 				}
 				set_variable = z_apc_mission_already_integrated_nobles
-				# Increment completed missions counter (because this will bypass z_apc_mission_integrate_nobles)
-				change_variable = {
-					name = z_apc_completed_missions_current
-					add = 1
-				}
 			}
 			trigger_event = { id = z_apc_mission.15 } # Reward event
 		}
@@ -246,7 +235,7 @@ z_apc_mission = {
 		}
 
 		bypass = {
-			has_variable = z_apc_mission_already_integrated_nobles
+			#has_variable = z_apc_mission_already_integrated_nobles
 		}
 
 		allow = {

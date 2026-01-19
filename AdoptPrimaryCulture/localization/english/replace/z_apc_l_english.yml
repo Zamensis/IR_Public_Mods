@@ -95,9 +95,9 @@
  # -----------
  z_apc_mission_npc_ruler:0 "The [z_apc_new_primary_culture.GetName] [z_apc_country.GetRuler.GetTitleName]"
  # -----------
- z_apc_mission_npc_city:0 "The Fate of [z_apc_npc_capital.GetName]"
+ z_apc_mission_npc_city:0 "The [z_apc_new_primary_culture.GetName] City"
  # -----------
- z_apc_mission_npc_capital:0 "The New Capital"
+ z_apc_mission_npc_capital:0 "The [z_apc_new_primary_culture.GetName] Capital"
  # -----------
  z_apc_mission_final:0 "The [z_apc_new_primary_culture.GetName] Renaissance"
  # MISSION EVENTS -----------------------------------------------------------------------------------------------------------------------------------------------

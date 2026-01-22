@@ -102,6 +102,11 @@ z_apc_mission = {
 		}
 		# Clear mission variables (not generic APC variables)
 		z_apc_clear_mission_variables_effect = yes
+		# Kill switch: stop all effects and events, lock all missions, remove all modifiers and variables
+		trigger_event = {
+			id = z_apc_common.100
+			days = 18250 # 50 years
+		}
 	}
 
 	on_completion = {
@@ -114,8 +119,15 @@ z_apc_mission = {
 			name = z_apc_mission_cooldown
 			days = 36500 # 100 years
 		}
+		# Set completed mission flag
+		set_variable = z_apc_completed_mission
 		# Clear mission variables (not generic APC variables)
 		z_apc_clear_mission_variables_effect = yes
+		# Kill switch: stop all effects and events, lock all missions, remove all modifiers and variables
+		trigger_event = {
+			id = z_apc_common.100
+			days = 18250 # 50 years
+		}
 	}
 	
 	# The [NPC] Question (starting task)

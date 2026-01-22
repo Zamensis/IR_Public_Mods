@@ -1,0 +1,25 @@
+﻿namespace = z_apc_main
+
+#-----------------------------------------------------------------------------------------
+# Sample main event
+#-----------------------------------------------------------------------------------------
+z_apc_main.1 = {
+	type = country_event
+	title = "z_apc_main.1.t"
+	desc = "z_apc_main.1.desc"
+	
+	picture = z_apc_ruling_minority_pic	
+	left_portrait = root.current_ruler
+	
+	trigger = {
+		# Triggered by on_action: z_apc_yearly_country_pulse
+		z_apc_main_event_trigger = yes
+		NOR = {
+			has_variable = 
+		}
+	}
+		
+	option = { # OK
+		name = "z_apc_main.1.a"
+	}
+}

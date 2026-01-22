@@ -380,5 +380,34 @@ z_apc_common.100 = {
 	}
 		
 	immediate = {
+		z_apc_clear_variables_effect = yes
+		z_apc_remove_all_cultural_majority_modifiers_effect = yes
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# Sample main event
+#-----------------------------------------------------------------------------------------
+z_apc_common.200 = {
+	type = country_event
+	title = "z_apc_common.200.t"
+	desc = "z_apc_common.200.desc"
+	
+	picture = z_apc_ruling_minority_pic	
+	left_portrait = root.current_ruler
+	
+	trigger = {
+		# Triggered by on_action: z_apc_yearly_country_pulse
+	}
+		
+	option = { # OK
+		name = "z_apc_common.200.a"
+		every_country = {
+			limit = {
+				any_country_culture = { has_country_culture_modifier = z_apc_cultural_majority_in_country_modifier }
+			}
+			custom_tooltip = z_apc_countries_list
+		}
+		custom_tooltip = z_apc_countries_list_end
 	}
 }

@@ -4,5 +4,5 @@ tags={
 	"Gameplay"
 	"Ironman Compatible"
 }
-name="Change Primary Culture"
+name="Damn Foreigners!"
 supported_version="2.0.*"

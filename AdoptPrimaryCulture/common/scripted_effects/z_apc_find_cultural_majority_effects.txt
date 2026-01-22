@@ -363,7 +363,7 @@ z_apc_set_variables_effect = {
 
 #-----------------------------------------------------------------------------------------
 # Clear APC variables
-# Triggered by events z_apc_common.1-4 and z_apc_set_primary_culture_effect
+# Triggered by event z_apc_common.5
 #-----------------------------------------------------------------------------------------
 z_apc_clear_variables_effect = {
 	if = {

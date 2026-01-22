@@ -180,7 +180,7 @@ z_apc_common.2 = {
 		name = "z_apc_common.2.b"
 		# Show the list
 		trigger_event = {
-			id = z_apc_common.999
+			id = z_apc_common.5
 			days = 1
 		}
 		custom_tooltip = "z_apc_common.2.b.tt"
@@ -309,10 +309,10 @@ z_apc_common.4 = {
 #-----------------------------------------------------------------------------------------
 # Show the player a list of all countries that currently have a CM
 #-----------------------------------------------------------------------------------------
-z_apc_common.999 = {
+z_apc_common.5 = {
 	type = country_event
-	title = "z_apc_common.999.t"
-	desc = "z_apc_common.999.desc"
+	title = "z_apc_common.5.t"
+	desc = "z_apc_common.5.desc"
 	
 	picture = z_apc_ruling_minority_pic	
 	left_portrait = root.current_ruler
@@ -322,7 +322,7 @@ z_apc_common.999 = {
 	}
 		
 	option = { # OK
-		name = "z_apc_common.999.a"
+		name = "z_apc_common.5.a"
 		every_country = {
 			limit = {
 				any_country_culture = { has_country_culture_modifier = z_apc_cultural_majority_in_country_modifier }
@@ -333,7 +333,7 @@ z_apc_common.999 = {
 	}
 		
 	option = { # OK
-		name = "z_apc_common.999.b"
+		name = "z_apc_common.5.b"
 		every_country = {
 			limit = {
 				any_country_culture = { has_country_culture_modifier = z_apc_cultural_majority_in_capital_region_modifier }
@@ -344,7 +344,7 @@ z_apc_common.999 = {
 	}
 		
 	option = { # OK
-		name = "z_apc_common.999.c"
+		name = "z_apc_common.5.c"
 		every_country = {
 			limit = {
 				any_country_culture = { has_country_culture_modifier = z_apc_cultural_majority_in_capital_area_modifier }
@@ -355,7 +355,7 @@ z_apc_common.999 = {
 	}
 		
 	option = { # OK
-		name = "z_apc_common.999.d"
+		name = "z_apc_common.5.d"
 		every_country = {
 			limit = {
 				any_country_culture = { has_country_culture_modifier = z_apc_cultural_majority_in_capital_city_modifier }
@@ -363,5 +363,22 @@ z_apc_common.999 = {
 			custom_tooltip = z_apc_countries_list
 		}
 		custom_tooltip = z_apc_countries_list_end
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# Kill switch: stop all effects and events, lock all missions, remove all modifiers and variables
+#-----------------------------------------------------------------------------------------
+z_apc_common.100 = {
+	type = country_event
+	hidden = yes
+	
+	trigger = {
+		# Triggered when:
+		# 	- Finished APC mission, after 50 years to allow for some post-mission events
+		# 	- Finished QCM mission, after 50 years to allow for some post-mission events
+	}
+		
+	immediate = {
 	}
 }

@@ -79,3 +79,14 @@ z_apc_cultural_majority_is_culture_group_trigger = {
 		pop_culture_group = $CULTURE_GROUP$
 	}
 }
+
+#-----------------------------------------------------------------------------------------
+# Does this country have a Cultural Majority with the $STATUS$ pop type right? (freemen/citizen/nobles)
+#-----------------------------------------------------------------------------------------
+z_apc_cultural_majority_status_trigger = {
+	has_variable = z_apc_new_primary_culture
+	var:z_apc_new_primary_culture = {
+		z_apc_has_any_cultural_majority_modifier_trigger = yes
+		has_pop_type_right = $STATUS$
+	}
+}

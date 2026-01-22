@@ -12,8 +12,9 @@ z_apc_mission = {
 	}
 	
 	potential = {
-		# At peace
+		# Player only (AIs have a random event instead)
 		is_ai = no
+		# No civil war (normal war allowed)
 		has_civil_war = no
 		# Mission not ongoing or badly terminated
 		NOT = { has_variable = z_apc_mission_ongoing }

@@ -241,7 +241,7 @@ z_apc_culture_B_capital_city_population_cache = { value = var:z_apc_culture_B_ca
 # Missions completed
 #-----------------------------------------------------------------------------------------
 # Required
-z_apc_completed_missions_required_svalue = { value = 20 }
+z_apc_completed_missions_requirement_svalue = { value = 8 }
 
 # Current
 z_apc_completed_missions_current_svalue = {

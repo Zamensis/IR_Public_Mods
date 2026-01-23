@@ -1,0 +1,310 @@
+﻿#-----------------------------------------------------------------------------------------
+# Event pic based on current Cultural Majority - Should only be used for mission events
+#-----------------------------------------------------------------------------------------
+z_dfo_cultural_majority_pic = {
+	theme = Hubbub
+	# Special - Civilized vs. Barbarians
+	picture = {
+		trigger = {
+			OR = {
+				# Barbarian rule over Civilized majority
+				AND = {
+					OR = {
+						z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = hellenic }
+						z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = latin }
+					}
+					OR = {
+						country_culture_group = baltic
+						country_culture_group = belgae_group
+						country_culture_group = britannic
+						country_culture_group = celt_iberia
+						country_culture_group = celto_pannonian_group
+						country_culture_group = dacia_group
+						country_culture_group = finnic_group
+						country_culture_group = gaelic
+						country_culture_group = gallic
+						country_culture_group = germanic
+						country_culture_group = iberia
+						country_culture_group = illyrian_group
+						country_culture_group = proto_european
+						country_culture_group = thrace_group
+					}
+				}
+				# Civilized rule over Barbarian majority
+				AND = {
+					OR = {
+						country_culture_group = hellenic
+						country_culture_group = latin
+					}
+					OR = {
+						z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = baltic }
+						z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = belgae_group }
+						z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = britannic }
+						z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = celt_iberia }
+						z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = celto_pannonian_group }
+						z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = dacia_group }
+						z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = finnic_group }
+						z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = gaelic }
+						z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = gallic }
+						z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = germanic }
+						z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = iberia }
+						z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = illyrian_group }
+						z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = proto_european }
+						z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = thrace_group }
+					}
+				}
+			}
+		}
+		texture = "gfx/interface/event_window/Event_gauls_interacting_negotiating.dds"
+	}
+	# Special - Civilized vs. Eastern
+	picture = {
+		trigger = {
+			# Civilized rule over Eastern majority
+			AND = {
+				OR = {
+					country_culture_group = hellenic
+					country_culture_group = latin
+				}
+				OR = {
+					z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = anatolian }
+					z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = bactrian }
+					z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = caucasian }
+					z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = east_levantine }
+					z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = persia }
+					z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = east_levantine }
+					z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = south_arabian }
+					z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = south_levantine }
+					z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = west_levantine }
+					# Also North Africans
+					z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = fezzani }
+					z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = meroitic_group }
+					z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = nilotic_group }
+					z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = north_african }
+					z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = numidian }
+					z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = west_levantine }
+				}
+			}
+		}
+		texture = "gfx/interface/event_window/Event_great_work_writing.dds"
+	}
+	# Carthage
+	picture = {
+		trigger = {
+			OR = {
+				z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = west_levantine }
+			}
+		}
+		texture = "gfx/interface/event_window/Event_trader_ship_in_port_person_in_foreground.dds"
+	}
+	# Greeks
+	picture = {
+		trigger = {
+			OR = {
+				z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = hellenic }
+			}
+		}
+		texture = "gfx/interface/event_window/Event_bakery_with_street_outside_showing_as_well.dds"
+	}
+	# Eastern people
+	picture = {
+		trigger = {
+			OR = {
+				z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = anatolian }
+				z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = bactrian }
+				z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = caucasian }
+				z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = east_levantine }
+				z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = persia }
+				z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = east_levantine }
+				z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = south_arabian }
+				z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = south_levantine }
+				# Also North Africans, except Egyptians
+				z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = fezzani }
+				z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = numidian }
+			}
+		}
+		texture = "gfx/interface/event_window/Event_everyday_scene_at_pertsepolis.dds"
+	}
+	# Indians
+	picture = {
+		trigger = {
+			OR = {
+				z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = aryan }
+				z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = indian }
+				z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = pracyan }
+				z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = tibetan }
+			}
+		}
+		texture = "gfx/interface/event_window/Event_city_center_in_indian_city.dds"
+	}
+	# Latins
+	picture = {
+		trigger = {
+			OR = {
+				z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = latin }
+			}
+		}
+		texture = "gfx/interface/event_window/Event_farmer_in_latin_countryside.dds"
+	}
+	# Sedentary barbarians
+	picture = {
+		trigger = {
+			OR = {
+				z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = baltic }
+				z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = belgae_group }
+				z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = britannic }
+				z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = celt_iberia }
+				z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = celto_pannonian_group }
+				z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = dacia_group }
+				z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = finnic_group }
+				z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = gaelic }
+				z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = gallic }
+				z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = germanic }
+				z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = iberia }
+				z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = illyrian_group }
+				z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = proto_european }
+				z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = thrace_group }
+			}
+		}
+		texture = "gfx/interface/event_window/Event_gallic_village_scene.dds"
+	}
+	# Fallback
+	picture = {
+		trigger = {
+			always = yes
+		}
+		texture = "gfx/interface/event_window/Event_religious_festival.dds"
+	}
+}
+
+z_dfo_ruling_minority_pic = {
+	theme = Hubbub
+	# Special - Greek vs. Latin
+	picture = {
+		trigger = {
+			# Civilized rule over Nomad majority
+			AND = {
+				OR = {
+					country_culture_group = hellenic
+				}
+				OR = {
+					z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = hellenic }
+				}
+			}
+		}
+		texture = "gfx/interface/event_window/Event_greek_philosopher_talking.dds"
+	}
+	# Special - Civilized vs. Nomad
+	picture = {
+		trigger = {
+			# Civilized rule over Nomad majority
+			AND = {
+				OR = {
+					country_culture_group = hellenic
+					country_culture_group = latin
+				}
+				OR = {
+					z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = scythia }
+					z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = scythian_east }
+					# Also Bactrians
+					z_dfo_cultural_majority_is_culture_group_trigger = { CULTURE_GROUP = bactrian }
+				}
+			}
+		}
+		texture = "gfx/interface/event_window/event_greek_house.dds"
+	}
+	# Carthage
+	picture = {
+		trigger = {
+			OR = {
+				country_culture_group = west_levantine
+			}
+		}
+		texture = "gfx/interface/event_window/Event_square_of_medium_sized_hellenistic_or_roman_city.dds"
+	}
+	# Diadochi
+	picture = {
+		trigger = {
+			OR = {
+				AND = {
+					primary_culture = macedonian
+					NOT = {
+						capital_scope = {
+							OR = {
+								is_in_region = asia_region
+								is_in_region = greece_region
+								is_in_region = macedon_region
+							}
+						}
+					}
+				}
+			}
+		}
+		texture = "gfx/interface/event_window/Event_local_life.dds"
+	}
+	# Indians
+	picture = {
+		trigger = {
+			OR = {
+				country_culture_group = aryan
+				country_culture_group = indian
+				country_culture_group = pracyan
+				country_culture_group = tibetan
+			}
+		}
+		texture = "gfx/interface/event_window/Event_street_view_at_pataliputra.dds"
+	}
+	# Nomads
+	picture = {
+		trigger = {
+			OR = {
+				country_culture_group = scythia
+				country_culture_group = scythian_east
+			}
+		}
+		texture = "gfx/interface/event_window/event_steppe_cavalry.dds"
+	}
+	# Sedentary barbarians
+	picture = {
+		trigger = {
+			OR = {
+				country_culture_group = baltic
+				country_culture_group = belgae_group
+				country_culture_group = britannic
+				country_culture_group = celt_iberia
+				country_culture_group = celto_pannonian_group
+				country_culture_group = dacia_group
+				country_culture_group = finnic_group
+				country_culture_group = gaelic
+				country_culture_group = gallic
+				country_culture_group = germanic
+				country_culture_group = iberia
+				country_culture_group = illyrian_group
+				country_culture_group = proto_european
+				country_culture_group = thrace_group
+			}
+		}
+		texture = "gfx/interface/event_window/Event_gallic_village_scene.dds"
+	}
+	# Fallback - monarchy
+	picture = {
+		trigger = {
+			is_monarchy = yes
+		}
+		texture = "gfx/interface/event_window/Event_throneroom_king_on_throne_a_few_councilors_nearby.dds"
+	}
+	# Fallback - tribal
+	picture = {
+		trigger = {
+			is_tribal = yes
+		}
+		texture = "gfx/interface/event_window/Event_gallic_clan_chiefs_discussing.dds"
+	}
+	# Fallback - republic
+	picture = {
+		trigger = {
+			is_republic = yes
+		}
+		texture = "gfx/interface/event_window/Event_senator_talking_to_commoner.dds"
+	}
+}

@@ -1,43 +1,43 @@
 ﻿#-----------------------------------------------------------------------------------------
 # Does this country culture have any Cultural Majority modifier?
 #-----------------------------------------------------------------------------------------
-z_apc_has_any_cultural_majority_modifier_trigger = {
+z_dfo_has_any_cultural_majority_modifier_trigger = {
 	OR = {
-		has_country_culture_modifier = z_apc_cultural_majority_in_country_modifier
-		has_country_culture_modifier = z_apc_cultural_majority_in_capital_region_modifier
-		has_country_culture_modifier = z_apc_cultural_majority_in_capital_area_modifier
-		has_country_culture_modifier = z_apc_cultural_majority_in_capital_city_modifier
+		has_country_culture_modifier = z_dfo_cultural_majority_in_country_modifier
+		has_country_culture_modifier = z_dfo_cultural_majority_in_capital_region_modifier
+		has_country_culture_modifier = z_dfo_cultural_majority_in_capital_area_modifier
+		has_country_culture_modifier = z_dfo_cultural_majority_in_capital_city_modifier
 	}
 }
 
 #-----------------------------------------------------------------------------------------
 # Dirty trick to find the current Cultural Majority's culture group
-# (Since I didn't find a direct way to scope from country_culture to culture_group
+# (Since I didn't find a more direct way to scope from country_culture to culture_group
 # It's set up this way in order to minimize the number of calculations (hopefully)
 #-----------------------------------------------------------------------------------------
-z_apc_cultural_majority_is_culture_group_trigger = {
+z_dfo_cultural_majority_is_culture_group_trigger = {
 	# 1. Is there a Cultural Majority in this country?
 	trigger_if = {
 		limit = {
-			NOT = { exists = scope:z_apc_cultural_majority }
+			NOT = { exists = scope:z_dfo_cultural_majority_country_culture }
 		}
 		any_country_culture = {
-			z_apc_has_any_cultural_majority_modifier_trigger = yes
-			save_temporary_scope_as = z_apc_cultural_majority
+			z_dfo_has_any_cultural_majority_modifier_trigger = yes
+			save_temporary_scope_as = z_dfo_cultural_majority_country_culture
 		}
 	}
-	exists = scope:z_apc_cultural_majority
+	exists = scope:z_dfo_cultural_majority_country_culture
 	# 2. Find a pop from the Cultural Majority
 	trigger_if = {
 		limit = {
-			NOT = { exists = scope:z_apc_cultural_majority_pop }
+			NOT = { exists = scope:z_dfo_cultural_majority_culture }
 		}
 		OR = {
 			# Try capital first, there's good chance it returns true
 			capital_scope = {
 				any_pops_in_province = {
-					this.country_culture = scope:z_apc_cultural_majority
-					save_temporary_scope_as = z_apc_cultural_majority_pop
+					this.country_culture = scope:z_dfo_cultural_majority_country_culture
+					save_temporary_scope_as = z_dfo_cultural_majority_culture
 				}
 			}
 			# Try capital area, except the capital
@@ -45,8 +45,8 @@ z_apc_cultural_majority_is_culture_group_trigger = {
 				any_state_province = {
 					NOT = { this = root.capital_scope }
 					any_pops_in_province = {
-						this.country_culture = scope:z_apc_cultural_majority
-						save_temporary_scope_as = z_apc_cultural_majority_pop
+						this.country_culture = scope:z_dfo_cultural_majority_country_culture
+						save_temporary_scope_as = z_dfo_cultural_majority_culture
 					}
 				}
 			}
@@ -57,8 +57,8 @@ z_apc_cultural_majority_is_culture_group_trigger = {
 					owner = root
 					NOT = { this.state = root.capital_scope.state }
 					any_pops_in_province = {
-						this.country_culture = scope:z_apc_cultural_majority
-						save_temporary_scope_as = z_apc_cultural_majority_pop
+						this.country_culture = scope:z_dfo_cultural_majority_country_culture
+						save_temporary_scope_as = z_dfo_cultural_majority_culture
 					}
 				}
 			}
@@ -66,16 +66,16 @@ z_apc_cultural_majority_is_culture_group_trigger = {
 			any_owned_province = {
 				NOT = { this.region = root.capital_scope.region }
 				any_pops_in_province = {
-					this.country_culture = scope:z_apc_cultural_majority
-					save_temporary_scope_as = z_apc_cultural_majority_pop
+					this.country_culture = scope:z_dfo_cultural_majority_country_culture
+					save_temporary_scope_as = z_dfo_cultural_majority_culture
 				}
 			}
 		}
 	}
-	exists = scope:z_apc_cultural_majority_pop
+	exists = scope:z_dfo_cultural_majority_culture
 	# 3. Check pop culture group
-	scope:z_apc_cultural_majority_pop = {
-		this.country_culture = scope:z_apc_cultural_majority
+	scope:z_dfo_cultural_majority_culture = {
+		this.country_culture = scope:z_dfo_cultural_majority_country_culture
 		pop_culture_group = $CULTURE_GROUP$
 	}
 }
@@ -83,10 +83,10 @@ z_apc_cultural_majority_is_culture_group_trigger = {
 #-----------------------------------------------------------------------------------------
 # Does this country have a Cultural Majority with the $STATUS$ pop type right? (freemen/citizen/nobles)
 #-----------------------------------------------------------------------------------------
-z_apc_cultural_majority_status_trigger = {
-	has_variable = z_apc_new_primary_culture
-	var:z_apc_new_primary_culture = {
-		z_apc_has_any_cultural_majority_modifier_trigger = yes
+z_dfo_cultural_majority_status_trigger = {
+	has_variable = z_dfo_cultural_majority_country_culture
+	var:z_dfo_cultural_majority_country_culture = {
+		z_dfo_has_any_cultural_majority_modifier_trigger = yes
 		has_pop_type_right = $STATUS$
 	}
 }
@@ -94,12 +94,13 @@ z_apc_cultural_majority_status_trigger = {
 #-----------------------------------------------------------------------------------------
 # Can this country fire a main mod event?
 #-----------------------------------------------------------------------------------------
-z_apc_main_event_trigger = {
-	is_ai = no
+z_dfo_main_event_trigger = {
 	NOR = {
-		has_variable = z_apc_mission_ongoing
-		has_variable = z_apc_completed_mission
+		# No mission ongoing (or badly terminated)
+		has_variable = z_ecm_mission_ongoing
 		has_variable = z_qcm_mission_ongoing
-		has_variable = z_qcm_completed_mission
+		# No mission completed
+		has_variable = z_ecm_mission_completed
+		has_variable = z_qcm_mission_completed
 	}
 }

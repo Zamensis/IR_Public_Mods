@@ -1,0 +1,238 @@
+﻿#-----------------------------------------------------------------------------------------
+# Percentage thresholds for the currently evaluated non-primary culture to be considered a Cultural Majority, per level
+#-----------------------------------------------------------------------------------------
+z_dfo_cultural_majority_threshold_country = { value = 0.5 }
+z_dfo_cultural_majority_threshold_capital_region = { value = 0.5 }
+z_dfo_cultural_majority_threshold_capital_area = { value = 0.5 }
+z_dfo_cultural_majority_threshold_capital_city = { value = 0.5 }
+
+#-----------------------------------------------------------------------------------------
+# Number of pops of the currently evaluated non-primary culture
+#-----------------------------------------------------------------------------------------
+z_dfo_culture_A_country_population = {
+	value = 0
+	every_owned_province = {
+		every_pops_in_province = {
+			if = {
+				limit = {
+					this.country_culture = scope:z_dfo_culture_A
+					#NOT = { pop_type = slaves }
+				}
+				add = 1
+			}
+		}
+	}
+}
+
+z_dfo_culture_A_capital_region_population = {
+	value = 0
+	every_owned_province = {
+		limit = {
+			this.region = root.capital_scope.region
+		}
+		every_pops_in_province = {
+			if = {
+				limit = {
+					this.country_culture = scope:z_dfo_culture_A
+					#NOT = { pop_type = slaves }
+				}
+				add = 1
+			}
+		}
+	}
+}
+
+z_dfo_culture_A_capital_area_population = {
+	value = 0
+	every_owned_province = {
+		limit = {
+			this.area = root.capital_scope.area
+		}
+		every_pops_in_province = {
+			if = {
+				limit = {
+					this.country_culture = scope:z_dfo_culture_A
+					#NOT = { pop_type = slaves }
+				}
+				add = 1
+			}
+		}
+	}
+}
+
+z_dfo_culture_A_capital_city_population = {
+	value = 0
+	root.capital_scope = {
+		every_pops_in_province = {
+			if = {
+				limit = {
+					this.country_culture = scope:z_dfo_culture_A
+					#NOT = { pop_type = slaves }
+				}
+				add = 1
+			}
+		}
+	}
+}
+
+z_dfo_culture_B_country_population = {
+	value = 0
+	every_owned_province = {
+		every_pops_in_province = {
+			if = {
+				limit = {
+					this.country_culture = scope:z_dfo_culture_B
+					#NOT = { pop_type = slaves }
+				}
+				add = 1
+			}
+		}
+	}
+}
+
+z_dfo_culture_B_capital_region_population = {
+	value = 0
+	every_owned_province = {
+		limit = {
+			this.region = root.capital_scope.region
+		}
+		every_pops_in_province = {
+			if = {
+				limit = {
+					this.country_culture = scope:z_dfo_culture_B
+					#NOT = { pop_type = slaves }
+				}
+				add = 1
+			}
+		}
+	}
+}
+
+z_dfo_culture_B_capital_area_population = {
+	value = 0
+	every_owned_province = {
+		limit = {
+			this.area = root.capital_scope.area
+		}
+		every_pops_in_province = {
+			if = {
+				limit = {
+					this.country_culture = scope:z_dfo_culture_B
+					#NOT = { pop_type = slaves }
+				}
+				add = 1
+			}
+		}
+	}
+}
+
+z_dfo_culture_B_capital_city_population = {
+	value = 0
+	root.capital_scope = {
+		every_pops_in_province = {
+			if = {
+				limit = {
+					this.country_culture = scope:z_dfo_culture_B
+					#NOT = { pop_type = slaves }
+				}
+				add = 1
+			}
+		}
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# Number of pops, per level (to be cached so it's only calculated once)
+#-----------------------------------------------------------------------------------------
+z_dfo_total_population_in_country = {
+	value = root.country_population # Not strictly necessary, but this for exhaustiveness
+}
+
+z_dfo_total_population_in_capital_region = {
+	value = 0
+	root.capital_scope.region = {
+		every_region_province = {
+			limit = {
+				has_owner = yes
+				owner = root
+			}
+			add = total_population
+		}
+	}
+}
+
+z_dfo_total_population_in_capital_area = {
+	value = 0
+	root.capital_scope.area = {
+		every_area_province = {
+			limit = {
+				has_owner = yes
+				owner = root
+			}
+			add = total_population
+		}
+	}
+}
+
+z_dfo_total_population_in_capital_city = {
+	value = root.capital_scope.total_population # Not strictly necessary, but this for exhaustiveness
+}
+
+#-----------------------------------------------------------------------------------------
+# Percentages of pops from the currently evaluated non-primary culture, per level
+#-----------------------------------------------------------------------------------------
+z_dfo_culture_pc_country = {
+	value = 0
+	if = {
+		limit = {
+			var:z_dfo_total_population_in_country_cache > 0
+		}
+		add = var:z_dfo_culture_A_country_population_cache
+		divide = var:z_dfo_total_population_in_country_cache
+	}
+}
+
+z_dfo_culture_pc_capital_region = {
+	value = 0
+	if = {
+		limit = {
+			var:z_dfo_total_population_in_capital_region_cache > 0
+		}
+		add = var:z_dfo_culture_A_capital_region_population_cache
+		divide = var:z_dfo_total_population_in_capital_region_cache
+	}
+}
+
+z_dfo_culture_pc_capital_area = {
+	value = 0
+	if = {
+		limit = {
+			var:z_dfo_total_population_in_capital_area_cache > 0
+		}
+		add = var:z_dfo_culture_A_capital_area_population_cache
+		divide = var:z_dfo_total_population_in_capital_area_cache
+	}
+}
+
+z_dfo_culture_pc_capital_city = {
+	value = 0
+	if = {
+		limit = {
+			var:z_dfo_total_population_in_capital_city_cache > 0
+		}
+		add = var:z_dfo_culture_A_capital_city_population_cache
+		divide = var:z_dfo_total_population_in_capital_city_cache
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# Svalues that return vars, since comparing two vars returns illegal operator error
+#-----------------------------------------------------------------------------------------
+z_dfo_culture_A_country_population_cache = { value = var:z_dfo_culture_A_country_population_cache }
+z_dfo_culture_A_capital_region_population_cache = { value = var:z_dfo_culture_A_capital_region_population_cache }
+z_dfo_culture_A_capital_area_population_cache = { value = var:z_dfo_culture_A_capital_area_population_cache }
+z_dfo_culture_A_capital_city_population_cache = { value = var:z_dfo_culture_A_capital_city_population_cache }
+z_dfo_culture_B_country_population_cache = { value = var:z_dfo_culture_B_country_population_cache }
+z_dfo_culture_B_capital_region_population_cache = { value = var:z_dfo_culture_B_capital_region_population_cache }
+z_dfo_culture_B_capital_area_population_cache = { value = var:z_dfo_culture_B_capital_area_population_cache }
+z_dfo_culture_B_capital_city_population_cache = { value = var:z_dfo_culture_B_capital_city_population_cache }

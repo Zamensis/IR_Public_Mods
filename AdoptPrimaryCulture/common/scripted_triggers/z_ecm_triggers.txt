@@ -1,7 +1,7 @@
 ﻿#-----------------------------------------------------------------------------------------
 # Is this character eligible to become a [NPC] Pretender?
 #-----------------------------------------------------------------------------------------
-z_apc_is_eligible_npc_pretender_trigger = {
+z_ecm_is_eligible_cm_pretender_trigger = {
 	is_alive = yes
 	is_ruler = no
 	is_adult = yes
@@ -13,7 +13,7 @@ z_apc_is_eligible_npc_pretender_trigger = {
 #-----------------------------------------------------------------------------------------
 # Would this character become a [NPC] Pretender?
 #-----------------------------------------------------------------------------------------
-z_apc_is_potential_npc_pretender_trigger = {
+z_ecm_is_potential_cm_pretender_trigger = {
 	trigger_if = {
 		limit = {
 			OR = {
@@ -35,7 +35,7 @@ z_apc_is_potential_npc_pretender_trigger = {
 #-----------------------------------------------------------------------------------------
 # Would this character convert willingly to the new culture?
 #-----------------------------------------------------------------------------------------
-z_apc_is_potential_npc_convertee_trigger = {
+z_ecm_is_potential_cm_convertee_trigger = {
 	trigger_if = {
 		limit = {
 			OR = {

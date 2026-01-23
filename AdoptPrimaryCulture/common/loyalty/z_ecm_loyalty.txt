@@ -1,15 +1,30 @@
 ﻿#-----------------------------------------------------------------------------------------
-# Abandoned our primary culture
+# Post-conversion loyalty modifiers
 #-----------------------------------------------------------------------------------------
-z_apc_removed_old_primary_culture = {
-	value = -25
+z_ecm_loyalty_aborted_conversion = {
+	value = 5
 	yearly_decay = 1
 }
 
+z_ecm_loyalty_voluntary_conversion = {
+	value = 5
+	yearly_decay = 1
+}
+
+z_ecm_loyalty_forced_conversion = {
+	value = -10
+	yearly_decay = 2
+}
+
 #-----------------------------------------------------------------------------------------
-# Adopted our primary culture
+# Office holder loyalty modifiers
 #-----------------------------------------------------------------------------------------
-z_apc_adopted_new_primary_culture = {
-	value = 15
+z_ecm_loyalty_cm_official = {
+	value = 5
+	yearly_decay = 1
+}
+
+z_ecm_loyalty_rm_official = {
+	value = -5
 	yearly_decay = 1
 }

@@ -1,30 +1,15 @@
 ﻿#-----------------------------------------------------------------------------------------
-# Forced conversion loyalty modifiers
+# This country abandoned its Ruling Minority, which is also our primary culture
 #-----------------------------------------------------------------------------------------
-z_apc_loyalty_conversion_aborted = {
-	value = 5
+z_ecm_removed_ruling_minority = {
+	value = -25
 	yearly_decay = 1
 }
 
-z_apc_loyalty_voluntary_conversion = {
-	value = 5
-	yearly_decay = 1
-}
-
-z_apc_loyalty_forced_conversion = {
-	value = -10
-	yearly_decay = 2
-}
-
 #-----------------------------------------------------------------------------------------
-# Office holder loyalty modifiers
+# This country embraced its Cultural Majority, which is also our primary culture
 #-----------------------------------------------------------------------------------------
-z_apc_npc_official = {
-	value = 5
-	yearly_decay = 1
-}
-
-z_apc_opc_official = {
-	value = -5
+z_ecm_adopted_cultural_majority = {
+	value = 15
 	yearly_decay = 1
 }

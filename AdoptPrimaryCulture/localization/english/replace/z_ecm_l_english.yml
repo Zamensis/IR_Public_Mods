@@ -1,0 +1,157 @@
+﻿l_english:
+ # EVENT MODIFIERS -----------------------------------------------------------------------------------------------------------------------------------------------
+ z_ecm_national_shame_small_modifier:0 "Public Disapproval"
+ desc_z_ecm_national_shame_small_modifier:0 "This culture has been sidelined by the ruler of the country."
+ z_ecm_national_shame_big_modifier:0 "Public Shaming"
+ desc_z_ecm_national_shame_big_modifier:0 "This culture has been betrayed by the ruler of the country."
+ z_ecm_national_pride_small_modifier:0 "Public Appraisal"
+ desc_z_ecm_national_pride_small_modifier:0 "This culture has been praised by the ruler of the country."
+ z_ecm_national_pride_big_modifier:0 "Public Appraisal"
+ desc_z_ecm_national_pride_big_modifier:0 "This culture has been adopted by the ruler of the country."
+ # LOYALTY MODIFIERS -----------------------------------------------------------------------------------------------------------------------------------------------
+ z_ecm_loyalty_aborted_conversion:0 "Avoided Cultural Conversion"
+ z_ecm_loyalty_voluntary_conversion:0 "Voluntary Cultural Conversion"
+ z_ecm_loyalty_forced_conversion:0 "Forced Cultural Conversion"
+ z_loyalty_ecm_cm_official:0 "Cultural Favoritism in the Government"
+ z_loyalty_ecm_rm_official:0 "Cultural Favoritism in the Government"
+ # OPINION MODIFIERS -----------------------------------------------------------------------------------------------------------------------------------------------
+ z_ecm_removed_ruling_minority:0 "Abandoned our Culture"
+ z_ecm_adopted_cultural_majority:0 "Embraced our Culture"
+ # MISSION -----------------------------------------------------------------------------------------------------------------------------------------------
+ z_ecm_mission:0 "A New [z_dfo_found_cultural_majority.GetName] Realm"
+ z_ecm_mission_DESCRIPTION:0 "z_ecm_mission_DESCRIPTION"
+ z_ecm_mission_CRITERIA_DESCRIPTION:0 "This mission will be considered complete when we have adopted the [z_dfo_cultural_majority_country_culture.GetName] culture and language, and the current [z_dfo_ruling_minority_country_culture.GetName] regime has been replaced or converted."
+ z_ecm_mission_BUTTON_TOOLTIP:0 "z_ecm_mission_BUTTON_TOOLTIP"
+ z_ecm_mission_cooldown_tt:0 "You will #R NOT#! be able to restart this mission until at least #R 100#! years have passed."
+ # -----------
+ z_ecm_completed_missions_required_tt:0 "At least #Y [SCOPE.ScriptValue('z_ecm_completed_missions_requirement_svalue')|0]#! Mission Tasks have been completed (Current: #Y [SCOPE.ScriptValue('z_ecm_completed_missions_current_svalue')|0]#!)."
+ # -----------
+ z_ecm_mission_the_cm_question:0 "The [z_dfo_cultural_majority_country_culture.GetName] Question"
+ z_ecm_mission_the_cm_question_on_completion_tt:0 "We will be able to #Y choose a strategy#! for the establishment of a new [z_dfo_cultural_majority_country_culture.GetName] rule in [z_ecm_country.GetName]."
+ # -----------
+ z_ecm_mission_integrate_citizens:0 "[z_dfo_cultural_majority_country_culture.GetName] Integration"
+ # -----------
+ z_ecm_mission_cm_exception:0 "The [z_dfo_cultural_majority_country_culture.GetName] Exception"
+ z_ecm_mission_cm_exception_allow_tt:0 "No cultures other than [z_dfo_ruling_minority_country_culture.GetName] and [z_dfo_cultural_majority_country_culture.GetName] are integrated."
+ # -----------
+ z_ecm_mission_integrate_nobles:0 "[z_dfo_cultural_majority_country_culture.GetName] Privileges"
+ # -----------
+ z_ecm_mission_cm_governors:0 "[z_dfo_cultural_majority_country_culture.GetName] Governors"
+ z_ecm_mission_cm_governors_allow_tt:0 "At least #E #Y [SCOPE.ScriptValue('z_ecm_mission_cm_governors_goal_svalue')|0]#!#! #E Governorships#! are held by [z_dfp_cultural_majority_culture.GetName] characters (Currently: #E #R [SCOPE.ScriptValue('z_ecm_mission_cm_governors_current_svalue')|0]#!#!)."
+ z_ecm_mission_cm_governors_loyalty_tt:0 "Every [z_dfo_cultural_majority_country_culture.GetName] #E Governor#! gains #G 5#! Loyalty@loyalty_icon!.\nEvery [z_dfo_ruling_minority_country_culture.GetName] #E Governor#! loses #R 5#! Loyalty@loyalty_icon!."
+ # -----------
+ z_ecm_mission_cm_government:0 "[z_dfo_cultural_majority_country_culture.GetName] Ministers"
+ z_ecm_mission_cm_government_allow_tt:0 "At least #E #Y [SCOPE.ScriptValue('z_ecm_mission_cm_government_goal_svalue')|0]#!#! #E Offices#! are held by [z_dfp_cultural_majority_culture.GetName] characters (Currently: #E #R [SCOPE.ScriptValue('z_ecm_mission_cm_government_current_svalue')|0]#!#!)."
+ z_ecm_mission_cm_government_loyalty_tt:0 "Every [z_dfo_cultural_majority_country_culture.GetName] #E Office holder#! gains #G 5#! Loyalty@loyalty_icon!.\nEvery [z_dfo_ruling_minority_country_culture.GetName] #E Office holder#! loses #R 5#! Loyalty@loyalty_icon!."
+ # -----------
+ z_ecm_mission_cm_army:0 "[z_dfo_cultural_majority_country_culture.GetName] Generals"
+ z_ecm_mission_cm_army_allow_tt:0 "At least #E #Y [SCOPE.ScriptValue('z_ecm_mission_cm_army_goal_svalue')|0]#!#! #E Legion Commands#! are held by [z_dfp_cultural_majority_culture.GetName] characters (Currently: #E #R [SCOPE.ScriptValue('z_ecm_mission_cm_army_current_svalue')|0]#!#!)."
+ z_ecm_mission_cm_army_loyalty_tt:0 "Every [z_dfo_cultural_majority_country_culture.GetName] #E Legion Commander#! gains #G 5#! Loyalty@loyalty_icon!.\nEvery [z_dfo_ruling_minority_country_culture.GetName] #E Legion Commander#! loses #R 5#! Loyalty@loyalty_icon!."
+ # -----------
+ z_ecm_mission_cm_ruler:0 "The [z_dfo_cultural_majority_country_culture.GetName] [z_ecm_country.GetRuler.GetTitleName]"
+ # -----------
+ z_ecm_mission_cm_city:0 "The [z_dfo_cultural_majority_country_culture.GetName] City"
+ # -----------
+ z_ecm_mission_cm_capital:0 "The [z_dfo_cultural_majority_country_culture.GetName] Capital"
+ # -----------
+ z_ecm_mission_final:0 "The [z_dfo_cultural_majority_country_culture.GetName] Renaissance"
+ # MISSION EVENTS -----------------------------------------------------------------------------------------------------------------------------------------------
+ z_ecm_mission.1.t:0 "$z_ecm_mission_the_cm_question$"
+ z_ecm_mission.1.desc:0 "Placeholder"
+ z_ecm_mission.1.a:0 "Placeholder"
+ z_ecm_mission.1.a.tt:0 "Placeholder"
+ # -----------
+ z_ecm_mission.2.t:0 "$z_ecm_mission_the_cm_question$"
+ z_ecm_mission.2.desc:0 "We must choose a strategy for the establishment of a new [z_dfo_cultural_majority_country_culture.GetName] rule in [z_ecm_country.GetName]."
+ z_ecm_mission.2.a:0 "The [z_dfo_ruling_minority_country_culture.GetName] nobility should follow the [z_dfo_cultural_majority_country_culture.GetName] customs."
+ z_ecm_mission.2.a.tt:0 "More [z_dfo_ruling_minority_country_culture.GetName] characters will try to adopt the [z_dfo_cultural_majority_country_culture.GetName] customs."
+ z_ecm_mission.2.b:0 "The [z_dfo_ruling_minority_country_culture.GetName] minority must give way to the [z_dfo_cultural_majority_country_culture.GetName] elite."
+ z_ecm_mission.2.b.tt:0 "More [z_dfo_cultural_majority_country_culture.GetName] characters will try to enter the circles of power."
+ # -----------
+ z_ecm_mission.3.t:0 "$z_ecm_mission_the_cm_question$"
+ z_ecm_mission.3.desc:0 "Placeholder"
+ z_ecm_mission.3.a:0 "Placeholder"
+ # -----------
+ z_ecm_mission.4.t:0 "$z_ecm_mission_the_cm_question$"
+ z_ecm_mission.4.desc:0 "Placeholder"
+ z_ecm_mission.4.a:0 "Placeholder"
+ # -----------
+ z_ecm_mission.5.t:0 "$z_ecm_mission_the_cm_question$"
+ z_ecm_mission.5.desc:0 "Placeholder"
+ z_ecm_mission.5.a:0 "Placeholder"
+ # -----------
+ z_ecm_mission.6.t:0 "$z_ecm_mission_the_cm_question$"
+ z_ecm_mission.6.desc:0 "Placeholder"
+ z_ecm_mission.6.a:0 "Placeholder"
+ # -----------
+ z_ecm_mission.7.t:0 "$z_ecm_mission_the_cm_question$"
+ z_ecm_mission.7.desc:0 "Placeholder"
+ z_ecm_mission.7.a:0 "Placeholder"
+ # -----------
+ z_ecm_mission.8.t:0 "$z_ecm_mission_the_cm_question$"
+ z_ecm_mission.8.desc:0 "Placeholder"
+ z_ecm_mission.8.a:0 "Placeholder"
+ # -----------
+ z_ecm_mission.9.t:0 "The [z_dfo_cultural_majority_country_culture.GetName] Government"
+ z_ecm_mission.9.desc:0 "Placeholder"
+ z_ecm_mission.9.a:0 "Adopt the [z_dfo_cultural_majority_country_culture.GetName] étiquette."
+ z_ecm_mission.9.b:0 "Give way to [z_ecm_cm_pretender.GetName]."
+ z_ecm_mission.9.c:0 "Deliver a speech to honor of the [z_dfo_cultural_majority_country_culture.GetName] traditions."
+ # -----------
+ z_ecm_mission.10.t:0 "$z_ecm_mission_cm_governors$"
+ z_ecm_mission.10.desc:0 "Placeholder"
+ z_ecm_mission.10.a:0 "Placeholder"
+ # -----------
+ z_ecm_mission.11.t:0 "$z_ecm_mission_cm_government$"
+ z_ecm_mission.11.desc:0 "Placeholder"
+ z_ecm_mission.11.a:0 "Placeholder"
+ # -----------
+ z_ecm_mission.12.t:0 "$z_ecm_mission_cm_army$"
+ z_ecm_mission.12.desc:0 "Placeholder"
+ z_ecm_mission.12.a:0 "Placeholder"
+ # -----------
+ z_ecm_mission.13.t:0 "[z_ecm_new_cm_character.GetName]"
+ z_ecm_mission.13.desc:0 "Placeholder"
+ z_ecm_mission.13.a:0 "[z_ecm_new_cm_character.GetPraenomen] can stay."
+ z_ecm_mission.13.b:0 "We don't need [z_ecm_new_cm_character.GetHerHim]."
+ z_ecm_mission.13.b.tt:0 "[z_ecm_new_cm_character.GetName] disappears."
+ # -----------
+ z_ecm_mission.14.t:0 "[z_ecm_new_cm_character.GetName]"
+ z_ecm_mission.14.desc.loyal:0 "Placeholder (loyal character)"
+ z_ecm_mission.14.desc.unloyal:0 "Placeholder (unloyal character)"
+ z_ecm_mission.14.a.loyal:0 "Excellent, [z_ecm_new_cm_character.GetPraenomen]."
+ z_ecm_mission.14.a.unloyal:0 "It is really necessary, [z_ecm_new_cm_character.GetPraenomen]."
+ z_ecm_mission.14.b:0 "[z_ecm_new_cm_character.GetPraenomen] will not be forced out of [z_ecm_new_cm_character.GetHerHis] traditions."
+ # -----------
+ z_ecm_mission.15.t:0 "$z_ecm_mission_integrate_citizens$"
+ z_ecm_mission.15.desc:0 "Placeholder"
+ z_ecm_mission.15.a:0 "Placeholder"
+ # -----------
+ z_ecm_mission.16.t:0 "$z_ecm_mission_integrate_nobles$"
+ z_ecm_mission.16.desc:0 "Placeholder"
+ z_ecm_mission.16.a:0 "Placeholder"
+ # -----------
+ z_ecm_mission.17.t:0 "$z_ecm_mission_cm_exception$"
+ z_ecm_mission.17.desc:0 "Placeholder"
+ z_ecm_mission.17.a:0 "Placeholder"
+ # -----------
+ z_ecm_mission.18.t:0 "$z_ecm_mission_cm_ruler$"
+ z_ecm_mission.18.desc:0 "Placeholder"
+ z_ecm_mission.18.a:0 "Placeholder"
+ # -----------
+ z_ecm_mission.19.t:0 "$z_ecm_mission_cm_city$"
+ z_ecm_mission.19.desc:0 "Placeholder"
+ z_ecm_mission.19.a:0 "Placeholder"
+ # -----------
+ z_ecm_mission.20.t:0 "$z_ecm_mission_cm_capital$"
+ z_ecm_mission.20.desc:0 "Placeholder"
+ z_ecm_mission.20.a:0 "Placeholder"
+ # -----------
+ z_ecm_mission.999.t:0 "$z_ecm_mission_final$"
+ z_ecm_mission.999.desc:0 "Placeholder"
+ z_ecm_mission.999.a:0 "Placeholder"
+ z_ecm_mission.999.a.tt:0 "Placeholder"
+ z_ecm_mission.999.b:0 "Conquerors, we are conquered."
+ z_ecm_mission.999.b.tt:0 "Placeholder"
+ z_ecm_mission.999.bad_opinion:0 "Every [z_dfo_ruling_minority_country_culture.GetName] country loses #R 25#! opinion of [SCOPE.GetRootScope.GetCountry.GetName]"
+ z_ecm_mission.999.good_opinion:0 "Every [z_dfo_cultural_majority_country_culture.GetName] country gains #G 15#! opinion of [SCOPE.GetRootScope.GetCountry.GetName]"

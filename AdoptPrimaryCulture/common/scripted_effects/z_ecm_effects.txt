@@ -1,0 +1,189 @@
+﻿#-----------------------------------------------------------------------------------------
+# Clear mission variables (on mission abort or mission completion)
+#-----------------------------------------------------------------------------------------
+z_ecm_clear_mission_variables_effect = {
+	if = {
+		limit = { has_variable = z_ecm_mission_ongoing }
+		remove_variable = z_ecm_mission_ongoing
+	}
+	if = {
+		limit = { has_variable = z_ecm_completed_missions_current }
+		remove_variable = z_ecm_completed_missions_current
+	}
+	if = {
+		limit = { has_variable = z_ecm_already_integrated_citizens }
+		remove_variable = z_ecm_already_integrated_citizens
+	}
+	if = {
+		limit = { has_variable = z_ecm_already_integrated_nobles }
+		remove_variable = z_ecm_already_integrated_nobles
+	}
+	if = {
+		limit = { has_variable = z_ecm_not_enough_governorships }
+		remove_variable = z_ecm_not_enough_governorships
+	}
+	if = {
+		limit = { has_variable = z_ecm_not_enough_legion_commands }
+		remove_variable = z_ecm_not_enough_legion_commands
+	}
+	if = {
+		limit = { has_variable = z_ecm_assimilate_flag }
+		remove_variable = z_ecm_assimilate_flag
+	}
+	if = {
+		limit = { has_variable = z_ecm_replace_flag }
+		remove_variable = z_ecm_replace_flag
+	}
+	if = {
+		limit = { has_variable = z_ecm_character_generation_ongoing }
+		remove_variable = z_ecm_character_generation_ongoing
+	}
+	if = {
+		limit = { has_variable = z_ecm_mission_cm_governors_completed }
+		remove_variable = z_ecm_mission_cm_governors_completed
+	}
+	if = {
+		limit = { has_variable = z_ecm_mission_cm_government_completed }
+		remove_variable = z_ecm_mission_cm_government_completed
+	}
+	if = {
+		limit = { has_variable = z_ecm_mission_cm_army_completed }
+		remove_variable = z_ecm_mission_cm_army_completed
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# Generate a new CM character
+#-----------------------------------------------------------------------------------------
+z_ecm_generate_cm_character_effect = {
+	# Set adopting family
+	random_family = {
+		save_scope_as = z_ecm_new_cm_character_family
+	}
+	# Actually generate a character
+	random_list = {
+		60 = {
+			trigger = {
+				NOT = { has_variable = z_ecm_mission_cm_governors_completed }
+			}
+			create_character = {
+				save_scope_as = z_ecm_new_cm_character
+				female = no
+				age = { 20 60 }
+				culture = scope:z_dfo_cultural_majority_culture
+				no_stats = yes
+			}
+			hidden_effect = {
+				scope:z_ecm_new_cm_character = {
+					add_martial = { 7 12 }
+					add_zeal = { 0 8 }
+					add_charisma = { 0 8 }
+					add_finesse = { 0 8 }
+				}
+			}
+		}
+		40 = {
+			trigger = {
+				NOT = { has_variable = z_ecm_mission_cm_governors_completed }
+				gender_equality = yes
+			}
+			create_character = {
+				save_scope_as = z_ecm_new_cm_character
+				female = no
+				age = { 20 60 }
+				culture = scope:z_dfo_cultural_majority_culture
+				no_stats = yes
+			}
+			hidden_effect = {
+				scope:z_ecm_new_cm_character = {
+					add_martial = { 7 12 }
+					add_zeal = { 0 8 }
+					add_charisma = { 0 8 }
+					add_finesse = { 0 8 }
+				}
+			}
+		}
+		60 = {
+			trigger = {
+				NOT = { has_variable = z_ecm_mission_cm_government_completed }
+			}
+			create_character = {
+				save_scope_as = z_ecm_new_cm_character
+				female = no
+				age = { 20 60 }
+				culture = scope:z_dfo_cultural_majority_culture
+				no_stats = yes
+			}
+			hidden_effect = {
+				scope:z_ecm_new_cm_character = {
+					add_martial = { 7 12 }
+					add_zeal = { 0 8 }
+					add_charisma = { 0 8 }
+					add_finesse = { 0 8 }
+				}
+			}
+		}
+		40 = {
+			trigger = {
+				NOT = { has_variable = z_ecm_mission_cm_government_completed }
+				gender_equality = yes
+			}
+			create_character = {
+				save_scope_as = z_ecm_new_cm_character
+				female = no
+				age = { 20 60 }
+				culture = scope:z_dfo_cultural_majority_culture
+				no_stats = yes
+			}
+			hidden_effect = {
+				scope:z_ecm_new_cm_character = {
+					add_martial = { 7 12 }
+					add_zeal = { 0 8 }
+					add_charisma = { 0 8 }
+					add_finesse = { 0 8 }
+				}
+			}
+		}
+		60 = {
+			trigger = {
+				NOT = { has_variable = z_ecm_mission_cm_army_completed }
+			}
+			create_character = {
+				save_scope_as = z_ecm_new_cm_character
+				female = no
+				age = { 20 60 }
+				culture = scope:z_dfo_cultural_majority_culture
+				no_stats = yes
+			}
+			hidden_effect = {
+				scope:z_ecm_new_cm_character = {
+					add_martial = { 7 12 }
+					add_zeal = { 0 8 }
+					add_charisma = { 0 8 }
+					add_finesse = { 0 8 }
+				}
+			}
+		}
+		40 = {
+			trigger = {
+				NOT = { has_variable = z_ecm_mission_cm_army_completed }
+				gender_equality = yes
+			}
+			create_character = {
+				save_scope_as = z_ecm_new_cm_character
+				female = no
+				age = { 20 60 }
+				culture = scope:z_dfo_cultural_majority_culture
+				no_stats = yes
+			}
+			hidden_effect = {
+				scope:z_ecm_new_cm_character = {
+					add_martial = { 7 12 }
+					add_zeal = { 0 8 }
+					add_charisma = { 0 8 }
+					add_finesse = { 0 8 }
+				}
+			}
+		}
+	}
+}

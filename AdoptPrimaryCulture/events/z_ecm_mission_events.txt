@@ -1,0 +1,981 @@
+﻿namespace = z_ecm_mission
+
+#-----------------------------------------------------------------------------------------
+# The CM Question - On start
+#-----------------------------------------------------------------------------------------
+z_ecm_mission.1 = {
+	type = country_event
+	title = "z_ecm_mission.1.t"
+	desc = "z_ecm_mission.1.desc"
+	
+	picture = z_dfo_cultural_majority_pic
+	left_portrait = root.current_ruler
+	
+	trigger = {
+		# Triggered on starting mission: z_ecm_mission_the_cm_question
+	}
+		
+	option = { # Let's go!
+		name = "z_ecm_mission.1.a"
+		custom_tooltip = "z_ecm_mission.1.a.tt"
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# The CM Question - On completion
+#-----------------------------------------------------------------------------------------
+z_ecm_mission.2 = {
+	type = country_event
+	title = "z_ecm_mission.2.t"
+	desc = "z_ecm_mission.2.desc"
+	
+	picture = z_dfo_ruling_minority_pic
+	left_portrait = root.current_ruler
+	
+	trigger = {
+		# Triggered on completing mission: z_ecm_mission_the_cm_question
+	}
+	
+	option = { # Assimilate
+		name = "z_ecm_mission.2.a"
+		set_variable = z_ecm_assimilate_flag
+		custom_tooltip = z_ecm_mission.2.a.tt
+		trigger_event = {
+			id = z_ecm_mission.13 # Character generation
+			days = { 180 360 }
+		}
+		trigger_event = {
+			id = z_ecm_mission.14 # Character conversion
+			days = { 90 180 }
+		}
+	}
+	
+	option = { # Replace
+		name = "z_ecm_mission.2.b"
+		set_variable = z_ecm_replace_flag
+		custom_tooltip = z_ecm_mission.2.b.tt
+		trigger_event = {
+			id = z_ecm_mission.13 # Character generation
+			days = { 30 90 }
+		}
+		trigger_event = {
+			id = z_ecm_mission.14 # Character conversion
+			days = { 90 180 }
+		}
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# The CM Question - While running - XXX
+#-----------------------------------------------------------------------------------------
+z_ecm_mission.3 = {
+	type = country_event
+	title = "z_ecm_mission.3.t"
+	desc = "z_ecm_mission.3.desc"
+	fire_only_once = yes
+	
+	picture = z_dfo_cultural_majority_pic
+	left_portrait = root.current_ruler
+	
+	trigger = {
+		# Triggered while mission in running: z_ecm_mission_the_cm_question
+	}
+	
+	immediate = {
+	}
+	
+	option = { #
+		name = "z_ecm_mission.3.a"
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# The CM Question - While running - XXX
+#-----------------------------------------------------------------------------------------
+z_ecm_mission.4 = {
+	type = country_event
+	title = "z_ecm_mission.4.t"
+	desc = "z_ecm_mission.4.desc"
+	fire_only_once = yes
+	
+	picture = z_dfo_ruling_minority_pic
+	left_portrait = root.current_ruler
+	
+	trigger = {
+		# Triggered while mission in running: z_ecm_mission_the_cm_question
+	}
+	
+	immediate = {
+	}
+	
+	option = { #
+		name = "z_ecm_mission.4.a"
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# The CM Question - While running - XXX
+#-----------------------------------------------------------------------------------------
+z_ecm_mission.5 = {
+	type = country_event
+	title = "z_ecm_mission.5.t"
+	desc = "z_ecm_mission.5.desc"
+	fire_only_once = yes
+	
+	picture = z_dfo_cultural_majority_pic
+	left_portrait = root.current_ruler
+	
+	trigger = {
+		# Triggered while mission in running: z_ecm_mission_the_cm_question
+	}
+	
+	immediate = {
+	}
+	
+	option = { #
+		name = "z_ecm_mission.5.a"
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# The CM Question - While running - XXX
+#-----------------------------------------------------------------------------------------
+z_ecm_mission.6 = {
+	type = country_event
+	title = "z_ecm_mission.6.t"
+	desc = "z_ecm_mission.6.desc"
+	fire_only_once = yes
+	
+	picture = z_dfo_ruling_minority_pic
+	left_portrait = root.current_ruler
+	
+	trigger = {
+		# Triggered while mission in running: z_ecm_mission_the_cm_question
+	}
+	
+	immediate = {
+	}
+	
+	option = { #
+		name = "z_ecm_mission.6.a"
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# The CM Question - While running - XXX
+#-----------------------------------------------------------------------------------------
+z_ecm_mission.7 = {
+	type = country_event
+	title = "z_ecm_mission.7.t"
+	desc = "z_ecm_mission.7.desc"
+	fire_only_once = yes
+	
+	picture = z_dfo_cultural_majority_pic
+	left_portrait = root.current_ruler
+	
+	trigger = {
+		# Triggered while mission in running: z_ecm_mission_the_cm_question
+	}
+	
+	immediate = {
+	}
+	
+	option = { #
+		name = "z_ecm_mission.7.a"
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# The CM Question - While running - XXX
+#-----------------------------------------------------------------------------------------
+z_ecm_mission.8 = {
+	type = country_event
+	title = "z_ecm_mission.8.t"
+	desc = "z_ecm_mission.8.desc"
+	fire_only_once = yes
+	
+	picture = z_dfo_ruling_minority_pic
+	left_portrait = root.current_ruler
+	
+	trigger = {
+		# Triggered while mission in running: z_ecm_mission_the_cm_question
+	}
+	
+	immediate = {
+	}
+	
+	option = { #
+		name = "z_ecm_mission.8.a"
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# The CM Leader - On completion of all three "government" missions
+#-----------------------------------------------------------------------------------------
+z_ecm_mission.9 = {
+	type = country_event
+	title = "z_ecm_mission.9.t"
+	desc = "z_ecm_mission.9.desc"
+	fire_only_once = yes
+	
+	picture = z_dfo_ruling_minority_pic
+	left_portrait = root.current_ruler
+	right_portrait = scope:z_ecm_cm_pretender
+	
+	trigger = {
+		has_variable = z_ecm_mission_cm_governors_completed
+		has_variable = z_ecm_mission_cm_government_completed
+		has_variable = z_ecm_mission_cm_army_completed
+	}
+	
+	immediate = {
+		ordered_character = {
+			limit = {
+				is_alive = yes
+				has_culture = scope:z_dfo_cultural_majority_culture
+				z_ecm_is_eligible_cm_pretender_trigger = yes
+			}
+			order_by = martial
+			save_scope_as = z_ecm_cm_pretender
+		}
+	}
+	
+	option = { # Assimilate
+		name = "z_ecm_mission.9.a"
+		trigger = {
+			current_ruler = {
+				NOT = { culture = scope:z_dfo_cultural_majority_culture }
+			}
+		}
+		current_ruler = { set_culture = scope:z_dfo_cultural_majority_culture }
+		scope:z_dfo_ruling_minority_country_culture = {
+			add_country_culture_modifier = {
+				name = z_ecm_national_shame_big_modifier
+				duration = 3650
+			}
+		}
+		scope:z_dfo_cultural_majority_country_culture = {
+			add_country_culture_modifier = {
+				name = z_ecm_national_pride_big_modifier
+				duration = 3650
+			}
+		}
+	}
+	
+	option = { # Replace
+		name = "z_ecm_mission.9.b"
+		trigger = {
+			exists = scope:z_ecm_cm_pretender
+			current_ruler = {
+				NOT = { culture = scope:z_dfo_cultural_majority_culture }
+			}
+		}
+		set_as_ruler = scope:z_ecm_cm_pretender
+		scope:z_dfo_ruling_minority_country_culture = {
+			add_country_culture_modifier = {
+				name = z_ecm_national_shame_big_modifier
+				duration = 3650
+			}
+		}
+		scope:z_dfo_cultural_majority_country_culture = {
+			add_country_culture_modifier = {
+				name = z_ecm_national_pride_big_modifier
+				duration = 3650
+			}
+		}
+	}
+	
+	option = { # Don't assimilate, make a speech
+		name = "z_ecm_mission.9.c"
+		scope:z_dfo_ruling_minority_country_culture = {
+			add_country_culture_modifier = {
+				name = z_ecm_national_shame_small_modifier
+				duration = 3650
+			}
+		}
+		scope:z_dfo_cultural_majority_country_culture = {
+			add_country_culture_modifier = {
+				name = z_ecm_national_pride_small_modifier
+				duration = 3650
+			}
+		}
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# The CM Governors - On completing z_ecm_mission_cm_governors
+#-----------------------------------------------------------------------------------------
+z_ecm_mission.10 = {
+	type = country_event
+	title = "z_ecm_mission.10.t"
+	desc = "z_ecm_mission.10.desc"
+	fire_only_once = yes
+	
+	picture = z_dfo_ruling_minority_pic
+	left_portrait = root.current_ruler
+	right_portrait = scope:z_ecm_cm_pretender
+	
+	trigger = {
+		# Triggered after completing: z_ecm_mission_cm_governors
+	}
+	
+	immediate = {
+		random_character = {
+			limit = {
+				is_governor = yes
+				z_ecm_is_eligible_cm_pretender_trigger = yes
+				has_culture = scope:z_dfo_cultural_majority_culture
+			}
+			save_scope_as = z_ecm_cm_pretender
+		}
+	}
+	
+	option = { # Great!
+		name = "z_ecm_mission.10.a"
+		every_character = {
+			limit = {
+				is_governor = yes
+				z_ecm_is_eligible_cm_pretender_trigger = yes
+				has_culture = scope:z_dfo_cultural_majority_culture
+			}
+			add_loyalty = z_ecm_loyalty_cm_official
+		}
+		every_character = {
+			limit = {
+				is_alive = yes
+				is_ruler = no
+				is_governor = yes
+				has_culture = scope:z_dfo_ruling_minority_culture
+			}
+			add_loyalty = z_ecm_loyalty_rm_official
+		}
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# The CM Government - On completing z_ecm_mission_cm_government
+#-----------------------------------------------------------------------------------------
+z_ecm_mission.11 = {
+	type = country_event
+	title = "z_ecm_mission.11.t"
+	desc = "z_ecm_mission.11.desc"
+	fire_only_once = yes
+	
+	picture = z_dfo_ruling_minority_pic
+	left_portrait = root.current_ruler
+	right_portrait = scope:z_ecm_cm_pretender
+	
+	trigger = {
+		# Triggered after completing: z_ecm_mission_cm_government
+	}
+	
+	immediate = {
+		random_character = {
+			limit = {
+				has_any_office = yes
+				z_ecm_is_eligible_cm_pretender_trigger = yes
+				has_culture = scope:z_dfo_cultural_majority_culture
+			}
+			save_scope_as = z_ecm_cm_pretender
+		}
+	}
+	
+	option = { # Great!
+		name = "z_ecm_mission.11.a"
+		every_character = {
+			limit = {
+				has_any_office = yes
+				z_ecm_is_eligible_cm_pretender_trigger = yes
+				has_culture = scope:z_dfo_cultural_majority_culture
+			}
+			add_loyalty = z_ecm_loyalty_cm_official
+		}
+		every_character = {
+			limit = {
+				is_alive = yes
+				is_ruler = no
+				has_any_office = yes
+				has_culture = scope:z_dfo_ruling_minority_culture
+			}
+			add_loyalty = z_ecm_loyalty_rm_official
+		}
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# The CM Army - On completing z_ecm_mission_cm_army
+#-----------------------------------------------------------------------------------------
+z_ecm_mission.12 = {
+	type = country_event
+	title = "z_ecm_mission.12.t"
+	desc = "z_ecm_mission.12.desc"
+	fire_only_once = yes
+	
+	picture = z_dfo_ruling_minority_pic
+	left_portrait = root.current_ruler
+	right_portrait = scope:z_ecm_cm_pretender
+	
+	trigger = {
+		# Triggered after completing: z_ecm_mission_cm_army
+	}
+	
+	immediate = {
+		random_legion = {
+			limit = {
+				any_legion_commander = {
+					z_ecm_is_eligible_cm_pretender_trigger = yes
+					has_culture = scope:z_dfo_cultural_majority_culture
+				}
+			}
+			random_legion_commander = {
+				limit = {
+					z_ecm_is_eligible_cm_pretender_trigger = yes
+					has_culture = scope:z_dfo_cultural_majority_culture
+				}
+				save_scope_as = z_ecm_cm_pretender
+			}
+		}
+	}
+	
+	option = { # Great!
+		name = "z_ecm_mission.12.a"
+		every_legion = {
+			every_legion_commander = {
+				limit = {
+					z_ecm_is_eligible_cm_pretender_trigger = yes
+					has_culture = scope:z_dfo_cultural_majority_culture
+				}
+				add_loyalty = z_ecm_loyalty_cm_official
+			}
+			every_legion_commander = {
+				limit = {
+					has_culture = scope:z_dfo_ruling_minority_culture
+				}
+				add_loyalty = z_ecm_loyalty_rm_official
+			}
+		}
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# New CM character (following The CM Question)
+#-----------------------------------------------------------------------------------------
+z_ecm_mission.13 = {
+	type = country_event
+	title = "z_ecm_mission.13.t"
+	desc = "z_ecm_mission.13.desc"
+	
+	picture = z_dfo_cultural_majority_pic
+	left_portrait = scope:z_ecm_new_cm_character
+	
+	trigger = {
+		# Triggered at regular intervals after z_ecm_mission.2, as long as:
+		has_variable = z_ecm_mission_ongoing
+		NAND = {
+			has_variable = z_ecm_mission_cm_governors_completed
+			has_variable = z_ecm_mission_cm_government_completed
+			has_variable = z_ecm_mission_cm_army_completed
+		}
+		# Generated character counter
+		OR = {
+			NOT = { has_variable = z_ecm_character_generation_ongoing }
+			var:z_ecm_character_generation_ongoing > 0
+		}
+	}
+	
+	immediate = {
+		# Initialize counter
+		if = {
+			limit = {
+				NOT = { has_variable = z_ecm_character_generation_ongoing }
+			}
+			set_variable = {
+				name = z_ecm_character_generation_ongoing
+				value = z_ecm_character_generation_amount
+			}
+		}
+		# Actually generate a character
+		z_ecm_generate_cm_character_effect = yes
+	}
+	
+	option = { # Welcome!
+		name = "z_ecm_mission.13.a"
+		# Adopt into a random family
+		if = {
+			limit = {
+				exists = scope:z_ecm_new_cm_character
+				exists = scope:z_ecm_new_cm_character_family
+			}
+			scope:z_ecm_new_cm_character = {
+				set_family = scope:z_ecm_new_cm_character_family
+				add_character_modifier = {
+					name = adopted_into_great_family
+					duration = -1
+				}
+			}
+		}
+		# Update counter
+		change_variable = {
+			name = z_ecm_character_generation_ongoing
+			subtract = 1
+		}
+	}
+	
+	option = { # No need for him/her
+		name = "z_ecm_mission.13.b"
+		custom_tooltip = "z_ecm_mission.13.b.tt"
+		hidden_effect = {
+			scope:z_ecm_new_cm_character = {
+				death = { death_reason = death_obscurity }
+			}
+		}
+	}
+	
+	after = {
+		# Set up next occurrence - From triggers: won't fire if out of mission or character amount reached
+		hidden_effect = {
+			clear_saved_scope = z_ecm_new_cm_character_family
+			random_list = {
+				# If assimilation was chosen
+				10 = {
+					modifier = {
+						factor = 0
+						NOT = { has_variable = z_ecm_assimilate_flag }
+					}
+					trigger_event = {
+						id = z_ecm_mission.13
+					}
+				}
+				# If replacement was chosen
+				10 = {
+					modifier = {
+						factor = 0
+						NOT = { has_variable = z_ecm_replace_flag }
+					}
+					trigger_event = {
+						id = z_ecm_mission.13
+					}
+				}
+			}
+		}
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# New CM convertee (following The CM Question)
+#-----------------------------------------------------------------------------------------
+z_ecm_mission.14 = {
+	type = country_event
+	title = "z_ecm_mission.14.t"
+	desc = {
+		triggered_desc = {
+			trigger = {
+				exists = scope:z_ecm_new_cm_character
+				scope:z_ecm_new_cm_character = {
+					z_ecm_is_potential_cm_convertee_trigger = yes
+				}
+			}
+			desc = z_ecm_mission.14.desc.loyal
+		}
+		triggered_desc = {
+			trigger = {
+				OR = {
+					NOT = { exists = scope:z_ecm_new_cm_character }
+					scope:z_ecm_new_cm_character = {
+						z_ecm_is_potential_cm_convertee_trigger = no
+					}
+				}
+			}
+			desc = z_ecm_mission.14.desc.unloyal
+		}
+	}
+	
+	picture = z_dfo_ruling_minority_pic
+	left_portrait = scope:z_ecm_new_cm_character
+	
+	trigger = {
+		# Triggered at regular intervals after z_ecm_mission.2, as long as:
+		has_variable = z_ecm_mission_ongoing
+		NAND = {
+			has_variable = z_ecm_mission_cm_governors_completed
+			has_variable = z_ecm_mission_cm_government_completed
+			has_variable = z_ecm_mission_cm_army_completed
+		}
+		# Generated character counter
+		OR = {
+			NOT = { has_variable = z_ecm_character_generation_ongoing }
+			var:z_ecm_character_generation_ongoing > 0
+		}
+		any_character = {
+			save_temporary_scope_as = test_this_char
+			is_alive = yes
+			is_ruler = no
+			NOT = { culture = scope:z_dfo_cultural_majority_culture }
+			NOT = { has_loyalty = z_ecm_loyalty_aborted_conversion }
+			OR = {
+				AND = {
+					root = { z_ecm_mission_cm_governors_current_svalue < z_ecm_mission_cm_governors_goal_svalue }
+					is_governor = yes
+				}
+				AND = {
+					root = { z_ecm_mission_cm_government_current_svalue < z_ecm_mission_cm_government_goal_svalue }
+					has_any_office = yes
+				}
+				AND = {
+					root = { z_ecm_mission_cm_army_current_svalue < z_ecm_mission_cm_army_goal_svalue }
+					root = {
+						any_legion = {
+							any_legion_commander = { this = scope:test_this_char }
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		# Initialize counter
+		if = {
+			limit = {
+				NOT = { has_variable = z_ecm_character_generation_ongoing }
+			}
+			set_variable = {
+				name = z_ecm_character_generation_ongoing
+				value = z_ecm_character_generation_amount
+			}
+		}
+		# Select a character to convert
+		random_character = {
+			limit = {
+				save_temporary_scope_as = test_this_char
+				is_alive = yes
+				is_ruler = no
+				NOT = { culture = scope:z_dfo_cultural_majority_culture }
+				NOT = { has_loyalty = z_ecm_loyalty_aborted_conversion }
+				OR = {
+					AND = {
+						root = { z_ecm_mission_cm_governors_current_svalue < z_ecm_mission_cm_governors_goal_svalue }
+						is_governor = yes
+					}
+					AND = {
+						root = { z_ecm_mission_cm_government_current_svalue < z_ecm_mission_cm_government_goal_svalue }
+						has_any_office = yes
+					}
+					AND = {
+						root = { z_ecm_mission_cm_army_current_svalue < z_ecm_mission_cm_army_goal_svalue }
+						root = {
+							any_legion = {
+								any_legion_commander = { this = scope:test_this_char }
+							}
+						}
+					}
+				}
+			}
+			save_scope_as = z_ecm_new_cm_character
+		}
+	}
+	
+	option = { # Accept conversion (loyal character)
+		name = "z_ecm_mission.14.a.loyal"
+		trigger = {
+			z_ecm_is_potential_cm_convertee_trigger = yes
+		}
+		# Actually convert a character
+		scope:z_ecm_new_cm_character = {
+			set_culture = scope:z_dfo_cultural_majority_culture
+			add_loyalty = z_ecm_loyalty_voluntary_conversion
+		}
+		# Update counter
+		change_variable = {
+			name = z_ecm_character_generation_ongoing
+			subtract = 1
+		}
+	}
+	
+	option = { # Accept conversion (unloyal character)
+		name = "z_ecm_mission.14.a.unloyal"
+		trigger = {
+			z_ecm_is_potential_cm_convertee_trigger = no
+		}
+		# Actually convert a character
+		scope:z_ecm_new_cm_character = {
+			set_culture = scope:z_dfo_cultural_majority_culture
+			add_loyalty = z_ecm_loyalty_forced_conversion
+		}
+		# Update counter
+		change_variable = {
+			name = z_ecm_character_generation_ongoing
+			subtract = 1
+		}
+	}
+	
+	option = { # No need for him/her to convert
+		name = "z_ecm_mission.14.b"
+		trigger = {
+			z_ecm_is_potential_cm_convertee_trigger = no
+		}
+		scope:z_ecm_new_cm_character = {
+			add_loyalty = z_ecm_loyalty_aborted_conversion
+		}
+	}
+	
+	after = {
+		# Set up next occurrence - From triggers: won't fire if out of mission or character amount reached
+		hidden_effect = {
+			random_list = {
+				# If assimilation was chosen
+				10 = {
+					modifier = {
+						factor = 0
+						NOT = { has_variable = z_ecm_assimilate_flag }
+					}
+					trigger_event = {
+						id = z_ecm_mission.14
+					}
+				}
+				# If replacement was chosen
+				10 = {
+					modifier = {
+						factor = 0
+						NOT = { has_variable = z_ecm_replace_flag }
+					}
+					trigger_event = {
+						id = z_ecm_mission.14
+					}
+				}
+			}
+		}
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# CM Integration (citizens)
+#-----------------------------------------------------------------------------------------
+z_ecm_mission.15 = {
+	type = country_event
+	title = "z_ecm_mission.15.t"
+	desc = "z_ecm_mission.15.desc"
+	
+	picture = z_dfo_cultural_majority_pic
+	left_portrait = root.current_ruler
+	
+	trigger = {
+		# Triggered on completing: z_ecm_mission_integrate_citizens
+	}
+	
+	immediate = {
+	}
+	
+	option = { #
+		name = "z_ecm_mission.15.a"
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# CM Privileges (nobles)
+#-----------------------------------------------------------------------------------------
+z_ecm_mission.16 = {
+	type = country_event
+	title = "z_ecm_mission.16.t"
+	desc = "z_ecm_mission.16.desc"
+	
+	picture = z_dfo_cultural_majority_pic
+	left_portrait = root.current_ruler
+	
+	trigger = {
+		# Triggered on completing: z_ecm_mission_integrate_nobles
+	}
+	
+	immediate = {
+	}
+	
+	option = { #
+		name = "z_ecm_mission.16.a"
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# CM Exception
+#-----------------------------------------------------------------------------------------
+z_ecm_mission.17 = {
+	type = country_event
+	title = "z_ecm_mission.17.t"
+	desc = "z_ecm_mission.17.desc"
+	
+	picture = z_dfo_cultural_majority_pic
+	left_portrait = root.current_ruler
+	
+	trigger = {
+		# Triggered on completing: z_ecm_mission_cm_exception
+	}
+	
+	immediate = {
+	}
+	
+	option = { #
+		name = "z_ecm_mission.17.a"
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# A CM Leader
+#-----------------------------------------------------------------------------------------
+z_ecm_mission.18 = {
+	type = country_event
+	title = "z_ecm_mission.18.t"
+	desc = "z_ecm_mission.18.desc"
+	
+	picture = z_dfo_ruling_minority_pic
+	left_portrait = root.current_ruler
+	right_portrait = scope:z_ecm_cm_pretender
+	
+	trigger = {
+		# Triggered on completing: z_ecm_mission_cm_ruler
+	}
+	
+	immediate = {
+	}
+	
+	option = { # OK
+		name = "z_ecm_mission.18.a"
+		# Have family members of the ruler convert if they aren't already the new culture
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# The CM City
+#-----------------------------------------------------------------------------------------
+z_ecm_mission.19 = {
+	type = country_event
+	title = "z_ecm_mission.19.t"
+	desc = "z_ecm_mission.19.desc"
+	
+	picture = z_dfo_cultural_majority_pic
+	left_portrait = root.current_ruler
+	goto_location = scope:z_ecm_cm_capital
+	
+	trigger = {
+		# Triggered on completing: z_ecm_mission_cm_city
+		exists = scope:z_ecm_cm_capital
+		scope:z_ecm_cm_capital.owner = root
+	}
+	
+	immediate = {
+	}
+	
+	option = { #
+		name = "z_ecm_mission.19.a"
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# The CM Capital
+#-----------------------------------------------------------------------------------------
+z_ecm_mission.20 = {
+	type = country_event
+	title = "z_ecm_mission.20.t"
+	desc = "z_ecm_mission.20.desc"
+	
+	picture = z_dfo_cultural_majority_pic
+	left_portrait = root.current_ruler
+	goto_location = scope:z_ecm_cm_capital
+	
+	trigger = {
+		# Triggered on completing: z_ecm_mission_cm_capital
+		exists = scope:z_ecm_cm_capital
+		scope:z_ecm_cm_capital.owner = root
+	}
+	
+	immediate = {
+	}
+	
+	option = { #
+		name = "z_ecm_mission.20.a"
+		set_capital = scope:z_ecm_cm_capital
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# Complete mission and set new primary culture
+#-----------------------------------------------------------------------------------------
+z_ecm_mission.999 = {
+	type = country_event
+	title = "z_ecm_mission.999.t"
+	desc = "z_ecm_mission.999.desc"
+	
+	picture = z_dfo_cultural_majority_pic
+	left_portrait = root.current_ruler
+	
+	trigger = {
+		# Triggered on completing mission tree
+		has_variable = z_dfo_ruling_minority_country_culture
+		has_variable = z_dfo_cultural_majority_country_culture
+	}
+	
+	option = { # Let's go! Keep the old culture integrated
+		name = "z_ecm_mission.999.a"
+		custom_tooltip = z_ecm_mission.999.a.tt
+		hidden_effect = {
+			z_dfo_set_primary_culture_effect = {
+				MAKE_OLD_CULTURE_INTEGRATED = yes
+			}
+		}
+		show_as_tooltip = {
+			set_primary_culture = scope:z_dfo_cultural_majority_culture
+			scope:z_dfo_ruling_minority_country_culture = {
+				set_country_culture_right = citizen
+			}
+		}
+	}
+	
+	option = { # Let's go! Demote the old culture
+		name = "z_ecm_mission.999.b"
+		custom_tooltip = z_ecm_mission.999.b.tt
+		hidden_effect = {
+			z_dfo_set_primary_culture_effect = {
+				MAKE_OLD_CULTURE_INTEGRATED = no
+			}
+		}
+		show_as_tooltip = {
+			set_primary_culture = scope:z_dfo_cultural_majority_culture
+			scope:z_dfo_ruling_minority_country_culture = {
+				set_country_culture_right = freemen
+			}
+		}
+	}
+	
+	after = {
+		if = {
+			limit = {
+				any_country = {
+					primary_culture = root.var:z_dfo_ruling_minority_culture
+				}
+			}
+			#custom_tooltip = z_ecm_mission.999.bad_opinion
+			#hidden_effect = {
+				every_country = {
+					limit = {
+						primary_culture = root.var:z_dfo_ruling_minority_culture
+					}
+					add_opinion = { target = root modifier = z_ecm_removed_ruling_minority }
+				}
+			#}
+		}
+		if = {
+			limit = {
+				any_country = {
+					primary_culture = root.var:z_dfo_cultural_majority_culture
+				}
+			}
+			#custom_tooltip = z_ecm_mission.999.good_opinion
+			#hidden_effect = {
+				every_country = {
+					limit = {
+						primary_culture = root.var:z_dfo_cultural_majority_culture
+					}
+					add_opinion = { target = root modifier = z_ecm_adopted_cultural_majority }
+				}
+			#}
+		}
+	}
+}

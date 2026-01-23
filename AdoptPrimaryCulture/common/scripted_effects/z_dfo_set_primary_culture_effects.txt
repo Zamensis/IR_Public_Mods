@@ -4,35 +4,35 @@
 # In the base game and Invictus, the change of primary culture causes a bug where the number of integrated/noble cultures isn't properly updated, leaving a permanent malus on the new primary culture.
 # The fix consists in converting all the pops of the old primary culture to another culture, in order to remove it completely from the culture table, and then back again.
 #-----------------------------------------------------------------------------------------
-z_apc_set_primary_culture_effect = {
+z_dfo_set_primary_culture_effect = {
 	#-----------------------------------------------------------------------------------------
 	# STEP 0
 	# First of all, we need to save some *culture* and *country_culture* variables.
 	#-----------------------------------------------------------------------------------------
-	# We already set old/new *culture* and *country_culture* variables via z_apc_find_cultural_majority_effect -> z_apc_update_cultural_majority_effect -> z_apc_common.1-4 -> z_apc_set_variables_effect
+	# We already set old/new *culture* and *country_culture* variables via z_dfo_find_cultural_majority_effect -> z_dfo_update_cultural_majority_effect -> z_dfo_common.1-4 -> z_dfo_set_variables_effect
 	# But we need to do the same for a third culture that doesn't currently exist in root. This one will be used as the temporary replacement for the old primary culture.
 	set_variable = {
-		name = z_apc_temporary_culture # Temporary culture
-		value = var:z_apc_old_primary_culture # Initial value, to be replaced by the following loop
+		name = z_dfo_temporary_country_culture # Temporary culture
+		value = var:z_dfo_ruling_minority_country_culture # Initial value, to be replaced by the following loop
 	}
 	while = {
 		# We keep searching until we find a culture that breaks this condition:
 		limit = {
-			any_country_culture = { this = root.var:z_apc_temporary_culture }
+			any_country_culture = { this = root.var:z_dfo_temporary_country_culture }
 		}
 		# Pick a random country culture in a random country, save its scopes and run the loop again.
 		random_country = {
-			random_country_culture = { save_scope_as = z_apc_temporary_culture }
+			random_country_culture = { save_scope_as = z_dfo_temporary_country_culture }
 			random_owned_province = {
 				limit = {
-					any_pops_in_province = { this.country_culture = scope:z_apc_temporary_culture }
+					any_pops_in_province = { this.country_culture = scope:z_dfo_temporary_country_culture }
 				}
 				random_pops_in_province = {
-					limit = { this.country_culture = scope:z_apc_temporary_culture }
+					limit = { this.country_culture = scope:z_dfo_temporary_country_culture }
 					this.culture = {
 						root = {
 							set_variable = {
-								name = z_apc_temporary_pop_culture # Temporary culture
+								name = z_dfo_temporary_culture # Temporary culture
 								value = prev
 							}
 						}
@@ -40,7 +40,7 @@ z_apc_set_primary_culture_effect = {
 					this.country_culture = {
 						root = {
 							set_variable = {
-								name = z_apc_temporary_culture # Temporary country culture
+								name = z_dfo_temporary_country_culture # Temporary country culture
 								value = prev
 							}
 						}
@@ -54,9 +54,9 @@ z_apc_set_primary_culture_effect = {
 	# We change culture using the Vanilla/Invictus effect that cleans up everything as needed.
 	#-----------------------------------------------------------------------------------------
 	if = {
-		limit = { has_variable = z_apc_new_primary_pop_culture } # Fix false positive in error log
+		limit = { has_variable = z_dfo_cultural_majority_culture } # Fix false positive in error log
 		set_primary_culture_cleanup_effect = {
-			NEW_PRIMARY_CULTURE = root.var:z_apc_new_primary_pop_culture # New culture
+			NEW_PRIMARY_CULTURE = root.var:z_dfo_cultural_majority_culture # New culture
 			MAKE_OLD_CULTURE_INTEGRATED = yes # Regardless, our fix will force the old culture back to the "freemen" type, so we'll reintegrate it manually if needed.
 		}
 	}
@@ -67,12 +67,12 @@ z_apc_set_primary_culture_effect = {
 	#-----------------------------------------------------------------------------------------
 	if = {
 		limit = {
-			has_variable = z_apc_old_primary_pop_culture # Old culture
-			has_variable = z_apc_old_primary_culture # Old country culture
-			has_variable = z_apc_new_primary_pop_culture # New culture
-			has_variable = z_apc_new_primary_culture # New country culture
-			has_variable = z_apc_temporary_pop_culture # Temporary culture
-			has_variable = z_apc_temporary_culture # Temporary culture
+			has_variable = z_dfo_ruling_minority_culture # Old culture
+			has_variable = z_dfo_ruling_minority_country_culture # Old country culture
+			has_variable = z_dfo_cultural_majority_culture # New culture
+			has_variable = z_dfo_cultural_majority_country_culture # New country culture
+			has_variable = z_dfo_temporary_culture # Temporary culture
+			has_variable = z_dfo_temporary_country_culture # Temporary culture
 		}
 		#-----------------------------------------------------------------------------------------
 		# STEP 2
@@ -80,7 +80,7 @@ z_apc_set_primary_culture_effect = {
 		# Therefore, we need to store the MAKE_OLD_CULTURE_INTEGRATED parameter in a separate variable.
 		#-----------------------------------------------------------------------------------------
 		set_variable = {
-			name = z_apc_reintegrate_old_primary_culture # Old culture reintregration flag
+			name = z_dfo_reintegrate_ruling_minority_country_culture # Old culture reintregration flag
 			value = $MAKE_OLD_CULTURE_INTEGRATED$
 		}
 		#-----------------------------------------------------------------------------------------
@@ -89,8 +89,8 @@ z_apc_set_primary_culture_effect = {
 		#-----------------------------------------------------------------------------------------
 		every_owned_province = {
 			every_pops_in_province = {
-				limit = { pop_culture = root.var:z_apc_old_primary_pop_culture }
-				set_pop_culture = root.var:z_apc_temporary_pop_culture
+				limit = { pop_culture = root.var:z_dfo_ruling_minority_culture }
+				set_pop_culture = root.var:z_dfo_temporary_culture
 			}
 		}
 		#-----------------------------------------------------------------------------------------
@@ -100,11 +100,11 @@ z_apc_set_primary_culture_effect = {
 		# We can force an immediate update of the culture table when there's a change of province ownership.
 		#-----------------------------------------------------------------------------------------
 		# First, we identify a country we can borrow a province from.
-		root.country_culture = { save_scope_as = z_apc_temporary_culture_2 }
+		root.country_culture = { save_scope_as = z_dfo_temporary_country_culture_2 }
 		while = {
 			# We keep searching until we find a culture that breaks this condition:
 			limit = {
-				any_country_culture = { this = scope:z_apc_temporary_culture_2 }
+				any_country_culture = { this = scope:z_dfo_temporary_country_culture_2 }
 			}
 			# Pick a random country culture in a random country, save its scope and run the loop again.
 			random_country = {
@@ -113,12 +113,12 @@ z_apc_set_primary_culture_effect = {
 					war = no # No country at war, that would skew the outcome
 					num_of_cities > 1 # No OPM, that would destroy it
 				}
-				random_country_culture = { save_scope_as = z_apc_temporary_culture_2 }
-				save_scope_as = z_apc_temporary_province_original_owner
+				random_country_culture = { save_scope_as = z_dfo_temporary_country_culture_2 }
+				save_scope_as = z_dfo_temporary_province_original_owner
 			}
 		}
 		# Once we've found it, we simulate a change of province ownership to force an update of the culture table.
-		scope:z_apc_temporary_province_original_owner = {
+		scope:z_dfo_temporary_province_original_owner = {
 			random_owned_province = {
 				limit = {
 					NOT = { this = prev.capital_scope }
@@ -134,8 +134,8 @@ z_apc_set_primary_culture_effect = {
 		#-----------------------------------------------------------------------------------------
 		every_owned_province = {
 			every_pops_in_province = {
-				limit = { pop_culture = root.var:z_apc_temporary_pop_culture }
-				set_pop_culture = root.var:z_apc_old_primary_pop_culture
+				limit = { pop_culture = root.var:z_dfo_temporary_culture }
+				set_pop_culture = root.var:z_dfo_ruling_minority_culture
 			}
 		}
 		#-----------------------------------------------------------------------------------------
@@ -143,11 +143,11 @@ z_apc_set_primary_culture_effect = {
 		# Do the province trick again to force an immediate update of the culture table without having to wait for the next monthly tick.
 		#-----------------------------------------------------------------------------------------
 		# First, we identify a country we can borrow a province from.
-		root.country_culture = { save_scope_as = z_apc_temporary_culture_2 }
+		root.country_culture = { save_scope_as = z_dfo_temporary_country_culture_2 }
 		while = {
 			# We keep searching until we find a culture that breaks this condition:
 			limit = {
-				any_country_culture = { this = scope:z_apc_temporary_culture_2 }
+				any_country_culture = { this = scope:z_dfo_temporary_country_culture_2 }
 			}
 			# Pick a random country culture in a random country, save its scope and run the loop again.
 			random_country = {
@@ -156,12 +156,12 @@ z_apc_set_primary_culture_effect = {
 					war = no # No country at war, that would skew the outcome
 					num_of_cities > 1 # No OPM, that would destroy it
 				}
-				random_country_culture = { save_scope_as = z_apc_temporary_culture_2 }
-				save_scope_as = z_apc_temporary_province_original_owner
+				random_country_culture = { save_scope_as = z_dfo_temporary_country_culture_2 }
+				save_scope_as = z_dfo_temporary_province_original_owner
 			}
 		}
 		# Once we've found it, we simulate a change of province ownership to force an update of the culture table.
-		scope:z_apc_temporary_province_original_owner = {
+		scope:z_dfo_temporary_province_original_owner = {
 			random_owned_province = {
 				limit = {
 					NOT = { this = prev.capital_scope }
@@ -176,12 +176,12 @@ z_apc_set_primary_culture_effect = {
 		#-----------------------------------------------------------------------------------------
 		if = {
 			limit = {
-				has_variable = z_apc_reintegrate_old_primary_culture
-				var:z_apc_reintegrate_old_primary_culture = yes
+				has_variable = z_dfo_reintegrate_ruling_minority_country_culture
+				var:z_dfo_reintegrate_ruling_minority_country_culture = yes
 			}			
 			random_country_culture = {
 				limit = {
-					is_culture = root.var:z_apc_old_primary_pop_culture
+					is_culture = root.var:z_dfo_ruling_minority_culture
 				}
 				root = { integrate_country_culture = prev }
 			}
@@ -197,9 +197,9 @@ z_apc_set_primary_culture_effect = {
 		#-----------------------------------------------------------------------------------------
 		if = {
 			limit = {
-				var:z_apc_new_primary_culture = { z_apc_has_any_cultural_majority_modifier_trigger = yes }
+				var:z_dfo_cultural_majority_country_culture = { z_dfo_has_any_cultural_majority_modifier_trigger = yes }
 			}
-			var:z_apc_new_primary_culture = { z_apc_remove_all_cultural_majority_modifiers_effect = yes }
+			var:z_dfo_cultural_majority_country_culture = { z_dfo_remove_all_cultural_majority_modifiers_effect = yes }
 		}
 		#-----------------------------------------------------------------------------------------
 		# Make sure the old primary culture isn't considered a Ruling Minority anymore
@@ -208,15 +208,15 @@ z_apc_set_primary_culture_effect = {
 			limit = {
 				any_country_culture = {
 					NOT = { this = root.country_culture }
-					has_country_culture_modifier = z_apc_ruling_minority_modifier
+					has_country_culture_modifier = z_dfo_ruling_minority_modifier
 				}
 			}
 			every_country_culture = {
 				limit = {
 					NOT = { this = root.country_culture }
-					has_country_culture_modifier = z_apc_ruling_minority_modifier
+					has_country_culture_modifier = z_dfo_ruling_minority_modifier
 				}
-				remove_country_culture_modifier = z_apc_ruling_minority_modifier
+				remove_country_culture_modifier = z_dfo_ruling_minority_modifier
 			}
 		}
 		#-----------------------------------------------------------------------------------------
@@ -224,54 +224,53 @@ z_apc_set_primary_culture_effect = {
 		#-----------------------------------------------------------------------------------------
 		if = {
 			limit = {
-				any_country_culture = { has_country_culture_modifier = z_apc_national_pride_small_modifier }
+				any_country_culture = { has_country_culture_modifier = z_ecm_national_pride_small_modifier }
 			}
 			every_country_culture = {
-				limit = { has_country_culture_modifier = z_apc_national_pride_small_modifier }
-				remove_country_culture_modifier = z_apc_national_pride_small_modifier
+				limit = { has_country_culture_modifier = z_ecm_national_pride_small_modifier }
+				remove_country_culture_modifier = z_ecm_national_pride_small_modifier
 			}
 		}
 		if = {
 			limit = {
-				any_country_culture = { has_country_culture_modifier = z_apc_national_shame_small_modifier }
+				any_country_culture = { has_country_culture_modifier = z_ecm_national_shame_small_modifier }
 			}
 			every_country_culture = {
-				limit = { has_country_culture_modifier = z_apc_national_shame_small_modifier }
-				remove_country_culture_modifier = z_apc_national_shame_small_modifier
+				limit = { has_country_culture_modifier = z_ecm_national_shame_small_modifier }
+				remove_country_culture_modifier = z_ecm_national_shame_small_modifier
 			}
 		}
 		if = {
 			limit = {
-				any_country_culture = { has_country_culture_modifier = z_apc_national_pride_big_modifier }
+				any_country_culture = { has_country_culture_modifier = z_ecm_national_pride_big_modifier }
 			}
 			every_country_culture = {
-				limit = { has_country_culture_modifier = z_apc_national_pride_big_modifier }
-				remove_country_culture_modifier = z_apc_national_pride_big_modifier
+				limit = { has_country_culture_modifier = z_ecm_national_pride_big_modifier }
+				remove_country_culture_modifier = z_ecm_national_pride_big_modifier
 			}
 		}
 		if = {
 			limit = {
-				any_country_culture = { has_country_culture_modifier = z_apc_national_shame_big_modifier }
+				any_country_culture = { has_country_culture_modifier = z_ecm_national_shame_big_modifier }
 			}
 			every_country_culture = {
-				limit = { has_country_culture_modifier = z_apc_national_shame_big_modifier }
-				remove_country_culture_modifier = z_apc_national_shame_big_modifier
+				limit = { has_country_culture_modifier = z_ecm_national_shame_big_modifier }
+				remove_country_culture_modifier = z_ecm_national_shame_big_modifier
 			}
 		}
 		#-----------------------------------------------------------------------------------------
 		# Clean up all the variables that were set in this whole process
 		#-----------------------------------------------------------------------------------------
-		#z_apc_clear_variables = yes
-		remove_variable = z_apc_temporary_pop_culture # Temporary culture
-		remove_variable = z_apc_temporary_culture # Temporary culture
-		remove_variable = z_apc_reintegrate_old_primary_culture # Old culture reintregration flag
+		remove_variable = z_dfo_temporary_culture # Temporary culture
+		remove_variable = z_dfo_temporary_country_culture # Temporary culture
+		remove_variable = z_dfo_reintegrate_ruling_minority_country_culture # Old culture reintregration flag
 		remove_variable = integrate_culture_yes_no # Vanilla variable
 		#-----------------------------------------------------------------------------------------
 		# Now everything should be like at game start. No Cultural Majority, no Ruling Minority.
 		# Set the Cultural Majority cooldown so that no new Cultural Majority is set before some time has passed.
 		#-----------------------------------------------------------------------------------------
 		set_variable = {
-			name = z_apc_had_recent_cultural_majority_change
+			name = z_dfo_had_recent_cultural_majority_change
 			days = 3650 # 10 years
 		}
 	}

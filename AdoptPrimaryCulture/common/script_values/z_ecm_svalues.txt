@@ -1,0 +1,125 @@
+﻿#-----------------------------------------------------------------------------------------
+# Missions completed
+#-----------------------------------------------------------------------------------------
+# Required
+z_ecm_completed_missions_required_svalue = { value = 8 }
+
+# Current
+z_ecm_completed_missions_current_svalue = {
+	value = 0
+	if = {
+		limit = { has_variable = z_ecm_completed_missions_current }
+		add = var:z_ecm_completed_missions_current
+	}
+}
+
+#-----------------------------------------------------------------------------------------
+# Mission task - Governors
+#-----------------------------------------------------------------------------------------
+# Number of governors required to complete mission
+z_ecm_mission_cm_governors_threshold_svalue = {
+	value = 0
+	every_governorships = { add = 1 }
+	subtract = 1 # Minus the capital region
+	divide = 4
+	min = 1
+	ceiling = yes
+}
+
+# Current number of governors matching the requirement
+z_ecm_mission_cm_governors_current_svalue = {
+	value = 0
+	every_character = {
+		limit = {
+			is_alive = yes
+			is_ruler = no
+			is_governor = yes
+			has_culture = scope:z_dfo_cultural_majority_culture
+		}
+		add = 1
+	}
+}
+
+# Actual number required
+z_ecm_mission_cm_governors_goal_svalue = {
+	value = 0
+	add = z_ecm_mission_cm_governors_threshold_svalue
+	add = 1
+}
+
+#-----------------------------------------------------------------------------------------
+# Mission task - Office holders
+#-----------------------------------------------------------------------------------------
+# Number of office holders required to complete mission
+z_ecm_mission_cm_government_threshold_svalue = {
+	value = 4
+}
+
+# Current number of office holders matching the requirement
+z_ecm_mission_cm_government_current_svalue = {
+	value = 0
+	every_character = {
+		limit = {
+			is_alive = yes
+			is_ruler = no
+			has_any_office = yes
+			has_culture = scope:z_dfo_cultural_majority_culture
+		}
+		add = 1
+	}
+}
+
+# Actual number required
+z_ecm_mission_cm_government_goal_svalue = {
+	value = 0
+	add = z_ecm_mission_cm_government_threshold_svalue
+	add = 1
+}
+
+#-----------------------------------------------------------------------------------------
+# Mission task - Legion commanders
+#-----------------------------------------------------------------------------------------
+# Number of legion commanders required to complete mission
+z_ecm_mission_cm_army_threshold_svalue = {
+	value = 0
+	every_legion = { add = 4 } # 4 Commanders per Legion
+	divide = 2
+	min = 1
+	ceiling = yes
+}
+
+# Current number of legion commanders matching the requirement
+z_ecm_mission_cm_army_current_svalue = {
+	value = 0
+	every_legion = {
+		every_legion_commander = {
+			limit = {
+				has_culture = scope:z_dfo_cultural_majority_culture
+			}
+			add = 1
+		}
+	}
+}
+
+# Actual number required
+z_ecm_mission_cm_army_goal_svalue = {
+	value = 0
+	add = z_ecm_mission_cm_army_threshold_svalue
+	add = 1
+}
+
+#-----------------------------------------------------------------------------------------
+# Total number of events for converting and recruiting new characters - Calculated once after finishing the first mission task
+#-----------------------------------------------------------------------------------------
+z_ecm_character_generation_amount = {
+	value = 0
+	# Match exactly the number required
+	add = z_ecm_mission_cm_governors_goal_svalue
+	subtract = z_ecm_mission_cm_governors_current_svalue
+	add = z_ecm_mission_cm_government_goal_svalue
+	subtract = z_ecm_mission_cm_government_current_svalue
+	add = z_ecm_mission_cm_army_goal_svalue
+	subtract = z_ecm_mission_cm_army_current_svalue
+	# Add some for free
+	add = 2
+}

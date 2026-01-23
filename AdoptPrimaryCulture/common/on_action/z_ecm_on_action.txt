@@ -1,0 +1,13 @@
+﻿#-----------------------------------------------------------------------------------------
+# Mission pulses
+#-----------------------------------------------------------------------------------------
+z_ecm_the_cm_question_monthly_pulse = {
+	random_events = {
+		10 = z_ecm_mission.3
+		10 = z_ecm_mission.4
+		10 = z_ecm_mission.5
+		10 = z_ecm_mission.6
+		10 = z_ecm_mission.7
+		10 = z_ecm_mission.8
+	}
+}

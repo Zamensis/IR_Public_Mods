@@ -1,0 +1,18 @@
+﻿#-----------------------------------------------------------------------------------------
+# Event modifiers
+#-----------------------------------------------------------------------------------------
+z_ecm_national_pride_small_modifier = { # When ruler doesn't convert
+	culture_happiness_modifier = 0.05
+}
+
+z_ecm_national_pride_big_modifier = { # When ruler converts
+	culture_happiness_modifier = 0.1
+}
+
+z_ecm_national_shame_small_modifier = { # When ruler doesn't convert
+	culture_happiness_modifier = -0.05
+}
+
+z_ecm_national_shame_big_modifier = { # When ruler converts
+	culture_happiness_modifier = -0.125
+}

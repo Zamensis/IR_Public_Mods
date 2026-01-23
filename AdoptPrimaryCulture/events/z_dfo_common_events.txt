@@ -1,63 +1,63 @@
-﻿namespace = z_apc_common
+﻿namespace = z_dfo_common
 
 #-----------------------------------------------------------------------------------------
 # Cultural Majority update, scenario 1:
 # No Cultural Majority was found, but a Cultural Majority already exists -> Remove Cultural Majority modifier from the old Cultural Majority
 #-----------------------------------------------------------------------------------------
-z_apc_common.1 = {
+z_dfo_common.1 = {
 	type = country_event
-	title = "z_apc_common.1.t"
-	desc = "z_apc_common.1.desc"
+	title = "z_dfo_common.1.t"
+	desc = "z_dfo_common.1.desc"
 	
-	picture = z_apc_ruling_minority_pic	
+	picture = z_dfo_ruling_minority_pic	
 	left_portrait = root.current_ruler
 	
 	trigger = {
-		# Triggered by effect: z_apc_update_cultural_majority_effect
+		# Triggered by effect: z_dfo_update_cultural_majority_effect
 		# Check cooldown
-		NOT = { has_variable = z_apc_had_recent_cultural_majority_change }
+		NOT = { has_variable = z_dfo_had_recent_cultural_majority_change }
 	}
 		
 	immediate = {
 		# Old Ruling Minority
 		random_country_culture = {
 			limit = { this = root.country_culture }
-			save_scope_as = z_apc_old_ruling_minority
+			save_scope_as = z_dfo_old_ruling_minority
 			if = {
-				limit = { has_country_culture_modifier = z_apc_ruling_minority_modifier }
-				remove_country_culture_modifier = z_apc_ruling_minority_modifier
+				limit = { has_country_culture_modifier = z_dfo_ruling_minority_modifier }
+				remove_country_culture_modifier = z_dfo_ruling_minority_modifier
 			}
 		}
 		# Old Cultural Majority
 		random_country_culture = {
-			limit = { z_apc_has_any_cultural_majority_modifier_trigger = yes }
-			save_scope_as = z_apc_old_cultural_majority
+			limit = { z_dfo_has_any_cultural_majority_modifier_trigger = yes }
+			save_scope_as = z_dfo_old_cultural_majority
 			# Remove Cultural Majority modifier from the old Cultural Majority
-			z_apc_remove_all_cultural_majority_modifiers_effect = yes
+			z_dfo_remove_all_cultural_majority_modifiers_effect = yes
 			# Add another modifier to show its status loss
 			if = {
 				limit = {
-					NOT = { has_country_culture_modifier = z_apc_old_cultural_majority_modifier }
+					NOT = { has_country_culture_modifier = z_dfo_old_cultural_majority_modifier }
 				}
 				add_country_culture_modifier = {
-					name = z_apc_old_cultural_majority_modifier
+					name = z_dfo_old_cultural_majority_modifier
 					duration = 7300 # 20 years
 				}
 			}
 		}
 		# Set cooldown
 		set_variable = {
-			name = z_apc_had_recent_cultural_majority_change
+			name = z_dfo_had_recent_cultural_majority_change
 			days = 3650 # 10 years
 		}
 	}
 		
 	option = { # OK
-		name = "z_apc_common.1.a"
+		name = "z_dfo_common.1.a"
 	}
 	
 	after = {
-		z_apc_clear_variables_effect = yes
+		z_dfo_clear_variables_effect = yes
 	}
 }
 
@@ -65,9 +65,9 @@ z_apc_common.1 = {
 # Cultural Majority update, scenario 2:
 # A Cultural Majority was found and no Cultural Majority already exists (also game start scenario) -> Add Cultural Majority modifier to the new Cultural Majority
 #-----------------------------------------------------------------------------------------
-z_apc_common.2 = {
+z_dfo_common.2 = {
 	type = country_event
-	title = "z_apc_common.2.t"
+	title = "z_dfo_common.2.t"
 	desc = {
 		triggered_desc = {
 			trigger = {
@@ -79,7 +79,7 @@ z_apc_common.2 = {
 				}
 				is_monarchy = yes
 			}
-			desc = z_apc_common.2.desc.diadochi
+			desc = z_dfo_common.2.desc.diadochi
 		}
 		triggered_desc = {
 			trigger = {
@@ -91,7 +91,7 @@ z_apc_common.2 = {
 				}
 				is_monarchy = yes
 			}
-			desc = z_apc_common.2.desc.monarchy
+			desc = z_dfo_common.2.desc.monarchy
 		}
 		triggered_desc = {
 			trigger = {
@@ -103,7 +103,7 @@ z_apc_common.2 = {
 				}
 				is_republic = yes
 			}
-			desc = z_apc_common.2.desc.republic
+			desc = z_dfo_common.2.desc.republic
 		}
 		triggered_desc = {
 			trigger = {
@@ -115,61 +115,61 @@ z_apc_common.2 = {
 				}
 				is_tribal = yes
 			}
-			desc = z_apc_common.2.desc.tribal
+			desc = z_dfo_common.2.desc.tribal
 		}
 	}
 	
-	picture = z_apc_cultural_majority_pic	
+	picture = z_dfo_cultural_majority_pic	
 	left_portrait = root.current_ruler
 	
 	trigger = {
-		# Triggered by effect: z_apc_update_cultural_majority_effect
+		# Triggered by effect: z_dfo_update_cultural_majority_effect
 		# Check cooldown
-		NOT = { has_variable = z_apc_had_recent_cultural_majority_change }
+		NOT = { has_variable = z_dfo_had_recent_cultural_majority_change }
 	}
 		
 	immediate = {
 		# New Ruling Minority
 		random_country_culture = {
 			limit = { this = root.country_culture }
-			save_scope_as = z_apc_ruling_minority
+			save_scope_as = z_dfo_ruling_minority
 			if = {
 				limit = {
-					NOT = { has_country_culture_modifier = z_apc_ruling_minority_modifier }
+					NOT = { has_country_culture_modifier = z_dfo_ruling_minority_modifier }
 				}
 				add_country_culture_modifier = {
-					name = z_apc_ruling_minority_modifier
+					name = z_dfo_ruling_minority_modifier
 					duration = -1
 				}
 			}
 			else = {
 				show_as_tooltip = {
 					add_country_culture_modifier = {
-						name = z_apc_ruling_minority_modifier
+						name = z_dfo_ruling_minority_modifier
 						duration = -1
 					}
 				}
 			}
 		}
 		# New Cultural Majority
-		scope:z_apc_found_cultural_majority = {
+		scope:z_dfo_found_cultural_majority = {
 			# Remove Old Cultural Majority, if applicable
 			if = {
-				limit = { has_country_culture_modifier = z_apc_old_cultural_majority_modifier }
-				remove_country_culture_modifier = z_apc_old_cultural_majority_modifier
+				limit = { has_country_culture_modifier = z_dfo_old_cultural_majority_modifier }
+				remove_country_culture_modifier = z_dfo_old_cultural_majority_modifier
 			}
 			# Add Cultural Majority modifier
-			z_apc_add_cultural_majority_modifier_effect = yes
+			z_dfo_add_cultural_majority_modifier_effect = yes
 		}
 		# Set cooldown
 		set_variable = {
-			name = z_apc_had_recent_cultural_majority_change
+			name = z_dfo_had_recent_cultural_majority_change
 			days = 3650 # 10 years
 		}
 	}
 		
 	option = { # OK
-		name = "z_apc_common.2.a"
+		name = "z_dfo_common.2.a"
 	}
 		
 	option = { # Show me the list of all countries that currently have a CM
@@ -177,23 +177,18 @@ z_apc_common.2 = {
 			is_ai = no
 			current_date < 451.1.1
 		}
-		name = "z_apc_common.2.b"
+		name = "z_dfo_common.2.b"
 		# Show the list
 		trigger_event = {
-			id = z_apc_common.5
+			id = z_dfo_common.5
 			days = 1
 		}
-		custom_tooltip = "z_apc_common.2.b.tt"
+		custom_tooltip = "z_dfo_common.2.b.tt"
 	}
 	
 	after = {
-		# Set mission cooldown
-		set_variable = {
-			name = z_apc_mission_cooldown
-			days = 7300 # 20 years
-		}
-		z_apc_clear_variables_effect = yes
-		z_apc_set_variables_effect = yes
+		z_dfo_clear_variables_effect = yes
+		z_dfo_set_variables_effect = yes
 	}
 }
 
@@ -201,23 +196,23 @@ z_apc_common.2 = {
 # Cultural Majority update, scenario 3:
 # A Cultural Majority was found and it's already a Cultural Majority -> Update Cultural Majority modifier, if necessary (no event)
 #-----------------------------------------------------------------------------------------
-#z_apc_common.3 = {
+#z_dfo_common.3 = {
 #	type = country_event
-#	title = "z_apc_common.3.t"
-#	desc = "z_apc_common.3.desc"
+#	title = "z_dfo_common.3.t"
+#	desc = "z_dfo_common.3.desc"
 #	
 #	picture = shrine_city	
 #	left_portrait = root.current_ruler
 #
 #	trigger = {
-#		# Triggered by effect: z_apc_update_cultural_majority_effect
+#		# Triggered by effect: z_dfo_update_cultural_majority_effect
 #	}
 #		
 #	immediate = {
 #	}
 		
 #	option = { # OK
-#		name = "z_apc_common.3.a"
+#		name = "z_dfo_common.3.a"
 #	}
 #}
 
@@ -225,38 +220,38 @@ z_apc_common.2 = {
 # Cultural Majority update, scenario 4:
 # A Cultural Majority was found but there's already another Cultural Majority -> Add Cultural Majority modifier to the new Cultural Majority + Remove Cultural Majority modifier from the old Cultural Majority
 #-----------------------------------------------------------------------------------------
-z_apc_common.4 = {
+z_dfo_common.4 = {
 	type = country_event
-	title = "z_apc_common.4.t"
-	desc = "z_apc_common.4.desc"
+	title = "z_dfo_common.4.t"
+	desc = "z_dfo_common.4.desc"
 	
-	picture = z_apc_cultural_majority_pic	
+	picture = z_dfo_cultural_majority_pic	
 	left_portrait = root.current_ruler
 	
 	trigger = {
-		# Triggered by effect: z_apc_update_cultural_majority_effect
+		# Triggered by effect: z_dfo_update_cultural_majority_effect
 		# Check cooldown
-		NOT = { has_variable = z_apc_had_recent_cultural_majority_change }
+		NOT = { has_variable = z_dfo_had_recent_cultural_majority_change }
 	}
 		
 	immediate = {
 		# Ruling Minority
 		random_country_culture = {
 			limit = { this = root.country_culture }
-			save_scope_as = z_apc_ruling_minority
+			save_scope_as = z_dfo_ruling_minority
 			if = {
 				limit = {
-					NOT = { has_country_culture_modifier = z_apc_ruling_minority_modifier }
+					NOT = { has_country_culture_modifier = z_dfo_ruling_minority_modifier }
 				}
 				add_country_culture_modifier = {
-					name = z_apc_ruling_minority_modifier
+					name = z_dfo_ruling_minority_modifier
 					duration = -1
 				}
 			}
 			else = {
 				show_as_tooltip = {
 					add_country_culture_modifier = {
-						name = z_apc_ruling_minority_modifier
+						name = z_dfo_ruling_minority_modifier
 						duration = -1
 					}
 				}
@@ -264,150 +259,123 @@ z_apc_common.4 = {
 		}
 		# Old Cultural Majority
 		random_country_culture = {
-			limit = { z_apc_has_any_cultural_majority_modifier_trigger = yes }
-			save_scope_as = z_apc_old_cultural_majority
+			limit = { z_dfo_has_any_cultural_majority_modifier_trigger = yes }
+			save_scope_as = z_dfo_old_cultural_majority
 			# Remove Cultural Majority modifier from the old Cultural Majority
-			z_apc_remove_all_cultural_majority_modifiers_effect = yes
+			z_dfo_remove_all_cultural_majority_modifiers_effect = yes
 			# Add another modifier to show its status loss
 			if = {
 				limit = {
-					NOT = { has_country_culture_modifier = z_apc_old_cultural_majority_modifier }
+					NOT = { has_country_culture_modifier = z_dfo_old_cultural_majority_modifier }
 				}
 				add_country_culture_modifier = {
-					name = z_apc_old_cultural_majority_modifier
+					name = z_dfo_old_cultural_majority_modifier
 					duration = 7300 # 20 years
 				}
 			}
 		}
 		# New Cultural Majority
-		scope:z_apc_found_cultural_majority = {
+		scope:z_dfo_found_cultural_majority = {
 			# Remove Old Cultural Majority, if applicable
 			if = {
-				limit = { has_country_culture_modifier = z_apc_old_cultural_majority_modifier }
-				remove_country_culture_modifier = z_apc_old_cultural_majority_modifier
+				limit = { has_country_culture_modifier = z_dfo_old_cultural_majority_modifier }
+				remove_country_culture_modifier = z_dfo_old_cultural_majority_modifier
 			}
 			# Add Cultural Majority modifier
-			z_apc_add_cultural_majority_modifier_effect = yes
+			z_dfo_add_cultural_majority_modifier_effect = yes
 		}
 		# Set cooldown (lower than in the other scenarios)
 		set_variable = {
-			name = z_apc_had_recent_cultural_majority_change
+			name = z_dfo_had_recent_cultural_majority_change
 			days = 1825 # 5 years
 		}
 	}
 		
 	option = { # OK
-		name = "z_apc_common.4.a"
+		name = "z_dfo_common.4.a"
 	}
 	
 	after = {
-		z_apc_clear_variables_effect = yes
-		z_apc_set_variables_effect = yes
+		z_dfo_clear_variables_effect = yes
+		z_dfo_set_variables_effect = yes
 	}
 }
 
 #-----------------------------------------------------------------------------------------
 # Show the player a list of all countries that currently have a CM
 #-----------------------------------------------------------------------------------------
-z_apc_common.5 = {
+z_dfo_common.5 = {
 	type = country_event
-	title = "z_apc_common.5.t"
-	desc = "z_apc_common.5.desc"
+	title = "z_dfo_common.5.t"
+	desc = "z_dfo_common.5.desc"
 	
-	picture = z_apc_ruling_minority_pic	
+	picture = z_dfo_ruling_minority_pic	
 	left_portrait = root.current_ruler
 	
 	trigger = {
-		# Triggered by event: z_apc_common.2
+		# Triggered by event: z_dfo_common.2
 	}
 		
 	option = { # OK
-		name = "z_apc_common.5.a"
+		name = "z_dfo_common.5.a"
 		every_country = {
 			limit = {
-				any_country_culture = { has_country_culture_modifier = z_apc_cultural_majority_in_country_modifier }
+				any_country_culture = { has_country_culture_modifier = z_dfo_cultural_majority_in_country_modifier }
 			}
-			custom_tooltip = z_apc_countries_list
+			custom_tooltip = z_dfo_countries_list
 		}
-		custom_tooltip = z_apc_countries_list_end
+		custom_tooltip = z_dfo_countries_list_end
 	}
 		
 	option = { # OK
-		name = "z_apc_common.5.b"
+		name = "z_dfo_common.5.b"
 		every_country = {
 			limit = {
-				any_country_culture = { has_country_culture_modifier = z_apc_cultural_majority_in_capital_region_modifier }
+				any_country_culture = { has_country_culture_modifier = z_dfo_cultural_majority_in_capital_region_modifier }
 			}
-			custom_tooltip = z_apc_countries_list
+			custom_tooltip = z_dfo_countries_list
 		}
-		custom_tooltip = z_apc_countries_list_end
+		custom_tooltip = z_dfo_countries_list_end
 	}
 		
 	option = { # OK
-		name = "z_apc_common.5.c"
+		name = "z_dfo_common.5.c"
 		every_country = {
 			limit = {
-				any_country_culture = { has_country_culture_modifier = z_apc_cultural_majority_in_capital_area_modifier }
+				any_country_culture = { has_country_culture_modifier = z_dfo_cultural_majority_in_capital_area_modifier }
 			}
-			custom_tooltip = z_apc_countries_list
+			custom_tooltip = z_dfo_countries_list
 		}
-		custom_tooltip = z_apc_countries_list_end
+		custom_tooltip = z_dfo_countries_list_end
 	}
 		
 	option = { # OK
-		name = "z_apc_common.5.d"
+		name = "z_dfo_common.5.d"
 		every_country = {
 			limit = {
-				any_country_culture = { has_country_culture_modifier = z_apc_cultural_majority_in_capital_city_modifier }
+				any_country_culture = { has_country_culture_modifier = z_dfo_cultural_majority_in_capital_city_modifier }
 			}
-			custom_tooltip = z_apc_countries_list
+			custom_tooltip = z_dfo_countries_list
 		}
-		custom_tooltip = z_apc_countries_list_end
+		custom_tooltip = z_dfo_countries_list_end
 	}
 }
 
 #-----------------------------------------------------------------------------------------
 # Kill switch: stop all effects and events, lock all missions, remove all modifiers and variables
 #-----------------------------------------------------------------------------------------
-z_apc_common.100 = {
+z_dfo_common.100 = {
 	type = country_event
 	hidden = yes
 	
 	trigger = {
 		# Triggered when:
-		# 	- Finished APC mission, after 50 years to allow for some post-mission events
+		# 	- Finished ECM mission, after 50 years to allow for some post-mission events
 		# 	- Finished QCM mission, after 50 years to allow for some post-mission events
 	}
 		
 	immediate = {
-		z_apc_clear_variables_effect = yes
-		z_apc_remove_all_cultural_majority_modifiers_effect = yes
-	}
-}
-
-#-----------------------------------------------------------------------------------------
-# Sample main event
-#-----------------------------------------------------------------------------------------
-z_apc_common.200 = {
-	type = country_event
-	title = "z_apc_common.200.t"
-	desc = "z_apc_common.200.desc"
-	
-	picture = z_apc_ruling_minority_pic	
-	left_portrait = root.current_ruler
-	
-	trigger = {
-		# Triggered by on_action: z_apc_yearly_country_pulse
-	}
-		
-	option = { # OK
-		name = "z_apc_common.200.a"
-		every_country = {
-			limit = {
-				any_country_culture = { has_country_culture_modifier = z_apc_cultural_majority_in_country_modifier }
-			}
-			custom_tooltip = z_apc_countries_list
-		}
-		custom_tooltip = z_apc_countries_list_end
+		z_dfo_clear_variables_effect = yes
+		z_dfo_remove_all_cultural_majority_modifiers_effect = yes
 	}
 }

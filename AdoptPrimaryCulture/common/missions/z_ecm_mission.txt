@@ -1,0 +1,573 @@
+﻿#-----------------------------------------------------------------------------------------
+# Adopt Cultural Majority (ACM) mission tree for changing primary culture
+#-----------------------------------------------------------------------------------------
+z_ecm_mission = {
+	icon = athens_2
+	header = mission_image_ecm
+	
+	repeatable = no
+
+	chance = {
+		factor = 5
+	}
+	
+	potential = {
+		# Player only (AIs have a random event instead)
+		is_ai = no
+		# No civil war (normal war allowed)
+		has_civil_war = no
+		# No mission ongoing (or badly terminated)
+		NOT = { has_variable = z_ecm_mission_ongoing } # Embrace Cultural Majority mission
+		NOT = { has_variable = z_qcm_mission_ongoing } # Quell Cultural Majority mission
+		# No mission cooldown
+		NOT = { has_variable = z_ecm_mission_cooldown } # Embrace Cultural Majority mission
+		NOT = { has_variable = z_qcm_mission_cooldown } # Quell Cultural Majority mission
+		# No mission completed
+		NOT = { has_variable = z_ecm_mission_completed } # Embrace Cultural Majority mission
+		NOT = { has_variable = z_qcm_mission_completed } # Quell Cultural Majority mission
+		# Cultural Majority exists
+		any_country_culture = {
+			NOT = { this = root.country_culture }
+			z_dfo_has_any_cultural_majority_modifier_trigger = yes
+		}
+		# DFO variables exist
+		has_variable = z_dfo_ruling_minority_country_culture
+		has_variable = z_dfo_ruling_minority_culture
+		has_variable = z_dfo_cultural_majority_country_culture
+		has_variable = z_dfo_cultural_majority_culture
+	}
+	
+	on_potential = {
+		# Save scopes for localization
+		var:z_dfo_ruling_minority_country_culture = { save_scope_as = z_dfo_ruling_minority_country_culture }
+		var:z_dfo_ruling_minority_culture = { save_scope_as = z_dfo_ruling_minority_culture }
+		var:z_dfo_cultural_majority_country_culture = { save_scope_as = z_dfo_cultural_majority_country_culture }
+		var:z_dfo_cultural_majority_culture = { save_scope_as = z_dfo_cultural_majority_culture }
+		var:z_dfo_cultural_majority_country_culture = { save_scope_as = z_dfo_found_cultural_majority }
+	}
+	
+	abort = {
+		# Vanilla
+		ai_mission_back_out_trigger = yes
+	}
+
+	on_start = {
+		# Vanilla
+		start_mission_ai_effect = yes
+		# Set mission flag
+		set_variable = z_ecm_mission_ongoing
+		# Initialize completed missions counter
+		set_variable = {
+			name = z_ecm_completed_missions_current
+			value = 0
+		}
+		# Save country scope
+		root = { save_scope_as = z_ecm_country }
+		# Save Cultural Majority city scope
+		if = {
+			limit = {
+				any_owned_province = {
+					NOT = { this = root.capital_scope }
+					dominant_province_culture = scope:z_dfo_cultural_majority_culture
+				}
+			}
+			ordered_owned_province = {
+				limit = {
+					NOT = { this = root.capital_scope }
+					dominant_province_culture = scope:z_dfo_cultural_majority_culture
+				}
+				order_by = total_population
+				save_scope_as = z_ecm_cm_capital
+				root = {
+					set_variable = {
+						name = z_ecm_cm_capital
+						value = scope:z_ecm_cm_capital
+					}
+				}
+			}			
+		}
+		# If Cultural Majority city scope wasn't found: +2 completed missions to make up for the bypassed tasks
+		if = {
+			limit = {
+				NOT = { exists = scope:z_ecm_cm_capital }
+			}
+			change_variable = {
+				name = z_ecm_completed_missions_current
+				add = 2
+			}
+		}
+		# If Cultural Majority is already integrated: +1 completed mission to make up for the bypassed task
+		if = {
+			limit = {
+				has_variable = z_dfo_cultural_majority_country_culture
+				var:z_dfo_cultural_majority_country_culture = { is_integrated = yes }
+			}
+			set_variable = z_ecm_already_integrated_citizens
+			change_variable = {
+				name = z_ecm_completed_missions_current
+				add = 1
+			}
+		}
+		# If Cultural Majority already has noble status: +1 completed mission to make up for the bypassed task
+		if = {
+			limit = {
+				z_dfo_cultural_majority_status_trigger = { STATUS = nobles }
+			}
+			set_variable = z_ecm_already_integrated_nobles
+			change_variable = {
+				name = z_ecm_completed_missions_current
+				add = 1
+			}
+		}
+		# If not enough governorships: +1 completed mission to make up for the bypassed task
+		if = {
+			limit = {
+				any_governorships = { count <= 1 }
+			}
+			set_variable = z_ecm_not_enough_governorships
+			change_variable = {
+				name = z_ecm_completed_missions_current
+				add = 1
+			}
+		}
+		# If not enough legion commands: +1 completed mission to make up for the bypassed task
+		if = {
+			limit = {
+				NOT = {
+					any_governorships = { has_legion_trigger = yes }
+				}
+			}
+			set_variable = z_ecm_not_enough_legion_commands
+			change_variable = {
+				name = z_ecm_completed_missions_current
+				add = 1
+			}
+		}
+	}
+
+	on_abort = {
+		# Set cooldown
+		custom_tooltip = z_ecm_mission_cooldown_tt
+		set_variable = {
+			name = z_ecm_mission_cooldown
+			days = 36500 # 100 years
+		}
+		# Clear mission variables (not generic DFO variables)
+		z_ecm_clear_mission_variables_effect = yes
+	}
+
+	on_completion = {
+		# Vanilla
+		complete_mission_effect = yes
+		# Set completed mission flag
+		set_variable = z_ecm_mission_completed
+		# Clear mission variables (not generic DFO variables)
+		z_ecm_clear_mission_variables_effect = yes
+		# Give the reward and launch aftermath event chain
+		trigger_event = z_ecm_mission.999
+		# Kill switch: stop all effects and events, lock all missions, remove all modifiers and variables
+		trigger_event = {
+			id = z_dfo_common.100
+			days = 18250 # 50 years
+		}
+	}
+	
+	# The CM Question (starting task)
+	#---------------------------------------------------
+	z_ecm_mission_the_cm_question = {
+		monthly_on_action = z_ecm_the_cm_question_monthly_pulse # Events should give CT points
+
+		potential = {}
+
+		bypass = {}
+		
+		on_start = {
+			# Vanilla flag
+			set_variable = {
+				name = ongoing_mission_pulse_flag
+				days = 365
+			}
+			# Initial event
+			trigger_event = z_ecm_mission.1
+		}
+
+		allow = {
+		}
+
+		on_completion = {
+			# Increment completed missions counter
+			change_variable = {
+				name = z_ecm_completed_missions_current
+				add = 1
+			}
+			# Reward event
+			custom_tooltip = z_ecm_mission_the_cm_question_on_completion_tt
+			trigger_event = z_ecm_mission.2
+		}
+
+		icon = task_diplomatic
+	}
+	
+	# CM Integration
+	#---------------------------------------------------
+	z_ecm_mission_integrate_citizens = {
+	
+		requires = { z_ecm_mission_the_cm_question }
+
+		potential = {}
+
+		bypass = {
+			has_variable = z_ecm_already_integrated_citizens
+		}
+
+		allow = {
+			has_variable = z_dfo_cultural_majority_country_culture
+			var:z_dfo_cultural_majority_country_culture = { is_integrated = yes }
+		}
+
+		on_completion = {
+			# Increment completed missions counter
+			change_variable = {
+				name = z_ecm_completed_missions_current
+				add = 1
+			}
+			# If Cultural Majority already has noble status: +1 completed mission to make up for the bypassed task
+			if = {
+				limit = {
+					z_dfo_cultural_majority_status_trigger = { STATUS = nobles }
+				}
+				change_variable = {
+					name = z_ecm_completed_missions_current
+					add = 1
+				}
+			}
+			# Reward event
+			trigger_event = { id = z_ecm_mission.15 }
+		}
+
+		icon = task_political
+	}
+	
+	# CM Privileges
+	#---------------------------------------------------
+	z_ecm_mission_integrate_nobles = {
+	
+		requires = { z_ecm_mission_integrate_citizens }
+
+		potential = {}
+
+		bypass = {
+			has_variable = z_ecm_already_integrated_nobles
+		}
+
+		allow = {
+			z_dfo_cultural_majority_status_trigger = { STATUS = nobles }
+		}
+
+		on_completion = {
+			# Increment completed missions counter
+			change_variable = {
+				name = z_ecm_completed_missions_current
+				add = 1
+			}
+			# Reward event
+			trigger_event = { id = z_ecm_mission.16 }
+		}
+
+		icon = task_economical
+	}
+	
+	# The CM Exception
+	#---------------------------------------------------
+	z_ecm_mission_cm_exception = {
+	
+		requires = { z_ecm_mission_integrate_nobles }
+
+		potential = {}
+
+		bypass = {}
+
+		allow = {
+			custom_tooltip = {
+				text = z_ecm_mission_cm_exception_allow_tt
+				NOT = {
+					any_country_culture = {
+						is_integrated = yes
+						NOR = {
+							this = root.var:z_dfo_ruling_minority_country_culture
+							this = root.var:z_dfo_cultural_majority_country_culture
+						}
+					}
+				}
+			}
+		}
+
+		on_completion = {
+			# Increment completed missions counter
+			change_variable = {
+				name = z_ecm_completed_missions_current
+				add = 1
+			}
+			# Reward event
+			trigger_event = { id = z_ecm_mission.17 }
+		}
+
+		icon = task_diplomatic
+	}
+	
+	# CM Governors
+	#---------------------------------------------------
+	z_ecm_mission_cm_governors = {
+	
+		requires = { z_ecm_mission_the_cm_question }
+
+		potential = {}
+
+		bypass = {
+			OR = {
+				has_variable = z_ecm_not_enough_governorships # Not enough governorships when mission started
+				any_governorships = { count <= 1 } # Not enough governorships now
+			}
+		}
+
+		allow = {
+			custom_tooltip = {
+				text = z_ecm_mission_cm_governors_allow_tt
+				z_ecm_mission_cm_governors_current_svalue > z_ecm_mission_cm_governors_threshold_svalue
+			}
+		}
+
+		on_completion = {
+			# Increment completed missions counter
+			change_variable = {
+				name = z_ecm_completed_missions_current
+				add = 1
+			}
+			# Mission completed flag
+			set_variable = z_ecm_mission_cm_governors_completed
+			# Reward event
+			custom_tooltip = z_ecm_mission_cm_governors_loyalty_tt
+			trigger_event = {
+				id = z_ecm_mission.10 # The CM Governors
+			}
+			# Reward event
+			trigger_event = {
+				id = z_ecm_mission.9 # A CM Ruler - Triggers only if all three "government" missions are completed
+				days = { 180 365 }
+			}
+		}
+
+		icon = task_political
+	}
+	
+	# CM Government
+	#---------------------------------------------------
+	z_ecm_mission_cm_government = {
+	
+		requires = { z_ecm_mission_the_cm_question }
+
+		potential = {}
+
+		bypass = {}
+
+		allow = {
+			custom_tooltip = {
+				text = z_ecm_mission_cm_government_allow_tt
+				z_ecm_mission_cm_government_current_svalue > z_ecm_mission_cm_government_threshold_svalue
+			}
+		}
+
+		on_completion = {
+			# Increment completed missions counter
+			change_variable = {
+				name = z_ecm_completed_missions_current
+				add = 1
+			}
+			# Mission completed flag
+			set_variable = z_ecm_mission_cm_government_completed
+			# Reward event
+			custom_tooltip = z_ecm_mission_cm_government_loyalty_tt
+			trigger_event = {
+				id = z_ecm_mission.11 # The CM Government
+			}
+			# Reward event
+			trigger_event = {
+				id = z_ecm_mission.9 # A CM Ruler - Triggers only if all three "government" missions are completed
+				days = { 180 365 }
+			}
+		}
+
+		icon = task_political
+	}
+	
+	# CM General Staff
+	#---------------------------------------------------
+	z_ecm_mission_cm_army = {
+	
+		requires = { z_ecm_mission_the_cm_question }
+
+		potential = {}
+
+		bypass = {
+			OR = {
+				has_variable = z_ecm_not_enough_legion_commands # Not enough legion commands when mission started
+				NOT = {
+					any_governorships = { has_legion_trigger = yes } # Not enough legion commands when mission now
+				}
+			}
+		}
+
+		allow = {
+			custom_tooltip = {
+				text = z_ecm_mission_cm_army_allow_tt
+				z_ecm_mission_cm_army_current_svalue > z_ecm_mission_cm_army_threshold_svalue
+			}
+		}
+
+		on_completion = {
+			# Increment completed missions counter
+			change_variable = {
+				name = z_ecm_completed_missions_current
+				add = 1
+			}
+			# Mission completed flag
+			set_variable = z_ecm_mission_cm_army_completed
+			# Reward event
+			custom_tooltip = z_ecm_mission_cm_army_loyalty_tt
+			trigger_event = {
+				id = z_ecm_mission.12 # The CM Army
+			}
+			# Reward event
+			trigger_event = {
+				id = z_ecm_mission.9 # A CM Ruler - Triggers only if all three "government" missions are completed
+				days = { 180 365 }
+			}
+		}
+
+		icon = task_political
+	}
+	
+	# A CM Leader
+	#---------------------------------------------------
+	z_ecm_mission_cm_ruler = {
+	
+		requires = { z_ecm_mission_cm_governors z_ecm_mission_cm_government z_ecm_mission_cm_army z_ecm_mission_integrate_nobles }
+
+		potential = {}
+
+		bypass = {}
+
+		allow = {
+			current_ruler = { has_culture = root.var:z_dfo_cultural_majority_culture }
+		}
+
+		on_completion = {
+			# Increment completed missions counter
+			change_variable = {
+				name = z_ecm_completed_missions_current
+				add = 1
+			}
+			# Reward event
+			trigger_event = { id = z_ecm_mission.18 }
+		}
+
+		icon = task_political
+	}
+	
+	# The CM City
+	#---------------------------------------------------
+	z_ecm_mission_cm_city = {
+	
+		requires = { z_ecm_mission_the_cm_question }
+
+		potential = {
+			has_variable = z_ecm_cm_capital
+			var:z_ecm_cm_capital = { owner = root }
+		}
+
+		bypass = {
+			OR = {
+				NOT = { has_variable = z_ecm_cm_capital } # CM city didn't exist when mission started
+				NOT = { var:z_ecm_cm_capital.owner = root } # CM city doesn't exist now
+			}
+		}
+
+		allow = {
+		}
+
+		on_completion = {
+			# Increment completed missions counter
+			change_variable = {
+				name = z_ecm_completed_missions_current
+				add = 1
+			}
+			# Reward event
+			trigger_event = { id = z_ecm_mission.19 }
+		}
+
+		icon = task_political
+	}
+	
+	# The CM Capital
+	#---------------------------------------------------
+	z_ecm_mission_cm_capital = {
+	
+		requires = { z_ecm_mission_cm_city }
+
+		potential = {
+			has_variable = z_ecm_cm_capital
+			var:z_ecm_cm_capital = { owner = root }
+		}
+
+		bypass = {
+			OR = {
+				NOT = { has_variable = z_ecm_cm_capital } # CM city didn't exist when mission started
+				NOT = { var:z_ecm_cm_capital.owner = root } # CM city doesn't exist now
+			}
+		}
+
+		allow = {
+		}
+
+		on_completion = {
+			# Increment completed missions counter
+			change_variable = {
+				name = z_ecm_completed_missions_current
+				add = 1
+			}
+			# Reward event
+			trigger_event = { id = z_ecm_mission.20 }
+		}
+
+		icon = task_political
+	}
+	
+	# A New Rule (final task)
+	#---------------------------------------------------
+	z_ecm_mission_final = {
+	
+		requires = { z_ecm_mission_integrate_nobles }
+
+		potential = {}
+
+		bypass = {}
+
+		allow = {
+			custom_tooltip = {
+				text = z_ecm_completed_missions_required_tt
+				has_variable = z_ecm_completed_missions_current
+				var:z_ecm_completed_missions_current >= z_ecm_completed_missions_required_svalue
+			}
+		}
+
+		on_completion = {
+			show_as_tooltip = {
+				set_primary_culture = var:z_dfo_cultural_majority_culture
+			}
+		}
+
+		icon = task_diplomatic
+		
+		final = yes
+	}
+}

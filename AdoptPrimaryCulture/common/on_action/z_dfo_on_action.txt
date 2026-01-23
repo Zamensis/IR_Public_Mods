@@ -3,23 +3,23 @@
 #-----------------------------------------------------------------------------------------
 on_game_initialized = {
 	on_actions = {
-		z_apc_demote_integrated_cultures								# Demote the Diadochi's integrated cultures at game start
-		z_apc_update_cultural_majority									# Update Cultural Majority
+		z_dfo_demote_integrated_cultures								# Demote the Diadochi's integrated cultures at game start
+		z_dfo_update_cultural_majority									# Update Cultural Majority
 	}
 }
 
 yearly_country_pulse = {
 	on_actions = {
-		z_apc_update_cultural_majority									# Update Cultural Majority
+		z_dfo_update_cultural_majority									# Update Cultural Majority
 		delay = { days = { 30 335 } }
-		z_apc_yearly_country_pulse										# Main country pulse
+		z_dfo_yearly_country_pulse										# Main country pulse
 	}
 }
 
 #-----------------------------------------------------------------------------------------
 # Demote the Diadochi's integrated cultures at game start (more historical as military integration would happen later)
 #-----------------------------------------------------------------------------------------
-z_apc_demote_integrated_cultures = {
+z_dfo_demote_integrated_cultures = {
 	effect = {
 		if = {
 			limit = { primary_culture = macedonian }
@@ -58,24 +58,29 @@ z_apc_demote_integrated_cultures = {
 #-----------------------------------------------------------------------------------------
 # Update Cultural Majority
 #-----------------------------------------------------------------------------------------
-z_apc_update_cultural_majority = {
+z_dfo_update_cultural_majority = {
 	effect = {
 		if = {
 			limit = {
 				NOR = {
-					has_variable = z_apc_completed_mission
-					has_variable = z_qcm_completed_mission
+					# No mission ongoing (or badly terminated)
+					has_variable = z_ecm_mission_ongoing
+					has_variable = z_qcm_mission_ongoing
+					# No mission completed
+					has_variable = z_ecm_mission_completed
+					has_variable = z_qcm_mission_completed
 				}
+				# No generic countries
 				NOR = {
 					tag = BAR
 					tag = PIR
 					tag = REB
 					tag = MER
 				}
-				war = no
+				# No civil war (normal war OK)
 				has_civil_war = no
 			}
-			z_apc_find_cultural_majority_effect = yes					# Find a Cultural Majority, then update Cultural Majority status or remove invalid Cultural Majority status
+			z_dfo_find_cultural_majority_effect = yes					# Find a Cultural Majority, then update Cultural Majority modifier or remove invalid Cultural Majority modifier
 		}
 	}
 }
@@ -83,23 +88,9 @@ z_apc_update_cultural_majority = {
 #-----------------------------------------------------------------------------------------
 # Main country pulse
 #-----------------------------------------------------------------------------------------
-z_apc_yearly_country_pulse = {
+z_dfo_yearly_country_pulse = {
 	random_events = {
 		100 = 0
 		#10 = event_id
-	}
-}
-
-#-----------------------------------------------------------------------------------------
-# Mission pulses
-#-----------------------------------------------------------------------------------------
-z_apc_mission_the_npc_question_monthly_pulse = {
-	random_events = {
-		10 = z_apc_mission.3
-		10 = z_apc_mission.4
-		10 = z_apc_mission.5
-		10 = z_apc_mission.6
-		10 = z_apc_mission.7
-		10 = z_apc_mission.8
 	}
 }

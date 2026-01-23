@@ -1,52 +1,26 @@
 ﻿#-----------------------------------------------------------------------------------------
 # Cultural Majority modifiers
 #-----------------------------------------------------------------------------------------
-z_apc_ruling_minority_modifier = {
+z_dfo_ruling_minority_modifier = {
 	culture_happiness_modifier = 0.05
 }
 
-z_apc_cultural_majority_in_country_modifier = {
+z_dfo_cultural_majority_in_country_modifier = {
 	culture_happiness_modifier = -0.05
 }
 
-z_apc_cultural_majority_in_capital_region_modifier = {
+z_dfo_cultural_majority_in_capital_region_modifier = {
 	culture_happiness_modifier = -0.05
 }
 
-z_apc_cultural_majority_in_capital_area_modifier = {
+z_dfo_cultural_majority_in_capital_area_modifier = {
 	culture_happiness_modifier = -0.05
 }
 
-z_apc_cultural_majority_in_capital_city_modifier = {
+z_dfo_cultural_majority_in_capital_city_modifier = {
 	culture_happiness_modifier = -0.05
 }
 
-z_apc_old_cultural_majority_modifier = {
+z_dfo_old_cultural_majority_modifier = {
 	culture_happiness_modifier = -0.075
-}
-
-#-----------------------------------------------------------------------------------------
-# Event modifiers
-#-----------------------------------------------------------------------------------------
-z_apc_national_pride_small_modifier = { # When ruler doesn't convert
-	culture_happiness_modifier = 0.05
-}
-
-z_apc_national_pride_big_modifier = { # When ruler converts
-	culture_happiness_modifier = 0.1
-}
-
-z_apc_national_shame_small_modifier = { # When ruler doesn't convert
-	culture_happiness_modifier = -0.05
-}
-
-z_apc_national_shame_big_modifier = { # When ruler converts
-	culture_happiness_modifier = -0.125
-}
-
-#-----------------------------------------------------------------------------------------
-# Character modifiers
-#-----------------------------------------------------------------------------------------
-z_apc_npc_pretender = {
-	monthly_character_prominence = 0.1
 }

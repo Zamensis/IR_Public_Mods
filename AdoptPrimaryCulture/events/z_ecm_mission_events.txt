@@ -544,6 +544,7 @@ z_ecm_mission.13 = {
 					}
 					trigger_event = {
 						id = z_ecm_mission.13
+						days = { 360 720 }
 					}
 				}
 				# If replacement was chosen
@@ -554,6 +555,7 @@ z_ecm_mission.13 = {
 					}
 					trigger_event = {
 						id = z_ecm_mission.13
+						days = { 90 360 }
 					}
 				}
 			}
@@ -731,6 +733,7 @@ z_ecm_mission.14 = {
 					}
 					trigger_event = {
 						id = z_ecm_mission.14
+						days = { 90 360 }
 					}
 				}
 				# If replacement was chosen
@@ -741,6 +744,7 @@ z_ecm_mission.14 = {
 					}
 					trigger_event = {
 						id = z_ecm_mission.14
+						days = { 360 720 }
 					}
 				}
 			}

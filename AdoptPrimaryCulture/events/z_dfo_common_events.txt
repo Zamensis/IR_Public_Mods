@@ -187,6 +187,11 @@ z_dfo_common.2 = {
 	}
 	
 	after = {
+		# Set mission cooldown
+		set_variable = {
+			name = z_ecm_mission_cooldown
+			days = 7300 # 20 years
+		}
 		z_dfo_clear_variables_effect = yes
 		z_dfo_set_variables_effect = yes
 	}

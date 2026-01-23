@@ -175,6 +175,7 @@ z_ecm_mission = {
 	# The CM Question (starting task)
 	#---------------------------------------------------
 	z_ecm_mission_the_cm_question = {
+		duration = 365 # 1 year
 		monthly_on_action = z_ecm_the_cm_question_monthly_pulse # Events should give CT points
 
 		potential = {}

@@ -138,7 +138,7 @@ z_limes_tribal_restoration_effect = {
 }
 
 # --------------------------------------------------------------------------------
-# Tribal collapse - Large AI tribal empires have a chance of collapsing on ruler succession, if the new successor is weak
+# Monarchy collapse - Very large AI monarchies have a chance of collapsing if the ruler is weak
 # --------------------------------------------------------------------------------
 z_limes_monarchy_collapse_effect = {
 	if = {
@@ -147,13 +147,18 @@ z_limes_monarchy_collapse_effect = {
 			is_ai = yes
 			is_monarchy = yes
 			is_subject = no
-			NOT = { has_variable = z_limes_was_tribal_once }
-			NOT = { has_variable = z_limes_monarchy_collapsed_recently }
-			#num_of_cities >= 500
-			#z_limes_year >= 100
-			#z_limes_year < 600
-			#has_variable = z_limes_lucky_factor
-			#var:z_limes_lucky_factor > 10
+			NOR = {
+				has_variable = z_limes_was_tribal_once
+				has_variable = z_limes_monarchy_collapsed_recently
+				tag = ROM
+				capital_scope = p:1
+			}
+			num_of_cities >= 500
+			z_limes_year >= 100
+			z_limes_year < 600
+			has_variable = z_limes_lucky_factor
+			var:z_limes_lucky_factor > 20
+			z_limes_ruler_score < 20
 			trigger_if = {
 				limit = { war = yes }
 				NOT = {
@@ -225,6 +230,54 @@ z_limes_monarchy_collapse_effect = {
 							set_owned_by = scope:z_limes_mm_capital.owner
 						}
 					}
+				}
+			}
+		}
+		every_subject = {
+			limit = {
+				is_ai = yes
+				any_owned_province = {
+					any_neighbor_province = {
+						has_owner = yes
+						owner = scope:z_limes_mm_capital.owner
+					}
+				}
+				NOT = {
+					any_owned_province = {
+						any_neighbor_province = {
+							has_owner = yes
+							owner = root
+						}
+					}
+				}
+			}
+			switch = {
+				trigger = is_subject_type
+				client_state = { overlord = { release_subject = prev } scope:z_limes_mm_capital.owner = { make_subject = { target = prev type = client_state } } }
+				feudatory = { overlord = { release_subject = prev } scope:z_limes_mm_capital.owner = { make_subject = { target = prev type = feudatory } } }
+				satrapy = { overlord = { release_subject = prev } scope:z_limes_mm_capital.owner = { make_subject = { target = prev type = satrapy } } }
+			}
+			# Fall back - Tributary or vassal tribe
+			if = {
+				limit = {
+					NOT = { scope:z_limes_mm_capital.owner = overlord }
+				}
+				overlord = { release_subject = prev }
+				scope:z_limes_mm_capital.owner = {
+					make_subject = {
+						target = prev
+						type = tributary
+					}
+				}
+			}
+		}
+		random_list = {
+			50 = {}
+			50 = {
+				declare_war_with_wargoal = {
+					war_goal = conquer_wargoal
+					province = scope:z_limes_mm_capital
+					target = scope:z_limes_mm_capital.owner
 				}
 			}
 		}

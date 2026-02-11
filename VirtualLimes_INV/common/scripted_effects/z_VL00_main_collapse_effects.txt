@@ -92,6 +92,7 @@ z_limes_tribal_restoration_effect = {
 			# Lucky factor
 			has_variable = z_limes_lucky_factor
 			var:z_limes_lucky_factor > 10
+			exists = current_ruler
 			current_ruler.martial <= 5
 			# Protect Parthia and friends
 			z_has_limes_PAR = no
@@ -132,6 +133,100 @@ z_limes_tribal_restoration_effect = {
 		}
 		else = {
 			change_government = tribal_federation
+		}
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Tribal collapse - Large AI tribal empires have a chance of collapsing on ruler succession, if the new successor is weak
+# --------------------------------------------------------------------------------
+z_limes_monarchy_collapse_effect = {
+	if = {
+		limit = {
+			z_limes_rules_monarchy_collapse = 1
+			is_ai = yes
+			is_monarchy = yes
+			is_subject = no
+			NOT = { has_variable = z_limes_was_tribal_once }
+			NOT = { has_variable = z_limes_monarchy_collapsed_recently }
+			#num_of_cities >= 500
+			#z_limes_year >= 100
+			#z_limes_year < 600
+			#has_variable = z_limes_lucky_factor
+			#var:z_limes_lucky_factor > 10
+			trigger_if = {
+				limit = { war = yes }
+				NOT = {
+					any_countries_at_war_with = { is_ai = no }
+				}
+			}
+		}
+		random_owned_province = {
+			limit = {
+				NOT = {
+					region = {
+						OR = {
+							this = root.capital_scope.region
+							any_region_province = {
+								any_neighbor_province = {
+									this.region = root.capital_scope.region
+								}
+							}
+						}
+					}
+				}
+			}
+			save_scope_as = z_limes_monarchy_collapse_around_this_province
+		}
+	}
+	if = {
+		limit = { exists = scope:z_limes_monarchy_collapse_around_this_province }
+		set_variable = {
+			name = z_limes_monarchy_collapsed_recently
+			days = 7200 # 20 years
+		}
+		scope:z_limes_monarchy_collapse_around_this_province.region = {
+			ordered_region_province = {
+				limit = {
+					has_owner = yes
+					owner = root
+				}
+				order_by = total_population
+				save_scope_as = z_limes_mm_capital
+			}
+		}
+		z_limes_make_mm_effect = { ZONE = region }
+		release_subject = scope:z_limes_mm_capital.owner
+		while = {
+			count = 5
+			random = {
+				chance = 50
+				random_owned_province = {
+					limit = {
+						NOT = {
+							region = {
+								OR = {
+									this = root.capital_scope.region
+									any_region_province = {
+										any_neighbor_province = {
+											this.region = root.capital_scope.region
+										}
+									}
+								}
+							}
+						}
+					}
+					region = {
+						every_region_province = {
+							limit = {
+								has_owner = yes
+								owner = root
+							}
+							set_owned_by = scope:z_limes_mm_capital.owner
+						}
+					}
+				}
+			}
 		}
 	}
 }

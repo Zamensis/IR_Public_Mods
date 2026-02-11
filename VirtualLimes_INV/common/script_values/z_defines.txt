@@ -11,6 +11,7 @@ z_limes_rules_subject_subject = 1			# Clean up AI subjects of AI subjects on the
 z_limes_rules_player_mm = 1					# The player releases Marches instead of Tributaries after researching the "Tributary Concessions" invention
 z_limes_rules_tribal_restoration = 1		# Large AI tribal empires have a chance of becoming tribal again if they have switched to another type of government
 z_limes_rules_tribal_collapse = 1			# Large AI tribal empires have a chance of collapsing on ruler succession, if the new ruler is weak
+z_limes_rules_monarchy_collapse = 1			# Very large AI monarchies have a chance of collapsing if the ruler is weak
 z_limes_rules_CCN = 1						# Rename large AI countries into "[culture name] Empire" (set thresholds in MISC part below)
 
 # HISTORICAL TWEAKS							# EFFECT WHEN ENABLED (0 = disabled, 1 = enabled)

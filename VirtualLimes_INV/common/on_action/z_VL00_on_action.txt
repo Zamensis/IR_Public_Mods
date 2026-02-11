@@ -93,7 +93,7 @@ z_VL_routine = {
 #-----------------------------------------------------------------------------------------
 z_VL_on_reign_ending_successor = {
 	effect = {
-		z_limes_tribal_collapse_effect = yes
+		z_limes_tribal_collapse_effect = yes # Break up large AI tribal empires
 	}
 }
 
@@ -127,6 +127,7 @@ z_VL_limes = {
 z_VL_limes_cleanup = {
 	effect = {
 		z_limes_tribal_restoration_effect = yes # Tribal restoration effects - Make tribal empires tribal again
+		z_limes_monarchy_collapse_effect = yes # Break up large AI monarchies
 		z_limes_release_effect = yes # Release effects - Release MMs an overlord shouldn't have, reasonably
 		z_limes_subject_subject_effect = yes # Subject subject effects - Clean up subjects of subjects on the map (annex or release, depending on the context)
 		z_limes_merge_effect = yes # Merge effects - Help the AI manage its many MMs

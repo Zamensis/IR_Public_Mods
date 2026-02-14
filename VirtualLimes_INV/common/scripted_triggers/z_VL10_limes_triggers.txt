@@ -62,21 +62,21 @@ z_has_limes_never = {
 }
 
 # --------------------------------------------------------------------------------
-# Rules for all non-specific tags
+# VL rules for all non-specific tags
 # --------------------------------------------------------------------------------
 z_has_limes_default = {
 	# Common precondition:
 	z_has_limes = yes
 	# Exclude non-default rulesets:
 	z_has_limes_ROM = no
-	z_has_limes_PAR = no
+	z_has_limes_PAR_trigger = no
 	z_has_limes_EGY = no
 	z_has_limes_SEL = no
-	# Do not add conditions that would NOT be verified on_ending_war (e.g. war = no)
+	# Do NOT add conditions that would NOT be verified on_ending_war (e.g. war = no)
 }
 
 # --------------------------------------------------------------------------------
-# Rules for ROM specifically
+# VL rules for ROM specifically
 # --------------------------------------------------------------------------------
 # Basic Limes check
 z_has_limes_ROM = {
@@ -90,10 +90,10 @@ z_has_limes_ROM = {
 }
 
 # --------------------------------------------------------------------------------
-# Rules for PAR specifically
+# VL rules for PAR specifically
 # --------------------------------------------------------------------------------
 # Basic Limes check
-z_has_limes_PAR = {
+z_has_limes_PAR_trigger = {
 	# Common precondition:
 	z_has_limes = yes
 	# Applies to:
@@ -121,7 +121,7 @@ z_has_limes_PAR = {
 }
 
 # --------------------------------------------------------------------------------
-# Rules for EGY specifically
+# VL rules for EGY specifically
 # --------------------------------------------------------------------------------
 # Basic Limes check
 z_has_limes_EGY = {
@@ -137,7 +137,7 @@ z_has_limes_EGY = {
 }
 
 # --------------------------------------------------------------------------------
-# Rules for SEL specifically
+# VL rules for SEL specifically
 # --------------------------------------------------------------------------------
 # Basic Limes check
 z_has_limes_SEL = {

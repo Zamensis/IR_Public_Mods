@@ -7,7 +7,7 @@ z_limes_attack_effect = {
 		z_limes_attack_effect_ROM = yes
 	}
 	else_if = {
-		limit = { z_has_limes_PAR = yes }
+		limit = { z_has_limes_PAR_trigger = yes }
 		z_limes_attack_effect_PAR = yes
 	}
 }

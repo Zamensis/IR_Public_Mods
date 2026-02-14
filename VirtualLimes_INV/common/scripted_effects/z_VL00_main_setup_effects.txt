@@ -8,7 +8,7 @@ z_limes_setup_vflag_effect = {
 		}
 		set_global_variable = {
 			name = z_limes_flag
-			value = 3.00
+			value = z_limes_flag
 		}
 	}
 }
@@ -20,8 +20,10 @@ z_limes_setup_lucky_effect = {
 	if = {
 		limit = {
 			OR = {
-				current_date <= 451.1.1 # Random values generated on game initialized will always be the same, so they must be re-generated ASAP after initialization
-				NOT = { has_variable = z_limes_lucky_factor } # For countries not present on game initialized
+				# Random values generated on game initialized will always be the same, so they must be re-generated after a new seed has been rolled (i.e. on the 1st year tick)
+				current_date <= 451.1.1
+				# For countries not present on game initialized
+				NOT = { has_variable = z_limes_lucky_factor }
 			}
 		}
 		set_variable = {
@@ -32,9 +34,9 @@ z_limes_setup_lucky_effect = {
 }
 
 # --------------------------------------------------------------------------------
-# Change start-up diplo stances
+# Set starting truces
 # --------------------------------------------------------------------------------
-z_limes_setup_diplo_effect = {
+z_limes_setup_truce_effect = {
 	if = {
 		limit = {
 			z_limes_defines_start_year = 450
@@ -88,7 +90,7 @@ z_limes_setup_diplo_effect = {
 			}
 		}
 		# --------------------------------------
-		# Seleucids, Bactria, Parthia and friends (set non-reciprocal truces)
+		# Seleucids & Bactria vs. Parthia and friends (set non-reciprocal truces)
 		# --------------------------------------
 		if = {
 			limit = {

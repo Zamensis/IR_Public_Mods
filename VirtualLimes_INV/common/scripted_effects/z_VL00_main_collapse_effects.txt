@@ -95,7 +95,7 @@ z_limes_tribal_restoration_effect = {
 			exists = current_ruler
 			current_ruler.martial <= 5
 			# Protect Parthia and friends
-			z_has_limes_PAR = no
+			z_has_limes_PAR_trigger = no
 		}
 		set_variable = z_limes_was_tribal_once
 	}

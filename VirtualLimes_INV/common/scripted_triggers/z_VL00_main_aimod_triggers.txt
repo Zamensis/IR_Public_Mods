@@ -1,11 +1,21 @@
 ﻿# --------------------------------------------------------------------------------
 # Is this country allowed to get buffed/nerfed?
 # --------------------------------------------------------------------------------
-z_limes_can_cheat = {
+z_limes_can_cheat_trigger = {
 	is_ai = yes
 	OR = {
+		# Either player protection is disabled, then AI can always cheat...
 		NOT = { z_limes_rules_player_protection = 1 }
+		# ...or player protection is enabled, then AI can only cheat if it's not near the player, and doesn't have diplo ties with them
 		AND = {
+			# Check geographic immediate proximity
+			NOT = {
+				any_country = {
+					is_ai = no
+					any_neighbour_country = { this = root }
+				}
+			}
+			# Check geographic non-immediate proximity to AI ROM
 			trigger_if = {
 				limit = { tag = ROM }
 				NOT = {
@@ -20,10 +30,21 @@ z_limes_can_cheat = {
 								is_in_region = cisalpine_gaul_region
 								is_in_region = magna_graecia_region
 							}
+							capital_scope.region = root.capital_scope.region
 						}
 					}
 				}
 			}
+			# Check geographic non-immediate proximity to non-ROM AIs
+			trigger_else = {
+				NOT = {
+					any_country = {
+						is_ai = no
+						capital_scope.region = root.capital_scope.region
+					}
+				}
+			}
+			# Check diplo ties
 			NOT = {
 				any_country = {
 					is_ai = no
@@ -33,7 +54,6 @@ z_limes_can_cheat = {
 						is_guaranteed_by = root
 						war_with = root
 						any_neighbour_country = { this = root }
-						capital_scope.region = root.capital_scope.region
 					}
 				}
 			}
@@ -46,7 +66,6 @@ z_limes_can_cheat = {
 # --------------------------------------------------------------------------------
 z_limes_decline_trigger = {
 	is_ai = yes
-	z_limes_can_cheat = yes
 	country_culture_group = hellenic
 	z_limes_ruler_score < 20
 	num_of_cities >= 75

@@ -1,16 +1,16 @@
 ﻿#-----------------------------------------------------------------------------------------
-# Buff Military Marche levy size depending on their country size
+# Buff Military Marche levy size depending on their total population
 #-----------------------------------------------------------------------------------------
-z_limes_mm_lsize_1 = { levy_size_multiplier = 0.15 }
-z_limes_mm_lsize_2 = { levy_size_multiplier = 0.125 }
-z_limes_mm_lsize_3 = { levy_size_multiplier = 0.1 }
-z_limes_mm_lsize_4 = { levy_size_multiplier = 0.075 }
-z_limes_mm_lsize_5 = { levy_size_multiplier = 0.05 }
+z_limes_mm_levy_size_1_cmod = { levy_size_multiplier = 0.15 }
+z_limes_mm_levy_size_2_cmod = { levy_size_multiplier = 0.125 }
+z_limes_mm_levy_size_3_cmod = { levy_size_multiplier = 0.1 }
+z_limes_mm_levy_size_4_cmod = { levy_size_multiplier = 0.075 }
+z_limes_mm_levy_size_5_cmod = { levy_size_multiplier = 0.05 }
 
 #-----------------------------------------------------------------------------------------
-# Normal Difficulty AI modifiers
+# Higher CW threshold
 #-----------------------------------------------------------------------------------------
-z_limes_normal_ai = {
+z_limes_cw_threshold_cmod = {
 	civil_war_threshold = 0.15
 }
 
@@ -27,9 +27,9 @@ hard_ai = {
 	
 	happiness_for_same_culture_modifier = 0.1
 	#civil_war_threshold = 0.05 # <-- Removed this so it's doesn't stack with VL
+	
 	#Invictus modifiers
 	experience_decay = -0.005
-
 }
 
 very_hard_ai = {
@@ -44,6 +44,7 @@ very_hard_ai = {
 
 	happiness_for_same_culture_modifier = 0.15
 	#civil_war_threshold = 0.10 # <-- Removed this so it's doesn't stack with VL
+	
 	#Invictus modifiers
 	experience_decay = -0.010
 }
@@ -51,7 +52,7 @@ very_hard_ai = {
 #-----------------------------------------------------------------------------------------
 # ROM modifiers
 #-----------------------------------------------------------------------------------------
-z_limes_strong_ai = {
+z_limes_strong_ai_cmod = {
 	# Country
 	civil_war_threshold = 0.05
 	stability_monthly_change = 0.02
@@ -73,7 +74,7 @@ z_limes_strong_ai = {
 	war_score_cost = -0.5
 }
 
-z_limes_weak_ai = {
+z_limes_weak_ai_cmod = {
 	# Country
 	civil_war_threshold = -0.20
 	global_population_happiness = -0.08
@@ -88,11 +89,11 @@ z_limes_weak_ai = {
 	manpower_recovery_speed = -0.2
 }
 
-z_limes_naval_superpower = {
+z_limes_naval_superpower_cmod = {
 	naval_range = 3 # 300% yes sir, even Britain should be "easily" reachable
 }
 
-z_limes_land_superpower = {
+z_limes_land_superpower_cmod = {
 	war_exhaustion = -0.075
 	war_score_cost = -0.3
 }
@@ -100,7 +101,7 @@ z_limes_land_superpower = {
 #-----------------------------------------------------------------------------------------
 # EGY modifiers
 #-----------------------------------------------------------------------------------------
-z_limes_nerf_EGY_SEL = {
+z_limes_nerf_EGY_SEL_cmod = {
 	# Country
 	civil_war_threshold = -0.15
 	global_population_happiness = -0.12

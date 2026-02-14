@@ -3,8 +3,9 @@
 # --------------------------------------------------------------------------------
 z_limes_capital_trigger = {
 	OR = {
-		# All OPMs on game initiliazed
+		# All OPMs on game initiliazed (in the 450 AUC scenario)
 		AND = {
+			z_limes_defines_start_year = 450
 			current_date = 450.10.1
 			num_of_cities <= 5
 		}

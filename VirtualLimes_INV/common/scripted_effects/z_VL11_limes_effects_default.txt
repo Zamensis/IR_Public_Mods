@@ -213,7 +213,7 @@ z_limes_level_effect = {
 			galatia_region = { root = { z_limes_set_level_effect_b = { CAPITAL = galatia_region } } }
 			gallaecia_region = { root = { z_limes_set_level_effect_b = { CAPITAL = gallaecia_region } } }
 			gandhara_region = { root = { z_limes_set_level_effect_b = { CAPITAL = gandhara_region } } }
-			gedrosia_region = { root = { z_limes_set_level_effect_b = { CAPITAL = gedrosia_region } } }
+			#gedrosia_region = { root = { z_limes_set_level_effect_b = { CAPITAL = gedrosia_region } } } # Vanilla only
 			germania_region = { root = { z_limes_set_level_effect_b = { CAPITAL = germania_region } } }
 			germania_superior_region = { root = { z_limes_set_level_effect_b = { CAPITAL = germania_superior_region } } }
 			#gerrha_region = { root = { z_limes_set_level_effect_b = { CAPITAL = gerrha_region } } } # Vanilla only

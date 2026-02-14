@@ -3,7 +3,7 @@
 #-----------------------------------------------------------------------------------------
 on_game_initialized = {
 	on_actions = {
-		z_VL_routine							# Main routine - Initialize or update common VL settings (modifiers, level, etc.)
+		z_VL_routine							# Main routine - Initialize or update common VL settings (timer, modifiers, EZ levels, etc.)
 		z_VL_limes								# Main VL function - Create MMs along natural/historical boundaries
 		z_VL_CCN								# CCN - Cultural Country Names for empires
 	}
@@ -27,7 +27,7 @@ monthly_country_pulse = {
 
 yearly_country_pulse = {
 	on_actions = {
-		z_VL_yearly_country_pulse
+		z_VL_yearly_country_pulse				# Yearly timer update
 		z_VL_routine							# Main routine - Initialize or update common VL settings (modifiers, level, etc.)
 		z_VL_nointegrate_100					# No integrate effects - Prevent the Diadochi from integrating their native pops before a certain threshold
 		z_VL_CCN								# CCN - Cultural Country Names for empires
@@ -57,30 +57,29 @@ on_culture_integration_100 = {
 }
 
 #-----------------------------------------------------------------------------------------
-# Yearly regular update
+# Yearly timer update
 #-----------------------------------------------------------------------------------------
 z_VL_yearly_country_pulse = {
 	effect = {
-		# Update timer
-		z_limes_update_timer_effect = yes
+		z_limes_update_timer_effect = yes # Update VL timer
 	}
 }
 
 #-----------------------------------------------------------------------------------------
-# Limes routine - Initialize or update common VL settings
+# Main routine - Initialize or update common VL settings (timer, modifiers, EZ levels, etc.)
 #-----------------------------------------------------------------------------------------
 z_VL_routine = {
 	effect = {
 		if = {
 			limit = { has_land = yes } # Exclude REB etc.
 			# Initializations, if applicable (once per game or country)
-			z_limes_setup_timer_effect = yes
-			z_limes_setup_diplo_effect = yes
-			z_limes_setup_vflag_effect = yes
-			z_limes_setup_lucky_effect = yes
+			z_limes_setup_timer_effect = yes # Initialize VL timer
+			z_limes_setup_truce_effect = yes # Set starting truces
+			z_limes_setup_vflag_effect = yes # Mark this game as using this mod, for compatibility purposes if needed
+			z_limes_setup_lucky_effect = yes # Set AI lucky factor for the rest of the game
 			# Normal routine (as often as needed)
-			z_limes_capital_effect = yes
-			z_limes_aimod_effect = yes
+			z_limes_capital_effect = yes # Save starting capital if applicable + restore it when applicable
+			z_limes_aimod_effect = yes # Set or remove AI modifiers
 			z_limes_level_effect = yes
 			# Hide harmless errors in the log
 			z_limes_fix_effect = yes

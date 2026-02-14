@@ -3,52 +3,49 @@
 # --------------------------------------------------------------------------------
 z_limes_aimod_effect = {
 	# --------------------------------------------------------------------------------
-	# Normal difficulty CW threshold
+	# Higher CW threshold
 	# --------------------------------------------------------------------------------
 	if = {
 		limit = {
 			z_limes_rules_cw_fewer = 1
-			z_limes_can_cheat = yes
-			has_variable = z_limes_lucky_factor
-			NOT = {
-				has_country_modifier = z_limes_normal_ai
-			}
+			z_limes_can_cheat_trigger = yes
+			NOT = { has_country_modifier = z_limes_cw_threshold_cmod }
 		}
-		add_country_modifier = { name = z_limes_normal_ai }
+		add_country_modifier = { name = z_limes_cw_threshold_cmod }
 	}
 	else_if = {
 		limit = {
 			NAND = {
 				z_limes_rules_cw_fewer = 1
-				z_limes_can_cheat = yes
+				z_limes_can_cheat_trigger = yes
 				has_variable = z_limes_lucky_factor
 			}
-			has_country_modifier = z_limes_normal_ai
+			has_country_modifier = z_limes_cw_threshold_cmod
 		}
-		remove_country_modifier = z_limes_normal_ai
+		remove_country_modifier = z_limes_cw_threshold_cmod
 	}
 	# --------------------------------------------------------------------------------
-	# Military Marche Levy size modifier
+	# Buff Military Marche levy size depending on their total population
 	# --------------------------------------------------------------------------------
 	if = {
-		limit = { has_country_modifier = z_limes_mm_lsize_1 }
-		remove_country_modifier = z_limes_mm_lsize_1
+		limit = { has_country_modifier = z_limes_mm_levy_size_1_cmod }
+		remove_country_modifier = z_limes_mm_levy_size_1_cmod
 	}
 	if = {
-		limit = { has_country_modifier = z_limes_mm_lsize_2 }
-		remove_country_modifier = z_limes_mm_lsize_2
+		limit = { has_country_modifier = z_limes_mm_levy_size_2_cmod }
+		remove_country_modifier = z_limes_mm_levy_size_2_cmod
 	}
 	if = {
-		limit = { has_country_modifier = z_limes_mm_lsize_3 }
-		remove_country_modifier = z_limes_mm_lsize_3
+		limit = { has_country_modifier = z_limes_mm_levy_size_3_cmod }
+		remove_country_modifier = z_limes_mm_levy_size_3_cmod
 	}
 	if = {
-		limit = { has_country_modifier = z_limes_mm_lsize_4 }
-		remove_country_modifier = z_limes_mm_lsize_4
+		limit = { has_country_modifier = z_limes_mm_levy_size_4_cmod }
+		remove_country_modifier = z_limes_mm_levy_size_4_cmod
 	}
 	if = {
-		limit = { has_country_modifier = z_limes_mm_lsize_5 }
-		remove_country_modifier = z_limes_mm_lsize_5
+		limit = { has_country_modifier = z_limes_mm_levy_size_5_cmod }
+		remove_country_modifier = z_limes_mm_levy_size_5_cmod
 	}
 	if = {
 		limit = {
@@ -60,108 +57,109 @@ z_limes_aimod_effect = {
 			limit = {
 				country_population < 100
 			}
-			add_country_modifier = { name = z_limes_mm_lsize_1 }
+			add_country_modifier = { name = z_limes_mm_levy_size_1_cmod }
 		}
 		else_if = {
 			limit = {
 				country_population >= 100
 				country_population < 500
 			}
-			add_country_modifier = { name = z_limes_mm_lsize_2 }
+			add_country_modifier = { name = z_limes_mm_levy_size_2_cmod }
 		}
 		else_if = {
 			limit = {
 				country_population >= 500
 				country_population < 1000
 			}
-			add_country_modifier = { name = z_limes_mm_lsize_3 }
+			add_country_modifier = { name = z_limes_mm_levy_size_3_cmod }
 		}
 		else_if = {
 			limit = {
 				country_population >= 1000
 				country_population < 2000
 			}
-			add_country_modifier = { name = z_limes_mm_lsize_4 }
+			add_country_modifier = { name = z_limes_mm_levy_size_4_cmod }
 		}
 		else_if = {
 			limit = {
 				country_population >= 2000
 			}
-			add_country_modifier = { name = z_limes_mm_lsize_5 }
+			add_country_modifier = { name = z_limes_mm_levy_size_5_cmod }
 		}
 	}
 	# --------------------------------------------------------------------------------
 	# Hellenistic decline
 	# --------------------------------------------------------------------------------
 	if = {
-		limit = { has_country_modifier = z_limes_decline_1 }
-		remove_country_modifier = z_limes_decline_1
+		limit = { has_country_modifier = z_limes_decline_1_cmod }
+		remove_country_modifier = z_limes_decline_1_cmod
 	}
 	if = {
-		limit = { has_country_modifier = z_limes_decline_2 }
-		remove_country_modifier = z_limes_decline_2
+		limit = { has_country_modifier = z_limes_decline_2_cmod }
+		remove_country_modifier = z_limes_decline_2_cmod
 	}
 	if = {
-		limit = { has_country_modifier = z_limes_decline_3 }
-		remove_country_modifier = z_limes_decline_3
+		limit = { has_country_modifier = z_limes_decline_3_cmod }
+		remove_country_modifier = z_limes_decline_3_cmod
 	}
 	if = {
-		limit = { has_country_modifier = z_limes_decline_4 }
-		remove_country_modifier = z_limes_decline_4
+		limit = { has_country_modifier = z_limes_decline_4_cmod }
+		remove_country_modifier = z_limes_decline_4_cmod
 	}
 	if = {
-		limit = { has_country_modifier = z_limes_decline_5 }
-		remove_country_modifier = z_limes_decline_5
+		limit = { has_country_modifier = z_limes_decline_5_cmod }
+		remove_country_modifier = z_limes_decline_5_cmod
 	}
 	if = {
-		limit = { has_country_modifier = z_limes_decline_6 }
-		remove_country_modifier = z_limes_decline_6
+		limit = { has_country_modifier = z_limes_decline_6_cmod }
+		remove_country_modifier = z_limes_decline_6_cmod
 	}
 	if = {
 		limit = {
 			z_limes_rules_decline = 1
-			z_limes_decline_trigger = yes
+			z_limes_decline_trigger = yes # Is this country allowed to decline?
+			z_limes_can_cheat_trigger = yes
 		}
 		if = {
 			limit = {
 				z_limes_year >= 50
 				z_limes_year < 100
 			}
-			add_country_modifier = { name = z_limes_decline_1 }
+			add_country_modifier = { name = z_limes_decline_1_cmod }
 		}
 		else_if = {
 			limit = {
 				z_limes_year >= 100
 				z_limes_year < 150
 			}
-			add_country_modifier = { name = z_limes_decline_2 }
+			add_country_modifier = { name = z_limes_decline_2_cmod }
 		}
 		else_if = {
 			limit = {
 				z_limes_year >= 150
 				z_limes_year < 200
 			}
-			add_country_modifier = { name = z_limes_decline_3 }
+			add_country_modifier = { name = z_limes_decline_3_cmod }
 		}
 		else_if = {
 			limit = {
 				z_limes_year >= 200
 				z_limes_year < 250
 			}
-			add_country_modifier = { name = z_limes_decline_4 }
+			add_country_modifier = { name = z_limes_decline_4_cmod }
 		}
 		else_if = {
 			limit = {
 				z_limes_year >= 250
 				z_limes_year < 300
 			}
-			add_country_modifier = { name = z_limes_decline_5 }
+			add_country_modifier = { name = z_limes_decline_5_cmod }
 		}
 		else_if = {
 			limit = {
 				z_limes_year >= 300
 			}
-			add_country_modifier = { name = z_limes_decline_6 }
+			add_country_modifier = { name = z_limes_decline_6_cmod }
 		}
 	}
 	# --------------------------------------------------------------------------------
@@ -173,15 +171,16 @@ z_limes_aimod_effect = {
 		if = {
 			limit = {
 				z_limes_rules_buff_ROM = 1
-				z_limes_can_cheat = yes
+				z_limes_can_cheat_trigger = yes
 				NOR = {
-					has_country_modifier = z_limes_strong_ai
-					has_country_modifier = z_limes_weak_ai
+					has_country_modifier = z_limes_strong_ai_cmod
+					has_country_modifier = z_limes_weak_ai_cmod
 				}
 			}
+			# Give Weak modifier
 			if = {
 				limit = { var:z_limes_lucky_factor <= 10 }
-				add_country_modifier = { name = z_limes_weak_ai }
+				add_country_modifier = { name = z_limes_weak_ai_cmod }
 				# If weak, chance to be weaken even more
 				if = {
 					limit = {
@@ -249,8 +248,9 @@ z_limes_aimod_effect = {
 					}
 				}
 			}
+			# Give Strong modifier
 			else = {
-				add_country_modifier = { name = z_limes_strong_ai }
+				add_country_modifier = { name = z_limes_strong_ai_cmod }
 			}
 		}
 		# Remove Strong/Weak modifier
@@ -258,16 +258,16 @@ z_limes_aimod_effect = {
 			limit = {
 				OR = {
 					NOT = { z_limes_rules_buff_ROM = 1 }
-					z_limes_can_cheat = no
+					z_limes_can_cheat_trigger = no
 				}
 			}
 			if = {
-				limit = { has_country_modifier = z_limes_strong_ai }
-				remove_country_modifier = z_limes_strong_ai
+				limit = { has_country_modifier = z_limes_strong_ai_cmod }
+				remove_country_modifier = z_limes_strong_ai_cmod
 			}
 			if = {
-				limit = { has_country_modifier = z_limes_weak_ai }
-				remove_country_modifier = z_limes_weak_ai
+				limit = { has_country_modifier = z_limes_weak_ai_cmod }
+				remove_country_modifier = z_limes_weak_ai_cmod
 			}
 		}
 		# Give Superpower modifier
@@ -278,12 +278,12 @@ z_limes_aimod_effect = {
 				num_of_cities >= 500
 				var:z_limes_lucky_factor >= 10
 				NOR = {
-					has_country_modifier = z_limes_land_superpower
-					has_country_modifier = z_limes_naval_superpower
+					has_country_modifier = z_limes_land_superpower_cmod
+					has_country_modifier = z_limes_naval_superpower_cmod
 				}
 			}
-			add_country_modifier = { name = z_limes_land_superpower }
-			add_country_modifier = { name = z_limes_naval_superpower }
+			add_country_modifier = { name = z_limes_land_superpower_cmod }
+			add_country_modifier = { name = z_limes_naval_superpower_cmod }
 		}
 		# Remove Superpower modifier
 		if = {
@@ -296,12 +296,12 @@ z_limes_aimod_effect = {
 				}
 			}
 			if = {
-				limit = { has_country_modifier = z_limes_land_superpower }
-				remove_country_modifier = z_limes_land_superpower
+				limit = { has_country_modifier = z_limes_land_superpower_cmod }
+				remove_country_modifier = z_limes_land_superpower_cmod
 			}
 			if = {
-				limit = { has_country_modifier = z_limes_naval_superpower }
-				remove_country_modifier = z_limes_naval_superpower
+				limit = { has_country_modifier = z_limes_naval_superpower_cmod }
+				remove_country_modifier = z_limes_naval_superpower_cmod
 			}
 		}
 	}
@@ -317,7 +317,7 @@ z_limes_aimod_effect = {
 		if = {
 			limit = {
 				z_limes_rules_nerf_EGY_SEL = 1
-				z_limes_can_cheat = yes
+				z_limes_can_cheat_trigger = yes
 				NOR = {
 					current_ruler = char:42
 					current_ruler.father = char:42
@@ -325,21 +325,21 @@ z_limes_aimod_effect = {
 			}
 			if = {
 				limit = { var:z_limes_lucky_factor < 85 }
-				add_country_modifier = { name = z_limes_nerf_EGY_SEL }
+				add_country_modifier = { name = z_limes_nerf_EGY_SEL_cmod }
 			}
 		}
 		# Remove EGY nerf modifier
 		if = {
 			limit = {
-				has_country_modifier = z_limes_nerf_EGY_SEL
+				has_country_modifier = z_limes_nerf_EGY_SEL_cmod
 				OR = {
 					NOT = { z_limes_rules_nerf_EGY_SEL = 1 }
-					z_limes_can_cheat = no
+					z_limes_can_cheat_trigger = no
 					current_ruler = char:42
 					current_ruler.father = char:42
 				}
 			}
-			remove_country_modifier = z_limes_nerf_EGY_SEL
+			remove_country_modifier = z_limes_nerf_EGY_SEL_cmod
 		}
 	}
 	# --------------------------------------------------------------------------------
@@ -354,7 +354,7 @@ z_limes_aimod_effect = {
 		if = {
 			limit = {
 				z_limes_rules_nerf_EGY_SEL = 1
-				z_limes_can_cheat = yes
+				z_limes_can_cheat_trigger = yes
 				NOR = {
 					current_ruler = char:24
 					current_ruler.father = char:24
@@ -362,55 +362,21 @@ z_limes_aimod_effect = {
 			}
 			if = {
 				limit = { var:z_limes_lucky_factor < 95 }
-				add_country_modifier = { name = z_limes_nerf_EGY_SEL }
+				add_country_modifier = { name = z_limes_nerf_EGY_SEL_cmod }
 			}
 		}
 		# Remove SEL nerf modifier
 		if = {
 			limit = {
-				has_country_modifier = z_limes_nerf_EGY_SEL
+				has_country_modifier = z_limes_nerf_EGY_SEL_cmod
 				OR = {
 					NOT = { z_limes_rules_nerf_EGY_SEL = 1 }
-					z_limes_can_cheat = no
+					z_limes_can_cheat_trigger = no
 					current_ruler = char:24
 					current_ruler.father = char:24
 				}
 			}
-			remove_country_modifier = z_limes_nerf_EGY_SEL
-		}
-		# Update SEL color
-		if = {
-			limit = {
-				tag = SEL
-				is_ai = yes
-				OR = {
-					NOT = { has_variable = z_limes_SEL_color }
-					NOT = { z_limes_rules_SEL_color = var:z_limes_SEL_color }
-				}
-				OR = {
-					NOT = { country_culture_group = hellenic }
-					NOT = { religion = roman_pantheon }
-				}
-			}
-			if = {
-				limit = { z_limes_rules_SEL_color = 1 }
-				change_country_color = z_limes_SEL_color_1
-			}
-			else_if = {
-				limit = { z_limes_rules_SEL_color = 2 }
-				change_country_color = z_limes_SEL_color_2
-			}
-			else_if = {
-				limit = { z_limes_rules_SEL_color = 3 }
-				change_country_color = z_limes_SEL_color_3
-			}
-			else = {
-				change_country_color = z_limes_SEL_color_0
-			}
-			set_variable = {
-				name = z_limes_SEL_color
-				value = z_limes_rules_SEL_color # Even if null, keeps the effect from firing until all conditions are met
-			}
+			remove_country_modifier = z_limes_nerf_EGY_SEL_cmod
 		}
 	}
 	# --------------------------------------------------------------------------------
@@ -429,7 +395,7 @@ z_limes_aimod_effect = {
 		if = {
 			limit = {
 				z_limes_rules_mauryan_decline = 1
-				z_limes_can_cheat = yes
+				z_limes_can_cheat_trigger = yes
 				heritage = mauryan_abandoned_heritage
 			}
 			set_country_heritage = z_limes_mauryan_abandoned_heritage
@@ -439,7 +405,7 @@ z_limes_aimod_effect = {
 			limit = {
 				OR = {
 					NOT = { z_limes_rules_mauryan_decline = 1 }
-					z_limes_can_cheat = no
+					z_limes_can_cheat_trigger = no
 				}
 				heritage = z_limes_mauryan_abandoned_heritage
 			}

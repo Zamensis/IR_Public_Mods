@@ -1,12 +1,16 @@
 ﻿# --------------------------------------------------------------------------------
-# Initialize the virtual timer
+# Initialize VL timer
 # --------------------------------------------------------------------------------
 z_limes_setup_timer_effect = {
+	# --------------------------------------------------------------------------------
+	# If this version starts in 450 AUC
+	# --------------------------------------------------------------------------------
 	if = {
 		limit = {
-			NOT = { has_global_variable = z_limes_timer }
 			z_limes_defines_start_year = 450
+			NOT = { has_global_variable = z_limes_timer }
 		}
+		# Default case, on game initialized
 		if = {
 			limit = { current_date < 451.1.1 }
 			set_global_variable = {
@@ -14,6 +18,7 @@ z_limes_setup_timer_effect = {
 				value = 0
 			}
 		}
+		# Other cases, if the mod is loaded mid-save
 		else_if = {
 			limit = { current_date < 501.1.1 }
 			set_global_variable = {
@@ -77,14 +82,37 @@ z_limes_setup_timer_effect = {
 			}
 		}
 	}
+	# --------------------------------------------------------------------------------
+	# If this version doesn't start in 450 AUC
+	# --------------------------------------------------------------------------------
+	else_if = {
+		limit = {
+			NOR = {
+				z_limes_defines_start_year = 450
+				has_global_variable = z_limes_timer
+			}
+		}
+		set_global_variable = {
+			name = z_limes_timer
+			value = 0 # Just start at zero
+		}
+	}
+	# --------------------------------------------------------------------------------
+	# Set random timer dilation
+	# --------------------------------------------------------------------------------
 	if = {
 		limit = {
-			current_date <= 451.1.1 # Random values generated on game initialized will always be the same, so they must be re-generated ASAP after initialization
+			# Only do this if this version starts in 450 AUC (else, no timer dilation)
+			z_limes_defines_start_year = 450
+			# Random values generated on game initialized will always be the same, so they must be re-generated after a new seed has been rolled (i.e. on the 1st year tick)
+			current_date <= 451.1.1
 		}
+		# How fast the VL timer ticks compared to the actual year ticks
 		set_global_variable = {
 			name = z_limes_timer_speed
 			value = { 80 130 }
 		}
+		# +/- a little offset
 		set_global_variable = {
 			name = z_limes_timer_offset
 			value = { 90 130 }
@@ -93,7 +121,7 @@ z_limes_setup_timer_effect = {
 }
 
 # --------------------------------------------------------------------------------
-# Update the virtual timer (keep track of the actual number of years passing by, which can then be modified (speed/offset) to be used as a virtual timeline)
+# Update VL timer (keep track of the actual number of years passing by, which can then be modified (speed/offset))
 # --------------------------------------------------------------------------------
 z_limes_update_timer_effect = {
 	if = {

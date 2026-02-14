@@ -1,16 +1,16 @@
 ﻿# --------------------------------------------------------------------------------
-# Restore capital (if applicable) and save capital (if applicable)
+# Save starting capital if applicable + restore it when applicable
 # --------------------------------------------------------------------------------
 z_limes_capital_effect = {
 	# --------------------------------------------------------------------------------
 	# Save capital, default case
 	# --------------------------------------------------------------------------------
 	if = {
-		limit = { z_limes_capital_trigger = yes }
-		z_limes_save_capital_effect = yes
+		limit = { z_limes_capital_trigger = yes } # Should this country have its capital city and area saved for later restoration?
+		z_limes_save_capital_effect = yes # Save capital
 	}
 	# --------------------------------------------------------------------------------
-	# Save capital, revolt case
+	# Save capital, CW revoltee case
 	# --------------------------------------------------------------------------------
 	if = {
 		limit = {
@@ -33,7 +33,7 @@ z_limes_capital_effect = {
 				is_war_leader = root
 				any_war_participant = {
 					has_civil_war = yes
-					NOT = {
+					NAND = {
 						has_variable = z_limes_capital_city
 						has_variable = z_limes_capital_area
 					}
@@ -59,12 +59,12 @@ z_limes_capital_effect = {
 		}
 	}
 	# --------------------------------------------------------------------------------
-	# Restore capital, if applicable
+	# Restore capital when applicable
 	# --------------------------------------------------------------------------------
-	# If capital was saved previously, check if it needs to be restored and if so, restore it
+	# If capital was saved previously, 
 	if = {
-		limit = { z_limes_rules_capital = 1 }
-		z_limes_restore_capital_effect = yes
+		limit = { z_limes_rules_capital = 1 } # Game rule is enabled
+		z_limes_restore_capital_effect = yes # Check if the capital needs to be restored and if so, restore it
 	}
 }
 
@@ -79,10 +79,11 @@ z_limes_save_capital_effect = {
 				has_variable = z_limes_capital_area
 			}
 		}
+		# --------------------------------------------------------------------------------
+		# Antigonid historical capital = Pella
+		# --------------------------------------------------------------------------------
 		if = {
-			limit = {
-				tag = PRY # Antigonids, ite domum
-			}
+			limit = { tag = PRY }
 			set_variable = {
 				name = z_limes_capital_city
 				value = c:MAC.capital_scope # Pella
@@ -92,6 +93,9 @@ z_limes_save_capital_effect = {
 				value = c:MAC.capital_scope.area # Pella area
 			}
 		}
+		# --------------------------------------------------------------------------------
+		# Other historical capitals = starting capitals
+		# --------------------------------------------------------------------------------
 		else = {
 			set_variable = {
 				name = z_limes_capital_city
@@ -106,17 +110,23 @@ z_limes_save_capital_effect = {
 }
 
 # --------------------------------------------------------------------------------
-# Restore capital
+# Check if the capital needs to be restored and if so, restore it
 # --------------------------------------------------------------------------------
 z_limes_restore_capital_effect = {
+	# --------------------------------------------------------------------------------
+	# All eligible AI countries except PAR
+	# --------------------------------------------------------------------------------
 	if = {
 		limit = {
 			is_ai = yes
+			z_has_limes_PAR_trigger = no
 			has_variable = z_limes_capital_area
 			has_variable = z_limes_capital_city
+			# Historical capital is not the current capital
 			capital_scope = {
 				NOT = { this = root.var:z_limes_capital_city }
-			}		
+			}
+			# Historical capital or historical area is owned
 			OR = {
 				owns = var:z_limes_capital_city
 				var:z_limes_capital_area = {
@@ -131,10 +141,12 @@ z_limes_restore_capital_effect = {
 				}
 			}
 		}
+		# If historical capital is owned, make it the capital
 		if = {
 			limit = { owns = var:z_limes_capital_city }
 			set_capital = var:z_limes_capital_city
 		}
+		# If historical capital isn't owned, but historical area is, make the most populous city in the historical area the capital
 		else = {
 			ordered_owned_province = {
 				limit = { this.area = root.var:z_limes_capital_area }
@@ -143,9 +155,12 @@ z_limes_restore_capital_effect = {
 			}
 		}
 	}
+	# --------------------------------------------------------------------------------
+	# PAR special: when possible, AI PAR will try to move its capital to Mesopotamia, Media or Persis
+	# --------------------------------------------------------------------------------
 	if = {
 		limit = {
-			z_has_limes_PAR = yes
+			z_has_limes_PAR_trigger = yes
 			NOT = { has_variable = z_limes_capital_cooldown }
 		}
 		z_limes_restore_capital_effect_PAR = yes

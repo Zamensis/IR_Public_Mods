@@ -21,7 +21,7 @@ z_limes_nointegrate_effect_25 = {
 				AND = {
 					z_limes_year <= 150
 					tag = ROM
-					has_country_modifier = z_limes_weak_ai
+					has_country_modifier = z_limes_weak_ai_cmod
 				}
 			}
 		}
@@ -55,7 +55,7 @@ z_limes_nointegrate_effect_100 = {
 				AND = {
 					z_limes_year <= 150
 					tag = ROM
-					has_country_modifier = z_limes_weak_ai
+					has_country_modifier = z_limes_weak_ai_cmod
 					any_country_culture = {
 						is_integrated = yes
 						NOT = { this = root.country_culture }

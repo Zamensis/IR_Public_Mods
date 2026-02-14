@@ -1,6 +1,6 @@
 ﻿# --------------------------------------------------------------------------------
 # Help AI Parthia conquer Persia and Mesopotamia, otherwise it's just lost in Kazakhstan
-# On monthly pulse (+ random offset): z_limes_attack_effect: any country with z_has_limes_PAR:
+# On monthly pulse (+ random offset): z_limes_attack_effect: any country with z_has_limes_PAR_trigger:
 # --------------------------------------------------------------------------------
 z_limes_attack_effect_PAR = {
 	# Normal attack effect: make AI PAR attack whichever AI is in PAR's historical regions
@@ -32,9 +32,9 @@ z_limes_attack_effect_PAR = {
 				any_countries_at_war_with = {
 					this = scope:z_limes_defender_country
 					tag = SEL
-					z_limes_can_cheat = yes # Can AI SEL cheat?
+					z_limes_can_cheat_trigger = yes # Is this country allowed to get buffed/nerfed?
 				}
-				z_limes_can_cheat = yes # Can AI PAR cheat?
+				z_limes_can_cheat_trigger = yes # Is this country allowed to get buffed/nerfed?
 			}
 			# Give AI PAR free provinces from AI SEL at the start of the war
 			scope:z_limes_defender_country = {
@@ -64,7 +64,7 @@ z_limes_attack_effect_PAR = {
 						is_ai = yes
 						is_subject = yes
 						is_subject_of = c:SEL
-						z_limes_can_cheat = yes
+						z_limes_can_cheat_trigger = yes # Is this country allowed to get buffed/nerfed?
 					}
 				}
 				every_current_war = {
@@ -126,8 +126,7 @@ z_limes_attack_effect_PAR = {
 }
 
 # --------------------------------------------------------------------------------
-# PAR new capital
-# On Limes routine: z_limes_capital_effect: z_limes_restore_capital_effect: any country with z_has_limes_PAR:
+# When possible, AI PAR will try to move its capital to Mesopotamia, Media or Persis
 # --------------------------------------------------------------------------------
 z_limes_restore_capital_effect_PAR = {
 	if = {
@@ -265,41 +264,6 @@ z_limes_restore_capital_effect_PAR = {
 		}
 		z_limes_PAR_religion_effect = yes
 	}
-	#else_if = {
-	#	limit = {
-	#		any_owned_province = {
-	#			is_in_region = parthia_region
-	#			total_population >= 10
-	#		}
-	#		capital_scope = {
-	#			NOT = { is_in_region = parthia_region }
-	#		}
-	#		num_of_cities >= 50
-	#		region:parthia_region = {
-	#			any_region_province = {
-	#				percent >= 0.2
-	#				has_owner = yes
-	#				owner = root
-	#			}
-	#		}
-	#	}
-	#	ordered_owned_province = {
-	#		limit = { is_in_region = parthia_region }
-	#		order_by = total_population
-	#		save_scope_as = z_limes_new_capital
-	#		root.capital_scope = {
-	#			while = {
-	#				count = 5
-	#				limit = { total_population > 3 }
-	#				random_pops_in_province = {
-	#					limit = { pop_culture = current_ruler.culture }
-	#					move_pop = scope:z_limes_new_capital
-	#				}
-	#			}
-	#		}
-	#		root = { set_capital = scope:z_limes_new_capital }
-	#	}
-	#}
 }
 
 # --------------------------------------------------------------------------------

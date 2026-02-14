@@ -2831,7 +2831,17 @@ z_limes_pracya_region_trigger_2 = {
 		z_limes_pracya_region_trigger_1 = yes
 		is_in_region = burma_region
 		is_in_region = dravida_region
-		is_in_region = avanti_region
+		AND = {
+			is_in_region = avanti_region
+			NOT = {
+				is_in_area = anartta_area
+				is_in_area = avanti_area
+				is_in_area = madhyamika_area
+			}
+		}
+		this = p:7118
+		this = p:7119
+		this = p:7154
 	}
 }
 
@@ -2849,6 +2859,9 @@ z_limes_pracya_region_trigger_3 = {
 		is_in_area = parecania_area
 		is_in_region = aparanta_region
 		is_in_region = karnata_region
+		is_in_area = anartta_area
+		is_in_area = avanti_area
+		is_in_area = madhyamika_area
 	}
 }
 

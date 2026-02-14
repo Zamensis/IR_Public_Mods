@@ -13,7 +13,7 @@ z_limes_tribal_collapse_effect = {
 			z_limes_year < 600
 			has_variable = z_limes_lucky_factor
 			var:z_limes_lucky_factor > 10
-			z_limes_can_cheat = yes
+			z_limes_can_cheat_trigger = yes # Is this country allowed to get buffed/nerfed?
 		}
 		random = {
 			chance = {
@@ -108,7 +108,7 @@ z_limes_tribal_restoration_effect = {
 			num_of_cities >= 120
 			z_limes_year >= 150
 			war = no
-			z_limes_can_cheat = yes
+			z_limes_can_cheat_trigger = yes # Is this country allowed to get buffed/nerfed?
 			# Tribal culture groups
 			OR = {
 				country_culture_group = baltic

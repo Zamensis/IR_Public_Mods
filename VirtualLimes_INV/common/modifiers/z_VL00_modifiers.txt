@@ -118,7 +118,7 @@ z_limes_nerf_EGY_SEL_cmod = {
 #-----------------------------------------------------------------------------------------
 # Large AI empire decline
 #-----------------------------------------------------------------------------------------
-z_limes_decline_1 = {
+z_limes_decline_1_cmod = {
 	civil_war_threshold = -0.025
 	heavy_infantry_morale = 0.05 # Old guard
 	heavy_infantry_discipline = 0.05
@@ -133,7 +133,7 @@ z_limes_decline_1 = {
 	global_population_happiness = -0.05
 }
 
-z_limes_decline_2 = {
+z_limes_decline_2_cmod = {
 	civil_war_threshold = -0.05
 	heavy_infantry_morale = 0.1 # Old guard
 	heavy_infantry_discipline = 0.1
@@ -148,7 +148,7 @@ z_limes_decline_2 = {
 	global_population_happiness = -0.1
 }
 
-z_limes_decline_3 = {
+z_limes_decline_3_cmod = {
 	civil_war_threshold = -0.075
 	heavy_infantry_morale = 0.15 # Old guard
 	heavy_infantry_discipline = 0.15
@@ -163,7 +163,7 @@ z_limes_decline_3 = {
 	global_population_happiness = -0.15
 }
 
-z_limes_decline_4 = {
+z_limes_decline_4_cmod = {
 	civil_war_threshold = -0.1
 	heavy_infantry_morale = 0.2 # Old guard
 	heavy_infantry_discipline = 0.2
@@ -178,7 +178,7 @@ z_limes_decline_4 = {
 	global_population_happiness = -0.2
 }
 
-z_limes_decline_5 = {
+z_limes_decline_5_cmod = {
 	civil_war_threshold = -0.125
 	heavy_infantry_morale = 0.2 # Old guard
 	heavy_infantry_discipline = 0.2
@@ -193,7 +193,7 @@ z_limes_decline_5 = {
 	global_population_happiness = -0.25
 }
 
-z_limes_decline_6 = {
+z_limes_decline_6_cmod = {
 	civil_war_threshold = -0.15
 	light_infantry_morale = -0.2 # The End
 	light_infantry_discipline = -0.2

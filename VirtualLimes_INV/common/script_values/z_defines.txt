@@ -1,4 +1,4 @@
-﻿# THE LIMES									# EFFECT WHEN ENABLED (0 = disabled, 1 = enabled)
+﻿# THE LIMES									# EFFECT (0 = disabled, 1 = enabled)
 # ----------------							# --------------------------------------------
 z_limes_rules_limes = 1						# The AI creates Marches along the borders of its historical/natural Expansion Zone (EZ)
 z_limes_rules_limes_ROM = 1					# AI Rome has its own special EZ that unlocks gradually, following the historical timeline (if set to 0, Rome is treated as any other Italian power)
@@ -9,10 +9,6 @@ z_limes_rules_absorb = 1					# The AI can vassalize small enclaved, non-coastal 
 z_limes_rules_rename = 1					# In some cases, when applicable, Marche names are based on area, region or main culture
 z_limes_rules_subject_subject = 1			# Clean up AI subjects of AI subjects on the map (annex or release, depending on the context)
 z_limes_rules_player_mm = 1					# The player releases Marches instead of Tributaries after researching the "Tributary Concessions" invention
-z_limes_rules_tribal_restoration = 1		# Large AI tribal empires have a chance of becoming tribal again if they have switched to another type of government
-z_limes_rules_tribal_collapse = 1			# Large AI tribal empires have a chance of collapsing on ruler succession, if the new ruler is weak
-z_limes_rules_monarchy_collapse = 1			# Very large AI monarchies have a chance of collapsing if the ruler is weak
-z_limes_rules_CCN = 1						# Rename large AI countries into "[culture name] Empire" (set thresholds in MISC part below)
 
 # HISTORICAL TWEAKS							# EFFECT WHEN ENABLED (0 = disabled, 1 = enabled)
 # ----------------							# --------------------------------------------
@@ -26,7 +22,7 @@ z_limes_rules_player_protection = 1			# The previous buffs and debuffs only appl
 z_limes_rules_attack_ROM = 1				# AI Rome can be prompted to attack AI-controlled targets to achieve a more historical outcome
 z_limes_rules_attack_PAR = 1				# AI Parthia can be prompted to attack AI-controlled targets to achieve a more historical outcome
 z_limes_rules_nointegrate = 1				# Non-European AI countries of Macedonian culture aren't allowed to integrate other cultures until ~100 years into the game
-z_limes_rules_SEL_color = 1					# Recolor AI Seleucids when they aren't ruled by a Hellenic dynasty as a result of losing a civil war: 1 = green, 2 = indigo, 3 = sand, 0 = disabled
+z_limes_rules_CCN = 1						# Rename large AI countries into "[culture name] Empire" (set thresholds in MISC part below)
 
 # ANTI-BORDERGORE TWEAKS					# EFFECT WHEN ENABLED (0 = disabled, 1 = enabled)
 # ----------------							# --------------------------------------------
@@ -37,6 +33,9 @@ z_limes_rules_punic_league = 1				# Rename AI Carthage as "Punic League" if the 
 z_limes_rules_cw_fewer = 1					# Increase CW threshold for AIs, reducing the number of civil wars potentially ruining the map
 z_limes_rules_cw_faster = 1					# Wrap up AI civil wars when one side owns most of the territory, reducing the risk of civil wars ruining the map
 z_limes_rules_nosplit = 1					# Large AI empires can spawn new countries when they are split into very distant parts (not super effective but it adds up to the rest)
+z_limes_rules_tribal_restoration = 1		# Large AI tribal empires have a chance of becoming tribal again if they have switched to another type of government (preferable for the next rule)
+z_limes_rules_tribal_collapse = 1			# Large AI tribal empires have a chance of collapsing on ruler succession, if the new ruler is weak
+z_limes_rules_monarchy_collapse = 1			# Very large AI monarchies have a chance of collapsing if the ruler is weak
 
 # DEFAULT LIMES TWEAKS						# DESCRIPTION
 #----------------							# --------------------------------------------

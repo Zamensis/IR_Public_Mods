@@ -2738,7 +2738,18 @@ z_limes_parthia_region_trigger_2 = {
 		is_in_region = assyria_region
 		is_in_region = mesopotamia_region
 		is_in_region = persis_region
-		#is_in_region = gedrosia_region # Vanilla only
+		is_in_area = paytankert_area
+		# Caspian Western coast
+		this = p:1633
+		this = p:1642
+		this = p:1644
+		this = p:1647
+		this = p:7603
+		this = p:7604
+		this = p:7605
+		this = p:7621
+		this = p:7632
+		this = p:7633
 	}
 }
 
@@ -2747,11 +2758,14 @@ z_limes_parthia_region_trigger_2 = {
 z_limes_parthia_region_trigger_3 = {
 	OR = {
 		z_limes_parthia_region_trigger_2 = yes
-		is_in_region = sakia_region # Invictus only
-		#is_in_region = sarmatia_asiatica_region # Vanilla only
+		is_in_region = sakia_region
 		is_in_region = sogdiana_region
 		is_in_region = armenia_region
 		is_in_region = syria_region
+		# Caspian Western coast
+		this = p:5866
+		this = p:5868
+		this = p:5874
 	}
 }
 
@@ -2768,7 +2782,9 @@ z_limes_persis_region_trigger_1 = {
 		is_in_region = mesopotamia_region
 		is_in_region = assyria_region
 		is_in_region = ariana_region
-		#is_in_region = gedrosia_region # Vanilla only
+		is_in_area = parskahayk_area
+		is_in_area = parsatunik_area
+		is_in_area = vaspurakan_area
 	}
 }
 
@@ -2781,7 +2797,20 @@ z_limes_persis_region_trigger_2 = {
 		# PAR exception
 		AND = {
 			root = { primary_culture = parthian }
-			is_in_region = sakia_region # Invictus only
+			OR = {
+				AND = {
+					is_in_region = sakia_region
+					NOT = {
+						is_in_area = atara_area
+						is_in_area = darn_area
+						is_in_area = upper_jaxartia_area
+						is_in_area = syr_area
+						is_in_area = sarysu_area
+						is_in_area = eastern_aral_area
+					}
+				}
+				is_in_area = margiana_area
+			}
 		}
 	}
 }

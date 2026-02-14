@@ -2637,8 +2637,12 @@ z_limes_palestine_region_trigger_1 = {
 	OR = {
 		is_in_region = palestine_region
 		is_in_region = syria_region
-		is_in_region = arabia_region
 		is_in_region = lower_egypt_region
+		# Arabian West coast
+		is_in_area = arabia_ad_sinus_area
+		is_in_area = arabia_relicta_area
+		is_in_area = arabia_maritimae_area
+		is_in_area = dedan_area
 	}
 }
 
@@ -2649,8 +2653,10 @@ z_limes_palestine_region_trigger_2 = {
 		z_limes_palestine_region_trigger_1 = yes
 		is_in_region = cilicia_region
 		is_in_region = upper_egypt_region
+		is_in_area = aswan_area
 		is_in_region = assyria_region
 		is_in_region = mesopotamia_region
+		is_in_region = arabia_region
 		is_in_region = arabia_felix_region
 	}
 }
@@ -2660,8 +2666,7 @@ z_limes_palestine_region_trigger_2 = {
 z_limes_palestine_region_trigger_3 = {
 	OR = {
 		z_limes_palestine_region_trigger_2 = yes
-		#is_in_region = gerrha_region # Vanilla only
-		is_in_region = lower_nubia_region # Invictus only
+		is_in_region = lower_nubia_region
 		is_in_region = nubia_region
 		is_in_region = cyrenaica_region
 		is_in_region = galatia_region
@@ -2692,7 +2697,7 @@ z_limes_pannonia_region_trigger_2 = {
 	OR = {
 		z_limes_pannonia_region_trigger_1 = yes
 		is_in_region = moesia_region
-		is_in_region = moesia_s_region # Invictus only
+		is_in_region = moesia_s_region
 	}
 }
 

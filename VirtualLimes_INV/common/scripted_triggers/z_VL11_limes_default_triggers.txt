@@ -2800,7 +2800,14 @@ z_limes_persis_region_trigger_3 = {
 		is_in_region = cappadocia_region
 		is_in_region = colchis_region
 		is_in_region = armenia_region
-		is_in_region = albania_region
+		AND = {
+			is_in_region = albania_region
+			NOT = {
+				is_in_area = sarmatia_hyrcania_area
+				is_in_area = scythia_trans_montem_area
+				this = p:7603
+			}
+		}
 		is_in_region = syria_region
 		is_in_region = palestine_region
 		is_in_region = lower_egypt_region

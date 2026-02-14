@@ -5,14 +5,14 @@ z_limes_tribal_collapse_effect = {
 	if = {
 		limit = {
 			z_limes_rules_tribal_collapse = 1
+			z_limes_year >= 100
+			z_limes_year < 600
 			is_ai = yes
 			is_tribal = yes
 			is_subject = no
 			num_of_cities >= 120
-			z_limes_year >= 100
-			z_limes_year < 600
 			has_variable = z_limes_lucky_factor
-			var:z_limes_lucky_factor > 10
+			var:z_limes_lucky_factor > 20
 			z_limes_can_cheat_trigger = yes # Is this country allowed to get buffed/nerfed?
 		}
 		random = {
@@ -91,7 +91,7 @@ z_limes_tribal_restoration_effect = {
 			NOT = { has_variable = z_limes_was_tribal_once }
 			# Lucky factor
 			has_variable = z_limes_lucky_factor
-			var:z_limes_lucky_factor > 10
+			var:z_limes_lucky_factor > 20
 			exists = current_ruler
 			current_ruler.martial <= 5
 			# Protect Parthia and friends
@@ -102,11 +102,11 @@ z_limes_tribal_restoration_effect = {
 	if = {
 		limit = {
 			z_limes_rules_tribal_restoration = 1
+			z_limes_year >= 150
 			is_ai = yes
 			is_tribal = no
 			has_variable = z_limes_was_tribal_once
 			num_of_cities >= 120
-			z_limes_year >= 150
 			war = no
 			z_limes_can_cheat_trigger = yes # Is this country allowed to get buffed/nerfed?
 			# Tribal culture groups
@@ -144,20 +144,20 @@ z_limes_monarchy_collapse_effect = {
 	if = {
 		limit = {
 			z_limes_rules_monarchy_collapse = 1
-			is_ai = yes
-			is_monarchy = yes
-			is_subject = no
+			z_limes_year >= 100
+			z_limes_year < 600
 			NOR = {
-				has_variable = z_limes_was_tribal_once
 				has_variable = z_limes_monarchy_collapsed_recently
+				has_variable = z_limes_was_tribal_once
 				tag = ROM
 				capital_scope = p:1
 			}
-			num_of_cities >= 500
-			z_limes_year >= 100
-			z_limes_year < 600
+			is_ai = yes
+			is_monarchy = yes
+			is_subject = no
+			num_of_cities >= 250
 			has_variable = z_limes_lucky_factor
-			var:z_limes_lucky_factor > 20
+			var:z_limes_lucky_factor > 30
 			z_limes_ruler_score < 20
 			trigger_if = {
 				limit = { war = yes }
@@ -166,31 +166,41 @@ z_limes_monarchy_collapse_effect = {
 				}
 			}
 		}
-		random_owned_province = {
-			limit = {
-				NOT = {
-					region = {
-						OR = {
-							this = root.capital_scope.region
-							any_region_province = {
-								any_neighbor_province = {
-									this.region = root.capital_scope.region
-								}
+		random_list = {
+			10 = { z_limes_monarchy_collapse_var_1_effect = yes } # Scenario 1: Faraway regions secede as one blob
+			10 = { z_limes_monarchy_collapse_var_2_effect = yes } # Scenario 2: Random treatment for each province outside the capital
+		}
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Monarchy collapse - Scenario 1: Faraway regions secede as one blob
+# --------------------------------------------------------------------------------
+z_limes_monarchy_collapse_var_1_effect = {
+	random_owned_province = {
+		limit = {
+			NOT = {
+				region = {
+					OR = {
+						this = root.capital_scope.region
+						any_region_province = {
+							any_neighbor_province = {
+								this.region = root.capital_scope.region
 							}
 						}
 					}
 				}
 			}
-			save_scope_as = z_limes_monarchy_collapse_around_this_province
 		}
+		save_scope_as = z_limes_monarchy_collapse_origin
 	}
 	if = {
-		limit = { exists = scope:z_limes_monarchy_collapse_around_this_province }
+		limit = { exists = scope:z_limes_monarchy_collapse_origin }
 		set_variable = {
 			name = z_limes_monarchy_collapsed_recently
 			days = 7200 # 20 years
 		}
-		scope:z_limes_monarchy_collapse_around_this_province.region = {
+		scope:z_limes_monarchy_collapse_origin.region = {
 			ordered_region_province = {
 				limit = {
 					has_owner = yes
@@ -251,33 +261,162 @@ z_limes_monarchy_collapse_effect = {
 					}
 				}
 			}
-			switch = {
-				trigger = is_subject_type
-				client_state = { overlord = { release_subject = prev } scope:z_limes_mm_capital.owner = { make_subject = { target = prev type = client_state } } }
-				feudatory = { overlord = { release_subject = prev } scope:z_limes_mm_capital.owner = { make_subject = { target = prev type = feudatory } } }
-				satrapy = { overlord = { release_subject = prev } scope:z_limes_mm_capital.owner = { make_subject = { target = prev type = satrapy } } }
+			z_limes_transfer_subject_effect = {
+				OLD_OVERLORD = root
+				NEW_OVERLORD = scope:z_limes_mm_capital.owner
 			}
-			# Fall back - Tributary or vassal tribe
-			if = {
-				limit = {
-					NOT = { scope:z_limes_mm_capital.owner = overlord }
-				}
-				overlord = { release_subject = prev }
+		}
+		scope:z_limes_mm_capital.owner = { z_limes_CCN_effect = yes }
+		random_list = {
+			50 = {}
+			50 = {
 				scope:z_limes_mm_capital.owner = {
-					make_subject = {
-						target = prev
-						type = tributary
+					declare_war_with_wargoal = {
+						war_goal = independence_wargoal
+						province = root.capital_scope
+						target = root
 					}
 				}
 			}
 		}
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Monarchy collapse - Scenario 2: Random treatment for each province outside the capital
+# --------------------------------------------------------------------------------
+z_limes_monarchy_collapse_var_2_effect = {
+	while = {
+		limit = {
+			any_owned_province = {
+				NOT = { this.region = root.capital_scope.region }
+			}
+		}
+		ordered_owned_province = {
+			limit = {
+				NOT = { this.region = root.capital_scope.region }
+			}
+			order_by = total_population
+			save_scope_as = z_limes_monarchy_collapse_origin
+		}
+		if = {
+			limit = { exists = scope:z_limes_monarchy_collapse_origin }
+			set_variable = {
+				name = z_limes_monarchy_collapsed_recently
+				days = 7200 # 20 years
+			}
+		}
 		random_list = {
-			50 = {}
-			50 = {
-				declare_war_with_wargoal = {
-					war_goal = conquer_wargoal
-					province = scope:z_limes_mm_capital
-					target = scope:z_limes_mm_capital.owner
+			# A provincial capital absorbs all provinces of the same region
+			10 = {
+				scope:z_limes_monarchy_collapse_origin = { save_scope_as = z_limes_mm_capital }
+				z_limes_make_mm_effect = { ZONE = region }
+				release_subject = scope:z_limes_mm_capital.owner
+				every_owned_province = {
+					limit = { this.region = scope:z_limes_mm_capital.region }
+					set_owned_by = scope:z_limes_mm_capital.owner
+				}
+				every_subject = {
+					limit = {
+						is_ai = yes
+						num_of_cities < scope:z_limes_mm_capital.owner.num_of_cities
+						any_owned_province = {
+							any_neighbor_province = {
+								has_owner = yes
+								owner = scope:z_limes_mm_capital.owner
+							}
+						}
+						NOT = {
+							any_owned_province = {
+								any_neighbor_province = {
+									has_owner = yes
+									owner = root
+								}
+							}
+						}
+					}
+					z_limes_transfer_subject_effect = {
+						OLD_OVERLORD = root
+						NEW_OVERLORD = scope:z_limes_mm_capital.owner
+					}
+				}
+				scope:z_limes_mm_capital.owner = { z_limes_CCN_effect = yes }
+				if = {
+					limit = {
+						any_neighbour_country = {
+							this = scope:z_limes_mm_capital.owner
+						}
+					}
+					random_list = {
+						25 = {}
+						75 = {
+							scope:z_limes_mm_capital.owner = {
+								declare_war_with_wargoal = {
+									war_goal = independence_wargoal
+									province = root.capital_scope
+									target = root
+								}
+							}
+						}
+					}
+				}
+			}
+			# Every area of a region becomes independent
+			5 = {
+				while = {
+					limit = {
+						any_owned_province = { this.region = scope:z_limes_monarchy_collapse_origin.region }
+					}
+					ordered_owned_province = {
+						limit = { this.region = scope:z_limes_monarchy_collapse_origin.region }
+						order_by = total_population
+						save_scope_as = z_limes_mm_capital
+					}
+					z_limes_make_mm_effect = { ZONE = area }
+					release_subject = scope:z_limes_mm_capital.owner
+					every_owned_province = {
+						limit = { this.area = scope:z_limes_mm_capital.area }
+						set_owned_by = scope:z_limes_mm_capital.owner
+					}
+					every_subject = {
+						limit = {
+							is_ai = yes
+							num_of_cities < scope:z_limes_mm_capital.owner.num_of_cities
+							any_owned_province = {
+								any_neighbor_province = {
+									has_owner = yes
+									owner = scope:z_limes_mm_capital.owner
+								}
+							}
+							NOT = {
+								any_owned_province = {
+									any_neighbor_province = {
+										has_owner = yes
+										owner = root
+									}
+								}
+							}
+						}
+						z_limes_transfer_subject_effect = {
+							OLD_OVERLORD = root
+							NEW_OVERLORD = scope:z_limes_mm_capital.owner
+						}
+					}
+					scope:z_limes_mm_capital.owner = { z_limes_CCN_effect = yes }
+					if = {
+						limit = {
+							any_neighbour_country = {
+								this = scope:z_limes_mm_capital.owner
+							}
+						}
+						scope:z_limes_mm_capital.owner = {
+							declare_war_with_wargoal = {
+								war_goal = independence_wargoal
+								province = root.capital_scope
+								target = root
+							}
+						}
+					}
 				}
 			}
 		}

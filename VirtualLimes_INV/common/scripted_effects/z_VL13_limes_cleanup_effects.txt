@@ -237,37 +237,9 @@ z_limes_subject_subject_effect = {
 				limit = {
 					exists = scope:z_new_overlord
 				}
-				switch = {
-					trigger = is_subject_type
-					client_state = { overlord = { release_subject = root } scope:z_new_overlord = { make_subject = { target = root type = client_state } } }
-					feudatory = { overlord = { release_subject = root } scope:z_new_overlord = { make_subject = { target = root type = feudatory } } }
-					satrapy = { overlord = { release_subject = root } scope:z_new_overlord = { make_subject = { target = root type = satrapy } } }
-				}
-				# Fall back - Tributary or vassal tribe
-				if = {
-					limit = {
-						NOT = { scope:z_new_overlord = overlord }
-					}
-					overlord = { release_subject = root }
-					if = {
-						limit = {
-							scope:z_new_overlord = { is_tribal = yes }
-						}
-						scope:z_new_overlord = {
-							make_subject = {
-								target = root
-								type = vassal_tribe
-							}
-						}
-					}
-					else = {
-						scope:z_new_overlord = {
-							make_subject = {
-								target = root
-								type = tributary
-							}
-						}
-					}
+				z_limes_transfer_subject_effect = {
+					$OLD_OVERLORD$ = overlord
+					$NEW_OVERLORD$ = scope:z_new_overlord
 				}
 			}
 			# Resolution: release
@@ -278,6 +250,44 @@ z_limes_subject_subject_effect = {
 			overlord = {
 				z_limes_release_effect = yes
 			}
+		}
+	}
+}
+
+# --------------------------------------------------------------------------------
+# Subject country is transfered from $OLD_OVERLORD$ to $NEW_OVERLORD$
+# --------------------------------------------------------------------------------
+z_limes_transfer_subject_effect = {
+	switch = {
+		trigger = is_subject_type
+		client_state = {
+			$OLD_OVERLORD$ = { release_subject = prev }
+			$NEW_OVERLORD$ = { make_subject = { target = prev type = client_state } }
+		}
+		feudatory = {
+			$OLD_OVERLORD$ = { release_subject = prev }
+			$NEW_OVERLORD$ = { make_subject = { target = prev type = feudatory } }
+		}
+		satrapy = {
+			$OLD_OVERLORD$ = { release_subject = prev }
+			$NEW_OVERLORD$ = { make_subject = { target = prev type = satrapy } }
+		}
+	}
+	# Fall back - Tributary or vassal tribe
+	if = {
+		limit = {
+			NOT = { $NEW_OVERLORD$ = overlord }
+		}
+		if = {
+			limit = {
+				$NEW_OVERLORD$ = { is_tribal = no }
+			}
+			$OLD_OVERLORD$ = { release_subject = prev }
+			$NEW_OVERLORD$ = { make_subject = { target = prev type = tributary } }
+		}
+		else = {
+			$OLD_OVERLORD$ = { release_subject = prev }
+			$NEW_OVERLORD$ = { make_subject = { target = prev type = vassal_tribe } }
 		}
 	}
 }

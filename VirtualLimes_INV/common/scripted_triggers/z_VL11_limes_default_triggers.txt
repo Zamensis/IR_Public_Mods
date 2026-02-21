@@ -2559,10 +2559,21 @@ z_limes_moesia_s_region_trigger_3 = {
 z_limes_nubia_region_trigger_1 = {
 	OR = {
 		is_in_region = nubia_region
-		is_in_region = lower_nubia_region # Invictus only
+		is_in_region = lower_nubia_region
 		is_in_region = upper_egypt_region
-		is_in_region = lower_egypt_region
-		is_in_region = punt_region
+		# Punt, except Eastern Punt
+		AND = {
+			is_in_region = punt_region
+			NOT = {
+				is_in_area = awash_area
+				is_in_area = punt_area
+				is_in_area = upper_punt_area
+				is_in_area = elephas_area
+				is_in_area = mosylon_area
+				is_in_area = aromata_area
+				is_in_area = zingis_area
+			}
+		}
 	}
 }
 
@@ -2575,6 +2586,15 @@ z_limes_nubia_region_trigger_2 = {
 		is_in_region = palestine_region
 		is_in_region = arabia_region
 		is_in_region = arabia_felix_region
+		is_in_region = lower_egypt_region
+		# Eastern Punt
+		is_in_area = awash_area
+		is_in_area = punt_area
+		is_in_area = upper_punt_area
+		is_in_area = elephas_area
+		is_in_area = mosylon_area
+		is_in_area = aromata_area
+		is_in_area = zingis_area
 	}
 }
 
@@ -2624,6 +2644,8 @@ z_limes_numidia_region_trigger_3 = {
 		is_in_region = lower_egypt_region
 		is_in_region = lusitania_region
 		is_in_region = tarraconensis_region
+		is_in_area = vaccaeia_meridionalis_area
+		is_in_area = vaccaeia_septentrionalis_area
 	}
 }
 

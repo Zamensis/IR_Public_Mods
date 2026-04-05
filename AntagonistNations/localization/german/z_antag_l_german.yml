@@ -1,0 +1,23 @@
+﻿l_german:
+  #----------------------------------------------------------------------------------------- 
+ z_antag.1.t: "Antagonistische Nationen" 
+ z_antag.1.desc: "Wählt eine #E Antagonistische Nationen#! -Spieleinstellung."  
+  #----------------------------------------------------------------------------------------- 
+ z_antag.1.a: "@z_an_historical! #E Standard#! · Antagonistische Nationen"  
+ z_antag.1.b: "@z_an_historical! #E Historisch#! Antagonistische Nationen"  
+ z_antag.1.bt: "Eine Auswahl der #E historisch erfolgreichsten#! Nationen:"  
+ z_antag.1.bt2: "... sowie #E Parthia#! und #E Pontus#!, nachdem sie sich historisch gebildet haben."  
+ z_antag.1.c: "@z_an_random! #E Zufällig · 10#! Antagonistische Nationen"  
+ z_antag.1.ct: "#Y 10#! zufällig ausgewählte Nationen.\nSolange diese Auswahl gilt, wird es immer #Y 10#!  #E zufällige#! Antagonistische Nationen zu jeder Zeit geben."  
+ z_antag.1.d: "@z_an_random! #E Zufällig · 20#! Antagonistische Nationen"  
+ z_antag.1.dt: "#Y 20#! zufällig ausgewählte Nationen.\nSolange diese Auswahl gilt, wird es immer #Y 20#! #E zufällige#! Antagonistische Nationen zu jeder Zeit geben." 
+ z_antag.1.e: "@z_an_random! #E Zufällig · 30#! Antagonistische Nationen"  
+ z_antag.1.et: "#Y 30#! zufällig ausgewählte Nationen.\nSolange diese Auswahl gilt, wird es immer #Y 30#! #E zufällige#! Antagonistische Nationen zu jeder Zeit geben." 
+ z_antag.1.f: "@z_an_randomhistorical! #E Zufällig Historische · 15#! Antagonistische Nationen" 
+ z_antag.1.ft: "#Y 15#! zufällig unter #E historischen Herausforderern#! ausgewählte Nationen.\nSolange diese Auswahl gilt, wird es immer #Y 15#! #E zufällige historische#! Antagonistische Nationen zu jeder Zeit geben."  
+ z_antag.1.x: "@z_an_randomhistorical! #E Alle#! Antagonistische Nationen" 
+ z_antag.1.xt: "#Y Alle#! Nationen werden Antagonisten." 
+ z_antag.1.z: "@z_an_refuse! #E Keine#! Antagonistischen Nationen" 
+ z_antag.1.zt: "#R In diesem Spiel wird es keine Antagonistische Nation geben.#!"  
+  #----------------------------------------------------------------------------------------- 
+ SET_ANTAGONIST_FALSE: "[COUNTRY.GetName] ist kein Antagonist mehr."  
